@@ -1,0 +1,37 @@
+/* =NAVIGATION
+--------------------------------------------- */
+
+[role="navigation"] {
+  display: flex;
+  justify-content: space-between;
+  padding: $lineheight 2%;
+  font-family: $mono;
+  font-size: to_em(13);
+
+  ul {
+    display: flex;
+  }
+
+  .nav--current {
+    font-style: italic;
+
+    a {
+      color: $grey;
+      cursor: default;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    display: block;
+    padding: 0 .618em;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

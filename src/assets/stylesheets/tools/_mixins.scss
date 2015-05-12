@@ -1,0 +1,30 @@
+@import 'underlines';
+
+@mixin wrapper {
+  max-width: $page-width;
+  width: 90%;
+  margin: 0 auto;
+}
+
+@mixin list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin smooth($enabled: true) {
+  @if $enabled {
+    -webkit-font-smoothing: antialiased;
+  }
+  @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+@mixin truncate($max: 100%) {
+  display: inline-block;
+  max-width: $max;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

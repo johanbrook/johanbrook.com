@@ -1,0 +1,44 @@
+{
+  "name": "johanbrook.com",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Homepage of Johan Brook.",
+  "main": "build.coffee",
+  "scripts": {
+    "build": "coffee build.coffee",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "./node_modules/nodemon/bin/nodemon.js -e md,scss,css,html,js,coffee,json,cson --ignore build/ build.coffee -- -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johanbrook/johanbrook.com"
+  },
+  "author": "Johan Brook <johan@johanbrook.com>",
+  "license": "Copyright Johan Brook (2014)",
+  "bugs": {
+    "url": "https://github.com/johanbrook/johanbrook.com/issues"
+  },
+  "homepage": "https://github.com/johanbrook/johanbrook.com",
+  "dependencies": {
+    "handlebars": "^3.0.1",
+    "lodash": "^3.8.0",
+    "metalsmith": "^1.6.0",
+    "metalsmith-autoprefixer": "^1.0.2",
+    "metalsmith-branch": "0.0.4",
+    "metalsmith-collections": "^0.7.0",
+    "metalsmith-excerpts": "^1.0.0",
+    "metalsmith-layouts": "^1.0.0",
+    "metalsmith-markdown": "^0.2.1",
+    "metalsmith-metallic": "^0.3.1",
+    "metalsmith-permalinks": "^0.4.0",
+    "metalsmith-sass": "^0.7.0",
+    "metalsmith-templates": "^0.7.0",
+    "moment": "^2.10.2"
+  },
+  "devDependencies": {
+    "colors": "^1.0.3",
+    "metalsmith-serve": "0.0.3",
+    "metalsmith-watch": "^0.2.0",
+    "nodemon": "^1.3.7"
+  }
+}

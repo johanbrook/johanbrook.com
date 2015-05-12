@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="{{ tags }}">
+    <meta name="author" content="Johan Brook">
+
+    <link rel="stylesheet" href="/assets/stylesheets/johan.css">
+    <link rel="stylesheet" href="http://yastatic.net/highlightjs/8.2/styles/solarized_light.min.css">
+    <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">-->
+
+  </head>
+
+  <body class="{{page}}">
+
+    <nav role="navigation">
+      <ul class="navigation__primary">
+        <li class="{{#isCurrentNav 'home' }}nav--current{{/isCurrentNav}}"><a href="/">Home</a></li>
+        <li class="{{#isCurrentNav 'posts' }}nav--current{{/isCurrentNav}}"><a href="/writings">Writings</a></li>
+        <li class="{{#isCurrentNav 'about' }}nav--current{{/isCurrentNav}}" ><a href="/about">More</a></li>
+      </ul>
+
+      <ul class="navigation__secondary">
+        <li><a href="http://twitter.com/johanbrook">@{{ twitter }}</a></li>
+      </ul>
+    </nav>
+
+    {{{ contents }}}
+
+  </body>
+
+</html>

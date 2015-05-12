@@ -1,0 +1,105 @@
+/* =HELPERS
+--------------------------------------------- */
+
+.faded {
+  color: $grey-light;
+}
+
+.strong {
+  color: $text-color;
+}
+
+.comp-green {
+  color: $comp-green;
+}
+
+.comp-blue {
+  color: $comp-blue;
+}
+
+.page-title {
+  text-align: center;
+  font-size: to_rem(60);
+}
+
+.text-column {
+  max-width: to_rem(450);
+}
+
+.no-content {
+  color: $grey;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.wrapper {
+  @include wrapper;
+}
+
+.banner {
+  background-color: $comp-orange;
+  padding: $lineheight 5%;
+  color: #fff;
+  text-align: center;
+  margin: $lineheight*2 0;
+  font-family: $mono;
+  font-size: to_rem(14);
+
+  p {
+    max-width: to_rem(380);
+    margin: 0 auto;
+  }
+}
+
+%link {
+  color: $text-color;
+  text-decoration: underline;
+  font-weight: bold;
+  @include underline($size: 7, $offset: .1);
+
+  &:hover {
+    color: $link-color;
+  }
+}
+
+.link-large {
+  @extend %link;
+  font-size: to_rem(80);
+}
+
+.link-medium {
+  @extend %link;
+  font-size: to_rem(40);
+}
+
+.spacing {
+  margin-top: $lineheight*4;
+  margin-bottom: $lineheight*4;
+
+  &.spacing--double {
+    margin-top: $lineheight*6;
+    margin-bottom: $lineheight*6;
+  }
+
+  &--top {
+    margin-top: $lineheight*4;
+
+    &.spacing--double {
+      margin-top: $lineheight*6;
+    }
+  }
+
+  &--bottom {
+    margin-bottom: $lineheight*4;
+
+    &.spacing--double {
+      margin-bottom: $lineheight*6;
+    }
+  }
+}
+
+.centered {
+  text-align: center;
+}

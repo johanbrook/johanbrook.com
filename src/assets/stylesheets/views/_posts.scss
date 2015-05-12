@@ -1,0 +1,17 @@
+/* =POSTS VIEW
+--------------------------------------------- */
+
+.posts {
+
+  [role="main"] {
+
+  }
+
+  [role="article"] {
+    margin-bottom: $lineheight*4;
+
+    h1 {
+      font-size: to_rem(28);
+    }
+  }
+}

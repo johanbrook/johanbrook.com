@@ -1,0 +1,13 @@
+<article role="article">
+  <header>
+    <h1>{{title}}</h1>
+
+    <p class="post__meta">
+      <time datetime="{{toISODate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
+    </p>
+  </header>
+
+  <div class="post-text">
+    {{{contents}}}
+  </div>
+</article>

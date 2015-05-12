@@ -1,0 +1,34 @@
+/* =HEADINGS
+--------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headings;
+  font-weight: normal;
+  margin: 0;
+  color: #000;
+}
+
+.subtitle {
+  font-size: to_rem(14);
+  color: $grey;
+  font-family: $mono;
+}
+
+h1 {
+  font-size: to_rem(40);
+  margin-bottom: $lineheight;
+
+  .subtitle {
+    display: block;
+  }
+}
+
+h2 {
+  font-size: to_rem(22);
+  margin-bottom: $lineheight;
+}
+
+h3 {
+  margin-bottom: $lineheight / 2;
+  font-size: to_rem(18);
+}

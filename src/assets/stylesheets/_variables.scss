@@ -1,0 +1,32 @@
+// Colors
+
+$comp-green: #6EBC30;
+$comp-blue: #4BB2F7;
+$comp-red: #C0392B;
+$comp-neon: #6DDF9D;
+$comp-orange: #FF8C00;
+$comp-beige: #FDF6E3;
+
+$background-color: #fff;
+
+$text-color: #4A4A4A;
+$grey: #979797;
+$grey-light: #b8b8b8;
+
+$link-color: #E01270;
+
+// Typography
+
+$base-size: 17;
+$leading: 27;
+
+$lineheight: ($leading / $base-size) * 1rem;
+
+$serif: Lora, serif;
+$sans: 'Open Sans', Helvetica, sans-serif;
+$mono: Menlo, monospace;
+$headings: Trocchi, serif;
+
+// Measures
+
+$page-width:  40rem;

@@ -1,0 +1,17 @@
+/* =POST VIEW
+--------------------------------------------- */
+
+.post {
+  [role="article"] {
+    header {
+      h1 {
+        margin-bottom: $lineheight / 2;
+      }
+    }
+
+    .post__meta {
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+  }
+}

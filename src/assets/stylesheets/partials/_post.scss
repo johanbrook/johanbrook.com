@@ -1,0 +1,46 @@
+[role="article"] {
+  max-width: to_rem(530);
+  margin: $lineheight*2 auto 0;
+
+  header {
+    time {
+      font-family: $mono;
+      font-size: to_em(11);
+      color: $grey;
+    }
+
+    h1 {
+      margin-bottom: $lineheight;
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+    }
+  }
+
+  .post__meta {
+    text-align: center;
+  }
+
+  h3 {
+    font-family: $sans;
+    font-weight: normal;
+    color: #888;
+  }
+
+  pre {
+    margin-left: -$lineheight;
+    margin-right: -$lineheight;
+  }
+
+  .post-text {
+    a {
+      @include underline($size: 3, $offset: .1, $color: rgba($link-color, .4));
+
+      &:hover {
+        @include underline-color($link-color);
+      }
+    }
+  }
+}

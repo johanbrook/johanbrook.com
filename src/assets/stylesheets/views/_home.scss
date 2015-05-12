@@ -1,0 +1,179 @@
+/* =HOME VIEW
+--------------------------------------------- */
+
+.home {
+  text-align: center;
+
+  [role="main"] {
+    font-size: to_rem(19);
+    color: $grey;
+  }
+
+  p {
+    line-height: 1.7;
+    max-width: 35rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  [role="banner"] {
+    h1 {
+      max-width: 40rem;
+      margin: 0 auto $lineheight*2;
+
+      .subtitle {
+        margin-bottom: $lineheight*2;
+      }
+    }
+  }
+
+  .avatar {
+    margin: $lineheight*2 auto;
+    width: 213px;
+  }
+}
+
+.story {
+
+  section {
+    padding: $lineheight*3 5%;
+
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  & &__lookback {
+    background-color: $comp-red;
+    color: #fff;
+    padding-top: $lineheight*5;
+    padding-bottom: $lineheight*5;
+
+    h1 {
+      margin: $lineheight 0 $lineheight*2;
+    }
+  }
+
+  &__spotify {
+
+    .spotify-logo {
+      width: 410px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .spotify-projects {
+      @include list-reset;
+      display: flex;
+      flex-wrap: wrap;
+      font: normal #{to_rem(12)}/1.4 $mono;
+      max-width: 45rem;
+      margin: $lineheight*3 auto;
+
+      li {
+        flex-basis: 50%;
+        margin-bottom: $lineheight*3;
+      }
+
+      p {
+        margin: 0 8%;
+      }
+
+      figure {
+        margin: 0 auto $lineheight*2;
+        height: $lineheight*4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .spotify-projects {
+
+        &__diversify {
+          figure {
+            max-width: 241px;
+          }
+        }
+
+        &__gbgsh {
+          color: #000;
+        }
+
+        &__wowhack {
+          color: #E01270;
+        }
+
+        &__diversify {
+          color: #9B4E7E;
+        }
+
+        &__mmc {
+          color: #3F7812;
+        }
+      }
+    }
+  }
+
+  &__chalmers {
+    color: #fff;
+    background-color: $comp-blue;
+
+    h1 {
+      font-size: to_rem(50);
+      color: #fff;
+      margin: $lineheight*2 0;
+    }
+  }
+
+  & &__misc {
+    padding-left: 0;
+    padding-right: 0;
+    font-size: to_rem(18);
+
+    p {
+      max-width: 30rem;
+    }
+  }
+
+  .story__misc__background {
+    background: #fff url('/assets/images/road-improved.jpg') no-repeat center;
+    background-size: cover;
+    color: #19394B;
+    height: 700px;
+    font-family: 'Nevis', $sans;
+    position: relative;
+
+    p {
+      margin: 0;
+      position: absolute;
+      left: 35vw;
+      top: 23%;
+      font-size: to_rem(80);
+    }
+  }
+}
+
+[role="contentinfo"] {
+  background-color: $comp-neon;
+  color: #fff;
+  text-align: right;
+  margin-top: $lineheight*4;
+  padding: $lineheight*2 5%;
+  font-family: $mono;
+  font-size: to_rem(14);
+
+  p {
+    max-width: 30rem;
+    margin-right: 0;
+  }
+
+  a {
+    font-style: italic;
+    color: #fff;
+    @include underline($size: 2, $offset: 0, $bg: $comp-neon, $color: #fff);
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+}
