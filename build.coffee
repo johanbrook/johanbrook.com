@@ -11,6 +11,13 @@ sass =          require 'metalsmith-sass'
 serve =         require 'metalsmith-serve'
 excerpts =      require 'metalsmith-excerpts'
 metallic =      require 'metalsmith-metallic'
+copy =          require 'metalsmith-copy'
+typography =    require 'metalsmith-typography'
+drafts =        require 'metalsmith-drafts'
+feed =          require 'metalsmith-feed'
+compress =      require 'metalsmith-gzip'
+pagination =    require 'metalsmith-pagination'
+_ =             require 'lodash'
 
 require './helpers'
 
@@ -21,24 +28,20 @@ start = process.hrtime()
 isDev = process.argv[2] and process.argv[2] is '-s'
 port = 8000
 
-finished = (err) ->
-  if err
-    lines = if err.line and err.column then "On line #{err.line}, column #{err.column}" else ''
-    console.error '✘'.red + ' ' + err.message + '. ' + lines
-  else
-    # Nano to ms.
-    ms = (process.hrtime(start)[1] / 10e6).toFixed(2)
-    console.log "#{'✔︎'.green} #{'Site built'.underline} (in #{ms}ms)\n"
+# Load external meta.
+config = require './src/meta.json'
 
 METADATA =
   title: 'Johan Brook'
-  description: 'The homepage and blog of Johan Brook.'
   tags: 'johan brook, web development, design, lookback'
-  url: 'http://johanbrook.com'
-  github: 'johanbrook'
-  twitter: 'johanbrook'
-  email: 'johan@johanbrook.com'
 
+  # For the feed.
+  site:
+    title: 'Johan Brook'
+    url: 'http://johanbrook.com'
+    author: 'Johan Brook'
+
+_.extend(METADATA, config)
 
 site = Metalsmith(__dirname)
 
@@ -50,7 +53,18 @@ site = Metalsmith(__dirname)
 
   # POSTS #######################################
 
+  # Make posts available in .text format for the same permalink.
+  .use copy
+    pattern: 'posts/*.md'
+    directory: 'writings'
+    transform: (file) ->
+      file
+        .replace(/(posts)\/\d{4}-\d{2}-\d{2}-/g, 'writings/')  # Remove date, replace 'posts'
+        .replace(/md|markdown/, 'text') # Replace .md/.markdown with .text.
+
   .use metallic()
+
+  .use drafts()
 
   .use markdown()
 
@@ -61,6 +75,12 @@ site = Metalsmith(__dirname)
       pattern: 'posts/**.html'
       sortBy: 'date'
       reverse: true
+
+  .use feed(collection: 'posts')
+
+  # Use typography niceties.
+
+  .use branch('posts/**.html').use(typography())
 
   # Set post template on each post.
 
@@ -76,6 +96,15 @@ site = Metalsmith(__dirname)
 
   .use branch('!posts/**.html').use branch('!index.md').use permalinks
     relative: false
+
+  .use pagination
+    'collections.posts':
+      path: 'writings/page/:num/index.html'
+      perPage: 5
+      template: 'posts.html'
+      first: 'writings/index.html'
+      pageMetadata:
+        page: 'posts'
 
   # TEMPLATES #######################################
 
@@ -96,13 +125,28 @@ site = Metalsmith(__dirname)
 
   .use autoprefixer()
 
+
 # LOCAL DEV #######################################
 
 if isDev
   site.use serve
     port: port
 
+if !isDev
+  site
+    .use compress()
+
 
 # BUILD #######################################
+
+finished = (err) ->
+  if err
+    lines = if err.line and err.column then "On line #{err.line}, column #{err.column}" else ''
+    console.error '✘'.red + ' ' + err.message + '. ' + lines
+  else
+    # Nano to ms.
+    ms = (process.hrtime(start)[1] / 10e6).toFixed(2)
+    console.log "#{'✔︎'.green} #{'Site built'.underline} (in #{ms}ms)\n"
+
 
 site.build(finished)

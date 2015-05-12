@@ -10,8 +10,26 @@
   [role="article"] {
     margin-bottom: $lineheight*4;
 
+    header {
+      time {
+        font-family: $mono;
+        font-size: to_em(12);
+        color: $grey;
+
+        @include handheld {
+          font-size: to_em(13);
+        }
+      }
+    }
+
     h1 {
       font-size: to_rem(28);
     }
   }
+}
+
+.read-more {
+  text-align: right;
+  font-family: $mono;
+  font-size: to_em(12);
 }

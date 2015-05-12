@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="{{page}}">
   <head>
     <title>{{ title }}</title>
 
@@ -10,17 +10,18 @@
 
     <link rel="stylesheet" href="/assets/stylesheets/johan.css">
     <link rel="stylesheet" href="http://yastatic.net/highlightjs/8.2/styles/solarized_light.min.css">
-    <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">-->
 
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
   </head>
 
-  <body class="{{page}}">
+  <body>
 
     <nav role="navigation">
       <ul class="navigation__primary">
         <li class="{{#isCurrentNav 'home' }}nav--current{{/isCurrentNav}}"><a href="/">Home</a></li>
         <li class="{{#isCurrentNav 'posts' }}nav--current{{/isCurrentNav}}"><a href="/writings">Writings</a></li>
         <li class="{{#isCurrentNav 'about' }}nav--current{{/isCurrentNav}}" ><a href="/about">More</a></li>
+        <li><a title="Oh, you don't have your personal API yet?" href="/meta.json">API</a></li>
       </ul>
 
       <ul class="navigation__secondary">

@@ -18,6 +18,9 @@ Helpers =
   isPage: (page) ->
     page is @page
 
+  pretty: (text) ->
+    text.replace 'index.html', ''
+
   isCurrentNav: (page, options) ->
     aliases =
       posts: 'posts'

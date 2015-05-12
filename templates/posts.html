@@ -1,21 +1,36 @@
 <main role="main">
 
-  {{#if posts}}
+  {{#if pagination.files.length }}
+      {{#each pagination.files}}
 
-    {{#each posts}}
+      <article role="article">
+        <header>
+          <time datetime="{{toISODate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
+          <h1><a href="/{{path}}">{{title}}</a></h1>
+        </header>
 
-    <article role="article">
-      <header>
-        <time datetime="{{toISODate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
-        <h1><a href="/{{path}}">{{title}}</a></h1>
-      </header>
+        <div class="post-text">
+          {{{excerpt}}}
 
-      <div class="post-text">
-        {{{excerpt}}}
-      </div>
-    </article>
+          <p class="read-more">
+            <a href="/{{path}}">Read more…</a>
+          </p>
+        </div>
+      </article>
 
-    {{/each}}
+      {{/each}}
+
+    <footer class="page-nav">
+      {{#if pagination.next}}
+        <a rel="next" href="/{{ pretty pagination.next.path}}">Older posts</a>
+      {{/if}}
+
+      <span class="separator">/</span>
+
+      {{#if pagination.previous}}
+        <a rel="prev" href="/{{ pretty pagination.previous.path}}">Newer posts</a>
+      {{/if}}
+    </footer>
 
   {{else}}
 
@@ -24,5 +39,6 @@
     </p>
 
   {{/if}}
+
 
 </main>

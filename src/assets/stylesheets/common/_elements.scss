@@ -9,6 +9,12 @@
 html {
   background-color: $background-color;
   font: normal #{$base-size}px/#{$leading / $base-size} $serif;
+  color: $text-color;
+  padding-bottom: $lineheight*2;
+
+  @include handheld {
+    font-size: 1rem;
+  }
 }
 
 nav ul {
@@ -55,4 +61,11 @@ pre {
     font-size: inherit;
     box-shadow: none;
   }
+}
+
+blockquote {
+  font-style: italic;
+  border-left: 1px solid $text-color;
+  margin: 0 2rem $lineheight 0;
+  padding-left: 2rem;
 }

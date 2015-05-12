@@ -1,13 +1,9 @@
 [role="article"] {
-  max-width: to_rem(530);
+  max-width: to_rem(570);
+  width: $page-width;
   margin: $lineheight*2 auto 0;
 
   header {
-    time {
-      font-family: $mono;
-      font-size: to_em(11);
-      color: $grey;
-    }
 
     h1 {
       margin-bottom: $lineheight;
@@ -21,6 +17,7 @@
 
   .post__meta {
     text-align: center;
+    color: $grey;
   }
 
   h3 {
@@ -32,6 +29,11 @@
   pre {
     margin-left: -$lineheight;
     margin-right: -$lineheight;
+
+    @include smaller-than(640px) {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   .post-text {

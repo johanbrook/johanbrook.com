@@ -3,10 +3,15 @@
 
 .home {
   text-align: center;
+  padding-bottom: 0;
 
   [role="main"] {
     font-size: to_rem(19);
     color: $grey;
+
+    @include handheld {
+      font-size: 1rem;
+    }
   }
 
   p {
@@ -14,9 +19,15 @@
     max-width: 35rem;
     margin-left: auto;
     margin-right: auto;
+    width: 90%;
   }
 
   [role="banner"] {
+
+    @include larger-than($handheld) {
+      margin-top: -2.9rem;
+    }
+
     h1 {
       max-width: 40rem;
       margin: 0 auto $lineheight*2;
@@ -31,9 +42,30 @@
     margin: $lineheight*2 auto;
     width: 213px;
   }
+
+  .outro {
+
+    p {
+      max-width: 30rem;
+    }
+  }
+
+  .inverted {
+    a {
+      color: #fff;
+    }
+  }
 }
 
 .story {
+
+  .logo {
+    transition: opacity .2s;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
 
   section {
     padding: $lineheight*3 5%;
@@ -60,6 +92,7 @@
       width: 410px;
       margin-left: auto;
       margin-right: auto;
+      max-width: 100%;
     }
 
     .spotify-projects {
@@ -87,36 +120,44 @@
         justify-content: center;
       }
 
-      .spotify-projects {
+      @include handheld {
+        flex-direction: column;
+        justify-content: center;
+      }
 
-        &__diversify {
-          figure {
-            max-width: 241px;
-          }
+      &__diversify {
+        figure {
+          max-width: 241px;
         }
+      }
 
-        &__gbgsh {
-          color: #000;
-        }
+      &__gbgsh {
+        color: #000;
+      }
 
-        &__wowhack {
-          color: #E01270;
-        }
+      &__wowhack {
+        color: #E01270;
+      }
 
-        &__diversify {
-          color: #9B4E7E;
-        }
+      &__diversify {
+        color: #9B4E7E;
+      }
 
-        &__mmc {
-          color: #3F7812;
-        }
+      &__mmc {
+        color: #3F7812;
       }
     }
   }
 
   &__chalmers {
-    color: #fff;
+    $color: darken(desaturate($comp-blue, 20%), 30%);
+
     background-color: $comp-blue;
+    color: #fff;
+
+    .muted {
+      color: $color;
+    }
 
     h1 {
       font-size: to_rem(50);
@@ -149,6 +190,18 @@
       left: 35vw;
       top: 23%;
       font-size: to_rem(80);
+    }
+
+    @include handheld {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+
+      p {
+        position: static;
+        font-size: 16vw;
+      }
     }
   }
 }

@@ -3,13 +3,13 @@
 $comp-green: #6EBC30;
 $comp-blue: #4BB2F7;
 $comp-red: #C0392B;
-$comp-neon: #6DDF9D;
+$comp-neon: #54CF88;
 $comp-orange: #FF8C00;
 $comp-beige: #FDF6E3;
 
 $background-color: #fff;
 
-$text-color: #4A4A4A;
+$text-color: #3c3c3c;
 $grey: #979797;
 $grey-light: #b8b8b8;
 
@@ -29,4 +29,10 @@ $headings: Trocchi, serif;
 
 // Measures
 
-$page-width:  40rem;
+$page-width:        90%;
+$max-width:         40rem;
+
+$desktop:           1700px;
+$laptop:            1280px;
+$tablet:            768px;
+$handheld:          481px;

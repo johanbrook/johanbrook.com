@@ -4,14 +4,21 @@
 .post {
   [role="article"] {
     header {
+      text-align: center;
+      margin-bottom: $lineheight*2;
+
       h1 {
         margin-bottom: $lineheight / 2;
       }
     }
 
     .post__meta {
-      font-size: 1.2rem;
-      font-style: italic;
+      font-family: $mono;
+      font-size: to_em(12);
+
+      time {
+        font-style: italic;
+      }
     }
   }
 }

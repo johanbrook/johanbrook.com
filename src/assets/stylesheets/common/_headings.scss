@@ -21,6 +21,10 @@ h1 {
   .subtitle {
     display: block;
   }
+
+  @include handheld {
+    font-size: to_rem(32);
+  }
 }
 
 h2 {

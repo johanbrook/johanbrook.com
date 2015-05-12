@@ -1,6 +1,10 @@
 /* =HELPERS
 --------------------------------------------- */
 
+.grey {
+  color: $grey;
+}
+
 .faded {
   color: $grey-light;
 }
@@ -20,10 +24,15 @@
 .page-title {
   text-align: center;
   font-size: to_rem(60);
+
+  @include handheld {
+    font-size: to_rem(32);
+  }
 }
 
 .text-column {
   max-width: to_rem(450);
+  width: $page-width;
 }
 
 .no-content {
@@ -32,10 +41,6 @@
 
 .no-margin {
   margin: 0;
-}
-
-.wrapper {
-  @include wrapper;
 }
 
 .banner {
@@ -47,9 +52,30 @@
   font-family: $mono;
   font-size: to_rem(14);
 
+  a {
+    color: #fff;
+  }
+
   p {
     max-width: to_rem(380);
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .banner__detail {
+    color: darken($comp-orange, 20%);
+  }
+
+  &--neon {
+    background-color: $comp-neon;
+
+    .banner__detail {
+      color: darken($comp-neon, 20%);
+    }
   }
 }
 
@@ -98,8 +124,34 @@
       margin-bottom: $lineheight*6;
     }
   }
+
+  @include handheld {
+    margin-top: $lineheight*2;
+    margin-bottom: $lineheight*2;
+  }
 }
 
 .centered {
   text-align: center;
+}
+
+.page-nav {
+  text-align: center;
+  font-family: $mono;
+  font-size: to_em(12);
+
+  a {
+    color: $grey;
+    text-decoration: none;
+
+    &:hover {
+      color: darken($grey, 20%);
+    }
+  }
+
+  .separator {
+    color: $comp-neon;
+    font-size: 1.2em;
+    margin: 0 3px;
+  }
 }

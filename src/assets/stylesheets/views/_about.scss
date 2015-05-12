@@ -3,15 +3,35 @@
 
 .about {
 
+  [role="main"] {
+    a:not(.no-underline) {
+      @include underline($size: 3, $offset: .1, $color: rgba($link-color, .4));
+
+      &:hover {
+        @include underline-color($link-color);
+      }
+    }
+  }
+
   .text-column {
     margin: 0 auto;
   }
 
+  .about__body {
+    p {
+      margin-bottom: 0;
+
+      &:not(:first-child) {
+        text-indent: 2em;
+      }
+    }
+  }
+
   &__contact {
     text-align: center;
-    color: $grey;
     max-width: to_rem(500);
     line-height: 1.8;
+    width: $page-width;
 
     p {
       margin: 0 auto $lineheight*2;
@@ -20,5 +40,60 @@
         max-width: to_rem(425);
       }
     }
+  }
+
+  .notices {
+    margin: $lineheight*4 5%;
+    width: $page-width;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: center;
+    color: $grey;
+
+    p {
+      font-family: $mono;
+      font-size: to_em(12);
+      margin: 0 5%;
+    }
+
+    > div {
+      flex: 1;
+      max-width: 20rem;
+    }
+
+    @include handheld {
+      margin-bottom: $lineheight*2;
+      flex-direction: column;
+      align-items: center;
+
+      > div {
+        margin-bottom: $lineheight;
+      }
+    }
+  }
+
+  .talking {
+    p {
+      max-width: to_rem(450);
+    }
+  }
+
+  .misc {
+    width: $page-width;
+    margin: $lineheight*3 5%;
+
+    p {
+      max-width: to_rem(450);
+      margin: 0 auto $lineheight*2;
+      text-align: center;
+    }
+  }
+
+  .bye {
+    text-align: center;
+    color: $grey-light;
+    font-size: .9rem;
+    font-style: italic;
   }
 }

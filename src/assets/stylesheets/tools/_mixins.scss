@@ -1,8 +1,8 @@
 @import 'underlines';
 
 @mixin wrapper {
-  max-width: $page-width;
-  width: 90%;
+  max-width: $max-width;
+  width: $page-width;
   margin: 0 auto;
 }
 
@@ -15,9 +15,11 @@
 @mixin smooth($enabled: true) {
   @if $enabled {
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   @else {
     -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: none;
   }
 }
 
@@ -27,4 +29,56 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+// Viewport mixins
+
+@mixin respond($size, $mode) {
+  @media only screen and (#{$mode}-width: $size) {
+    @content;
+  }
+}
+
+// Shorthands
+
+@mixin smaller-than($size) {
+  @include respond($size, max) {
+    @content;
+  }
+}
+
+@mixin larger-than($size) {
+  @include respond($size, min) {
+    @content;
+  }
+}
+
+@mixin handheld {
+  @include smaller-than($handheld) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @include smaller-than($tablet) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @include smaller-than($laptop) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @include larger-than($laptop) {
+    @content;
+  }
+}
+
+@mixin large-display {
+  @include larger-than($desktop) {
+    @content;
+  }
 }
