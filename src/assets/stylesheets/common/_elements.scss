@@ -52,7 +52,7 @@ pre {
   background-color: $comp-beige;
   border-radius: 5px;
   padding: $lineheight;
-  font-size: to_rem(13);
+  font-size: to_rem(14);
 
   code {
     background-color: transparent;
@@ -68,4 +68,14 @@ blockquote {
   border-left: 1px solid $text-color;
   margin: 0 2rem $lineheight 0;
   padding-left: 2rem;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  background-color: #000;
+  margin: $lineheight*3 auto;
+  width: 10rem;
+  max-width: 50%;
 }

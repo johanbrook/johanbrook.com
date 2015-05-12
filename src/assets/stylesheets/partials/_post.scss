@@ -3,6 +3,18 @@
   width: $page-width;
   margin: $lineheight*2 auto 0;
 
+  &.linked {
+    header {
+      h1 a {
+        @include underline($offset: .2, $size: 3, $color: rgba($text-color, .4));
+
+        &:hover {
+          @include underline-color(rgba($text-color, .6));
+        }
+      }
+    }
+  }
+
   header {
 
     h1 {
@@ -20,10 +32,17 @@
     color: $grey;
   }
 
+  h2 {
+    margin-top: $lineheight*2;
+  }
+
   h3 {
     font-family: $sans;
-    font-weight: normal;
-    color: #888;
+    font-weight: bold;
+    font-size: to_rem(15);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: $lineheight;
   }
 
   pre {
@@ -34,6 +53,13 @@
       margin-left: auto;
       margin-right: auto;
     }
+  }
+
+  img,
+  iframe,
+  svg {
+    margin: $lineheight*2 auto;
+    display: block;
   }
 
   .post-text {

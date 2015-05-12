@@ -1,8 +1,6 @@
 ---
 title: Writing contextual CSS
-status: published
-type: default
-date: 2014-05-15
+date: '2014-05-15 10:00'
 category: css
 tags:
   - css

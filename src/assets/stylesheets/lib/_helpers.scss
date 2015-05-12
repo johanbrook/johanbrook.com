@@ -74,7 +74,7 @@
     background-color: $comp-neon;
 
     .banner__detail {
-      color: darken($comp-neon, 20%);
+      color: $comp-neon-dark;
     }
   }
 }
@@ -146,6 +146,7 @@
 
     &:hover {
       color: darken($grey, 20%);
+      text-decoration: underline;
     }
   }
 

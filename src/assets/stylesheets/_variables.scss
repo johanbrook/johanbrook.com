@@ -4,6 +4,7 @@ $comp-green: #6EBC30;
 $comp-blue: #4BB2F7;
 $comp-red: #C0392B;
 $comp-neon: #54CF88;
+$comp-neon-dark: darken($comp-neon, 20%);
 $comp-orange: #FF8C00;
 $comp-beige: #FDF6E3;
 
@@ -22,7 +23,7 @@ $leading: 27;
 
 $lineheight: ($leading / $base-size) * 1rem;
 
-$serif: Lora, serif;
+$serif: 'PT Serif', Georgia, serif;
 $sans: 'Open Sans', Helvetica, sans-serif;
 $mono: Menlo, monospace;
 $headings: Trocchi, serif;

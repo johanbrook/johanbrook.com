@@ -3,14 +3,29 @@
 
 .posts {
 
-  [role="main"] {
-
-  }
-
   [role="article"] {
-    margin-bottom: $lineheight*4;
+    margin-bottom: $lineheight*2;
+    max-width: to_rem(540);
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: $lineheight*2;
 
     header {
+      .post__meta {
+        text-align: left;
+        margin: 0;
+
+        a {
+          font-weight: bold;
+          font-family: $sans;
+          font-size: to_em(13);
+          color: rgba($text-color, .8);
+
+          &:hover {
+            color: $text-color;
+          }
+        }
+      }
+
       time {
         font-family: $mono;
         font-size: to_em(12);
@@ -24,6 +39,12 @@
 
     h1 {
       font-size: to_rem(28);
+    }
+
+    .post-text {
+      :last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }

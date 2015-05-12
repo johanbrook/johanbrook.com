@@ -53,14 +53,14 @@ site = Metalsmith(__dirname)
 
   # POSTS #######################################
 
-  # Make posts available in .text format for the same permalink.
-  .use copy
-    pattern: 'posts/*.md'
-    directory: 'writings'
-    transform: (file) ->
-      file
-        .replace(/(posts)\/\d{4}-\d{2}-\d{2}-/g, 'writings/')  # Remove date, replace 'posts'
-        .replace(/md|markdown/, 'text') # Replace .md/.markdown with .text.
+  # # Make posts available in .text format for the same permalink.
+  # .use copy
+  #   pattern: 'posts/*.md'
+  #   directory: 'writings'
+  #   transform: (file) ->
+  #     file
+  #       .replace(/(posts)\/\d{4}-\d{2}-\d{2}-/g, 'writings/')  # Remove date, replace 'posts'
+  #       .replace(/md|markdown/, 'text') # Replace .md/.markdown with .text.
 
   .use metallic()
 
@@ -100,7 +100,7 @@ site = Metalsmith(__dirname)
   .use pagination
     'collections.posts':
       path: 'writings/page/:num/index.html'
-      perPage: 5
+      perPage: 10
       template: 'posts.html'
       first: 'writings/index.html'
       pageMetadata:

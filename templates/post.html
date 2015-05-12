@@ -1,12 +1,14 @@
 <main role="main">
-  <article role="article">
+  <article role="article" class="{{#if link}}linked{{/if}}">
     <header>
-      <h1>{{title}}</h1>
+      {{#if link}}
+        <h1><a title="{{link}}" href="{{link}}">{{title}} →</a></h1>
+      {{else}}
+        <h1>{{title}}</h1>
+      {{/if}}
 
       <p class="post__meta">
         <time datetime="{{toISODate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
-        <span class="separator">/</span>
-        <a href="/{{path}}.text">Text version</a>
       </p>
     </header>
 
@@ -14,4 +16,14 @@
       {{{contents}}}
     </div>
   </article>
+
+  <footer>
+    <h2>Hi there!</h2>
+
+    <p>I'm Johan – a twenty-something developer and designer, working with front-end at <a href="http://lookback.io">Lookback</a>.</p>
+
+    <p>I like building interfaces for humans, travelling, and watching people while drinking espresso from town squares in Rome.</p>
+
+    <p>You'll find more posts under <a href="/writings">writings</a>, and you can also read <a href="/about">more about me</a>.</p>
+  </footer>
 </main>

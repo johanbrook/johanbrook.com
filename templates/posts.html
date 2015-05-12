@@ -3,33 +3,44 @@
   {{#if pagination.files.length }}
       {{#each pagination.files}}
 
-      <article role="article">
+      <article role="article" class="{{#if link}}linked{{/if}}">
         <header>
-          <time datetime="{{toISODate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
-          <h1><a href="/{{path}}">{{title}}</a></h1>
+          <p class="post__meta">
+            <time datetime="{{toISODate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
+            {{#if link}}/ <a class="meta__permalink" href="/{{path}}">Permalink</a>{{/if}}
+          </p>
+
+          {{#if link}}
+            <h1><a title="{{link}}" href="{{link}}">{{title}} →</a></h1>
+          {{else}}
+            <h1><a href="/{{path}}">{{title}}</a></h1>
+          {{/if}}
         </header>
 
         <div class="post-text">
           {{{excerpt}}}
-
-          <p class="read-more">
-            <a href="/{{path}}">Read more…</a>
-          </p>
         </div>
       </article>
 
       {{/each}}
 
     <footer class="page-nav">
-      {{#if pagination.next}}
-        <a rel="next" href="/{{ pretty pagination.next.path}}">Older posts</a>
-      {{/if}}
+      <p>
+        {{#if pagination.previous}}
+          <a rel="prev" href="/{{ pretty pagination.previous.path}}">Newer</a>
+        {{/if}}
 
-      <span class="separator">/</span>
+        <span class="separator">/ {{posts.length}} posts /</span>
 
-      {{#if pagination.previous}}
-        <a rel="prev" href="/{{ pretty pagination.previous.path}}">Newer posts</a>
-      {{/if}}
+        {{#if pagination.next}}
+          <a rel="next" href="/{{ pretty pagination.next.path}}">Older</a>
+        {{/if}}
+      </p>
+
+      <p>
+        <a href="/rss.xml">Feed</a>
+      </p>
+
     </footer>
 
   {{else}}

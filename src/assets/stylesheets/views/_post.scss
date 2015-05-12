@@ -2,6 +2,8 @@
 --------------------------------------------- */
 
 .post {
+  padding-bottom: 0;
+
   [role="article"] {
     header {
       text-align: center;
@@ -18,6 +20,34 @@
 
       time {
         font-style: italic;
+      }
+    }
+  }
+
+  footer {
+    margin-top: $lineheight*2;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: $comp-neon;
+    text-align: center;
+    padding: $lineheight*2 5%;
+
+    p {
+      margin: 0 auto $lineheight;
+      max-width: 30rem;
+    }
+
+    h2 {
+      color: $comp-neon-dark;
+      font-size: to_rem(32);
+    }
+
+    a {
+      color: #fff;
+      @include underline($color: rgba(#fff, .7), $bg: $comp-neon, $offset: .1, $size: 3);
+
+      &:hover {
+        @include underline-color(#fff);
       }
     }
   }
