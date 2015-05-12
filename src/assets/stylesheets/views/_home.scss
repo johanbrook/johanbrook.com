@@ -123,6 +123,11 @@
       @include handheld {
         flex-direction: column;
         justify-content: center;
+
+        li {
+          flex-basis: auto;
+          margin-bottom: $lineheight;
+        }
       }
 
       &__diversify {
