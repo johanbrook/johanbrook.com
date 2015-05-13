@@ -17,6 +17,18 @@ html {
   }
 }
 
+body {
+  // Sticky footer with Flexbox
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  // end sticky footer
+}
+
+[role="main"] {
+  flex: 1 0 auto;
+}
+
 nav ul {
   @include list-reset;
 }
