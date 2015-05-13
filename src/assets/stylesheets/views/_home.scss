@@ -109,7 +109,8 @@
       }
 
       p {
-        margin: 0 8%;
+        padding-left: 8%;
+        padding-right: 8%;
       }
 
       figure {
@@ -126,6 +127,10 @@
 
         li {
           flex-basis: auto;
+          margin-bottom: $lineheight*2;
+        }
+
+        figure {
           margin-bottom: $lineheight;
         }
       }
