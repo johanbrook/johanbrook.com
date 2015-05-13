@@ -21,6 +21,10 @@ Helpers =
   pretty: (text) ->
     text.replace 'index.html', ''
 
+  canonicalUrl: (path) ->
+    root = 'http://www.johanbrook.com/'
+    if path then "#{root}#{path}/" else root
+
   isCurrentNav: (page, options) ->
     aliases =
       posts: 'posts'
