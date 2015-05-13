@@ -17,6 +17,7 @@ drafts =        require 'metalsmith-drafts'
 feed =          require 'metalsmith-feed'
 compress =      require 'metalsmith-gzip'
 pagination =    require 'metalsmith-pagination'
+redirect =      require 'metalsmith-redirect'
 _ =             require 'lodash'
 
 require './helpers'
@@ -125,6 +126,17 @@ site = Metalsmith(__dirname)
 
   .use autoprefixer()
 
+  # REDIRECTS #######################################
+
+  .use redirect
+    '/articles/native-style-momentum-scrolling-to-arrive-in-ios-5': '/writings/native-style-momentum-scrolling-to-arrive-in-ios-5/'
+
+    '/articles/a-symbol-for-sex': '/writings/a-symbol-for-sex'
+    '/articles/adding-custom-url-endpoints-in-wordpress': '/writings/adding-custom-url-endpoints-in-wordpress'
+    '/articles/perfection-doesnt-exist': '/writings/perfection-doesn-t-exist'
+    '/about.html': '/about'
+    '/articles/css-context': '/writings/writing-contextual-css'
+    '/articles/debugging-css-media-queries': '/writings/debugging-css-media-queries'
 
 # LOCAL DEV #######################################
 
