@@ -1,7 +1,7 @@
-build: node_modules
+build: deps
 	npm run build
 
-serve: node_modules
+serve: deps
 	npm run serve
 
 deploy: build
@@ -17,7 +17,13 @@ deploy: build
 	rm -rf .git && \
 	cd ..
 
-node_modules: package.json
+new:
+	@coffee scripts/new.coffee --silent '${TITLE}' | xargs ${EDITOR}
+
+clean:
+	rm -rf ./build
+
+deps: package.json
 	npm install
 
-.PHONY: build
+.PHONY: build new
