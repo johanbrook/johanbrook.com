@@ -19,10 +19,8 @@ silent = arg is '--silent'
 #
 #   2015-01-01-slugified-title.md
 createNewPost = (title) ->
-  TEMPLATE = "---\n
-    title: #{title}\n
-    date: '#{moment().format('YYYY-MM-DD HH:mm')}'
-  \n---\n
+  TEMPLATE = "---\ntitle: #{title}\ndate: '#{moment().format('YYYY-MM-DD HH:mm')}'\ndraft: true
+\n---\n
   \n
   "
 
