@@ -18,7 +18,7 @@ deploy: build
 	cd ..
 
 new:
-	@coffee scripts/new.coffee --silent '${TITLE}' | xargs ${EDITOR}
+	@coffee scripts/new.coffee --silent '${TITLE}' | xargs subl
 
 clean:
 	rm -rf ./build
