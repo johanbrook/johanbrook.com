@@ -13,7 +13,6 @@ excerpts =      require 'metalsmith-excerpts'
 metallic =      require 'metalsmith-metallic'
 copy =          require 'metalsmith-copy'
 typography =    require 'metalsmith-typography'
-drafts =        require 'metalsmith-drafts'
 feed =          require 'metalsmith-feed'
 compress =      require 'metalsmith-gzip'
 pagination =    require 'metalsmith-pagination'
@@ -67,7 +66,14 @@ site = Metalsmith(__dirname)
 
   .use metallic()
 
-  .use drafts()
+  # Essentially `metalsmith-drafts` from https://github.com/segmentio/metalsmith-drafts/blob/master/lib/index.js,
+  # but I needed to conditionally enable it depending on environment.
+  .use (files, metal, done) ->
+    return done() if isDev
+
+    setImmediate(done)
+    _.each files, (file, key) -> 
+      delete files[key] if file.draft
 
   .use markdown()
 
