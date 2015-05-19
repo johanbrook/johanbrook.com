@@ -8,7 +8,6 @@ tags:
   - startup
   - university
   - drop out
-draft: true
 ---
 
 <figure class="image--full">
@@ -17,7 +16,7 @@ draft: true
 
 **I haven't written here** for almost a year now, and some things have happened since. 
 
-I'm happy with myself and my life, but I've missed writing: it feels like I've been silent or whatever for a long while. A blog is a great outlet, even if you don't have anything in particular to say. It's a way of stating "here am I and I exist". My personal blog, [log.johanbrook.com](http://log.johanbrook.com/) has been the mind dump since I started it, and it's really awesome to just post things there.
+I'm happy with myself and my life, but I've missed writing: it feels like I've been silent or whatever for a long while. A blog is a great outlet, even if you don't have anything in particular to say. My personal blog, [log.johanbrook.com](http://log.johanbrook.com/) has been the mind dump since I started it, and it's really awesome to just post things there.
 
 ## Getting a degree
 
@@ -39,7 +38,7 @@ I didn't feel like a junior in the sense of the technology used – I was and st
 
 ### Communicate and work remotely
 
-The guys were in the same office, but communicated over chat with [Flowdock](https://www.flowdock.com/). They had some consultants working remotely, and it's been in Lookback's ethos since its beginnings that remote work should be a baseline. I learned how to *over communicate* and explicitly ask for help and give status updates more than ever before. 
+The guys were in the same office, but communicated over chat with [Flowdock](https://www.flowdock.com/). They had some consultants working remotely, and it's been in Lookback's ethos since its beginnings that remote work should be a baseline. I learned how to *over communicate* and explicitly ask for help and give status updates more than ever before. More on Lookback's way of working in another post (I recommend [Lookback's blog](http://lookback.io) in the meantime). 
 
 ### Receive reviews
 
@@ -62,7 +61,7 @@ The end of the summer came, and the guys at Lookback asked me if I shouldn't sta
 
 But I changed my mind. I'm in the IT industry, for god's sake. What would I do with a Master's degree? Create better web apps? Perhaps. Perhaps not. One thing was for sure: I didn't want to "waste" the prime of my twenties attending school for another two years. To waste this chance to join in early in a tremendously promising startup, working with a product I loved, with people I loved, and miss out on all the learnings the courses at school couldn't give me.
 
-Working in a startup is *real*. School is not. Academia might be interesting for a while, but not longer. I was done. I was tired of writing papers I didn't care about, and the overall feel of *not doing anyting of value to me*. Everybody are different. Some think they need more time in school in order to gain more knowledge, improve hard skills, network, and generally boost their resume in some way to land that sweet job after the Master's thesis. I thought I needed some of those things. But then I realized many others had dropped out of school when they where younger and/or less skilled than me – why wouldn't I? 
+Working in a startup is *real*. School is not. Academia might be interesting for a while, but no longer. I was done. I was tired of writing papers I didn't care about, and the overall feel of *not doing anyting of value to me*. Everybody are different. Some think they need more time in school in order to gain more knowledge, improve hard skills, network, and generally boost their resume in some way to land that sweet job after the Master's thesis. I thought I needed some of those things. But then I realized many others had dropped out of school when they where younger and/or less skilled than me – why wouldn't I? 
 
 So I filed for "taking a sabbatical" (code for *"I'm gonna start working and won't probably come back"*) and phoned Jonatan to say I accepted their offer. So then I became employee #1 at Lookback, and it felt so right.
 
