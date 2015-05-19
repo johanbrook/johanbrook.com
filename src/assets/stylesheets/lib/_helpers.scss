@@ -156,3 +156,45 @@
     margin: 0 3px;
   }
 }
+
+figure.image--full {
+  margin-left: -14vw;
+  margin-right: -14vw;
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  @include smaller-than(960px) {
+    // Edge-to-edge pixelfucking.
+    margin-left: -5.5%;
+    width: 111%;
+    margin-right: 0;
+  }
+
+  @include handheld {
+    margin-top: $lineheight;
+    margin-bottom: $lineheight;
+  }
+}
+
+figure.image--hover {
+  position: relative;
+
+  img:last-child {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  &:hover {
+    img:last-child {
+      pointer-events: all;
+      opacity: 1;
+    }
+  }
+}
