@@ -30,7 +30,8 @@
 
     h1 {
       max-width: 40rem;
-      margin: 0 auto $lineheight*2;
+      line-height: 1.4;
+      margin: 0 auto $lineheight;
 
       .subtitle {
         margin-bottom: $lineheight*2;

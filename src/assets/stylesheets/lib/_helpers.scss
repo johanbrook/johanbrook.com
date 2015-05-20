@@ -23,11 +23,17 @@
 
 .page-title {
   text-align: center;
-  font-size: to_rem(60);
+  font-size: to_rem(72);
 
   @include handheld {
     font-size: to_rem(32);
   }
+}
+
+.subtitle {
+  font-size: to_rem(14);
+  color: $grey;
+  font-family: $mono;
 }
 
 .text-column {
