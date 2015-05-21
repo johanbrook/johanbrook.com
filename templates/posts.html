@@ -11,6 +11,7 @@
           </p>
 
           {{#if link}}
+            <span class="link-icon">{{ icon 'link' }}</span>
             <h1><a title="{{link}}" href="{{link}}">{{title}} →</a></h1>
           {{else}}
             <h1><a href="/{{path}}">{{title}}</a></h1>

@@ -25,6 +25,23 @@
         color: #000;
       }
     }
+
+    .link-icon {
+      background-color: rgba($text-color, .95);
+      color: #fff;
+      border-radius: 100%;
+      width: 1.6em;
+      height: 1.6em;
+      display: inline-block;
+      text-align: center;
+      line-height: 1.4em;
+      padding-right: 0.1em;
+      font-size: 1.1em;
+    }
+
+    &:hover .link-icon {
+      background-color: $text-color;
+    }
   }
 
   .post__meta {
@@ -55,15 +72,15 @@
     }
   }
 
-  img,
-  iframe,
-  figure,
-  svg {
-    margin: $lineheight*2 auto;
-    display: block;
-  }
-
   .post-text {
+    img,
+    iframe,
+    figure,
+    svg {
+      margin: $lineheight*2 auto;
+      display: block;
+    }
+
     a {
       @include underline($size: 3, $offset: .1, $color: rgba($link-color, .4));
 

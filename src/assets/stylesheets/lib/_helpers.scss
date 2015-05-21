@@ -21,6 +21,13 @@
   color: $comp-blue;
 }
 
+.icon {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: middle;
+}
+
 .page-title {
   text-align: center;
   font-size: to_rem(72);

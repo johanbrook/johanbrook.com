@@ -3,6 +3,12 @@ moment =        require 'moment'
 _ =             require 'lodash'
 
 Helpers =
+
+  icon: (name) ->
+    return new Handlebars.SafeString("<svg class='icon icon-#{name}'>
+      <use xlink:href='/assets/entypo.svg#icon-#{name}'></use>
+    </svg>")
+
   formatDate: (date, format) ->
     return if not date
     moment(date).format(format)
