@@ -11,23 +11,37 @@ body {
 }
 
 [role="article"] {
+  margin-bottom: $lineheight*4;
+
   header {
     text-align: center;
+    margin-bottom: $lineheight;
 
     h1 {
-      font-size: to_rem(32);
+      font-size: to_rem(24);
     }
   }
 
   .post__meta {
     .meta__permalink {
       color: $grey;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+        color: darken($grey, 10%);
+      }
     }
   }
-}
 
-.post--photo {
-  
+  &.post--link {
+    header {
+      h1 {
+        font-size: to_rem(20);
+        text-align: left;
+      }
+    }
+  }
 }
 
 .photo__caption {
