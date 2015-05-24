@@ -11,11 +11,11 @@ body {
 }
 
 [role="article"] {
-  margin-bottom: $lineheight*4;
+  margin-bottom: $lineheight*8;
 
   header {
     text-align: center;
-    margin-bottom: $lineheight;
+    margin-bottom: $lineheight*2;
 
     h1 {
       font-size: to_rem(24);
