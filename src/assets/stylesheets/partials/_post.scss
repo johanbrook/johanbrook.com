@@ -47,6 +47,12 @@
   .post__meta {
     text-align: center;
     color: $grey;
+    font-family: $mono;
+    font-size: to_em(12);
+
+    @include handheld {
+      font-size: to_em(13);
+    }
   }
 
   h2 {

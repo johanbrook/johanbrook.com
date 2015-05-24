@@ -1,0 +1,35 @@
+body {
+  @include wrapper;
+  margin-top: $lineheight*2;
+}
+
+[role="banner"] {
+  h1 {
+    margin-bottom: 0;
+    font-size: to_rem(30);
+  }
+}
+
+[role="article"] {
+  header {
+    text-align: center;
+
+    h1 {
+      font-size: to_rem(32);
+    }
+  }
+
+  .post__meta {
+    .meta__permalink {
+      color: $grey;
+    }
+  }
+}
+
+.post--photo {
+  
+}
+
+.photo__caption {
+  text-align: center;
+}

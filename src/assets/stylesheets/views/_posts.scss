@@ -31,20 +31,10 @@
       .link-icon {
         position: absolute;
         left: -3rem;
-        top: 2rem;
+        top: 1.5rem;
 
         @include smaller-than(690px) {
           display: none;
-        }
-      }
-
-      time {
-        font-family: $mono;
-        font-size: to_em(12);
-        color: $grey;
-
-        @include handheld {
-          font-size: to_em(13);
         }
       }
     }
