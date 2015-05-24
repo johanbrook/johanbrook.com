@@ -22,6 +22,10 @@ body {
     }
   }
 
+  .html_photoset {
+    margin-bottom: $lineheight;
+  }
+
   .post__meta {
     .meta__permalink {
       color: $grey;
@@ -38,7 +42,6 @@ body {
     header {
       h1 {
         font-size: to_rem(20);
-        text-align: left;
       }
     }
   }
