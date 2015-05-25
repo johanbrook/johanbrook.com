@@ -7,7 +7,11 @@
         <header>
           <p class="post__meta">
             <time datetime="{{toISODate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
-            {{#if link}}/ <a class="meta__permalink" href="/{{path}}">Permalink</a>{{/if}}
+            {{#if link}}
+            / <a class="meta__permalink" href="/{{path}}">Permalink</a>
+            {{else}}
+            / <span class="meta__stats">{{readingTime}}</span>
+            {{/if}}
           </p>
 
           {{#if link}}

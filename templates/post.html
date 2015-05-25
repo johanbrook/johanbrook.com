@@ -9,6 +9,9 @@
 
       <p class="post__meta">
         <time datetime="{{toISODate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
+        {{#unless link}}
+          <span class="meta__stats">{{readingTime}} / {{wordCount}} words</span>
+        {{/unless}}
       </p>
     </header>
 

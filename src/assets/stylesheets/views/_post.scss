@@ -17,6 +17,13 @@
     .post__meta {
       font-size: to_em(14);
     }
+
+    .meta__stats {
+      position: absolute;
+      top: $lineheight;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
   }
 
   footer {

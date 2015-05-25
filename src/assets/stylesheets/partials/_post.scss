@@ -53,6 +53,11 @@
     @include handheld {
       font-size: to_em(13);
     }
+
+    .meta__stats {
+      color: $grey-light;
+      font-size: to_rem(11);
+    }
   }
 
   h2 {

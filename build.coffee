@@ -17,6 +17,7 @@ feed =          require 'metalsmith-feed'
 compress =      require 'metalsmith-gzip'
 pagination =    require 'metalsmith-pagination'
 redirect =      require 'metalsmith-redirect'
+wordcount =     require 'metalsmith-word-count'
 _ =             require 'lodash'
 
 require './helpers'
@@ -55,15 +56,6 @@ site = Metalsmith(__dirname)
 
   # POSTS #######################################
 
-  # # Make posts available in .text format for the same permalink.
-  # .use copy
-  #   pattern: 'posts/*.md'
-  #   directory: 'writings'
-  #   transform: (file) ->
-  #     file
-  #       .replace(/(posts)\/\d{4}-\d{2}-\d{2}-/g, 'writings/')  # Remove date, replace 'posts'
-  #       .replace(/md|markdown/, 'text') # Replace .md/.markdown with .text.
-
   .use metallic()
 
   # Essentially `metalsmith-drafts` from https://github.com/segmentio/metalsmith-drafts/blob/master/lib/index.js,
@@ -76,6 +68,8 @@ site = Metalsmith(__dirname)
       delete files[key] if file.draft
 
   .use markdown()
+
+  .use wordcount()
 
   .use excerpts()
 
