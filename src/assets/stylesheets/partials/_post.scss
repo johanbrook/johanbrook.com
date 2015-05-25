@@ -45,14 +45,12 @@
   }
 
   .post__meta {
+    @include smooth;
     text-align: center;
     color: $grey;
-    font-family: $mono;
-    font-size: to_em(12);
-
-    @include handheld {
-      font-size: to_em(13);
-    }
+    font-family: $sans;
+    font-weight: 500;
+    font-size: to_em(13);
 
     .meta__stats {
       color: $grey-light;
@@ -62,12 +60,13 @@
 
   h2 {
     margin-top: $lineheight*2;
+    font-size: to_rem(28);
   }
 
   h3 {
     font-family: $sans;
-    font-weight: bold;
-    font-size: to_rem(15);
+    font-weight: 600;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: $lineheight;
@@ -90,6 +89,14 @@
     svg {
       margin: $lineheight*2 auto;
       display: block;
+    }
+
+    .ingress strong,
+    p:first-child strong {
+      color: #222;
+      font-family: $sans;
+      font-weight: 600;
+      font-size: 1.1em;
     }
 
     a {

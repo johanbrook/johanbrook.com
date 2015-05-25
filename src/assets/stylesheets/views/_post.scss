@@ -15,7 +15,7 @@
     }
 
     .post__meta {
-      font-size: to_em(14);
+      font-size: to_em(16);
     }
 
     .meta__stats {
@@ -27,6 +27,8 @@
   }
 
   footer {
+    font-family: $sans;
+    font-weight: 300;
     margin-top: $lineheight*2;
     font-size: 1.1rem;
     color: #fff;

@@ -57,20 +57,27 @@
 }
 
 .banner {
+  @include smooth;
   background-color: $comp-orange;
   padding: $lineheight 5%;
   color: #fff;
   text-align: center;
   margin: $lineheight*2 0;
-  font-family: $mono;
-  font-size: to_rem(14);
+
+  font-family: $sans;
+  font-weight: 500;
 
   a {
     color: #fff;
+    @include underline($color: rgba(#fff, .6), $size: 3, $offset: .1, $bg: $comp-orange);
+
+    &:hover {
+      @include underline-color(#fff);
+    }
   }
 
   p {
-    max-width: to_rem(380);
+    max-width: to_rem(400);
     margin-left: auto;
     margin-right: auto;
 
@@ -85,6 +92,10 @@
 
   &--neon {
     background-color: $comp-neon;
+
+    a {
+      @include underline-bg($comp-neon);
+    }
 
     .banner__detail {
       color: $comp-neon-dark;

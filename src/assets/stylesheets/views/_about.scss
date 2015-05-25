@@ -75,7 +75,7 @@
 
   .talking {
     p {
-      max-width: to_rem(450);
+      max-width: to_rem(500);
     }
   }
 
@@ -91,9 +91,10 @@
   }
 
   .bye {
+    font-weight: 300;
     text-align: center;
     color: $grey-light;
-    font-size: .9rem;
-    font-style: italic;
+    font-size: .85rem;
+    font-family: $sans;
   }
 }

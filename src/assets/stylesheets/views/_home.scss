@@ -223,8 +223,9 @@
   text-align: right;
   margin-top: $lineheight*4;
   padding: $lineheight*2 5%;
-  font-family: $mono;
-  font-size: to_rem(14);
+  font-family: $sans;
+  font-weight: 300;
+  font-size: to_rem(15);
 
   p {
     max-width: 30rem;
@@ -234,7 +235,7 @@
   a {
     font-style: italic;
     color: #fff;
-    @include underline($size: 2, $offset: 0, $bg: $comp-neon, $color: #fff);
+    @include underline($size: 2, $offset: .1, $bg: $comp-neon, $color: #fff);
   }
 
   :last-child {

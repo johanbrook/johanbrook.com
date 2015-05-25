@@ -10,6 +10,15 @@
   background-image: linear-gradient(to bottom, transparent 50%, $color 50%);
 }
 
+@mixin underline-bg($bg) {
+  text-shadow:  to_em(-1) to_em(-1) 0 $bg,
+                to_em(1) to_em(-1) 0 $bg,
+                to_em(1) to_em(1) 0 $bg,
+                to_em(-1) to_em(1) 0 $bg,
+                to_em(1) 0 0 $bg,
+                to_em(-1) 0 0 $bg;
+}
+
 @mixin underline($size: 4.5, $color: currentColor, $bg: $background-color, $offset: .2em, $clear-descenders: true) {
   text-decoration: none;
   background-repeat: repeat-x;
@@ -19,11 +28,6 @@
   padding-bottom: to_rem($size) + to_rem($offset);
 
   @if $clear-descenders {
-    text-shadow:  to_em(-1) to_em(-1) 0 $bg,
-                  to_em(1) to_em(-1) 0 $bg,
-                  to_em(1) to_em(1) 0 $bg,
-                  to_em(-1) to_em(1) 0 $bg,
-                  to_em(1) 0 0 $bg,
-                  to_em(-1) 0 0 $bg;
+    @include underline-bg($bg);
   }
 }
