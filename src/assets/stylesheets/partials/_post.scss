@@ -68,18 +68,22 @@
     display: block;
   }
 
+  h2, h3{
+    font-family: $sans;
+    font-weight: 600;
+    font-size: to_rem(20);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
   h2 {
     margin-top: $lineheight*2;
-    font-size: to_rem(28);
   }
 
   h3 {
-    font-family: $sans;
-    font-weight: 600;
     font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: $lineheight;
+    color: darken($grey, 20%);
+    font-weight: 500;
   }
 
   pre {
