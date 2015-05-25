@@ -57,6 +57,16 @@
       font-size: to_rem(11);
     }
   }
+}
+
+.post-text {
+  img,
+  iframe,
+  figure,
+  svg {
+    margin: $lineheight*2 auto;
+    display: block;
+  }
 
   h2 {
     margin-top: $lineheight*2;
@@ -82,29 +92,19 @@
     }
   }
 
-  .post-text {
-    img,
-    iframe,
-    figure,
-    svg {
-      margin: $lineheight*2 auto;
-      display: block;
-    }
+  .ingress strong,
+  p:first-child strong {
+    color: #222;
+    font-family: $sans;
+    font-weight: 600;
+    font-size: 1.1em;
+  }
 
-    .ingress strong,
-    p:first-child strong {
-      color: #222;
-      font-family: $sans;
-      font-weight: 600;
-      font-size: 1.1em;
-    }
+  a {
+    @include underline($size: 3, $offset: .1, $color: rgba($link-color, .4));
 
-    a {
-      @include underline($size: 3, $offset: .1, $color: rgba($link-color, .4));
-
-      &:hover {
-        @include underline-color($link-color);
-      }
+    &:hover {
+      @include underline-color($link-color);
     }
   }
 }
