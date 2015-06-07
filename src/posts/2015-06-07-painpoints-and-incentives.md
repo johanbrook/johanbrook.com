@@ -1,7 +1,6 @@
 ---
 title: Pain points & Incentives
 date: '2015-06-07 10:07'
-draft: true 
 ---
  
 **When working with building features in a product**, I usually need some emotional attachment to them. You can't make them good unless you believe in them and really *understand the problem you're trying to solve*. This is of course Johan-stating-the-obvious, but I experienced this the other day.
