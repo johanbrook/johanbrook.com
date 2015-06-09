@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="665px" height="378px" viewBox="0 0 665 378" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3 (11970) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard 1</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-1" sketch:type="MSArtboardGroup">
+            <rect id="Rectangle-1" stroke="#CACACA" stroke-width="2" stroke-dasharray="2" sketch:type="MSShapeGroup" x="41" y="26" width="584" height="327"></rect>
+            <rect id="Rectangle-2" fill="#E8E8E8" sketch:type="MSShapeGroup" x="207" y="64" width="253" height="253"></rect>
+            <rect id="Rectangle-2-Copy" opacity="0.400000006" fill="#E8E8E8" sketch:type="MSShapeGroup" x="499" y="63" width="126" height="253"></rect>
+            <g id="Oval-1-+-Line-+-Line-Copy" sketch:type="MSLayerGroup" transform="translate(29.000000, 14.000000)">
+                <circle id="Oval-1" fill="#E70000" sketch:type="MSShapeGroup" cx="13" cy="13" r="6"></circle>
+                <path d="M13,0.5 L13,25.8179779" id="Line" stroke="#E70000" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+                <path d="M25.5,13 L0.182022095,13" id="Line-Copy" stroke="#E70000" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            </g>
+            <g id="Oval-1-+-Line-+-Line-Copy-2" sketch:type="MSLayerGroup" transform="translate(320.000000, 177.000000)">
+                <circle id="Oval-1" fill="#E70000" sketch:type="MSShapeGroup" cx="13" cy="13" r="6"></circle>
+                <path d="M13,0.5 L13,25.8179779" id="Line" stroke="#E70000" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+                <path d="M25.5,13 L0.182022095,13" id="Line-Copy" stroke="#E70000" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            </g>
+            <g id="Point-Copy" sketch:type="MSLayerGroup" transform="translate(197.000000, 55.000000)">
+                <circle id="Oval-1" fill="#00A9E7" sketch:type="MSShapeGroup" cx="10" cy="9" r="6"></circle>
+                <path d="M1.16116524,0.161165235 L19.0636791,18.0636791" id="Line" stroke="#00A9E7" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+                <path d="M18.4387146,0.195189678 L0.536200725,18.0977035" id="Line-Copy" stroke="#00A9E7" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            </g>
+            <g id="Point-Copy-2" sketch:type="MSLayerGroup" transform="translate(323.000000, 181.000000)">
+                <circle id="Oval-1" fill="#00A9E7" sketch:type="MSShapeGroup" cx="10" cy="9" r="6"></circle>
+                <path d="M1.16116524,0.161165235 L19.0636791,18.0636791" id="Line" stroke="#00A9E7" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+                <path d="M18.4387146,0.195189678 L0.536200725,18.0977035" id="Line-Copy" stroke="#00A9E7" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            </g>
+            <text id="Destination" sketch:type="MSTextLayer" font-family="San Francisco Display" font-size="13" font-weight="526" fill="#818181">
+                <tspan x="224" y="55">Destination</tspan>
+            </text>
+            <text id="Viewport" sketch:type="MSTextLayer" font-family="San Francisco Display" font-size="13" font-weight="normal" fill="#9E9E9E">
+                <tspan x="565" y="19">Viewport</tspan>
+            </text>
+            <text id="Element" sketch:type="MSTextLayer" font-family="San Francisco Display" font-size="13" font-weight="normal" fill="#9E9E9E">
+                <tspan x="499" y="337">Element</tspan>
+            </text>
+            <text id="Element-Copy" sketch:type="MSTextLayer" font-family="San Francisco Display" font-size="13" font-weight="normal" fill="#9E9E9E">
+                <tspan x="207" y="337">Element</tspan>
+            </text>
+            <text id="Snap-coordinate" sketch:type="MSTextLayer" font-family="San Francisco Display" font-size="13" font-weight="526" fill="#818181">
+                <tspan x="55" y="48">Snap coordinate</tspan>
+            </text>
+            <text id="50%-50%" sketch:type="MSTextLayer" font-family="San Francisco Display" font-size="13" font-weight="normal" fill="#575757">
+                <tspan x="311" y="161">50% 50%</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
