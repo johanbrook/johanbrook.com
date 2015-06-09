@@ -6,7 +6,6 @@ tags:
   - wwdc
   - safari
   - web development
-draft: true 
 ---
 
 I'm attending WWDC 2015, and during the web development session, Apple's Safari team showed off what's new in Safari 9. It includes iOS style effects, such as backdrop filters and scroll snapping with CSS, ES6 updates, other CSS niceties.
