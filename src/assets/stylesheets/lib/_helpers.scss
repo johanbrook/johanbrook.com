@@ -30,7 +30,7 @@
 
 .page-title {
   text-align: center;
-  font-size: to_rem(72);
+  font-size: to_rem(60);
 
   @include handheld {
     font-size: to_rem(32);
