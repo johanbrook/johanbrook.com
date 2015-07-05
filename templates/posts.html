@@ -6,7 +6,7 @@
       <article role="article" class="{{#if link}}linked{{/if}}">
         <header>
           <p class="post__meta">
-            <time datetime="{{toISODate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
+            <time datetime="{{toISODate date}}" title="{{toRelativeDate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
             {{#if link}}
             / <a class="meta__permalink" href="/{{path}}">Permalink</a>
             {{else}}
