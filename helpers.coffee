@@ -21,6 +21,10 @@ Helpers =
     return if not date
     moment(date).toISOString()
 
+  toRelativeDate: (date) ->
+    return if not date
+    moment(date).fromNow()
+
   isPage: (page) ->
     page is @page
 

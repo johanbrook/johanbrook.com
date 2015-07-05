@@ -35,6 +35,7 @@
 
       .subtitle {
         margin-bottom: $lineheight*2;
+        line-height: 1.7;
       }
     }
   }
@@ -54,6 +55,29 @@
   .inverted {
     a {
       color: #fff;
+    }
+  }
+
+  .latest-post {
+    color: darken($grey, 20%);
+    font-size: .8em;
+
+    .btn {
+      font-size: 1.2rem;
+
+      &__text {
+        @include underline($size: 3, $offset: .1, $color: rgba($text-color, .2));
+      }
+    }
+
+    p {
+      margin-bottom: $lineheight / 2;
+    }
+
+    &__stats {
+      font-family: $sans;
+      font-weight: 300;
+      color: $grey-light;
     }
   }
 }

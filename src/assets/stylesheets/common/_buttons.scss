@@ -1,0 +1,37 @@
+// Buttons
+
+.btn {
+  -webkit-appearance: none;
+  display: inline-block;
+
+  font: 300 1em/1.5 $sans;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+
+  padding: .4em 1em;
+  border-radius: 4px;
+  background-color: $comp-blue;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &.btn--large {
+    font-size: 1.2em;
+    padding: .5em 1.3em;
+  }
+
+  &.btn--inverted {
+    border: 1px solid currentColor;
+    background: none;
+  }
+
+  &.btn--light {
+    color: $text-color;
+
+    &:hover {
+      color: rgba($text-color, .7);
+    }
+  }
+}

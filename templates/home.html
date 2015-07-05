@@ -20,6 +20,20 @@
     I like the creative process, and enjoy seeing the intersection of solid engineering, good design and user experience come together.
   </p>
 
+  {{#with posts.[0]}}
+  <aside class="latest-post spacing--top">
+    <p>
+      <time datetime="{{toISODate date}}" title="{{toRelativeDate date}}" pubdate>Most recently</time>, I wrote
+    </p>
+    <p>
+      <a class="btn btn--large btn--inverted btn--light" href="/{{path}}">“<span class="btn__text">{{title}}</span>”</a>
+    </p>
+    <p class="latest-post__stats">
+      <small>{{readingTime}}, {{wordCount}} words</small>
+    </p>
+  </aside>
+  {{/with}}
+
   <section class="story spacing--top spacing--double">
 
     <h1>”So. What’s this guy up to?!”</h1>
