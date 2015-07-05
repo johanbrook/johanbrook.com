@@ -1,5 +1,5 @@
 ---
-title: The fear of shipping
+title: Shipped with fear
 date: '2015-07-05 10:00'
 ogImage: http://johanbrook.com/assets/posts/fear-of-shipping-ogimage.jpg
 description: Why is deploying to production scary? It shouldn't be.
