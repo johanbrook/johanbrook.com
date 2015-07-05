@@ -11,7 +11,7 @@ deploy: build
 	touch ./.nojekyll && \
 	git init . -q && \
 	git add . && \
-	git commit -m "Deploy [`date`]" --quiet && \
+	git commit -m "⬆️ Deploy [`date`]" --quiet && \
   git log -n 1; \
 	git push "git@github.com:johanbrook/johanbrook.com.git" master:gh-pages --force && \
 	rm -rf .git && \
