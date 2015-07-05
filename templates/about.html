@@ -2,7 +2,8 @@
   <h1 class="page-title">Everything else</h1>
 </header>
 
-<main role="main">
+<main role="main" itemscope itemtype="http://schema.org/Person">
+  <meta itemprop="name" content="Johan Brook">
 
   <div class="text-column about__body">
     <p>I was born in 1990 in a small village in central Sweden. Like many others, I gained an interest in computers through games and such. Unlike many others, I was good at both design and programming.</p>
@@ -20,7 +21,7 @@
 
   <div class="about__contact text-column">
     <p>
-      I tweet from <a href="http://twitter.com/{{twitter}}">Twitter</a>. I push code to <a href="http://github.com/{{github}}">GitHub</a>. I show off designs on <a href="http://dribbble.com/johan">Dribbble</a>. I post texts, pictures, and poems on <a href="{{tumblr}}">Tumblr</a>.
+      I tweet from <a itemprop="sameAs" href="http://twitter.com/{{twitter}}">Twitter</a>. I push code to <a itemprop="sameAs" href="http://github.com/{{github}}">GitHub</a>. I show off designs on <a itemprop="sameAs" href="http://dribbble.com/johan">Dribbble</a>. I post texts, pictures, and poems on <a itemprop="sameAs" href="{{tumblr}}">Tumblr</a>.
     </p>
 
     <p class="grey">
@@ -60,7 +61,7 @@
   <section class="misc">
     <p class="grey">
       My more formal <span class="strong">curriculum vitae</span> is available at
-      <a title="This sucks" href="{{linkedin}}">LinkedIn</a> and <a title="This is awesome" href="{{careers}}">Stack Overflow Careers</a>, and also as <a href="{{cv}}">pdf</a>.
+      <a title="This sucks" itemprop="sameAs" href="{{linkedin}}">LinkedIn</a> and <a itemprop="sameAs" title="This is awesome" href="{{careers}}">Stack Overflow Careers</a>, and also as <a href="{{cv}}">pdf</a>.
     </p>
   </section>
 

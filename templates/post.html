@@ -1,21 +1,21 @@
 <main role="main">
-  <article role="article" class="{{#if link}}linked{{/if}}">
+  <article role="article" class="{{#if link}}linked{{/if}}" itemscope itemtype="http://schema.org/BlogPosting">
     <header>
       {{#if link}}
-        <h1><a title="{{link}}" href="{{link}}">{{title}} →</a></h1>
+        <h1 itemprop="name"><a title="{{link}}" href="{{link}}">{{title}} →</a></h1>
       {{else}}
-        <h1>{{title}}</h1>
+        <h1 itemprop="name">{{title}}</h1>
       {{/if}}
 
       <p class="post__meta">
-        <time datetime="{{toISODate date}}" title="{{toRelativeDate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
+        <time datetime="{{toISODate date}}" itemprop="datePublished" title="{{toRelativeDate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
         {{#unless link}}
-          <span class="meta__stats">{{readingTime}} / {{wordCount}} words</span>
+          <span class="meta__stats">{{readingTime}} / <span itemprop="wordCount">{{wordCount}}</span> words</span>
         {{/unless}}
       </p>
     </header>
 
-    <div class="post-text">
+    <div class="post-text" itemprop="articleBody">
       {{{contents}}}
     </div>
   </article>

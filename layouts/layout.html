@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="{{page}}">
-  <head>
+  <head itemtype="http://schema.org/Blog" itemscope>
     <title>{{ title }}</title>
 
     <meta charset="utf-8">
@@ -16,10 +16,12 @@
     <link rel="stylesheet" href="http://yastatic.net/highlightjs/8.2/styles/solarized_light.min.css">
 
     <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="{{canonicalUrl path}}">
+    <link rel="author" href="http://johanbrook.com/about">
 
     <meta property="og:title" content="{{title}}">
     <meta property="og:url" content="{{canonicalUrl path}}">
-    <meta property="og:site_name" content="Johan Brook">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
     <meta property="og:type" content="{{#isSingle}}article{{else}}blog{{/isSingle}}">
     <meta property="og:image" content="{{ogImage}}">
     <meta property="og:description" content="{{description}}">
