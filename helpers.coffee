@@ -25,6 +25,9 @@ Helpers =
     return if not date
     moment(date).fromNow()
 
+  isSingle: (opts) ->
+    if @template is 'post.html' then opts.fn(this) else opts.inverse(this)
+
   isPage: (page) ->
     page is @page
 
