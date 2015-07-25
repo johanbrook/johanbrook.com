@@ -22,6 +22,11 @@
     padding: .5em 1.3em;
   }
 
+  &.btn--huge {
+    font-size: 1.5em;
+    padding: .7em 1.4em;
+  }
+
   &.btn--inverted {
     border: 1px solid currentColor;
     background: none;
@@ -31,7 +36,7 @@
     color: $text-color;
 
     &:hover {
-      color: rgba($text-color, .7);
+      color: $comp-cerise;
     }
   }
 }

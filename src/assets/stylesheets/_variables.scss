@@ -7,6 +7,7 @@ $comp-neon: #54CF88;
 $comp-neon-dark: darken($comp-neon, 20%);
 $comp-orange: #FF8C00;
 $comp-beige: #FDF6E3;
+$comp-cerise: #E01270;
 
 $background-color: #fff;
 
@@ -14,7 +15,7 @@ $text-color: #3c3c3c;
 $grey: #979797;
 $grey-light: #b8b8b8;
 
-$link-color: #E01270;
+$link-color: $comp-cerise;
 
 // Typography
 
