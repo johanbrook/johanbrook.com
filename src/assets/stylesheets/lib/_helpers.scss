@@ -222,3 +222,29 @@ figure.image--hover {
     }
   }
 }
+
+.grid-list {
+  @include list-reset;
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    min-width: 33%;
+    flex: 1;
+    flex-grow: 0;
+    margin-bottom: $lineheight / 2;
+    padding: 0 2%;
+
+    @include smaller-than(1020px) {
+      min-width: 50%;
+    }
+
+    @include handheld {
+      min-width: 100%;
+    }
+  }
+
+  @include handheld {
+    flex-direction: column;
+  }
+}
