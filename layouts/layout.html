@@ -24,7 +24,12 @@
     <meta property="og:site_name" itemprop="name" content="Johan Brook">
     <meta property="og:type" content="{{#isSingle}}article{{else}}blog{{/isSingle}}">
     <meta property="og:image" content="{{ogImage}}">
+    
+    {{#isSingle}}
+    <meta property="og:description" content="{{descriptionOrExcerpt}}">
+    {{else}}
     <meta property="og:description" content="{{description}}">
+    {{/isSingle}}
 
     {{#isSingle}}
     <meta property="article:author" content="http://facebook.com/johanbrook">

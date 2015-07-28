@@ -31,6 +31,10 @@ Helpers =
   isPage: (page) ->
     page is @page
 
+  descriptionOrExcerpt: ->
+    # Strip HTML tags.
+    (@excerpt or @description).replace(/(<([^>]+)>)/ig, '')
+
   pretty: (text) ->
     text.replace 'index.html', ''
 
