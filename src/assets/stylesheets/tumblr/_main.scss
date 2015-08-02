@@ -45,6 +45,17 @@ body {
       }
     }
   }
+
+  &.post--video {
+    .post__content {
+      margin: 0 -14vw $lineheight*2;
+    }
+
+    iframe {
+      display: block;
+      margin: 0 auto;
+    }
+  }
 }
 
 .post__caption {
