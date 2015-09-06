@@ -1,5 +1,7 @@
 build: deps
 	npm run build
+	# Tumblr
+	sass --style compressed src/assets/stylesheets/tumblr.scss:./build/assets/stylesheets/tumblr.css
 
 serve: deps
 	npm run serve
