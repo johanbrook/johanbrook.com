@@ -182,8 +182,7 @@
 }
 
 figure.image--full {
-  margin-left: -14vw;
-  margin-right: -14vw;
+  margin-top: $lineheight*2 -14vw;
 
   img {
     display: block;
@@ -195,11 +194,6 @@ figure.image--full {
     margin-left: -5.5%;
     width: 111%;
     margin-right: 0;
-  }
-
-  @include handheld {
-    margin-top: $lineheight;
-    margin-bottom: $lineheight;
   }
 }
 
