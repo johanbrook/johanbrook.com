@@ -22,8 +22,8 @@
 
   {{#with posts.[0]}}
   <aside class="latest-post spacing--top">
-    <p>
-      <time datetime="{{toISODate date}}" title="{{toRelativeDate date}}" pubdate>Most recently</time>, I wrote
+    <p class="faded">
+      <time datetime="{{toISODate date}}" title="{{toRelativeDate date}}" pubdate>Most recently</time>, <span class="strong">I wrote</span>
     </p>
     <p>
       <a class="btn btn--huge btn--inverted btn--light" href="/{{path}}">“<span class="btn__text">{{title}}</span>”</a>
@@ -39,7 +39,7 @@
     <h1>”So. What’s this guy up to?!”</h1>
     <p class="subtitle faded">(you tell me)</p>
 
-    <section class="story__lookback spacing--top spacing--double inverted">
+    <section class="story__lookback spacing--top spacing--double inverted tilted">
 
       <h1>
         <a href="http://lookback.io">
@@ -113,7 +113,7 @@
       </ul>
     </section>
 
-    <section class="story__chalmers inverted">
+    <section class="story__chalmers inverted tilted">
       <p class="muted">
         I studied Software Engineering at
       </p>
@@ -152,7 +152,7 @@ experimenting with UI animations, front-end architecture, writing tests, writing
         But above all, I value
       </p>
 
-      <div class="story__misc__background">
+      <div class="story__misc__background tilted">
         <p>
           Freedom.
         </p>

@@ -21,6 +21,12 @@
   color: $comp-blue;
 }
 
+.detail {
+  font-size: .85em;
+  font-weight: 200;
+  color: $grey;
+}
+
 .icon {
   width: 1em;
   height: 1em;
@@ -59,10 +65,10 @@
 .banner {
   @include smooth;
   background-color: $comp-orange;
-  padding: $lineheight 5%;
+  padding: $lineheight*2 5%;
   color: #fff;
   text-align: center;
-  margin: $lineheight*2 0;
+  margin: $lineheight*4 0;
 
   font-family: $sans;
   font-weight: 500;
@@ -182,7 +188,7 @@
 }
 
 figure.image--full {
-  margin-top: $lineheight*2 -14vw;
+  margin-top: #{$lineheight*2} -14vw;
 
   img {
     display: block;
@@ -240,5 +246,24 @@ figure.image--hover {
 
   @include handheld {
     flex-direction: column;
+  }
+}
+
+.tilted {
+  position: relative;
+
+  &::before,
+  &::after {
+    @include tilted-bg(50px);
+  }
+
+  &::before {
+    top: 0;
+    background-image: url('/assets/images/tilt.svg');
+  }
+
+  &::after {
+    bottom: 0;
+    background-image: url('/assets/images/tilt-reverse.svg');
   }
 }

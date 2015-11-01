@@ -17,6 +17,10 @@
 
   .text-column {
     margin: 0 auto;
+
+    hr {
+      margin: $lineheight*2 auto;
+    }
   }
 
   .about__body {
@@ -24,23 +28,33 @@
 
     p {
       margin-bottom: 0;
+      text-indent: 2em;
+    }
 
-      &:not(:first-child) {
-        text-indent: 2em;
-      }
+    hr + p,
+    p:first-child {
+      text-indent: 0;
     }
   }
 
   &__contact {
-    max-width: to_rem(500);
-    line-height: 1.8;
+    max-width: to_rem(550);
+    line-height: 1.7;
     width: $page-width;
+    font-family: $sans;
+    margin: $lineheight*2 0;
 
     p {
-      margin: 0 auto $lineheight*2;
+      margin: 0 auto $lineheight;
+
+      &:first-child {
+        font-size: 1.1em;
+      }
 
       &:last-child {
         max-width: to_rem(425);
+        font-weight: 200;
+        line-height: 1.6;
       }
     }
   }

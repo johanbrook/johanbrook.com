@@ -62,13 +62,6 @@
     color: darken($grey, 20%);
     font-size: .8em;
 
-    .btn {
-
-      &__text {
-        @include underline($size: 3, $offset: .1, $color: rgba($text-color, .2));
-      }
-    }
-
     p {
       margin-bottom: $lineheight / 2;
     }
@@ -245,10 +238,17 @@
   color: #fff;
   text-align: right;
   margin-top: $lineheight*4;
-  padding: $lineheight*2 5%;
+  padding: $lineheight*4 5% $lineheight*2;
   font-family: $sans;
   font-weight: 300;
   font-size: to_rem(15);
+  position: relative;
+
+  &::before {
+    @include tilted-bg(50px);
+    top: 0;
+    background-image: url('/assets/images/tilt-reverse-upside.svg');
+  }
 
   p {
     max-width: 30rem;
