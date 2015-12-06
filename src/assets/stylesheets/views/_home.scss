@@ -85,7 +85,7 @@
   }
 
   section {
-    padding: $lineheight*3 5%;
+    padding: $lineheight*4 5% $lineheight*5;
 
     :last-child {
       margin-bottom: 0;
@@ -95,8 +95,6 @@
   & &__lookback {
     background-color: $comp-red;
     color: #fff;
-    padding-top: $lineheight*5;
-    padding-bottom: $lineheight*5;
 
     h1 {
       margin: $lineheight 0 $lineheight*2;
