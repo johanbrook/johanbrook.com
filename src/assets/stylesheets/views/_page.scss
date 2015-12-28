@@ -1,0 +1,12 @@
+/* =PAGE
+--------------------------------------------- */
+
+.page {
+
+
+  &__text {
+    margin: 0 auto;
+    width: $page-width;
+    max-width: to_rem(500);
+  }
+}

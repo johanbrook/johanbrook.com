@@ -55,7 +55,8 @@ module.exports = {
     const aliases = {
       posts: 'posts',
       home: 'home',
-      about: 'about'
+      about: 'about',
+      now: 'now'
     };
 
     const slug = aliases[page];

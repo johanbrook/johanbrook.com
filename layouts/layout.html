@@ -24,7 +24,7 @@
     <meta property="og:site_name" itemprop="name" content="Johan Brook">
     <meta property="og:type" content="{{#isSingle}}article{{else}}blog{{/isSingle}}">
     <meta property="og:image" content="{{ogImage}}">
-    
+
     {{#isSingle}}
     <meta property="og:description" content="{{descriptionOrExcerpt}}">
     {{else}}
@@ -54,6 +54,7 @@
     <nav role="navigation">
       <ul class="navigation__primary">
         <li class="{{#isCurrentNav 'home' }}nav--current{{/isCurrentNav}}"><a href="/">Home</a></li>
+        <li class="{{#isCurrentNav 'now' }}nav--current{{/isCurrentNav}}" ><a href="/now">Now</a></li>
         <li class="{{#isCurrentNav 'posts' }}nav--current{{/isCurrentNav}}"><a href="/writings">Writings</a></li>
         <li class="{{#isCurrentNav 'about' }}nav--current{{/isCurrentNav}}" ><a href="/about">More</a></li>
         <li><a title="Oh, you don't have your personal API yet?" href="/meta.json">API</a></li>
@@ -68,7 +69,8 @@
 
     <script type="text/javascript">
       var addClasses = function() {
-        document.querySelectorAll('.post article .post-text p')[0].classList.add('ingress');
+        var p = document.querySelectorAll('.post article .post-text p');
+        p.length > 0 && [0].classList.add('ingress');
 
       };
 
