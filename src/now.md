@@ -2,6 +2,11 @@
 template: page.html
 page: now
 title: What I'm doing now
+ogImage: http://johanbrook.com/assets/images/johan-map.png
+description: This page reflects what I'm doing with my life at the moment. If my life changes, I'll update this page.
+tags:
+  - hej
+  - lol
 ---
 
 <p class="centered grey">
