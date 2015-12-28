@@ -3,11 +3,14 @@
   "private": true,
   "version": "0.0.1",
   "description": "Homepage of Johan Brook.",
-  "main": "build.coffee",
+  "main": "build.js",
+  "config": {
+    "port": 8000
+  },
   "scripts": {
-    "build": "coffee build.coffee",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "./node_modules/nodemon/bin/nodemon.js -e md,scss,css,html,js,coffee,json,cson --ignore build/ build.coffee -- -s"
+    "build": "node --harmony build.js",
+    "test": "./node_modules/eslint/bin/eslint.js .",
+    "serve": "NODE_ENV=development node --harmony server.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +29,6 @@
     "metalsmith-autoprefixer": "^1.0.2",
     "metalsmith-branch": "0.0.4",
     "metalsmith-collections": "^0.7.0",
-    "metalsmith-copy": "^0.2.1",
     "metalsmith-excerpts": "^1.0.0",
     "metalsmith-feed": "0.0.6",
     "metalsmith-gzip": "^1.1.0",
@@ -44,11 +46,10 @@
     "slug": "^0.9.1"
   },
   "devDependencies": {
+    "babel-eslint": "^4.1.6",
     "colors": "^1.0.3",
     "front-matter": "~0.2.0",
-    "metalsmith-serve": "0.0.3",
-    "metalsmith-watch": "^0.2.0",
-    "nodemon": "^1.3.7",
+    "metalsmith-watch": "github:johanbrook/metalsmith-simplewatch",
     "q": "~1.0.1",
     "q-io": "~1.11.0",
     "slug": "~0.4.2",

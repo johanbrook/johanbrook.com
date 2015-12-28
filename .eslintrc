@@ -34,6 +34,7 @@
     "curly": 0,
     "no-debugger": 1,
     "no-multi-spaces": 0,
+    "no-unused-vars": 1,
     "no-unused-expressions": 0
   }
 
