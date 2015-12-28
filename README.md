@@ -1,9 +1,22 @@
 Johan's site. Built with [Metalsmith](http://metalsmith.io/).
 
 ```
+# Install dependencies
 npm install
+
 # Build into ./build
-make
+npm run build
+
 # Start dev server on port 8000
-make serve
+npm run serve
+
+# Deploy (also runs build)
+npm run deploy
+
+# Lint
+npm test
+
+# New post
+
+npm run new
 ```
