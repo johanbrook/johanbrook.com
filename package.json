@@ -8,9 +8,11 @@
     "port": 8000
   },
   "scripts": {
-    "build": "node --harmony build.js",
+    "build": "NODE_ENV=production node --harmony -e 'require(\"./build\")()'",
     "test": "./node_modules/eslint/bin/eslint.js .",
-    "serve": "NODE_ENV=development node --harmony server.js"
+    "serve": "NODE_ENV=development node --harmony server.js",
+    "deploy": "npm run build && ./deploy",
+    "new": "coffee scripts/new.coffee --silent '${TITLE}' | xargs $EDITOR"
   },
   "repository": {
     "type": "git",
