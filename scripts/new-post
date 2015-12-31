@@ -1,0 +1,53 @@
+#!/usr/bin/env node
+'use strict';
+
+const fs =      require('fs');
+const path =    require('path');
+const slug =    require('slug');
+const moment =  require('moment');
+const exec =    require('child_process').exec;
+
+require('colors');
+
+let arg = process.argv[2];
+let title = process.argv[3] || 'New post';
+
+if(arg.indexOf('-') !== 0) {
+  title = arg;
+}
+
+const options = {
+  destination: path.join(__dirname, '../src/posts/'),
+  prefix: moment().format('YYYY-MM-DD'),
+  silent: arg === '--silent',
+  editor: arg == '--editor',
+  extension: 'md'
+};
+
+/*
+  Create a new post with the title format:
+    2015-01-01-slugified-title.md
+*/
+const TEMPLATE = `---\ntitle: ${title}\ndate: '${moment().format('YYYY-MM-DD HH:mm')}'\ndraft: true
+\n---\n
+\n
+`;
+
+const fileName = `${options.prefix}-${slug(title).toLowerCase()}.${options.extension}`;
+const fullPath = path.join(options.destination, fileName);
+
+fs.writeFile(fullPath, TEMPLATE, (err) => {
+  if(err) {
+    console.error(`${'✘'.red} ${err.message}`);
+  } else {
+    if(options.editor) {
+      // Fire up editor for this file
+      exec(`$EDITOR ${fullPath}`, {encoding: 'utf-8'});
+    } else if(options.silent) {
+      // Just pipe output to stdout
+      console.log(fullPath);
+    } else {
+      console.log(`${'✔︎'.green} Created ${fileName.underline}`);
+    }
+  }
+});
