@@ -8,7 +8,7 @@ npm install
 npm run build
 
 # Start dev server on port 8000
-npm run serve
+npm start
 
 # Deploy (also runs build)
 npm run deploy
@@ -18,5 +18,5 @@ npm test
 
 # New post
 
-npm run new
+npm run new [optional title]
 ```
