@@ -36,9 +36,7 @@ const config = require('./src/meta.json');
 
 const METADATA = {
   title: 'Johan Brook',
-  tags: 'johan brook, web development, design, lookback',
-  /* eslint quotes: 0 */
-  description: "I'm a twenty-something web designer and developer living in Gothenburg, Sweden. I work with the best people in the world at Lookback, where I help interfaces come to life.",
+  tags: 'johan brook, web development, design, lookback, johan',
   ogImage: 'http://johanbrook.com/assets/images/og-image.png',
 
   // For the feed.
