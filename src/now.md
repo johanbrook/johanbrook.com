@@ -5,12 +5,14 @@ title: What I'm doing now
 ogImage: http://johanbrook.com/assets/images/johan-map.png
 description: This page reflects what I'm doing with my life at the moment. If my life changes, I'll update this page.
 tags:
-  - hej
-  - lol
+  - life
+  - now
+  - plan
+  - travels
 ---
 
 <p class="centered grey">
-  *Last updated December 28th, 2015*
+  *Last updated January 20th, 2016*
 </p>
 
 **This page** reflects what I'm doing with my life at the moment. No pressure here, Johan…
@@ -19,11 +21,12 @@ I have the privilege of traveling while working remotely (doing this nomad thing
 
 1. 🇪🇸 **Madrid**, Spain (January)
 2. 🇵🇾 **Asunción**, Paraguay (February-April, *if El Niño doesn't fuck the country over again*)
-3. 🇧🇷 **Rio de Janeiro**, Brazil (early April)
-4. 🇫🇷 **Marseilles**, France (rest of April)
-5. *?*
-6. 🇸🇪 **Gothenburg**, Sweden (early June)
-7. *?*
+3. 🇺🇸 **San Diego**, U.S. (March)
+4. 🇧🇷 **Rio de Janeiro**, Brazil (early April)
+5. 🇫🇷 **Marseilles**, France (rest of April)
+6. *?*
+7. 🇸🇪 **Gothenburg**, Sweden (early June)
+8. *?*
 
 I spend my time on these things:
 
