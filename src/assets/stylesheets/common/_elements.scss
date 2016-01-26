@@ -67,6 +67,10 @@ figure {
   margin: 0 0 $lineheight;
 }
 
+figcaption {
+  color: $grey;
+}
+
 pre {
   margin: 0 0 $lineheight;
   background-color: $comp-beige;

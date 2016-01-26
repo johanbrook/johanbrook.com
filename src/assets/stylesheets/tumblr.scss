@@ -5,6 +5,10 @@
 // Tools
 
 @import 'variables';
+
+// SF isn't available in Tumblr.
+$sans: 'Open Sans', Helvetica, sans-serif;
+
 @import 'tools/functions';
 @import 'tools/mixins';
 

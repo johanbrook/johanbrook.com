@@ -68,6 +68,13 @@
     display: block;
   }
 
+  figcaption {
+    padding: 1rem 0;
+    text-align: center;
+    font-family: $sans;
+    font-size: .9em;
+  }
+
   h2, h3{
     font-family: $sans;
     font-weight: 600;
