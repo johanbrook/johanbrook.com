@@ -140,3 +140,20 @@
     color: #777;
   }
 }
+
+.presentation-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 50px;
+    margin-right: 1rem;
+  }
+
+  p {
+    margin: 0;
+    text-align: left;
+    line-height: 1.4;
+  }
+}
