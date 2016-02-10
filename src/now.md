@@ -19,11 +19,11 @@ tags:
 
 I have the privilege of traveling while working remotely (doing this nomad thing). My current travel plans are:
 
-1. 🇪🇸 ~**Madrid**~, Spain (January)
+1. 🇪🇸 ~~**Madrid**~~, Spain (January)
 2. 🇵🇾 **Asunción**, Paraguay (February-April, *if El Niño doesn't fuck the country over again*)
 3. 🇺🇸 **San Diego**, U.S. (March)
 4. 🇧🇷 **Rio de Janeiro**, Brazil (early April)
-5. 🇫🇷 **Madrid/south Spain** (rest of April)
+5. 🇪🇸 **Madrid/south Spain** (rest of April)
 6. *?*
 7. 🇸🇪 **Gothenburg**, Sweden (early June-)
 8. *?*
