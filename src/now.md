@@ -12,7 +12,7 @@ tags:
 ---
 
 <p class="centered grey">
-  *Last updated January 20th, 2016*
+  *Last updated March 21th, 2016*
 </p>
 
 **This page** reflects what I'm doing with my life at the moment. No pressure here, Johan…
