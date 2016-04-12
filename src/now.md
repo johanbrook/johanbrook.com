@@ -12,7 +12,7 @@ tags:
 ---
 
 <p class="centered grey">
-  *Last updated March 21th, 2016*
+  *Last updated April 12th, 2016*
 </p>
 
 **This page** reflects what I'm doing with my life at the moment. No pressure here, Johan…
@@ -22,8 +22,8 @@ I have the privilege of traveling while working remotely (doing this nomad thing
 1. 🇪🇸 ~~**Madrid**~~, Spain (January)
 2. 🇵🇾 ~~**Asunción**~~, Paraguay (February-April, *if El Niño doesn't fuck the country over again*)
 3. 🇺🇸 ~~**San Diego**~~, U.S. (March)
-4. 🇧🇷 **Rio de Janeiro**, Brazil (April-early June)
-5. 🇸🇪 **Gothenburg**, Sweden (June-September)
+4. 🇧🇷 **Rio de Janeiro**, Brazil (April-late May). View some [photos on Instagram](https://www.instagram.com/explore/tags/riosexton/) from me and my friends.
+5. 🇸🇪 **Gothenburg**, Sweden (May-September)
 6. *?*
 
 I spend my time on these things:
