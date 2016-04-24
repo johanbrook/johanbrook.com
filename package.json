@@ -20,7 +20,7 @@
     "test": "Run tests, currently only linting.",
     "start": "Start dev server on port 8000.",
     "deploy": "Build and deploy to GitHub.",
-    "new": "Write a new post in $EDITOR.",
+    "new": "Write a new post in $EDITOR. Add optional string for post title.",
     "info": "Show this info."
   },
   "repository": {
