@@ -12,7 +12,16 @@
     "test": "./node_modules/eslint/bin/eslint.js .",
     "start": "NODE_ENV=development node --harmony server.js",
     "deploy": "npm run build && ./deploy",
-    "new": "node --harmony scripts/new-post --editor"
+    "new": "node --harmony scripts/new-post --editor",
+    "info": "npm-scripts-info"
+  },
+  "scripts-info": {
+    "build": "Build site into ./build directory.",
+    "test": "Run tests, currently only linting.",
+    "start": "Start dev server on port 8000.",
+    "deploy": "Build and deploy to GitHub.",
+    "new": "Write a new post in $EDITOR.",
+    "info": "Show this info."
   },
   "repository": {
     "type": "git",
@@ -52,6 +61,7 @@
     "colors": "^1.0.3",
     "front-matter": "~0.2.0",
     "metalsmith-watch": "github:johanbrook/metalsmith-simplewatch",
+    "npm-scripts-info": "^0.3.6",
     "q": "~1.0.1",
     "q-io": "~1.11.0",
     "slug": "~0.4.2",
