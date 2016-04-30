@@ -29,9 +29,9 @@ I have the privilege of traveling while working remotely (doing this nomad thing
 6. 🇪🇸 ~~**Madrid**~~, Spain (January)
 7. 🇵🇾 ~~**Asunción**~~, Paraguay (February-April, *if El Niño doesn't fuck the country over again*)
 8. 🇺🇸 ~~**San Diego**~~, U.S. (March)
-9. 🇧🇷 **Rio de Janeiro**, Brazil (April-late May). View some [photos on Instagram](https://www.instagram.com/explore/tags/riosexton/) from me and my friends.
-10. 🇸🇪 **Gothenburg**, Sweden (May-September)
-11. 🇺🇸 **New York**, U.S. Preliminary (September-October)
+9. 🇧🇷 **Rio de Janeiro**, Brazil (April-May). View some [photos on Instagram](https://www.instagram.com/explore/tags/riosexton/) from me and my friends.
+10. 🇸🇪 **Gothenburg**, Sweden (June-September)
+11. 🇺🇸 **New York**, U.S. Preliminary (October ish)
 
 I spend my time on these things:
 
