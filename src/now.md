@@ -3,7 +3,7 @@ template: page.html
 page: now
 title: What I'm doing now
 ogImage: http://johanbrook.com/assets/images/johan-map.png
-description: This page reflects what I'm doing with my life at the moment. If my life changes, I'll update this page.
+description: This page reflects what I'm doing with my life at the moment.
 tags:
   - life
   - now
@@ -12,19 +12,26 @@ tags:
 ---
 
 <p class="centered grey">
-  *Last updated April 24th, 2016*
+  *Last updated April 30th, 2016*
 </p>
 
-**This page** reflects what I'm doing with my life at the moment. No pressure here, Johan…
+This page reflects what I'm doing with my life at the moment, since it's the most common question on the internet and in real life anyway.
+
+**So.**
 
 I have the privilege of traveling while working remotely (doing this nomad thing). My current travel plans are:
 
-1. 🇪🇸 ~~**Madrid**~~, Spain (January)
-2. 🇵🇾 ~~**Asunción**~~, Paraguay (February-April, *if El Niño doesn't fuck the country over again*)
-3. 🇺🇸 ~~**San Diego**~~, U.S. (March)
-4. 🇧🇷 **Rio de Janeiro**, Brazil (April-late May). View some [photos on Instagram](https://www.instagram.com/explore/tags/riosexton/) from me and my friends.
-5. 🇸🇪 **Gothenburg**, Sweden (May-September)
-6. 🇺🇸 **New York**, U.S. Preliminary (September)
+1. 🇦🇹 ~~**Vienna**~~, Austria (October, 2015)
+2. 🇺🇸 ~~**San Francisco**~~, U.S. (October-November, 2015)
+3. 🇬🇧 ~~**London**~~, UK (November-December, 2015)
+4. 🇩🇰 ~~**Copenhagen**~~, Denmark (December, 2015)
+5. 🇸🇪 ~~**Sweden**~~ (December, 2015)
+6. 🇪🇸 ~~**Madrid**~~, Spain (January)
+7. 🇵🇾 ~~**Asunción**~~, Paraguay (February-April, *if El Niño doesn't fuck the country over again*)
+8. 🇺🇸 ~~**San Diego**~~, U.S. (March)
+9. 🇧🇷 **Rio de Janeiro**, Brazil (April-late May). View some [photos on Instagram](https://www.instagram.com/explore/tags/riosexton/) from me and my friends.
+10. 🇸🇪 **Gothenburg**, Sweden (May-September)
+11. 🇺🇸 **New York**, U.S. Preliminary (September-October)
 
 I spend my time on these things:
 
