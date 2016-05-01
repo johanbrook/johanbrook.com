@@ -3,9 +3,21 @@
 
 .home {
   text-align: center;
-  padding-bottom: 0;
   font-family: $sans;
   @include smooth;
+
+  @include larger-than($handheld) {
+    background: #fff url('/assets/images/abstract.svg') no-repeat center 10vh;
+
+    // Bump down a little to make space for background
+    [role="banner"] {
+      margin-top: 25vh;
+    }
+  }
+
+  @include larger-than(1399px) {
+    background-size: 100%;
+  }
 
   body {
     justify-content: center;
@@ -31,6 +43,33 @@
   .home-nav {
     @include list-reset;
     line-height: 2;
+
+    li {
+      position: relative;
+
+      &:hover {
+        .emoji {
+          visibility: visible;
+        }
+      }
+    }
+
+    .emoji {
+      font-size: 1.3em;
+      position: absolute;
+      visibility: hidden;
+      margin-left: 10px;
+      top: 1px;
+    }
+
+    .read {
+      position: absolute;
+      right: 40px;
+      top: 4px;
+      font-size: .8em;
+      font-style: italic;
+      color: $comp-green;
+    }
 
     a {
       color: $text-color;

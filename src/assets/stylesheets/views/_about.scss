@@ -5,6 +5,7 @@
 
   [role="main"] {
     text-align: center;
+    color: $grey;
 
     a:not(.no-underline) {
       @include underline($size: 3, $offset: .1, $color: rgba($link-color, .4));
@@ -31,6 +32,7 @@
 
   .about__body {
     text-align: left;
+    color: $text-color;
 
     p {
       margin-bottom: 0;
@@ -49,6 +51,7 @@
     width: $page-width;
     font-family: $sans;
     margin: $lineheight*2 0;
+    color: $text-color;
 
     p {
       margin: 0 auto $lineheight;
