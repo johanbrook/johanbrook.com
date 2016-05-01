@@ -40,6 +40,12 @@
   vertical-align: middle;
 }
 
+.notice {
+  font-size: .7em;
+  color: $grey-light;
+  font-style: italic;
+}
+
 .page-title {
   text-align: center;
   font: bold #{to_em(24)}/1.5 $sans;

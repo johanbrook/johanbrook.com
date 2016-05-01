@@ -3,9 +3,15 @@
 
 .posts {
 
-  [role="article"] {
-    margin-bottom: $lineheight*2;
+  [role="main"] {
     max-width: to_rem(540);
+    margin: 0 auto;
+  }
+
+  [role="article"] {
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: $lineheight*2;
     border-bottom: 1px solid #e2e2e2;
     padding-bottom: $lineheight*2;
 
