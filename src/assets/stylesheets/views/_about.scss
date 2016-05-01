@@ -15,6 +15,12 @@
     }
   }
 
+  .avatar {
+    margin: 0 auto $lineheight*2;
+    width: 212px;
+    animation: blur 1s .5s ease both;
+  }
+
   .text-column {
     margin: 0 auto;
 

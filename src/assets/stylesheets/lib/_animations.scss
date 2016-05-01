@@ -1,0 +1,10 @@
+@keyframes blur {
+  from {
+    opacity: 0;
+    -webkit-filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    -webkit-filter: blur(0);
+  }
+}

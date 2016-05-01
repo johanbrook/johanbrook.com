@@ -42,11 +42,10 @@
 
 .page-title {
   text-align: center;
-  font-size: to_rem(60);
-
-  @include handheld {
-    font-size: to_rem(32);
-  }
+  font: bold #{to_em(24)}/1.5 $sans;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba($text-color, .9);
 }
 
 .subtitle {
@@ -271,6 +270,25 @@ figure.image--hover {
   &::after {
     bottom: 0;
     background-image: url('/assets/images/tilt-reverse.svg');
+  }
+}
+
+.subnav {
+  @include list-reset;
+  display: flex;
+  justify-content: center;
+  font-style: italic;
+
+  li {
+    padding: 0 1em;
+  }
+
+  a {
+    color: $grey;
+
+    &:hover {
+      color: darken($grey, 15%);
+    }
   }
 }
 
