@@ -20,6 +20,7 @@ const wordcount =     require('metalsmith-word-count');
 const _ =             require('lodash');
 const helpers =       require('./helpers');
 const Handlebars =    require('handlebars');
+const changed =       require('metalsmith-changed');
 
 _.each(helpers, (fn, name) => {
   Handlebars.registerHelper(name, fn);
@@ -55,7 +56,7 @@ const site = Metalsmith(__dirname)
 
   // CONFIG #######################################
 
-  .clean(true)
+  .clean(false)
 
   .metadata(METADATA)
 
@@ -189,6 +190,8 @@ const finished = (cb) => {
 const build = (cb) => {
   if (process.env.NODE_ENV !== 'development') {
     site.use(compress());
+  } else {
+    site.use(changed());
   }
 
   site.build(finished(cb));
