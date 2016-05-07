@@ -21,8 +21,12 @@
       margin-bottom: $lineheight;
 
       a {
-        text-decoration: none;
+        @include underline();
         color: #000;
+
+        &:hover {
+          color: $comp-cerise;
+        }
       }
     }
 
