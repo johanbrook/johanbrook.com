@@ -108,3 +108,45 @@ hr {
   width: 10rem;
   max-width: 50%;
 }
+
+
+[role="contentinfo"] {
+  background-color: $comp-neon;
+  margin-top: $lineheight*4;
+  padding: $lineheight*2 5%;
+  font-family: $sans;
+  position: relative;
+  font-weight: normal;
+  margin-top: $lineheight*2;
+  font-size: 1rem;
+  text-align: center;
+  color: darken($comp-neon-dark, 10%);
+
+  &::before {
+    @include tilted-bg(50px);
+    top: 0;
+    background-image: url('/assets/images/tilt-reverse-upside.svg');
+  }
+
+  p {
+    margin: 0 auto $lineheight;
+    max-width: 25rem;
+  }
+
+  a {
+    font-style: italic;
+    color: #fff;
+    @include underline($size: 2, $offset: .1, $bg: $comp-neon, $color: #fff);
+  }
+
+  h2 {
+    font-weight: 300;
+    font-family: $sans;
+    font-size: to_rem(42);
+    color: rgba(#fff, .9);
+  }
+
+  :last-child {
+    margin-bottom: 0;
+  }
+}

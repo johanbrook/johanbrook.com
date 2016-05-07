@@ -107,36 +107,3 @@
     }
   }
 }
-
-[role="contentinfo"] {
-  background-color: $comp-neon;
-  color: #fff;
-  text-align: right;
-  margin-top: $lineheight*4;
-  padding: $lineheight*4 5% $lineheight*2;
-  font-family: $sans;
-  font-weight: 300;
-  font-size: to_rem(15);
-  position: relative;
-
-  &::before {
-    @include tilted-bg(50px);
-    top: 0;
-    background-image: url('/assets/images/tilt-reverse-upside.svg');
-  }
-
-  p {
-    max-width: 30rem;
-    margin-right: 0;
-  }
-
-  a {
-    font-style: italic;
-    color: #fff;
-    @include underline($size: 2, $offset: .1, $bg: $comp-neon, $color: #fff);
-  }
-
-  :last-child {
-    margin-bottom: 0;
-  }
-}
