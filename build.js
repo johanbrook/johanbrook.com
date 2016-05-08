@@ -8,7 +8,6 @@ const templates =     require('metalsmith-templates');
 const branch =        require('metalsmith-branch');
 const layouts =       require('metalsmith-layouts');
 const autoprefixer =  require('metalsmith-autoprefixer');
-const sass =          require('metalsmith-sass');
 const excerpts =      require('metalsmith-excerpts');
 const metallic =      require('metalsmith-metallic');
 const typography =    require('metalsmith-typography');
@@ -137,15 +136,6 @@ const site = Metalsmith(__dirname)
     engine: 'handlebars',
     default: 'layout.html'
   }))
-
-  // ASSETS #######################################
-
-  .use(sass({
-    includePaths: ['src/assets/stylesheets'],
-    outputStyle: 'compressed'
-  }))
-
-  .use(autoprefixer())
 
   // REDIRECTS #######################################
 

@@ -8,9 +8,9 @@
     "port": 8000
   },
   "scripts": {
-    "build": "NODE_ENV=production node --harmony -e 'require(\"./build\")()'",
+    "build": "NODE_ENV=production gulp build",
     "test": "eslint .",
-    "start": "NODE_ENV=development node --harmony server.js",
+    "start": "NODE_ENV=development gulp",
     "deploy": "npm run build && ./deploy",
     "new": "node --harmony scripts/new-post --editor",
     "info": "npm-scripts-info"
@@ -37,7 +37,6 @@
     "handlebars": "^3.0.1",
     "lodash": "^4.0.0",
     "metalsmith": "^1.6.0",
-    "metalsmith-autoprefixer": "^1.0.2",
     "metalsmith-branch": "0.0.4",
     "metalsmith-changed": "^0.2.0",
     "metalsmith-collections": "^0.7.0",
@@ -50,7 +49,6 @@
     "metalsmith-pagination": "^1.1.0",
     "metalsmith-permalinks": "^0.4.0",
     "metalsmith-redirect": "^1.0.2",
-    "metalsmith-sass": "^1.3.0",
     "metalsmith-templates": "^0.7.0",
     "metalsmith-typography": "^0.1.1",
     "metalsmith-word-count": "0.0.4",
@@ -59,9 +57,13 @@
   },
   "devDependencies": {
     "babel-eslint": "^4.1.6",
+    "browser-sync": "^2.12.5",
     "colors": "^1.0.3",
     "front-matter": "~0.2.0",
-    "metalsmith-simplewatch": "johanbrook/metalsmith-simplewatch",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-sass": "^2.3.1",
+    "gulp-sourcemaps": "^1.6.0",
     "npm-scripts-info": "^0.3.6",
     "q": "~1.0.1",
     "q-io": "~1.11.0",
