@@ -1,7 +1,7 @@
 @import 'underlines';
 
-@mixin wrapper {
-  max-width: $max-width;
+@mixin wrapper($width: $max-width){
+  max-width: $width;
   width: $page-width;
   margin: 0 auto;
 }

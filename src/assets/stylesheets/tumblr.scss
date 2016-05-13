@@ -6,8 +6,10 @@
 
 @import 'variables';
 
-// SF isn't available in Tumblr.
-$sans: 'Open Sans', Helvetica, sans-serif;
+$base-size: 14;
+$leading: 25;
+
+$lineheight: ($leading / $base-size) * 1rem;
 
 @import 'tools/functions';
 @import 'tools/mixins';
