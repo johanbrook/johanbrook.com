@@ -27,7 +27,7 @@ $lineheight: ($leading / $base-size) * 1rem;
 $serif:     'PT Serif', Georgia, serif;
 $sans:      Lato, 'Open Sans', Helvetica, sans-serif;
 $mono:      Hack, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-$headings:  Trocchi, serif;
+$headings:  $sans;
 $tumblr-font: $mono;
 
 // Measures

@@ -88,13 +88,14 @@ pre {
 }
 
 blockquote {
-  font-style: italic;
+  font-family: $mono;
+  font-size: to_rem(13);
   border-left: 1px solid $text-color;
-  margin: 0 2rem $lineheight 0;
+  margin: $lineheight*2 2rem $lineheight*2 0;
   padding-left: 2rem;
 
   footer {
-    font-style: normal;
+    color: $grey;
     margin-top: $lineheight;
   }
 }
