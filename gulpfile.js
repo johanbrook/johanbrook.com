@@ -20,11 +20,14 @@ const src = {
 gulp.task('serve', ['sass'], function() {
 
     browserSync.init({
-        server: './build'
+      server: './build'
     });
 
     gulp.watch(src.scss, ['sass']);
-    gulp.watch(src.content).on('change', () => build(browserSync.reload));
+    gulp.watch(src.content).on('change', () => build(() => {
+      compileSass();
+      browserSync.reload();
+    }));
 });
 
 // Compile sass into CSS
