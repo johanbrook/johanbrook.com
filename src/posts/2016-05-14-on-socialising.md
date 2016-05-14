@@ -1,7 +1,6 @@
 ---
 title: On Socialising
-date: '2016-05-14 18:01'
-draft: true
+date: '2016-05-14 18:00'
 tags:
   - alcohol
   - social
@@ -9,7 +8,7 @@ tags:
   - south america
 ---
 
-One thing I've noticed during my past half ish year of traveling outside of Europe is the difference in how young people interact and socialise with each other, compared to the customs in my native country Sweden. 
+One thing I've noticed during my past half ish year of traveling outside of Europe is the difference in how young people interact and socialise with each other, compared to the customs in my native country Sweden.
 
 ## The "Problem"
 
@@ -47,14 +46,14 @@ Some back story: in Sweden, the government controls all sales of alcohol. All st
 
 Zoom back to South America. Or Rio, where I currently am located, where I seldom notice a "branded bar" or something out of the ordinary. Everything is what it is. You drink beer on wooden (or on authentic plastic) chairs on the curb, where the bar is a hole-in-the-wall institution. I doubt the bar in question needs to apply for some silly warrant from the city to have that. The tab seldom goes above $6 per person if you're two people splitting a few large beers (that's the minimum price for a *small* single beer in Sweden ...).
 
-Does Sweden have too strict alcohol and food laws, which hinder small business to grow and let people eat and drink out more often, in order to socialise and get out of their houses? **Yes, I believe so.** 
+Does Sweden have too strict alcohol and food laws, which hinder small business to grow and let people eat and drink out more often, in order to socialise and get out of their houses? **Yes, I believe so.**
 
 ### Insecurities
 
 Feminism should be a baseline everywhere, since the world is currently skewed between the genders. Violence, abuse, unbalanced working conditions, harassment, slurs, attitudes. All that crap that a huge part of women need to put up with every day. That's one thing Swedes do better than South America: the macho attitude and conservative lines here are strong.
 
 > A lot of nice but awkward young men are opting out of approaching women because there is no opportunity for them to make mistakes without suffering worse embarrassment than ever.
-> 
+>
 > *The Sexodus: Part 1*
 
 I read an article from 2014 called [*The Sexodus: Men giving up on women and checking out of society*](http://www.breitbart.com/london/2014/12/04/the-sexodus-part-1-the-men-giving-up-on-women-and-checking-out-of-society/). I highly recommend it, even though I think the article is a bit from a single point of view and downplays rape culture.
