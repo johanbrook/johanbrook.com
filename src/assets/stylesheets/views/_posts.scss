@@ -54,6 +54,15 @@
     }
 
     .post-text {
+      font-family: $mono;
+      font-size: to_rem(13);
+      color: darken($grey, 5%);
+      text-indent: -1em;
+
+      strong {
+        font-family: $mono;
+      }
+
       :last-child {
         margin-bottom: 0;
       }
