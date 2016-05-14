@@ -40,7 +40,7 @@
     "metalsmith-branch": "0.0.4",
     "metalsmith-changed": "^0.2.0",
     "metalsmith-collections": "^0.7.0",
-    "metalsmith-excerpts": "^1.1.0",
+    "metalsmith-excerpts": "johanbrook/metalsmith-excerpts",
     "metalsmith-feed": "0.0.6",
     "metalsmith-gzip": "^1.1.0",
     "metalsmith-layouts": "^1.0.0",
