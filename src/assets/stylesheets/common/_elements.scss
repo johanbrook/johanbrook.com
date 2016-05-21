@@ -51,12 +51,11 @@ pre, code {
 }
 
 code {
-  background-color: $comp-beige;
+  background-color: #f4f4f4;
   padding: 2px 4px;
   border-radius: 2px;
   font-size: .75em;
   color: darken(#657B83, 10%);
-  box-shadow: rgba(darken($comp-beige, 70%), .3) 0 1px 0;
 
   &.hljs {
     padding: 0;
@@ -73,10 +72,10 @@ figcaption {
 
 pre {
   margin: 0 0 $lineheight;
-  background-color: $comp-beige;
+  background-color: $off-white;
   border-radius: 5px;
   padding: $lineheight;
-  font-size: to_rem(14);
+  font-size: to_rem(12);
 
   code {
     background-color: transparent;

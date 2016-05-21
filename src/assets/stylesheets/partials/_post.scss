@@ -94,12 +94,10 @@
   }
 
   pre {
-    margin-left: -$lineheight;
-    margin-right: -$lineheight;
-
-    @include smaller-than(640px) {
-      margin-left: auto;
-      margin-right: auto;
+    @include larger-than(800px) {
+      margin-left: -$lineheight*4;
+      margin-right: -$lineheight*4;
+      padding-left: $lineheight*2;
     }
   }
 
