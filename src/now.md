@@ -12,7 +12,7 @@ tags:
 ---
 
 <p class="centered grey">
-  *Last updated April 30th, 2016*
+  *Last updated July 3rd, 2016*
 </p>
 
 This page reflects what I'm doing with my life at the moment, since it's the most common question on the internet and in real life anyway.
@@ -29,9 +29,10 @@ I have the privilege of traveling while working remotely (doing this nomad thing
 6. 🇪🇸 ~~**Madrid**~~, Spain (January)
 7. 🇵🇾 ~~**Asunción**~~, Paraguay (February-April, *if El Niño doesn't fuck the country over again*)
 8. 🇺🇸 ~~**San Diego**~~, U.S. (March)
-9. 🇧🇷 **Rio de Janeiro**, Brazil (April-May). View some [photos on Instagram](https://www.instagram.com/explore/tags/riosexton/) from me and my friends.
+9. 🇧🇷 ~~**Rio de Janeiro**~~, Brazil (April-May). View some [photos on Instagram](https://www.instagram.com/explore/tags/riosexton/) from me and my friends.
 10. 🇸🇪 **Gothenburg**, Sweden (June-September)
-11. 🇺🇸 **New York**, U.S. Preliminary (October ish)
+11. 🇨🇦 **Montréal**, Canada (September-October)
+12. 🇺🇸 **New York**, USA (October-)
 
 I spend my time on these things:
 
