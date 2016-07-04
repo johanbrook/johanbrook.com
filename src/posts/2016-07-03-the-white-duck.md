@@ -35,3 +35,7 @@ Richard, who as previously mentioned was quite clever, did in this moment get a 
 The White Duck understood the hidden blessing and "Good luck" in Richard's statement.
 
 She set off in the morning the next day.
+
+<figure class="image--full">
+  <img src="/assets/posts/white-duck.jpg" alt="White duck">
+</figure>
