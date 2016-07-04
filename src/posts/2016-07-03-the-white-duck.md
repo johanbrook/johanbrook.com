@@ -39,4 +39,5 @@ She set off in the morning the next day.
 
 <figure class="image--full">
   <img src="/assets/posts/white-duck.jpg" alt="White duck">
+  <figcaption>The real White Duck, who still roams on our farm (she hasn't left. Yet).</figcaption>
 </figure>
