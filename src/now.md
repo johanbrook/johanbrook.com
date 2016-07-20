@@ -38,7 +38,7 @@ I spend my time on these things:
 
 - working in [Lookback](http://lookback.io) as web app developer and designer. Mostly doing product and writing Javascript in [Meteor](http://meteor.com).
 - reading books and articles, in order to get my mind off the digital things. Ironically, I mostly read articles on product design, code, and startups.
-- I'm currently reading *A Moveable Feast* by Hemingway. Previously, I read *Zen and the Art of Motorcycle Maintenance* by Robert Hirsig.
+- I'm currently reading *Death In The Afternoon* by Hemingway.
 - meeting new people in the cities I visit, as well as connecting with existing ones.
 - trying to come up with a nice side project. I think I'm on to something, and it involves [Electron](http://electron.atom.io) and [Vue.js](http://vuejs.org).
 - photo snapping and travel memories collecting on [Instagram](http://instagram.com/johanbrook/).
