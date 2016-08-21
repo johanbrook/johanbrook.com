@@ -8,6 +8,15 @@
     }
   }
 
+  h1 {
+    font-weight: 300;
+    font-size: to_rem(50);
+
+    @include smaller-than(1060px) {
+      font-size: 5vw;
+    }
+  }
+
   .inverted {
     a {
       color: #fff;
@@ -123,7 +132,6 @@
     }
 
     h1 {
-      font-size: to_rem(50);
       color: #fff;
       margin: $lineheight*2 0;
     }
@@ -155,11 +163,12 @@
       font-size: to_rem(80);
     }
 
-    @include handheld {
+    @include smaller-than(750px) {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 400px;
+      color: #fff;
 
       p {
         position: static;
