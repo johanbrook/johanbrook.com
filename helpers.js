@@ -47,7 +47,7 @@ module.exports = {
   },
 
   canonicalUrl(path) {
-    var root = 'http://www.johanbrook.com/';
+    var root = 'https://www.johanbrook.com/';
     return (path) ? `${root}${path}/` : root;
   },
 

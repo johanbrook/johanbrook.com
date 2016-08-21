@@ -37,12 +37,12 @@ const config = require('./src/meta.json');
 const METADATA = {
   title: 'Johan Brook',
   tags: 'johan brook, web development, design, lookback, johan',
-  ogImage: 'http://johanbrook.com/assets/images/og-image.png',
+  ogImage: 'https://johanbrook.com/assets/images/og-image.png',
 
   // For the feed.
   site: {
     title: 'Johan Brook',
-    url: 'http://johanbrook.com',
+    url: 'https://johanbrook.com',
     author: 'Johan Brook'
   }
 };

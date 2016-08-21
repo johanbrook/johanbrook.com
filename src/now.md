@@ -2,7 +2,7 @@
 template: page.html
 page: now
 title: What I'm doing now
-ogImage: http://johanbrook.com/assets/images/johan-map.png
+ogImage: https://johanbrook.com/assets/images/johan-map.png
 description: This page reflects what I'm doing with my life at the moment.
 tags:
   - life

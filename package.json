@@ -1,7 +1,7 @@
 {
   "name": "johanbrook.com",
   "private": true,
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Homepage of Johan Brook.",
   "main": "build.js",
   "config": {

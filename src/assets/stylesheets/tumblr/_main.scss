@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
     // Image masking for WebKit.
     // http://nimbupani.com/using-background-clip-for-text-with-css-fallback.html
     background: -webkit-linear-gradient(transparent, transparent),
-                 url('http://www.johanbrook.com/assets/images/road-improved.jpg') repeat;
+                 url('https://www.johanbrook.com/assets/images/road-improved.jpg') repeat;
     background: -o-linear-gradient(transparent, transparent);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
