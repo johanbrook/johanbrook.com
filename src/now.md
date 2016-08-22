@@ -12,7 +12,7 @@ tags:
 ---
 
 <p class="centered grey">
-  *Last updated July 3rd, 2016*
+  *Last updated August 22nd, 2016*
 </p>
 
 This page reflects what I'm doing with my life at the moment, since it's the most common question on the internet and in real life anyway.
@@ -32,15 +32,15 @@ I have the privilege of traveling while working remotely (doing this nomad thing
 9. 🇧🇷 ~~**Rio de Janeiro**~~, Brazil (April-May). View some [photos on Instagram](https://www.instagram.com/explore/tags/riosexton/) from me and my friends.
 10. 🇸🇪 **Gothenburg**, Sweden (June-September)
 11. 🇨🇦 **Montréal**, Canada (September-October)
-12. 🇺🇸 **New York**, USA (October-)
+12. 🇺🇸 **New York**, USA (October-December)
+13. 🇸🇪 **Sweden**, Christmas
 
 I spend my time on these things:
 
 - working in [Lookback](http://lookback.io) as web app developer and designer. Mostly doing product and writing Javascript in [Meteor](http://meteor.com).
 - reading books and articles, in order to get my mind off the digital things. Ironically, I mostly read articles on product design, code, and startups.
-- I'm currently reading *Death In The Afternoon* by Hemingway.
+- I'm currently reading *Dancing with the Devil in the City of God* by Juliana Barbassa.
 - meeting new people in the cities I visit, as well as connecting with existing ones.
-- trying to come up with a nice side project. I think I'm on to something, and it involves [Electron](http://electron.atom.io) and [Vue.js](http://vuejs.org).
 - photo snapping and travel memories collecting on [Instagram](http://instagram.com/johanbrook/).
 - playing the guitar. I usually play music by the Swedish artist Håkan Hellström.
 - learning Portuguese on [Duolingo](https://www.duolingo.com/johanbrook).
