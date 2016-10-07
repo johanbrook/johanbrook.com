@@ -2,7 +2,7 @@
 
 # Deploy to johanbrook.github.io/johanbrook.com
 cd ./build && \
-# cp ../CNAME ./CNAME && \
+cp ../CNAME ./CNAME && \
 touch ./.nojekyll && \
 git init . -q && \
 git add . && \
