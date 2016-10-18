@@ -12,7 +12,7 @@ tags:
 ---
 
 <p class="centered grey">
-  *Last updated August 22nd, 2016*
+  *Last updated October 17th, 2016*
 </p>
 
 This page reflects what I'm doing with my life at the moment, since it's the most common question on the internet and in real life anyway.
@@ -30,10 +30,12 @@ I have the privilege of traveling while working remotely (doing this nomad thing
 7. 🇵🇾 ~~**Asunción**~~, Paraguay (February-April, *if El Niño doesn't fuck the country over again*)
 8. 🇺🇸 ~~**San Diego**~~, U.S. (March)
 9. 🇧🇷 ~~**Rio de Janeiro**~~, Brazil (April-May). View some [photos on Instagram](https://www.instagram.com/explore/tags/riosexton/) from me and my friends.
-10. 🇸🇪 **Gothenburg**, Sweden (June-September)
+10. 🇸🇪 ~~**Gothenburg**~~, Sweden (June-September)
 11. 🇨🇦 **Montréal**, Canada (September-October)
 12. 🇺🇸 **New York**, USA (October-December)
 13. 🇸🇪 **Sweden**, Christmas
+14. 🇨🇴 **Cartagena**, Colombia (January 2017-)
+15. 🇧🇷 **Rio de Janeiro**, Brazil (Spring 2017)
 
 I spend my time on these things:
 
@@ -43,7 +45,6 @@ I spend my time on these things:
 - meeting new people in the cities I visit, as well as connecting with existing ones.
 - photo snapping and travel memories collecting on [Instagram](http://instagram.com/johanbrook/).
 - playing the guitar. I usually play music by the Swedish artist Håkan Hellström.
-- learning Portuguese on [Duolingo](https://www.duolingo.com/johanbrook).
 - writing [open source packages for Meteor](https://atmospherejs.com/lookback/).
 - trying to write more articles on this site.
 
