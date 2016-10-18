@@ -145,7 +145,6 @@ const site = Metalsmith(__dirname)
     '/articles/a-symbol-for-sex': '/writings/a-symbol-for-sex',
     '/articles/adding-custom-url-endpoints-in-wordpress': '/writings/adding-custom-url-endpoints-in-wordpress',
     '/articles/perfection-doesnt-exist': '/writings/perfection-doesn-t-exist',
-    '/about.html': '/about',
     '/articles/css-context': '/writings/writing-contextual-css',
     '/articles/debugging-css-media-queries': '/writings/debugging-css-media-queries'
   }));
