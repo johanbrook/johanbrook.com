@@ -36,7 +36,7 @@
   "dependencies": {
     "handlebars": "^3.0.1",
     "lodash": "^4.0.0",
-    "metalsmith": "^1.6.0",
+    "metalsmith": "^2.2.0",
     "metalsmith-branch": "0.0.4",
     "metalsmith-changed": "^0.2.0",
     "metalsmith-collections": "^0.7.0",

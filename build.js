@@ -59,6 +59,8 @@ const site = Metalsmith(__dirname)
 
   .metadata(METADATA)
 
+  .concurrency(100)
+
   // POSTS #######################################
 
   .use(metallic())
