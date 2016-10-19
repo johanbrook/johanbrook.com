@@ -4,7 +4,7 @@ const colors =        require('colors');
 const markdown =      require('metalsmith-markdown');
 const collections =   require('metalsmith-collections');
 const permalinks =    require('metalsmith-permalinks');
-const templates =     require('metalsmith-templates');
+const templates =     require('metalsmith-in-place');
 const branch =        require('metalsmith-branch');
 const layouts =       require('metalsmith-layouts');
 const autoprefixer =  require('metalsmith-autoprefixer');
@@ -19,7 +19,6 @@ const wordcount =     require('metalsmith-word-count');
 const _ =             require('lodash');
 const helpers =       require('./helpers');
 const Handlebars =    require('handlebars');
-const changed =       require('metalsmith-changed');
 
 _.each(helpers, (fn, name) => {
   Handlebars.registerHelper(name, fn);
