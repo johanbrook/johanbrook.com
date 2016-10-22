@@ -84,6 +84,10 @@
   font-family: $sans;
   font-weight: 500;
 
+  &--large {
+    font-size: 1.2em;
+  }
+
   a {
     color: #fff;
     @include underline($color: rgba(#fff, .6), $size: 3, $offset: .1, $bg: $comp-orange);
