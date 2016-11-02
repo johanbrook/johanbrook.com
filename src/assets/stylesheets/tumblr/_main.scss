@@ -5,7 +5,11 @@ html {
 }
 
 body {
-  margin-top: $lineheight*2;
+  margin-top: 1rem;
+
+  @include larger-than($handheld) {
+    margin-top: $lineheight*2;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,12 +41,40 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   p {
-    color: #bbb;
+    color: #999;
     font-size: 1.1em;
 
     &:last-child {
       margin-bottom: $lineheight*3;
     }
+  }
+
+  @include handheld {
+    @include wrapper;
+
+    h1 {
+      margin-top: 0;
+      font-size: to_rem(32);
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+      font-size: 1em;
+    }
+  }
+}
+
+.single [role="banner"] {
+  @include wrapper;
+
+  h1 {
+    margin-top: 0;
+    font-size: to_rem(32);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+    font-size: 1em;
   }
 }
 
@@ -112,11 +144,16 @@ h1, h2, h3, h4, h5, h6 {
 blockquote {
   font-family: $serif;
   font-style: normal;
-  font-size: to_rem(19);
-  margin-left: -4rem;
   padding: 0;
   border: 0;
-  padding-right: 4rem;
+  text-align: center;
+
+  @include larger-than(815px) {
+    padding-right: 4rem;
+    text-align: left;
+    font-size: to_rem(19);
+    margin-left: -4rem;
+  }
 }
 
 // Posts listing pages
