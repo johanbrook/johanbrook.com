@@ -56,9 +56,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: $lineheight*2;
 
     h1 {
-      font-size: to_rem(20);
+      font-size: to_rem(32);
       margin-bottom: 0;
-      text-align: left;
     }
   }
 
@@ -68,7 +67,6 @@ h1, h2, h3, h4, h5, h6 {
 
   .post__meta {
     font-size: .9em;
-    text-align: left;
     font-family: $mono;
 
     .meta__permalink {
@@ -114,5 +112,24 @@ h1, h2, h3, h4, h5, h6 {
 blockquote {
   font-family: $serif;
   font-style: normal;
-  font-size: to_rem(17);
+  font-size: to_rem(19);
+  margin-left: -4rem;
+  padding: 0;
+  border: 0;
+  padding-right: 4rem;
+}
+
+// Posts listing pages
+.posts {
+  [role="article"] {
+    header {
+      h1, .post__meta {
+        text-align: left;
+      }
+
+      h1 {
+        font-size: to_rem(24);
+      }
+    }
+  }
 }

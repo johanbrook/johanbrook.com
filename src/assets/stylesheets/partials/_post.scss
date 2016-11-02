@@ -85,12 +85,15 @@
     font-family: $sans;
     font-weight: bold;
     font-size: to_rem(22);
-    text-transform: uppercase;
     margin-top: $lineheight*2;
   }
 
+  h2 {
+    border-bottom: 2px solid;
+  }
+
   h3 {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
   }
 
   pre {
