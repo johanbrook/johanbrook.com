@@ -12,7 +12,7 @@ tags:
 ---
 
 <p class="centered grey">
-  *Last updated October 17th, 2016*
+  *Last updated November 1st, 2016*
 </p>
 
 This page reflects what I'm doing with my life at the moment, since it's the most common question on the internet and in real life anyway.
@@ -34,8 +34,6 @@ I have the privilege of traveling while working remotely (doing this nomad thing
 11. 🇨🇦 **Montréal**, Canada (September-October)
 12. 🇺🇸 **New York**, USA (October-December)
 13. 🇸🇪 **Sweden**, Christmas
-14. 🇨🇴 **Cartagena**, Colombia (January 2017-)
-15. 🇧🇷 **Rio de Janeiro**, Brazil (Spring 2017)
 
 I spend my time on these things:
 
