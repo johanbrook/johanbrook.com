@@ -217,41 +217,9 @@
     font-size: 1.2em;
     margin: 0 3px;
   }
-}
 
-figure.image--full {
-  margin: #{$lineheight*2} -14vw;
-
-  img {
-    display: block;
-    margin: 0 auto;
-  }
-
-  @include smaller-than(960px) {
-    // Edge-to-edge pixelfucking.
-    margin-left: -5.5%;
-    width: 111%;
-    margin-right: 0;
-  }
-}
-
-figure.image--hover {
-  position: relative;
-
-  img:last-child {
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-  }
-
-  &:hover {
-    img:last-child {
-      pointer-events: all;
-      opacity: 1;
-    }
+  @include handheld {
+    font-size: 1.2em;
   }
 }
 
@@ -402,5 +370,41 @@ figure.image--hover {
     font-family: $sans;
     font-weight: 900;
     font-size: 1.2em;
+  }
+}
+
+figure.image--full {
+  margin: #{$lineheight*2} -14vw;
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  @include smaller-than(960px) {
+    // Edge-to-edge pixelfucking.
+    margin-left: -5.5%;
+    width: 111%;
+    margin-right: 0;
+  }
+}
+
+figure.image--hover {
+  position: relative;
+
+  img:last-child {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  &:hover {
+    img:last-child {
+      pointer-events: all;
+      opacity: 1;
+    }
   }
 }

@@ -6,6 +6,7 @@
   [role="main"] {
     max-width: to_rem(540);
     margin: 0 auto;
+    width: $page-width;
   }
 
   [role="article"] {

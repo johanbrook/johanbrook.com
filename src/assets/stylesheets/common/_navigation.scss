@@ -42,7 +42,25 @@
   }
 
   @include handheld {
-    margin-bottom: $lineheight;
+    margin-bottom: 0;
+    flex-direction: column;
+    font-size: 1em;
+
+    .navigation__secondary {
+      font-size: .9em;
+
+      a {
+        color: $grey;
+      }
+    }
+
+    ul {
+      justify-content: center;
+    }
+
+    a {
+      padding: .5em 1em;
+    }
   }
 }
 
@@ -65,5 +83,19 @@
   li:not(:last-child)::after {
     content: '·';
     display: inline-block;
+  }
+
+  @include handheld {
+    ul {
+      flex-direction: column;
+    }
+
+    li:not(:last-child)::after {
+      display: none;
+    }
+
+    a {
+      display: block;
+    }
   }
 }

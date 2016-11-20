@@ -11,7 +11,7 @@
 
   [role="banner"] {
     background-color: $comp-yellow;
-    padding: $lineheight*2 5% $lineheight*5;
+    padding: 5% 5% $lineheight*5;
     font-family: $sans;
     font-weight: bold;
     font-size: 1.3em;
@@ -40,6 +40,12 @@
     @include tablet {
       font-size: to_rem(48);
     }
+
+    @include handheld {
+      &:not([role="banner"] h1) {
+        font-size: to_rem(36);
+      }
+    }
   }
 
   h2 {
@@ -50,8 +56,11 @@
   }
 
   .outset {
+    padding: 0 5%;
+
     @include larger-than($break) {
       margin-left: -25vw;
+      padding: 0;
     }
   }
 
@@ -72,11 +81,18 @@
     }
   }
 
+  .home-about {
+    .post-text {
+      @include larger-than($break) {
+        margin-bottom: $lineheight*2;
+      }
+    }
+  }
+
   .post-text {
     max-width: to_rem(620px);
     width: 90%;
     font-size: 1.1rem;
-    margin: $lineheight*3 0 $lineheight*2;
     @include smooth(false);
 
     @include smaller-than($break) {
@@ -92,12 +108,19 @@
     margin: 0 auto $lineheight*3;
     line-height: 1.8;
 
-    .muted {
-      padding: 0 2rem;
+    @include larger-than($handheld) {
+      .muted {
+        padding: 0 2rem;
+      }
     }
 
     p:not(:last-child) {
       margin-bottom: $lineheight;
+    }
+
+    @include handheld {
+      text-align: left;
+      margin-bottom: 0;
     }
   }
 
