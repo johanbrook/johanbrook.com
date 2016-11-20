@@ -34,7 +34,11 @@ nav ul {
 }
 
 a {
-  color: $link-color;
+  color: $text-color;
+
+  &:hover {
+    color: $link-color;
+  }
 }
 
 p {
@@ -73,9 +77,10 @@ figcaption {
 pre {
   margin: 0 0 $lineheight;
   background-color: $off-white;
-  border-radius: 5px;
+  border-radius: 8px;
   padding: $lineheight;
   font-size: to_rem(12);
+  @include smooth(false);
 
   code {
     background-color: transparent;
@@ -101,17 +106,17 @@ blockquote {
 
 hr {
   display: block;
-  height: 1px;
+  height: 2px;
   border: 0;
-  background-color: #000;
-  margin: $lineheight*3 auto;
-  width: 10rem;
+  background-color: rgba(#000, .8);
+  margin: $lineheight*2 auto;
+  width: 5rem;
   max-width: 50%;
 }
 
 
 [role="contentinfo"] {
-  background-color: $comp-neon;
+  background-color: $comp-yellow;
   margin-top: $lineheight*4;
   padding: $lineheight*2 5%;
   font-family: $sans;
@@ -120,13 +125,7 @@ hr {
   margin-top: $lineheight*2;
   font-size: 1rem;
   text-align: center;
-  color: darken($comp-neon-dark, 10%);
-
-  &::before {
-    @include tilted-bg(50px);
-    top: 0;
-    background-image: url('/assets/images/tilt-reverse-upside.svg');
-  }
+  color: rgba(#000, .8);
 
   p {
     margin: 0 auto $lineheight;
@@ -135,15 +134,17 @@ hr {
 
   a {
     font-style: italic;
-    color: #fff;
-    @include underline($size: 2, $offset: .1, $bg: $comp-neon, $color: #fff);
+    color: #000;
   }
 
   h2 {
-    font-weight: 300;
-    font-family: $sans;
-    font-size: to_rem(42);
-    color: rgba(#fff, .9);
+    font-size: to_rem(70);
+    color: rgba(#000, .8);
+    font-weight: 900;
+    margin-top: -$lineheight*2;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 10;
   }
 
   :last-child {

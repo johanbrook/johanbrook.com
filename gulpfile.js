@@ -18,16 +18,19 @@ const src = {
 
 // Static Server + watching scss/html files
 gulp.task('serve', ['sass'], function() {
+    build(() => {
+      browserSync.init({
+        server: './build'
+      });
 
-    browserSync.init({
-      server: './build'
-    });
-
-    gulp.watch(src.scss, ['sass']);
-    gulp.watch(src.content).on('change', () => build(() => {
       compileSass();
-      browserSync.reload();
-    }));
+
+      gulp.watch(src.scss, ['sass']);
+      gulp.watch(src.content).on('change', () => build(() => {
+        compileSass();
+        browserSync.reload();
+      }));
+    });
 });
 
 // Compile sass into CSS

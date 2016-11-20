@@ -7,7 +7,11 @@
   }
 }
 
-.grey {
+.bare-list {
+  @include list-reset;
+}
+
+.muted {
   color: $grey;
 }
 
@@ -17,6 +21,20 @@
 
 .strong {
   color: $text-color;
+}
+
+.stronger {
+  font-weight: bold;
+  font-family: $sans;
+}
+
+.larger {
+  font-size: 1.3em;
+}
+
+.visuallyhidden {
+  position: absolute;
+  left: -999em;
 }
 
 .comp-green {
@@ -48,10 +66,9 @@
 
 .page-title {
   text-align: center;
-  font: bold #{to_em(24)}/1.5 $sans;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgba($text-color, .9);
+  font-weight: 900;
+  letter-spacing: -1px;
+  font-size: to_rem(60);
 }
 
 .subtitle {
@@ -267,19 +284,21 @@ figure.image--hover {
 .tilted {
   position: relative;
 
-  &::before,
-  &::after {
-    @include tilted-bg(50px);
+  &.tilted--top {
+    &::before {
+      @include tilted-bg(82px);
+      top: -2px;
+      background-image: url('/assets/images/tilt.svg');
+      transform: rotateX(180deg) rotateY(180deg);
+    }
   }
 
-  &::before {
-    top: 0;
-    background-image: url('/assets/images/tilt.svg');
-  }
-
-  &::after {
-    bottom: 0;
-    background-image: url('/assets/images/tilt-reverse.svg');
+  &.tilted--bottom {
+    &::after {
+      @include tilted-bg(82px);
+      bottom: -2px;
+      background-image: url('/assets/images/tilt.svg');
+    }
   }
 }
 
@@ -334,5 +353,54 @@ figure.image--hover {
     text-transform: lowercase;
     font-style: italic;
     font-size: to_em(12);
+  }
+}
+
+
+.post-text {
+  img,
+  iframe,
+  figure,
+  svg {
+    margin: $lineheight*2 auto;
+    display: block;
+  }
+
+  figcaption {
+    padding: 1rem 0;
+    text-align: center;
+    font-family: $sans;
+    font-size: .9em;
+  }
+
+  h2, h3{
+    font-family: $sans;
+    font-weight: bold;
+    font-size: to_rem(22);
+    margin-top: $lineheight*2;
+  }
+
+  h2 {
+    border-bottom: 2px solid;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  pre {
+    @include larger-than(800px) {
+      margin-left: -$lineheight*4;
+      margin-right: -$lineheight*4;
+      padding-left: $lineheight*2;
+    }
+  }
+
+  .ingress strong,
+  p:first-child strong {
+    color: #222;
+    font-family: $sans;
+    font-weight: 900;
+    font-size: 1.2em;
   }
 }

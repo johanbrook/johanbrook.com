@@ -45,30 +45,6 @@
     }
   }
 
-  &__contact {
-    max-width: to_rem(550);
-    line-height: 1.7;
-    width: $page-width;
-    font-family: $sans;
-    margin: $lineheight*2 0;
-    color: $text-color;
-
-    p {
-      margin: 0 auto $lineheight;
-
-      &:first-child {
-        font-size: 1.1em;
-      }
-
-      &:last-child {
-        max-width: to_rem(425);
-        font-style: italic;
-        font-weight: 300;
-        line-height: 1.6;
-      }
-    }
-  }
-
   .notices {
     margin: $lineheight*4 5%;
     width: $page-width;

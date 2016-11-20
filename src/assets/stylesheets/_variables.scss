@@ -8,6 +8,7 @@ $comp-neon-dark: darken($comp-neon, 20%);
 $comp-orange: #FF8C00;
 $comp-beige: #FDF6E3;
 $comp-cerise: #E01270;
+$comp-yellow: #fffa3c;
 
 $background-color: #fff;
 
@@ -16,7 +17,7 @@ $grey: #979797;
 $grey-light: #b8b8b8;
 $off-white: #fafafa;
 
-$link-color: $comp-cerise;
+$link-color: darken($comp-blue, 10%);
 
 // Typography
 
@@ -25,7 +26,7 @@ $leading: 27;
 
 $lineheight: ($leading / $base-size) * 1rem;
 
-$serif:     'PT Serif', Georgia, serif;
+$serif:     'Noto Serif', Georgia, serif;
 $sans:      Lato, 'Open Sans', Helvetica, sans-serif;
 $mono:      Hack, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
 $headings:  $sans;

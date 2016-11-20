@@ -11,7 +11,7 @@
 
       h1 {
         margin-bottom: $lineheight / 2;
-        font-weight: 300;
+        line-height: 1.2;
       }
     }
 
@@ -24,14 +24,6 @@
       top: $lineheight;
       left: 50%;
       transform: translate(-50%, 0);
-    }
-  }
-
-  footer {
-
-    &::before {
-      // Hide diagonal effect.
-      display: none;
     }
   }
 }

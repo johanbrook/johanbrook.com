@@ -40,7 +40,7 @@
     "metalsmith": "^2.2.0",
     "metalsmith-autoprefixer": "^1.1.0",
     "metalsmith-branch": "0.0.4",
-    "metalsmith-collections": "^0.7.0",
+    "metalsmith-collections": "^0.9.0",
     "metalsmith-excerpts": "johanbrook/metalsmith-excerpts",
     "metalsmith-feed": "0.0.6",
     "metalsmith-gzip": "^1.1.0",
@@ -48,7 +48,6 @@
     "metalsmith-layouts": "^1.6.5",
     "metalsmith-markdown": "^0.2.1",
     "metalsmith-metallic": "^1.0.0",
-    "metalsmith-pagination": "^1.4.0",
     "metalsmith-permalinks": "^0.5.0",
     "metalsmith-redirect": "^2.1.0",
     "metalsmith-templates": "^0.7.0",
@@ -58,10 +57,10 @@
     "slug": "^0.9.1"
   },
   "devDependencies": {
-    "eslint": "^3.8.1",
     "babel-eslint": "^4.1.6",
     "browser-sync": "^2.17.3",
     "colors": "^1.0.3",
+    "eslint": "^3.8.1",
     "front-matter": "~0.2.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",

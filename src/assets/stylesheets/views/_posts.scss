@@ -37,10 +37,10 @@
         }
       }
 
-      .link-icon {
+      .icon-link {
         position: absolute;
-        left: -3rem;
-        top: 1.5rem;
+        left: -2.5rem;
+        top: 1.9rem;
 
         @include smaller-than(690px) {
           display: none;

@@ -2,15 +2,17 @@
 --------------------------------------------- */
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $headings;
-  font-weight: normal;
+  font-family: $sans;
+  font-weight: bold;
   margin: 0;
   color: #000;
+  @include smooth;
 }
 
 h1 {
   font-size: to_rem(40);
   margin-bottom: $lineheight;
+  font-weight: 900;
 
   .subtitle {
     display: block;

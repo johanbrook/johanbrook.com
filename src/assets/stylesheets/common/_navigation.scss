@@ -4,12 +4,28 @@
 [role="navigation"] {
   display: flex;
   justify-content: space-between;
+
+  ul {
+    display: flex;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.main-navigation {
   padding: $lineheight 2%;
   font-family: $mono;
   font-size: to_em(13);
 
-  ul {
-    display: flex;
+  a {
+    display: block;
+    padding: 0 1rem;
   }
 
   .nav--current {
@@ -25,17 +41,29 @@
     }
   }
 
-  a {
-    text-decoration: none;
-    display: block;
-    padding: 0 1rem;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
   @include handheld {
     margin-bottom: $lineheight;
+  }
+}
+
+.footer-nav {
+  font-size: to_em(30);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: $sans;
+  display: block;
+
+  ul {
+    justify-content: center;
+  }
+
+  a {
+    color: rgba(#000, .8);
+    padding: .5em 1em;
+  }
+
+  li:not(:last-child)::after {
+    content: '·';
+    display: inline-block;
   }
 }

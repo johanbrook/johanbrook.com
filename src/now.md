@@ -11,7 +11,7 @@ tags:
   - travels
 ---
 
-<p class="centered grey">
+<p class="centered muted">
   *Last updated November 14th, 2016*
 </p>
 

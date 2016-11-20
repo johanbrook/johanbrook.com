@@ -13,7 +13,7 @@ const metallic =      require('metalsmith-metallic');
 const typography =    require('metalsmith-typography');
 const feed =          require('metalsmith-feed');
 const compress =      require('metalsmith-gzip');
-const pagination =    require('metalsmith-pagination');
+const pagination =    require('./paginate');
 const redirect =      require('metalsmith-redirect');
 const wordcount =     require('metalsmith-word-count');
 const _ =             require('lodash');
@@ -89,6 +89,20 @@ const site = Metalsmith(__dirname)
     })
   )
 
+  .use(pagination({
+    'collections.posts': {
+      path: 'writings/page/:num/index.html',
+      perPage: 10,
+      template: 'posts.html',
+      layout: 'layout.html',
+      first: 'writings/index.html',
+      noPageOne: true,
+      pageMetadata: {
+        page: 'posts'
+      }
+    }
+  }))
+
   .use(feed({ collection: 'posts' }))
 
   // Use typography niceties.
@@ -113,18 +127,6 @@ const site = Metalsmith(__dirname)
     .use(branch('!index.md')
       .use(permalinks({ relative: false }))))
 
-  .use(pagination({
-    'collections.posts': {
-      path: 'writings/page/:num/index.html',
-      perPage: 10,
-      template: 'posts.html',
-      first: 'writings/index.html',
-      pageMetadata: {
-        page: 'posts'
-      }
-    }
-  }))
-
   // TEMPLATES #######################################
 
   .use(templates({
@@ -141,6 +143,8 @@ const site = Metalsmith(__dirname)
   // REDIRECTS #######################################
 
   .use(redirect({
+    '/about': '/',
+
     '/articles/native-style-momentum-scrolling-to-arrive-in-ios-5':     '/writings/native-style-momentum-scrolling-to-arrive-in-ios-5/',
 
     '/articles/a-symbol-for-sex': '/writings/a-symbol-for-sex',

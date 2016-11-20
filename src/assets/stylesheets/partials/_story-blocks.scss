@@ -146,34 +146,38 @@
       max-width: 30rem;
     }
   }
+}
 
-  .story__misc__background {
-    background: #fff url('/assets/images/road-improved.jpg') no-repeat center;
-    background-size: cover;
-    color: #19394B;
-    height: 700px;
-    font-family: 'Nevis', $sans;
-    position: relative;
+.story-freedom {
+  background: #fff url('/assets/images/road-improved.jpg') no-repeat center;
+  background-size: cover;
+  color: rgba(#19394B, .8);
+  height: 800px;
+  font-family: $sans;
+  font-weight: 900;
+  letter-spacing: 1px;
+  position: relative;
+
+  p {
+    margin: 0;
+    position: absolute;
+    left: 35vw;
+    top: 23%;
+    font-size: to_rem(80);
+    mix-blend-mode: hard-light;
+  }
+
+  @include smaller-than(750px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    color: #fff;
 
     p {
-      margin: 0;
-      position: absolute;
-      left: 35vw;
-      top: 23%;
-      font-size: to_rem(80);
-    }
-
-    @include smaller-than(750px) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 400px;
-      color: #fff;
-
-      p {
-        position: static;
-        font-size: 16vw;
-      }
+      position: static;
+      font-size: 16vw;
+      mix-blend-mode: normal;
     }
   }
 }

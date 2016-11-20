@@ -49,13 +49,13 @@
 /* Tomorrow Blue */
 .hljs-title,
 .hljs-section {
-  color: #4271ae;
+  color: #4087d4;
 }
 
 /* Tomorrow Purple */
 .hljs-keyword,
 .hljs-selector-tag {
-  color: desaturate($comp-cerise, 20%);
+  color: $comp-cerise;
 }
 
 .hljs {
