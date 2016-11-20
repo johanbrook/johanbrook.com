@@ -3082,15 +3082,15 @@ metalsmith-branch@0.0.4:
     multimatch "^0.1.0"
     ware "~0.3.0"
 
-metalsmith-collections@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/metalsmith-collections/-/metalsmith-collections-0.7.0.tgz#be3081ddb6c4a8a8a3c03d095a4bf1b573fb9df6"
+metalsmith-collections@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/metalsmith-collections/-/metalsmith-collections-0.9.0.tgz#a0d19347a51d5fbd026899dfc1f4d68af50e0e17"
   dependencies:
-    debug "~0.7.4"
-    extend "~1.2.1"
-    minimatch "^0.2.14"
-    read-metadata "0.0.2"
-    uniq "0.0.2"
+    debug "^2.2.0"
+    extend "^3.0.0"
+    multimatch "^2.1.0"
+    read-metadata "^1.0.0"
+    uniq "^1.0.1"
 
 metalsmith-excerpts@johanbrook/metalsmith-excerpts:
   version "1.1.0"
@@ -3262,13 +3262,6 @@ mimeparse@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/mimeparse/-/mimeparse-0.1.4.tgz#dafb02752370fd226093ae3152c271af01ac254a"
 
-minimatch@^0.2.14, minimatch@~0.2.11, minimatch@~0.2.14:
-  version "0.2.14"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-0.2.14.tgz#c74e780574f63c6f9a090e90efbe6ef53a6a756a"
-  dependencies:
-    lru-cache "2"
-    sigmund "~1.0.0"
-
 minimatch@^2.0.1, minimatch@^2.0.3:
   version "2.0.10"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-2.0.10.tgz#8d087c39c6b38c001b97fca7ce6d0e1e80afbac7"
@@ -3280,6 +3273,13 @@ minimatch@^3.0.0, minimatch@^3.0.2, minimatch@~3.0.0, "minimatch@2 || 3":
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.3.tgz#2a4e4090b96b2db06a9d7df01055a62a77c9b774"
   dependencies:
     brace-expansion "^1.0.0"
+
+minimatch@~0.2.11, minimatch@~0.2.14:
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-0.2.14.tgz#c74e780574f63c6f9a090e90efbe6ef53a6a756a"
+  dependencies:
+    lru-cache "2"
+    sigmund "~1.0.0"
 
 minimatch@0.3.0:
   version "0.3.0"
@@ -3841,9 +3841,9 @@ rc@~1.1.0:
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
 
-read-metadata@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/read-metadata/-/read-metadata-0.0.2.tgz#4b392da86631ed250de0f6897878601f3819e491"
+read-metadata@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/read-metadata/-/read-metadata-1.0.0.tgz#6df9cbe51184e8ceb7d0668b40ee5191e6f3dac6"
   dependencies:
     yaml-js "0.0.8"
 
@@ -4736,9 +4736,9 @@ underscore@1.7.x:
   dependencies:
     bufferstream ">= 0.6.2"
 
-uniq@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/uniq/-/uniq-0.0.2.tgz#614e868ba288651d351262369317acc43b901823"
+uniq@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/uniq/-/uniq-1.0.1.tgz#b31c5ae8254844a3a8281541ce2b04b865a734ff"
 
 unique-stream@^1.0.0:
   version "1.0.0"
