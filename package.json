@@ -54,7 +54,9 @@
     "metalsmith-typography": "^0.1.1",
     "metalsmith-word-count": "^0.0.4",
     "moment": "^2.10.2",
-    "slug": "^0.9.1"
+    "slug": "^0.9.1",
+    "to-function": "^2.0.6",
+    "xtend": "^4.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.6",
