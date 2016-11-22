@@ -21,6 +21,11 @@ This might have been the most fun "job" I've ever had so far.
 
 ***
 
+<figure class="outset-figure home-face">
+  <img src="/assets/images/johan-bw.jpg" alt="Johan">
+  <figcaption>Me with long hair</figcaption>
+</figure>
+
 The consultant life taught me a lot university did not, and I was lucky to get the chance of working with companies like Volvo, SCA, and Sony Ericsson during this period. I still couldn't drop the thought of that: *"Man, working with a product must be like 1000 times cooler than writing code for corporate clients every day"*.
 
 **This made me get in touch with [Lookback](http://lookback.io).** They had developed this cool user research technology based on screen recordings for iOS (originally sprung from within Spotify), and I felt that they were good people. Don't ask me how I got the job, but after cold mailing with the co-founder, [Jonatan](http://twitter.com/littke), they saw something in me, and I joined in during the summer after taking my Bachelor's degree. I got my hands dirty at once in their Meteor based web app, and step by step built the front and back-end infrastructure that is today's [lookback.io](http://lookback.io).

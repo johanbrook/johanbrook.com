@@ -64,6 +64,31 @@
     }
   }
 
+  .outset-figure {
+    position: absolute;
+    left: -26vw;
+    width: 22vw;
+
+    img {
+      margin: 0 0 .5rem;
+    }
+
+    figcaption {
+      font-style: italic;
+      font-size: .8em;
+      font-family: $serif;
+      color: $grey-light;
+    }
+  }
+
+  .home-face {
+    @include smaller-than($break) {
+      position: static;
+      margin: 0 auto $lineheight;
+      width: 60%;
+    }
+  }
+
   [role="main"] {
 
     .home-offset {
@@ -90,6 +115,7 @@
   }
 
   .post-text {
+    position: relative;
     max-width: to_rem(620px);
     width: 90%;
     font-size: 1.1rem;
@@ -141,10 +167,6 @@
   }
 
   footer {
-    text-align: center;
-    background-color: $comp-yellow;
-    padding: $lineheight*2 5%;
-    margin-top: $lineheight;
 
     h1 {
       margin-top: -$lineheight;
