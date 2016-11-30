@@ -3,13 +3,14 @@ title: 'The Slow Web Movement'
 link: 'http://blog.jackcheng.com/post/25160553986/the-slow-web'
 date: '2012-06-16 10:15'
 tags:
-  - Web
-  - slow
-  - 'slow food'
-  - communication
-  - digital
-  - stress
+    - Web
+    - slow
+    - 'slow food'
+    - communication
+    - digital
+    - stress
 category: 'The internet'
+slug: the-slow-web-movement
 ---
 
 First time I've thought of a "Slow Web" movement: related to the [Slow Food](http://en.wikipedia.org/wiki/Slow_Food) equivalent.

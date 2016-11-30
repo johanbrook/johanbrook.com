@@ -2,14 +2,15 @@
 title: 'Digital magazines and HTML'
 date: '2011-04-06 08:00'
 tags:
-  - Cocoa
-  - Framework
-  - HTML
-  - iPad
-  - Javascript
-  - Magazines
-  - Tool
+    - Cocoa
+    - Framework
+    - HTML
+    - iPad
+    - Javascript
+    - Magazines
+    - Tool
 category: Frameworks
+slug: digital-magazines-and-html
 ---
 
 Not too long after the original iPad was announced, the device was predicted to be the savior of magazines. Made by Apple, at least it wasn't going to be a (huge) flop. A couple of months into the raging campaign of the iPad vs. the rest of the (newly assembled) tablet manufacturer crowd, it's clear that the former is a hit. But what about magazines? There's been quite a boom on the digital magazine front – large and small publishers have pushed issues out on the App Store, or via publishing platforms like Qiozk, Paperton and Mag+. But there hasn't been any "Wow"-effect. Many of the magazines consists of static images (!) made "interactive" with flashy animations and layer effects.

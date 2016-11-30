@@ -1,11 +1,12 @@
 ---
-title: What's new in Safari 9
+title: 'What''s new in Safari 9'
 date: '2015-06-09 09:16'
 tags:
-  - apple
-  - wwdc
-  - safari
-  - web development
+    - apple
+    - wwdc
+    - safari
+    - 'web development'
+slug: whats-new-in-safari-9
 ---
 
 I'm attending WWDC 2015, and during the web development session, Apple's Safari team showed off what's new in Safari 9. It includes iOS style effects, such as backdrop filters and scroll snapping with CSS, ES6 updates, other CSS niceties.

@@ -3,11 +3,12 @@ title: '"Master of many trades"'
 link: 'http://www.aeonmagazine.com/world-views/anyone-can-learn-to-be-a-polymath/'
 date: '2013-11-05 23:08'
 tags:
-  - Generalist
-  - 'Jack of all trades'
-  - Specialist
-  - 'Renaissance man'
+    - Generalist
+    - 'Jack of all trades'
+    - Specialist
+    - 'Renaissance man'
 category: Life
+slug: master-of-many-trades
 ---
 
 > We hear the descriptive words psychopath and sociopath all the time, but here’s a new one: monopath. It means a person with a narrow mind, a one-track brain, a bore, a super-specialist, an expert with no other interests — in other words, the role-model of choice in the Western world.

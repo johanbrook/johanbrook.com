@@ -2,13 +2,14 @@
 title: 'Staying hungry and evolving with new technologies'
 date: '2011-06-22 07:00'
 tags:
-  - Compass
-  - Git
-  - GitHub
-  - Rake
-  - Ruby
-  - Sass
+    - Compass
+    - Git
+    - GitHub
+    - Rake
+    - Ruby
+    - Sass
 category: Development
+slug: staying-hungry-and-evolving-with-new-technologies
 ---
 
 ![[Flower]](http://farm4.static.flickr.com/3231/2975202054_a95eff9abd_z.jpg) Photo by [Bruce](http://www.flickr.com/photos/irschick/2975202054/)

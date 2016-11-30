@@ -2,10 +2,11 @@
 title: 'Quick internal linking tag in Wordpress'
 date: '2011-02-24 21:48'
 tags:
-  - Functions.php
-  - Link
-  - 'Template tag'
+    - Functions.php
+    - Link
+    - 'Template tag'
 category: Wordpress
+slug: quick-internal-linking-tag-in-wordpress
 ---
 
 Wordpress has quite many nifty features, the vast library of template tags is one of them. One thing I've missed for a long time is a quick function to link to internal pages. Since the root URL will change if you switch domains you could absolutely not code the absolute URL by hand. You can't rely on the permalink structure you've set up on your local installation either (which means creating root relative links like `<a href="/some-page">Some page</a>` is a bad idea).  I wrote this lazy function in `functions.php` in order to quicklink to internal pages:

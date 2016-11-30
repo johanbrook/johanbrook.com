@@ -3,12 +3,13 @@ title: '"Javascript is Dead. Long Live Javascript!"'
 link: 'http://peter.michaux.ca/articles/javascript-is-dead-long-live-javascript'
 date: '2011-06-27 02:15'
 tags:
-  - Code
-  - Coffeescript
-  - 'Computer Science'
-  - Javascript
-  - programming
+    - Code
+    - Coffeescript
+    - 'Computer Science'
+    - Javascript
+    - programming
 category: Javascript
+slug: javascript-is-dead-long-live-javascript
 ---
 
 [Peter Michaux](http://peter.michaux.ca/) on Javascript: > One of the most obvious deficiencies in JavaScript is with its user interface: its syntax. The inability to quickly improve its syntax has lead to the language’s downfall.

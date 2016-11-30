@@ -1,13 +1,14 @@
 ---
-title: What's happened so far
+title: 'What''s happened so far'
 date: '2015-05-18 22:04'
-ogImage: http://johanbrook.com/assets/images/lookback-og-image.jpg
-description: My journey and learnings from university to working in an early startup.
+ogImage: 'http://johanbrook.com/assets/images/lookback-og-image.jpg'
+description: 'My journey and learnings from university to working in an early startup.'
 tags:
-  - lookback
-  - startup
-  - university
-  - drop out
+    - lookback
+    - startup
+    - university
+    - 'drop out'
+slug: whats-happened-so-far
 ---
 
 <figure class="image--full">

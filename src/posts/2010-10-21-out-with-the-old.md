@@ -2,6 +2,7 @@
 title: 'Out with the old'
 date: '2010-10-21 18:40'
 category: 'This site'
+slug: out-with-the-old
 ---
 
 Hi and welcome to my new personal site. I've finally been able to get out of the six months long swamp known as "creative block", "problems deciding" and "lack of time". I'm a boy man of perfection and innovation and we all know that we are our own's worst client. This new site features a journal (with posts and quickies), a work sample page, an about page with services and contact info. The previous designs were quite ambitious, and were sort of "too big" for me. It took a couple of iterations for me to realize that I didn't need an XXL site. Just a place for writing, showing off my work and contact info would be fine. I'm quite embarrassed sitting here in October with  a site I planned to launch in March, but I've learnt a lot during the process.

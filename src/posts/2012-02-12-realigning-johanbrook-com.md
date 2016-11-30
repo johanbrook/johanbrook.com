@@ -2,14 +2,15 @@
 title: 'Realigning Johanbrook.com'
 date: '2012-02-12 19:21'
 tags:
-  - CSS
-  - Design
-  - Redesign
-  - Typography
-  - layout
-  - 'golden ratio'
-  - grid
+    - CSS
+    - Design
+    - Redesign
+    - Typography
+    - layout
+    - 'golden ratio'
+    - grid
 category: 'This site'
+slug: realigning-johanbrookcom
 ---
 
 Today I pushed a new theme to this site. It's a lot cleaner and to me more readable than the previous one. Some points to bring up:

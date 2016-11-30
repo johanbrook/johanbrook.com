@@ -2,13 +2,14 @@
 title: 'Tags and class names – on building flexible markup'
 date: '2013-03-11 08:14'
 tags:
-  - CSS
-  - HTML
-  - Markup
-  - semantic
-  - classes
-  - 'class names'
+    - CSS
+    - HTML
+    - Markup
+    - semantic
+    - classes
+    - 'class names'
 category: HTML
+slug: tags-and-class-names-on-building-flexible-markup
 ---
 
 **It is said your markup** should be _clean_ and _semantic_. What does that mean, exactly? As few tags as possible? The correct tags for the job? Few or no ID and class attributes? At least that's been the main formula for a while now. Littering ID and class attributes over your markup has been frowned upon. But what does the alternative mean?  During my years of coding HTML I've done some bad things. Some really bad things, man. I've coded myself into corners, made huge refactors, and so on. One of the main issues I've seen is that the HTML hasn't been **flexible** enough. I've made my markup and styling _too tightly coupled_. Sadly, one of the factors of that has been my urge to do clean and semantic HTML with few attributes on my tags. Changing one thing made me to changes in another place as well. Not DRY.  An example. Here's a box for author information in the bottom of a blog post.

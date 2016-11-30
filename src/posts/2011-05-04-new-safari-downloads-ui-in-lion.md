@@ -3,12 +3,13 @@ title: 'New Safari downloads UI in Lion'
 link: 'http://blog.dustincurtis.com/new-safari-downloads-ui-in-lion'
 date: '2011-05-04 08:00'
 tags:
-  - Downloads
-  - 'Mac OS X'
-  - Safari
-  - UI
-  - 'User Experience'
+    - Downloads
+    - 'Mac OS X'
+    - Safari
+    - UI
+    - 'User Experience'
 category: Browsers
+slug: new-safari-downloads-ui-in-lion
 ---
 
 **Looks like we’re getting a new downloads UI in Safari.** In the latest OS X Lion build there’s a popover revealing current and finished downloads, activated with a button just right of the search engine field in the toolbar. I like it.

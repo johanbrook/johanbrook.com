@@ -1,13 +1,14 @@
 ---
-title: Writing contextual CSS
+title: 'Writing contextual CSS'
 date: '2014-05-15 10:00'
 category: css
 tags:
-  - css
-  - context
-  - scss
-  - media-queries
-  - organization
+    - css
+    - context
+    - scss
+    - media-queries
+    - organization
+slug: writing-contextual-css
 ---
 
 Organization and structure of CSS might be one of the largest difficulties for beginners as for professionals in web design. It *is* hard writing good CSS. It is somewhat easer with pre-processors (SCSS, LESS, Stylus), but they'll only give you the tools: it's up to you how to use them (what I can't do without is the `@import` feature).

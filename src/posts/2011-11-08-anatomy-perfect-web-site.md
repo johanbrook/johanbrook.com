@@ -2,13 +2,14 @@
 title: 'The Anatomy of a Perfect Web Site'
 date: '2011-11-08 07:00'
 tags:
-  - 'Computer Science'
-  - content
-  - educational
-  - information
-  - Java
-  - Minimalism
+    - 'Computer Science'
+    - content
+    - educational
+    - information
+    - Java
+    - Minimalism
 category: Minimalism
+slug: the-anatomy-of-a-perfect-web-site
 ---
 
 Many sites on the web are good. They are well-designed, clear, have great information architecture and are easy to navigate. Often, web designers emphasize the "design" part too much, and neglect the other equally important things. However, there are sites which aren't that aesthetically pleasing, but still are **the best sites in the world**. They may look like a big, sad bag of wrestling underwear on the outside, but their underlying user experience is really, really refined, and thus makes the appearance part fade away while visiting the site. How and why?

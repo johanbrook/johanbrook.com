@@ -2,15 +2,16 @@
 title: 'A symbol for sex'
 date: '2013-08-12 12:32'
 tags:
-  - Design
-  - sex
-  - symbol
-  - icon
-  - sexual
-  - orientation
-  - symbolism
-  - equality
+    - Design
+    - sex
+    - symbol
+    - icon
+    - sexual
+    - orientation
+    - symbolism
+    - equality
 category: Design
+slug: a-symbol-for-sex
 ---
 
 **"What is an appropriate symbol for _sex_?".** The question I asked myself some time ago might seem somewhat trivial at first, but when you dig deeper, it reveals a bunch of sub-questions and scenarios.

@@ -3,11 +3,12 @@ title: '"The Art of Quality"'
 link: 'http://blog.14islands.com/post/39462312773/the-art-of-quality'
 date: '2013-01-02 10:49'
 tags:
-  - Design
-  - perfection
-  - quality
-  - products
+    - Design
+    - perfection
+    - quality
+    - products
 category: Minimalism
+slug: the-art-of-quality
 ---
 
 >

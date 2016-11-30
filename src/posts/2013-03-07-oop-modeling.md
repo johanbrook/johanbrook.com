@@ -3,14 +3,15 @@ title: 'Object-oriented Programming and Modeling the Real World'
 link: 'http://news.ycombinator.com/item?id=5336588'
 date: '2013-03-07 09:40'
 tags:
-  - Code
-  - programming
-  - Modeling
-  - OOP
-  - 'domain model'
-  - abstraction
-  - inheritance
+    - Code
+    - programming
+    - Modeling
+    - OOP
+    - 'domain model'
+    - abstraction
+    - inheritance
 category: Development
+slug: object-oriented-programming-and-modeling-the-real-world
 ---
 
 > Almost everybody begins OOP with this misconception - objects in real world directly map to OOP objects. Its maybe a good place to start but how many grow up from the initial simplistic rule - map nouns in requirements to classes. So, you end up with objects that don't really mean anything and don't do much. Naive use of UML diagrams also leads to this. Discovering abstractions is tricky. One needs to really live with requirements inside out before they present themselves.

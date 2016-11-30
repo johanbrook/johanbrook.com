@@ -2,12 +2,13 @@
 title: 'After Hours'
 date: '2011-01-13 00:13'
 tags:
-  - habits
-  - hours
-  - rhythm
-  - sleep
-  - work
+    - habits
+    - hours
+    - rhythm
+    - sleep
+    - work
 category: Life
+slug: after-hours
 ---
 
 **Every person’s sleeping habits are different.** You’ve heard about morning persons and evening persons, and some of that comes from the genes, I’d guess, and maybe some from practice. I remember in school how some people were just sleep-walking zombies in the morning – it was sometimes totally impossible for them to get up for the early classes. Other guys and girls couldn’t stay up too late in the evening since they were completely out of energy (aka. “party poopers”).

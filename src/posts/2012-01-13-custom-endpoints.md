@@ -2,14 +2,15 @@
 title: 'Adding custom URL endpoints in Wordpress'
 date: '2012-01-13 10:00'
 tags:
-  - Custom
-  - PHP
-  - URL
-  - Wordpress
-  - endpoint
-  - rewrite
-  - template
+    - Custom
+    - PHP
+    - URL
+    - Wordpress
+    - endpoint
+    - rewrite
+    - template
 category: Wordpress
+slug: adding-custom-url-endpoints-in-wordpress
 ---
 
 In a current Wordpress project, we wanted to have a permalink to a photo gallery filled with images (attachments) for a post. Wordpress supports permalinks to single attachments, such as

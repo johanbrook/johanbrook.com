@@ -3,12 +3,13 @@ title: 'Hiring developers 2012 style'
 link: 'http://37signals.com/svn/posts/3071-why-we-dont-hire-programmers-based-on-puzzles-api-quizzes-math-riddles-or-other-parlor-tricks'
 date: '2012-01-05 15:39'
 tags:
-  - 37signals
-  - Jobs
-  - interviews
-  - positions
-  - hiring
+    - 37signals
+    - Jobs
+    - interviews
+    - positions
+    - hiring
 category: Development
+slug: hiring-developers-2012-style
 ---
 
 David Heinemeier Hansson from 37signals on hiring developers.

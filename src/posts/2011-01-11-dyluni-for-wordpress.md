@@ -2,15 +2,16 @@
 title: 'Dyluni for Wordpress'
 date: '2011-01-11 00:19'
 tags:
-  - Boilerplate
-  - CSS
-  - Dyluni
-  - Naked
-  - Sass
-  - Stripped
-  - Theme
-  - Wordpress
+    - Boilerplate
+    - CSS
+    - Dyluni
+    - Naked
+    - Sass
+    - Stripped
+    - Theme
+    - Wordpress
 category: Frameworks
+slug: dyluni-for-wordpress
 ---
 
 When you've created themes for Wordpress for a while, you're starting to feel that you're doing the same thing over and over again (which you technically are). Since many Wordpress sites got features you can and should reuse it would be awesome with a great boilerplate theme, wouldn't it? A stripped, starting-off theme with all the essentials.

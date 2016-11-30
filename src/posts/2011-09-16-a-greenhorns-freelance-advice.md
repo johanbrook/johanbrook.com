@@ -2,12 +2,13 @@
 title: 'A Greenhorn''s Freelance Advice'
 date: '2011-09-16 09:42'
 tags:
-  - Advice
-  - Beginner
-  - experience
-  - Freelancing
-  - Newbie
+    - Advice
+    - Beginner
+    - experience
+    - Freelancing
+    - Newbie
 category: Freelancing
+slug: a-greenhorns-freelance-advice
 ---
 
 ![Sheep](http://farm2.static.flickr.com/1423/839245545_d89144d012_z.jpg) Photo by [Julie\_Berlin](http://www.flickr.com/photos/jule_berlin/839245545/)

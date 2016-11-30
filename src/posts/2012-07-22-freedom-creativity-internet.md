@@ -2,13 +2,14 @@
 title: 'Thoughts on freedom, creativity and the internet'
 date: '2012-07-22 12:23'
 tags:
-  - Code
-  - Internet
-  - creativity
-  - deploy
-  - create
-  - freedom
+    - Code
+    - Internet
+    - creativity
+    - deploy
+    - create
+    - freedom
 category: 'The internet'
+slug: thoughts-on-freedom-creativity-and-the-internet
 ---
 
 **The internet is awesome.** This is an impulse post I felt I just had to write, since the subject hit me: how truly wonderful the internet is, and how code and freedom are so tightly linked.

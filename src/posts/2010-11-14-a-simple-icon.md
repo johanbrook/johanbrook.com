@@ -2,16 +2,17 @@
 title: 'A Simple Icon'
 date: '2010-11-14 08:00'
 tags:
-  - 'Art Directed'
-  - Bevarages
-  - Coffee
-  - Design
-  - Espresso
-  - Handmade
-  - Minimalism
-  - Moka
-  - Pot
+    - 'Art Directed'
+    - Bevarages
+    - Coffee
+    - Design
+    - Espresso
+    - Handmade
+    - Minimalism
+    - Moka
+    - Pot
 category: Minimalism
+slug: a-simple-icon
 ---
 
 This is my moka pot. There are many others like it, but this one is mine. My moka pot is my best friend. It is my life. I must master it as I must master my life. Without me, my moka pot is useless. Without my moka pot, I am useless. I must maintain my moka pot thoroughly. I must grind better than the epsresso machine, who is trying to put us down. I must brew before he brews me. I will. Before God I swear this creed: my moka pot and myself are defenders of the love for coffee, we are the masters of espresso, we are the saviors of my tastebuds. So be it, until there is no tea, but coffee. **Amen**.

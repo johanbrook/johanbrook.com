@@ -3,14 +3,15 @@ title: 'Google to release a WebM plugin for Safari and IE9'
 link: 'http://techcrunch.com/2011/01/14/webm-plugins/'
 date: '2011-01-15 02:57'
 tags:
-  - Browser
-  - Google
-  - H.264
-  - plugin
-  - video
-  - 'Web standards'
-  - WebM
+    - Browser
+    - Google
+    - H.264
+    - plugin
+    - video
+    - 'Web standards'
+    - WebM
 category: Tools
+slug: google-to-release-a-webm-plugin-for-safari-and-ie9
 ---
 
 > [Clarified that the Safari and IE9 plug-ins to be released by the WebM Project Team enable WebM playback via the HTML standard &lt;video&gt; tag canPlayType interface and not an alternate non-standard method.](http://blog.chromium.org/2011/01/more-about-chrome-html-video-codec.html)

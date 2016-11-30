@@ -3,11 +3,12 @@ title: 'Dustin Diaz''s $script.js'
 link: 'http://www.dustindiaz.com/scriptjs/'
 date: '2011-02-20 11:37'
 tags:
-  - $script
-  - Asynchronous
-  - 'Dustin Diaz'
-  - Javascript
+    - $script
+    - Asynchronous
+    - 'Dustin Diaz'
+    - Javascript
 category: Javascript
+slug: dustin-diazs-dollarscriptjs
 ---
 
 The Javascript ninja [Dustin Diaz](http://twitter.com/ded) of Twitter has created a very, very minimal solution for loading Javascript files asynchronously as well with dependencies.

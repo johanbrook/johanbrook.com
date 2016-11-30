@@ -2,15 +2,16 @@
 title: 'Bdgt for iPhone'
 date: '2012-04-17 19:58'
 tags:
-  - App
-  - iOS
-  - iPhone
-  - BDGT
-  - budget
-  - money
-  - transactions
-  - economy
+    - App
+    - iOS
+    - iPhone
+    - BDGT
+    - budget
+    - money
+    - transactions
+    - economy
 category: iOS
+slug: bdgt-for-iphone
 ---
 
 **Personal budgets** can be difficult and tedious. When I think of the word “budget”, I instantly think of tables, pen and paper, balance, diagrams, categories, and yadi, yadi … In the end, it’s all about keeping track of transactions and comparing the total cost of these to a given goal. How is this done fast, everywhere, and easy?

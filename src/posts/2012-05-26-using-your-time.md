@@ -3,12 +3,13 @@ title: 'On using your time'
 link: 'http://www.gsb.stanford.edu/news/research/aaker_happiness_2011.html'
 date: '2012-05-26 16:31'
 tags:
-  - time
-  - happiness
-  - prioritize
-  - mangement
-  - tasks
+    - time
+    - happiness
+    - prioritize
+    - mangement
+    - tasks
 category: Life
+slug: on-using-your-time
 ---
 
 Interesting and important article about why we should consider the time we are spending on different people and activities. I've tried myself to be more thorough with choosing the tasks and things I spend time on, in order to be more productive, producing better results, and of course feeling good afterwards.   From the [Hacker News comment thread](http://news.ycombinator.com/item?id=4026081):

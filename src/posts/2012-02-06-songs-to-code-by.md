@@ -2,13 +2,14 @@
 title: 'Songs to code by'
 date: '2012-02-06 19:09'
 tags:
-  - Music
-  - programming
-  - Spotify
-  - playlist
-  - coding
-  - techno
+    - Music
+    - programming
+    - Spotify
+    - playlist
+    - coding
+    - techno
 category: Music
+slug: songs-to-code-by
 ---
 
 Music has a strong influence on a myriad of things. Art, writing, exercise, studying. It might help you focus, relax, cheer up. And most important: it could help you write badass code.

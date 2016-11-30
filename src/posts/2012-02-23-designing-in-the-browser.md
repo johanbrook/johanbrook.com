@@ -3,12 +3,13 @@ title: 'I can''t design in the browser either'
 link: 'http://www.sazzy.co.uk/2012/02/why-i-cant-design-in-the-browser/'
 date: '2012-02-23 06:00'
 tags:
-  - Browser
-  - CSS
-  - HTML
-  - prototyping
-  - photoshop
+    - Browser
+    - CSS
+    - HTML
+    - prototyping
+    - photoshop
 category: Design
+slug: i-cant-design-in-the-browser-either
 ---
 
 Sarah Parmenter on how she can't design in the browser:

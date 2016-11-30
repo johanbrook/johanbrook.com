@@ -3,12 +3,13 @@ title: '"Google, H.264 and video on the web"'
 link: 'http://farukat.es/journal/2011/01/488-google-h264-and-video-web'
 date: '2011-01-16 04:25'
 tags:
-  - Chrome
-  - Google
-  - H.264
-  - 'Web standards'
-  - WebM
+    - Chrome
+    - Google
+    - H.264
+    - 'Web standards'
+    - WebM
 category: 'The internet'
+slug: google-h264-and-video-on-the-web
 ---
 
 > What does Google have to gain from dropping H.264? Nothing at face value; it’s all to do with preventing H.264 from becoming the _de facto_ standard for “Video on the Web”, not realizing that _it already is_. Perhaps Google made this move to try and dethrone H.264, but to that end, I have but one question: Why do it in a way that hurts your users when time itself would sort that out automatically?

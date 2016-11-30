@@ -3,13 +3,14 @@ title: 'PHP needs to die'
 link: 'http://seldo.com/weblog/2011/08/11/php_needs_to_die_what_will_replace_it'
 date: '2011-10-05 21:32'
 tags:
-  - Languages
-  - PHP
-  - Python
-  - Rails
-  - Ruby
-  - 'Web development'
+    - Languages
+    - PHP
+    - Python
+    - Rails
+    - Ruby
+    - 'Web development'
 category: Development
+slug: php-needs-to-die
 ---
 
 Great article on why PHP must go, and what the alternatives are – if there are any at all. PHP is a pretty neat language. It's available on almost every web host around the world. It's really easy for beginners to setup, write code, and publish it. Still, PHP is starting to become dreaded, unwanted and hated among serious new-era web developers. The familiar C style syntax is becoming old, there's a lot of noise in the code, and a lot more pet peeves which are forcing developers to other languages, such as Ruby, Python, and in recent days Javascript.

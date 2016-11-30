@@ -1,14 +1,15 @@
 ---
-title: Shipped with fear
+title: 'Shipped with fear'
 date: '2015-07-05 10:00'
-ogImage: http://johanbrook.com/assets/posts/fear-of-shipping-ogimage.jpg
-description: My thoughts on deploying code to production.
+ogImage: 'http://johanbrook.com/assets/posts/fear-of-shipping-ogimage.jpg'
+description: 'My thoughts on deploying code to production.'
 tags:
-  - sysops
-  - devops
-  - deploying
-  - shipping
-  - code
+    - sysops
+    - devops
+    - deploying
+    - shipping
+    - code
+slug: shipped-with-fear
 ---
  
 **There is a thing that** every developer has to do at some point – ship. By ship I refer to the act of *deploying, pushing the button, publishing your work for a wide mass*. This act is central in our industry: blog posts like this one have been written, there have been talks on the subjects, and methodologies (like Continous Delivery, Continous Integration) invented to deal with the pain points associated with shipping. Hell, there are even roles (devops, sysops) for easening the burden of moving code from one system to another. Why, oh why are we conscious and sometimes afraid of shipping our work?

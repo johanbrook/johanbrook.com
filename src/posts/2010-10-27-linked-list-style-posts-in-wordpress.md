@@ -2,10 +2,11 @@
 title: 'Linked List style posts in Wordpress'
 date: '2010-10-27 12:31'
 tags:
-  - 'Custom fields'
-  - Functions.php
-  - RSS
+    - 'Custom fields'
+    - Functions.php
+    - RSS
 category: Wordpress
+slug: linked-list-style-posts-in-wordpress
 ---
 
 **Quite a few people** use this style of quick links or short posts (myself included). Daring Fireball, Shawn Blanc and others. When linking to an article of site, the post heading itself becomes the link. It's quite good usability and UX, and is not that hard to re-create in Wordpress.

@@ -1,11 +1,12 @@
 ---
-title: Intimate remote work
+title: 'Intimate remote work'
 date: '2015-07-28 11:28'
-ogImage: http://johanbrook.com/assets/posts/ogimage-intimate-remote.jpg
+ogImage: 'http://johanbrook.com/assets/posts/ogimage-intimate-remote.jpg'
 tags:
-  - lookback
-  - remote
-  - culture
+    - lookback
+    - remote
+    - culture
+slug: intimate-remote-work
 ---
  
 **In [Lookback](http://lookback.io),** we've had the notion of being able to *work remote* as a baseline since day one. Here are some of my thoughts on the deeper end of working remote, on personal levels.

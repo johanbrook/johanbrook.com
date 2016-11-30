@@ -3,15 +3,16 @@ title: 'What Matters'
 link: 'http://37signals.com/svn/posts/2684-hiring-were-looking-for-another-web-app-interface-designer'
 date: '2010-12-06 18:03'
 tags:
-  - 37signals
-  - application
-  - Career
-  - education
-  - experience
-  - 'Jason Fried'
-  - 'job ad'
-  - Jobs
+    - 37signals
+    - application
+    - Career
+    - education
+    - experience
+    - 'Jason Fried'
+    - 'job ad'
+    - Jobs
 category: Life
+slug: what-matters
 ---
 
 37signals posted a job ad on their blog today, and they're looking for an interface designer. It's a superb post. It describes the position in detail – by reading it I know exactly what the position is all about, and what's expected from me. I get an insight in their work process and understand what they are looking for. But the most beautiful thing was near the bottom. Jason Fried put it: > It doesn’t matter where you went to school, or if you even graduated. It doesn’t matter if this is your first job or your fifth. Doing great work and being driven to improve yourself and everything you touch is what matters.

@@ -2,14 +2,15 @@
 title: 'Perfection doesn''t exist'
 date: '2012-05-14 11:16'
 tags:
-  - Design
-  - work
-  - perfection
-  - philosophy
-  - art
-  - creator
-  - creative
+    - Design
+    - work
+    - perfection
+    - philosophy
+    - art
+    - creator
+    - creative
 category: Life
+slug: perfection-doesnt-exist
 ---
 
 **What is perfection?** Who decides what is perfect, and when does one know when perfection is achieved? Is it even possible to achieve? Questions, questions. This post is a bit abstract and blurry, but I find the subject interesting and worth discussing.

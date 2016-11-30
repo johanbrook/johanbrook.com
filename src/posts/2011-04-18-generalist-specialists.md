@@ -3,10 +3,11 @@ title: 'Generalist specialists'
 link: 'http://www.markdotto.com/2011/04/15/fatten-up-those-ts/'
 date: '2011-04-18 20:42'
 tags:
-  - Generalist
-  - 'Jack of all trades'
-  - Specialist
+    - Generalist
+    - 'Jack of all trades'
+    - Specialist
 category: Business
+slug: generalist-specialists
 ---
 
  

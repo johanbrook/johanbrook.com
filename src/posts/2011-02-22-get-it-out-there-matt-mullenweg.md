@@ -3,11 +3,12 @@ title: 'Get it out there – Matt Mullenweg on shipping software'
 link: 'http://ma.tt/2010/11/one-point-oh/'
 date: '2011-02-22 09:37'
 tags:
-  - 'Matt Mullenweg'
-  - Release
-  - Shipping
-  - Software
+    - 'Matt Mullenweg'
+    - Release
+    - Shipping
+    - Software
 category: Business
+slug: get-it-out-there-matt-mullenweg-on-shipping-software
 ---
 
 Wordpress' Matt Mullenweg on product releases – how to get your 1.0 product out there.

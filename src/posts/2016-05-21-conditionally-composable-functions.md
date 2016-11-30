@@ -1,10 +1,11 @@
 ---
-title: Conditionally Composable Functions
+title: 'Conditionally Composable Functions'
 date: '2016-05-21 11:05'
 tags:
-  - code
-  - functional programming
-  - javascript
+    - code
+    - 'functional programming'
+    - javascript
+slug: conditionally-composable-functions
 ---
 
 I write a lot of Javascript at [work](http://lookback.io), mostly in the Meteor framework. Our web app use a client side router, and we had this helper function for fetching a team from a slug in the route URL.

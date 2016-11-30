@@ -2,15 +2,16 @@
 title: 'Java and beginner programming courses at universities'
 date: '2012-02-14 08:22'
 tags:
-  - 'Computer Science'
-  - education
-  - Java
-  - programming
-  - Ruby
-  - university
-  - learning
-  - class
+    - 'Computer Science'
+    - education
+    - Java
+    - programming
+    - Ruby
+    - university
+    - learning
+    - class
 category: Development
+slug: java-and-beginner-programming-courses-at-universities
 ---
 
 **I've been interested in programming** since beginning of high school, and have freelanced in web design and development during the past years. This fall I went to university for a major in software engineering. Of course we were going to learn to program, but in the beginning it was a huge turnoff for me – we were doing it in Java. Why?

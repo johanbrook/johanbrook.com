@@ -2,15 +2,16 @@
 title: 'I don''t like counting hours'
 date: '2013-06-27 13:20'
 tags:
-  - Clients
-  - Freelancing
-  - hours
-  - Projects
-  - charge
-  - consultancy
-  - results
-  - charging
+    - Clients
+    - Freelancing
+    - hours
+    - Projects
+    - charge
+    - consultancy
+    - results
+    - charging
 category: Freelancing
+slug: i-dont-like-counting-hours
 ---
 
 **In the freelance and consultancy business,** you often charge per work hour. It's the rate, and then you estimate the total number of hours for a project. The estimate is ... an estimate. Estimates are seldom correct, even for senior consultants. I'm not ashamed to say that I often do an initial estimate, then almost doubling it when responding to the client. One thing I've learnt is that it's immensely better to land a project below the estimate than above.  Anyway: charging per hour. I've grown to dislike it. It's all depending on the project, of course. For smaller, specific tasks where I'm kind of sure how long it will take me to complete the job, I like the charge-per-hour strategy. It's flexible for both me and the client. Another last minute fix needs to be done? Sure, no problem: just add an hour and pay me.  For larger projects, I believe a better model is needed. For complex systems and longer time periods, the hour charging isn't working out for me. I sincerely _hate_ watching the account manager dabbling back and forth with big clients about hour estimates and rates. It feels like they're not paying us for our skills, experience and creativity as designers and developers, but instead _buying our time_ only. For consultants, it's really lucrative charging per hour for large gigs: it's not easy to step away from ~$100 per hour. But after some time in the industry, we should be able to decide how to charge something different for larger projects. I've tried a mix: charging a lump sum for up to 40-50 hours for a site, then if more has to be done outside the scope, I start charging per hour. It's a neat trick if you're dealing with a client who often calls you with "small fixes" without thinking of the cost. If the client goes above the hour threshold, it's gonna cost him/her.  **But we're still thinking in hours!** Creativity isn't about time! It can be instant, it can take a while. The more skilled and experienced you become as a designer or developer, fewer hours need to be put in for a given problem (hopefully). When you have a firm command of your tools and techniques, things usually go more smoothly than for beginners in the field. But shit happens. As a designer, you may have lost your inspiration. As a programmer, you may have problems with a framework. The hours are counting. The client is getting annoyed. I believe we have to get rid of the concept of "hours" when doing jobs.  What hinders me when working with hours:

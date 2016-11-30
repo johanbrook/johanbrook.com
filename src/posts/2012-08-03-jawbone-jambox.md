@@ -2,15 +2,16 @@
 title: 'Jawbone''s Jambox'
 date: '2012-08-03 08:03'
 tags:
-  - iPhone
-  - Jawbone
-  - Jambox
-  - speaker
-  - bluetooth
-  - wireless
-  - portable
-  - review
+    - iPhone
+    - Jawbone
+    - Jambox
+    - speaker
+    - bluetooth
+    - wireless
+    - portable
+    - review
 category: Reviews
+slug: jawbones-jambox
 ---
 
 ![](http://jawbone.com/images/products/jambox/gallery/main/jambox-gallery-main-04.jpg "Jawbone Jambox") 

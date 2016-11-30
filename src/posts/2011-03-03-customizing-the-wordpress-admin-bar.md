@@ -2,15 +2,16 @@
 title: 'Customizing the Wordpress Admin Bar'
 date: '2011-03-03 08:00'
 tags:
-  - '3.1'
-  - 'Add menu'
-  - 'Admin Bar'
-  - Customize
-  - Functions.php
-  - Hook
-  - Menu
-  - Wordpress
+    - '3.1'
+    - 'Add menu'
+    - 'Admin Bar'
+    - Customize
+    - Functions.php
+    - Hook
+    - Menu
+    - Wordpress
 category: Wordpress
+slug: customizing-the-wordpress-admin-bar
 ---
 
 **Wordpress 3.1 brought us** a lot of things; an admin bar amongst others. That one's been present on hosted Wordpress.com blogs for quite some time, and available as a plugin as well. At first I deactivated the bar at once, but later I realized it's pretty handy to have around. I usually make my own admin menus for quick access to stats, new posts and more, but the official admin bar is more versatile (I'm using the Wordpress function `current_user_can("manage_options")` in an if-statement to show the admin menu only to me). ![](http://213.185.255.138/core/wp-content/uploads/2011/03/Johan-Brook-adminbar-588x166.png "Johan-Brook-adminbar") Anyway, how about customizing the admin bar? You know: add stuff, style stuff. Plugins and themes may add their own menus to the bar, as with the Wordpress.com Stats plugin I'm using, for instance. A small graph is shown in the bar if you've got the plugin installed, with a link to the admin stats page. Neat – as you see on the screenshot above it also shows the shortlink to the current page/post. The rendering of the bar itself builds upon a simple API you can hook into, but I haven't found any documentation in the Wordpress Codex yet though, so I'm gonna show some simple examples from what I've picked up from the Wordpress core. First we need a hook. The Wordpress developers advise us to use `admin_bar_menu` . Right on. Add this to `functions.php` :

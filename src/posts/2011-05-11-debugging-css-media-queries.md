@@ -3,14 +3,15 @@ title: 'Debugging CSS Media Queries'
 excerpt: 'In Responsive Web Design we’re working with different states, widths, and viewport sizes. Fluidity and adaptive behavior is a hot subject nowadays, and it’s perfectly justified when looking at today’s mobile browser landscape. We achieve this with CSS’s Media Queries. But sometimes it can be messy – I’m gonna share a quick tip for indicating (with pure CSS) which media query that has actually kicked in.'
 date: '2011-05-11 06:00'
 tags:
-  - CSS
-  - CSS3
-  - 'Media Queries'
-  - 'Responsive Web Design'
-  - Sass
-  - SCSS
-  - Viewports
+    - CSS
+    - CSS3
+    - 'Media Queries'
+    - 'Responsive Web Design'
+    - Sass
+    - SCSS
+    - Viewports
 category: CSS
+slug: debugging-css-media-queries
 ---
 
 **In Responsive Web Design** we’re working with different states, widths, and viewport sizes. Fluidity and adaptive behavior is a hot subject nowadays, and it’s perfectly justified when looking at today’s mobile browser landscape. We achieve this with CSS’s Media Queries. But sometimes it can be messy – I’m gonna share a quick tip for indicating (with pure CSS) which media query that has actually kicked in.

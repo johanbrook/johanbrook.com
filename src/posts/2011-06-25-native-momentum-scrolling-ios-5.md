@@ -2,15 +2,16 @@
 title: 'Native style momentum scrolling to arrive in iOS 5'
 date: '2011-06-25 13:03'
 tags:
-  - Apple
-  - iOS5
-  - momentum
-  - native
-  - Safari
-  - scrolling
-  - 'Web apps'
-  - Webkit
+    - Apple
+    - iOS5
+    - momentum
+    - native
+    - Safari
+    - scrolling
+    - 'Web apps'
+    - Webkit
 category: Browsers
+slug: native-style-momentum-scrolling-to-arrive-in-ios-5
 ---
 
 One of the biggest gripes of web apps in Mobile Safari comes to an end. In iOS 5 Beta 2, you are able to do this on an element with CSS:

@@ -3,12 +3,13 @@ title: '"Twitter is the Benjamin Button of startups"'
 link: 'https://plus.google.com/109834643338395014064/posts/A9Fk7bsCA1B'
 date: '2012-09-08 12:05'
 tags:
-  - Twitter
-  - API
-  - startups
-  - developers
-  - descent
+    - Twitter
+    - API
+    - startups
+    - developers
+    - descent
 category: Business
+slug: twitter-is-the-benjamin-button-of-startups
 ---
 
 Andrey Petrov:

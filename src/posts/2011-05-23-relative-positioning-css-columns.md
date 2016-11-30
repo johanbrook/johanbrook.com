@@ -2,12 +2,13 @@
 title: 'Relative positioning and CSS Columns'
 date: '2011-05-23 08:00'
 tags:
-  - Antialiasing
-  - Columns
-  - CSS
-  - 'position: relative'
-  - 'Relative positioning'
+    - Antialiasing
+    - Columns
+    - CSS
+    - 'position: relative'
+    - 'Relative positioning'
 category: CSS
+slug: relative-positioning-and-css-columns
 ---
 
 Live as you teach, they say. In the [last post](http://jnbrk.se/kkstoA) I linked to a solution to text rendering problems in conjunction with `position: relative` in the CSS. Removing the property, or declaring `position: static` solves the issue.

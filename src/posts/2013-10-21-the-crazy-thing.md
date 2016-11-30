@@ -2,9 +2,10 @@
 title: 'Changing perspectives and doing the crazy thing'
 date: '2013-10-21 18:38'
 tags:
-  - 'interaction design'
-  - 'user testing'
+    - 'interaction design'
+    - 'user testing'
 category: Design
+slug: changing-perspectives-and-doing-the-crazy-thing
 ---
 
 **Like it or not, but tech people often have their way of doing things.** Together we've drunk the same drink telling us that "this is the way of doing things", and we repeatedly create products where we incorporate this way of thinking, which go generations back (slight over-exaggeration).

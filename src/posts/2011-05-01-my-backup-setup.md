@@ -2,12 +2,13 @@
 title: 'Backup everything – my backup setup'
 date: '2011-05-01 14:36'
 tags:
-  - Backup
-  - Dropbox
-  - 'OS X'
-  - 'Super Duper'
-  - 'Time Machine'
+    - Backup
+    - Dropbox
+    - 'OS X'
+    - 'Super Duper'
+    - 'Time Machine'
 category: Security
+slug: backup-everything-my-backup-setup
 ---
 
 **Backups are important.** Really, really important. They say if you don’t have two or more copies of a file, the file doesn’t exist. I had no backups whatsoever until a couple of weeks ago, when I thought to myself: _“What would I do if my hard drive breaks? Would I do well losing years and years of work?”_. Of course not! I really had to start securing and backing up my data, and what follows is a quick writeup on the process.

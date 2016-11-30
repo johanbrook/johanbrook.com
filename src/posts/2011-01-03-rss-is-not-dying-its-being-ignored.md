@@ -3,13 +3,14 @@ title: 'RSS is not dying, it''s being ignored'
 link: 'http://camendesign.com/blog/rss_is_dying'
 date: '2011-01-03 22:59'
 tags:
-  - Dead
-  - Internet
-  - RSS
-  - Subscription
-  - Syndication
-  - Web
+    - Dead
+    - Internet
+    - RSS
+    - Subscription
+    - Syndication
+    - Web
 category: Development
+slug: rss-is-not-dying-its-being-ignored
 ---
 
 Really great article on the state of RSS. I've seen many posts claiming "RSS is dead", but to me it's absolutely not dead – the technology is everywhere on the web! It's built in inside every major blog system, CMS, web framework and web app. That's not a dead technology. The problem is, as the article puts it, that RSS hasn't received the widespread user base it deserves. It's being ignored, and failed by browser vendors and others.

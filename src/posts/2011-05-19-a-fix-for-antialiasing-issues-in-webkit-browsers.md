@@ -3,13 +3,14 @@ title: 'A fix for antialiasing issues in WebKit browsers'
 link: 'http://technology.posterous.com/webkit-hardware-acceleration-bleeding-into-su'
 date: '2011-05-19 21:01'
 tags:
-  - 3D
-  - Antialiasing
-  - CSS
-  - Jagged
-  - Text
-  - 'WebKit Transform'
+    - 3D
+    - Antialiasing
+    - CSS
+    - Jagged
+    - Text
+    - 'WebKit Transform'
 category: CSS
+slug: a-fix-for-antialiasing-issues-in-webkit-browsers
 ---
 
 CSS Transforms, Transitions and Animations are great and all, but apparently they are causing issues with some text on a page. I've experienced those issues on my site, and I couldn't for my life figure out what the problem was. Some text paragraphs could suddenly lose their antialiasing, and look very jagged and, yeah, aliased. They would yet get antialiasing again when I scrolled the page up and down, or resized the browser window. Weirdness. Follow the link above for a post on the Posterous blog about the issue. Apparently, WebKit's 3D Transforms were the culprits, since it gives the relevant elements hardware acceleration, and ...

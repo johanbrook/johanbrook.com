@@ -1,8 +1,9 @@
 ---
-title: The White Duck
+title: 'The White Duck'
 date: '2016-07-03 20:11'
 category: Essays
-ogImage: http://johanbrook.com/assets/posts/whiteduck-ogimage.jpg
+ogImage: 'http://johanbrook.com/assets/posts/whiteduck-ogimage.jpg'
+slug: the-white-duck
 ---
 
 **The White Duck was,** on the surface, lonely. She was not vicious, stupid, or bad in any way. She was just different from the rest of the ducks. It is not known whether it was the colour of her feathers, or lack thereof, who set her apart. Even though I am skeptical to that, it surely didn't strengthen her case.

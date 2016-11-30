@@ -3,11 +3,12 @@ title: 'Vertical Rhythm Wordpress themes'
 link: 'http://verticalrhythm.org/'
 date: '2010-10-21 11:39'
 tags:
-  - 'Josef Müller-Brockmann'
-  - Posters
-  - Themes
-  - Wordpress
+    - 'Josef Müller-Brockmann'
+    - Posters
+    - Themes
+    - Wordpress
 category: Design
+slug: vertical-rhythm-wordpress-themes
 ---
 
 [ ![](http://verticalrhythm.org/wp-content/uploads/2010/09/neue-grafik1.jpg "Neue Grafik") ](http://verticalrhythm.org/) [ ![](http://verticalrhythm.org/wp-content/uploads/2010/09/19672.jpg "1967") ](http://verticalrhythm.org/)  

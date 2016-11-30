@@ -2,11 +2,12 @@
 title: 'Photos of National Geographic'
 date: '2011-02-28 01:05'
 tags:
-  - 'Big cats'
-  - 'National Geographic'
-  - Photography
-  - Tigers
+    - 'Big cats'
+    - 'National Geographic'
+    - Photography
+    - Tigers
 category: Life
+slug: photos-of-national-geographic
 ---
 
 ![](http://images.nationalgeographic.com/wpf/media-live/photos/000/000/cache/bengal-tigers_10_990x742.jpg "Bengal Tiger and Cub, by Michael Nichols")

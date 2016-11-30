@@ -3,12 +3,13 @@ title: 'CSS variables soon to land in WebKit'
 link: 'http://trac.webkit.org/browser/trunk/LayoutTests/fast/css/variables/colors-test.html'
 date: '2012-05-18 18:03'
 tags:
-  - CSS
-  - CSS3
-  - variables
-  - Webkit
-  - experimental
+    - CSS
+    - CSS3
+    - variables
+    - Webkit
+    - experimental
 category: CSS
+slug: css-variables-soon-to-land-in-webkit
 ---
 
 CSS variables are powerful and almost vital for me nowadays. They are supported in SCSS, LESS and Stylus (all preprocessors). But now WebKit now seem to be on its way of implementing a pure CSS version:

@@ -2,15 +2,16 @@
 title: 'Bringing Order to CSS'
 date: '2011-05-16 06:00'
 tags:
-  - Compass
-  - CSS
-  - Framework
-  - Guidelines
-  - Less
-  - Order
-  - SCSS
-  - Structure
+    - Compass
+    - CSS
+    - Framework
+    - Guidelines
+    - Less
+    - Order
+    - SCSS
+    - Structure
 category: CSS
+slug: bringing-order-to-css
 ---
 
 **Web sites and applications** are getting more and more complex. Everything that aren’t simple web sites or blogs need a couple of views, a cross-browser CSS foundation, and Javascript. The development stage is only the first part – how are these code bases maintained, both by you and potentially other people, after the launch?

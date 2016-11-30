@@ -3,14 +3,15 @@ title: 'Webkit to get CSS variables, mixins, nesting?'
 link: 'http://www.xanthir.com/talks/2011-01-12/slides.html'
 date: '2011-01-17 02:52'
 tags:
-  - CSS
-  - Less
-  - mixins
-  - 'nested rules'
-  - Sass
-  - variables
-  - Webkit
+    - CSS
+    - Less
+    - mixins
+    - 'nested rules'
+    - Sass
+    - variables
+    - Webkit
 category: CSS
+slug: webkit-to-get-css-variables-mixins-nesting
 ---
 
 [Tab Atkins](http://twitter.com/tabatkins) of Google has made a couple of slides (navigate with the arrow keys) explaining a couple of possible upcoming features to Webkit: CSS variables, mixin blocks and selector nesting. That's pretty huge, given that people have been screaming for those features for years and years. Hell, a couple of smart guys even wrote scripts to compile (yeah, _compile_) their own form of CSS syntax to regular CSS ( [Sass](http://sass-lang.com) and [Less](http://lesscss.org/)).  According to Atkins' slides the features are very experimental, and we probably won't see them until the end of the year. I'm gonna talk about the three most sought after features: variables, mixins and nesting.  _This article is also translated to [Serbo-Croatian](http://science.webhostinggeeks.com/desing-css) language by Anja Skrba from [Webhostinggeeks.com](http://webhostinggeeks.com/)_

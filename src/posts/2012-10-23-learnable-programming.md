@@ -3,11 +3,12 @@ title: '"Learnable Programming"'
 link: 'http://worrydream.com/LearnableProgramming/'
 date: '2012-10-23 09:00'
 tags:
-  - education
-  - programming
-  - learn
-  - teach
+    - education
+    - programming
+    - learn
+    - teach
 category: Development
+slug: learnable-programming
 ---
 
 > Programming is a way of thinking, not a rote skill. Learning about "for" loops is not learning to program, any more than learning about pencils is learning to draw.

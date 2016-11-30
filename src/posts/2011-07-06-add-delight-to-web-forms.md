@@ -2,16 +2,17 @@
 title: 'Add delight to web forms (with code sample)'
 date: '2011-07-06 09:54'
 tags:
-  - Ajax
-  - city
-  - form
-  - HTML
-  - Javascript
-  - jQuery
-  - JSON
-  - 'postal code'
-  - 'User Experience'
+    - Ajax
+    - city
+    - form
+    - HTML
+    - Javascript
+    - jQuery
+    - JSON
+    - 'postal code'
+    - 'User Experience'
 category: 'User Experience'
+slug: add-delight-to-web-forms-with-code-sample
 ---
 
 Marking up and styling forms in HTML and CSS is something you either love or hate. Personally I love it, since it's one of these things I can be really nitty-picky with – to iterate and iterate over the appearance and behavior of the form. "Is this simple enough? Is this section necessary? Should we separate this from that?", and so on.  I also love the small details in forms where the regular visitor in me thinks "Huh, that's neat of the form to do that for me", and the web developer in me raises a smile and a quiet chuckle. A great example is the ordering form for [Panic's Transmit](https://www.panic.com/transmit/buy.html).

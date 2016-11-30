@@ -2,20 +2,21 @@
 title: 'How I set up my web development environment on OS X Lion'
 date: '2012-02-21 07:00'
 tags:
-  - Compass
-  - Git
-  - Javascript
-  - 'Mac OS X'
-  - Ruby
-  - SCSS
-  - 'Web development'
-  - Node.js
-  - setup
-  - Homebrew
-  - UNIX
-  - bash
-  - install
+    - Compass
+    - Git
+    - Javascript
+    - 'Mac OS X'
+    - Ruby
+    - SCSS
+    - 'Web development'
+    - Node.js
+    - setup
+    - Homebrew
+    - UNIX
+    - bash
+    - install
 category: Development
+slug: how-i-set-up-my-web-development-environment-on-os-x-lion
 ---
 
 I recently wiped my Macbook Pro's hard drive and installed OS X Lion. It was nice with a clean, fresh start again, and I had for a couple of weeks looked forward to set up my dev environment from the ground up (nerd alert). Ever since I got my Mac, things had been piling up, and it felt very fragile. So this time I did everything right. During my journeys through the internets I picked up nifty tools and techniques, as well as other blog posts describing pitfalls and other general tips. Google around for something like _"setting up web development environment os x". _Two gems are [Setting Up a Ruby Development Machine From Scratch With OS X Lion](http://intridea.com/2011/7/26/setting-up-ruby-dev-on-lion?blog=company) and [Setting Up an Apple Mac for Ruby Development](http://www.stuartellis.eu/articles/mac-setup/) (just skip the parts about RVM, I'll get to that further down). I also made a list of every technology/tool/language I needed: [Johan's Checklist](http://cl.ly/CpSu) They are ordered by importance and dependency.

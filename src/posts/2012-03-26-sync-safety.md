@@ -2,14 +2,15 @@
 title: 'Sync is about safety'
 date: '2012-03-26 07:43'
 tags:
-  - Dropbox
-  - Internet
-  - Web
-  - cloud
-  - iCloud
-  - sync
-  - data
+    - Dropbox
+    - Internet
+    - Web
+    - cloud
+    - iCloud
+    - sync
+    - data
 category: 'The internet'
+slug: sync-is-about-safety
 ---
 
 **It seems cloud sync** is _the_ next thing these days. Having everything available anywhere is almost expected of respected apps and services. Remember a few years ago when we had to manually plugin in and out the phones out of the computer in order to sync the contacts? Or, when we couldn’t sync contacts to the computer at all?

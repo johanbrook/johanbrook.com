@@ -1,11 +1,12 @@
 ---
-title: On Socialising
+title: 'On Socialising'
 date: '2016-05-14 18:00'
 tags:
-  - alcohol
-  - social
-  - society
-  - south america
+    - alcohol
+    - social
+    - society
+    - 'south america'
+slug: on-socialising
 ---
 
 One thing I've noticed during my past half ish year of traveling outside of Europe is the difference in how young people interact and socialise with each other, compared to the customs in my native country Sweden.

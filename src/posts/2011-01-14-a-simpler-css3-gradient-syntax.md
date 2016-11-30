@@ -3,14 +3,15 @@ title: 'A simpler CSS3 Gradient syntax'
 link: 'http://webkit.org/blog/1424/css3-gradients/'
 date: '2011-01-14 22:51'
 tags:
-  - CSS3
-  - Gradients
-  - linear
-  - nightly
-  - simple
-  - syntax
-  - Webkit
+    - CSS3
+    - Gradients
+    - linear
+    - nightly
+    - simple
+    - syntax
+    - Webkit
 category: CSS
+slug: a-simpler-css3-gradient-syntax
 ---
 
 The syntax for CSS3 Gradients has in Webkit been something of a pain, frankly. I prefer Gecko's more straight-forward version, but since I'm using [Sass](http://sass-lang.com) with its mixins, it's not a huge deal. In a blog post posted today, the Webkit team describes a new simpler gradient syntax. The old one dealt with percent values, it wasn't very liberal with the order of the arguments, and so on. Here's an example of the new syntax for a linear gradient:

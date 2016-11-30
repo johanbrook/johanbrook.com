@@ -3,12 +3,13 @@ title: 'Linus Torvalds on good programmers'
 link: 'http://programmers.stackexchange.com/questions/163185/torvalds-quote-about-good-programmer'
 date: '2012-09-23 19:29'
 tags:
-  - Code
-  - content
-  - programming
-  - 'Linus Torvalds'
-  - 'data structures'
+    - Code
+    - content
+    - programming
+    - 'Linus Torvalds'
+    - 'data structures'
 category: Development
+slug: linus-torvalds-on-good-programmers
 ---
 
 >

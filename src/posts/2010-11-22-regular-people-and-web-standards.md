@@ -3,11 +3,12 @@ title: 'Regular people and web standards'
 link: 'http://www.webdesignerdepot.com/2010/11/why-joe-client-doesn’t-care-about-standards/'
 date: '2010-11-22 23:56'
 tags:
-  - Clients
-  - HTML
-  - Semantics
-  - 'Web standards'
+    - Clients
+    - HTML
+    - Semantics
+    - 'Web standards'
 category: Freelancing
+slug: regular-people-and-web-standards
 ---
 
 > But the ugly truth is that the average Joe Client simply doesn’t care. Joe is looking not for a compliant website, but for an effective website.

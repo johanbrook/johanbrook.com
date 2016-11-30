@@ -2,14 +2,15 @@
 title: 'Chocolat – The Heir of Textmate?'
 date: '2011-08-30 08:00'
 tags:
-  - Chocolat
-  - Code
-  - Editor
-  - 'text editors'
-  - Textmate
-  - heir
-  - alternative
+    - Chocolat
+    - Code
+    - Editor
+    - 'text editors'
+    - Textmate
+    - heir
+    - alternative
 category: Tools
+slug: chocolat-the-heir-of-textmate
 ---
 
 **Textmate has probably ruled** the text editor universe for some years now. There are others; Coda, Espresso, BBEdit, Vim, Emacs, etc., but they don't cut it for me personally. But Textmate is getting old. The vast number of bundles for Textmate are for some people not enough arguments for sticking by an application which hasn't had a major update for several years.

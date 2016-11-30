@@ -2,14 +2,15 @@
 title: 'OS X Lion-Mountain Lion wallpapers'
 date: '2011-02-25 11:23'
 tags:
-  - Fuji
-  - iPad
-  - 'iPhone 4'
-  - Lion
-  - 'Mac OS X'
-  - Wallpaper
-  - 'mountain lion'
+    - Fuji
+    - iPad
+    - 'iPhone 4'
+    - Lion
+    - 'Mac OS X'
+    - Wallpaper
+    - 'mountain lion'
 category: Resources
+slug: os-x-lion-mountain-lion-wallpapers
 ---
 
 

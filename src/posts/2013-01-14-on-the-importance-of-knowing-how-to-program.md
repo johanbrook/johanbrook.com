@@ -3,13 +3,14 @@ title: 'On the importance of knowing how to program'
 link: 'http://sivers.org/prog'
 date: '2013-01-14 15:04'
 tags:
-  - 'Jack of all trades'
-  - Specialist
-  - unicorns
-  - designer
-  - developer
-  - hybrid
+    - 'Jack of all trades'
+    - Specialist
+    - unicorns
+    - designer
+    - developer
+    - hybrid
 category: Business
+slug: on-the-importance-of-knowing-how-to-program
 ---
 
 **Derek Sivers** writes about how great it is to know the basics of an area (here, it's programming) in order to get basic stuff done yourself, instead of relying on your colleagues/employees/contractors.  I think everybody in this business hears this now and then: > The most common thing I hear from aspiring entrepreneurs is, “I have this idea for an app or site. But I’m not technical, so I need to find someone who can make it for me.”

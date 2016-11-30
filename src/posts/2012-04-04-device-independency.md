@@ -2,17 +2,18 @@
 title: 'Device independency'
 date: '2012-04-04 19:57'
 tags:
-  - content
-  - iPad
-  - iPhone
-  - Mobile
-  - 'Responsive Web Design'
-  - 'device independency'
-  - desktop
-  - tablet
-  - phone
-  - apps
+    - content
+    - iPad
+    - iPhone
+    - Mobile
+    - 'Responsive Web Design'
+    - 'device independency'
+    - desktop
+    - tablet
+    - phone
+    - apps
 category: 'User Experience'
+slug: device-independency
 ---
 
 **One thing hit me the other day. **I’ve written about [sync between devices before](http://johanbrook.com/the-internet/sync-safety/ "Sync is about safety"), and now I thought about the actual physical move between them. It has sneaked up on me recently: how we use multiple devices more frequently these days. What’s interesting is how the software inside adapts to it.

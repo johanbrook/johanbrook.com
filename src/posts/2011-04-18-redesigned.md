@@ -2,8 +2,9 @@
 title: Redesigned
 date: '2011-04-18 01:39'
 tags:
-  - Redesign
+    - Redesign
 category: 'This site'
+slug: redesigned
 ---
 
 **You know how it is** with redesigns – they’re like drugs to a designer. Some last longer than others, but soon enough you'll need your fix. My site is always in constant redesign mode, with a goal to not have to make another redesign. Actually when it comes to site redesigns, I think it’s quite incorrect to call it _a redesign_. Quite blurry, to be honest. To _realign_ the elements sounds better to me – to take a look at the old site and ask yourself: “What’s working in this design, and what’s not?”. It’s a constant iteration thing, and I’ve tried to bring the elements and concepts I liked the most from the old design into this one.
