@@ -121,7 +121,7 @@ const site = Metalsmith(__dirname)
   })
 
   .use(branch('posts/**.html')
-    .use(permalinks({ pattern: 'writings/:title', relative: false })))
+    .use(permalinks({ pattern: 'writings/:slug', relative: false })))
 
   .use(branch('!posts/**.html')
     .use(branch('!index.md')
