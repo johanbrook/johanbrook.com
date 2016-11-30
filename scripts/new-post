@@ -16,6 +16,8 @@ if(arg.indexOf('-') !== 0) {
   title = arg;
 }
 
+const titleSlug = slug(title, {lower: true});
+
 const options = {
   destination: path.join(__dirname, '../src/posts/'),
   prefix: moment().format('YYYY-MM-DD'),
@@ -28,12 +30,12 @@ const options = {
   Create a new post with the title format:
     2015-01-01-slugified-title.md
 */
-const TEMPLATE = `---\ntitle: ${title}\ndate: '${moment().format('YYYY-MM-DD HH:mm')}'\ndraft: true
+const TEMPLATE = `---\ntitle: ${title}\nslug: ${titleSlug}\ndate: '${moment().format('YYYY-MM-DD HH:mm')}'\ndraft: true
 \n---\n
 \n
 `;
 
-const fileName = `${options.prefix}-${slug(title).toLowerCase()}.${options.extension}`;
+const fileName = `${options.prefix}-${titleSlug}.${options.extension}`;
 const fullPath = path.join(options.destination, fileName);
 
 fs.writeFile(fullPath, TEMPLATE, (err) => {

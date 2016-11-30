@@ -1583,11 +1583,11 @@ fresh@^0.3.0, fresh@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.3.0.tgz#651f838e22424e7566de161d8358caa199f83d4f"
 
-front-matter@~0.2.0:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/front-matter/-/front-matter-0.2.3.tgz#48fbaa2de1856ca475b5d38dff0b2d6d125196db"
+front-matter:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/front-matter/-/front-matter-2.1.1.tgz#f7071f549798d7cabe9f3f3c011316d7322bf41b"
   dependencies:
-    yaml-js "^0.1.0"
+    js-yaml "^3.4.6"
 
 fs-exists-sync@^0.1.0:
   version "0.1.0"
@@ -2382,6 +2382,13 @@ js-tokens@1.0.1:
 js-yaml@^3.4.3, js-yaml@^3.5.1:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.6.1.tgz#6e5fe67d8b205ce4d22fad05b7781e8dadcc4b30"
+  dependencies:
+    argparse "^1.0.7"
+    esprima "^2.6.0"
+
+js-yaml@^3.4.6:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.7.0.tgz#5c967ddd837a9bfdca5f2de84253abe8a1c03b80"
   dependencies:
     argparse "^1.0.7"
     esprima "^2.6.0"
@@ -4956,10 +4963,6 @@ y18n@^3.2.0, y18n@^3.2.1:
 yallist@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.0.0.tgz#306c543835f09ee1a4cb23b7bce9ab341c91cdd4"
-
-yaml-js@^0.1.0:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/yaml-js/-/yaml-js-0.1.4.tgz#ac965488a94daad5b65a92cab28c262407730fc0"
 
 yaml-js@0.0.8:
   version "0.0.8"
