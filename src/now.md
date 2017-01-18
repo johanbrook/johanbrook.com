@@ -19,7 +19,7 @@ This page reflects what I'm doing with my life at the moment, since it's the mos
 
 **So.**
 
-I have the privilege of traveling while working remotely (doing this nomad thing). My current travel plans are:
+I've had the privilege of traveling while working remotely (doing this nomad thing). My current travel plans are:
 
 1. 🇦🇹 ~~**Vienna**~~, Austria (October, 2015)
 2. 🇺🇸 ~~**San Francisco**~~, U.S. (October-November, 2015)
@@ -40,7 +40,7 @@ I spend my time on these things:
 - enjoying life in Gothenburg with friends.
 - working in [Lookback](http://lookback.io) as web app developer and designer. Mostly doing product and writing Javascript in [Meteor](http://meteor.com).
 - reading books and articles, in order to get my mind off the digital things. Ironically, I mostly read articles on product design, code, and startups.
-- I'm currently reading *The Doors of Perception* by Aldous Huxley.
+- currently reading *The Doors of Perception* by Aldous Huxley.
 - collecting memories on [Instagram](http://instagram.com/johanbrook/).
 - playing the guitar. I usually play music by the Swedish artist Håkan Hellström.
 - writing [open source packages for Meteor](https://atmospherejs.com/lookback/).
