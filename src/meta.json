@@ -8,5 +8,9 @@
   "email": "johan@johanbrook.com",
   "linkedin": "http://linkedin.com/in/johanbrook",
   "careers": "https://careers.stackoverflow.com/johanbrook",
-  "cv": "https://johanbrook.com/assets/johanbrook-cv.pdf"
+  "cv": "https://johanbrook.com/assets/johanbrook-cv.pdf",
+  "version": {
+    "currentVersion": "3.3.2",
+    "changelog": "https://johanbrook.com/changelog"
+  }
 }
