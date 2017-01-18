@@ -2,7 +2,7 @@
 template: page.html
 page: changelog
 title: Changelog
-description: Changelog over my life so far.
+description: Log over semi major life events so far.
 ogImage: https://johanbrook.com/assets/images/og-image-changelog.png
 ---
 

@@ -33,6 +33,10 @@ nav ul {
   @include list-reset;
 }
 
+ul, ol {
+  padding-left: 0;
+}
+
 a {
   color: $text-color;
 

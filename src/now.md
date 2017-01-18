@@ -12,7 +12,7 @@ tags:
 ---
 
 <p class="centered muted">
-  *Last updated November 14th, 2016*
+  *Last updated January 17th, 2017*
 </p>
 
 This page reflects what I'm doing with my life at the moment, since it's the most common question on the internet and in real life anyway.
@@ -32,16 +32,16 @@ I have the privilege of traveling while working remotely (doing this nomad thing
 9. 🇧🇷 ~~**Rio de Janeiro**~~, Brazil (April-May). View some [photos on Instagram](https://www.instagram.com/explore/tags/riosexton/) from me and my friends.
 10. 🇸🇪 ~~**Gothenburg**~~, Sweden (June-September)
 11. 🇨🇦 ~~**Montréal**~~, Canada (September-October)
-12. 🇺🇸 **New York**, USA (October-December)
+12. 🇺🇸 ~~**New York**~~, USA (October-December)
 13. 🇸🇪 **Gothenburg**, Sweden (December-?)
 
 I spend my time on these things:
 
+- enjoying life in Gothenburg with friends.
 - working in [Lookback](http://lookback.io) as web app developer and designer. Mostly doing product and writing Javascript in [Meteor](http://meteor.com).
 - reading books and articles, in order to get my mind off the digital things. Ironically, I mostly read articles on product design, code, and startups.
-- I'm currently reading *M Train* by Patti Smith and *Dancing with the Devil in the City of God* by Juliana Barbassa.
-- meeting new people in the cities I visit, as well as connecting with existing ones.
-- photo snapping and travel memories collecting on [Instagram](http://instagram.com/johanbrook/).
+- I'm currently reading *The Doors of Perception* by Aldous Huxley.
+- collecting memories on [Instagram](http://instagram.com/johanbrook/).
 - playing the guitar. I usually play music by the Swedish artist Håkan Hellström.
 - writing [open source packages for Meteor](https://atmospherejs.com/lookback/).
 - trying to write more articles on this site.
