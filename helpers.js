@@ -47,23 +47,13 @@ module.exports = {
   },
 
   canonicalUrl(path) {
-    var root = 'https://www.johanbrook.com/';
+    const root = 'https://www.johanbrook.com/';
     return (path) ? `${root}${path}/` : root;
   },
 
   isCurrentNav(page, options) {
-    const aliases = {
-      posts: 'posts',
-      home: 'home',
-      about: 'about',
-      now: 'now',
-      contact: 'contact'
-    };
-
-    const slug = aliases[page];
-
-    if (slug) {
-      const cond = Array.isArray(slug) ? slug.indexOf(this.page) !== -1 : slug === this.page;
+    if (page) {
+      const cond = Array.isArray(page) ? page.indexOf(this.page) !== -1 : page === this.page;
 
       return (cond) ? options.fn(this) : options.inverse(this);
     }

@@ -116,10 +116,8 @@ hr {
 
 
 [role="contentinfo"] {
-  background: $comp-yellow url('/assets/images/johan-yellow-mellow.jpg') no-repeat;
-  background-size: 480px auto;
-  background-position: 115% top;
-  padding: $lineheight*2 5% $lineheight*9;
+  background-color: $comp-yellow;
+  padding: $lineheight*2 5%;
   margin-top: $lineheight;
   font-family: $sans;
   position: relative;
