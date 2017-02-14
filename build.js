@@ -28,7 +28,7 @@ _.each(helpers, (fn, name) => {
 const start = process.hrtime();
 
 // Env.
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV !== 'production';
 
 // Load external meta.
 const config = require('./src/meta.json');
@@ -64,6 +64,8 @@ const site = Metalsmith(__dirname)
 
   .use(metallic())
 
+  .use(markdown())
+
   // Essentially `metalsmith-drafts` from https://github.com/segmentio/metalsmith-drafts/blob/master/lib/index.js,
   // but I needed to conditionally enable it depending on environment.
   .use((files, metal, done) => {
@@ -74,7 +76,6 @@ const site = Metalsmith(__dirname)
       if (file.draft) delete files[key];
     });
   })
-  .use(markdown())
 
   .use(wordcount())
 
