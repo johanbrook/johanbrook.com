@@ -39,7 +39,7 @@ module.exports = {
 
   descriptionOrExcerpt() {
     // Strip HTML tags.
-    return (this.excerpt || this.description).replace(/(<([^>]+)>)/ig, '');
+    return (this.excerpt || this.description || '').replace(/(<([^>]+)>)/ig, '');
   },
 
   pretty(text) {
