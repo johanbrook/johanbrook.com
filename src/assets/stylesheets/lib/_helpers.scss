@@ -353,7 +353,20 @@
   }
 
   h3 {
-    font-size: 1.3rem;
+    font-size: 1.1em;
+  }
+
+  @include larger-than($handheld) {
+    ul, ol {
+      padding-left: 2rem;
+      margin-right: -2rem;
+      margin-bottom: $lineheight*2;
+      margin-top: $lineheight*2;
+    }
+  }
+
+  li {
+    margin-bottom: $lineheight / 4;
   }
 
   pre {
