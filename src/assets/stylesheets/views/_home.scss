@@ -107,6 +107,10 @@
   }
 
   .home-about {
+    h1 {
+      margin-bottom: $lineheight*2;
+    }
+
     .post-text {
       @include larger-than($break) {
         margin-bottom: $lineheight*2;
@@ -116,14 +120,32 @@
 
   .post-text {
     position: relative;
-    max-width: to_rem(620px);
+    max-width: to_rem(580px);
     width: 90%;
     font-size: 1.1rem;
     @include smooth(false);
 
+    p {
+      margin-bottom: $lineheight*2;
+    }
+
+    blockquote {
+      font-weight: 300;
+      font-style: italic;
+      font-size: to_em(26);
+      border-left: 0;
+      padding-left: 0;
+      font-family: $sans;
+      margin-left: -20%;
+    }
+
     @include smaller-than($break) {
       margin-left: auto;
       margin-right: auto;
+
+      blockquote {
+        margin-left: 0;
+      }
     }
   }
 

@@ -3,21 +3,15 @@ template: home.html
 page: home
 ---
 
-**The gist of me** is that I'm a generalist designer/developer who likes building things for the web, one of the good ones, and you'll *probably* enjoy grabbing a beer or coffee with me.
+**The gist of me** is that I'm a generalist designer/developer who likes building things for the web and you'll *probably* enjoy grabbing a beer or coffee with me. I like reading, writing, strolling around in cities, coffee, cooking, and photography (all the attributes of a modern, white male, isn't it?). At least I've got my humor.
 
 ***
 
-I've been designing and writing code professionally for almost six years now. So far, I've avoided to put myself under one label – to specialise in one thing only – and instead gone for this Jack of all Trades role in the various teams I've had the pleasure of working with. I like all things graphic and digital design, front and backend development, product and strategy, as well as having fun in a team.
+I've been designing and writing code for around seven years now. So far, I've avoided to put myself under one label – to specialise in one thing only – and instead gone for this Jack of all Trades role in the various teams I've had the pleasure of working with. I like all things graphic and digital design, front and backend development, product and strategy, typography and API design, copywriting and CSS architecture.
 
 For university, I studied Software Engineering at **Chalmers** in Gothenburg, Sweden. Between the classes of data structures and mathematical modeling, I freelanced in web design on the side, while enjoying the joys of student society life. I still look back on my university time as one of the happiest periods of my life.
 
-During a year, I worked for **Spotify** in their *Street Team*. I was, together with a small group of other awesome students from Stockholm and Linköping, responsible for the university presence of Spotify. We arranged super fun hackathons and other cool events. You might have heard of
-
-- [Gothenburg Startup Hack](http://www.gbgstartuphack.com)
-- [Diversify](http://diversify.confetti.events)
-- [Monkey Music Challenge 2](http://monkey-music-challenge.github.io/)
-
-This might have been the most fun "job" I've ever had so far.
+During a year, I worked for **Spotify** in their *Street Team*. I was, together with a small group of other awesome students from Stockholm and Linköping, responsible for the university presence of Spotify. We arranged super fun hackathons and other cool events, like [Gothenburg Startup Hack](http://www.gbgstartuphack.com), [Diversify](http://diversify.confetti.events), and [Monkey Music Challenge 2](http://monkey-music-challenge.github.io/). This might have been the most fun "job" I've ever had so far.
 
 ***
 
@@ -34,16 +28,16 @@ You'll find some code I've open sourced in Lookback in our [GitHub organization]
 
 At the end of the summer, I evidently saw something in them as well, since I decided to *not* pursue a Master's degree in Interaction Design – something I had planned on for the past four years – but to instead join Lookback as their first employee.
 
-[Here's my Spotify playlist](https://open.spotify.com/user/johanbrook/playlist/1Ldhvei26A52VXc1ErGFE3) I've listened to at least once a day since around 2010.
+> [Here's my Spotify playlist](https://open.spotify.com/user/johanbrook/playlist/1Ldhvei26A52VXc1ErGFE3) I've listened to at least once a day since around 2010.
 
-We've now grown to twelve people, moved the head quarters to San Francisco, and have customers like **Netflix, Facebook, Dropbox, Spotify, and Uber**. I can't really wait to grow us further (even though it's so cozy and nice just being twelve! 😭). I'm blessed every single day by working with this [extremely talented group of people](http://lookback.io/about), in the areas of design, engineering, and product.
+We've now grown to fourteen some people, moved the head quarters to San Francisco, and have customers like Netflix, Facebook, Dropbox, Spotify, and Ebay. I can't really wait to grow us further. I'm blessed every single day by working with this [extremely talented group of people](http://lookback.io/about), in the areas of design, engineering, and product.
 
 ***
 
-**I love traveling.** I lived in Canada for a year before university, where I went completely "offline" and worked as a barista. As everybody else, I still damn myself for not picking up more languages when I was younger though.
+**I love traveling.** I lived in Canada for a year before university, where I went completely offline and worked as a barista. As everybody else, I still hate myself for not picking up more languages when I was younger though.
 
-Since September 2015, I've embarked upon this nomad thing of traveling the world while working remote. So far, I've lived and worked in Vienna, London, San Francisco, New York, Montréal, Asunción, Rio de Janeiro, and Copenhagen.
+Since September 2015, I've embarked upon this nomad thing of traveling the world while working remote. So far, I've lived and worked in Vienna, London, San Francisco, New York, Montréal, Asunción, Rio de Janeiro, and Copenhagen. I'd love to live in Berlin for a while, as well as going back to Rio.
 
 Keep an eye out on ["Now"](/now) for updates. [Give me a shout](http://twitter.com/johanbrook) if we're in the same city!
 
-Thanks for reading.
+Thank you so much for reading.
