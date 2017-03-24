@@ -120,24 +120,9 @@ hr {
 
 
 [role="contentinfo"] {
-  background-color: $comp-yellow;
-  padding: $lineheight*2 5%;
-  margin-top: $lineheight;
-  font-family: $sans;
-  position: relative;
-  font-weight: normal;
-  font-size: 1rem;
-  text-align: center;
-  color: rgba(#000, .8);
-
-  p {
-    margin: 0 auto $lineheight;
-    max-width: 25rem;
-  }
 
   a {
     font-style: italic;
-    color: #000;
   }
 
   h2 {

@@ -2,9 +2,9 @@
   <article role="article" class="{{#if link}}linked{{/if}}" itemscope itemtype="http://schema.org/BlogPosting">
     <header>
       {{#if link}}
-        <h1 itemprop="name"><a title="{{link}}" href="{{link}}">{{title}} →</a></h1>
+        <h1 class="f1" itemprop="name"><a title="{{link}}" href="{{link}}">{{title}} →</a></h1>
       {{else}}
-        <h1 itemprop="name">{{title}}</h1>
+        <h1 class="f1" itemprop="name">{{title}}</h1>
       {{/if}}
 
       <p class="post__meta">
@@ -21,7 +21,7 @@
   </article>
 </main>
 
-<footer role="contentinfo" class="tilted tilted--top">
+<footer role="contentinfo" class="tc mw6 ph4 mv5 sans center">
   <h2>Hi friend.</h2>
 
   <p>I'm Johan – a twenty-something developer and designer, currently traveling the world.</p>

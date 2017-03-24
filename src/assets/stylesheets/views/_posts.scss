@@ -50,14 +50,10 @@
     }
 
     h1 {
-      font-size: to_rem(28);
       margin-bottom: $lineheight / 2;
     }
 
     .post-text {
-      font-family: $mono;
-      font-size: to_rem(13);
-      color: darken($grey, 5%);
       text-indent: -1em;
 
       strong {

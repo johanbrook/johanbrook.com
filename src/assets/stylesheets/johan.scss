@@ -5,6 +5,19 @@ Built for IE6, made in Dreamweaver.
 Just kidding.
 --------------------------------------------- */
 
+// Tachyons :yay:
+
+@import 'type-scale';
+@import 'typography';
+@import 'line-height';
+@import 'font-weight';
+@import 'font-style';
+@import 'text-align';
+@import 'letter-spacing';
+
+@import 'widths';
+@import 'max-widths';
+@import 'spacing';
 
 // Tools
 
@@ -15,7 +28,6 @@ Just kidding.
 // Lib
 
 @import 'lib/normalize';
-@import 'lib/animations';
 @import 'lib/tomorrow';
 
 // Common

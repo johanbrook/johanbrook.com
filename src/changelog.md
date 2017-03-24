@@ -6,7 +6,7 @@ description: Log over semi major life events so far.
 ogImage: https://johanbrook.com/assets/images/og-image-changelog.png
 ---
 
-<p class="centered muted">
+<p class="tc muted">
 My life so far – versioned. Also check out experimental development: <a href="/now">what I'm doing now</a>.
 </p>
 

@@ -1,6 +1,6 @@
 <main role="main">
 
-  <p class="notice">
+  <p class="i muted f7">
     Psst! There's more stuff at my <a href="{{tumblr}}">personal blog</a> too!
   </p>
 
@@ -19,16 +19,16 @@
           </p>
 
           {{#if link}}
-            <h1>
+            <h1 class="f3">
               {{ icon 'link' }}
               <a title="{{link}}" href="{{link}}">{{title}} →</a>
             </h1>
           {{else}}
-            <h1><a href="/{{path}}">{{title}}</a></h1>
+            <h1 class="f3"><a href="/{{path}}">{{title}}</a></h1>
           {{/if}}
         </header>
 
-        <div class="post-text">
+        <div class="post-text f7 mono">
           <p>{{{excerpt}}}</p>
         </div>
       </article>

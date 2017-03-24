@@ -19,8 +19,33 @@
   color: $grey-light;
 }
 
+.mono {
+  font-family: $mono;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sans {
+  font-family: $sans;
+}
+
+.serif {
+  font-family: $serif;
+}
+
 .strong {
   color: $text-color;
+}
+
+.tracked-tight-some {
+  letter-spacing: -1px;
+}
+
+.f7 {
+  font-size: .7rem;
 }
 
 .stronger {
@@ -30,6 +55,11 @@
 
 .larger {
   font-size: 1.3em;
+}
+
+// @override
+.f-headline {
+  font-size: to_rem(65);
 }
 
 .visuallyhidden {
@@ -56,30 +86,6 @@
   height: 1em;
   fill: currentColor;
   vertical-align: middle;
-}
-
-.notice {
-  font-size: .7em;
-  color: $grey-light;
-  font-style: italic;
-}
-
-.page-title {
-  text-align: center;
-  font-weight: 900;
-  letter-spacing: -1px;
-  font-size: to_rem(60);
-}
-
-.subtitle {
-  font-size: to_rem(14);
-  color: $grey;
-  font-family: $mono;
-}
-
-.text-column {
-  max-width: to_rem(450);
-  width: $page-width;
 }
 
 .no-content {

@@ -39,7 +39,10 @@ function compileSass() {
   return gulp.src(src.scss)
       .pipe(sourcemaps.init())
       .pipe(sass({
-        includePaths: ['src/assets/stylesheets'],
+        includePaths: [
+          'src/assets/stylesheets',
+          './node_modules/tachyons/src'
+        ],
         outputStyle: 'compressed'
       }))
       .pipe(autoprefixer())
