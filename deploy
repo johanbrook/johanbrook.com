@@ -37,7 +37,7 @@ fi
 git add .
 git commit -m "⬆️ Deploy [`date`] [ci skip]" --quiet
 git log -n 1
-git push origin master:gh-pages --force
+git push origin master:gh-pages --force --quiet
 rm -rf .git
 cd -
 
