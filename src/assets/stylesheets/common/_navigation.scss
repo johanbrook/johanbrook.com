@@ -79,8 +79,9 @@
   }
 
   li:not(:last-child)::after {
-    content: '·';
+    content: '+';
     display: inline-block;
+    opacity: .6;
   }
 
   @include handheld {

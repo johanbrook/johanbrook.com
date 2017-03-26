@@ -37,11 +37,11 @@
 
     h1 {
       max-width: to_rem(640px);
+      color: rgba(#000, .8);
     }
   }
 
   h1 {
-    color: rgba(#000, .8);
     line-height: 1.2;
 
     @include tablet {
