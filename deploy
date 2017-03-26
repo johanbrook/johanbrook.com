@@ -16,7 +16,10 @@ fi
 
 remote=$(git config remote.origin.url)
 
-echo "* Deploying from $remote to https://johanbrook.com"
+echo "Deploying https://johanbrook.com"
+echo ""
+echo "* Deploying commit:"
+echo "  $(git log -n 1)"
 
 # Jump into pre-built site
 cd ./build
@@ -27,8 +30,12 @@ touch ./.nojekyll
 # Create a new repo solely for deploying
 git init . -q
 
+if [ -n "$CI" ]; then
+  git remote add origin "$remote"
+fi
+
 git add .
-git commit -m "⬆️ Deploy [`date`]" --quiet
+git commit -m "⬆️ Deploy [`date`] [ci skip]" --quiet
 git log -n 1
 git push origin master:gh-pages --force
 rm -rf .git
