@@ -44,8 +44,6 @@
 
   @include handheld {
     margin-bottom: 0;
-    flex-direction: column;
-    font-size: 1em;
 
     .navigation__secondary {
       font-size: .9em;
@@ -56,7 +54,7 @@
     }
 
     ul {
-      justify-content: center;
+      flex-direction: column;
     }
 
     a {
@@ -97,5 +95,25 @@
     a {
       display: block;
     }
+  }
+}
+
+.mobile-nav-trigger {
+  display: none;
+  text-align: center;
+  text-decoration: none;
+  font-family: $sans;
+  font-size: to_rem(13);
+  padding: 1em .5em;
+  color: $grey;
+
+  .icon {
+    position: relative;
+    top: -1px;
+    color: $grey-light;
+  }
+
+  @include handheld {
+    display: block;
   }
 }

@@ -6,16 +6,22 @@
   padding-bottom: 0;
 
   .main-navigation {
-    position: absolute;
-    width: 100%;
-    z-index: 10;
+    @include larger-than($handheld) {
+      position: absolute;
+      width: 100%;
+      z-index: 10;
 
-    .nav--current a {
-      color: darken($comp-yellow, 30%);
+      .nav--current a {
+        color: darken($comp-yellow, 30%);
+      }
     }
 
     @include smaller-than($break) {
       display: none;
+    }
+
+    @include handheld {
+      display: flex;
     }
   }
 

@@ -55,7 +55,7 @@
 
   <body>
 
-    <nav role="navigation" class="main-navigation">
+    <nav role="navigation" class="main-navigation" name="top">
       <ul class="navigation__primary">
         <li class="{{#isCurrentNav 'home' }}nav--current{{/isCurrentNav}}"><a href="/">About me</a></li>
         <li class="{{#isCurrentNav 'now' }}nav--current{{/isCurrentNav}}" ><a href="/now">Now</a></li>
@@ -70,11 +70,19 @@
       </ul>
     </nav>
 
+    <a href="#top" class="mobile-nav-trigger" data-show-nav>
+      {{icon 'list'}} Navigation
+    </a>
+
     {{{ contents }}}
 
     <script type="text/javascript">
       function init() {
         addClasses();
+
+        if (window.matchMedia("(max-width: 481px)").matches) {
+          window.scroll(0, 200);
+        }
 
         function first(array, n, guard) {
           if (array == null) return void 0;
