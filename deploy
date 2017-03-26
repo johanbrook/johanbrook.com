@@ -1,14 +1,39 @@
 #!/usr/bin/env bash
 
-# Deploy to johanbrook.github.io/johanbrook.com
-cd ./build && \
-cp ../CNAME ./CNAME && \
-touch ./.nojekyll && \
-git init . -q && \
-git add . && \
-git commit -m "⬆️ Deploy [`date`]" --quiet && \
-git log -n 1; \
-git push "git@github.com:johanbrook/johanbrook.com.git" master:gh-pages --force && \
-rm -rf .git && \
-cd .. && \
-echo Site deployed to https://johanbrook.com
+# Set some needed CI values
+if [ -n "$CI" ]; then
+  # Abort the script if there is a non-zero error
+  set -e
+
+  if [ -n "$GITHUB_EMAIL"]; then
+    git config --global user.email "$GITHUB_EMAIL" > /dev/null 2>&1
+  fi
+
+  if [ -n "$GH_NAME"]; then
+    git config --global user.name "$GH_NAME" > /dev/null 2>&1
+  fi
+
+  remote=$(git config remote.origin.url)
+fi
+
+# Jump into pre-built site
+cd ./build
+# Get some important files over
+cp ../CNAME ./CNAME
+touch ./.nojekyll
+
+# Create a new repo solely for deploying
+git init . -q
+
+if [ -n "$CI" ]; then
+  git remote add --fetch origin "$remote"
+fi
+
+git add .
+git commit -m "⬆️ Deploy [`date`]" --quiet
+git log -n 1
+git push origin master:gh-pages --force
+rm -rf .git
+cd -
+
+echo "Site deployed to https://johanbrook.com"
