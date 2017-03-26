@@ -17,7 +17,7 @@ fi
 remote=$(git config remote.origin.url)
 
 echo "* Deploying from $remote to https://johanbrook.com"
-exit 0
+
 # Jump into pre-built site
 cd ./build
 # Get some important files over
