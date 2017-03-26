@@ -7,6 +7,8 @@
   &__text {
     margin: 0 auto;
     width: $page-width;
-    max-width: to_rem(500);
+    max-width: $column-width;
+    font-family: $mono;
+    font-size: to_em(13);
   }
 }

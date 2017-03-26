@@ -4,7 +4,7 @@
 .posts {
 
   [role="main"] {
-    max-width: to_rem(540);
+    max-width: $column-width;
     margin: 0 auto;
     width: $page-width;
   }
@@ -13,8 +13,14 @@
     max-width: 100%;
     width: 100%;
     margin-bottom: $lineheight*2;
-    border-bottom: 1px solid #e2e2e2;
+    border-bottom: 2px solid #e6e6e6;
     padding-bottom: $lineheight*2;
+
+    &:hover  {
+      .post-text {
+        color: $text-color;
+      }
+    }
 
     header {
       position: relative;
@@ -54,7 +60,7 @@
     }
 
     .post-text {
-      text-indent: -1em;
+      color: $grey;
 
       strong {
         font-family: $mono;
