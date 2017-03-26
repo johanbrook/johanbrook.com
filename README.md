@@ -1,3 +1,5 @@
+[![Build Status](https://semaphoreci.com/api/v1/johan/johanbrook-com/branches/master/badge.svg)](https://semaphoreci.com/johan/johanbrook-com)
+
 Johan's site. Built with [Metalsmith](http://metalsmith.io/).
 
 Run `npm run info` for docs on npm scripts to run.
