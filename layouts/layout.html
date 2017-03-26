@@ -4,7 +4,11 @@
     <title>{{ title }}</title>
 
     <meta charset="utf-8">
-    <meta name="description" content="{{{ description }}}">
+    {{#isSingle}}
+    <meta name="description" content="{{{descriptionOrExcerpt}}}">
+    {{else}}
+    <meta name="description" content="{{{escapeQuotes description}}}">
+    {{/isSingle}}
     <meta name="keywords" content="{{ tags }}">
     <meta name="author" content="Johan Brook">
 
@@ -32,7 +36,7 @@
     {{#isSingle}}
     <meta property="og:description" content="{{{descriptionOrExcerpt}}}">
     {{else}}
-    <meta property="og:description" content="{{{description}}}">
+    <meta property="og:description" content="{{{escapeQuotes description}}}">
     {{/isSingle}}
 
     {{#isSingle}}

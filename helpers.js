@@ -1,6 +1,9 @@
 const Handlebars =    require('handlebars');
 const moment =        require('moment');
 
+const escapeQuotes = (text) =>
+  text.replace(/'/g, '&rsquo;').replace(/"/g, '&ldquo;');
+
 module.exports = {
 
   icon(name) {
@@ -8,6 +11,8 @@ module.exports = {
       <use xlink:href='/assets/entypo.svg#icon-${name}'></use>
     </svg>`);
   },
+
+  escapeQuotes,
 
   formatDate(date, format) {
     if (!date) return;
@@ -39,16 +44,15 @@ module.exports = {
 
   descriptionOrExcerpt() {
     // Strip HTML tags.
-    return (this.excerpt || this.description || '').replace(/(<([^>]+)>)/ig, '');
+    return escapeQuotes((this.excerpt || this.description || '').replace(/(<([^>]+)>)/ig, ''));
   },
 
-  pretty(text) {
-    return text.replace('index.html', '');
-  },
+  pretty: (text) =>
+    text.replace('index.html', ''),
 
   canonicalUrl(path) {
     const root = 'https://www.johanbrook.com/';
-    return (path) ? `${root}${path}/` : root;
+    return path ? `${root}${path}/` : root;
   },
 
   isCurrentNav(page, options) {
