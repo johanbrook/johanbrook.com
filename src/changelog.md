@@ -1,6 +1,7 @@
 ---
 template: page.html
 page: changelog
+color: neon
 title: Changelog
 description: Log over semi major life events so far.
 ogImage: https://johanbrook.com/assets/images/og-image-changelog.png

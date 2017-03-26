@@ -1,6 +1,7 @@
 ---
 template: page.html
 page: now
+color: red
 title: What I'm doing now
 ogImage: https://johanbrook.com/assets/images/johan-map.png
 description: This page reflects what I'm doing with my life at the moment.

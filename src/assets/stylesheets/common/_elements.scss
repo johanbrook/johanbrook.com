@@ -120,6 +120,10 @@ hr {
 
 
 [role="contentinfo"] {
+  background-color: $comp-beige;
+  text-align: center;
+  font-family: $sans;
+  color: rgba(#593824, .8);
 
   a {
     font-style: italic;
@@ -127,9 +131,9 @@ hr {
 
   h2 {
     font-size: to_rem(70);
-    color: rgba(#000, .8);
+    color: $comp-teal-light;
     font-weight: 900;
-    margin-top: -$lineheight*2;
+    margin-top: -$lineheight;
     margin-bottom: 0;
     position: relative;
     z-index: 10;

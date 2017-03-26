@@ -11,6 +11,28 @@
   @include list-reset;
 }
 
+// Colooours
+
+.comp-red {
+  color: $comp-red;
+}
+
+.comp-blue {
+  color: $comp-blue;
+}
+
+.comp-neon {
+  color: $comp-neon;
+}
+
+.comp-teal-l {
+  color: $comp-teal-light;
+}
+
+.comp-orange {
+  color: $comp-orange;
+}
+
 .muted {
   color: $grey;
 }
@@ -60,6 +82,10 @@
 // @override
 .f-headline {
   font-size: to_rem(65);
+
+  @include handheld {
+    font-size: 10vw;
+  }
 }
 
 .visuallyhidden {
