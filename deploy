@@ -9,8 +9,8 @@ if [ -n "$CI" ]; then
     git config --global user.email "$GITHUB_EMAIL" > /dev/null 2>&1
   fi
 
-  if [ -n "$GH_NAME"]; then
-    git config --global user.name "$GH_NAME" > /dev/null 2>&1
+  if [ -n "$GITHUB_NAME"]; then
+    git config --global user.name "$GITHUB_NAME" > /dev/null 2>&1
   fi
 
   remote=$(git config remote.origin.url)
