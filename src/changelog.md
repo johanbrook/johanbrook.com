@@ -26,7 +26,7 @@ My life so far – versioned. Also check out experimental development: <a href=
 ### Version 3.3
 
 - Thanks to flexible remote work opportunity in Lookback, I decided to start travelling full time ("nomading").
-  - Lived in Brazil, UK, California, Madrid, New York, Austria, Montréal, and Paraguay.
+  - Lived in Brazil, UK, California, Spain, United States, Austria, Canada, and Paraguay.
   - Gained invaluable experiences in foreign cultures.
   - Made friends with crazy warm people from all over the world, but felt more lonely than in a long while.
 - Started to appreciate South American culture very much.

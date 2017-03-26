@@ -11,8 +11,8 @@ tags:
   - travels
 ---
 
-<p class="tc muted">
-  *Last updated January 17th, 2017*
+<p class="tc muted mono f7">
+  Last updated March 26th, 2017
 </p>
 
 This page reflects what I'm doing with my life at the moment, since it's the most common question on the internet and in real life anyway.
@@ -39,12 +39,13 @@ I spend my time on these things:
 
 - enjoying life in Gothenburg with friends.
 - working in [Lookback](http://lookback.io) as web app developer and designer. Mostly doing product and writing Javascript in [Meteor](http://meteor.com).
-- reading books and articles, in order to get my mind off the digital things. Ironically, I mostly read articles on product design, code, and startups.
-- currently reading *The Doors of Perception* by Aldous Huxley.
+- reading books and articles, in order to get my mind off the digital things.
+- currently reading *The Mountain Shadow* by Gregory David Roberts.
 - collecting memories on [Instagram](http://instagram.com/johanbrook/).
-- playing the guitar. I usually play music by the Swedish artist Håkan Hellström.
+- playing the guitar.
 - writing [open source packages for Meteor](https://atmospherejs.com/lookback/).
 - trying to write more articles on this site.
+- learning Portuguese via Duolingo and other methods.
 
 If my life changes, I'll update this page.
 
