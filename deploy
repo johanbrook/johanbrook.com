@@ -5,17 +5,19 @@ if [ -n "$CI" ]; then
   # Abort the script if there is a non-zero error
   set -e
 
-  if [ -n "$GITHUB_EMAIL"]; then
+  if [ -n "$GITHUB_EMAIL" ]; then
     git config --global user.email "$GITHUB_EMAIL" > /dev/null 2>&1
   fi
 
-  if [ -n "$GITHUB_NAME"]; then
+  if [ -n "$GITHUB_NAME" ]; then
     git config --global user.name "$GITHUB_NAME" > /dev/null 2>&1
   fi
-
-  remote=$(git config remote.origin.url)
 fi
 
+remote=$(git config remote.origin.url)
+
+echo "* Deploying from $remote to https://johanbrook.com"
+exit 0
 # Jump into pre-built site
 cd ./build
 # Get some important files over
@@ -25,10 +27,6 @@ touch ./.nojekyll
 # Create a new repo solely for deploying
 git init . -q
 
-if [ -n "$CI" ]; then
-  git remote add --fetch origin "$remote"
-fi
-
 git add .
 git commit -m "⬆️ Deploy [`date`]" --quiet
 git log -n 1
@@ -36,4 +34,4 @@ git push origin master:gh-pages --force
 rm -rf .git
 cd -
 
-echo "Site deployed to https://johanbrook.com"
+echo "* Site deployed to https://johanbrook.com"
