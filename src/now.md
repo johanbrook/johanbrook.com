@@ -13,7 +13,7 @@ tags:
 ---
 
 <p class="tc muted mono f7">
-  Last updated March 26th, 2017
+  Last updated May 19th, 2017
 </p>
 
 This page reflects what I'm doing with my life at the moment, since it's the most common question on the internet and in real life anyway.
@@ -34,14 +34,16 @@ I've had the privilege of traveling while working remotely (doing this nomad thi
 10. 🇸🇪 ~~**Gothenburg**~~, Sweden (June-September)
 11. 🇨🇦 ~~**Montréal**~~, Canada (September-October)
 12. 🇺🇸 ~~**New York**~~, USA (October-December)
-13. 🇸🇪 **Gothenburg**, Sweden (December-?)
+13. 🇸🇪 **Gothenburg**, Sweden (December-September)
+14. 🇺🇸 ~~**Miami/New York**~~, USA (April)
+15. 🇮🇳 Somewhere in **India** (Summer 2018)
 
 I spend my time on these things:
 
 - enjoying life in Gothenburg with friends.
 - working in [Lookback](http://lookback.io) as web app developer and designer. Mostly doing product and writing Javascript in [Meteor](http://meteor.com).
 - reading books and articles, in order to get my mind off the digital things.
-- currently reading *The Mountain Shadow* by Gregory David Roberts.
+- currently reading *The Truth* by Neil Strauss.
 - collecting memories on [Instagram](http://instagram.com/johanbrook/).
 - playing the guitar.
 - writing [open source packages for Meteor](https://atmospherejs.com/lookback/).
