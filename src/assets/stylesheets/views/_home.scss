@@ -10,10 +10,6 @@
       position: absolute;
       width: 100%;
       z-index: 10;
-
-      .nav--current a {
-        color: darken($comp-yellow, 30%);
-      }
     }
 
     @include smaller-than($break) {
@@ -26,18 +22,13 @@
   }
 
   [role="banner"] {
-    background-color: $comp-yellow;
-    padding: 5% 5% $lineheight*5;
+    padding: $lineheight*5 5%;
+    margin-bottom: $lineheight*4;
     line-height: 1.4;
-
-    @include larger-than($break) {
-      padding-top: $lineheight*5;
-      padding-bottom: $lineheight*8;
-    }
+    border-bottom: 1px solid $border-color;
 
     h1 {
       max-width: to_rem(640px);
-      color: rgba(#000, .8);
     }
   }
 
@@ -90,17 +81,6 @@
       position: static;
       margin: 0 auto $lineheight;
       width: 60%;
-    }
-  }
-
-  [role="main"] {
-
-    .home-offset {
-      &:first-child {
-        margin-top: -$lineheight*4;
-        position: relative;
-        z-index: 10;
-      }
     }
   }
 

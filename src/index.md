@@ -3,7 +3,7 @@ template: home.html
 page: home
 ---
 
-**The gist of me** is that I'm a generalist designer/developer who likes building things for the web and you'll *probably* enjoy grabbing a beer or coffee with me. I like reading, writing, strolling around in cities, coffee, cooking, and photography (all the attributes of a modern, white male, isn't it?). At least I've got my humor.
+**I like building things** for the web and you'll *probably* enjoy grabbing a beer or coffee with me. I also like reading, writing, strolling around in cities, playing the guitar, coffee, cooking, and photography.
 
 ***
 
@@ -30,13 +30,12 @@ At the end of the summer, I evidently saw something in them as well, since I dec
 
 > [Here's my Spotify playlist](https://open.spotify.com/user/johanbrook/playlist/1Ldhvei26A52VXc1ErGFE3) I've listened to at least once a day since around 2010.
 
-We've now grown to fourteen some people, moved the head quarters to San Francisco, and have customers like Netflix, Facebook, Dropbox, Spotify, and Ebay. I can't really wait to grow us further. I'm blessed every single day by working with this [extremely talented group of people](http://lookback.io/about), in the areas of design, engineering, and product.
-
-***
 
 **I love traveling.** I lived in Canada for a year before university, where I went completely offline and worked as a barista. As everybody else, I still hate myself for not picking up more languages when I was younger though.
 
-Since September 2015, I've embarked upon this nomad thing of traveling the world while working remote. So far, I've lived and worked in Vienna, London, San Francisco, New York, Montréal, Asunción, Rio de Janeiro, and Copenhagen. I'd love to live in Berlin for a while, as well as going back to Rio.
+Since September 2015, I've embarked upon this nomad thing of traveling the world while working remote. So far, I've lived and worked in Vienna, London, San Francisco, New York, Montréal, Asunción, Rio de Janeiro, and Copenhagen.
+
+I'd love to find a base location at some point though.
 
 Keep an eye out on ["Now"](/now) for updates. [Give me a shout](http://twitter.com/johanbrook) if we're in the same city!
 
