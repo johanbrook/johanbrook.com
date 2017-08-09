@@ -12,7 +12,7 @@
     "test": "eslint .",
     "start": "NODE_ENV=development gulp",
     "deploy": "npm run build && ./deploy",
-    "new": "node --harmony scripts/new-post --editor",
+    "new": "node scripts/new-post --editor",
     "info": "npm-scripts-info"
   },
   "scripts-info": {
