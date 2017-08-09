@@ -97,10 +97,11 @@ pre {
 
 blockquote {
   font-family: $mono;
-  font-size: to_rem(13);
+  font-size: to_rem(14);
   border-left: 1px solid $text-color;
   margin: $lineheight*2 2rem $lineheight*2 0;
   padding-left: 2rem;
+  padding-right: 2rem;
 
   footer {
     color: $grey;

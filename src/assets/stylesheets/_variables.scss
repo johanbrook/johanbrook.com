@@ -24,12 +24,12 @@ $border-color: #e9e9e9;
 
 // Typography
 
-$base-size: 17;
+$base-size: 18;
 $leading: 28;
 
 $lineheight: ($leading / $base-size) * 1rem;
 
-$serif:     'Noto Serif', Georgia, serif;
+$serif:     Georgia, serif;
 $sans:      Lato, 'Open Sans', Helvetica, sans-serif;
 $mono:      Hack, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
 $headings:  $sans;
