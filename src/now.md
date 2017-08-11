@@ -27,15 +27,16 @@ I've had the privilege of traveling while working remotely (doing this nomad thi
 3. 🇬🇧 ~~**London**~~, UK (November-December, 2015)
 4. 🇩🇰 ~~**Copenhagen**~~, Denmark (December, 2015)
 5. 🇸🇪 ~~**Sweden**~~ (December, 2015)
-6. 🇪🇸 ~~**Madrid**~~, Spain (January)
-7. 🇵🇾 ~~**Asunción**~~, Paraguay (February-April, *if El Niño doesn't fuck the country over again*)
-8. 🇺🇸 ~~**San Diego**~~, U.S. (March)
-9. 🇧🇷 ~~**Rio de Janeiro**~~, Brazil (April-May). View some [photos on Instagram](https://www.instagram.com/explore/tags/riosexton/) from me and my friends.
-10. 🇸🇪 ~~**Gothenburg**~~, Sweden (June-September)
-11. 🇨🇦 ~~**Montréal**~~, Canada (September-October)
-12. 🇺🇸 ~~**New York**~~, USA (October-December)
-13. 🇺🇸 ~~**Miami/New York**~~, USA (April)
-14. 🇸🇪 **Gothenburg**, Sweden (January-September)
+6. 🇪🇸 ~~**Madrid**~~, Spain (January 2016)
+7. 🇵🇾 ~~**Asunción**~~, Paraguay (February-April 2016, *if El Niño doesn't fuck the country over again*)
+8. 🇺🇸 ~~**San Diego**~~, U.S. (March 2016)
+9. 🇧🇷 ~~**Rio de Janeiro**~~, Brazil (April-May 2016). View some [photos on Instagram](https://www.instagram.com/explore/tags/riosexton/) from me and my friends.
+10. 🇸🇪 ~~**Gothenburg**~~, Sweden (June-September 2016)
+11. 🇨🇦 ~~**Montréal**~~, Canada (September-October 2016)
+12. 🇺🇸 ~~**New York**~~, USA (October-December 2016)
+13. 🇺🇸 ~~**Miami/New York**~~, USA (April 2017)
+14. 🇸🇪 **Gothenburg**, Sweden (January-August 2017)
+15. 🇫🇷 **Nice**, France (August 2017)
 15. 🇵🇹 **Lisbon**, Portugal (Autumn 2017)
 
 I spend my time on these things:
