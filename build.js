@@ -183,7 +183,7 @@ const finished = (cb) => {
 };
 
 const build = (cb) => {
-  if (process.env.NODE_ENV !== 'development') {
+  if (!isDev) {
     site.use(compress());
   }
 
