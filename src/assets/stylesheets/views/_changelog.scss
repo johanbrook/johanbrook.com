@@ -4,12 +4,22 @@
 .changelog {
   .page__text {
     h2 {
-      margin-bottom: $lineheight / 2;
+      margin-bottom: $lineheight;
+      padding-bottom: $lineheight / 3;
+      border-bottom: 1px solid $border-color;
     }
 
     > ul {
       padding-left: 0;
       margin-bottom: $lineheight*2;
+
+      &:not(.latest) {
+        color: $grey;
+      }
+
+      strong {
+        color: $text-color;
+      }
     }
 
     li > ul {

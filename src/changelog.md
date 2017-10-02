@@ -11,6 +11,18 @@ ogImage: https://johanbrook.com/assets/images/og-image-changelog.png
 My life so far – versioned. Also check out experimental development: <a href="/now">what I'm doing now</a>.
 </p>
 
+### Version 3.4.0
+
+<ul class="latest">
+  <li>Met a beautiful, cool, and loving girlfriend 🌻
+    <ul>
+      <li>Made Stockholm the base of operations for the near future.</li>
+    </ul>
+  </li>
+  <li>Got myself some eye glasses.</li>
+  <li>Started saving in a pension fund.</li>
+</ul>
+
 ### Version 3.3.2
 
 - Started going to the gym to build muscle.
@@ -21,7 +33,7 @@ My life so far – versioned. Also check out experimental development: <a href=
 
 - Decided to cut down on beer, due to being generally bored with it.
   - Turned focus to red wine and hard liquor.
-- Started doing yoga and stretcing exercises more regularly.
+- Started doing yoga and stretching exercises more regularly.
 - Cut off long hair.
 
 ### Version 3.3
@@ -51,7 +63,7 @@ My life so far – versioned. Also check out experimental development: <a href=
   - Gained closest relationships I've ever had and still have.
 - Learned about love, and how to screw it up.
 
-### Version 2.5
+### Version 2.1
 
 - Started freelancing in graphic and web design/development. Gained experience in working with small, medium, and large company clients. Developed in business communication and tech skills, as well as dealing with setting up my own company.
 - Began noting thoughts, poems, sketches, lyrics and quotes in a Moleskine journal.
@@ -64,17 +76,17 @@ My life so far – versioned. Also check out experimental development: <a href=
   - Visited Hawaii, Saskatchewan, and British Columbia.
 - Bought *johanbrook.com* and started iterating on my own homepage.
 
-### Version 1.6
+### Version 1.2
 
 - Ended high school, with personal focus on web design and development.
 - Developed as a person in social interactions.
 - Decided to *not* apply for university right after, and instead try to work in a non-computerized environment.
 
-### Version 1.5
+### Version 1.1
 
 - Began high school at technical program. Develops deeper interests for programming and development.
 - Found great friends with similar interests.
 
 ## Version 1.0
 
-- Born. <small class="muted"><em>Note:</em> At this stage, my external API became stable after a period of alpha and beta development in mother's womb.</small>
+- Born. <small class="muted"><em>Note:</em> At this stage, my external APIs was conceived, but they were not regarded as "stable" until 2.0.
