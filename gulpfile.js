@@ -12,7 +12,8 @@ const src = {
       'templates/*.html',
       'layouts/*.html',
       'src/posts/*.md',
-      'src/*.md'
+      'src/*.md',
+      'src/*.json'
     ]
 };
 
