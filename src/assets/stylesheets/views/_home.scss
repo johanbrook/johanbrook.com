@@ -110,6 +110,11 @@
       margin-bottom: $lineheight*2;
     }
 
+    strong {
+      font-family: $sans;
+      font-weight: 800;
+    }
+
     blockquote {
       font-weight: 300;
       font-style: italic;

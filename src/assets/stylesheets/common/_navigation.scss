@@ -18,6 +18,13 @@
   }
 }
 
+$nav-links:
+  #000,
+  $comp-cerise,
+  $comp-teal-light,
+  $comp-orange,
+  $comp-neon;
+
 .main-navigation {
   padding: $lineheight 2%;
   margin-bottom: $lineheight;
@@ -27,6 +34,14 @@
   a {
     display: block;
     padding: 0 1rem;
+  }
+
+  @for $i from 1 through 5 {
+    li:nth-child(#{$i}) {
+      a:hover {
+        color: nth($nav-links, $i);
+      }
+    }
   }
 
   .nav--current {

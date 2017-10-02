@@ -22,20 +22,15 @@ During a year, I worked for **Spotify** in their *Street Team*. I was, together 
 
 The consultant life taught me a lot university did not, and I was lucky to get the chance of working with companies like Volvo, SCA, and Sony Ericsson during this period. I still couldn't drop the thought of that: *"Man, working with a product must be like 1000 times cooler than writing code for corporate clients every day"*.
 
-**This made me get in touch with [Lookback](http://lookback.io).** They had developed this cool user research technology based on screen recordings for iOS (originally sprung from within Spotify), and I felt that they were good people. Don't ask me how I got the job, but after cold mailing with the co-founder, [Jonatan](http://twitter.com/littke), they saw something in me, and I joined in during the summer after taking my Bachelor's degree. I got my hands dirty at once in their Meteor based web app, and step by step built the front and back-end infrastructure that is today's [lookback.io](http://lookback.io).
+**This made me get in touch with [Lookback](http://lookback.io).** They had developed this cool user research technology based on screen recordings for iOS (originally sprung from within Spotify), and I felt that they were good people. I got my hands dirty at once in their Meteor based web app, and step by step built the front and back-end infrastructure that is today's [lookback.io](http://lookback.io).
 
 You'll find some code I've open sourced in Lookback in our [GitHub organization](http://github.com/lookback).
 
 At the end of the summer, I evidently saw something in them as well, since I decided to *not* pursue a Master's degree in Interaction Design – something I had planned on for the past four years – but to instead join Lookback as their first employee.
 
-> [Here's my Spotify playlist](https://open.spotify.com/user/johanbrook/playlist/1Ldhvei26A52VXc1ErGFE3) I've listened to at least once a day since around 2010.
-
-
 **I love traveling.** I lived in Canada for a year before university, where I went completely offline and worked as a barista. As everybody else, I still hate myself for not picking up more languages when I was younger though.
 
 Since September 2015, I've embarked upon this nomad thing of traveling the world while working remote. So far, I've lived and worked in Vienna, London, San Francisco, New York, Montréal, Asunción, Rio de Janeiro, and Copenhagen.
-
-I'd love to find a base location at some point though.
 
 Keep an eye out on ["Now"](/now) for updates. [Give me a shout](http://twitter.com/johanbrook) if we're in the same city!
 
