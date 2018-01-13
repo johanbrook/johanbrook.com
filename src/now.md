@@ -13,7 +13,7 @@ tags:
 ---
 
 <p class="tc muted mono f7">
-  Last updated October 2nd, 2017
+  Last updated January 12th, 2018
 </p>
 
 This page reflects what I'm doing with my life at the moment, since it's the most common question on the internet and in real life anyway.
@@ -36,8 +36,8 @@ I've had the privilege of traveling while working remotely (doing this nomad thi
 12. 🇺🇸 ~~**Miami/New York**~~, USA (April, 2016)
 13. 🇸🇪 ~~**Gothenburg**~~, Sweden (January-September, 2017)
 14. 🇫🇷 ~~**Nice**~~, France (August, 2017)
-15. 🇸🇪 **Stockholm**, Sweden (October, 2017)
-16. 🇵🇹 **Lisbon**, Portugal (November-December, 2017)
+15. 🇸🇪 ~~**Stockholm**~~, Sweden (October, 2017)
+16. 🇵🇹 ~~**Lisbon**~~, Portugal (November-December, 2017)
 17. 🇸🇪 **Stockholm**, Sweden (Spring, 2018)
 
 I spend my time on these things:
@@ -45,7 +45,7 @@ I spend my time on these things:
 - enjoying life with my dope girlfriend in Stockholm.
 - working in [Lookback](http://lookback.io) as web app developer and designer. Mostly doing product and writing Javascript in [Meteor](http://meteor.com).
 - reading books and articles, in order to get my mind off the digital things.
-- currently reading *Sapiens* by Yuval Noah Harari.
+- currently reading *Homo Deus* by Yuval Noah Harari.
 - collecting memories on [Instagram](http://instagram.com/johanbrook/).
 - playing the guitar.
 - writing [open source packages for Meteor](https://atmospherejs.com/lookback/).
