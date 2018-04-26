@@ -38,7 +38,7 @@ I've had the privilege of traveling while working remotely (doing this nomad thi
 14. 🇫🇷 ~~**Nice**~~, France (August, 2017)
 15. 🇸🇪 ~~**Stockholm**~~, Sweden (October, 2017)
 16. 🇵🇹 ~~**Lisbon**~~, Portugal (November-December, 2017)
-17. 🇸🇪 **Stockholm**, Sweden (Spring, 2018)
+17. 🇸🇪 **Stockholm**, Sweden (2018-)
 
 I spend my time on these things:
 
@@ -48,7 +48,6 @@ I spend my time on these things:
 - currently reading *Homo Deus* by Yuval Noah Harari.
 - collecting memories on [Instagram](http://instagram.com/johanbrook/).
 - playing the guitar.
-- writing [open source packages for Meteor](https://atmospherejs.com/lookback/).
 - trying to write more articles on this site.
 - learning Portuguese via Duolingo and other methods.
 
