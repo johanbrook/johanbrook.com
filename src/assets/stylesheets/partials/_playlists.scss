@@ -1,0 +1,88 @@
+.playlists-grid {
+  $transition-timing: 1.1s;
+  $transition-easing: cubic-bezier(0.225, 0.795, 0.580, 0.980);
+
+  @include list-reset;
+  margin-top: 3em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &:hover {
+    .playlists-grid__title {
+      transform: perspective(1000px) translate3d(0, -2px, -9px);
+    }
+
+    .playlists-grid__description {
+      transform: perspective(1000px) translate3d(0, -1px, -5px);
+    }
+
+    .playlists-grid__cover {
+      transform: perspective(1000) translateZ(-30px);
+      box-shadow: rgba(#000, .09) 0 5px 20px;
+    }
+  }
+
+  > li {
+    padding: 0 3%;
+    margin-bottom: 1.5em;
+
+    &:hover {
+
+      .playlists-grid__cover {
+        transform: translateZ(0);
+        opacity: 1;
+      }
+
+      .playlists-grid__description,
+      .playlists-grid__title {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+
+      .playlists-grid__description {
+        color: $text-color;
+      }
+    }
+  }
+
+  &__item {
+    display: block;
+    width: 13em;
+    text-align: center;
+    text-decoration: none;
+    transition: opacity $transition-timing $transition-easing;
+  }
+
+  &__cover {
+    display: block;
+    border-radius: 3px;
+    margin-bottom: .5em;
+    transform: translateZ(0);
+    transition: transform $transition-timing $transition-easing,
+                box-shadow $transition-timing $transition-easing,
+                opacity $transition-timing $transition-easing;
+    box-shadow: rgba(#000, .09) 0 10px 40px;
+  }
+
+  &__title {
+    font-size: to_em(20);
+    margin-bottom: .3em;
+    line-height: 1.3;
+    transition: transform $transition-timing $transition-easing,
+                opacity $transition-timing $transition-easing,;
+  }
+
+  &__description {
+    @include smooth;
+    font-family: $sans;
+    font-size: to_em(14);
+    line-height: 1.3;
+    padding: 0 .5em;
+    color: $grey;
+    backface-visibility: hidden;
+    transition: opacity $transition-timing $transition-easing,
+                color $transition-timing $transition-easing,
+                transform $transition-timing $transition-easing;
+  }
+}
