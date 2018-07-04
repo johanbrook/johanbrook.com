@@ -6,8 +6,8 @@
 //  * requirement that options `layout` and `template` can't be used
 //    simultaneosly.
 
-var toFn = require('to-function')
-var extend = require('xtend')
+var toFn = require('to-function');
+var extend = require('xtend');
 
 /**
  * Page collection defaults.
@@ -17,8 +17,8 @@ var extend = require('xtend')
 var DEFAULTS = {
   perPage: 10,
   noPageOne: false,
-  pageContents: new Buffer('')
-}
+  pageContents: new Buffer(''),
+};
 
 /**
  * Paginate based on the collection.
@@ -26,39 +26,39 @@ var DEFAULTS = {
  * @param  {Object}   options
  * @return {Function}
  */
-module.exports = function (options) {
-  var keys = Object.keys(options)
+module.exports = function(options) {
+  var keys = Object.keys(options);
 
-  return function (files, metalsmith, done) {
-    var metadata = metalsmith.metadata()
+  return function(files, metalsmith, done) {
+    var metadata = metalsmith.metadata();
 
     // Iterate over all the paginate names and match with collections.
-    var complete = keys.every(function (name) {
-      var collection
+    var complete = keys.every(function(name) {
+      var collection;
 
       // Catch nested collection reference errors.
       try {
-        collection = toFn(name)(metadata)
+        collection = toFn(name)(metadata);
       } catch (error) {}
 
       if (!collection) {
-        done(new TypeError('Collection not found (' + name + ')'))
+        done(new TypeError('Collection not found (' + name + ')'));
 
-        return false
+        return false;
       }
 
-      var pageOptions = extend(DEFAULTS, options[name])
-      var toShow = collection
-      var groupBy = toFn(pageOptions.groupBy || groupByPagination)
+      var pageOptions = extend(DEFAULTS, options[name]);
+      var toShow = collection;
+      var groupBy = toFn(pageOptions.groupBy || groupByPagination);
 
       if (pageOptions.filter) {
-        toShow = collection.filter(toFn(pageOptions.filter))
+        toShow = collection.filter(toFn(pageOptions.filter));
       }
 
       if (!pageOptions.template && !pageOptions.layout) {
-        done(new TypeError('A template or layout is required (' + name + ')'))
+        done(new TypeError('A template or layout is required (' + name + ')'));
 
-        return false
+        return false;
       }
 
       /*
@@ -71,33 +71,37 @@ module.exports = function (options) {
       }*/
 
       if (!pageOptions.path) {
-        done(new TypeError('The path is required (' + name + ')'))
+        done(new TypeError('The path is required (' + name + ')'));
 
-        return false
+        return false;
       }
 
       // Can't specify both
       if (pageOptions.noPageOne && !pageOptions.first) {
-        done(new TypeError(
-          'When `noPageOne` is enabled, a first page must be set (' + name + ')'
-        ))
+        done(
+          new TypeError(
+            'When `noPageOne` is enabled, a first page must be set (' +
+              name +
+              ')'
+          )
+        );
 
-        return false
+        return false;
       }
 
       // Put a `pages` property on the original collection.
-      var pages = collection.pages = []
-      var pageMap = {}
+      var pages = (collection.pages = []);
+      var pageMap = {};
 
       // Sort pages into "categories".
-      toShow.forEach(function (file, index) {
-        var name = String(groupBy(file, index, pageOptions))
+      toShow.forEach(function(file, index) {
+        var name = String(groupBy(file, index, pageOptions));
 
         // Keep pages in the order they are returned. E.g. Allows sorting
         // by published year to work.
         if (!pageMap.hasOwnProperty(name)) {
           // Use the index to calculate pagination, page numbers, etc.
-          var length = pages.length
+          var length = pages.length;
 
           var pagination = {
             name: name,
@@ -105,8 +109,8 @@ module.exports = function (options) {
             num: length + 1,
             pages: pages,
             files: [],
-            getPages: createPagesUtility(pages, length)
-          }
+            getPages: createPagesUtility(pages, length),
+          };
 
           // Generate the page data.
           var page = extend(pageOptions.pageMetadata, {
@@ -114,52 +118,52 @@ module.exports = function (options) {
             layout: pageOptions.layout,
             contents: pageOptions.pageContents,
             path: interpolate(pageOptions.path, pagination),
-            pagination: pagination
-          })
+            pagination: pagination,
+          });
 
           // Copy collection metadata onto every page "collection".
-          pagination.files.metadata = collection.metadata
+          pagination.files.metadata = collection.metadata;
 
           if (length === 0) {
             if (!pageOptions.noPageOne) {
-              files[page.path] = page
+              files[page.path] = page;
             }
 
             if (pageOptions.first) {
               // Extend the "first page" over the top of "page one".
               page = extend(page, {
-                path: interpolate(pageOptions.first, page.pagination)
-              })
+                path: interpolate(pageOptions.first, page.pagination),
+              });
 
-              files[page.path] = page
+              files[page.path] = page;
             }
           } else {
-            files[page.path] = page
+            files[page.path] = page;
 
-            page.pagination.previous = pages[length - 1]
-            pages[length - 1].pagination.next = page
+            page.pagination.previous = pages[length - 1];
+            pages[length - 1].pagination.next = page;
           }
 
-          pages.push(page)
-          pageMap[name] = pagination
+          pages.push(page);
+          pageMap[name] = pagination;
         }
 
         // Files are kept sorted within their own category.
-        pageMap[name].files.push(file)
-      })
+        pageMap[name].files.push(file);
+      });
 
       // Add page utilities.
-      pages.forEach(function (page, index) {
-        page.pagination.first = pages[0]
-        page.pagination.last = pages[pages.length - 1]
-      })
+      pages.forEach(function(page, index) {
+        page.pagination.first = pages[0];
+        page.pagination.last = pages[pages.length - 1];
+      });
 
-      return true
-    })
+      return true;
+    });
 
-    return complete && done()
-  }
-}
+    return complete && done();
+  };
+};
 
 /**
  * Interpolate the page path with pagination variables.
@@ -168,10 +172,10 @@ module.exports = function (options) {
  * @param  {Object} data
  * @return {String}
  */
-function interpolate (path, data) {
-  return path.replace(/:(\w+)/g, function (match, param) {
-    return data[param]
-  })
+function interpolate(path, data) {
+  return path.replace(/:(\w+)/g, function(match, param) {
+    return data[param];
+  });
 }
 
 /**
@@ -182,8 +186,8 @@ function interpolate (path, data) {
  * @param  {Object} options
  * @return {number}
  */
-function groupByPagination (file, index, options) {
-  return Math.ceil((index + 1) / options.perPage)
+function groupByPagination(file, index, options) {
+  return Math.ceil((index + 1) / options.perPage);
 }
 
 /**
@@ -193,19 +197,19 @@ function groupByPagination (file, index, options) {
  * @param  {number}   index
  * @return {Function}
  */
-function createPagesUtility (pages, index) {
-  return function getPages (number) {
-    var offset = Math.floor(number / 2)
-    var start, end
+function createPagesUtility(pages, index) {
+  return function getPages(number) {
+    var offset = Math.floor(number / 2);
+    var start, end;
 
     if (index + offset >= pages.length) {
-      start = Math.max(0, pages.length - number)
-      end = pages.length
+      start = Math.max(0, pages.length - number);
+      end = pages.length;
     } else {
-      start = Math.max(0, index - offset)
-      end = Math.min(start + number, pages.length)
+      start = Math.max(0, index - offset);
+      end = Math.min(start + number, pages.length);
     }
 
-    return pages.slice(start, end)
-  }
+    return pages.slice(start, end);
+  };
 }

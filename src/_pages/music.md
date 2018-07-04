@@ -1,6 +1,6 @@
 ---
-template: music.html
-page: music
+template: music
+title: Music
 tags: spotify, playlists, johan brook, programming
 description: My home made music playlists. For themes such as programming, cooking, and when it rains.
 playlists:

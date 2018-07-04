@@ -1,0 +1,78 @@
+---
+title: Writings
+---
+<main role="main">
+
+  <h1 class="mb0 f-headline fw9 tracked-tight-some comp-teal-l">Writings</h1>
+
+  <p class="muted mono f7">
+    Psst! There's more stuff at my
+    <a href="{{tumblr}}">personal blog</a> too!
+  </p>
+
+  <% files.forEach(post => { %>
+
+    <article role="article" class="{{#if link}}linked{{/if}}">
+      <header>
+        <p class="post__meta">
+          <time datetime="{{toISODate date}}" title="{{toRelativeDate date}}" pubdate>{{ niceDate date 'MMMM D, YYYY'}}</time>
+          {{#if link}}
+            /
+            <a class="meta__permalink" href="<%= post.url %>">Permalink</a>
+          {{else}}
+            /
+            <span class="meta__stats">{{readingTime}}</span>
+          {{/if}}
+        </p>
+
+        {{#if link}}
+          <h1 class="f3">
+            {{ icon 'link' }}
+            <a title="{{link}}" href="{{link}}">
+              <%= post.title %> →</a>
+          </h1>
+        {{else}}
+          <h1 class="f3">
+            <a href="<%= post.url %>">
+              <%= post.title %>
+            </a>
+          </h1>
+        {{/if}}
+      </header>
+
+      <div class="post-text f7 mono">
+        <p>{{{excerpt}}}</p>
+      </div>
+    </article>
+
+    <% }) %>
+
+      <footer class="page-nav">
+        <p>
+          {{#if pagination.previous}}
+            <a rel="prev" href="/{{ pretty pagination.previous.path}}">Newer</a>
+          {{/if}}
+
+          <span class="separator">/ {{posts.length}} posts /</span>
+
+          {{#if pagination.next}}
+            <a rel="next" href="/{{ pretty pagination.next.path}}">Older</a>
+          {{/if}}
+        </p>
+
+        <p>
+          <a href="/rss.xml">Feed</a>
+        </p>
+
+      </footer>
+
+      {{else}}
+
+        <p class="no-content">
+          No writings yet.
+        </p>
+
+        {{/if}}
+
+
+</main>

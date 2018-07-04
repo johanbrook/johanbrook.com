@@ -1,8 +1,6 @@
 ---
-template: page.html
-page: changelog
-color: neon
 title: Changelog
+color: neon
 description: Log over semi major life events so far.
 ogImage: https://johanbrook.com/assets/images/og-image-changelog.png
 ---
@@ -74,13 +72,13 @@ My life so far – versioned. Also check out experimental development: <a href=
   - Started working at Starbucks in Calgary. Earned bullshit "Certified Barista" badge.
   - Emerged in foreign environment and developed in English, social interactions, as well as learning to take care of myself, to some extent.
   - Visited Hawaii, Saskatchewan, and British Columbia.
-- Bought *johanbrook.com* and started iterating on my own homepage.
+- Bought _johanbrook.com_ and started iterating on my own homepage.
 
 ### Version 1.2
 
 - Ended high school, with personal focus on web design and development.
 - Developed as a person in social interactions.
-- Decided to *not* apply for university right after, and instead try to work in a non-computerized environment.
+- Decided to _not_ apply for university right after, and instead try to work in a non-computerized environment.
 
 ### Version 1.1
 

@@ -1,6 +1,7 @@
 ---
-template: about.html
-page: about
+template: about
+slug: about
+title: About
 ---
 
 **I was born** in 1990 in a small village in central Sweden. Like many others, I gained an interest in computers through games and such. Unlike many others, I was pretty decent at both design and programming.
@@ -11,6 +12,6 @@ In 2011, I began studying software engineering at Chalmers in Gothenburg, Sweden
 
 However, life sometimes has unexpected events in store for you. In my case, it came when I worked with the startup Lookback during the summer of 2014. I ended up dropping out of university and joining Lookback on remote, and haven’t looked back since (pun intended).
 
-***
+---
 
-In September 2015, I started traveling by doing this *nomad* thing. I hope to explore bits and pieces in the corners of the world, and learn to adapt to and integrate. [Give me a shout](http://twitter.com/johanbrook) if we're in the same town.
+In September 2015, I started traveling by doing this _nomad_ thing. I hope to explore bits and pieces in the corners of the world, and learn to adapt to and integrate. [Give me a shout](http://twitter.com/johanbrook) if we're in the same town.

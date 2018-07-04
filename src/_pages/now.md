@@ -1,6 +1,5 @@
 ---
-template: page.html
-page: now
+template: page
 color: cerise
 title: What I'm doing now
 ogImage: https://johanbrook.com/assets/images/johan-map.png
@@ -22,15 +21,15 @@ This page reflects what I'm doing with my life at the moment, since it's the mos
 
 I've had the privilege of traveling while working remotely (doing this nomad thing). My current travel plans are:
 
-1. 🇦🇹 ~~**Vienna**~~, Austria (October, 2015)
-2. 🇺🇸 ~~**San Francisco**~~, U.S. (October-November, 2015)
-3. 🇬🇧 ~~**London**~~, UK (November-December, 2015)
-4. 🇩🇰 ~~**Copenhagen**~~, Denmark (December, 2015)
-5. 🇪🇸 ~~**Madrid**~~, Spain (January, 2016)
-6. 🇵🇾 ~~**Asunción**~~, Paraguay (February-April, 2016)
-7. 🇺🇸 ~~**San Diego**~~, U.S. (March, 2016)
-8. 🇧🇷 ~~**Rio de Janeiro**~~, Brazil (April-May, 2016)
-9. 🇸🇪 ~~**Gothenburg**~~, Sweden (June-September, 2016)
+1.  🇦🇹 ~~**Vienna**~~, Austria (October, 2015)
+2.  🇺🇸 ~~**San Francisco**~~, U.S. (October-November, 2015)
+3.  🇬🇧 ~~**London**~~, UK (November-December, 2015)
+4.  🇩🇰 ~~**Copenhagen**~~, Denmark (December, 2015)
+5.  🇪🇸 ~~**Madrid**~~, Spain (January, 2016)
+6.  🇵🇾 ~~**Asunción**~~, Paraguay (February-April, 2016)
+7.  🇺🇸 ~~**San Diego**~~, U.S. (March, 2016)
+8.  🇧🇷 ~~**Rio de Janeiro**~~, Brazil (April-May, 2016)
+9.  🇸🇪 ~~**Gothenburg**~~, Sweden (June-September, 2016)
 10. 🇨🇦 ~~**Montréal**~~, Canada (September-October, 2016)
 11. 🇺🇸 ~~**New York**~~, USA (October-December, 2016)
 12. 🇺🇸 ~~**Miami/New York**~~, USA (April, 2016)
@@ -45,7 +44,7 @@ I spend my time on these things:
 - enjoying life with my dope girlfriend in Stockholm.
 - working in [Lookback](http://lookback.io) as web app developer and designer. Mostly doing product and writing Javascript in [Meteor](http://meteor.com).
 - reading books and articles, in order to get my mind off the digital things.
-- currently reading *Homo Deus* by Yuval Noah Harari.
+- currently reading _Homo Deus_ by Yuval Noah Harari.
 - collecting memories on [Instagram](http://instagram.com/johanbrook/).
 - playing the guitar.
 - trying to write more articles on this site.
@@ -53,6 +52,6 @@ I spend my time on these things:
 
 If my life changes, I'll update this page.
 
-***
+---
 
 Inspired by [Derek Sivers](https://sivers.org/now) and [NAII](http://naii.de/now/).

@@ -1,11 +1,12 @@
 ---
-template: home.html
+template: home
 page: home
+title: Johan
 ---
 
-**I like building things** for the web and you'll *probably* enjoy grabbing a beer or coffee with me. I also like reading, writing, strolling around in cities, playing the guitar, coffee, cooking, and photography.
+**I like building things** for the web and you'll _probably_ enjoy grabbing a beer or coffee with me. I also like reading, writing, strolling around in cities, playing the guitar, coffee, cooking, and photography.
 
-***
+---
 
 I've been designing and writing code for around seven years now. So far, I've avoided to put myself under one label – to specialise in one thing only – and instead gone for this Jack of all Trades role in the various teams I've had the pleasure of working with. I like all things graphic and digital design, front and backend development, product and strategy, typography and API design, copywriting and CSS architecture.
 
