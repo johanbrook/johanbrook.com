@@ -30,7 +30,8 @@
     "marked": "^0.4.0",
     "node-sass": "^4.9.0",
     "slug": "^0.9.1",
-    "ts-node": "^6.1.1"
+    "ts-node": "^6.1.1",
+    "xstream": "^11.7.0"
   },
   "devDependencies": {
     "@types/ejs": "^2.6.0",

@@ -18,7 +18,7 @@ const INDEX = 'index.html';
   - [x] Custom templates & layouts
   - [x] Permalinks
   - [x] Posts index page
-  - [ ] Ordering
+  - [x] Ordering
   - [ ] Pagination
   - [ ] Drafts
   - [ ] Sass rendering/minification
@@ -64,8 +64,8 @@ interface IndexTemplateData {
 type TemplateData = PageMeta | MetaInfo | path.ParsedPath | IndexTemplateData;
 
 enum Order {
-  ASC = 'asc',
-  DESC = 'desc',
+  ASC,
+  DESC,
 }
 
 interface CollectionItem {
@@ -159,16 +159,19 @@ function render(
 ): Promise<string> {
   return fse
     .readFile(layoutPath, 'utf-8')
-    .then(contents =>
-      ejs.render(
-        contents,
+    .then(contents => {
+      const pageData = frontmatter<PageMeta>(contents);
+
+      return ejs.render(
+        pageData.body,
         {
           ...props.data,
+          ...pageData.attributes,
           body: props.body,
         },
         { async: true }
-      )
-    )
+      );
+    })
     .catch(err => {
       console.error(chalk.red(`Error when rendering ${layoutPath}:`));
       console.error(chalk.red(err.stack || err));
@@ -303,13 +306,6 @@ async function buildCollections(
           });
         }
 
-        const indexContents = await fse.readFile(
-          item.indexTemplate.path,
-          'utf-8'
-        );
-
-        const pageData = frontmatter<PageMeta>(indexContents);
-
         const indexPage = await renderInLayout(
           item.indexTemplate.path,
           join(layoutsPath, 'layout.html.ejs'),
@@ -317,7 +313,6 @@ async function buildCollections(
             data: {
               files,
               ...meta,
-              ...pageData.attributes,
             },
           }
         );

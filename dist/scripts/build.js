@@ -35,7 +35,7 @@ const INDEX = 'index.html';
   - [x] Custom templates & layouts
   - [x] Permalinks
   - [x] Posts index page
-  - [ ] Ordering
+  - [x] Ordering
   - [ ] Pagination
   - [ ] Drafts
   - [ ] Sass rendering/minification
@@ -44,8 +44,8 @@ const INDEX = 'index.html';
 const { sourcePath, outPath, publicDir, layoutsPath, templatesPath, } = config_1.buildConfig;
 var Order;
 (function (Order) {
-    Order["ASC"] = "asc";
-    Order["DESC"] = "desc";
+    Order[Order["ASC"] = 0] = "ASC";
+    Order[Order["DESC"] = 1] = "DESC";
 })(Order || (Order = {}));
 helpers_1.notify(`Reading from\t${chalk_1.default.magenta(sourcePath)}`);
 helpers_1.notify(`Writing to\t${chalk_1.default.magenta(outPath)}`);
@@ -96,7 +96,10 @@ function buildPermalinkDestination(fileData, collectionItem, pageData) {
 function render(layoutPath, props = {}) {
     return fs_extra_1.default
         .readFile(layoutPath, 'utf-8')
-        .then(contents => ejs_1.default.render(contents, Object.assign({}, props.data, { body: props.body }), { async: true }))
+        .then(contents => {
+        const pageData = front_matter_1.default(contents);
+        return ejs_1.default.render(pageData.body, Object.assign({}, props.data, pageData.attributes, { body: props.body }), { async: true });
+    })
         .catch(err => {
         console.error(chalk_1.default.red(`Error when rendering ${layoutPath}:`));
         console.error(chalk_1.default.red(err.stack || err));
@@ -169,10 +172,8 @@ function buildCollections(collections) {
                         return 0;
                     });
                 }
-                const indexContents = yield fs_extra_1.default.readFile(item.indexTemplate.path, 'utf-8');
-                const pageData = front_matter_1.default(indexContents);
                 const indexPage = yield renderInLayout(item.indexTemplate.path, path_1.join(layoutsPath, 'layout.html.ejs'), {
-                    data: Object.assign({ files }, config_1.meta, pageData.attributes),
+                    data: Object.assign({ files }, config_1.meta),
                 });
                 yield fs_extra_1.default.outputFile(path_1.join(outPath, item.indexTemplate.permalink, INDEX), indexPage);
             }
