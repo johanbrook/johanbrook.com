@@ -1,8 +1,0 @@
-{
-  "name": "johanbrook.com",
-  "type": "static",
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "files": ["build"]
-}

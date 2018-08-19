@@ -29,7 +29,6 @@
     "gulp-serve": "^1.4.0",
     "gulp-shell": "^0.6.5",
     "moment": "^2.22.2",
-    "now": "^11.3.10",
     "require-dir": "^1.0.0"
   },
   "engines": {
