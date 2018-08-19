@@ -1,0 +1,51 @@
+.article-text {
+  img,
+  iframe,
+  figure,
+  svg {
+    margin: $spacing-base * 2 auto;
+    display: block;
+  }
+
+  figcaption {
+    padding: 1rem 0;
+    text-align: center;
+    font-family: $sans;
+    font-size: 0.9em;
+  }
+
+  h2,
+  h3 {
+    margin-top: $spacing-base * 2;
+  }
+
+  @include larger-than($handheld) {
+    ul,
+    ol {
+      padding-left: 2rem;
+      margin-right: -2rem;
+      margin-bottom: $spacing-base * 2;
+      margin-top: $spacing-base * 2;
+    }
+  }
+
+  li {
+    margin-bottom: $spacing-base / 4;
+  }
+
+  pre {
+    @include larger-than(800px) {
+      margin-left: -$spacing-base * 4;
+      margin-right: -$spacing-base * 4;
+      padding-left: $spacing-base * 2;
+    }
+  }
+
+  .ingress strong,
+  p:first-child strong {
+    color: $text-color;
+    font-family: $sans;
+    font-weight: 900;
+    font-size: 1.2em;
+  }
+}

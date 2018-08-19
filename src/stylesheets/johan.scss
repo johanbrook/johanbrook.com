@@ -30,6 +30,7 @@ Just kidding.
 
 @import 'lib/normalize';
 @import 'lib/tomorrow';
+@import 'lib/fonts';
 
 // Common
 
@@ -38,15 +39,19 @@ Just kidding.
 @import 'common/navigation';
 @import 'common/buttons';
 
-// Partials
-
-@import 'partials/post';
-@import 'partials/story-blocks';
-@import 'partials/playlists';
-
 // Helpers
 
+@import 'helpers/box-sizing';
 @import 'lib/helpers';
+@import 'helpers/spacing';
+@import 'helpers/colours';
+@import 'helpers/text-align';
+@import 'helpers/type-scale';
+@import 'helpers/typography';
+@import 'helpers/alignment';
+@import 'helpers/font-family';
+@import 'helpers/letter-spacing';
+@import 'helpers/text';
 
 // Views
 @import 'views/page';
@@ -55,3 +60,11 @@ Just kidding.
 @import 'views/post';
 @import 'views/contact';
 @import 'views/changelog';
+
+// Partials
+
+@import 'partials/post';
+@import 'partials/story-blocks';
+@import 'partials/playlists';
+@import 'partials/page-nav';
+@import 'partials/footer';

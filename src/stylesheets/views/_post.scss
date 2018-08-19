@@ -2,23 +2,18 @@
 --------------------------------------------- */
 
 .post {
-  padding-bottom: 0;
-
-  [role="article"] {
+  [role='article'] {
     margin-top: 0;
 
     header {
       text-align: center;
-      margin-bottom: $lineheight*2;
+      margin-bottom: $lineheight * 2;
+      max-width: to_em(600);
 
       h1 {
         margin-bottom: $lineheight / 2;
         line-height: 1.2;
       }
-    }
-
-    .post__meta {
-      font-size: to_em(16);
     }
 
     .meta__stats {

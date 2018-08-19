@@ -1,4 +1,0 @@
----
-template: contact
-title: Contact
----

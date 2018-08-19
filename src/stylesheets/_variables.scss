@@ -1,22 +1,22 @@
 // Colors
 
-$comp-green: #6EBC30;
-$comp-blue: #4BB2F7;
+$comp-green: #6ebc30;
+$comp-blue: #4bb2f7;
 $comp-red: #dc353f;
-$comp-neon: #54CF88;
+$comp-neon: #54cf88;
 $comp-neon-dark: darken($comp-neon, 20%);
 $comp-teal: #227b90;
 $comp-teal-light: #13b1bf;
-$comp-orange: #FF8C00;
+$comp-orange: #ff8c00;
 $comp-beige: #fffadc;
-$comp-cerise: #E01270;
+$comp-cerise: #e01270;
 $comp-yellow: #fffa3c;
 
-$background-color: #fff;
+$background-color: #fbfbfb;
 
-$text-color: #3c3c3c;
-$grey: #979797;
-$grey-light: #b8b8b8;
+$text-color: #2a2a2a;
+$grey: #9c9c9c;
+$grey-light: #d1d1d1;
 $off-white: #fafafa;
 
 $link-color: darken($comp-blue, 10%);
@@ -24,24 +24,65 @@ $border-color: #e9e9e9;
 
 // Typography
 
-$base-size: 18;
-$leading: 28;
+$font-size-base: 17 !default;
+$leading-factor: 1.85 !default;
+$leading: $font-size-base * $leading-factor !default;
+$lineheight: $leading-factor * 1rem;
 
-$lineheight: ($leading / $base-size) * 1rem;
+$font-size-headline: 6rem !default;
+$font-size-subheadline: 5rem !default;
 
-$serif:     Georgia, serif;
-$sans:      Lato, 'Open Sans', Helvetica, sans-serif;
-$mono:      Hack, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
-$headings:  $sans;
-$tumblr-font: $mono;
+$font-size-1: 3rem !default;
+$font-size-2: 2.25rem !default;
+$font-size-3: 1.5rem !default;
+$font-size-4: 1.1rem !default;
+$font-size-5: 1rem !default;
+$font-size-6: 0.875rem !default;
+$font-size-7: 0.75rem !default;
+
+$letter-spacing-tight: -0.05em !default;
+$letter-spacing-1: 0.1em !default;
+$letter-spacing-2: 0.25em !default;
+
+$line-height-solid: 1 !default;
+$line-height-title: 1.25 !default;
+$line-height-copy: 1.5 !default;
+
+$serif: Duospace, Georgia, serif;
+$sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
+$mono: Hack, Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
+  'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
+  serif;
+$headings: $sans;
+$tumblr-font: $serif;
 
 // Measures
 
-$page-width:        90%;
-$max-width:         40rem;
-$column-width:      29rem;
+$page-width: 90%;
+$max-width: 40rem;
+$column-width: 29rem;
 
-$desktop:           1700px;
-$laptop:            1280px;
-$tablet:            768px;
-$handheld:          481px;
+$measure: 30em !default; // ~66 chars
+$measure-narrow: 20em !default; // ~45 chars
+$measure-wide: 37em !default; // ~80 chars
+
+$spacing-base: $leading-factor * 1rem !default;
+$spacing-none: 0 !default;
+$spacing-extra-small: 0.25rem !default;
+$spacing-small: 0.5rem !default;
+$spacing-medium: 1rem !default;
+$spacing-large: 2rem !default;
+$spacing-extra-large: 4rem !default;
+$spacing-extra-extra-large: 8rem !default;
+$spacing-extra-extra-extra-large: 16rem !default;
+
+// Breakpoints
+
+$desktop: 1700px;
+$laptop: 1281px;
+$tablet: 768px;
+$handheld: 481px;
+
+$breakpoint-not-small: 'screen and (min-width: #{$handheld})' !default;
+$breakpoint-medium: 'screen and (min-width: 30em) and (max-width: 60em)' !default;
+$breakpoint-large: 'screen and (min-width: 60em)' !default;

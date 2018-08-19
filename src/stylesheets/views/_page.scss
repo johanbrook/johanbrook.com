@@ -2,13 +2,13 @@
 --------------------------------------------- */
 
 .page {
-
+  h1 {
+    text-align: center;
+  }
 
   &__text {
     margin: 0 auto;
     width: $page-width;
-    max-width: $column-width;
-    font-family: $mono;
-    font-size: to_em(13);
+    max-width: $measure-wide;
   }
 }

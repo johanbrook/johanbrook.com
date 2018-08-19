@@ -1,0 +1,27 @@
+.page-nav {
+  text-align: center;
+  font-family: $sans;
+  font-size: $font-size-7;
+
+  a {
+    color: $grey;
+    display: inline-block;
+    padding: 0.3em 0.5em;
+    text-decoration: none;
+
+    &:hover {
+      color: $link-color;
+      text-decoration: underline;
+    }
+  }
+
+  .separator {
+    color: $comp-neon;
+    font-size: 1.2em;
+    margin: 0 3px;
+  }
+
+  @include handheld {
+    font-size: $font-size-6;
+  }
+}

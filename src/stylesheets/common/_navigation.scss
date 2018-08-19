@@ -1,7 +1,7 @@
 /* =NAVIGATION
 --------------------------------------------- */
 
-[role="navigation"] {
+[role='navigation'] {
   display: flex;
   justify-content: space-between;
 
@@ -18,22 +18,37 @@
   }
 }
 
-$nav-links:
-  #000,
-  $comp-cerise,
-  $comp-teal-light,
-  $comp-orange,
-  $comp-neon;
+$nav-links: #000, $comp-cerise, $comp-teal-light, $comp-orange, $comp-neon;
 
 .main-navigation {
   padding: $lineheight 2%;
   margin-bottom: $lineheight;
-  font-family: $mono;
-  font-size: to_em(13);
+  font-size: $font-size-7;
 
   a {
     display: block;
     padding: 0 1rem;
+    position: relative;
+    color: $grey;
+
+    &::before {
+      font-weight: bold;
+      content: '·';
+      position: absolute;
+      top: -1.5em;
+      left: 50%;
+      opacity: 0;
+      display: inline;
+      transform: translate3d(0, -25px, 0);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    &:hover {
+      &::before {
+        opacity: 1;
+        transform: none;
+      }
+    }
   }
 
   @for $i from 1 through 5 {
@@ -45,11 +60,21 @@ $nav-links:
   }
 
   .nav--current {
-    font-style: italic;
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        a {
+          color: nth($nav-links, $i);
+        }
+      }
+    }
 
     a {
-      color: $grey;
       cursor: default;
+
+      &::before {
+        opacity: 1;
+        transform: none;
+      }
 
       &:hover {
         text-decoration: none;
@@ -61,7 +86,7 @@ $nav-links:
     margin-bottom: 0;
 
     .navigation__secondary {
-      font-size: .9em;
+      font-size: 0.9em;
 
       a {
         color: $grey;
@@ -73,34 +98,17 @@ $nav-links:
     }
 
     a {
-      padding: .5em 1em;
+      padding: 0.5em 1em;
     }
   }
 }
 
 .footer-nav {
-  font-size: to_em(30);
-  font-weight: bold;
-  text-transform: uppercase;
   font-family: $sans;
-  display: block;
+  flex-direction: column;
 
   ul {
     justify-content: center;
-  }
-
-  a {
-    padding: .5em 1em;
-
-    &:hover {
-      color: #000;
-    }
-  }
-
-  li:not(:last-child)::after {
-    content: '+';
-    display: inline-block;
-    opacity: .6;
   }
 
   @include handheld {
@@ -118,13 +126,25 @@ $nav-links:
   }
 }
 
+.primary-footer-nav {
+  font-size: $font-size-3;
+  text-transform: uppercase;
+
+  a {
+    padding: 0.5em 1em;
+  }
+}
+
+.secondary-nav {
+}
+
 .mobile-nav-trigger {
   display: none;
   text-align: center;
   text-decoration: none;
   font-family: $sans;
   font-size: to_rem(13);
-  padding: 1em .5em;
+  padding: 1em 0.5em;
   color: $grey;
 
   .icon {

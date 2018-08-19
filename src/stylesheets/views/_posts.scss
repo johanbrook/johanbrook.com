@@ -2,22 +2,28 @@
 --------------------------------------------- */
 
 .posts {
+  max-width: $measure;
+  margin: 0 auto;
+  width: $page-width;
 
-  [role="main"] {
-    max-width: $column-width;
-    margin: 0 auto;
-    width: $page-width;
+  @include desktop {
+    > h1 {
+      margin-left: -3.5%;
+    }
   }
 
-  [role="article"] {
+  li {
+    margin-bottom: $spacing-base * 2;
+    border-bottom: 2px solid #e6e6e6;
+    padding-bottom: $spacing-base * 2;
+  }
+
+  [role='article'] {
     max-width: 100%;
     width: 100%;
-    margin-bottom: $lineheight*2;
-    border-bottom: 2px solid #e6e6e6;
-    padding-bottom: $lineheight*2;
 
-    &:hover  {
-      .post-text {
+    &:hover {
+      .post__excerpt {
         color: $text-color;
       }
     }
@@ -28,15 +34,16 @@
       .post__meta {
         text-align: left;
         margin: 0;
+        font-size: $font-size-7;
 
         .meta__stats,
         .meta__permalink {
-          font-size: .9em;
+          font-size: 0.9em;
         }
 
         a {
           font-weight: 600;
-          color: rgba($text-color, .8);
+          color: rgba($text-color, 0.8);
 
           &:hover {
             color: $text-color;
@@ -56,15 +63,13 @@
     }
 
     h1 {
-      margin-bottom: $lineheight / 2;
+      margin-bottom: $spacing-base / 2;
+      font-size: $font-size-3;
     }
 
-    .post-text {
+    .post__excerpt {
       color: $grey;
-
-      strong {
-        font-family: $mono;
-      }
+      font-size: $font-size-7;
 
       :last-child {
         margin-bottom: 0;

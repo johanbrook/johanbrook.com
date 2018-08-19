@@ -1,0 +1,18 @@
+---
+layout: layouts/main
+htmlClass: post
+---
+<main role="main">
+  <article role="article" itemscope itemtype="http://schema.org/BlogPosting">
+    <header> 
+      <h1 itemprop="name" class="f1-ns f3">{{ title }}</h1>
+      <p class="post__meta">
+        <time datetime="{{ date }}" itemprop="datePublished" title="9 months ago" pubdate>{{ date | niceDate }}</time>
+      </p>
+    </header>
+
+    <div class="article-text post__body" itemprop="articleBody">
+      {{ content | safe }}
+    </div>
+  </article>
+</main>

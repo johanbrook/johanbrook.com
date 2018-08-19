@@ -21,9 +21,9 @@
     }
   }
 
-  [role="banner"] {
-    padding: $lineheight*5 5%;
-    margin-bottom: $lineheight*4;
+  [role='banner'] {
+    padding: $spacing-base * 5 5%;
+    margin-bottom: $spacing-base * 4;
     line-height: 1.4;
     border-bottom: 1px solid $border-color;
 
@@ -40,14 +40,14 @@
     }
 
     @include handheld {
-      &:not([role="banner"] h1) {
+      &:not([role='banner'] h1) {
         font-size: to_rem(36);
       }
     }
   }
 
   h2 {
-    margin-bottom: $lineheight / 2;
+    margin-bottom: $spacing-base / 2;
   }
 
   .outset {
@@ -65,22 +65,14 @@
     width: 22vw;
 
     img {
-      margin: 0 0 .5rem;
+      margin: 0 0 0.5rem;
     }
 
     figcaption {
       font-style: italic;
-      font-size: .8em;
+      font-size: 0.8em;
       font-family: $serif;
       color: $grey-light;
-    }
-  }
-
-  .home-face {
-    @include smaller-than($break) {
-      position: static;
-      margin: 0 auto $lineheight;
-      width: 60%;
     }
   }
 
@@ -92,22 +84,22 @@
 
   .home-about {
     h1 {
-      margin-bottom: $lineheight*2;
+      margin-bottom: $spacing-base * 2;
     }
 
-    .post-text {
+    .post__text {
       @include larger-than($break) {
-        margin-bottom: $lineheight*2;
+        margin-bottom: $spacing-base * 2;
       }
     }
   }
 
-  .post-text {
+  .post__text {
     position: relative;
     @include smooth(false);
 
     p {
-      margin-bottom: $lineheight*2;
+      margin-bottom: $spacing-base * 2;
     }
 
     strong {
@@ -137,8 +129,6 @@
   }
 
   .section-home-more {
-    line-height: 1.8;
-
     @include larger-than($handheld) {
       .muted {
         padding: 0 2rem;
@@ -146,26 +136,11 @@
     }
 
     p:not(:last-child) {
-      margin-bottom: $lineheight;
+      margin-bottom: $spacing-base;
     }
 
     @include handheld {
       margin-bottom: 0;
-    }
-  }
-
-  .latest-post {
-    color: darken($grey, 20%);
-    font-size: .8em;
-
-    p {
-      margin-bottom: $lineheight / 2;
-    }
-
-    &__stats {
-      font-family: $sans;
-      font-weight: 300;
-      color: $grey-light;
     }
   }
 }

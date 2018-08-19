@@ -1,0 +1,13 @@
+---
+layout: layouts/main
+---
+
+<main role="main">
+  <article class="page">
+    <h1 class="f-5-ns f3 mb0 fw9 tracked-tight-some {{ "comp-" + color if color }}">{{ title }}</h1>
+
+    <div class="article-text page__text">
+      {{ content | safe }}
+    </div>
+  </article>
+</main>

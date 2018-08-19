@@ -7,75 +7,12 @@
   }
 }
 
-.bare-list {
+.list {
   @include list-reset;
-}
-
-// Colooours
-
-.comp-black {
-  color: #000;
-}
-
-.comp-red {
-  color: $comp-red;
-}
-
-.comp-blue {
-  color: $comp-blue;
-}
-
-.comp-neon {
-  color: $comp-neon;
-}
-
-.comp-teal-l {
-  color: $comp-teal-light;
-}
-
-.comp-orange {
-  color: $comp-orange;
-}
-
-.comp-cerise {
-  color: $comp-cerise;
-}
-
-.muted {
-  color: $grey;
-}
-
-.faded {
-  color: $grey-light;
-}
-
-.mono {
-  font-family: $mono;
-}
-
-.center {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.sans {
-  font-family: $sans;
-}
-
-.serif {
-  font-family: $serif;
 }
 
 .strong {
   color: $text-color;
-}
-
-.tracked-tight-some {
-  letter-spacing: -1px;
-}
-
-.f7 {
-  font-size: .7rem;
 }
 
 .stronger {
@@ -87,30 +24,13 @@
   font-size: 1.3em;
 }
 
-// @override
-.f-headline {
-  font-size: to_rem(65);
-
-  @include handheld {
-    font-size: 10vw;
-  }
-}
-
 .visuallyhidden {
   position: absolute;
   left: -999em;
 }
 
-.comp-green {
-  color: $comp-green;
-}
-
-.comp-blue {
-  color: $comp-blue;
-}
-
 .detail {
-  font-size: .85em;
+  font-size: 0.85em;
   font-weight: 300;
   color: $grey;
 }
@@ -126,17 +46,13 @@
   color: $grey;
 }
 
-.no-margin {
-  margin: 0;
-}
-
 .banner {
   @include smooth;
   background-color: $comp-orange;
-  padding: $lineheight*2 5%;
+  padding: $lineheight * 2 5%;
   color: #fff;
   text-align: center;
-  margin: $lineheight*4 0;
+  margin: $lineheight * 4 0;
 
   font-family: $sans;
   font-weight: 500;
@@ -147,7 +63,12 @@
 
   a {
     color: #fff;
-    @include underline($color: rgba(#fff, .6), $size: 3, $offset: .1, $bg: $comp-orange);
+    @include underline(
+      $color: rgba(#fff, 0.6),
+      $size: 3,
+      $offset: 0.1,
+      $bg: $comp-orange
+    );
 
     &:hover {
       @include underline-color(#fff);
@@ -185,7 +106,7 @@
   color: $text-color;
   text-decoration: underline;
   font-weight: bold;
-  @include underline($size: 7, $offset: .1);
+  @include underline($size: 7, $offset: 0.1);
 
   &:hover {
     color: $link-color;
@@ -203,64 +124,38 @@
 }
 
 .spacing {
-  margin-top: $lineheight*4;
-  margin-bottom: $lineheight*4;
+  margin-top: $spacing-base * 4;
+  margin-bottom: $spacing-base * 4;
 
   &.spacing--double {
-    margin-top: $lineheight*6;
-    margin-bottom: $lineheight*6;
+    margin-top: $spacing-base * 6;
+    margin-bottom: $spacing-base * 6;
   }
 
   &--top {
-    margin-top: $lineheight*4;
+    margin-top: $spacing-base * 4;
 
     &.spacing--double {
-      margin-top: $lineheight*6;
+      margin-top: $spacing-base * 6;
     }
   }
 
   &--bottom {
-    margin-bottom: $lineheight*4;
+    margin-bottom: $spacing-base * 4;
 
     &.spacing--double {
-      margin-bottom: $lineheight*6;
+      margin-bottom: $spacing-base * 6;
     }
   }
 
   @include handheld {
-    margin-top: $lineheight*2;
-    margin-bottom: $lineheight*2;
+    margin-top: $spacing-base * 2;
+    margin-bottom: $spacing-base * 2;
   }
 }
 
 .centered {
   text-align: center;
-}
-
-.page-nav {
-  text-align: center;
-  font-family: $mono;
-  font-size: to_em(12);
-
-  a {
-    color: $grey;
-    text-decoration: none;
-
-    &:hover {
-      color: darken($grey, 20%);
-      text-decoration: underline;
-    }
-  }
-
-  .separator {
-    color: $comp-neon;
-    font-size: 1.2em;
-    margin: 0 3px;
-  }
-
-  @include handheld {
-    font-size: 1.2em;
-  }
 }
 
 .grid-list {
@@ -343,7 +238,7 @@
     flex-direction: column;
     text-decoration: none;
     align-items: center;
-    transition: color .3s ease;
+    transition: color 0.3s ease;
 
     &:hover {
       color: #444;
@@ -355,7 +250,7 @@
   }
 
   &__label {
-    margin-top: .5em;
+    margin-top: 0.5em;
     font-family: $sans;
     font-weight: 300;
     text-transform: lowercase;
@@ -364,69 +259,8 @@
   }
 }
 
-
-.post-text {
-  img,
-  iframe,
-  figure,
-  svg {
-    margin: $lineheight*2 auto;
-    display: block;
-  }
-
-  figcaption {
-    padding: 1rem 0;
-    text-align: center;
-    font-family: $sans;
-    font-size: .9em;
-  }
-
-  h2, h3{
-    font-family: $sans;
-    font-weight: bold;
-    margin-top: $lineheight*2;
-  }
-
-  h2 {
-    font-size: to_rem(26);
-  }
-
-  h3 {
-    font-size: to_rem(20);
-  }
-
-  @include larger-than($handheld) {
-    ul, ol {
-      padding-left: 2rem;
-      margin-right: -2rem;
-      margin-bottom: $lineheight*2;
-      margin-top: $lineheight*2;
-    }
-  }
-
-  li {
-    margin-bottom: $lineheight / 4;
-  }
-
-  pre {
-    @include larger-than(800px) {
-      margin-left: -$lineheight*4;
-      margin-right: -$lineheight*4;
-      padding-left: $lineheight*2;
-    }
-  }
-
-  .ingress strong,
-  p:first-child strong {
-    color: #222;
-    font-family: $sans;
-    font-weight: 900;
-    font-size: 1.2em;
-  }
-}
-
 figure.image--full {
-  margin: #{$lineheight*2} -14vw;
+  margin: #{$lineheight * 2} -14vw;
 
   img {
     display: block;

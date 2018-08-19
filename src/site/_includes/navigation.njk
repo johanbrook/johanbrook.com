@@ -1,0 +1,32 @@
+<nav role="navigation" class="main-navigation" name="top">
+  <ul class="navigation__primary">
+    <li class="{% if slug == 'home' %}nav--current{% endif %}">
+      <a href="/">About me</a>
+    </li>
+    <li class="{% if page.fileSlug == 'now' %}nav--current{% endif %}">
+      <a href="/now">Now</a>
+    </li>
+    <li class="{% if page.fileSlug == 'writings' or tags == 'posts' %}nav--current{% endif %}">
+      <a href="/writings">Writings</a>
+    </li>
+    <li class="{% if page.fileSlug == 'contact' %}nav--current{% endif %}">
+      <a href="/contact">Contact</a>
+    </li>
+    <li class="{% if page.fileSlug == 'changelog' %}nav--current{% endif %}">
+      <a href="/changelog">Changelog</a>
+    </li>
+  </ul>
+
+  <ul class="navigation__secondary">
+    <li>
+      <a href="http://twitter.com/{{ meta.twitter }}">@{{ meta.twitter }}</a>
+    </li>
+    <li>
+      <a title="Oh, you don't have your personal API yet?" href="/meta.json">API</a>
+    </li>
+  </ul>
+</nav>
+
+<a href="#top" class="mobile-nav-trigger" data-show-nav>
+  {{ icon("list") }} Navigation
+</a>
