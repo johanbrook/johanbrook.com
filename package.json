@@ -21,7 +21,7 @@
   },
   "homepage": "https://johanbrook.com",
   "devDependencies": {
-    "@11ty/eleventy": "^0.5.2",
+    "@11ty/eleventy": "0.5.2",
     "browser-sync": "^2.24.6",
     "gulp": "^4",
     "gulp-clean": "^0.4.0",
