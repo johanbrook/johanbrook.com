@@ -1,36 +1,35 @@
 #!/usr/bin/env node
-'use strict';
 
-const fs =      require('fs');
-const path =    require('path');
-const slug =    require('slug');
-const moment =  require('moment');
-const exec =    require('child_process').exec;
-
-require('colors');
+const fs = require('fs');
+const path = require('path');
+const slug = require('slug');
+const moment = require('moment');
+const exec = require('child_process').exec;
 
 let arg = process.argv[2];
 let title = process.argv[3] || 'New post';
 
-if(arg.indexOf('-') !== 0) {
+if (arg.indexOf('-') !== 0) {
   title = arg;
 }
 
-const titleSlug = slug(title, {lower: true});
+const titleSlug = slug(title, { lower: true });
 
 const options = {
-  destination: path.join(__dirname, '../src/posts/'),
+  destination: path.join(__dirname, '../src/site/writings'),
   prefix: moment().format('YYYY-MM-DD'),
   silent: arg === '--silent',
   editor: arg == '--editor',
-  extension: 'md'
+  extension: 'md',
 };
 
 /*
   Create a new post with the title format:
     2015-01-01-slugified-title.md
 */
-const TEMPLATE = `---\ntitle: ${title}\nslug: ${titleSlug}\ndate: '${moment().format('YYYY-MM-DD HH:mm')}'\ndraft: true
+const TEMPLATE = `---\ntitle: ${title}\nslug: ${titleSlug}\ndate: '${moment().format(
+  'YYYY-MM-DDTHH:mm'
+)}'\ndraft: true
 \n---\n
 \n
 `;
@@ -38,18 +37,18 @@ const TEMPLATE = `---\ntitle: ${title}\nslug: ${titleSlug}\ndate: '${moment().fo
 const fileName = `${options.prefix}-${titleSlug}.${options.extension}`;
 const fullPath = path.join(options.destination, fileName);
 
-fs.writeFile(fullPath, TEMPLATE, (err) => {
-  if(err) {
-    console.error(`${'✘'.red} ${err.message}`);
+fs.writeFile(fullPath, TEMPLATE, err => {
+  if (err) {
+    console.error(`✘ ${err.message}`);
   } else {
-    if(options.editor) {
+    if (options.editor) {
       // Fire up editor for this file
-      exec(`$EDITOR ${fullPath}`, {encoding: 'utf-8'});
-    } else if(options.silent) {
+      exec(`$EDITOR ${fullPath}`, { encoding: 'utf-8' });
+    } else if (options.silent) {
       // Just pipe output to stdout
       console.log(fullPath);
     } else {
-      console.log(`${'✔︎'.green} Created ${fileName.underline}`);
+      console.log(`✔︎ Created ${fileName}`);
     }
   }
 });
