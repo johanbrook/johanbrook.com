@@ -48,13 +48,16 @@ $line-height-solid: 1 !default;
 $line-height-title: 1.25 !default;
 $line-height-copy: 1.5 !default;
 
-$serif: Duospace, Georgia, serif;
+$serif: Duospace, Menlo, Monaco, Georgia, serif;
 $sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
 $mono: Hack, Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
   'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
   serif;
 $headings: $sans;
 $tumblr-font: $serif;
+
+// See https://developers.google.com/web/updates/2016/02/font-display
+$font-strategy: fallback;
 
 // Measures
 
