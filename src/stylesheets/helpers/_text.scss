@@ -19,16 +19,6 @@
     margin-top: $spacing-base * 2;
   }
 
-  @include larger-than($handheld) {
-    ul,
-    ol {
-      padding-left: 2rem;
-      margin-right: -2rem;
-      margin-bottom: $spacing-base * 2;
-      margin-top: $spacing-base * 2;
-    }
-  }
-
   li {
     margin-bottom: $spacing-base / 4;
   }
