@@ -7,7 +7,7 @@ htmlClass: post
     <header> 
       <h1 itemprop="name" class="f1-ns f3">{{ title }}</h1>
       <p class="post__meta">
-        <time datetime="{{ date }}" itemprop="datePublished" title="9 months ago" pubdate>{{ date | niceDate }}</time>
+        <time datetime="{{ date | toISODate }}" itemprop="datePublished" title="{{ date | toRelativeDate }}" pubdate>{{ date | niceDate }}</time>
       </p>
     </header>
 
