@@ -1,7 +1,7 @@
 ---
 layout: layouts/home
 title: Johan Brook
-headline: Hey there. I’m Johan – a Swedish designer & developer.
+headline: Hey there! I’m a Swedish designer & developer.
 slug: home
 ---
 
