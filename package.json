@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gulp build",
     "watch": "gulp watch",
-    "start": "gulp serve",
+    "start": "NODE_ENV=development gulp serve",
     "deploy": "npm run build && ./deploy",
     "new": "node scripts/new-post --editor"
   },
