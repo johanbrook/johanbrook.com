@@ -8,6 +8,7 @@ htmlClass: post
       <h1 itemprop="name" class="f1-ns f3">{{ title }}</h1>
       <p class="post__meta">
         <time datetime="{{ date | toISODate }}" itemprop="datePublished" title="{{ date | toRelativeDate }}" pubdate>{{ date | niceDate }}</time>
+        <span class="meta__stats">About {{ content | readingTime }} reading time</span>
       </p>
     </header>
 

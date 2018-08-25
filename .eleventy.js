@@ -1,7 +1,9 @@
-const pluginRss = require('@11ty/eleventy-plugin-rss');
 const { join } = require('path');
 const { buildDest: output, buildSrc } = require('./paths');
 const helpers = require('./src/helpers');
+
+const pluginRss = require('@11ty/eleventy-plugin-rss');
+const readingTimePlugin = require('./src/plugins/reading-time');
 
 const env = process.env.NODE_ENV;
 const isDevelopment = env === 'development';
@@ -13,7 +15,9 @@ module.exports = function(config) {
     config.addFilter(name, helpers[name]);
   });
 
+  // Add plugins
   config.addPlugin(pluginRss);
+  config.addPlugin(readingTimePlugin);
 
   config.addCollection('allPosts', collection =>
     collection

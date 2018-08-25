@@ -29,7 +29,7 @@ pagination:
                 <a class="meta__permalink" href="{{ post.url }}">Permalink</a>
               {% else %}
                 /
-                <span class="meta__stats">{{ post.data.readingTime }}</span>
+                <span class="meta__stats">{{ post | readingTime }}</span>
               {% endif %}
 
               {% if post.data.draft %}
