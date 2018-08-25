@@ -136,6 +136,9 @@ $nav-links: #000, $comp-cerise, $comp-teal-light, $comp-orange, $comp-neon;
 }
 
 .secondary-nav {
+  li {
+    padding: 0 1em;
+  }
 }
 
 .mobile-nav-trigger {

@@ -1,3 +1,4 @@
+const pluginRss = require('@11ty/eleventy-plugin-rss');
 const { join } = require('path');
 const { buildDest: output, buildSrc } = require('./paths');
 const helpers = require('./src/helpers');
@@ -11,6 +12,8 @@ module.exports = function(config) {
   Object.keys(helpers).forEach(name => {
     config.addFilter(name, helpers[name]);
   });
+
+  config.addPlugin(pluginRss);
 
   config.addCollection('allPosts', collection =>
     collection
