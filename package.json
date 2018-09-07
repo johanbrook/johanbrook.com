@@ -29,7 +29,8 @@
     "gulp-serve": "^1.4.0",
     "gulp-shell": "^0.6.5",
     "moment": "^2.22.2",
-    "require-dir": "^1.0.0"
+    "require-dir": "^1.0.0",
+    "url-join": "^4.0.0"
   },
   "devDependencies": {
     "browser-sync": "^2.24.6",

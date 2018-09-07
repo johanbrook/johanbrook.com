@@ -1,3 +1,6 @@
+---
+ogImage: /assets/images/og-image.png
+---
 {% from "icon.njk" import icon %}
 
 <!DOCTYPE html>
@@ -7,12 +10,10 @@
     <title>{{ title }}</title>
 
     <meta charset="utf-8">
-    {% if isSingle %}
-    <meta name="description" content="{{ descriptionOrExcerpt }}">
-    {% else %}
-    <meta name="description" content="{{ description | escape }}">
-    {% endif %}
 
+    {% if excerpt or description %}
+    <meta name="description" content="{{ excerpt or description }}">
+    {% endif %}
     <meta name="keywords" content="{{ keywords }}">
     <meta name="author" content="Johan Brook">
 
@@ -32,16 +33,15 @@
     <meta property="og:title" content="{{title}}">
     <meta property="og:url" content="{{ page.url | canonicalUrl }}">
     <meta property="og:site_name" itemprop="name" content="Johan Brook">
-    <meta property="og:type" content="{% if isSingle %}article{%else%}blog{% endif %}">
-    <meta property="og:image" content="{{ogImage}}">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="{{ogImage | canonicalUrl}}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="1200">
-    {% if isSingle %}
-    <meta property="og:description" content="{{ descriptionOrExcerpt }}">
-    {% else %}
-    <meta property="og:description" content="{{ description | escape }}">
+    {% if excerpt or description %}
+    <meta property="og:description" content="{{ excerpt or description }}">
     {% endif %}
-    {% if isSingle %}
+
+    {% if tags === 'posts' %}
     <meta property="article:author" content="http://facebook.com/johanbrook">
     <meta property="article:tag" content="{{keywords}}">
     <meta property="article:published_time" content="{{page.date | toISODate}}">

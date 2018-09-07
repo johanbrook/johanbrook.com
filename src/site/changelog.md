@@ -3,7 +3,7 @@ title: Changelog
 layout: layouts/page
 color: neon
 description: Log over semi major life events so far.
-ogImage: https://johanbrook.com/assets/images/og-image-changelog.png
+ogImage: /assets/images/og-image-changelog.png
 ---
 
 <p class="tc muted f6 measure center">

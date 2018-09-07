@@ -1,5 +1,6 @@
 const moment = require('moment');
 const fs = require('fs');
+const joinUrl = require('url-join');
 
 const getDeployedUrl = () => `https://${fs.readFileSync('./CNAME')}`;
 
@@ -37,24 +38,11 @@ module.exports = {
     return moment(date).fromNow();
   },
 
-  isSingle(opts) {
-    return this.template === 'post.html' ? opts.fn(this) : opts.inverse(this);
-  },
-
-  isPage(page) {
-    return page === this.page;
-  },
-
-  descriptionOrExcerpt() {
-    // Strip HTML tags.
-    return escapeQuotes(
-      (this.excerpt || this.description || '').replace(/(<([^>]+)>)/gi, '')
-    );
-  },
-
   pretty: text => text.replace('index.html', ''),
 
-  canonicalUrl: path => (path ? `${ROOT_URL}${path}` : ROOT_URL),
+  canonicalUrl: path => {
+    return typeof path === 'string' ? joinUrl(ROOT_URL, path) : ROOT_URL;
+  },
 
   isCurrentNav(page, options) {
     if (page) {

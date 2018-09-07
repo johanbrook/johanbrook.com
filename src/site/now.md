@@ -3,7 +3,7 @@ layout: layouts/page
 date: 2018-01-12
 color: cerise
 title: What I'm doing now
-ogImage: https://johanbrook.com/assets/images/johan-map.png
+ogImage: /assets/images/johan-map.png
 description: This page reflects what I'm doing with my life at the moment.
 keywords:
   - life
