@@ -8,7 +8,7 @@
 
 html {
   background-color: $background-color;
-  font: normal #{$font-size-base}px/#{$leading / $font-size-base} $serif;
+  font: normal #{$font-size-base}px/#{$leading / $font-size-base} $sans;
   color: $text-color;
 
   @include handheld {
@@ -38,10 +38,12 @@ ol {
 }
 
 a {
-  color: $text-color;
+  color: #000;
+  text-decoration-color: rgba(#000, 0.2);
 
   &:hover {
     color: $link-color;
+    text-decoration: underline rgba(3, 102, 214, 0.6);
   }
 }
 

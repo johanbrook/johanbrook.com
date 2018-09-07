@@ -50,32 +50,6 @@
     margin-bottom: $spacing-base / 2;
   }
 
-  .outset {
-    padding: 0 5%;
-
-    @include larger-than($break) {
-      margin-left: -25vw;
-      padding: 0;
-    }
-  }
-
-  .outset-figure {
-    position: absolute;
-    left: -26vw;
-    width: 22vw;
-
-    img {
-      margin: 0 0 0.5rem;
-    }
-
-    figcaption {
-      font-style: italic;
-      font-size: 0.8em;
-      font-family: $serif;
-      color: $grey-light;
-    }
-  }
-
   .home-offset {
     @include larger-than($break) {
       padding-left: 30vw;

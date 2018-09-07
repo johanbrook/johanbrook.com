@@ -13,9 +13,7 @@
   }
 
   li {
-    margin-bottom: $spacing-base * 2;
-    border-bottom: 2px solid #e6e6e6;
-    padding-bottom: $spacing-base * 2;
+    margin-bottom: $spacing-base * 3;
   }
 
   [role='article'] {
@@ -63,13 +61,13 @@
     }
 
     h1 {
-      margin-bottom: $spacing-base / 2;
+      margin-bottom: $spacing-small;
       font-size: $font-size-3;
     }
 
     .post__excerpt {
       color: $grey;
-      font-size: $font-size-7;
+      font-size: $font-size-6;
 
       :last-child {
         margin-bottom: 0;
