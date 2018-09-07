@@ -81,6 +81,22 @@ figcaption {
   color: $grey;
 }
 
+table {
+  text-align: left;
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th {
+  border-bottom: 1px solid;
+  padding: 0.25em 0;
+}
+
+td {
+  padding: 0.25em 0;
+}
+
 pre {
   background-color: #fff;
   border-radius: 8px;
