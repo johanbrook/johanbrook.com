@@ -68,11 +68,12 @@ code {
 }
 
 code {
-  background-color: #f4f4f4;
+  background-color: #fff;
   padding: 2px 4px;
-  border-radius: 2px;
-  font-size: 0.75em;
-  color: darken(#657b83, 10%);
+  border-radius: 4px;
+  color: #000;
+  font-size: .9em;
+  border: 1px solid rgba(#000, .15);
 
   &.hljs {
     padding: 0;
@@ -103,14 +104,16 @@ pre {
   background-color: #fff;
   border-radius: 8px;
   padding: $spacing-base;
-  word-break: break-all;
+  overflow-wrap: break-word;
+  word-break: break-word;
   @include smooth(false);
 
   code {
+    font-size: .85em;
+    border: 0;
     background-color: transparent;
     padding: 0;
     border-radius: 0;
-    font-size: inherit;
     box-shadow: none;
     color: currentColor;
   }
