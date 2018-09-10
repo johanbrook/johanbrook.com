@@ -15,6 +15,7 @@
         &:hover {
           color: $link-color;
           @include underline-color($link-color);
+          text-decoration: none;
         }
       }
 
