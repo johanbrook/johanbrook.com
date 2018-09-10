@@ -2,8 +2,7 @@
 title: My Spaghetti Bolognese
 slug: my-spaghetti-bolognese
 date: '2018-01-14T19:08'
-draft: true
-
+excerpt: My recipe for making a good spaghetti bolognese. Includes stuff I've learned on my own, and from various other recipes from books and the internet. The main takeaway is to use good tomato sauce!
 ---
 
 I had a free Sunday today, and I'd planned on making spaghetti bolognese for dinner. Then I thought I'd write a bit about it.
