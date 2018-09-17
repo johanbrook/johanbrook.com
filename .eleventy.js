@@ -2,6 +2,7 @@ const { join } = require('path');
 const { buildDest: output, buildSrc } = require('./paths');
 const helpers = require('./src/helpers');
 
+const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const readingTimePlugin = require('./src/plugins/reading-time');
 
@@ -18,6 +19,7 @@ module.exports = function(config) {
   // Add plugins
   config.addPlugin(pluginRss);
   config.addPlugin(readingTimePlugin);
+  config.addPlugin(syntaxHighlight);
 
   config.addCollection('allPosts', collection =>
     collection

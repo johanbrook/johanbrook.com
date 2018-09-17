@@ -157,7 +157,7 @@ All these properties together make up a re-usable style stack.
 
 The virtual DOM in CycleJS is called [Snabbdom][4]. In CycleJS, it looks like this:
 
-```ts
+```typescript
 import { div, h1, p, strong } from '@cycle/dom';
 
 /*
@@ -189,7 +189,7 @@ I thought to myself, _"If styling with functional CSS is only about applying sma
 
 This became my first iteration:
 
-```ts
+```typescript
 // styles.ts
 
 // Keep shared styles in this dict.
@@ -200,7 +200,7 @@ export const Styles = {
 };
 ```
 
-```ts
+```typescript
 // SomeComponent.ts
 import { h1, label, form, input } from '@cycle/dom';
 import { Styles } from './styles';
@@ -226,13 +226,13 @@ Since VDOM elements are functions, we can implement a backing function which _en
 
 The signature would look like:
 
-```ts
+```typescript
 function enhanceWithStyle(domTag: DomTag, classes: Selector): DomTag;
 ```
 
 where we've got the types:
 
-```ts
+```typescript
 type Selector = string;
 // This is the signature for a Snabbdom helper, like h1(), p(), etc.
 type DomTag = (sel?: Selector | any, ...args: any[]) => VNode;
@@ -240,7 +240,7 @@ type DomTag = (sel?: Selector | any, ...args: any[]) => VNode;
 
 Let's enhance!
 
-```ts
+```typescript
 // styles.ts
 import { label, h1 } from '@cycle/dom';
 
@@ -255,7 +255,7 @@ export const SmallFormLabel = enhanceWithStyle(label, Styles.SmallFormLabel);
 export const TopHeading = enhanceWithStyle(h1, Styles.TopHeading);
 ```
 
-```ts
+```typescript
 // SomeComponent.ts
 import { form, input } from '@cycle/dom';
 import { SmallFormLabel, TopHeading } from './styles';
@@ -277,7 +277,7 @@ Voíla! We can use our custom components just like any other, since it uses the 
 
 The implementation for the enhance function is:
 
-```ts
+```typescript
 // styles.ts
 import { VNode } from '@cycle/dom';
 
