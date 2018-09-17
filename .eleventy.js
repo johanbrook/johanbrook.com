@@ -4,7 +4,7 @@ const helpers = require('./src/helpers');
 
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
-const readingTimePlugin = require('./src/plugins/reading-time');
+const readingTimePlugin = require('eleventy-plugin-reading-time');
 const typesetPlugin = require('./src/plugins/typeset');
 
 const env = process.env.NODE_ENV;
