@@ -5,6 +5,7 @@ const helpers = require('./src/helpers');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const readingTimePlugin = require('./src/plugins/reading-time');
+const typesetPlugin = require('./src/plugins/typeset');
 
 const env = process.env.NODE_ENV;
 const isDevelopment = env === 'development';
@@ -12,7 +13,7 @@ const isDevelopment = env === 'development';
 // https://www.11ty.io/docs/config/
 
 module.exports = function(config) {
-  Object.keys(helpers).forEach(name => {
+  Object.keys(helpers).forEach((name) => {
     config.addFilter(name, helpers[name]);
   });
 
@@ -20,11 +21,17 @@ module.exports = function(config) {
   config.addPlugin(pluginRss);
   config.addPlugin(readingTimePlugin);
   config.addPlugin(syntaxHighlight);
+  config.addPlugin(
+    typesetPlugin({
+      only: '.article-text',
+      disable: ['smallCaps'],
+    })
+  );
 
-  config.addCollection('allPosts', collection =>
+  config.addCollection('allPosts', (collection) =>
     collection
       .getFilteredByTag('posts')
-      .filter(post => (isDevelopment ? true : !post.data.draft))
+      .filter((post) => (isDevelopment ? true : !post.data.draft))
       .reverse()
   );
 

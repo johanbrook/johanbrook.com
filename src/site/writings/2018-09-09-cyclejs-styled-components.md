@@ -17,7 +17,12 @@ keywords:
 
 My interest for both frontend architecture and design systems made me see an opportunity to create styled components for for re-use in the virtual DOM. The idea is to construct small, re-usable components to use instead of marking up content with the regular approach of using CSS classes. The key in our approach here isn't inline CSS embedded on the component, but about applying _functional CSS_ classes.
 
-I once held a pretty strong opinion that one should separate markup and styling of a web page. That works out pretty good for web content with document style content – just like all the early web pages were. When building complex information architectures in ever changing web apps, where the cascading part of CSS just gets in your way, I've turned to investigate this functional CSS class approach instead. There's writing on this philosophy elsewhere: I really recommend reading [Jon Gold's article][2] on the subject, as well as checking out the [Tachyons CSS library][3] (I've based Lookback's internal functional CSS library off Tachyons' structure).
+I once held a pretty strong opinion that one should separate markup and styling of a web page. That works out pretty good for web content with document style content – just like all the early web pages were. When building complex information architectures in ever changing web apps, where the cascading part of CSS just gets in your way, I've turned to investigate this functional CSS class approach instead. There's writing on this philosophy elsewhere:
+
+- ["Functional CSS"][2] by Jon Gold. Acts as a nice intro.
+- ["CSS Utility Classes and Separation Of Concerns"][5] by Adam Wathan. Gives real world problem scenarios.
+
+Be sure to check out the [Tachyons CSS library][3] (I've based Lookback's internal functional CSS library off Tachyons' structure).
 
 ## A primer on functional CSS
 
@@ -346,3 +351,4 @@ Thanks for reading!
 [2]: https://jon.gold/2015/07/functional-css/
 [3]: https://tachyons.io/
 [4]: https://github.com/snabbdom/snabbdom
+[5]: https://adamwathan.me/css-utility-classes-and-separation-of-concerns/
