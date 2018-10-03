@@ -36,7 +36,7 @@
     "url-join": "^4.0.0"
   },
   "devDependencies": {
-    "browser-sync": "^2.24.6",
+    "browser-sync": "^2.24.7",
     "slug": "^0.9.1"
   },
   "engines": {
