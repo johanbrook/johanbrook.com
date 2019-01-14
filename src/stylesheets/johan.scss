@@ -16,7 +16,6 @@ Just kidding.
 // Lib
 
 @import 'lib/normalize';
-@import 'lib/tomorrow';
 @import 'lib/fonts';
 
 // Common
@@ -58,3 +57,9 @@ Just kidding.
 @import 'partials/page-nav';
 @import 'partials/footer';
 @import 'partials/posts-list';
+
+// Misc
+
+@import 'prism-themes/johan-light';
+
+@import 'vendor/typeset';

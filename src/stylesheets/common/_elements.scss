@@ -47,6 +47,10 @@ ol {
   padding-left: 0;
 }
 
+ul {
+  list-style-type: circle;
+}
+
 a {
   color: $link-color;
   text-decoration: none;
@@ -82,12 +86,8 @@ code {
   padding: 2px 4px;
   border-radius: 4px;
   color: #000;
-  font-size: .9em;
-  border: 1px solid rgba(#000, .15);
-
-  &.hljs {
-    padding: 0;
-  }
+  font-size: 0.9em;
+  border: 1px solid rgba(#000, 0.15);
 }
 
 figcaption {
@@ -116,10 +116,14 @@ pre {
   padding: $lineheight;
   overflow-wrap: break-word;
   word-break: break-word;
+  border-radius: 6px;
+  border: 1px solid rgba(#000, 0.1);
+  box-shadow: rgba(#000, 0.025) 0 1px 0;
   @include smooth(false);
 
   code {
-    font-size: .85em;
+    font-size: $font-size-7;
+    line-height: 1.5;
     border: 0;
     background-color: transparent;
     padding: 0;

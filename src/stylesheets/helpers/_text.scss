@@ -24,10 +24,16 @@
   }
 
   pre {
+    margin-bottom: $spacing-base * 2;
+
+    & + pre {
+      margin-top: -$spacing-base;
+    }
+
     @include larger-than(800px) {
-      margin-left: -$lineheight * 4;
-      margin-right: -$lineheight * 4;
-      padding-left: $lineheight * 2;
+      margin-left: -$spacing-base * 2;
+      margin-right: -$spacing-base * 2;
+      padding-left: $spacing-base * 2;
     }
   }
 
