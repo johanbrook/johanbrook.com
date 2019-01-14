@@ -24,9 +24,15 @@
   }
 
   pre {
+    margin-bottom: $spacing-base * 2;
+
+    & + pre {
+      margin-top: -$spacing-base;
+    }
+
     @include larger-than(800px) {
-      margin-left: -$spacing-base * 4;
-      margin-right: -$spacing-base * 4;
+      margin-left: -$spacing-base * 2;
+      margin-right: -$spacing-base * 2;
       padding-left: $spacing-base * 2;
     }
   }

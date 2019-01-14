@@ -5,21 +5,6 @@ Built for IE6, made in Dreamweaver.
 Just kidding.
 --------------------------------------------- */
 
-// Tachyons :yay:
-
-// @import 'type-scale';
-// @import 'typography';
-// @import 'line-height';
-// @import 'font-weight';
-// @import 'font-style';
-// @import 'text-align';
-// @import 'letter-spacing';
-
-// @import 'widths';
-// @import 'max-widths';
-// @import 'spacing';
-// @import 'opacity';
-
 // Tools
 
 @import 'variables';
@@ -29,7 +14,6 @@ Just kidding.
 // Lib
 
 @import 'lib/normalize';
-@import 'lib/tomorrow';
 @import 'lib/fonts';
 
 // Common
@@ -68,3 +52,9 @@ Just kidding.
 @import 'partials/playlists';
 @import 'partials/page-nav';
 @import 'partials/footer';
+
+// Misc
+
+@import 'prism-themes/johan-light';
+
+@import 'vendor/typeset';
