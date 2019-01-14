@@ -1,42 +1,35 @@
 /* =HEADINGS
 --------------------------------------------- */
 
+.title {
+  font-size: $font-size-title;
+  font-weight: bold;
+  line-height: $line-height-title;
+  letter-spacing: -1px;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: $sans;
-  font-weight: 500;
   margin: 0;
-  color: $text-color;
-  line-height: 1.5;
-  @include smooth;
-
-  @include handheld {
-    line-height: 1.1;
-  }
+  margin-bottom: $spacing-extra-small;
 }
 
 h1 {
   font-size: $font-size-1;
-  margin-bottom: $lineheight;
-  font-weight: 900;
-
-  .subtitle {
-    display: block;
-  }
+  font-weight: 500;
 }
 
 h2 {
   font-size: $font-size-2;
-  margin-bottom: $lineheight;
+  font-weight: 500;
 }
 
 h3 {
   font-size: $font-size-3;
-  margin-bottom: $lineheight / 2;
 }
 
 h4 {
@@ -44,9 +37,9 @@ h4 {
 }
 
 h5 {
-  font-size: $font-size-5;
+  font-size: $font-size-4;
 }
 
 h6 {
-  font-size: $font-size-6;
+  font-size: $font-size-4;
 }

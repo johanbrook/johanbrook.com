@@ -2,19 +2,15 @@
 title: Writings
 layout: layouts/main
 pagination:
-  data: collections.allPosts
+  data: collections.posts
   size: 10
   alias: posts
+  reverse: true
 ---
 
 <main role="main" class="posts">
 
-  <h1 class="mb0-ns mb2 f-headline-ns fw9 tracked-tight-some comp-teal-l">Writings</h1>
-
-  <p class="muted f7-ns f6">
-    Psst! There's more stuff at my
-    <a href="{{meta.tumblr}}">personal blog</a> too!
-  </p>
+  <h1 class="mb0-ns mb2 title">Writings.</h1>
 
   <ol class="list">
     {% for post in posts %}
@@ -67,7 +63,7 @@ pagination:
         <span class="separator">/ </span>
       {% endif %}
 
-      <span class="separator">{{collections.allPosts.length }} posts</span>
+      <span class="separator">{{collections.posts.length }} posts</span>
 
       {% if pagination.nextPageLink %}
         <span class="separator"> /</span>

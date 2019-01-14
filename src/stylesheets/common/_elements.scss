@@ -2,17 +2,27 @@
 --------------------------------------------- */
 
 ::selection {
-  background-color: rgba(#000, 0.7);
-  color: #fff;
+  background-color: $grey-light;
 }
 
 html {
   background-color: $background-color;
-  font: normal #{$font-size-base}px/#{$leading / $font-size-base} $sans;
+  font: normal #{$font-size-base}px/#{$leading-factor} $sans;
   color: $text-color;
+  letter-spacing: $letter-spacing-tight;
+  font-kerning: normal;
+  font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+  scroll-behavior: smooth;
+  @include smooth;
 
   @include handheld {
     font-size: 1rem;
+  }
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Inter UI var alt', sans-serif;
   }
 }
 
@@ -38,12 +48,12 @@ ol {
 }
 
 a {
-  color: #000;
-  text-decoration-color: rgba(#000, 0.2);
+  color: $link-color;
+  text-decoration: none;
 
   &:hover {
-    color: $link-color;
-    text-decoration: underline rgba(3, 102, 214, 0.6);
+    color: $link-color-hover;
+    text-decoration: underline rgba($link-color-hover, .3);
   }
 }
 
@@ -54,7 +64,7 @@ blockquote,
 table,
 figure,
 pre {
-  margin: 0 0 $spacing-base;
+  margin: 0 0 $lineheight;
 }
 
 img {
@@ -103,7 +113,7 @@ td {
 pre {
   background-color: #fff;
   border-radius: 8px;
-  padding: $spacing-base;
+  padding: $lineheight;
   overflow-wrap: break-word;
   word-break: break-word;
   @include smooth(false);
@@ -121,13 +131,13 @@ pre {
 
 blockquote {
   border-left: 2px solid $grey-light;
-  margin: $spacing-base * 2 2rem $spacing-base * 2 0;
+  margin: $lineheight * 2 2rem $lineheight * 2 0;
   padding-left: 2rem;
   padding-right: 2rem;
 
   footer {
     color: $grey;
-    margin-top: $spacing-base;
+    margin-top: $lineheight;
   }
 }
 
@@ -136,7 +146,7 @@ hr {
   height: 2px;
   border: 0;
   background-color: $grey-light;
-  margin: $spacing-base * 2 auto;
+  margin: $lineheight * 2 auto;
   width: 5rem;
   max-width: 50%;
 }

@@ -9,6 +9,9 @@ const ROOT_URL = getDeployedUrl();
 const escapeQuotes = text =>
   text.replace(/'/g, '&rsquo;').replace(/"/g, '&ldquo;');
 
+const includes = (arr, item) =>
+  Array.isArray(arr) ? arr.includes(item) : false;
+
 module.exports = {
   icon(name) {
     return new Handlebars.SafeString(`<svg class='icon icon-${name}'>
@@ -17,6 +20,18 @@ module.exports = {
   },
 
   escapeQuotes,
+
+  includes,
+
+  includesThen(arr, item, val1, val2) {
+    return includes(arr, item) ? val1 : val2;
+  },
+
+  isMicroUpdate(post) {
+    return post && post.data && post.data.keywords
+      ? post.data.keywords.includes('micro-update')
+      : false;
+  },
 
   formatDate(date, format) {
     if (!date) return;

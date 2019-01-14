@@ -1,7 +1,5 @@
 .page-nav {
   text-align: center;
-  font-family: $sans;
-  font-size: $font-size-7;
 
   a {
     color: $grey;
@@ -19,9 +17,5 @@
     color: $comp-neon;
     font-size: 1.2em;
     margin: 0 3px;
-  }
-
-  @include handheld {
-    font-size: $font-size-6;
   }
 }

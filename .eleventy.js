@@ -19,13 +19,6 @@ module.exports = function(config) {
   config.addPlugin(pluginRss);
   config.addPlugin(readingTimePlugin);
 
-  config.addCollection('allPosts', collection =>
-    collection
-      .getFilteredByTag('posts')
-      .filter(post => (isDevelopment ? true : !post.data.draft))
-      .reverse()
-  );
-
   return {
     dir: {
       input: join(buildSrc, 'site'),

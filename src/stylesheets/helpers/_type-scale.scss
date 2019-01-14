@@ -11,11 +11,11 @@ TYPE SCALE
 
 .f-6,
 .f-headline {
-  font-size: 6rem;
+  font-size: $font-size-title;
 }
 .f-5,
 .f-subheadline {
-  font-size: 5rem;
+  font-size: to_em(38);
 }
 
 .f1 {
@@ -29,16 +29,6 @@ TYPE SCALE
 }
 .f4 {
   font-size: $font-size-4;
-}
-.f5 {
-  font-size: $font-size-5;
-}
-.f6 {
-  font-size: $font-size-6;
-}
-.f7 {
-  /* Small and hard to read for many people so use with extreme caution */
-  font-size: $font-size-7;
 }
 
 @media #{$breakpoint-not-small} {

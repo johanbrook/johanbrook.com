@@ -3,7 +3,7 @@
   iframe,
   figure,
   svg {
-    margin: $spacing-base * 2 auto;
+    margin: $lineheight * 2 auto;
     display: block;
   }
 
@@ -16,18 +16,18 @@
 
   h2,
   h3 {
-    margin-top: $spacing-base * 2;
+    margin-top: $lineheight * 2;
   }
 
   li {
-    margin-bottom: $spacing-base / 4;
+    margin-bottom: $lineheight / 4;
   }
 
   pre {
     @include larger-than(800px) {
-      margin-left: -$spacing-base * 4;
-      margin-right: -$spacing-base * 4;
-      padding-left: $spacing-base * 2;
+      margin-left: -$lineheight * 4;
+      margin-right: -$lineheight * 4;
+      padding-left: $lineheight * 2;
     }
   }
 
