@@ -6,8 +6,11 @@ const getDeployedUrl = () => `https://${fs.readFileSync('./CNAME')}`;
 
 const ROOT_URL = getDeployedUrl();
 
-const escapeQuotes = text =>
+const escapeQuotes = (text) =>
   text.replace(/'/g, '&rsquo;').replace(/"/g, '&ldquo;');
+
+const includes = (arr, item) =>
+  Array.isArray(arr) ? arr.includes(item) : false;
 
 module.exports = {
   icon(name) {
@@ -18,14 +21,30 @@ module.exports = {
 
   escapeQuotes,
 
+  getContext() {
+    return this.ctx;
+  },
+
+  includes,
+
+  includesThen(arr, item, val1, val2) {
+    return includes(arr, item) ? val1 : val2;
+  },
+
+  isMicroUpdate(post) {
+    return !!post && !!post.data && post.data.category === 'Updates';
+  },
+
   formatDate(date, format) {
     if (!date) return;
     return moment(date).format(format);
   },
 
-  niceDate(date) {
+  niceDate(date, includeTime = true) {
     if (!date) return;
-    return moment(date).format('MMMM D, YYYY');
+    return moment(date).format(
+      includeTime ? 'MMMM D, YYYY – HH:mm' : 'MMMM D, YYYY'
+    );
   },
 
   toISODate(date) {
@@ -38,9 +57,9 @@ module.exports = {
     return moment(date).fromNow();
   },
 
-  pretty: text => text.replace('index.html', ''),
+  pretty: (text) => text.replace('index.html', ''),
 
-  canonicalUrl: path => {
+  canonicalUrl: (path) => {
     return typeof path === 'string' ? joinUrl(ROOT_URL, path) : ROOT_URL;
   },
 

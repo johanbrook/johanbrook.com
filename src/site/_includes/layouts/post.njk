@@ -1,19 +1,48 @@
 ---
 layout: layouts/main
-htmlClass: post
 ---
-<main role="main">
-  <article role="article" itemscope itemtype="http://schema.org/BlogPosting">
-    <header> 
-      <h1 itemprop="name" class="f1-ns f3">{{ title }}</h1>
-      <p class="post__meta">
-        <time datetime="{{ date | toISODate }}" itemprop="datePublished" title="{{ date | toRelativeDate }}" pubdate>{{ date | niceDate }}</time>
-        <span class="meta__stats">About {{ content | readingTime }} reading time</span>
-      </p>
-    </header>
+{% set isMicro = category == 'Updates' %}
 
-    <div class="article-text post__body" itemprop="articleBody">
+<main role="main">
+  <article class="Post Post--{{ 'Update' if isMicro else 'Regular' }}" role="article" itemscope itemtype="http://schema.org/BlogPosting">
+
+    {% if isMicro %}
+      <header>
+        <p>
+          <time
+            class="f2 fw5"
+            datetime="{{ date | toISODate }}"
+            itemprop="datePublished"
+            title="{{ date | toRelativeDate }}" pubdate>{{ date | niceDate }}</time>
+        </p>
+      </header>
+    {% else %}
+      <header> 
+        <h1 itemprop="name" class="title">{{ title }}</h1>
+
+        <p class="mb0 fw5 mt3">
+          <time
+            datetime="{{ date | toISODate }}"
+            itemprop="datePublished"
+            title="{{ date | toRelativeDate }}" pubdate>{{ date | niceDate }}</time>
+        </p>
+
+        <p class="muted mb4">
+          About {{ content | readingTime }} reading time
+        </p>
+      </header>
+    {% endif %}
+
+    <div class="article-text post__body measure" itemprop="articleBody">
       {{ content | safe }}
     </div>
+
+    {% if isMicro %}
+      <footer>
+        <hr class="ml0 mb3" />
+        <h1 itemprop="name" class="d-i f4 fw4 mb0">“{{ title }}”</h1>
+        {%if location %}<span class="muted f4">was posted from {{ location | lower }}</span>{% endif %}
+      </footer>
+    {% endif %}
   </article>
 </main>

@@ -10,102 +10,59 @@
   }
 
   a {
+    color: $grey;
+    display: inline-block;
+    padding: $lineheight $gutter-width;
     text-decoration: none;
 
     &:hover {
+      color: $link-color;
       text-decoration: underline;
-    }
-  }
-}
-
-$nav-links: #000, $comp-cerise, $comp-teal-light, $comp-orange, $comp-neon;
-
-.main-navigation {
-  padding: $lineheight 2%;
-  margin-bottom: $lineheight;
-  font-size: $font-size-6;
-
-  a {
-    display: block;
-    padding: 0 1rem;
-    position: relative;
-    color: $grey;
-
-    &::before {
-      font-weight: bold;
-      content: '·';
-      position: absolute;
-      top: -1.5em;
-      left: 50%;
-      opacity: 0;
-      display: inline;
-      transform: translate3d(0, -25px, 0);
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    &:hover {
-      &::before {
-        opacity: 1;
-        transform: none;
-      }
-    }
-  }
-
-  @for $i from 1 through 5 {
-    li:nth-child(#{$i}) {
-      a:hover {
-        color: nth($nav-links, $i);
-      }
     }
   }
 
   .nav--current {
-    @for $i from 1 through 5 {
-      &:nth-child(#{$i}) {
-        a {
-          color: nth($nav-links, $i);
-        }
-      }
-    }
-
     a {
+      font-weight: 500;
+      color: $text-color;
       cursor: default;
-
-      &::before {
-        opacity: 1;
-        transform: none;
-      }
 
       &:hover {
         text-decoration: none;
       }
     }
   }
+}
 
-  @include handheld {
-    margin-bottom: 0;
+.TopNav {
+  font-weight: 500;
+  border-bottom: 1px solid $grey-light;
+  margin-block-end: $lineheight;
 
-    .navigation__secondary {
-      font-size: 0.9em;
-
-      a {
-        color: $grey;
-      }
-    }
-
-    ul {
-      flex-direction: column;
-    }
-
-    a {
-      padding: 0.5em 1em;
-    }
+  li:first-child a {
+    padding-left: 0;
   }
 }
 
-.footer-nav {
-  font-family: $sans;
+.home [role="navigation"] {
+  justify-content: center;
+}
+
+.FooterNav {
   flex-direction: column;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 1px;
+    background-color: $grey-light;
+    width: 6rem;
+    margin: $lineheight*2 auto;
+  }
+
+  a {
+    padding: 0.5em 1em;
+  }
 
   ul {
     justify-content: center;
@@ -126,19 +83,12 @@ $nav-links: #000, $comp-cerise, $comp-teal-light, $comp-orange, $comp-neon;
   }
 }
 
-.primary-footer-nav {
+.FooterNav__Primary {
   font-size: $font-size-3;
-  text-transform: uppercase;
-
-  a {
-    padding: 0.5em 1em;
-  }
 }
 
-.secondary-nav {
-  li {
-    padding: 0 1em;
-  }
+.FooterNav__Secondary {
+  font-size: $font-size-4;
 }
 
 .mobile-nav-trigger {

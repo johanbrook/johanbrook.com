@@ -1,71 +1,45 @@
 ---
 layout: layouts/main
+pagination:
+  data: collections.posts
+  size: 6
+  alias: latestPosts
+  reverse: true
 ---
-
-<header role="banner" class="home-offset">
-  <h1 class="tracked-tight-some o-80">
-    {{ headline }}
-  </h1>
-
-  <div class="measure f4 muted sans">
-    <p>
-      {{ meta.shortbio }}
-    </p>
-  </div>
-</header>
-
 <main role="main">
 
-  <section class="home-about home-offset">
-    <h1 class="f1">A little bit about me:</h1>
+  <header class="tc pv4">
+    <p class="fw5 f2">Hey! I’m <strong class="fw6">Johan Brook</strong>, like it says in the domain name.</p>
+  </header>
 
-    <div class="sans measure">
-      {{ content | safe }}
-    </div>
+  <section class="mb5">
+    <h1>Me in eight seconds</h1>
+    
+    <p>I’m coding &amp; designering and I like working with product, user experience, and interface design and other things too. Like everybody else here.</p>
+    
+    <p>For me in eight minutes (or more), please see the <a href="/about">About page</a>. You can also check out what <a href="/now">I’m doing now</a> and what’s <a href="/changelog">happened to me so far.</a></p>
   </section>
 
-  <section class="section-home-more mt6 mb5 center sans tc measure">
-    <h1>…more stuff</h1>
+  <section>
+    <header class="flex items-center pv1">
+      <h1 class="mb0">My latest writings</h1>
+      <a href="/writings" class="btn ml2 f4">View all</a>
+    </header>
 
-    <p>I tend to value things such as communication, iteration, and exploration when working.</p>
+    <p>I write things in varying lengths and quality. Some writings are full posts, other are just half-baked thoughts.</p>
 
-    <p class="muted">This usually shows itself as an outspoken love for and interest in</p>
+    <ol class="PostsList PostsList--Tight">
+      {% for post in latestPosts %}
+        <li class="PostItem PostItem--{{ 'Update' if post.data.category == 'Updates' else 'Regular' }}">
+          <article role="article">
+            <a class="PostItem__Link" href="{{ post.url }}">{{ post.data.title }} -></a>
+          </article>
+        </li>
+      {% endfor %}
+    </ol>
 
-    <p>high paced iterations, shipping, experimenting with UI animations, front-end architecture, writing tests, functional reactive programming, writing about my findings, delightful copywriting, laughter, ever evolving and explorative work in building product teams, and working smarter.</p>
-
-    <p class="mt5 mb0 b f3">
-      But above all, I value
-    </p>
-  </section>
-
-  <div class="story-freedom tilted tilted--top tilted--bottom">
-    <p>
-      Freedom.
-    </p>
-  </div>
-
-  <section class="section-home-more mt5 mb0 center sans measure tc">
-    <h2 class="b f4">
-      I know my way around
-    </h2>
-
-    <p class="muted">
-      Javascript, HTML/CSS, typography, user research, <em>&lt;insert Javascript framework&gt;</em>, designing human interfaces, remote working, automated testing, REST APIs, writing READMEs.
-    </p>
-
-    <h2 class="b f4">
-      I'm curious about
-    </h2>
-
-    <p>
-      Functional programming, doing more open source work, GraphQL.
-    </p>
-
-    <hr />
-
-    <p class="b f4">
-      Thanks for visiting!
+    <p class="f4">
+      <a title="View all" class="muted" href="/writings">…and {{ collections.posts.length }} more</a>
     </p>
   </section>
 </main>
-

@@ -2,6 +2,7 @@ const { join } = require('path');
 const { buildDest: output, buildSrc } = require('./paths');
 const helpers = require('./src/helpers');
 
+const extractExcerpt = require('./src/lib/excerpts');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const readingTimePlugin = require('eleventy-plugin-reading-time');
@@ -17,6 +18,8 @@ module.exports = function(config) {
     config.addFilter(name, helpers[name]);
   });
 
+  config.addFilter('excerpt', (post) => extractExcerpt(post));
+
   // Add plugins
   config.addPlugin(pluginRss);
   config.addPlugin(readingTimePlugin);
@@ -24,15 +27,8 @@ module.exports = function(config) {
   config.addPlugin(
     typesetPlugin({
       only: '.article-text',
-      disable: ['smallCaps'],
+      disable: ['smallCaps', 'hyphenate'],
     })
-  );
-
-  config.addCollection('allPosts', (collection) =>
-    collection
-      .getFilteredByTag('posts')
-      .filter((post) => (isDevelopment ? true : !post.data.draft))
-      .reverse()
   );
 
   return {

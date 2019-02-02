@@ -2,61 +2,37 @@
 title: Writings
 layout: layouts/main
 pagination:
-  data: collections.allPosts
+  data: collections.posts
   size: 10
   alias: posts
+  reverse: true
 ---
 
 <main role="main" class="posts">
 
-  <h1 class="mb0-ns mb2 f-headline-ns fw9 tracked-tight-some comp-teal-l">Writings</h1>
+  <h1 class="mb4 mt3 title">Writings.</h1>
 
-  <p class="muted f7-ns f6">
-    Psst! There's more stuff at my
-    <a href="{{meta.tumblr}}">personal blog</a> too!
-  </p>
-
-  <ol class="list">
+  <ol class="PostsList">
     {% for post in posts %}
+      <li class="PostItem PostItem--{{ 'Update' if post.data.category == 'Updates' else 'Regular' }}">
+        <article role="article">
+          <a class="PostItem__Link" href="{{ post.url }}">{{ post.data.title }} -></a>
 
-      <li>
-        <article role="article" class="{% if post.data.link %}linked{% endif %}">
-          <header>
-            <p class="post__meta">
-              <time datetime="{{ post.date | toISODate }}" pubdate>{{ post.date | niceDate }}</time>
-              {% if post.data.link %}
-                /
-                <a class="meta__permalink" href="{{ post.url }}">Permalink</a>
-              {% else %}
-                /
-                <span class="meta__stats">{{ post | readingTime }}</span>
-              {% endif %}
+          {% if post | isMicroUpdate %}
+            <time datetime="{{ post.date | toISODate }}" pubdate>{{ post.date | niceDate }}</time>
+          {% endif %}
 
-              {% if post.data.draft %}
-                <strong class="comp-orange">Draft</strong>
-              {% endif %}
+          {% if not post | isMicroUpdate %}
+          
+            <p class="PostItem__Excerpt">
+              
+              <span class="PostItem__ReadingTime">{{ post | readingTime }}</span>
+
+              {{ post.data.excerpt or post | excerpt | safe }}
             </p>
-
-            {% if post.data.link %}
-              <h1>
-                <a title="{{ post.data.link }}" href="{{ post.data.link }}">
-                  {{ post.data.title }} →</a>
-              </h1>
-            {% else %}
-              <h1>
-                <a href="{{ post.url }}">
-                  {{ post.data.title }}
-                </a>
-              </h1>
-            {% endif %}
-          </header>
-
-          <div class="post__excerpt post__body">
-            <p>{{ post.data.excerpt }}</p>
-          </div>
+          {% endif %}
         </article>
       </li>
-
     {% endfor %}
   </ol>
 
@@ -67,7 +43,7 @@ pagination:
         <span class="separator">/ </span>
       {% endif %}
 
-      <span class="separator">{{collections.allPosts.length }} posts</span>
+      <span class="separator">{{collections.posts.length }} posts</span>
 
       {% if pagination.nextPageLink %}
         <span class="separator"> /</span>

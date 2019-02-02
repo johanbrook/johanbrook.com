@@ -25,7 +25,7 @@ $lineheight: ($leading / $base-size) * 1rem;
 
 // Partials
 
-@import 'partials/post';
+@import 'views/post';
 @import 'partials/header';
 
 // Helpers

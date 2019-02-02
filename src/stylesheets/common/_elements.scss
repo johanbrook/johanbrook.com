@@ -2,17 +2,28 @@
 --------------------------------------------- */
 
 ::selection {
-  background-color: rgba(#000, 0.7);
+  background-color: $link-color;
   color: #fff;
 }
 
 html {
   background-color: $background-color;
-  font: normal #{$font-size-base}px/#{$leading / $font-size-base} $sans;
+  font: normal #{$font-size-base}px/#{$leading-factor} $sans;
   color: $text-color;
+  letter-spacing: $letter-spacing-tight;
+  font-kerning: normal;
+  font-feature-settings: "calt" 1, "kern" 1, "liga" 1;
+  scroll-behavior: smooth;
+  @include smooth;
 
   @include handheld {
     font-size: 1rem;
+  }
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: 'Inter UI var alt', sans-serif;
   }
 }
 
@@ -42,12 +53,17 @@ ul {
 }
 
 a {
-  color: #000;
-  text-decoration-color: rgba(#000, 0.2);
+  color: $link-color;
+  text-decoration: none;
+  position: relative;
 
   &:hover {
-    color: $link-color;
-    text-decoration: underline rgba(3, 102, 214, 0.6);
+    color: $link-color-hover;
+    text-decoration: underline;
+  }
+
+  &:active {
+    top: 1px;
   }
 }
 
@@ -58,7 +74,7 @@ blockquote,
 table,
 figure,
 pre {
-  margin: 0 0 $spacing-base;
+  margin: 0 0 $lineheight;
 }
 
 img {
@@ -92,7 +108,7 @@ table {
 }
 
 th {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $grey-light;
   padding: 0.25em 0;
 }
 
@@ -103,16 +119,16 @@ td {
 pre {
   background-color: #fff;
   border-radius: 8px;
-  padding: $spacing-base;
+  padding: $lineheight;
   overflow-wrap: break-word;
   word-break: break-word;
   border-radius: 6px;
-  border: 1px solid rgba(#000, 0.1);
-  box-shadow: rgba(#000, 0.025) 0 1px 0;
+  // border: 2px solid rgba(#000, 0.1);
+  box-shadow: inset rgba(#000, 0.1) 0 0 0 2px;
   @include smooth(false);
 
   code {
-    font-size: $font-size-7;
+    font-size: $font-size-4;
     line-height: 1.5;
     border: 0;
     background-color: transparent;
@@ -125,22 +141,22 @@ pre {
 
 blockquote {
   border-left: 2px solid $grey-light;
-  margin: $spacing-base * 2 2rem $spacing-base * 2 0;
+  margin: $lineheight * 2 2rem $lineheight * 2 0;
   padding-left: 2rem;
   padding-right: 2rem;
 
   footer {
     color: $grey;
-    margin-top: $spacing-base;
+    margin-top: $lineheight;
   }
 }
 
 hr {
   display: block;
-  height: 2px;
+  height: 1px;
   border: 0;
   background-color: $grey-light;
-  margin: $spacing-base * 2 auto;
+  margin: $lineheight * 2 auto;
   width: 5rem;
   max-width: 50%;
 }

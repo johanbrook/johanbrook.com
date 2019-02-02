@@ -11,17 +11,17 @@
         &::before {
           content: '##';
           position: absolute;
-          color: $grey-light;
+          color: $comp-cerise;
           left: -2em;
           font-size: 0.8em;
-          top: 0.4ex;
+          top: 0.3ex;
         }
       }
     }
 
     > ul {
       padding-left: 0;
-      margin-bottom: $spacing-base * 2;
+      margin-bottom: $lineheight * 2;
 
       ul {
         margin-bottom: 0;

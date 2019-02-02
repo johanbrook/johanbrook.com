@@ -4,17 +4,24 @@
   -webkit-appearance: none;
   display: inline-block;
 
-  font: 300 1em/1.5 $sans;
-  color: #fff;
+  font: 500 1em/1.5 $sans;
+  color: $link-color;
   text-align: center;
   text-decoration: none;
-
-  padding: .4em 1em;
   border-radius: 4px;
-  background-color: $comp-blue;
+  padding: .4em 1em;
+  transition: background-color .2s ease;
+  background-color: rgba($link-color, .05);
 
   &:hover {
     text-decoration: none;
+    color: darken($link-color, 10%);
+    background-color: rgba($link-color, .08);
+  }
+
+  &:active {
+    color: darken($link-color, 10%);
+    background-color: rgba(darken($link-color, 10%), .1);
   }
 
   &.btn--large {
@@ -30,13 +37,5 @@
   &.btn--inverted {
     border: 1px solid currentColor;
     background: none;
-  }
-
-  &.btn--light {
-    color: $text-color;
-
-    &:hover {
-      color: $comp-cerise;
-    }
   }
 }

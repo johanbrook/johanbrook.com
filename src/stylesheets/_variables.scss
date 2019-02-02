@@ -10,74 +10,80 @@ $comp-teal-light: #13b1bf;
 $comp-orange: #ff8c00;
 $comp-beige: #fffadc;
 $comp-cerise: #e01270;
-$comp-yellow: #fffa3c;
+$comp-yellow: #F7D628;
 
-$background-color: #fbfbfb;
+$background-color: #fff;
 
-$text-color: #414141;
-$grey: #9c9c9c;
-$grey-light: #d1d1d1;
+$text-color: #333333;
+$grey: #949494;
+$grey-light: rgba(#BEC7C6, .5);
 $off-white: #fafafa;
 
-$link-color: #0366d6;
+$link-color: #0074FF;
+$link-color-hover: darken(saturate($link-color, 20%), 15%);
 $border-color: #e9e9e9;
 
 // Typography
 
+$serif: Georgia, serif;
+$sans: 'Inter UI', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
+$mono: Hack, Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
+  'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
+  serif;
+$headings: $sans;
+$tumblr-font: $sans;
+
 $font-size-base: 17 !default;
-$leading-factor: 1.85 !default;
+$leading-factor: 1.64 !default;
 $leading: $font-size-base * $leading-factor !default;
 $lineheight: $leading-factor * 1rem;
 
 $font-size-headline: 6rem !default;
 $font-size-subheadline: 5rem !default;
 
-$font-size-1: 3rem !default;
-$font-size-2: 2.25rem !default;
-$font-size-3: 1.5rem !default;
-$font-size-4: 1.1rem !default;
-$font-size-5: 1rem !default;
-$font-size-6: 0.875rem !default;
-$font-size-7: 0.75rem !default;
+$font-size-title: to_em(70) !default;
+$font-size-1: to_em(24) !default;
+$font-size-2: to_em(20) !default;
+$font-size-3: 1rem !default;
+$font-size-4: to_em(13) !default;
 
-$letter-spacing-tight: -0.05em !default;
+$letter-spacing-tight: -0.002em !default;
+$letter-spacing-tighter: -0.025em !default;
 $letter-spacing-1: 0.1em !default;
 $letter-spacing-2: 0.25em !default;
 
 $line-height-solid: 1 !default;
-$line-height-title: 1.25 !default;
-$line-height-copy: 1.5 !default;
-
-$serif: Georgia, serif;
-$sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
-$mono: Hack, Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
-  'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
-  serif;
-$headings: $sans;
-$tumblr-font: $serif;
+$line-height-title: 1.1 !default;
+$line-height-copy: $leading-factor !default;
 
 // See https://developers.google.com/web/updates/2016/02/font-display
 $font-strategy: fallback;
 
 // Measures
 
-$page-width: 90%;
-$max-width: 40rem;
-$column-width: 29rem;
+$column-width: 3.52rem;
+$gutter-width: 1.17rem;
 
-$measure: 30em !default; // ~66 chars
-$measure-narrow: 20em !default; // ~45 chars
-$measure-wide: 35em !default; // ~80 chars
+@function columns($count) {
+  @return $count * $column-width + ($count - 1) * $gutter-width;
+}
+
+$max-width: columns(8); // 620px
+
+$measure: columns(7) !default; // ~78 chars
+$measure-narrow: columns(6) !default; // ~45 chars
+$measure-wide: columns(8) !default; // ~80 chars
 
 $spacing-base: $leading-factor * 1rem !default;
+
 $spacing-none: 0 !default;
-$spacing-extra-small: 0.25rem !default;
-$spacing-small: 0.5rem !default;
-$spacing-medium: 1rem !default;
-$spacing-large: 2rem !default;
-$spacing-extra-large: 4rem !default;
-$spacing-extra-extra-large: 8rem !default;
-$spacing-extra-extra-extra-large: 16rem !default;
+$spacing-extra-small: $spacing-base / 3 !default;
+$spacing-small: $spacing-base / 2 !default;
+$spacing-medium: $spacing-base !default;
+$spacing-large: $spacing-base * 2 !default;
+$spacing-extra-large: $spacing-base * 3 !default;
+$spacing-extra-extra-large: $spacing-base * 4 !default;
+$spacing-extra-extra-extra-large: $spacing-base * 6 !default;
 
 // Breakpoints
 
