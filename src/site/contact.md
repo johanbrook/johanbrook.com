@@ -2,7 +2,6 @@
 template: contact
 title: Contact
 layout: layouts/page
-color: orange
 ---
 
 | Method  | Value                                                   |

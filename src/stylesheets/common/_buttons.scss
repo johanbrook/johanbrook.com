@@ -11,6 +11,7 @@
   border-radius: 4px;
   padding: .4em 1em;
   transition: background-color .2s ease;
+  background-color: rgba($link-color, .05);
 
   &:hover {
     text-decoration: none;

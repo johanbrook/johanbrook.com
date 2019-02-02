@@ -4,8 +4,66 @@ POSTS LIST
 
 .PostsList {
   list-style: none;
+
+  &--Tight {
+    .PostItem {
+      border: 1px solid $grey-light;
+      border-width: 0 0 1px;
+      margin: 0;
+    }
+  }
+
+  &:not(.PostsList--Tight) {
+    .PostItem--Update {
+      border: 1px solid $grey-light;
+      border-width: 1px 0;
+
+      a {
+        font-size: $font-size-3;
+      }
+
+      time {
+        font-size: $font-size-4;
+      }
+    }
+  }
 }
 
 .PostItem {
+  padding: $lineheight / 2 0;
+  margin-bottom: $lineheight;
 
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &--Update {
+
+    article {
+      display: flex;
+      align-items: center;
+
+      time {
+        margin-left: $spacing-large;
+        color: $grey;
+      }
+    }
+  }
+
+  &__ReadingTime {
+    color: $grey;
+    font-weight: 500;
+    margin-right: .25em;
+  }
+
+  &__Link {
+    font-weight: 500;
+    font-size: $font-size-2;
+  }
+
+  &__Excerpt {
+    font-size: $font-size-4;
+    margin-bottom: 0;
+    max-width: $measure;
+  }
 }

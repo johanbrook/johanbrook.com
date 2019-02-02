@@ -11,10 +11,10 @@
         &::before {
           content: '##';
           position: absolute;
-          color: $grey-light;
+          color: $comp-cerise;
           left: -2em;
           font-size: 0.8em;
-          top: 0.4ex;
+          top: 0.3ex;
         }
       }
     }

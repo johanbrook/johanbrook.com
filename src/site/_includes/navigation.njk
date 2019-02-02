@@ -1,16 +1,13 @@
-<nav role="navigation" class="main-navigation" name="top">
-  <ul class="navigation__primary">
-    <li class="{% if slug == 'home' %}nav--current{% endif %}">
+<nav role="navigation" class="TopNav" name="top">
+  <ul>
+    <li class="{% if page.fileSlug == 'index' %}nav--current{% endif %}">
       <a href="/">Intro</a>
-    </li>
-    <li class="{% if page.fileSlug == 'now' %}nav--current{% endif %}">
-      <a href="/now">Now</a>
     </li>
     <li class="{% if page.fileSlug == 'writings' or tags == 'posts' %}nav--current{% endif %}">
       <a href="/writings">Writings</a>
     </li>
-    <li class="{% if page.fileSlug == 'changelog' %}nav--current{% endif %}">
-      <a href="/changelog">Changelog</a>
+    <li class="{% if page.fileSlug == 'now' %}nav--current{% endif %}">
+      <a href="/now">Now</a>
     </li>
   </ul>
 </nav>

@@ -4,35 +4,20 @@
 [role='navigation'] {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid $grey-light;
-  margin-block-end: $lineheight;
 
   ul {
     display: flex;
   }
 
   a {
+    color: $grey;
+    display: inline-block;
+    padding: $lineheight $gutter-width;
     text-decoration: none;
 
     &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
-.main-navigation {
-
-  li:first-child a {
-    padding-left: 0;
-  }
-
-  a {
-    color: $grey;
-    display: inline-block;
-    padding: $lineheight / 2 $gutter-width;
-
-    &:hover {
       color: $link-color;
+      text-decoration: underline;
     }
   }
 
@@ -49,8 +34,35 @@
   }
 }
 
-.footer-nav {
+.TopNav {
+  font-weight: 500;
+  border-bottom: 1px solid $grey-light;
+  margin-block-end: $lineheight;
+
+  li:first-child a {
+    padding-left: 0;
+  }
+}
+
+.home [role="navigation"] {
+  justify-content: center;
+}
+
+.FooterNav {
   flex-direction: column;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 1px;
+    background-color: $grey-light;
+    width: 6rem;
+    margin: $lineheight*2 auto;
+  }
+
+  a {
+    padding: 0.5em 1em;
+  }
 
   ul {
     justify-content: center;
@@ -71,19 +83,12 @@
   }
 }
 
-.primary-footer-nav {
+.FooterNav__Primary {
   font-size: $font-size-3;
-  text-transform: uppercase;
-
-  a {
-    padding: 0.5em 1em;
-  }
 }
 
-.secondary-nav {
-  li {
-    padding: 0 1em;
-  }
+.FooterNav__Secondary {
+  font-size: $font-size-4;
 }
 
 .mobile-nav-trigger {

@@ -2,7 +2,8 @@
 --------------------------------------------- */
 
 ::selection {
-  background-color: $grey-light;
+  background-color: $link-color;
+  color: #fff;
 }
 
 html {
@@ -54,10 +55,15 @@ ul {
 a {
   color: $link-color;
   text-decoration: none;
+  position: relative;
 
   &:hover {
     color: $link-color-hover;
-    text-decoration: underline rgba($link-color-hover, .3);
+    text-decoration: underline;
+  }
+
+  &:active {
+    top: 1px;
   }
 }
 
@@ -102,7 +108,7 @@ table {
 }
 
 th {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid $grey-light;
   padding: 0.25em 0;
 }
 
@@ -117,12 +123,12 @@ pre {
   overflow-wrap: break-word;
   word-break: break-word;
   border-radius: 6px;
-  border: 1px solid rgba(#000, 0.1);
-  box-shadow: rgba(#000, 0.025) 0 1px 0;
+  // border: 2px solid rgba(#000, 0.1);
+  box-shadow: inset rgba(#000, 0.1) 0 0 0 2px;
   @include smooth(false);
 
   code {
-    font-size: $font-size-7;
+    font-size: $font-size-4;
     line-height: 1.5;
     border: 0;
     background-color: transparent;
@@ -147,7 +153,7 @@ blockquote {
 
 hr {
   display: block;
-  height: 2px;
+  height: 1px;
   border: 0;
   background-color: $grey-light;
   margin: $lineheight * 2 auto;

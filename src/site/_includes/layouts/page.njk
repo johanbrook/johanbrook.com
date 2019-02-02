@@ -4,7 +4,16 @@ layout: layouts/main
 
 <main role="main">
   <article class="page">
-    <h1 class="f-5-ns f3 mb0 fw9 tracked-tight-some {{ "comp-" + color if color }}">{{ title }}</h1>
+    <h1 class="title mb3 {{ "comp-" + color if color }}">{{ title }}.</h1>
+
+    {% if date %}
+      <p class="muted">
+        Updated on <time class="fw5 text-color">{{ date | niceDate(false) }}</time>
+        {% if location %}
+          from {{ location }}.
+        {% endif %}
+      </p>
+    {% endif %}
 
     <div class="article-text page__text">
       {{ content | safe }}

@@ -1,8 +1,8 @@
 ---
 layout: layouts/page
-date: 2018-01-12
-color: cerise
-title: What I'm doing now
+date: 2019-02-02
+title: Now
+location: Stockholm, Sweden
 ogImage: /assets/images/johan-map.png
 description: This page reflects what I'm doing with my life at the moment.
 keywords:
@@ -12,13 +12,12 @@ keywords:
   - travels
 ---
 
-<p class="tc muted f6">
-  Last updated {{ date | niceDate }}
-</p>
+I spend my time on these things:
 
-This page reflects what I'm doing with my life at the moment, since it's the most common question on the internet and in real life anyway.
-
-**So.**
+- Working at [Lookback](http://lookback.io) as web app developer and designer.
+- Learning Typescript and functional reactive programming with React.
+- Reading _"The Mathematics of the Universe"_ by Max Tegmark.
+- Playing the guitar.
 
 I've had the privilege of traveling while working remotely (doing this nomad thing). My current travel plans are:
 
@@ -40,19 +39,8 @@ I've had the privilege of traveling while working remotely (doing this nomad thi
 16. 🇵🇹 ~~**Lisbon**~~, Portugal (November-December, 2017)
 17. 🇸🇪 **Stockholm**, Sweden (2018-)
 
-I spend my time on these things:
-
-- enjoying life with my dope girlfriend in Stockholm.
-- working in [Lookback](http://lookback.io) as web app developer and designer.
-- reading books and articles, in order to get my mind off the digital things.
-- currently reading _Rainbow Six_ by Tom Clancy.
-- collecting memories on [Instagram](http://instagram.com/johanbrook/).
-- playing the guitar.
-- trying to write more articles on this site.
-- learning Portuguese via Duolingo and other methods.
-
 If my life changes, I'll update this page.
 
 ---
 
-Inspired by [Derek Sivers](https://sivers.org/now) and [NAII](http://naii.de/now/).
+Inspired by [Derek Sivers](https://sivers.org/now).

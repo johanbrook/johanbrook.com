@@ -16,7 +16,7 @@ $background-color: #fff;
 
 $text-color: #333333;
 $grey: #949494;
-$grey-light: rgba(#BEC7C6, .3);
+$grey-light: rgba(#BEC7C6, .5);
 $off-white: #fafafa;
 
 $link-color: #0074FF;
@@ -48,11 +48,12 @@ $font-size-3: 1rem !default;
 $font-size-4: to_em(13) !default;
 
 $letter-spacing-tight: -0.002em !default;
+$letter-spacing-tighter: -0.025em !default;
 $letter-spacing-1: 0.1em !default;
 $letter-spacing-2: 0.25em !default;
 
 $line-height-solid: 1 !default;
-$line-height-title: 1.08 !default;
+$line-height-title: 1.1 !default;
 $line-height-copy: $leading-factor !default;
 
 // See https://developers.google.com/web/updates/2016/02/font-display

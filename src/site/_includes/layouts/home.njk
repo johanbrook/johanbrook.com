@@ -2,14 +2,14 @@
 layout: layouts/main
 pagination:
   data: collections.posts
-  size: 3
+  size: 6
   alias: latestPosts
   reverse: true
 ---
 <main role="main">
 
-  <header class="tc">
-    <p>Hey! I’m <strong class="fw6">Johan Brook</strong>, like it says in the domain name.</p>
+  <header class="tc pv4">
+    <p class="fw5 f2">Hey! I’m <strong class="fw6">Johan Brook</strong>, like it says in the domain name.</p>
   </header>
 
   <section class="mb5">
@@ -28,12 +28,11 @@ pagination:
 
     <p>I write things in varying lengths and quality. Some writings are full posts, other are just half-baked thoughts.</p>
 
-    <ol class="PostsList">
+    <ol class="PostsList PostsList--Tight">
       {% for post in latestPosts %}
-        <li class="PostItem PostItem-{{ post.data.keywords | includesThen('micro-update', 'Update', 'Regular') }}">
+        <li class="PostItem PostItem--{{ 'Update' if post.data.category == 'Updates' else 'Regular' }}">
           <article role="article">
-            <a class="fw5 f2" href="{{ post.url }}">{{ post.data.title }} -></a>
-            <p class="f4">{{ post.data.excerpt }}</p>
+            <a class="PostItem__Link" href="{{ post.url }}">{{ post.data.title }} -></a>
           </article>
         </li>
       {% endfor %}

@@ -41,17 +41,15 @@ Just kidding.
 @import 'helpers/font-weight';
 @import 'helpers/text';
 @import 'helpers/flexbox';
+@import 'helpers/line-heights';
+@import 'helpers/display';
 
 // Views
-@import 'views/page';
-@import 'views/home';
-@import 'views/posts';
 @import 'views/post';
 @import 'views/changelog';
 
 // Partials
 
-@import 'partials/post';
 @import 'partials/story-blocks';
 @import 'partials/playlists';
 @import 'partials/page-nav';

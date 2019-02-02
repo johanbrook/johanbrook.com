@@ -16,6 +16,7 @@ h5,
 h6 {
   margin: 0;
   margin-bottom: $spacing-extra-small;
+  letter-spacing: $letter-spacing-tighter;
 }
 
 h1 {
@@ -30,10 +31,12 @@ h2 {
 
 h3 {
   font-size: $font-size-3;
+  font-weight: 600;
 }
 
 h4 {
   font-size: $font-size-4;
+  font-weight: 500;
 }
 
 h5 {

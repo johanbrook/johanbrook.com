@@ -14,7 +14,9 @@
   }
 
   .separator {
-    color: $comp-neon;
+    color: $text-color;
+    font-weight: 500;
+    letter-spacing: -1px;
     font-size: 1.2em;
     margin: 0 3px;
   }
