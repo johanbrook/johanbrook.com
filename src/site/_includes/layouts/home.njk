@@ -1,5 +1,6 @@
 ---
 layout: layouts/main
+home: true
 pagination:
   data: collections.posts
   size: 6
@@ -8,8 +9,11 @@ pagination:
 ---
 <main role="main">
 
-  <header class="tc pv4">
-    <p class="fw5 f2">Hey! I’m <strong class="fw6">Johan Brook</strong>, like it says in the domain name.</p>
+  <header class="tc pv2">
+
+  {% include "header-title.svg" %}
+
+    <p class="fw5 f2 mt5 mb4">Hey! I’m <strong class="fw6">Johan Brook</strong>. I write, code, and design.</p>
   </header>
 
   <section class="mb5">

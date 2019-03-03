@@ -4,7 +4,7 @@ ogImage: /assets/images/og-image.png
 {% from "icon.njk" import icon %}
 
 <!DOCTYPE html>
-<html lang="en" class="{{ slug or page.fileSlug }}">
+<html lang="en" class="{{'home' if home}} {{ slug or page.fileSlug }}">
 
   <head itemtype="http://schema.org/Blog" itemscope>
     <title>{{ title }} – Johan Brook</title>
@@ -59,10 +59,6 @@ ogImage: /assets/images/og-image.png
     <script type="text/javascript">
       function init() {
         addClasses();
-
-        if (window.matchMedia("(max-width: 481px)").matches) {
-          window.scroll(0, 200);
-        }
 
         function first(array, n, guard) {
           if (array == null) return void 0;
