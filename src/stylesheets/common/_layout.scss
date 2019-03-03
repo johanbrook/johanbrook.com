@@ -3,4 +3,9 @@
 body {
   max-width: $max-width;
   margin: 0 auto;
+  width: 90%;
+
+  @include handheld {
+
+  }
 }

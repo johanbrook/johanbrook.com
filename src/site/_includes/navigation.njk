@@ -1,6 +1,6 @@
 <nav role="navigation" class="TopNav" name="top">
   <ul>
-    <li class="{% if page.fileSlug == 'index' %}nav--current{% endif %}">
+    <li class="{% if home %}nav--current{% endif %}">
       <a href="/">Intro</a>
     </li>
     <li class="{% if page.fileSlug == 'writings' or tags == 'posts' %}nav--current{% endif %}">
@@ -11,7 +11,3 @@
     </li>
   </ul>
 </nav>
-
-<a href="#top" class="mobile-nav-trigger" data-show-nav>
-  {{ icon("list") }} Navigation
-</a>

@@ -1,5 +1,11 @@
 /* =POST VIEW
 --------------------------------------------- */
 .Post {
-
+  .title {
+    @include handheld {
+      font-size: $font-size-1;
+      letter-spacing: $letter-spacing-tighter;
+      line-height: inherit;
+    }
+  }
 }

@@ -42,6 +42,10 @@ pre[class*='language-'] {
     padding: 0 0.5em;
     margin-right: 2em;
     color: rgba(#a0a5bd, 0.6);
+
+    @include handheld {
+      margin-right: 1em;
+    }
   }
 }
 
