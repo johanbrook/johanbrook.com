@@ -36,12 +36,15 @@
 
 .TopNav {
   font-weight: 500;
-  border-bottom: 1px solid $grey-light;
-  margin-block-end: $lineheight;
 
   li:first-child a {
     padding-left: 0;
   }
+}
+
+html:not(.home) .TopNav {
+  border-bottom: 1px solid $grey-light;
+  margin-bottom: $lineheight;
 }
 
 .home [role="navigation"] {
