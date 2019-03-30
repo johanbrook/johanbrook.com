@@ -8,4 +8,15 @@
       line-height: inherit;
     }
   }
+
+  &-Keyword {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 0 .5em;
+    background-color: rgba($grey-light, .2);
+
+    &:not(:last-child) {
+      margin-right: 3px;
+    }
+  }
 }
