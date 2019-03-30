@@ -117,13 +117,10 @@ td {
 }
 
 pre {
-  background-color: #fff;
   border-radius: 8px;
   padding: $lineheight;
   overflow-wrap: break-word;
   word-break: break-word;
-  border-radius: 6px;
-  box-shadow: inset rgba(#000, 0.1) 0 0 0 2px;
   @include smooth(false);
 
   @include handheld {
