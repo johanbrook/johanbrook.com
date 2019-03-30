@@ -29,7 +29,6 @@ Just kidding.
 // Helpers
 
 @import 'helpers/box-sizing';
-@import 'lib/helpers';
 @import 'helpers/spacing';
 @import 'helpers/colours';
 @import 'helpers/text-align';
@@ -62,3 +61,5 @@ Just kidding.
 @import 'prism-themes/johan-light';
 
 @import 'vendor/typeset';
+
+@import 'lib/helpers';
