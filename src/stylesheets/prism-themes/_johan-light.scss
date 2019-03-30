@@ -31,20 +31,24 @@ pre[class*='language-'] {
   counter-reset: line;
 }
 
-.highlight-line {
-  &::before {
-    min-width: 1.5em;
-    text-align: right;
-    counter-increment: line;
-    content: counter(line);
-    display: inline-block;
-    border-right: 1px solid rgba(#a0a5bd, 0.1);
-    padding: 0 0.5em;
-    margin-right: 2em;
-    color: rgba(#a0a5bd, 0.6);
+/* Line numbers */
+code[class*='language-']:not(.language-bash),
+pre[class*='language-']:not(.language-bash) {
+  .highlight-line {
+    &::before {
+      min-width: 1.5em;
+      text-align: right;
+      counter-increment: line;
+      content: counter(line);
+      display: inline-block;
+      border-right: 1px solid rgba(#a0a5bd, 0.1);
+      padding: 0 0.5em;
+      margin-right: 2em;
+      color: rgba(#a0a5bd, 0.6);
 
-    @include handheld {
-      margin-right: 1em;
+      @include handheld {
+        margin-right: 1em;
+      }
     }
   }
 }
