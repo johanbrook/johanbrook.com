@@ -37,6 +37,12 @@ layout: layouts/main
       {{ content | safe }}
     </div>
 
+    {% if keywords %}
+      <p class="f4 comp-grey mt4">
+        <b class="mr1">Keywords</b> {% for keyword in keywords %}<span class="Post-Keyword">{{ keyword }}</span>{% endfor %}
+      </p>
+    {% endif %}
+
     {% if isMicro %}
       <footer>
         <hr class="ml0 mb3" />
