@@ -4,6 +4,10 @@ layout: layouts/main
 {% set isMicro = category == 'Updates' %}
 
 <main role="main">
+  <p>
+    <a href="/writings">&lt;- Writings</a>
+  </p>
+
   <article class="Post Post--{{ 'Update' if isMicro else 'Regular' }}" role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
     {% if isMicro %}
