@@ -22,7 +22,7 @@ layout: layouts/main
       </header>
     {% else %}
       <header> 
-        <h1 itemprop="name" class="title">{{ title }}</h1>
+        <h1 itemprop="name" class="title {{ 'title--smaller' if title.length | moreThan(50) }}">{{ title }}</h1>
 
         <p class="mb0 fw5 mt3">
           <time

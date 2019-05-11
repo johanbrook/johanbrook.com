@@ -19,6 +19,9 @@ module.exports = {
     </svg>`);
   },
 
+
+  moreThan: (num, count) => num > count,
+
   escapeQuotes,
 
   getContext() {
