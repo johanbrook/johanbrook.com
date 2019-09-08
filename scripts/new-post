@@ -27,11 +27,16 @@ const options = {
   Create a new post with the title format:
     2015-01-01-slugified-title.md
 */
-const TEMPLATE = `---\ntitle: ${title}\nslug: ${titleSlug}\ndate: '${moment().format(
-  'YYYY-MM-DDTHH:mm'
-)}'\ndraft: true
-\n---\n
-\n
+const TEMPLATE = `---
+title: ${title}
+slug: ${titleSlug}
+date: '${moment().format('YYYY-MM-DDTHH:mm')}'
+location: <where>
+excerpt: <excerpt>
+keywords:
+  - key
+draft: true
+---\n
 `;
 
 const fileName = `${options.prefix}-${titleSlug}.${options.extension}`;

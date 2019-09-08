@@ -4,6 +4,10 @@ layout: layouts/main
 {% set isMicro = category == 'Updates' %}
 
 <main role="main">
+  <p>
+    <a href="/writings">&lt;- Writings</a>
+  </p>
+
   <article class="Post Post--{{ 'Update' if isMicro else 'Regular' }}" role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
     {% if isMicro %}
@@ -18,7 +22,7 @@ layout: layouts/main
       </header>
     {% else %}
       <header> 
-        <h1 itemprop="name" class="title">{{ title }}</h1>
+        <h1 itemprop="name" class="title {{ 'title--smaller' if title.length | moreThan(50) }}">{{ title }}</h1>
 
         <p class="mb0 fw5 mt3">
           <time

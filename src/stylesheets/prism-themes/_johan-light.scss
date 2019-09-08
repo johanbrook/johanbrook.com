@@ -51,6 +51,38 @@ pre[class*='language-']:not(.language-bash) {
       }
     }
   }
+
+  .highlight-line-active,
+  .highlight-line-add {
+    &::before {
+      border-right-color: currentColor;
+    }
+  }
+
+  .highlight-line-active {
+    &::before {
+      color: darken($comp-yellow, 10%);
+    }
+  }
+
+  .highlight-line-add {
+    &::before {
+      color: darken($comp-green, 10%);
+      content: '+';
+    }
+  }
+}
+
+.highlight-line-active {
+  background-color: rgba($comp-yellow, .08);
+}
+
+.highlight-line-add {
+  background-color: rgba($comp-green, .05);
+  
+  .token.comment {
+    color: darken($comp-green, 20%);
+  }
 }
 
 .token.comment,

@@ -19,6 +19,10 @@ module.exports = {
     </svg>`);
   },
 
+  postAssetUrl: (file) => `/assets/posts/${file}`,
+
+  moreThan: (num, count) => num > count,
+
   escapeQuotes,
 
   getContext() {

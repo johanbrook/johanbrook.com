@@ -6,6 +6,10 @@
   font-weight: bold;
   line-height: $line-height-title;
   letter-spacing: -1px;
+
+  &--smaller {
+    font-size: $font-size-title / 2;
+  }
 }
 
 h1,
