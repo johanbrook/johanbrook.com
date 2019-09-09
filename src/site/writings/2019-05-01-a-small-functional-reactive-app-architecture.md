@@ -1,9 +1,9 @@
 ---
 title: Building a small, functional reactive app architecture
 slug: small-functional-reactive-app-architecture
-date: '2019-05-11T20:01'
+date: '2019-09-09T20:01'
 location: A kitchen table in Stockholm
-excerpt: <excerpt>
+excerpt: A long-ish read on how to build a web frontend with reactive functional streams (in Typescript!). We'll go through how we at Lookback extracted a library from patterns in our frontend, inspired by the library CycleJS.
 keywords:
   - typescript
   - streams
@@ -15,7 +15,7 @@ draft: true
 
 At [Lookback](https://lookback.io), we've fallen in love with functional reactive programming with streams in our frontend apps. Together with the use of Typescript for compile time type safety, we've seen a tremendous bump in overall stability and fewer runtime bugs. Actually, I dare to say that *all* of our bugs so far have been either logic (programmer) or timing errors.
 
-That's why we've extracted the patterns we've been using in our frontend apps to a small framework we call **Frap**. You can find it here:
+That's why we've extracted the patterns we've been using in our frontend apps to a library we call **Frap** ("**F**unctional **R**eactive **Ap**p"). You can find it here:
 
 <p class="tc">
   <a href="https://github.com/lookback/frap" class="btn">✨ lookback/frap on GitHub</a>
@@ -26,13 +26,27 @@ That's why we've extracted the patterns we've been using in our frontend apps to
 - 🏄‍♂️ The core API consists of two functions.
 - 🤝 Agnostic about the view, but assumes a stream based application.
 
-We're in the process of adding some examples and documentation. Please continue reading this post for the background and a deeper dive into the architecture.
+## What this text is and what it's not
+
+We'll look at how *easy* it actually is to build these kind of frontend architectures on your own. Frap is, to be clear, *not* any new or novel idea at all. As you will read below, it's essentially a rip off of a library called CycleJS, but less general and made to work with React as a view before CycleJS had proper React support.
+
+What we'll go through is how one can reason about state, side effects, and drawing the view with the data structure streams. In the end, we have the complete library.
+
+**⚠️ I'll assume knowledge about streams in this post.** The xstream library will be used for reactive streams, but the concepts are applicable to any streams implementation with the basic operations. I will also use Typescript features to model the architecture of Frap.
+
+## Why?
+
+For me personally, it was all about the *joy* of constructing an architecture I could understand the smallest parts of, and then extracting it to make it general.
+
+It felt good not using a 3rd party package (except for `xstream`…) to solve a thing.
+
+## Credits
+
+The main brain behind the architecture is my colleague [Martin](https://twitter.com/algstn). He was the drive behind the functional patterns as we pair programmed to build the architecture for Lookback's Live player. The extraction and polishing was made by myself.
 
 ## Background
 
 We do make use of [CycleJS](https://cycle.js.org) in one of our web clients. CycleJS introduced the concept of cyclical streams and *drivers* for side effects for us. Go ahead and read about all its features on the website. It was a bit daunting for me in the beginning to "think in cyclical streams", but a few months in I'm happier than ever building a single page client app.
-
-**⚠️ I assume knowledge about streams in this post.** The xstream library will be used for reactive streams, but the concepts are applicable to any streams implementation with the basic operations. I will also use Typescript features to model the architecture of Frap.
 
 I recommend reading these texts on streams and reactive programming:
 
@@ -58,17 +72,19 @@ function MyComponent(sources) {
 
   // Stream of new text values from our <input> element
   const newValue$ = domSource
-    .select('.input')
-    .events('input')
-    .map(ev => ev.target.value);
+    .select('.input') // The <input> has class="input"
+    .events('input')  // Listen to `input` events
+    .map(ev => ev.target.value); // For each input, grab the `value`
 
   // Build a stream of state, which looks like:
   //  Stream<{ value: string }>
   const state$ = newValue$
     .map(value => ({ value }))
-    .remember();
+    .remember();  // Remember last value
 
-  // Render out the UI from our state
+  // Render out the UI from our state using Snabbdom. This is
+  // a virtual DOM implementation, and we build the structure
+  // using Hyperscript.
   const vdom$ = state$
     .map(state =>
       div([
@@ -107,7 +123,7 @@ function MyComponent() {
 }
 ```
 
-The React component *probably* looks more straight forward to most people than the CycleJS component, I imagine. It's because it's *imperative*. We use `setText` and perhaps `this.setState` in React components – a concept that doesn't exist in CycleJS's world.
+The React component *probably* looks more straight forward to most people than the CycleJS component, I imagine. It's because it's *imperative*. We use `setText` and perhaps `this.setState` in React components – a concept that doesn't exist in CycleJS's world. In CycleJS, something needs to "pull" the values through the streams through the component. Streams are, aptly, flowing through the whole app.
 
 ### Building our own
 
@@ -152,7 +168,7 @@ const state: State = {
 }
 ```
 
-From this, we should be able to draw the full app component tree. And if we'd draw it again from the same state, the app's UI mustn't change.
+From this, we should be able to draw the full app component tree. And if we'd draw it again from the same state, the app's UI can't change fundamentally.
 
 ***
 
@@ -172,7 +188,7 @@ The update effectively extends the existing state object to form a new one.
 So we've got a `state$` variable containing the *stream of states*. The idea is to let the view listen to this `state$` stream, which will behave like this:
 
 ```
--------------------------{ name: 'Johnny Doe' }-----
+----------------- update: { name: 'Johnny Doe' }----
   stateUpdate$.fold(..., startState)
 { name: 'Johan Brook' }--{ name: 'Johnny Doe' }----- = state$
 ```
@@ -372,9 +388,10 @@ I imagine this flow being something like this:
 How does a message look like then? Perhaps like this:
 
 ```ts
-interface OpenModal {
-  kind: 'open_modal';
+interface ToggleModal {
+  kind: 'toggle_modal';
   modalName: 'surveyModal' | 'loginModal';
+  open: boolean;
 }
 
 interface SetPerson {
@@ -385,7 +402,7 @@ interface SetPerson {
   };
 }
 
-type View = OpenModal | SetPerson;
+type View = ToggleModal | SetPerson;
 ```
 
 The last `View` type forms the union type which our messages stream consists of: `Stream<View>`. Let's investigate how this fits into our app architecture.
@@ -395,7 +412,7 @@ We've got our `app` function which produces state updates and receives state fro
 ```ts
 import xs from 'xstream';
 
-const run = <V>(main: Main, view$: Stream<V>, startState: State) => {
+const run = <View>(main: Main, view$: Stream<View>, startState: State) => {
   const fakeUpdates$ = xs.create();
 
   const state$ = stateUpdate$.fold((prev, update) =>
@@ -409,7 +426,7 @@ const run = <V>(main: Main, view$: Stream<V>, startState: State) => {
 };
 ```
 
-I've introduced a generic type `V` in the `run` function. Let's start our app:
+I've introduced a generic type `View` in the `run` function. Let's start our app:
 
 ```ts
 // run :: (Main, Stream<V>, State) -> Stream<State>
@@ -484,7 +501,9 @@ But how do we draw a whole React app from a stream? We can't return a stream of 
 
 (This means the React app will re-render on each state update. *Again, this is fine*. Does the app feel slow? Profile with React's dev tools, as [this tweet](https://twitter.com/ryanflorence/status/1126734015950536706) advises).
 
-In most stream libraries, there's a method called `subscribe` which you can use on a stream. In xstream, it adds a listener on a stream and returns a subscription that can be used to remove that listener (read the [docs](http://staltz.github.io/xstream/#subscribe)). We can use that to subscribe to state updates, and then unsubscribe when our app unmounts!
+In most stream libraries, there's a method called `subscribe` which you can use on a stream. In xstream, it adds a listener on a stream and returns a subscription that can be used to remove that listener (read the [docs](http://staltz.github.io/xstream/#subscribe)). We can use that to subscribe to state updates, and then unsubscribe when our app unmounts.
+
+In the `next` callback of `subscribe`, we'll receive each new element in the stream (we can also catch errors in `error`). We use `next` to set the state of the React component at top level. From then on, we'll let React figure out how to draw the DOM based on that very state. For each new state update, `next` will be called, and React will re-render the tree. Incremental, immutable state.
 
 Here's the function signature of `run`:
 
@@ -584,8 +603,8 @@ Notice how we:
 
 1. Create a `view$` stream in the constructor and pass it to `run`.
 2. Create a `send` function on the app component which can be used from view event handlers to send messages.
-4. Subscribe to state updates when mounted.
-5. Render the state in `render()`.
+3. Subscribe to state updates when mounted.
+4. Render the state in `render()`.
 
 The main fishy thing here might be the `shamefullySendNext` method in `send`. As from the [docs](http://staltz.github.io/xstream/#shamefullySendNext), this method forces a new value to be emitted to the stream. This is the one of the two "bridges" between our functional app world and the imperative view (the `subscribe()` call being the other one).
 
@@ -665,8 +684,6 @@ As you see, a driver is 🌈Just A Function 🌈.
 This particular example of a driver only consumes sinks but doesn't return any sources back to our `app()` function.
 
 How do we hook up this driver? We need to modify the `run` function!
-
-☝️ Remember, this is only for education purposes: all of this is already done for you in Frap.
 
 **Run**
 
