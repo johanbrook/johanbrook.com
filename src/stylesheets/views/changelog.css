@@ -4,14 +4,13 @@
 .changelog {
   .page__text {
     h2 {
-      font-size: $font-size-3;
       position: relative;
 
-      @include larger-than($handheld) {
+      @media screen and (min-width: 481px) {
         &::before {
           content: '##';
           position: absolute;
-          color: $comp-cerise;
+          color: var(--comp-cerise);
           left: -2em;
           font-size: 0.8em;
           top: 0.3ex;
@@ -21,18 +20,18 @@
 
     > ul {
       padding-left: 0;
-      margin-bottom: $lineheight * 2;
+      margin-bottom: var(--lineheight) * 2;
 
       ul {
         margin-bottom: 0;
       }
 
       &:not(.latest) {
-        color: $grey;
+        color: var(--grey);
       }
 
       strong {
-        color: $text-color;
+        color: var(--text-color);
       }
     }
 

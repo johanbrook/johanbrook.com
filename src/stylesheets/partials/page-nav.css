@@ -2,19 +2,19 @@
   text-align: center;
 
   a {
-    color: $grey;
+    color: var(--grey);
     display: inline-block;
     padding: 0.3em 0.5em;
     text-decoration: none;
 
     &:hover {
-      color: $link-color;
+      color: var(--link-color);
       text-decoration: underline;
     }
   }
 
   .separator {
-    color: $text-color;
+    color: var(--text-color);
     font-weight: 500;
     letter-spacing: -1px;
     font-size: 1.2em;

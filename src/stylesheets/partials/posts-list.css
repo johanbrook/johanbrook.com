@@ -1,0 +1,68 @@
+/*
+POSTS LIST
+----------------------------------------------------------------*/
+
+.PostItem {
+  padding: calc(var(--lineheight) / 2) 0;
+  margin-bottom: var(--lineheight);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &--Update {
+    article {
+      display: flex;
+      align-items: center;
+
+      time {
+        margin-left: var(--spacing-large);
+        color: var(--grey);
+      }
+    }
+  }
+
+  &__ReadingTime {
+    color: var(--grey);
+    font-weight: 500;
+    margin-right: 0.25em;
+  }
+
+  &__Link {
+    font-weight: 500;
+    font-size: var(--font-size-2);
+  }
+
+  &__Excerpt {
+    font-size: var(--font-size-4);
+    margin-bottom: 0;
+    max-width: var(--measure);
+  }
+}
+
+.PostsList {
+  list-style: none;
+
+  &--Tight {
+    .PostItem {
+      border: 1px solid var(--grey-light);
+      border-width: 0 0 1px;
+      margin: 0;
+    }
+  }
+
+  &:not(.PostsList--Tight) {
+    .PostItem--Update {
+      border: 1px solid var(--grey-light);
+      border-width: 1px 0;
+
+      a {
+        font-size: var(--font-size-3);
+      }
+
+      time {
+        font-size: var(--font-size-4);
+      }
+    }
+  }
+}

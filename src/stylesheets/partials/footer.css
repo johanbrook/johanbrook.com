@@ -1,0 +1,8 @@
+/*
+FOOTER
+----------------------------------------------------------------*/
+
+[role="contentinfo"] {
+  margin-top: var(--lineheight);
+  padding: calc(var(--lineheight) * 3) 0;
+}

@@ -1,0 +1,52 @@
+/* =HEADINGS
+--------------------------------------------- */
+
+.title {
+  font-size: var(--font-size-title);
+  font-weight: bold;
+  line-height: var(--line-height-title);
+  letter-spacing: -1px;
+
+  &--smaller {
+    font-size: calc(var(--font-size-title) / 2);
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  margin-bottom: var(--spacing-extra-small);
+  letter-spacing: var(--letter-spacing-tighter);
+}
+
+h1 {
+  font-size: var(--font-size-1);
+  font-weight: 500;
+}
+
+h2 {
+  font-size: var(--font-size-2);
+  font-weight: 500;
+}
+
+h3 {
+  font-size: var(--font-size-3);
+  font-weight: 600;
+}
+
+h4 {
+  font-size: var(--font-size-4);
+  font-weight: 500;
+}
+
+h5 {
+  font-size: var(--font-size-4);
+}
+
+h6 {
+  font-size: var(--font-size-4);
+}
