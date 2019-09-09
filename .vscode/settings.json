@@ -1,8 +1,5 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "es5",
-  "[javascript]": {
-    "editor.formatOnSave": true
-  }
+  // "editor.formatOnSave": true,
+  "css.validate": false,
+  "stylelint.enable": true
 }

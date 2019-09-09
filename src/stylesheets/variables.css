@@ -1,0 +1,111 @@
+:root {
+  /* Colors */
+
+  --comp-green: #6ebc30;
+  --comp-blue: #4bb2f7;
+  --comp-red: #dc353f;
+  --comp-neon: #54cf88;
+  --comp-teal: #227b90;
+  --comp-teal-light: #13b1bf;
+  --comp-orange: #ff8c00;
+  --comp-beige: #fffadc;
+  --comp-cerise: #e01270;
+  --comp-yellow: #f7d628;
+
+  --background-color: #fff;
+
+  --text-color: #333333;
+  --grey: #949494;
+  --grey-light: rgba(#bec7c6, 0.5);
+  --grey-lightest: rgba(#bec7c6, 0.2);
+  --off-white: #fafafa;
+
+  --link-color: #0074ff;
+  --link-color-hover: #0054bb;
+  --border-color: #e9e9e9;
+
+  --btn-color: #0074ff;
+  --btn-color-hover: #005ed1;
+  --btn-color-active: #004daa;
+
+  /* Typography */
+
+  --serif: Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
+  --mono: Hack, Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
+    'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
+    serif;
+  --headings: var(--sans);
+  --tumblr-font: var(--sans);
+
+  --font-size-base: 17;
+  --leading-factor: 1.64;
+  --leading: calc(var(--font-size-base) * var(--leading-factor));
+  --lineheight: calc(var(--leading-factor) * 1rem);
+
+  --font-size-headline: 6rem;
+  --font-size-subheadline: 5rem;
+
+  --font-size-title: 70px;
+  --font-size-1: 24px;
+  --font-size-2: 20px;
+  --font-size-3: 1rem;
+  --font-size-4: 13px;
+
+  --letter-spacing-tight: -0.002em;
+  --letter-spacing-tighter: -0.025em;
+  --letter-spacing-1: 0.1em;
+  --letter-spacing-2: 0.25em;
+
+  --line-height-solid: 1;
+  --line-height-title: 1.1;
+  --line-height-copy: var(--leading-factor);
+
+  /* See https://developers.google.com/web/updates/2016/02/font-display */
+  --font-strategy: fallback;
+
+  /* Measures */
+
+  --column-width: 3.52rem;
+  --gutter-width: 1.17rem;
+
+  /* @function columns(var(--count)) {
+    @return var(--count) * var(--column-width) + (var(--count) - 1) * var(--gutter-width);
+  } */
+
+  --max-width: calc(
+    8 * var(--column-width) + (8 - 1) * var(--gutter-width)
+  ); /* 620px */
+
+  --measure: calc(
+    7 * var(--column-width) + (7 - 1) * var(--gutter-width)
+  ); /* ~78 chars */
+  --measure-narrow: calc(
+    6 * var(--column-width) + (6 - 1) * var(--gutter-width)
+  ); /* ~45 chars */
+  --measure-wide: calc(
+    8 * var(--column-width) + (8 - 1) * var(--gutter-width)
+  ); /* ~80 chars */
+
+  --spacing-base: calc(var(--leading-factor) * 1rem);
+
+  --spacing-none: 0;
+  --spacing-extra-small: calc(var(--spacing-base) / 3);
+  --spacing-small: calc(var(--spacing-base) / 2);
+  --spacing-medium: var(--spacing-base);
+  --spacing-large: calc(var(--spacing-base) * 2);
+  --spacing-extra-large: calc(var(--spacing-base) * 3);
+  --spacing-extra-extra-large: calc(var(--spacing-base) * 4);
+  --spacing-extra-extra-extra-large: calc(var(--spacing-base) * 6);
+
+  /* Breakpoints */
+
+  --desktop: 1700px;
+  --laptop: 1281px;
+  --tablet: 768px;
+  --handheld: 481px;
+
+  --breakpoint-not-small: screen and (min-width: var(--handheld));
+  --breakpoint-medium: screen and (min-width: 30em) and (max-width: 60em);
+  --breakpoint-large: screen and (min-width: 60em);
+}

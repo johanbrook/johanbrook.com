@@ -2,9 +2,9 @@
 --------------------------------------------- */
 .Post {
   .title {
-    @include handheld {
-      font-size: $font-size-1;
-      letter-spacing: $letter-spacing-tighter;
+    @media screen and (max-width: 480px) {
+      font-size: var(--font-size-1);
+      letter-spacing: -1px;
       line-height: inherit;
     }
   }
@@ -13,7 +13,8 @@
     display: inline-block;
     border-radius: 4px;
     padding: 0 .5em;
-    background-color: rgba($grey-light, .2);
+    background-color: var(--grey-lightest);
+    font-weight: 500;
 
     &:not(:last-child) {
       margin-right: 3px;

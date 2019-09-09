@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 
 const watch = () => {
-  gulp.watch('src/stylesheets/**/*.scss', gulp.parallel('styles'));
+  gulp.watch('src/stylesheets/**/*.css', gulp.parallel('styles'));
   gulp.watch('src/public/**/*', gulp.parallel('public'));
   gulp.watch('src/site/**/*', gulp.parallel('generate'));
 };

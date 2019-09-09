@@ -1,23 +1,18 @@
 const gulp = require('gulp');
-const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
+const postcss = require('gulp-postcss');
 
-const compileSass = () =>
+const bundleCSS = () =>
   gulp
-    .src('src/stylesheets/*.scss')
+    .src('src/stylesheets/*.css')
     .pipe(sourcemaps.init())
-    .pipe(
-      sass({
-        outputStyle:
-          process.env.NODE_ENV === 'development' ? 'expanded' : 'compressed',
-      }).on('error', sass.logError)
-    )
+    .pipe(postcss())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('build/assets/css'));
 
 /*
-  Compile SCSS files to CSS
+  Compile CSS
 */
-gulp.task('styles', compileSass);
+gulp.task('styles', bundleCSS);
 
-module.exports = compileSass;
+module.exports = bundleCSS;

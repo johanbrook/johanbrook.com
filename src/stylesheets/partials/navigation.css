@@ -10,13 +10,13 @@
   }
 
   a {
-    color: $grey;
+    color: var(--grey);
     display: inline-block;
-    padding: $lineheight $gutter-width;
+    padding: var(--lineheight) var(--gutter-width);
     text-decoration: none;
 
     &:hover {
-      color: $link-color;
+      color: var(--link-color);
       text-decoration: underline;
     }
   }
@@ -24,7 +24,7 @@
   .nav--current {
     a {
       font-weight: 500;
-      color: $text-color;
+      color: var(--text-color);
       cursor: default;
 
       &:hover {
@@ -43,24 +43,29 @@
 }
 
 html:not(.home) .TopNav {
-  border-bottom: 1px solid $grey-light;
-  margin-bottom: $lineheight;
-}
-
-.home [role="navigation"] {
-  justify-content: center;
+  border-bottom: 1px solid var(--grey-light);
+  margin-bottom: var(--lineheight);
 }
 
 .FooterNav {
   flex-direction: column;
 
+  &__Primary {
+    font-size: var(--font-size-3);
+    margin-bottom: var(--lineheight);
+  }
+  
+  &__Secondary {
+    font-size: var(--font-size-4);
+  }
+
   &::before {
     content: '';
     display: block;
     height: 1px;
-    background-color: $grey-light;
+    background-color: var(--grey-light);
     width: 6rem;
-    margin: $lineheight*2 auto;
+    margin: calc(var(--lineheight) * 2) auto;
   }
 
   a {
@@ -71,7 +76,7 @@ html:not(.home) .TopNav {
     justify-content: center;
   }
 
-  @include handheld {
+  @media all and (max-width: 481px) {
     ul {
       flex-direction: column;
     }
@@ -86,30 +91,26 @@ html:not(.home) .TopNav {
   }
 }
 
-.FooterNav__Primary {
-  font-size: $font-size-3;
-}
-
-.FooterNav__Secondary {
-  font-size: $font-size-4;
+.home [role='navigation'] {
+  justify-content: center;
 }
 
 .mobile-nav-trigger {
   display: none;
   text-align: center;
   text-decoration: none;
-  font-family: $sans;
+  font-family: var(--sans);
   font-size: to_rem(13);
   padding: 1em 0.5em;
-  color: $grey;
+  color: var(--grey);
 
   .icon {
     position: relative;
     top: -1px;
-    color: $grey-light;
+    color: var(--grey-light);
   }
 
-  @include handheld {
+  @media all and (max-width: 481px) {
     display: block;
   }
 }

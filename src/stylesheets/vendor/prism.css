@@ -5,18 +5,18 @@ Prism template by Bram de Haan (http://atelierbram.github.io/syntax-highlighting
 Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
 */
 
-$tab-size: 2;
-
 code[class*='language-'],
 pre[class*='language-'] {
+  --tab-size: 2;
+
   direction: ltr;
   text-align: left;
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  -moz-tab-size: $tab-size;
-  -o-tab-size: $tab-size;
-  tab-size: $tab-size;
+  -moz-tab-size: var(--tab-size);
+  -o-tab-size: var(--tab-size);
+  tab-size: var(--tab-size);
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
@@ -29,6 +29,26 @@ pre[class*='language-'] {
 pre[class*='language-'] {
   overflow: auto;
   counter-reset: line;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #a0a5bd;
+  font-style: italic;
+}
+
+.highlight-line-active {
+  background-color: rgba(var(--comp-yellow), 0.08);
+}
+
+.highlight-line-add {
+  background-color: rgba(var(--comp-green), 0.05);
+
+  .token.comment {
+    color: darken(var(--comp-green), 20%);
+  }
 }
 
 /* Line numbers */
@@ -46,7 +66,7 @@ pre[class*='language-']:not(.language-bash) {
       margin-right: 2em;
       color: rgba(#a0a5bd, 0.6);
 
-      @include handheld {
+      @media screen and (max-width: var(--handheld)) {
         margin-right: 1em;
       }
     }
@@ -61,36 +81,16 @@ pre[class*='language-']:not(.language-bash) {
 
   .highlight-line-active {
     &::before {
-      color: darken($comp-yellow, 10%);
+      color: var(--comp-yellow);
     }
   }
 
   .highlight-line-add {
     &::before {
-      color: darken($comp-green, 10%);
+      color: var(--comp-green);
       content: '+';
     }
   }
-}
-
-.highlight-line-active {
-  background-color: rgba($comp-yellow, .08);
-}
-
-.highlight-line-add {
-  background-color: rgba($comp-green, .05);
-  
-  .token.comment {
-    color: darken($comp-green, 20%);
-  }
-}
-
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: #a0a5bd;
-  font-style: italic;
 }
 
 .token.punctuation {
