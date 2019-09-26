@@ -96,7 +96,8 @@ h6 {
   font-size: var(--font-size-4);
 }
 
-strong, b {
+strong,
+b {
   font-weight: 600;
 }
 
@@ -123,6 +124,7 @@ a {
   color: var(--link-color);
   text-decoration: none;
   position: relative;
+  font-weight: 500;
 
   &:hover {
     color: var(--link-color-hover);
