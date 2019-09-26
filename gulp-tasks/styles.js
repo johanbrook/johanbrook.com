@@ -4,7 +4,7 @@ const postcss = require('gulp-postcss');
 
 const bundleCSS = () =>
   gulp
-    .src('src/stylesheets/*.css')
+    .src('src/stylesheets/johan.css')
     .pipe(sourcemaps.init())
     .pipe(postcss())
     .pipe(sourcemaps.write())
