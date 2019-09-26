@@ -4,11 +4,11 @@ layout: layouts/main
 
 <main role="main">
   <article class="page">
-    <h1 class="title mb3 {{ "comp-" + color if color }}">{{ title }}.</h1>
+    <h1 class="title {{ "comp-" + color if color }}">{{ title }}.</h1>
 
     {% if date %}
-      <p class="muted">
-        Updated on <time class="fw5 text-color">{{ date | niceDate(false) }}</time>
+      <p>
+        Updated on <time class="fw6 text-color">{{ date | niceDate(false) }}</time>
         {% if location %}
           from {{ location }}.
         {% endif %}

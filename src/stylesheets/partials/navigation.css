@@ -2,23 +2,38 @@
 --------------------------------------------- */
 
 [role='navigation'] {
-  display: flex;
-  justify-content: space-between;
-
   ul {
     display: flex;
   }
 
   a {
-    color: var(--grey);
-    display: inline-block;
-    padding: var(--lineheight) var(--gutter-width);
+    color: var(--text-color);
     text-decoration: none;
 
     &:hover {
       color: var(--link-color);
       text-decoration: underline;
     }
+  }
+}
+
+/*
+TOP NAV
+----------------------------------------------------------------*/
+
+.TopNav {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+
+  li:first-child a {
+    padding-left: 0;
+  }
+
+  a {
+    display: inline-block;
+    color: var(--grey);
+    padding: var(--lineheight) var(--gutter-width);
   }
 
   .nav--current {
@@ -34,18 +49,42 @@
   }
 }
 
-.TopNav {
-  font-weight: 500;
+/*
+SIDE NAV
+----------------------------------------------------------------*/
 
-  li:first-child a {
-    padding-left: 0;
+.SideNav {
+  margin-right: 3rem;
+  margin-top: var(--lineheight);
+  width: 9rem;
+
+  ul {
+    flex-direction: column;
+  }
+
+  a {
+    font-weight: normal;
+  }
+
+  h1 {
+    margin-bottom: calc(var(--lineheight) * 3);
+
+    a {
+      color: #000;
+      font-weight: 500;
+    }
+  }
+
+  .nav--current {
+    a {
+      font-weight: 600;
+    }
   }
 }
 
-html:not(.home) .TopNav {
-  border-bottom: 1px solid var(--grey-light);
-  margin-bottom: var(--lineheight);
-}
+/*
+FOOTER NAV (deprecated)
+----------------------------------------------------------------*/
 
 .FooterNav {
   flex-direction: column;
@@ -54,7 +93,7 @@ html:not(.home) .TopNav {
     font-size: var(--font-size-3);
     margin-bottom: var(--lineheight);
   }
-  
+
   &__Secondary {
     font-size: var(--font-size-4);
   }
@@ -89,10 +128,6 @@ html:not(.home) .TopNav {
       display: block;
     }
   }
-}
-
-.home [role='navigation'] {
-  justify-content: center;
 }
 
 .mobile-nav-trigger {

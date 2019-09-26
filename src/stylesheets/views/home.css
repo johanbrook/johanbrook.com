@@ -1,3 +1,17 @@
 .header-title {
   max-width: 100%;
 }
+
+.home {
+  body {
+    flex-direction: column;
+  }
+
+  main {
+    margin: 0 auto;
+
+    header {
+      text-align: center;
+    }
+  }
+}

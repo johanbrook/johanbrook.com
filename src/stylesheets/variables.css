@@ -58,7 +58,7 @@
   --letter-spacing-2: 0.25em;
 
   --line-height-solid: 1;
-  --line-height-title: 1.1;
+  --line-height-title: calc(var(--lineheight) * 3);
   --line-height-copy: var(--leading-factor);
 
   /* See https://developers.google.com/web/updates/2016/02/font-display */

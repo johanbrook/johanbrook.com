@@ -25,18 +25,6 @@
       ul {
         margin-bottom: 0;
       }
-
-      &:not(.latest) {
-        color: var(--grey);
-      }
-
-      strong {
-        color: var(--text-color);
-      }
-    }
-
-    li > ul {
-      padding-left: 1.5rem;
     }
   }
 }

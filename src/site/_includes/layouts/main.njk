@@ -50,11 +50,13 @@ ogImage: /assets/images/og-image.png
 
   <body>
 
-    {% include "navigation.njk" %}
+    {% if home %}
+      {% include "top-navigation.njk" %}
+    {% else %}
+      {% include "side-navigation.njk" %}
+    {% endif %}
 
     {{ content | safe }}
-
-    {% include "footer.njk" %}
 
     <script type="text/javascript">
       function init() {

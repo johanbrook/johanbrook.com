@@ -30,17 +30,18 @@ html {
 }
 
 body {
-  /* Sticky footer with Flexbox */
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  max-width: var(--max-width);
   margin: 0 auto;
   width: 90%;
+  justify-content: center;
 }
 
-[role='main'] {
+main {
   flex: 1 0 auto;
+  max-width: var(--max-width);
+  margin-top: var(--lineheight);
+  margin-bottom: calc(var(--lineheight) * 3);
 }
 
 /* =HEADINGS
@@ -108,6 +109,12 @@ ol {
   @media screen and (max-width: 480px) {
     padding-left: 1em;
   }
+
+  li > ul,
+  li > ol {
+    padding-left: 1.5rem;
+    margin-bottom: 0;
+  }
 }
 
 nav ul {
@@ -117,7 +124,7 @@ nav ul {
 }
 
 ul {
-  list-style-type: circle;
+  list-style-type: disc;
 }
 
 a {
