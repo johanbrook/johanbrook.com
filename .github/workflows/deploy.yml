@@ -1,4 +1,4 @@
-name: Build & Deploy site
+name: Build & Deploy johanbrook.com
 
 on:
   push:
@@ -8,17 +8,14 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [12.x]
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@master
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '12.x'
 
       - name: Build, Test and Deploy
         uses: JamesIves/github-pages-deploy-action@master
