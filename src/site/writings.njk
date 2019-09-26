@@ -3,34 +3,23 @@ title: Writings
 layout: layouts/main
 pagination:
   data: collections.posts
-  size: 10
+  size: 30
   alias: posts
   reverse: true
 ---
 
 <main role="main" class="posts">
 
-  <h1 class="mb4 mt3 title">Writings.</h1>
+  <h1 class="title">Writings.</h1>
 
   <ol class="PostsList">
     {% for post in posts %}
       <li class="PostItem PostItem--{{ 'Update' if post.data.category == 'Updates' else 'Regular' }}">
         <article role="article">
-          <a class="PostItem__Link" href="{{ post.url }}">{{ post.data.title }} -></a>
+          <a class="PostItem__Link" href="{{ post.url }}" title="About {{ post | readingTime }} reading time">{{ post.data.title }} -></a>
 
-          {% if post | isMicroUpdate %}
-            <time datetime="{{ post.date | toISODate }}" pubdate>{{ post.date | niceDate }}</time>
-          {% endif %}
+          <time datetime="{{ post.date | toISODate }}" pubdate>{{ post.date | formatDate("YYYY-MM-DD") }}</time>
 
-          {% if not post | isMicroUpdate %}
-          
-            <p class="PostItem__Excerpt">
-              
-              <span class="PostItem__ReadingTime">{{ post | readingTime }}</span>
-
-              {{ post.data.excerpt or post | excerpt | safe }}
-            </p>
-          {% endif %}
         </article>
       </li>
     {% endfor %}
