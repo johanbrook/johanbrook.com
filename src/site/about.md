@@ -10,7 +10,7 @@ keywords:
   - typescript
 ---
 
-<p class="f2 mb4">
+<p class="f2">
 <strong>I like building things</strong> for the web. You'd <em>probably</em> enjoy grabbing a beer or coffee with me. I also like reading, writing, strolling around in cities, playing the guitar, coffee, cooking, and photography.
 </p>
 
@@ -26,7 +26,7 @@ As for non-tech things in startups, I've become more and more interested in the 
 
 **I love traveling.** I lived in Canada for a year before university, where I went completely offline and worked as a barista. In September 2015, I embarked upon this nomad thing of traveling the world while working remote. So far, I've lived and worked in Vienna, London, San Francisco, New York, Montréal, Asunción, Rio de Janeiro, Copenhagen, and Lisbon. Keep an eye out on [Now](/now) for updates. As of January 2018, I've settled in Stockholm, Sweden.
 
-**Writing** is something I try to do more and more. I've had a blog since my mid teens – as an outlet of some sorts – but sadly I haven't found the same calm to write pieces nowadays. Because of that, I'm trying to write in smaller "updates". Please see [Writings](/writings) on this site.
+**[Writing](/writing)** is something I try to do more and more (been posting pieces here since 2010). I've had a blog since my mid teens and I'm currently experimenting with much shorter texts to lower the ambition but increase the Time To Publish.
 
 As always, I love getting emails and talk with people. Reach me at [johan@johanbrook.com](mailto:johan@johanbrook.com) about anything.
 
