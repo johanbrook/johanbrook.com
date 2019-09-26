@@ -24,6 +24,7 @@
     "@11ty/eleventy": "0.9.0",
     "@11ty/eleventy-plugin-rss": "^1.0.2",
     "@11ty/eleventy-plugin-syntaxhighlight": "^1.0.5",
+    "@fullhuman/postcss-purgecss": "^1.3.0",
     "autoprefixer": "^9.6.1",
     "cssnano": "^4.1.10",
     "eleventy-plugin-reading-time": "0.0.1",
