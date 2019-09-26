@@ -17,7 +17,6 @@ POSTS LIST
 
       time {
         margin-left: var(--spacing-large);
-        color: var(--grey);
       }
     }
   }
@@ -30,7 +29,7 @@ POSTS LIST
 
   &__Link {
     font-weight: 500;
-    font-size: var(--font-size-2);
+    font-size: var(--font-size-3);
   }
 
   &__Excerpt {

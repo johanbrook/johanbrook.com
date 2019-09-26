@@ -2,7 +2,7 @@
 FOOTER
 ----------------------------------------------------------------*/
 
-[role="contentinfo"] {
+[role='contentinfo'] {
   margin-top: var(--lineheight);
-  padding: calc(var(--lineheight) * 3) 0;
+  padding: calc(var(--lineheight) * 2) 0;
 }
