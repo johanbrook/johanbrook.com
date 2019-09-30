@@ -3,16 +3,12 @@ POSTS LIST
 ----------------------------------------------------------------*/
 
 .PostItem {
-  margin-bottom: calc(var(--lineheight) / 2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   &:last-child {
     border-bottom: 0;
-  }
-
-  article {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 
   time {
@@ -28,14 +24,26 @@ POSTS LIST
   }
 
   &__Link {
-    font-weight: 500;
+    display: block;
+    padding: calc(var(--lineheight) / 3) 0;
     font-size: var(--font-size-3);
+    flex: 1;
   }
 
   &__Excerpt {
     font-size: var(--font-size-4);
     margin-bottom: 0;
     max-width: var(--measure);
+  }
+
+  @media screen and (max-width: 480px) {
+    &__Link {
+      padding-right: 2rem;
+      font-size: 1em;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
 }
 

@@ -75,6 +75,18 @@ SIDE NAV
     }
   }
 
+  @media screen and (max-width: 480px) {
+    width: 100%;
+    padding-bottom: var(--lineheight);
+    margin-bottom: calc(var(--lineheight) - 1px);
+    border-bottom: 1px solid currentColor;
+    margin-right: 0;
+
+    h1 {
+      margin-bottom: var(--lineheight);
+    }
+  }
+
   .nav--current {
     a {
       font-weight: 600;
