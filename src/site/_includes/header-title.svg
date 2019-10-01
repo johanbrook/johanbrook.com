@@ -5,17 +5,57 @@
   class="header-title"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style type="text/css">
+       .svg-text {
+         font-family: Inter, sans-serif;
+       }
+
+       .pre-headline {
+         opacity: .72;
+         font-size: 13px;
+         font-weight: 600;
+         fill: #000;
+         text-transform: uppercase;
+         letter-spacing: .17em;
+       }
+
+       .sub-headline {
+         font-weight: 400;
+         fill: #feffff;
+         font-size: 28px;
+         letter-spacing: -.015em;
+       }
+
+       .headline {
+         opacity: .72;
+         font-size: 70px;
+         font-weight: bold;
+         fill: #000;
+         letter-spacing: -.03em;
+       }
+
+       .solid {
+         fill: #F7D628;
+       }
+
+      @supports (color: color(display-p3 1 1 1 / 1)) {
+        .solid {
+          fill: color(display-p3 0.9686 0.8392 0.1569 / 1);
+        }
+      }
+    </style>
+
     <title>Johan Brook</title>
     <g id="header-title" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="Rectangle-Copy" fill="#F7D628" points="0 24.7102644 481 -9.61036806e-16 481 254.170805 0 277"></polygon>
-        <text id="Johan’s" opacity="0.72" font-family="InterUI-Bold, Inter" font-size="70" font-weight="bold" letter-spacing="-2.085106" fill="#000000">
-            <tspan x="111.498155" y="162">Johan’s</tspan>
+        <polygon class="solid" points="0 24.7102644 481 -9.61036806e-16 481 254.170805 0 277"></polygon>
+        <text class="svg-text headline">
+            <tspan x="111.498155" y="162">Johan′s</tspan>
         </text>
-        <text id="website-&amp;-blog." font-family="InterUI-Medium, Inter" font-size="28" font-weight="400" letter-spacing="-0.4800001" fill="#FEFFFF">
+        <text class="svg-text sub-headline">
             <tspan x="142.090768" y="199">website &amp; blog.</tspan>
         </text>
-        <text id="Welcome-to" opacity="0.7" font-family="InterUI-SemiBold, Inter" font-size="13" font-weight="500" letter-spacing="2.169375" fill="#000000">
-            <tspan x="149.134126" y="93">WELCOME TO</tspan>
+        <text class="svg-text pre-headline">
+            <tspan x="149.134126" y="93">Welcome to</tspan>
         </text>
     </g>
 </svg>
