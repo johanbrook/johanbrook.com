@@ -28,6 +28,11 @@
   --btn-color-hover: #005ed1;
   --btn-color-active: #004daa;
 
+  @supports (color: color(display-p3 1 1 1 / 1)) {
+    --link-color: color(display-p3 0 0.2706 0.9569 / 1);
+    --link-color-hover: color(display-p3 0 0.3294 0.7333 / 1);
+  }
+
   /* Typography */
 
   --serif: Georgia, serif;
