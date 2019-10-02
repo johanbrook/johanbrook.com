@@ -1,18 +1,25 @@
 <svg
-  width="481px" height="277px"
   viewBox="0 0 481 277"
   version="1.1"
   class="header-title"
   xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink">
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  preserveAspectRatio>
     <style type="text/css">
+      .header-title {
+        width: 481px;
+        height: 277px;
+        max-width: 100%;
+        font-size: 70px;
+      }
+
        .svg-text {
          font-family: Inter, sans-serif;
        }
 
        .pre-headline {
          opacity: .72;
-         font-size: 13px;
+         font-size: 0.18em;
          font-weight: 600;
          fill: #000;
          text-transform: uppercase;
@@ -22,13 +29,13 @@
        .sub-headline {
          font-weight: 400;
          fill: #feffff;
-         font-size: 28px;
+         font-size: .4em;
          letter-spacing: -.015em;
        }
 
        .headline {
          opacity: .72;
-         font-size: 70px;
+         font-size: 1em;
          font-weight: bold;
          fill: #000;
          letter-spacing: -.03em;
@@ -48,14 +55,14 @@
     <title>Johan Brook</title>
     <g id="header-title" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon class="solid" points="0 24.7102644 481 -9.61036806e-16 481 254.170805 0 277"></polygon>
+        <text class="svg-text pre-headline">
+            <tspan x="149.134126" y="93">Welcome to</tspan>
+        </text>
         <text class="svg-text headline">
             <tspan x="111.498155" y="162">Johan′s</tspan>
         </text>
         <text class="svg-text sub-headline">
-            <tspan x="142.090768" y="199">website &amp; blog.</tspan>
-        </text>
-        <text class="svg-text pre-headline">
-            <tspan x="149.134126" y="93">Welcome to</tspan>
+            <tspan x="142.090768" y="199">website &amp; blog</tspan>
         </text>
     </g>
 </svg>

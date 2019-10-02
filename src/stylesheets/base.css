@@ -6,6 +6,10 @@
   color: #fff;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   background-color: var(--background-color);
   font: normal calc(var(--font-size-base) * 1px) / var(--leading-factor)

@@ -37,12 +37,13 @@ POSTS LIST
   }
 
   @media screen and (max-width: 480px) {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: calc(var(--lineheight) / 3);
+
     &__Link {
-      padding-right: 2rem;
+      max-width: 90%;
       font-size: 1em;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
     }
   }
 }
