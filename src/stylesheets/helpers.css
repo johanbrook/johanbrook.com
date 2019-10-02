@@ -16,6 +16,13 @@ ARTICLE TEXTS
     }
   }
 
+  @media screen and (prefers-color-scheme: dark) {
+    img {
+      opacity: 0.9;
+      box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
+    }
+  }
+
   ul,
   ol {
     @media screen and (max-width: 480px) {

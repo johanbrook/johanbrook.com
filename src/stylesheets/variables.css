@@ -28,9 +28,30 @@
   --btn-color-hover: #005ed1;
   --btn-color-active: #004daa;
 
+  --pre-background: #fff;
+  --pre-color: #5e6687;
+  --code-background: #fff;
+  --code-color: #000;
+
   @supports (color: color(display-p3 1 1 1 / 1)) {
     --link-color: color(display-p3 0 0.2706 0.9569 / 1);
     --link-color-hover: color(display-p3 0 0.3294 0.7333 / 1);
+  }
+
+  @media screen and (prefers-color-scheme: dark) {
+    --background-color: #1a1a1a;
+    --text-color: #e1e1e1;
+    --link-color: #3792ff;
+    --link-color-hover: #5da8ff;
+    --pre-background: #222;
+    --pre-color: #eee;
+    --code-background: #333;
+    --code-color: #fff;
+
+    @supports (color: color(display-p3 1 1 1 / 1)) {
+      --link-color: color(display-p3 0.2157 0.5725 1 / 1);
+      --link-color-hover: color(display-p3 0.3647 0.6588 1 / 1);
+    }
   }
 
   /* Typography */

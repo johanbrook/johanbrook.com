@@ -14,15 +14,8 @@ pre[class*='language-'] {
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
-  -moz-tab-size: var(--tab-size);
-  -o-tab-size: var(--tab-size);
-  tab-size: var(--tab-size);
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
   hyphens: none;
-  background: #fff;
-  color: #5e6687;
+  tab-size: var(--tab-size);
 }
 
 /* Code blocks */

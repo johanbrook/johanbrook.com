@@ -72,6 +72,10 @@ SIDE NAV
     a {
       color: #000;
       font-weight: 500;
+
+      @media only screen and (prefers-color-scheme: dark) {
+        color: #fff;
+      }
     }
   }
 

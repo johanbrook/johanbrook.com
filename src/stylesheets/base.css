@@ -25,6 +25,10 @@ html {
   @media screen and (max-width: 480px) {
     font-size: 1rem;
   }
+
+  @media screen and (prefers-color-scheme: dark) {
+    word-spacing: 0.05em;
+  }
 }
 
 @supports (font-variation-settings: normal) {
@@ -170,10 +174,10 @@ code {
 }
 
 code {
-  background-color: #fff;
+  background-color: var(--code-background);
+  color: var(--code-color);
   padding: 2px 4px;
   border-radius: 4px;
-  color: #000;
   font-size: 0.9em;
   border: 1px solid rgba(#000, 0.15);
 }
@@ -200,6 +204,8 @@ td {
 }
 
 pre {
+  background: var(--pre-background);
+  color: var(--pre-color);
   border-radius: 8px;
   padding: var(--lineheight);
   overflow-wrap: break-word;

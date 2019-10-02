@@ -7,6 +7,8 @@
   preserveAspectRatio>
     <style type="text/css">
       .header-title {
+        --color: #000;
+
         width: 481px;
         height: 277px;
         max-width: 100%;
@@ -21,7 +23,7 @@
          opacity: .72;
          font-size: 0.18em;
          font-weight: 600;
-         fill: #000;
+         fill: var(--color);
          text-transform: uppercase;
          letter-spacing: .17em;
        }
@@ -37,7 +39,7 @@
          opacity: .72;
          font-size: 1em;
          font-weight: bold;
-         fill: #000;
+         fill: var(--color);
          letter-spacing: -.03em;
        }
 
@@ -48,6 +50,26 @@
       @supports (color: color(display-p3 1 1 1 / 1)) {
         .solid {
           fill: color(display-p3 0.9686 0.8392 0.1569 / 1);
+        }
+      }
+
+      @media screen and (prefers-color-scheme: dark) {
+        .header-title {
+          --color: #f5df1e;
+        }
+
+        .svg-text {
+          opacity: 1;
+        }
+
+        .solid {
+          fill: rgba(0,0,0, .7);
+        }
+
+        @supports (color: color(display-p3 1 1 1 / 1)) {
+          .header-title {
+            --color: color(display-p3 0.9608 0.8745 0.1176 / 1);
+          }
         }
       }
     </style>
