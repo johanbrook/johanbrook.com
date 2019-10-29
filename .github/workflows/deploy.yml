@@ -32,3 +32,9 @@ jobs:
           # The build script the action should run prior to deploying.
           BUILD_SCRIPT: npm install --no-save --no-audit && npm test && npm run build
           CNAME: johanbrook.com
+
+      - name: Purge cache
+        uses: jakejarvis/cloudflare-purge-action@master
+        env:
+          CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
+          CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
