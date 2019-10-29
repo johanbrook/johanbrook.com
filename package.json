@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "description": "Homepage of Johan Brook.",
   "scripts": {
-    "build": "gulp build",
+    "build": "gulp build && touch build/.nojekyll",
     "watch": "gulp watch",
     "start": "NODE_ENV=development gulp serve",
     "deploy": "npm run build && ./deploy",
