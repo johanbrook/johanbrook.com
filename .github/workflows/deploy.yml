@@ -31,4 +31,4 @@ jobs:
           FOLDER: build
           # The build script the action should run prior to deploying.
           BUILD_SCRIPT: npm install --no-save && npm test && npm run build
-          CNAME: www.johanbrook.com
+          CNAME: johanbrook.com
