@@ -9,7 +9,6 @@ keywords:
   - programming
   - knitting
   - meditation
-draft: true
 ---
 
 A colleague mentioned this the other day in the company chat:
