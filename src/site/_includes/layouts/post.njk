@@ -37,18 +37,22 @@ layout: layouts/main
       {{ content | safe }}
     </div>
 
-    {% if keywords %}
-      <p class="f4 comp-grey mt4">
-        <b class="mr1">Keywords</b> {% for keyword in keywords %}<span class="Post-Keyword">{{ keyword }}</span>{% endfor %}
-      </p>
-    {% endif %}
+    <footer>
+      {% if keywords %}
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> {% for keyword in keywords %}<span class="Post-Keyword">{{ keyword }}</span>{% endfor %}
+        </p>
+      {% endif %}
 
-    {% if isMicro %}
-      <footer>
+      {% if isMicro %}
         <hr class="ml0 mb3" />
         <h1 itemprop="name" class="d-i f4 fw4 mb0">“{{ title }}”</h1>
         {%if location %}<span class="muted f4">was posted from {{ location | lower }}</span>{% endif %}
-      </footer>
-    {% endif %}
+      {% endif %}
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
   </article>
 </main>
