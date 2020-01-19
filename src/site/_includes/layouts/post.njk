@@ -9,6 +9,9 @@ layout: layouts/main
     {% if isMicro %}
       <header>
         <p>
+          {% if draft %}
+            <span class="badge mr1">Draft</span>
+          {% endif %}
           <time
             class="f2 fw5"
             datetime="{{ date | toISODate }}"
@@ -21,6 +24,9 @@ layout: layouts/main
         <h1 itemprop="name" class="title {{ 'title--smaller' if title.length | moreThan(50) }}">{{ title }}</h1>
 
         <p class="mb0 fw5 mt3">
+          {% if draft %}
+            <span class="badge mr1">Draft</span>
+          {% endif %}
           <time
             datetime="{{ date | toISODate }}"
             itemprop="datePublished"

@@ -778,3 +778,14 @@ TYPOGRAPHY
 .inset-title {
   margin-left: -0.15em;
 }
+
+.badge {
+  text-transform: lowercase;
+  font-size: 0.8rem;
+  border-radius: 3px;
+  color: #222;
+  font-weight: 600;
+  background-color: var(--comp-yellow);
+  display: inline-block;
+  padding: 0.1em 0.4em;
+}
