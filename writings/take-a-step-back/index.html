@@ -1,0 +1,167 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" take-a-step-back">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Take a step back – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="Details,Simplicity,Step back">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/take-a-step-back/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="Take a step back">
+    <meta property="og:url" content="https://johanbrook.com/writings/take-a-step-back/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="nav--current">
+      <a href="/writings">Writings &lt;-</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">Take a step back</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2011-02-28T11:58:00.000Z" itemprop="datePublished" title="9 years ago" pubdate="">February 28, 2011 – 11:58</time>
+        </p>
+
+        <p class="muted mb4">
+          About 2 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p>A while ago I was visiting a relative/client regarding some counseling about her brand new Wordpress site. While being there she mentioned some ﬂyers she and her husband had made for the business (garden services). Since spring is coming along you’ve got to ramp up quickly now because of the huge demand later on, therefore the need for a ﬂyer just to<span class="push-double"></span> <span class="pull-double">“</span>get it out there”. I have to say I had loved to design it myself&thinsp;&mdash;&thinsp;no doubt&thinsp;&mdash;&thinsp;but then I saw the ﬂyer they had created. I really liked it and was impressed. It was an elegant gallery of garden photos on portrait piece of paper, with the logotype in the middle. I think it was 3x6 small photos ordered in a grid. To be honest, I couldn’t have made it better myself. I believe the moral of the story is that everybody can design. It just has to be simple enough. If I was to design that ﬂyer, I had started to decide on typography, grids, hierarchy, colour scheme, what kind of photos to use, etc. I had <em>given it too much thought</em> and bypassed the really simple, straight-forward and plain beautiful solution. It’s important to take a step back as a designer (and developer as well) and think of what you’re doing. Is it really crucial and vital that the text lines up perfectly to the horizontal grid? Is it worth it to rewrite a large part of the application just to make use of that cool library?<span class="push-double"></span> <span class="pull-double">“</span>Regular” people (if I may say so) aren’t always dumb users who have no idea of what they want. When I was young and foolish I used to be so very eager to build stuff that I didn’t care too much about asking people (and myself) what really mattered the most with this application/design. I ended up feeling like I had missed something. Of course there are boundaries where you actually shouldn’t consult end-users, focus groups and so on. But what I mean is that it’s quite good to step away from the designer/developer role and get back to the roots sometimes. Everybody will gain from it.</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">Details</span><span class="Post-Keyword">Simplicity</span><span class="Post-Keyword">Step back</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

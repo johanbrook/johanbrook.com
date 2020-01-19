@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1280px" height="153px" viewBox="0 0 1280 153" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.7 (28169) - http://www.bohemiancoding.com/sketch -->
+    <title>abstract</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="1.94019197%" y1="50%" x2="99.0092246%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#5718E0" offset="0%"></stop>
+            <stop stop-color="#EC7D01" offset="51.9630899%"></stop>
+            <stop stop-color="#FF0086" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="99.09881%" y1="58.3831251%" x2="1.27541916%" y2="58.3831238%" id="linearGradient-2">
+            <stop stop-color="#282BD8" offset="0%"></stop>
+            <stop stop-color="#BBC909" offset="49.7269611%"></stop>
+            <stop stop-color="#F8125F" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="new-frontpage" transform="translate(0.000000, -125.000000)">
+            <g id="abstract" transform="translate(-59.000000, 125.000000)">
+                <polygon id="Path-340" fill="url(#linearGradient-1)" opacity="0.483150653" points="0.235545949 109.557291 119.073841 28.109565 550.691274 69.7371985 912.779042 5.14173312 1062.7838 152.261942 1399.04316 47.8823597 1285.28022 117.833299 1235.58284 58.7409298 1193.62666 135.152779 755.715321 10.6269626 599.22345 102.819729 259.030681 5.14173246 21.1203275 99.5219115"></polygon>
+                <polygon id="Path-341" fill="url(#linearGradient-2)" opacity="0.651993937" points="47 22.0456763 191.066553 68.7733803 523.560903 35.1977985 784.267215 85.2223832 912.607788 5.09714379 1154.401 123.859952 1358.2157 60.6051456 1348.3844 126.268491 984.680359 75.8562671 784.267212 85.2223865 742.788222 131.090473 445.476654 0.87549319 240.246689 124.289398"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

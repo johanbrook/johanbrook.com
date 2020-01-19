@@ -1,0 +1,187 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" writing-contextual-css">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Writing contextual CSS – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="css,context,scss,media-queries,organization">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/writing-contextual-css/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="Writing contextual CSS">
+    <meta property="og:url" content="https://johanbrook.com/writings/writing-contextual-css/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="nav--current">
+      <a href="/writings">Writings &lt;-</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">Writing contextual CSS</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2014-05-15T10:00:00.000Z" itemprop="datePublished" title="6 years ago" pubdate="">May 15, 2014 – 10:00</time>
+        </p>
+
+        <p class="muted mb4">
+          About 3 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p>Organization and structure of CSS might be one of the largest difﬁculties for beginners as for professionals in web design. It <em>is</em> hard writing good CSS. It is somewhat easer with pre-processors (SCSS, LESS, Stylus), but they’ll only give you the tools: it’s up to you how to use them (what I can’t do without is the <code>@import</code> feature).</p>
+<p>What I’ve learnt during recent years is to write <strong>contextual CSS</strong>: how similar elements and properties should be close to each other in the code. How I want to ﬁnd the properties of an element in <em>one</em> place. This post details how I prefer to write CSS, based on the number of projects where I’ve been forced to dig through my own code.</p>
+<h2>Finding all properties in one place</h2>
+<p>When I ﬁrst started doing web design, I (as you often do) started out by reading other people’s HTML and CSS. Inspecting every element, checking out the underlying CSS structure. I noted that many developers tended to split their stylesheets in ﬁles such as <code>layout.css</code>, <code>typography.css</code>, and more. I didn’t questioned why, but did the same. I ended up disliking the approach. Why? I jumped between the two stylesheets to ﬁnd and alter properties.</p>
+<p>When going through my (and others’) CSS, I want to ﬁnd properties of an element and ﬁnd them fast. Depending on how one is doing abstractions (that’s a future post of mine) I don’t want to jump around in the partials to ﬁnd that particular place where those special properties are sneaked into the code.</p>
+<p>I believe it’s perfectly ﬁne to mix and match all kinds of CSS properties: colors, typography, box model stuff. Go nuts. Since it’s very seldom those categories won’t end up affecting each other anyway, I don’t see any reason why they can’t go together. For instance, when you’re changing font sizes you may also have to tweak the paddings.</p>
+<h2>Proximity of responsive styles: inline media queries</h2>
+<p>This approach can go for responsive CSS as well. One often has separate stylesheets for different viewports where all CSS for that particular viewport goes. Perhaps <code>small.css</code>, <code>medium.css</code>, and so on. This is cool. If I want to tweak styles for a particular viewport I visit that ﬁle, simple as that.</p>
+<p><em>But</em>, that also calls for jumping between contexts, and I’ve started to ﬁnd that tiring. When an element’s properties are spread out over several ﬁles I tend to lose grasp of the whole thing. This is a nightmare in semi to large projects.</p>
+<p>But pre-processors got our back. By using inline media queries, mixins, SCSS placeholders, and variables, one can write the responsive styles in the same context as the element is deﬁned in the core CSS:</p>
+<pre class="language-css"><code class="language-css"><span class="highlight-line">// Custom mixin using SCSS placeholders</span><br><span class="highlight-line"><span class="token atrule"><span class="token rule">@mixin</span> <span class="token function">respond</span><span class="token punctuation">(</span>$width<span class="token punctuation">,</span> $<span class="token property">mode</span><span class="token punctuation">:</span> <span class="token string">"max"</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">	<span class="token atrule"><span class="token rule">@media</span> only screen and <span class="token punctuation">(</span>#</span><span class="token punctuation">{</span>$mode<span class="token punctuation">}</span><span class="token selector">-width: $width)</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">		<span class="token atrule"><span class="token rule">@content</span><span class="token punctuation">;</span></span></span><br><span class="highlight-line">	<span class="token punctuation">}</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br>$<span class="token property">small-screen</span><span class="token punctuation">:</span> 30em<span class="token selector">;<br><span class="highlight-line"></span><br>h1</span> <span class="token punctuation">{</span><br><span class="highlight-line">  <span class="token property">color</span><span class="token punctuation">:</span> #000<span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token property">font-size</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token atrule"><span class="token rule">@include</span> <span class="token function">respond</span><span class="token punctuation">(</span>$small-screen<span class="token punctuation">)</span></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token property">font-size</span><span class="token punctuation">:</span> 1.5em<span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<p>will compile to</p>
+<pre class="language-css"><code class="language-css"><span class="highlight-line"><span class="token selector">h1</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token property">color</span><span class="token punctuation">:</span> #000<span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token property">font-size</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"><span class="token atrule"><span class="token rule">@media</span> only screen and <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 30em<span class="token punctuation">)</span></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token selector">h1</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token property">font-size</span><span class="token punctuation">:</span> 1.5em<span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<p>So instead of having the declaration of the <code>h1</code> font site in a separate <code>_small.scss</code> partial, we can write it beside the original deﬁnition (if that position is suitable).</p>
+<p>I’ve started to fall in love in this solution and have used it in a couple of smaller live projects. My workﬂow becomes much efﬁcient when I can tweak the different media queries at one place.</p>
+<h3>Performance of repeated media query blocks</h3>
+<p><em><span class="pull-double">“</span>That’s not DRY!”</em>, you might say. Well, it really doesn’t matter, others have concluded.</p>
+<p>The post <a href="http://sasscast.tumblr.com/post/38673939456/sass-and-media-queries">Sass and Media Queries</a> on SassCast comes to the conclusion that for performance, it really doesn’t matter if you’re having repeated media query blocks inlined in your SCSS code, <em>unless</em> it’s a huge number (around 2000+ blocks).</p>
+<p>There’s a <a href="http://css-tricks.com/forums/topic/scss-inline-media-queries-vs-separate-media-query-blocks/">thread</a> on this subject in the CSS Tricks forums (“SCSS: Inline media queries vs separate media query blocks”). A commenter mentioned a Ruby gem for merging repeated media query blocks together: <a href="https://github.com/aaronjensen/sass-media_query_combiner">Sass Media Query Combiner</a>.</p>
+<h2>Conclusion</h2>
+<p>This might seem like a small detail, not worthy of a post, but try it out: I ﬁnd it really awesome. Life’s too short for premature optimization of CSS ﬁles: Gzip will have your back.</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">css</span><span class="Post-Keyword">context</span><span class="Post-Keyword">scss</span><span class="Post-Keyword">media-queries</span><span class="Post-Keyword">organization</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

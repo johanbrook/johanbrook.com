@@ -1,0 +1,168 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" what-matters">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>What Matters – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="37signals,application,Career,education,experience,Jason Fried,job ad,Jobs">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/what-matters/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="What Matters">
+    <meta property="og:url" content="https://johanbrook.com/writings/what-matters/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="nav--current">
+      <a href="/writings">Writings &lt;-</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">What Matters</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2010-12-06T18:03:00.000Z" itemprop="datePublished" title="9 years ago" pubdate="">December 6, 2010 – 18:03</time>
+        </p>
+
+        <p class="muted mb4">
+          About 1 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p>37signals posted a job ad on their blog today, and they’re looking for an interface designer. It’s a superb post. It describes the position in detail&thinsp;&mdash;&thinsp;by reading it I know exactly what the position is all about, and what’s expected from me. I get an insight in their work process and understand what they are looking for. But the most beautiful thing was near the bottom. Jason Fried put it: &gt; It doesn’t matter where you went to school, or if you even graduated. It doesn’t matter if this is your ﬁrst job or your ﬁfth. Doing great work and being driven to improve yourself and everything you touch is what matters.
+That’s what’s all about. When employers demand experience and/or education, they put up hinders for the applicant. Energy is drained on polishing (lying in) your resume (at least early in your career), and that energy could be used for doing work to put together a great portfolio instead. That paragraph made it totally clear to me.</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">37signals</span><span class="Post-Keyword">application</span><span class="Post-Keyword">Career</span><span class="Post-Keyword">education</span><span class="Post-Keyword">experience</span><span class="Post-Keyword">Jason Fried</span><span class="Post-Keyword">job ad</span><span class="Post-Keyword">Jobs</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

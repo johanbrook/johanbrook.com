@@ -1,0 +1,180 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" a-simpler-css3-gradient-syntax">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>A simpler CSS3 Gradient syntax – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="CSS3,Gradients,linear,nightly,simple,syntax,Webkit">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/a-simpler-css3-gradient-syntax/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="A simpler CSS3 Gradient syntax">
+    <meta property="og:url" content="https://johanbrook.com/writings/a-simpler-css3-gradient-syntax/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="nav--current">
+      <a href="/writings">Writings &lt;-</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">A simpler CSS3 Gradient syntax</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2011-01-14T22:51:00.000Z" itemprop="datePublished" title="9 years ago" pubdate="">January 14, 2011 – 22:51</time>
+        </p>
+
+        <p class="muted mb4">
+          About 1 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p>The syntax for CSS3 Gradients has in Webkit been something of a pain, frankly. I prefer Gecko’s more straight-forward version, but since I’m using <a href="http://sass-lang.com">Sass</a> with its mixins, it’s not a huge deal. In a blog post posted today, the Webkit team describes a new simpler gradient syntax. The old one dealt with percent values, it wasn’t very liberal with the order of the arguments, and so on. Here’s an example of the new syntax for a linear gradient:</p>
+<pre><code>-webkit-linear-gradient(left, white, black)
+</code></pre>
+<p>Quite nice, huh? Simple, straight-forward, fully readable. The present syntax would be</p>
+<pre><code>-webkit-gradient(linear, left top, right bottom, from(black), to(white));
+</code></pre>
+<p>The Webkit engine takes four gradient functions:</p>
+<ul>
+<li><code>linear-gradient()</code></li>
+<li><code>radial-gradient()</code></li>
+<li><code>repeating-linear-gradient()</code></li>
+<li><code>repeating-radial-gradient()</code></li>
+</ul>
+<p>This is more like the Mozilla’s implementation where you specify the type (linear, radial etc.) in the function name itself, not as an argument. Even the radial-gradient function is easier to actually write from memory now. This new syntax is available in the latest Webkit nightly build, and there’s no word on when it’ll be usable in Safari or Chrome. We’ll see. Anyway, great work, Webkit team!</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">CSS3</span><span class="Post-Keyword">Gradients</span><span class="Post-Keyword">linear</span><span class="Post-Keyword">nightly</span><span class="Post-Keyword">simple</span><span class="Post-Keyword">syntax</span><span class="Post-Keyword">Webkit</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

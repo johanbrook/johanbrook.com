@@ -1,0 +1,235 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" webkit-to-get-css-variables-mixins-nesting">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Webkit to get CSS variables, mixins, nesting? – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="CSS,Less,mixins,nested rules,Sass,variables,Webkit">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/webkit-to-get-css-variables-mixins-nesting/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="Webkit to get CSS variables, mixins, nesting?">
+    <meta property="og:url" content="https://johanbrook.com/writings/webkit-to-get-css-variables-mixins-nesting/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="nav--current">
+      <a href="/writings">Writings &lt;-</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">Webkit to get CSS variables, mixins, nesting?</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2011-01-17T02:52:00.000Z" itemprop="datePublished" title="9 years ago" pubdate="">January 17, 2011 – 02:52</time>
+        </p>
+
+        <p class="muted mb4">
+          About 3 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p><a href="http://twitter.com/tabatkins">Tab Atkins</a> of Google has made a couple of slides (navigate with the arrow keys) explaining a couple of possible upcoming features to Webkit: CSS variables, mixin blocks and selector nesting. That’s pretty huge, given that people have been screaming for those features for years and years. Hell, a couple of smart guys even wrote scripts to compile (yeah, <em>compile</em>) their own form of CSS syntax to regular CSS ( <a href="http://sass-lang.com">Sass</a> and <a href="http://lesscss.org/">Less</a>).</p>
+<p>According to Atkins’ slides the features are very experimental, and we probably won’t see them until the end of the year. I’m gonna talk about the three most sought after features: variables, mixins and nesting.</p>
+<p><em>This article is also translated to <a href="http://science.webhostinggeeks.com/desing-css">Serbo-Croatian</a> language by Anja Skrba from <a href="http://webhostinggeeks.com/">Webhostinggeeks.com</a></em></p>
+<h2>Variables</h2>
+<p>The syntax of CSS variables brought up in the presentation is as follows:</p>
+<pre><code>@var header-color color #006;
+@var main-color color #06c;
+@var secondary-color color #c06;
+
+a { color: var(main-color); }
+</code></pre>
+<p>The corresponding Sass syntax would be:</p>
+<pre><code>$header-color: #006;
+$main-color: #06c;
+$secondary-color: #c06;
+
+a { color: $main-color; }
+</code></pre>
+<p>You declare with the keyword <code>@var</code>&nbsp;, then the name and last the value. You insert the variable by writing <code>var(var-name)</code>&nbsp;. Pretty straight-forward, but personally I ﬁnd the syntax a bit awkward. Why the need for the <code>@var</code> keyword? Why not just <code>@var-name</code>&nbsp;? Why no colon between the variable name and the value? And why the tedious <code>var(variable-name)</code> construction?</p>
+<p>Variables are great. I use them every day in Sass, but I’d be happy to see a less clunky syntax.</p>
+<h2>Mixins</h2>
+<p>Mixins are blocks of code you may include anywhere in the document. It’s great for code reuse, and to get away from non-semantic classes in your HTML code. A prime example is the clearﬁx method: instead of applying a <code>clearfix</code> class to an HTML element, just write (in Sass) <code>@include clearfix;</code> in the stylesheet for that element. Nice and clean.</p>
+<p>In the proposed CSS syntax you declare mixins by writing:</p>
+<pre><code>@mixin error {
+   background: #fdd;
+   color: red;
+   font-weight: bold;
+}
+
+div.error {
+   border: thick solid red;
+   padding: .5em;
+   @mixin error;
+}
+</code></pre>
+<p>It’s a really slick way to reuse code. Growing sick of writing <a href="http://jnbrk.se/fp7c68">long, messy CSS3 gradient code?</a> Just deﬁne a mixin with some parameters and include it where appropriate. This syntax is alright, though I ﬁnd the parameter declaration a bit weird.</p>
+<h2>Nesting</h2>
+<p>When writing regular CSS you can’t nest selectors. That is, you can’t step down in the DOM hierarchy without having to write all the parent selectors again, like this:</p>
+<pre><code>#main &gt; header &gt; h1{
+   font-size: 2em;
+   background: blue;
+   color: white;
+}
+#main &gt; header &gt; h1 &gt; a{
+   color: #ddf;
+}
+#main &gt; header &gt; h1 &gt; a:visited{
+   color: #fdf;
+}
+</code></pre>
+<p>I hate this kind of writing. It feels so unnecessary and unintuitive. Atkins has proposed this syntax:</p>
+<pre><code>#main &gt; header &gt; h1 {
+  font-size: 2em;
+  background: blue;
+  color: white;
+
+  @this &gt; a {
+    color: #ddf;
+
+    @this:visited {
+      color: #fdf;
+    }
+  }
+}
+</code></pre>
+<p>This feels more natural and ﬂexible. Changing the id attribute of the header? No problem, just change at one place in the code. The syntax in Sass and Less isn’t too far away from this one either.</p>
+<h2>Outro</h2>
+<p>I’ve been using Sass since last summer, and I always make use of it for every project by now. Since you compile to regular CSS, there are no compability issues whatsoever. The question is: if these fancy features would make into Safari and Chrome sometime in the future, how would we handle the stylesheets for Firefox, Internet Explorer and Opera? Separate ones? Nope, I wouldn’t think so. It has to be a standard to work out, and we all know that the working groups are slooow to decide things.</p>
+<p>For now Sass works great for me, but I think it’s time to make a serious attempt to push the features<span class="push-double"></span> <span class="pull-double">“</span>into the broad mass”. To see some cleaner stylesheets out on the interwebz would be a godsend gift.</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">CSS</span><span class="Post-Keyword">Less</span><span class="Post-Keyword">mixins</span><span class="Post-Keyword">nested rules</span><span class="Post-Keyword">Sass</span><span class="Post-Keyword">variables</span><span class="Post-Keyword">Webkit</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

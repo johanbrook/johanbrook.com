@@ -1,0 +1,165 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" writing-documentation-for-css-knyle-style-sheets">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Writing documentation for CSS – Knyle Style Sheets – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/writing-documentation-for-css-knyle-style-sheets/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="Writing documentation for CSS – Knyle Style Sheets">
+    <meta property="og:url" content="https://johanbrook.com/writings/writing-documentation-for-css-knyle-style-sheets/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="nav--current">
+      <a href="/writings">Writings &lt;-</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">Writing documentation for CSS – Knyle Style Sheets</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2011-12-23T09:00:00.000Z" itemprop="datePublished" title="8 years ago" pubdate="">December 23, 2011 – 09:00</time>
+        </p>
+
+        <p class="muted mb4">
+          About 1 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p>CSS has long been the<span class="push-double"></span> <span class="pull-double">“</span>language” of terror for more sophisticated developers. CSS can be messy, ugly, illogical, and utterly wonderful to work with sometimes. Recently, tools like SCSS and LESS have emerged which let us write more structured CSS in a DRY way (I’ve <a href="http://johanbrook.com/design/css/bringing-order-to-css/">written about it before</a>).</p>
+<p>But we still have the problem with the actual<span class="push-double"></span> <span class="pull-double">“</span>content” of the CSS. All the classes, IDs, and tag names. Hell is other people’s CSS it’s said, and it’s true. Really bloody true. Trying to comprehend a semi-large CSS code base is like putting your feet into wet socks. If it’s one person writing the CSS, it’s he who’s got the structure in his head. He models it according to his views and sense of organization).</p>
+<p>Hence, <a href="http://warpspire.com/posts/kss/">Knyle Style Sheets</a>, is an interesting idea. It’s basically like a style guide&thinsp;&mdash;&thinsp;documentation&thinsp;&mdash;&thinsp;for a site or app’s CSS. Go ahead and read about it, and <a href="https://github.com/kneath/kss">check out the project on GitHub</a>. I really like the thinking behind this, and would consider it a necessity for larger projects.</p>
+
+    </div>
+
+    <footer>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,178 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" now">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Now – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="This page reflects what I&#39;m doing with my life at the moment.">
+    
+    <meta name="keywords" content="life,now,plan,travels">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/now/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="Now">
+    <meta property="og:url" content="https://johanbrook.com/now/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com/assets/images/johan-map.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+    <meta property="og:description" content="This page reflects what I&#39;m doing with my life at the moment.">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="">
+      <a href="/writings">Writings</a>
+    </li>
+    <li class="nav--current">
+      <a href="/now">Now &lt;-</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+<main role="main">
+  <article class="page">
+    <h1 class="title ">Now.</h1>
+
+    
+      <p>
+        Updated on <time class="fw6 text-color">January 19, 2020</time>
+        
+          from Stockholm, Sweden.
+        
+      </p>
+    
+
+    <div class="article-text page__text">
+      <h2>Since the last update…</h2>
+<ul>
+<li>Got engaged with my girlfriend, now ﬁancée 💍</li>
+<li>Visited Sri Lanka in early January.</li>
+<li>Finished a few books:
+<ul>
+<li><span class="pull-double">“</span>The Alchemist” by Paolo Coelho.</li>
+<li><span class="pull-double">“</span>The Zahir” by Paolo Coelho.</li>
+<li><span class="pull-double">“</span>The Snow Leopard” by Peter Matthiessen.</li>
+<li><span class="pull-double">“</span>The White Book” by Han Kang.</li>
+</ul>
+</li>
+</ul>
+<h2>Currently reading</h2>
+<p>A Swedish thriller, <em><span class="push-double"></span><span class="pull-double">“</span>Björndansen”</em>, which is nice to relax the brain with.</p>
+<p>I haven’t ﬁnished <em><span class="push-double"></span><span class="pull-double">“</span>The Uninhabitable Earth”</em> due to it being very repetitive in the beginning (I got tired of all the numbers). I’ll see if I return to it.</p>
+<h2>Habits to keep</h2>
+<ul>
+<li>Keep off Instagram.</li>
+<li>Limit Facebook usage to once per week.</li>
+<li>Keep going to the gym (it’s good for you!).</li>
+<li>Keep reading books.</li>
+</ul>
+<h2>Aspirations for 2020</h2>
+<ul>
+<li>Be more physical when interacting with people, even the ones I don’t know so well.</li>
+<li>Write a novella.</li>
+</ul>
+<hr>
+<p>If my life changes, I’ll update this page. Inspired by <a href="https://sivers.org/now">Derek Sivers</a>.</p>
+
+    </div>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

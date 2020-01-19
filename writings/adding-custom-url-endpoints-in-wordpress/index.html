@@ -1,0 +1,237 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" adding-custom-url-endpoints-in-wordpress">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Adding custom URL endpoints in Wordpress – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="Custom,PHP,URL,Wordpress,endpoint,rewrite,template">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/adding-custom-url-endpoints-in-wordpress/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="Adding custom URL endpoints in Wordpress">
+    <meta property="og:url" content="https://johanbrook.com/writings/adding-custom-url-endpoints-in-wordpress/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="nav--current">
+      <a href="/writings">Writings &lt;-</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">Adding custom URL endpoints in Wordpress</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2012-01-13T10:00:00.000Z" itemprop="datePublished" title="8 years ago" pubdate="">January 13, 2012 – 10:00</time>
+        </p>
+
+        <p class="muted mb4">
+          About 2 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p>In a current Wordpress project, we wanted to have a permalink to a photo gallery ﬁlled with images (attachments) for a post. Wordpress supports permalinks to single attachments, such as</p>
+<pre><code>site.com/single-post/attachment/flower
+</code></pre>
+<p>That’s cool. However, we wanted something like this:</p>
+<pre><code>site.com/single-post/photos
+</code></pre>
+<p>… where all attachments would be listed. The <code>/photos</code> part is called an <em>endpoint</em>. So how do you add them in Wordpress? And how do you assign this endpoint to render a speciﬁc template ﬁle?</p>
+<h2>Relevant APIs</h2>
+<p>After some quick googling to ﬁnd out if this was possible and worth a try, I found the <a href="http://codex.wordpress.org/Rewrite_API">Rewrite API</a> in the Codex. Neat stuff.</p>
+<p>Other resources I found during my quest:</p>
+<ul>
+<li><a href="http://johnbeales.com/20090824/endpoints-a-little-secret-for-url-manipulation-in-wordpress/">http://johnbeales.com/20090824/endpoints-a-little-secret-for-url-manipulation-in-wordpress/</a></li>
+<li><a href="http://wordpress.org/support/topic/custom-rewrite-approach-with-add_rewrite_endpoint">http://wordpress.org/support/topic/custom-rewrite-approach-with-add_rewrite_endpoint</a></li>
+<li><a href="http://www.rlmseo.com/blog/passing-get-query-string-parameters-in-wordpress-url/">http://www.rlmseo.com/blog/passing-get-query-string-parameters-in-wordpress-url/</a></li>
+<li><a href="http://wordpress.stackexchange.com/questions/1033/url-design-for-sub-posts">URL Design for Sub-Posts?</a></li>
+<li><a href="http://codex.wordpress.org/Template_Hierarchy">http://codex.wordpress.org/Template_Hierarchy</a></li>
+</ul>
+<h2>The code</h2>
+<p>After reading through these, I simply implemented the necessary ﬁlters and callbacks in the <code>functions.php</code> ﬁle.</p>
+<p>I began with this:</p>
+<pre><code>add_filter( 'query_vars', 'add_query_vars');
+
+/**
+*   Add the 'photos' query variable so Wordpress
+*   won't mangle it.
+*/
+function add_query_vars($vars){
+    $vars[] = &quot;photos&quot;;
+    return $vars;
+}
+</code></pre>
+<p>As you can see, I’m working with my <code>/photos</code> endpoint. I have to tell Wordpress’ rewrite engine to take our special query variable (“photos”) into account when rewriting URLs, so I used the <code>query_vars</code> ﬁlter for this (see the <a href="http://codex.wordpress.org/Plugin_API/Filter_Reference">Filter Reference</a>).</p>
+<p>Next, I registered the actual endpoint with the built-in function <code>add_rewrite_endpoint()</code> ( <a href="http://codex.wordpress.org/Rewrite_API/add_rewrite_endpoint">Docs</a>). It takes a string (the endpoint) and a <code>place</code>&nbsp;.<span class="push-double"></span> <span class="pull-double">“</span>Place” is where the endpoint will be active, and the docs only specify a couple:<span class="push-double"></span> <span class="pull-double">“</span>EP_PERMALINK, EP_PAGES, EP_ATTACHMENT, etc”. From other examples I’ve spotted <code>EP_ALL</code> as well. I used <code>EP_PERMALINK</code>&nbsp;:</p>
+<pre><code>add_rewrite_endpoint('photos', EP_PERMALINK);
+</code></pre>
+<p>Right. The endpoint is up and running, but as I said at the top, I wanted a speciﬁc template to render when this URL is visited. It’s doable! Check out the <a href="http://codex.wordpress.org/Plugin_API/Filter_Reference/_single_template">single_template ﬁlter</a>.</p>
+<pre><code>add_filter( 'single_template', 'project_attachments_template' );
+
+/**
+*	From http://codex.wordpress.org/Template_Hierarchy
+*
+*	Adds a custom template to the query queue.
+*/
+function project_attachments_template($templates = &quot;&quot;){
+	global $wp_query;
+	
+	// If the 'photos' endpoint isn't appended to the URL,
+	// don't do anything and return
+	if(!isset( $wp_query-&gt;query['photos'] ))
+		return $templates;
+	
+	// .. otherwise, go ahead and add the 'photos.php' template
+	// instead of 'single-{$type}.php'.
+	if(!is_array($templates) &amp;&amp; !empty($templates)) {
+		$templates = locate_template(array(&quot;photos.php&quot;, $templates),false);
+	} 
+	elseif(empty($templates)) {
+		$templates = locate_template(&quot;photos.php&quot;,false);
+	}
+	else {
+		$new_template = locate_template(array(&quot;photos.php&quot;));
+		if(!empty($new_template)) array_unshift($templates,$new_template);
+	}
+	
+
+	return $templates;
+}
+</code></pre>
+<p>I’ve hard coded the ﬁle <code>photos.php</code> above. Create this ﬁle in the theme folder, and you’re all set! In this template you’ve got access to the global <code>$post</code> variable, so you’re able to pull in all kinds of post data into it.</p>
+<h2>Outro</h2>
+<p>Pretty cool to bend Wordpress to your will, eh? I can imagine this functionality is pretty nifty to have when doing more advanced things in Wordpress.</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">Custom</span><span class="Post-Keyword">PHP</span><span class="Post-Keyword">URL</span><span class="Post-Keyword">Wordpress</span><span class="Post-Keyword">endpoint</span><span class="Post-Keyword">rewrite</span><span class="Post-Keyword">template</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>
