@@ -773,3 +773,8 @@ TYPOGRAPHY
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* Negative left margin for titles. Nice for titles with initial 'W' letter. */
+.inset-title {
+  margin-left: -0.15em;
+}
