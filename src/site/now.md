@@ -1,6 +1,6 @@
 ---
 layout: layouts/page
-date: 2019-09-26
+date: 2020-01-19
 title: Now
 location: Stockholm, Sweden
 ogImage: /assets/images/johan-map.png
@@ -14,26 +14,31 @@ keywords:
 
 ## Since the last update…
 
-- Bought an apartment with my cool girlfriend. Stockholm is really my home now.
-  - Got walls painted and floor done. Currently furnishing it, slowly and steady, while enjoying the ride.
-- Made some redesigns to this site.
-- Went to three Lookback retreats during the year: Palm Springs 🇺🇸, Stockholm 🇸🇪, and Barcelona 🇪🇸. Amazing to spend good time with the brightest people I know.
-- Had a great Swedish summer vacation with girlfriend. As much as I love travelling, I cherished just being home in Sweden during the best summer weeks.
+- Got engaged with my girlfriend, now fiancée 💍
+- Visited Sri Lanka in early January.
+- Finished a few books:
+  - "The Alchemist" by Paolo Coelho.
+  - "The Zahir" by Paolo Coelho.
+  - "The Snow Leopard" by Peter Matthiessen.
+  - "The White Book" by Han Kang.
 
 ## Currently reading
 
-_["The Uninhabitable Earth"](https://www.theguardian.com/books/2019/feb/27/the-uninhabitable-earth-review-david-wallace-wells)_ by David Wallace-Wells. Important and horrifying.
+A Swedish thriller, _"Björndansen"_, which is nice to relax the brain with.
+
+I haven't finished _"The Uninhabitable Earth"_ due to it being very repetitive in the beginning (I got tired of all the numbers). I'll see if I return to it.
 
 ## Habits to keep
 
-- Keep a private micro journal in iPhone notes. Note down thoughts each day, how dull they might be.
 - Keep off Instagram.
+- Limit Facebook usage to once per week.
 - Keep going to the gym (it's good for you!).
+- Keep reading books.
 
-## Aspirations for 2019
+## Aspirations for 2020
 
-- Get into the habit of painting.
-- Take swims in our lake during the autumn and winter.
+- Be more physical when interacting with people, even the ones I don't know so well.
+- Write a novella.
 
 ---
 
