@@ -151,6 +151,10 @@ a {
   &:active {
     top: 1px;
   }
+
+  &:visited {
+    color: var(--link-color-visited);
+  }
 }
 
 p,
