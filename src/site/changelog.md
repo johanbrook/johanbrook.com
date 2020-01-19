@@ -9,34 +9,25 @@ ogImage: /assets/images/og-image-changelog.png
 My life so far – versioned. Also check out experimental development: <a href="/now">what I'm doing now</a>.
 </p>
 
+## Version 3.6.0
+
+- Engaged with awesome girlfriend, now fiancée 💍
+
 ## Version 3.5.0
 
-<ul class="latest">
-  <li>Bought my first apartment together with girlfriend.
-    <ul>
-      <li>Entered the "Slowly Furnish Apartment" phase.</li>
-    </ul>
-  </li>
-  <li>Started a private micro journal.
-    <ul>
-      <li>Note a couple of thoughts per day.</li>
-    </ul>
-  </li>
-  <li>Made effort to eat way less red meat.</li>
-  <li>Learned Typescript and React.</li>
-</ul>
+- Bought my first apartment together with girlfriend.
+  - Entered the "Slowly Furnish Apartment" phase.
+- Started a private micro journal.
+  - Note a couple of thoughts per day.
+- Made effort to eat way less red meat.
+- Learned Typescript and React.
 
 ## Version 3.4.0
 
-<ul>
-  <li>Met a beautiful, cool, and loving girlfriend 🌻
-    <ul>
-      <li>Made Stockholm the base of operations for the near future.</li>
-    </ul>
-  </li>
-  <li>Got myself some eye glasses.</li>
-  <li>Started saving in a pension fund.</li>
-</ul>
+- Met a beautiful, cool, and loving girlfriend 🌻
+  - Made Stockholm the base of operations for the near future.
+- Got myself some eye glasses.
+- Started saving for pension.
 
 ## Version 3.3.2
 
