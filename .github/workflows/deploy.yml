@@ -10,18 +10,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@master
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
 
-      - name: Build, Test and Deploy
-        uses: JamesIves/github-pages-deploy-action@master
+      - name: Install & Build
+        run: |
+          npm install --no-save --no-audit
+          npm run build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
         env:
           CI: true
           NODE_ENV: production
+        with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           # The branch the action should deploy from.
           BASE_BRANCH: master
@@ -29,9 +37,6 @@ jobs:
           BRANCH: gh-pages
           # The folder the action should deploy.
           FOLDER: build
-          # The build script the action should run prior to deploying.
-          BUILD_SCRIPT: npm install --no-save --no-audit && npm test && npm run build
-          CNAME: johanbrook.com
 
       - name: Purge cache
         uses: jakejarvis/cloudflare-purge-action@master
