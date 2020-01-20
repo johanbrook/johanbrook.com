@@ -2,20 +2,17 @@
 permalink: meta.json
 ---
 {
-  "version": "{{ pkg.version }}",
   "description": "{{ meta.description | safe }}",
   "shortbio": "{{ meta.shortbio | safe }}",
   "site": "{{ meta.site }}",
   "github": "{{ meta.github }}",
   "twitter": "{{ meta.twitter }}",
   "tumblr": "{{ meta.tumblr }}",
-  "dribbble": "{{ meta.dribbble }}",
   "email": "{{ meta.email }}",
-  "linkedin": "{{ meta.linkedin }}",
-  "careers": "{{ meta.careers }}",
   "cv": "{{ meta.cv }}",
-  "johanVersion": {
-    "currentVersionOfJohan": "{{ meta.currentVersionOfJohan }}",
-    "changelog": "https://johanbrook.com/changelog"
+  "versions": {
+    "site": "{{ pkg.version }}",
+    "johan": "{{ meta.currentVersionOfJohan }}",
+    "git": "{{ git.hash }}"
   }
 }
