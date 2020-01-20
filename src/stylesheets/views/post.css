@@ -3,7 +3,8 @@
 
 .posts {
   .title {
-    margin-bottom: var(--lineheight);
+    margin-bottom: calc(var(--lineheight) * 1.5);
+    line-height: var(--line-height-solid);
   }
 }
 

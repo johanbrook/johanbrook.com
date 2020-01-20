@@ -2,15 +2,20 @@
 title: Writings
 layout: layouts/main
 pagination:
-  data: collections.posts
+  data: collections.writings
   size: 30
   alias: posts
   reverse: true
+permalink: "writings/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
 ---
 
 <main role="main" class="posts">
 
   <h1 class="title inset-title">Writings.</h1>
+
+  <p class="fw6">
+    {{collections.writings.length }} posts, from {{ collections.writings[0].date | formatDate("MMMM YYYY") }} to {{ posts[0].date | formatDate("MMMM YYYY") }}.
+  </p>
 
   <ol class="PostsList">
     {% for post in posts %}
@@ -24,16 +29,16 @@ pagination:
 
   <footer class="page-nav">
     <p>
-      {% if pagination.previousPageLink %}
-        <a rel="prev" href="{{ pagination.previousPageLink }}">← Newer</a>
+      {% if pagination.href.previous %}
+        <a rel="prev" href="{{ pagination.href.previous }}">← Newer</a>
         <span class="separator">/ </span>
       {% endif %}
 
-      <span class="separator">{{collections.posts.length }} posts</span>
+      <span class="separator">Page {{ pagination.pageNumber + 1 }} of {{ pagination.pages.length }} </span>
 
-      {% if pagination.nextPageLink %}
+      {% if pagination.href.next %}
         <span class="separator"> /</span>
-        <a rel="next" href="{{ pagination.nextPageLink }}">Older →</a>
+        <a rel="next" href="{{ pagination.href.next }}">Older →</a>
       {% endif %}
     </p>
 
