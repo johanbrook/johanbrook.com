@@ -740,6 +740,18 @@ COLOURS
 TYPOGRAPHY
 ----------------------------------------------------------------*/
 
+.font-sans {
+  font-family: var(--sans);
+}
+
+.font-serif {
+  font-family: var(--serif);
+}
+
+.font-mono {
+  font-family: var(--mono);
+}
+
 /* Measure is limited to ~78 characters */
 .measure {
   max-width: var(--measure);
