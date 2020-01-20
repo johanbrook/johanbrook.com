@@ -22,7 +22,6 @@ jobs:
       - name: Install & Build
         run: |
           npm install --no-save --no-audit
-          echo "module.exports = { hash: '$(git rev-parse --short HEAD)'}" > src/site/_data/git.js
           npm run build
 
       - name: Deploy

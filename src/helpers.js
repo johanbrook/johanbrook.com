@@ -51,6 +51,10 @@ module.exports = {
     );
   },
 
+  substr(str, len) {
+    return str.substr(0, len);
+  },
+
   toISODate(date) {
     if (!date) return;
     return moment(date).toISOString();
