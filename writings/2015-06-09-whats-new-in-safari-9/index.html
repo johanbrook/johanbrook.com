@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" whats-new-in-safari-9">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>What&#39;s new in Safari 9 – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="apple,wwdc,safari,web development">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/2015-06-09-whats-new-in-safari-9/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="What&#39;s new in Safari 9">
+    <meta property="og:url" content="https://johanbrook.com/writings/2015-06-09-whats-new-in-safari-9/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="">
+      <a href="/writings">Writings</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">What&#39;s new in Safari 9</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2015-06-09T09:16:00.000Z" itemprop="datePublished" title="5 years ago" pubdate="">June 9, 2015 – 09:16</time>
+        </p>
+
+        <p class="muted mb4">
+          About 3 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p>I’m attending WWDC 2015, and during the web development session, Apple’s Safari team showed off what’s new in Safari 9. It includes iOS style effects, such as backdrop ﬁlters and scroll snapping with CSS, ES6 updates, other CSS niceties.</p>
+<ul>
+<li><a href="#backdrop-filters">Backdrop ﬁlters</a></li>
+<li><a href="#scroll-snap-points">Scroll snap points</a></li>
+<li><a href="#css-enhancements">CSS enhancements</a></li>
+<li><a href="#force-touch-api">Force Touch API</a></li>
+<li><a href="#javascript-updates">Javascript updates</a></li>
+</ul>
+<h2>Backdrop ﬁlters</h2>
+<p>You know the fancy dynamic blur background effects that arrived with iOS7? Where the content<span class="push-double"></span> <span class="pull-double">“</span>below” a panel would be blurred with a semi transparent mask, but the actual elements in the panel would be as original.</p>
+<p>Currently, the behaviour can be emulated with various techniques. Most common would be to create a copy of the content in the back, add a mask, blur some area, and overlay it on the original content. This is tedious&thinsp;&mdash;&thinsp;a maintenance nightmare&thinsp;&mdash;&thinsp;even when using it for images only.</p>
+<p>So for Safari 9 (OS X and iOS), Apple has added the <code>backdrop-filter</code> property. It accepts values from the regular <a href="http://dev.w3.org/fxtf/filters/#typedef-filter-function-list">CSS Filters speciﬁcation</a>. should be a applied to the element you would normally apply a semi transparent background too. You can combine several ﬁlters, as you’d do with the <code>filter</code> property. This is also submitted to be a W3C standard.</p>
+<pre class="language-css"><code class="language-css"><span class="token selector">// Styles for a top bar<br>.site-nav</span> <span class="token punctuation">{</span><br><span class="highlight-line">  <span class="token property">position</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token property">top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token property">left</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token property">right</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token property">z-index</span><span class="token punctuation">:</span> 100<span class="token punctuation">;</span></span><br><span class="highlight-line">  // Will blur and saturate any content below this top bar</span><br><span class="highlight-line">  // as you scroll.</span><br><span class="highlight-line">  <span class="token property">backdrop-filter</span><span class="token punctuation">:</span> <span class="token function">blur</span><span class="token punctuation">(</span>10px<span class="token punctuation">)</span> <span class="token function">saturate</span><span class="token punctuation">(</span>100%<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<p>This even works for video and other dynamic content as you scroll! But have in mind that rendering can be expensive, to be sure to test it before shipping.</p>
+<h2>Scroll snap points</h2>
+<p>When doing galleries, carousels, and such for touch devices, we’ve traditionally resorted to use Javascript to handle the scrolling when you want control over where the scrolling should snap. Take the Photos.app in iOS as an example: when you ﬂip through images, they’ll snap to the edge of the screen when the scroll momentum stops, instead of overlapping. Apple has simpliﬁed this by adding support for scroll snapping directly in CSS (for iOS and OS X).</p>
+<pre class="language-css"><code class="language-css"><span class="highlight-line"><span class="token selector">#viewport</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  // Turn it on.</span><br><span class="highlight-line">  <span class="token property">-webkit-scroll-snap-type</span><span class="token punctuation">:</span> mandatory<span class="token punctuation">;</span></span><br><span class="highlight-line">  // Set a snap point every 300px on the X axis. </span><br><span class="highlight-line">  // Use -webkit-scroll-snap-points-y for Y axis.</span><br><span class="highlight-line">  <span class="token property">-webkit-scroll-snap-points-x</span><span class="token punctuation">:</span> <span class="token function">repeat</span><span class="token punctuation">(</span>300px<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<p>By using the <code>-webkit-scroll-snap-points-x</code> and <code>-webkit-scroll-snap-points-y</code> properties, we can set a repeating point with the <code>repeat</code> function, or use a regular value, such as:</p>
+<ul>
+<li>percentages and pixels</li>
+<li>viewport units</li>
+<li>calculated values with <code>calc()</code></li>
+</ul>
+<p>This is cool and all, but what if you’ve got dynamic content in this viewport? I.e. irregular sized blocks, such as non-cropped images, where you wouldn’t hardcore a <code>repeat(300px)</code> value.</p>
+<blockquote>
+<p><strong>tldr;</strong> Set both destination and coordinate properties to <code>50% 50%</code> to make irregular elements snap its center to the center point of the viewport.</p>
+</blockquote>
+<p>Safari solves this with the <code>-webkit-scroll-snap-destination</code> and <code>-webkit-scroll-snap-coordinate</code> properties. These properties controls the coordinates of where Safari should position your scrolling content in a viewport.</p>
+<pre class="language-css"><code class="language-css"><span class="highlight-line"><span class="token selector">#viewport</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token property">-webkit-scroll-snap-type</span><span class="token punctuation">:</span> mandatory<span class="token punctuation">;</span></span><br><span class="highlight-line">  // Destination for snapping. 50% 50% denotes the center.</span><br><span class="highlight-line">  // Defaults to 0 <span class="token punctuation">(</span>left or top<span class="token punctuation">)</span>.</span><br><span class="highlight-line">  <span class="token property">-webkit-scroll-snap-destination</span><span class="token punctuation">:</span> 50% 50%<span class="token punctuation">;</span></span><br><span class="highlight-line">  // How to align the snap coordinate of an element.</span><br><span class="highlight-line">  // 50% 50% denotes the center.</span><br><span class="highlight-line">  <span class="token property">-webkit-scroll-snap-coordinate</span><span class="token punctuation">:</span> 50% 50%<span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<p>These styles are available from Javascript with:</p>
+<ul>
+<li><code>element.style.webkitScrollSnapType</code></li>
+<li><code>element.style.webkitScrollSnapPointsY</code></li>
+<li><code>element.style.webkitScrollSnapPointsX</code></li>
+<li><code>element.style.webkitScrollSnapDesitation</code></li>
+<li><code>element.style.webkitScrollSnapCoordinate</code></li>
+</ul>
+<p>Note that this may conﬂict with programmatic scroll, if you’re using that.</p>
+<h2>CSS enhancements</h2>
+<p>Safari now supports these unpreﬁxed CSS properties:</p>
+<ul>
+<li>Transitions</li>
+<li>Animations</li>
+<li>Transforms</li>
+<li>Flexbox</li>
+<li>Columns</li>
+<li><a href="https://developer.apple.com/library/prerelease/mac/releasenotes/General/WhatsNewInSafari/Articles/Safari_9.html#//apple_ref/doc/uid/TP40014305-CH9-SW28">… and more</a></li>
+</ul>
+<h3>Feature detection</h3>
+<p>In Safari 9, it’s possible to detect support for CSS properties and write conditional rules in a block:</p>
+<pre class="language-css"><code class="language-css"><span class="highlight-line"><span class="token atrule"><span class="token rule">@supports</span><span class="token punctuation">(</span>condition<span class="token punctuation">)</span></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  // Styles for condition</span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<pre class="language-css"><code class="language-css"><span class="highlight-line"><span class="token atrule"><span class="token rule">@supports</span><span class="token punctuation">(</span><span class="token property">-webkit-initial-letter</span><span class="token punctuation">:</span> 3<span class="token punctuation">)</span></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  // Use fancy initial letter styles.</span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<h3>CSS4 <code>:matches</code> selector</h3>
+<p>The <code>:matches</code> pseudo selector helps you mash a bunch of selectors together like this:</p>
+<pre class="language-css"><code class="language-css"><span class="token selector">// Before<br><span class="highlight-line"></span><br><span class="highlight-line">.default .foo,</span><br><span class="highlight-line">.default .bar,</span><br>.default .baz</span> <span class="token punctuation">{</span><br><span class="highlight-line">  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="token selector">// With :matches<br><span class="highlight-line"></span><br>.default :matches(.foo, .bar, .baz)</span> <span class="token punctuation">{</span><br><span class="highlight-line">  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<p>This groups all the denoted children of <code>.default</code> together.</p>
+<h2>Force Touch API</h2>
+<p>Apple’s also added a Javascript API for the Force Touch technology introduced in their latest Macbook.</p>
+<p>Firstly, the <code>webkitForce</code> property is availabel on all Mouse Events. This is a number, which is the force of the current press on the track pad.</p>
+<p>There are also events on a DOM element for listening to force touch events, which behaves like <code>mouseup</code>/<code>mousedown</code>:</p>
+<ul>
+<li><code>webkitmouseforcechanged</code> - any change in force.</li>
+<li><code>webkitmouseforcewillbegin</code> ﬁres just before the <code>mousedown</code> event. Ideal for preventing default behavior.</li>
+<li><code>webkitmouseforcedown</code> ﬁres after <code>mousedown</code>, if the press is a force press.</li>
+<li><code>webkitmouseforceup</code> ﬁres after the above, if it’s a force press.</li>
+</ul>
+<p>The constants <code>MouseEvent.WEBKIT_FORCE_AT_MOUSE_DOWN</code> and <code>MouseEvent.WEBKIT_FORCE_AT_FORCE_MOUSE_DOWN</code> represents the amount of force required for a regular and force click, respectively.</p>
+<p>See <a href="https://developer.apple.com/library/prerelease/mac/samplecode/WebKitPhotoBrowser/Listings/scripts_new_scripts_js.html#//apple_ref/doc/uid/TP40016150-scripts_new_scripts_js-DontLinkElementID_9">example app</a> for a sample implementation.</p>
+<h2>Javascript updates</h2>
+<p>And lastly, we’ve got some new ES6 features:</p>
+<ul>
+<li>Class syntax</li>
+<li>Template literals</li>
+<li>Symbols</li>
+<li>Computer properties</li>
+<li><a href="https://developer.apple.com/library/prerelease/mac/releasenotes/General/WhatsNewInSafari/Articles/Safari_9.html#//apple_ref/doc/uid/TP40014305-CH9-SW27">… and more</a></li>
+</ul>
+<h2>Pinned tabs icon</h2>
+<p>Last but not least. Remember the Safari pinned tabs introduced at the WWDC keynote? You can use a custom icon shown when you site is pinned:</p>
+<pre class="language-html"><code class="language-html"><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>icon<span class="token punctuation">"</span></span> <span class="token attr-name">sizes</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>any<span class="token punctuation">"</span></span> <span class="token attr-name">mask</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>icon.svg<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span></code></pre>
+<p>The SVG icon should, <a href="https://developer.apple.com/library/prerelease/mac/releasenotes/General/WhatsNewInSafari/Articles/Safari_9.html#//apple_ref/doc/uid/TP40014305-CH9-SW20">according to Apple</a>, have 100% black shapes and transparent background.</p>
+<p>You can however set the color of the icon with:</p>
+<pre class="language-html"><code class="language-html"><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>theme-color<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span></code></pre>
+<hr>
+<p>I really like the snap and backdrop CSS support. I’ve missed the former for a while, but didn’t see the latter coming. Hope they land in Chrome and the others soon.</p>
+<p><a href="https://developer.apple.com/library/prerelease/mac/releasenotes/General/WhatsNewInSafari/Introduction/Introduction.html#//apple_ref/doc/uid/TP40014305-CH1-SW1">Complete release notes and links to sample code</a>.</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">apple</span><span class="Post-Keyword">wwdc</span><span class="Post-Keyword">safari</span><span class="Post-Keyword">web development</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

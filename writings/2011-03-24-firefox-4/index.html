@@ -1,0 +1,168 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" firefox-4-a-bitter-taste">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Firefox 4 – a bitter taste – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="Firefox,Mozilla,UI,User Experience">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/2011-03-24-firefox-4/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="Firefox 4 – a bitter taste">
+    <meta property="og:url" content="https://johanbrook.com/writings/2011-03-24-firefox-4/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="">
+      <a href="/writings">Writings</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">Firefox 4 – a bitter taste</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2011-03-24T08:00:00.000Z" itemprop="datePublished" title="9 years ago" pubdate="">March 24, 2011 – 08:00</time>
+        </p>
+
+        <p class="muted mb4">
+          About 1 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p><a href="http://hunch.se">Rasmus Andersson</a> on the latest release of the Firefox browser: &gt; Although Firefox 4 is a clear improvement over the previous version, it’s not the ultimate sports car you’ve been dreaming about taking to the streets.
+Firefox was the knight in shining armor, ﬁghting Internet Explorer bravely. We’ve got a lot to thank Firefox, but today it almost seems like itself is the new IE. Sluggish, non-native, and not up to date with the latest web technologies is not attractive. Sort of like that weird, anti-social cousin you have to invite to the party. Rasmus further talks about some UI/UX features and drawbacks. I’ve tested the beta, but when I installed the stable version there was this<span class="push-double"></span> <span class="pull-double">“</span>meh” moment. I don’t hate Firefox, but I don’t love it either. It’s great for development&thinsp;&mdash;&thinsp;Firebug is superior to the WebKit Inspector sometimes&thinsp;&mdash;&thinsp;but the whole application just seems so awkward and non-native. I’ve moved to Chrome from Safari, and I love Chrome’s minimal approach and its snappiness&thinsp;&mdash;&thinsp;things Firefox lacks. Funny how Mozilla fails to get back in the game when they clearly see how Chrome gains market share, and Safari rambles on with full throttle. But since <a href="http://www.conceivablytech.com/5342/products/firefox-5-gets-mid-2011-release-date">Firefox 5 most likely will arrive this summer</a>, and Firefox 6 isn’t that far behind, Mozilla shows that they’re focused on more rapid iterations. Rasmus shows us a lot of things Mozilla still got wrong in Firefox. It’s a depressive list, to be honest.</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">Firefox</span><span class="Post-Keyword">Mozilla</span><span class="Post-Keyword">UI</span><span class="Post-Keyword">User Experience</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

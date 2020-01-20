@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" relative-positioning-and-css-columns">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Relative positioning and CSS Columns – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="Antialiasing,Columns,CSS,position: relative,Relative positioning">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/2011-05-23-relative-positioning-css-columns/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="Relative positioning and CSS Columns">
+    <meta property="og:url" content="https://johanbrook.com/writings/2011-05-23-relative-positioning-css-columns/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="">
+      <a href="/writings">Writings</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">Relative positioning and CSS Columns</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2011-05-23T08:00:00.000Z" itemprop="datePublished" title="9 years ago" pubdate="">May 23, 2011 – 08:00</time>
+        </p>
+
+        <p class="muted mb4">
+          About 1 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p>Live as you teach, they say. In the <a href="http://jnbrk.se/kkstoA">last post</a> I linked to a solution to text rendering problems in conjunction with <code>position: relative</code> in the CSS. Removing the property, or declaring <code>position: static</code> solves the issue.</p>
+<p>I usually set relative positioning globally on common block level elements, since it helps me position other elements inside them easily. I added it to my common, reusable CSS ﬁle since it felt like I was declaring <code>position: relative</code> on every other div and paragraph tag. But as you know, ﬁring a shotgun feels great at ﬁrst, but you always have to deal with the mess afterwards.</p>
+<p>I actually had two problems with relative positioning, and they were showing up in Safari:</p>
+<p><img src="http://a.yfrog.com/img612/5716/qpqy.png" alt="Text rendering problems in Safari"> Column and text rendering issues in Safari</p>
+<p>Huge thanks to <a href="http://twitter.com/ViktorBijlenga">@ViktorBijlenga</a> for bringing this to my attention</p>
+<p>The text rendering/aliasing issues are identical to the ones I linked to in the <a href="http://jnbrk.se/kkstoA">last post</a>. Timing, right? <code>position: relative</code> was the crook here as well. But what about the columns? Safari seemingly refused to accept the <code>-webkit-column-count/gap</code> declarations. Chrome went along well. Turns out <strong>child elements to a parent where CSS Columns are declared cant’t have relative positioning</strong>. It’ll cause troubles in Safari.</p>
+<p>Therefore:</p>
+<pre><code>.columns{
+    -webkit-column-count: 3;
+    -webkit-column-gap: 1.5em;
+}
+
+.columns * {
+    position: static;
+}
+</code></pre>
+<p>.. solves the problems, if you still have <code>position: relative</code> declared globally. I won’t.</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">Antialiasing</span><span class="Post-Keyword">Columns</span><span class="Post-Keyword">CSS</span><span class="Post-Keyword">position: relative</span><span class="Post-Keyword">Relative positioning</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

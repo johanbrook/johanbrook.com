@@ -1,0 +1,172 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" a-fix-for-antialiasing-issues-in-webkit-browsers">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>A fix for antialiasing issues in WebKit browsers – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="3D,Antialiasing,CSS,Jagged,Text,WebKit Transform">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/2011-05-19-a-fix-for-antialiasing-issues-in-webkit-browsers/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="A fix for antialiasing issues in WebKit browsers">
+    <meta property="og:url" content="https://johanbrook.com/writings/2011-05-19-a-fix-for-antialiasing-issues-in-webkit-browsers/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="">
+      <a href="/writings">Writings</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">A fix for antialiasing issues in WebKit browsers</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2011-05-19T21:01:00.000Z" itemprop="datePublished" title="9 years ago" pubdate="">May 19, 2011 – 21:01</time>
+        </p>
+
+        <p class="muted mb4">
+          About 1 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p>CSS Transforms, Transitions and Animations are great and all, but apparently they are causing issues with some text on a page. I’ve experienced those issues on my site, and I couldn’t for my life ﬁgure out what the problem was. Some text paragraphs could suddenly lose their antialiasing, and look very jagged and, yeah, aliased. They would yet get antialiasing again when I scrolled the page up and down, or resized the browser window. Weirdness. Follow the link above for a post on the Posterous blog about the issue. Apparently, WebKit’s 3D Transforms were the culprits, since it gives the relevant elements hardware acceleration, and …</p>
+<blockquote>
+<p>When an element gets hardware accelerated in Webkit, sub-pixel anti-aliasing no longer works.</p>
+</blockquote>
+<h2>Fix</h2>
+<p>How to ﬁx? Play around with the 3D Transforms on the page, or remove any <code>position: relative;</code> on parent elements. Webkit removes antialiasing on text while animating (which is a huge gain in performance), and somehow relative positioning screws things up. Better: recent WebKit nightly builds ﬁx this issue, so I guess I have to play the waiting game.</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">3D</span><span class="Post-Keyword">Antialiasing</span><span class="Post-Keyword">CSS</span><span class="Post-Keyword">Jagged</span><span class="Post-Keyword">Text</span><span class="Post-Keyword">WebKit Transform</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

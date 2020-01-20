@@ -1,0 +1,173 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" hiring-developers-2012-style">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Hiring developers 2012 style – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="37signals,Jobs,interviews,positions,hiring">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/2012-01-05-hiring-developers-2012-style/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="Hiring developers 2012 style">
+    <meta property="og:url" content="https://johanbrook.com/writings/2012-01-05-hiring-developers-2012-style/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="">
+      <a href="/writings">Writings</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">Hiring developers 2012 style</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2012-01-05T15:39:00.000Z" itemprop="datePublished" title="8 years ago" pubdate="">January 5, 2012 – 15:39</time>
+        </p>
+
+        <p class="muted mb4">
+          About 1 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p>David Heinemeier Hansson from 37signals on hiring developers.</p>
+<blockquote>
+<p>I’ve known fabulous programmers ﬂame out in the quizzing cage and terrible ones excel. So unless you’re speciﬁcally hiring someone to design you the next sorting algorithm, making them do so on the white board is a poor gauge of future success.
+I’ve read many articles on this subject: how to ace an interview for a developer position. Even for front-end positions, questions about algorithms and similar<span class="push-double"></span> <span class="pull-double">“</span>puzzles” arise. Sorry, but I actually think you have to tailor the interview material for the practical assignments the interviewee will receive.</p>
+</blockquote>
+<p>Today, most developers (at least web developers) don’t write computer science-y stuff all day long. We solve real world problems, read documentation, build scalable systems, cooperate (social skills are vital!), implementing other people’s code, and more. Quizzes are ﬁne, as long as they are relevant for the actual work I am going to do.</p>
+<p>(Also: see 37signals job listing for an interface designer position some time ago, <a href="http://johanbrook.com/life/37signals-what-matters/" title="What Matters">I wrote about and linked to it</a>).</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">37signals</span><span class="Post-Keyword">Jobs</span><span class="Post-Keyword">interviews</span><span class="Post-Keyword">positions</span><span class="Post-Keyword">hiring</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

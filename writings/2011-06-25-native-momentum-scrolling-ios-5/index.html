@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" native-style-momentum-scrolling-to-arrive-in-ios-5">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Native style momentum scrolling to arrive in iOS 5 – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="Apple,iOS5,momentum,native,Safari,scrolling,Web apps,Webkit">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/2011-06-25-native-momentum-scrolling-ios-5/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="Native style momentum scrolling to arrive in iOS 5">
+    <meta property="og:url" content="https://johanbrook.com/writings/2011-06-25-native-momentum-scrolling-ios-5/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="">
+      <a href="/writings">Writings</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">Native style momentum scrolling to arrive in iOS 5</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2011-06-25T13:03:00.000Z" itemprop="datePublished" title="9 years ago" pubdate="">June 25, 2011 – 13:03</time>
+        </p>
+
+        <p class="muted mb4">
+          About 1 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p>One of the biggest gripes of web apps in Mobile Safari comes to an end. In iOS 5 Beta 2, you are able to do this on an element with CSS:</p>
+<pre><code>overflow: scroll;
+-webkit-overflow-scrolling: touch;
+</code></pre>
+<p><a href="http://playground.johanbrook.com/css/touchtest.html">Quick demo</a>
+requires iOS 5.0</p>
+<p>And the content inside that element should get native style momentum scroll. Just like any other app in iOS.</p>
+<p>This is huge for web apps. No more custom Javascript to fake the native behavior, like <a href="http://cubiq.org/iscroll">iScroll</a> and lately <a href="https://github.com/joehewitt/scrollability/">Scrollability</a> from Joe Hewitt. Even Apple has written their own internal web framework (“PastryKit”) to patch up things like scrolling and ﬁxed positioned elements. Scrollability is the best fake-native scrolling I’ve seen so far, and the one in apps built with <a href="http://www.sencha.com/">Sencha Touch</a> is pretty sharp as well, but I don’t think they can beat this alternative provided by Apple.</p>
+<p>There’s indeed a noticeable difference in momentum between scrolling in native apps and in web pages. It’s maybe the one single thing that makes you think:<span class="push-double"></span> <span class="pull-double">“</span>Oh right, this is a web app”. I guess iOS has a different scrolling behavior in web pages since it’s actually helpful when there’s a lot of tiny information on screen&thinsp;&mdash;&thinsp;a fast moving scroll would have been quite tricky to handle when precision-scrolling through long news articles. But for those who really want to create apps for the mobile browser with that native look-and-feel, this behavior is an obstacle.</p>
+<p>Together with the previously revealed properties in Mobile Safari in iOS5, <code>position: fixed</code> and <code>overflow: scroll</code>&nbsp;, this is great news for web apps. Can’t wait to test this.</p>
+<p>Note: this is the second beta, and it’s never dead certain that these features actually will arrive in the ﬁnal version of the OS.</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">Apple</span><span class="Post-Keyword">iOS5</span><span class="Post-Keyword">momentum</span><span class="Post-Keyword">native</span><span class="Post-Keyword">Safari</span><span class="Post-Keyword">scrolling</span><span class="Post-Keyword">Web apps</span><span class="Post-Keyword">Webkit</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>

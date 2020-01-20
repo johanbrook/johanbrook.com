@@ -1,18 +1,15 @@
 {
-  "version": "2.0.0",
   "description": "I'm a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding & designering and I like working with product, user experience, interface design, and other things too.",
   "shortbio": "I’m coding & designering, and I like working with product.",
   "site": "https://johanbrook.com",
   "github": "johanbrook",
-  "twitter": "johanbrook",
+  "twitter": "@johanbrook",
   "tumblr": "http://log.johanbrook.com",
-  "dribbble": "johan",
   "email": "johan@johanbrook.com",
-  "linkedin": "http://linkedin.com/in/johanbrook",
-  "careers": "https://careers.stackoverflow.com/johanbrook",
   "cv": "https://johanbrook.com/assets/johanbrook-cv.pdf",
-  "johanVersion": {
-    "currentVersionOfJohan": "3.6.0",
-    "changelog": "https://johanbrook.com/changelog"
+  "versions": {
+    "site": "2.0.0",
+    "johan": "3.6.0",
+    "git": "978c77de13cc9f0ce3ee995ff0edca72327d507c"
   }
 }

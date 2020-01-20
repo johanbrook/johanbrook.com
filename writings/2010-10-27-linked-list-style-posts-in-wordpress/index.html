@@ -1,0 +1,200 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" linked-list-style-posts-in-wordpress">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Linked List style posts in Wordpress – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    <meta name="keywords" content="Custom fields,Functions.php,RSS">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/rss.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/2010-10-27-linked-list-style-posts-in-wordpress/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="Linked List style posts in Wordpress">
+    <meta property="og:url" content="https://johanbrook.com/writings/2010-10-27-linked-list-style-posts-in-wordpress/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="">
+      <a href="/writings">Writings</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">Linked List style posts in Wordpress</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+          <time datetime="2010-10-27T12:31:00.000Z" itemprop="datePublished" title="9 years ago" pubdate="">October 27, 2010 – 12:31</time>
+        </p>
+
+        <p class="muted mb4">
+          About 2 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p><strong>Quite a few people</strong> use this style of quick links or short posts (myself included). Daring Fireball, Shawn Blanc and others. When linking to an article of site, the post heading itself becomes the link. It’s quite good usability and UX, and is not that hard to re-create in Wordpress.</p>
+<p>When I attach links to my custom post type for short posts, Quickies, I use custom ﬁelds in Wordpress. I’ve got two ﬁelds for link:<span class="push-double"></span> <span class="pull-double">“</span>Link” and<span class="push-double"></span> <span class="pull-double">“</span>Link Name”. The<span class="push-double"></span> <span class="pull-double">“</span>Link” ﬁeld contains the URL and is the important one here. In the post template (in my case <code>single-quickie.php</code> you can get the custom ﬁeld with this:</p>
+<pre><code>$meta_link = get_post_meta(get_the_ID(), &quot;Link&quot;, true);
+</code></pre>
+<p>Where<span class="push-double"></span> <span class="pull-double">“</span>Link” is the custom ﬁeld name. After that, it’s just a matter of inserting it in the post’s heading tag:</p>
+<pre><code>&lt;h1&gt;
+   &lt;?php if($meta_link):?&gt;
+      &lt;a title=&quot;follow link&quot; href=&quot;&lt;?php echo $meta_link;?&gt;&quot;&gt; &lt;?php the_title();?&gt; ›&lt;/a&gt;
+   &lt;?php else: ?&gt;
+      &lt;?php the_title();?&gt;
+   &lt;?php endif;?&gt;
+&lt;/h1&gt;
+</code></pre>
+<p>There we go. If there’s a link attached to the post, create an <code>&lt;a&gt;</code> element for it inside the heading. But how do we work this out for RSS readers? Many people (myself included again) usually read posts directly from within the reader, and Wordpress automatically makes the RSS heading link point to the post’s permalink&thinsp;&mdash;&thinsp;not our custom link. Check it out next time you’re reading a Daring Fireball linked post: when you click on the main heading you’re instantly taken to the link he’s talking about. How to create this in Wordpress? I ﬁrst tried to hack the RSS ﬁle, <code>feed-rss2.php</code> but that’s seldom a good thing. You should leave the core ﬁles alone. Instead, you can ﬁlter the template tag for outputting the RSS heading in your <code>functions.php</code>&nbsp;:</p>
+<pre><code>function johan_permalink_rss($content) { 
+   global $wp_query; 
+   $postid = $wp_query-&gt;post-&gt;ID; 
+   $link = get_post_meta($postid, 'Link', true); 
+
+   if(is_feed()) { 
+      if($link !== '') { 
+         $content = $link; 
+      } else { 
+         $content = get_permalink($postid); 
+      } 
+   } 
+   
+   return $content; 
+} 
+
+add_filter('the_permalink_rss', 'johan_permalink_rss');
+</code></pre>
+<p>As you can see it creates a function with the original content in the parameter. It ﬁnds the current post’s id and the attached link. If it’s a feed and if it’s a link attached, go ahead and make the RSS permalink ( <code>$content</code> ) the value of the custom link. Return the value and add a ﬁlter for the <code>the_permalink_rss</code> used in Wordpress’ RSS parsing ﬁle.</p>
+<p>Not that hard, right?</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f4 comp-grey mt4">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">Custom fields</span><span class="Post-Keyword">Functions.php</span><span class="Post-Keyword">RSS</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+  </body>
+
+</html>
