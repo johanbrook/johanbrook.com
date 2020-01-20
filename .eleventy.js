@@ -18,6 +18,22 @@ module.exports = function(config) {
     config.addFilter(name, helpers[name]);
   });
 
+  config.addCollection('writings', (collection) => {
+    return (
+      collection
+        .getFilteredByGlob('src/site/writings/*.md')
+        // Exclude drafts from prod builds
+        .filter((post) => (isDevelopment ? true : !post.data.draft))
+        .map((p) => {
+          p.data.layout = 'layouts/post';
+          p.data.permalink = `writings/${p.data.slug}/index.html`;
+
+          return p;
+        })
+        .sort((a, b) => a.date - b.date)
+    );
+  });
+
   config.addFilter('excerpt', (post) => extractExcerpt(post));
 
   // Add plugins
