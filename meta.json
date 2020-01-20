@@ -10,6 +10,7 @@
   "versions": {
     "site": "2.0.0",
     "johan": "3.6.0",
-    "git": "978c77de13cc9f0ce3ee995ff0edca72327d507c"
+    "build": "a42f8094fb38a8345364ddf14a00f03c47db8689",
+    "builtAt": "2020-01-20T06:02:56.774Z"
   }
 }
