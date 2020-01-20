@@ -11,7 +11,7 @@ date: 2019-01-24
 This site's simple license:
 
 ```
-Copyright Johan Brook, 2019
+Copyright Johan Brook, 2020
 
 You may steal the code of this site, and be inspired by its structure.
 
