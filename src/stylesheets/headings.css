@@ -44,9 +44,9 @@ h4 {
 }
 
 h5 {
-  font-size: var(--font-size-4);
+  font-size: var(--font-size-5);
 }
 
 h6 {
-  font-size: var(--font-size-4);
+  font-size: var(--font-size-6);
 }

@@ -82,11 +82,13 @@
   --font-size-headline: 6rem;
   --font-size-subheadline: 5rem;
 
-  --font-size-title: 70px;
-  --font-size-1: 24px;
-  --font-size-2: 20px;
-  --font-size-3: 1rem;
-  --font-size-4: 13px;
+  --font-size-title: calc((70 / var(--font-size-base)) * 1rem);
+  --font-size-1: calc((28 / var(--font-size-base)) * 1rem);
+  --font-size-2: calc((24 / var(--font-size-base)) * 1rem);
+  --font-size-3: calc((20 / var(--font-size-base)) * 1rem);
+  --font-size-4: 1rem;
+  --font-size-5: calc((15 / var(--font-size-base)) * 1rem);
+  --font-size-6: calc((13 / var(--font-size-base)) * 1rem);
 
   --letter-spacing-tight: -0.002em;
   --letter-spacing-tighter: -0.025em;
