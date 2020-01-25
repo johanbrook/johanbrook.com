@@ -34,6 +34,9 @@
   --code-background: #fff;
   --code-color: #000;
 
+  --selection-bg-color: var(--comp-yellow);
+  --selection-color: var(--text-color);
+
   @supports (color: color(display-p3 1 1 1 / 1)) {
     --link-color: color(display-p3 0 0.2706 0.9569 / 1);
     --link-color-hover: color(display-p3 0 0.3294 0.7333 / 1);
