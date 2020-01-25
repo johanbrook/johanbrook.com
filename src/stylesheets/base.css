@@ -247,10 +247,17 @@ blockquote {
 
 hr {
   display: block;
-  height: 1px;
+  height: auto;
   border: 0;
-  background-color: var(--grey-light);
   margin: calc(var(--lineheight) * 2) auto;
-  width: 5rem;
-  max-width: 50%;
+  width: 80%;
+  color: var(--border-color);
+
+  &::after {
+    display: block;
+    text-align: center;
+    content: '***';
+    color: var(--border-color);
+    line-height: 1;
+  }
 }

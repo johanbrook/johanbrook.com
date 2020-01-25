@@ -34,6 +34,8 @@
   --code-background: #fff;
   --code-color: #000;
 
+  --border-color: #444;
+
   --selection-bg-color: var(--comp-yellow);
   --selection-color: var(--text-color);
 
@@ -53,6 +55,8 @@
     --code-color: #fff;
 
     --comp-yellow: #c3a507;
+
+    --border-color: #fff;
 
     @supports (color: color(display-p3 1 1 1 / 1)) {
       --link-color: color(display-p3 0.3529 0.6471 1 / 1);
