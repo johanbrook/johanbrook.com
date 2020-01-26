@@ -28,6 +28,11 @@ BUTTONS
     background-color: rgba(var(--btn-background), 0.1);
   }
 
+  &:focus {
+    outline: 0;
+    box-shadow: var(--link-color) 0 0 0 3px;
+  }
+
   &.btn--large {
     font-size: 1.2em;
     padding: 0.5em 1.3em;
