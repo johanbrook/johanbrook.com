@@ -164,6 +164,11 @@ It’s some really good work he’s done there, and I’ll for sure take a close
       document.addEventListener('DOMContentLoaded', init, false);
     </script>
 
+    <script>
+      // Only load on production environment.
+      if (window.location.host !== 'johanbrook.com')
+        window.goatcounter = {no_onload: true};
+    </script>
     <script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </body>
 

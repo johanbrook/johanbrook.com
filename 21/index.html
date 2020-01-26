@@ -217,7 +217,7 @@
   <li><a href="/feed.xml">Feed</a></li>
 </ul>
 <ul class="FooterNav__Secondary">
-  <li title="Built at 2020-01-26T14:22:27.395Z" class="font-mono faded">08fbb21</li>
+  <li title="Built at 2020-01-26T14:25:19.016Z" class="font-mono faded">0053097</li>
 </ul>
 
   </nav>
@@ -273,6 +273,11 @@
       document.addEventListener('DOMContentLoaded', init, false);
     </script>
 
+    <script>
+      // Only load on production environment.
+      if (window.location.host !== 'johanbrook.com')
+        window.goatcounter = {no_onload: true};
+    </script>
     <script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </body>
 

@@ -183,6 +183,11 @@ Frontpage with Golden Ratio, module, and baseline overlay</p>
       document.addEventListener('DOMContentLoaded', init, false);
     </script>
 
+    <script>
+      // Only load on production environment.
+      if (window.location.host !== 'johanbrook.com')
+        window.goatcounter = {no_onload: true};
+    </script>
     <script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </body>
 
