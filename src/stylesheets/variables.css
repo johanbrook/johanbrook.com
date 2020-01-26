@@ -21,8 +21,8 @@
   --off-white: #fafafa;
 
   --link-color: #006ef3;
-  --link-color-hover: #0054bb;
-  --link-color-visited: #266abd;
+  --link-color-hover: #0055bb;
+  --link-color-visited: #6300e2;
   --border-color: #e9e9e9;
 
   --btn-color: #0074ff;
@@ -41,7 +41,8 @@
 
   @supports (color: color(display-p3 1 1 1 / 1)) {
     --link-color: color(display-p3 0 0.2706 0.9569 / 1);
-    --link-color-hover: color(display-p3 0 0.3294 0.7333 / 1);
+    --link-color-hover: color(display-p3 0 0.3333 0.7333 / 1);
+    --link-color-visited: color(display-p3 0.3882 0 0.8863 / 1);
   }
 
   @media screen and (prefers-color-scheme: dark) {
