@@ -28,6 +28,10 @@ POSTS LIST
     padding: calc(var(--lineheight) / 3) 0;
     font-size: var(--font-size-3);
     flex: 1;
+
+    &:visited {
+      color: var(--link-color-visited);
+    }
   }
 
   &__Excerpt {
