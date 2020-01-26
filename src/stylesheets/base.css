@@ -69,7 +69,8 @@ main {
   letter-spacing: -1px;
 
   &--smaller {
-    font-size: calc(var(--font-size-title) / 2);
+    font-size: calc(var(--font-size-title) * 0.7);
+    line-height: 1.25;
   }
 
   @media screen and (max-width: 480px) {
