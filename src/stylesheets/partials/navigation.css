@@ -64,6 +64,28 @@ SIDE NAV
 
   a {
     font-weight: normal;
+    position: relative;
+  }
+
+  .nav--current a,
+  a:focus {
+    outline: 0;
+
+    &::before {
+      content: '->';
+      display: block;
+      position: absolute;
+      right: calc(100% + 0.5em);
+      white-space: nowrap;
+    }
+  }
+
+  .nav--current a {
+    font-weight: 600;
+  }
+
+  a:focus {
+    color: var(--link-color-hover);
   }
 
   h1 {
@@ -89,11 +111,12 @@ SIDE NAV
     h1 {
       margin-bottom: var(--lineheight);
     }
-  }
 
-  .nav--current {
-    a {
-      font-weight: 600;
+    .nav--current a,
+    a:focus {
+      &::before {
+        display: none;
+      }
     }
   }
 }
