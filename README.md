@@ -1,6 +1,6 @@
-[![Build Status](https://semaphoreci.com/api/v1/johan/johanbrook-com/branches/master/shields_badge.svg)](https://semaphoreci.com/johan/johanbrook-com)
+# Johan's site
 
-Johan's site.
+![Build & Deploy johanbrook.com](https://github.com/johanbrook/johanbrook.com/workflows/Build%20&%20Deploy%20johanbrook.com/badge.svg)
 
 ```
 npm install
