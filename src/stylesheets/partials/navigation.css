@@ -89,7 +89,8 @@ SIDE NAV
   }
 
   h1 {
-    margin-bottom: calc(var(--lineheight) * 3);
+    margin-top: calc(var(--lineheight) * 1.5);
+    margin-bottom: var(--lineheight);
 
     a {
       color: #000;
@@ -97,6 +98,7 @@ SIDE NAV
 
       @media only screen and (prefers-color-scheme: dark) {
         color: #fff;
+        font-weight: 600;
       }
     }
   }
