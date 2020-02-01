@@ -48,7 +48,7 @@
   </h1>
   <ul>
     <li class="nav--current">
-      <a href="/writings">Writings &lt;-</a>
+      <a href="/writings">Writings</a>
     </li>
     <li class="">
       <a href="/now">Now</a>
@@ -106,7 +106,7 @@
 
     <footer>
       
-        <p class="f4 comp-grey mt4">
+        <p class="f5 comp-grey mt5 pb3 border border-b">
           <b class="mr1">Keywords</b> <span class="Post-Keyword">Code</span><span class="Post-Keyword">testing</span><span class="Post-Keyword">unit test</span><span class="Post-Keyword">coverage</span><span class="Post-Keyword">ratio</span><span class="Post-Keyword">tests</span><span class="Post-Keyword">TDD</span><span class="Post-Keyword">Test Driven Development</span>
         </p>
       
@@ -168,6 +168,20 @@
 
       document.addEventListener('DOMContentLoaded', init, false);
     </script>
+
+    <script>
+  // Only load on production environment.
+  if (window.location.host !== 'johanbrook.com')
+    window.goatcounter = {no_onload: true};
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
   </body>
 
 </html>

@@ -48,7 +48,7 @@
   </h1>
   <ul>
     <li class="nav--current">
-      <a href="/writings">Writings &lt;-</a>
+      <a href="/writings">Writings</a>
     </li>
     <li class="">
       <a href="/now">Now</a>
@@ -149,7 +149,7 @@ How to you add delight to a form, without writing a whole jQuery plugin for it? 
 
     <footer>
       
-        <p class="f4 comp-grey mt4">
+        <p class="f5 comp-grey mt5 pb3 border border-b">
           <b class="mr1">Keywords</b> <span class="Post-Keyword">Ajax</span><span class="Post-Keyword">city</span><span class="Post-Keyword">form</span><span class="Post-Keyword">HTML</span><span class="Post-Keyword">Javascript</span><span class="Post-Keyword">jQuery</span><span class="Post-Keyword">JSON</span><span class="Post-Keyword">postal code</span><span class="Post-Keyword">User Experience</span>
         </p>
       
@@ -211,6 +211,20 @@ How to you add delight to a form, without writing a whole jQuery plugin for it? 
 
       document.addEventListener('DOMContentLoaded', init, false);
     </script>
+
+    <script>
+  // Only load on production environment.
+  if (window.location.host !== 'johanbrook.com')
+    window.goatcounter = {no_onload: true};
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
   </body>
 
 </html>

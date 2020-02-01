@@ -48,7 +48,7 @@
   </h1>
   <ul>
     <li class="nav--current">
-      <a href="/writings">Writings &lt;-</a>
+      <a href="/writings">Writings</a>
     </li>
     <li class="">
       <a href="/now">Now</a>
@@ -161,6 +161,20 @@ In 1985 Bjarne Stroustrup created the C++ programming language, much because of 
 
       document.addEventListener('DOMContentLoaded', init, false);
     </script>
+
+    <script>
+  // Only load on production environment.
+  if (window.location.host !== 'johanbrook.com')
+    window.goatcounter = {no_onload: true};
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
   </body>
 
 </html>

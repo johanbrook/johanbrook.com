@@ -48,7 +48,7 @@
   </h1>
   <ul>
     <li class="nav--current">
-      <a href="/writings">Writings &lt;-</a>
+      <a href="/writings">Writings</a>
     </li>
     <li class="">
       <a href="/now">Now</a>
@@ -118,7 +118,7 @@ When you focus and decide what’s really worth the time doing, I believe you fe
 
     <footer>
       
-        <p class="f4 comp-grey mt4">
+        <p class="f5 comp-grey mt5 pb3 border border-b">
           <b class="mr1">Keywords</b> <span class="Post-Keyword">time</span><span class="Post-Keyword">happiness</span><span class="Post-Keyword">prioritize</span><span class="Post-Keyword">mangement</span><span class="Post-Keyword">tasks</span>
         </p>
       
@@ -180,6 +180,20 @@ When you focus and decide what’s really worth the time doing, I believe you fe
 
       document.addEventListener('DOMContentLoaded', init, false);
     </script>
+
+    <script>
+  // Only load on production environment.
+  if (window.location.host !== 'johanbrook.com')
+    window.goatcounter = {no_onload: true};
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
   </body>
 
 </html>
