@@ -3,7 +3,7 @@ title: Recently in books
 slug: recently-in-books
 date: '2020-02-01T10:12'
 location: My home office in Stockholm
-excerpt: Thoughts on the books "The Alchemist", "The Zahir", and "The Snow Leopard", which I read in early 2020.
+excerpt: Thoughts on the books "The Alchemist", "The Zahir", "The Snow Leopard", and "Men Without Women", which I read in early 2020.
 keywords:
   - books
   - books in 2020
@@ -11,6 +11,7 @@ books:
   - { title: The Alchemist, author: Paolo Coelho, grade: 3 }
   - { title: The Zahir, author: Paolo Coelho, grade: 2 }
   - { title: The Snow Leopard, author: Peter Matthiessen, grade: 4 }
+  - { title: Men Without Women, author: Haruki Murakami, grade: 5 }
 ---
 
 The year started off with three weeks in Sri Lanka, where I naturally didn't bring my laptop. I also only had phone internet while on wi-fi (didn't buy a data plan), which was lovely. This, combined with early evenings, led me to read much more than during whole 2019.
@@ -54,3 +55,18 @@ For me, many topics in the book landed on the subject of _acceptance_. Total acc
 Peter Matthiessen is not afraid to describe himself in bad manner: the frustration, the pettiness, the eagerness, the anxiety over his wife's death. He's open about all these things. I appreciate honesty and writing about things that are true. It's not hard to note the Zen undertones everywhere (Matthiessen went off becoming a Zen priest himself), which creates a larger-than-life feel to the text. After finishing the book, it really felt like having been on an adventure.
 
 It could be a slow read though. It's not a "page turner", but doesn't try to be either. There are long sentences and descriptions which might scare people off. Don't be in a hurry. Hopefully, it'll open one's eyes more to Zen literature (it did for me).
+
+## [Men Without Women](<https://en.wikipedia.org/wiki/Men_Without_Women_(Haruki_Murakami_short_story_collection)>) – Haruki Murakami
+
+★★★★★
+
+**Summary:** A beautiful short story collection with a shared theme. It's full of great story telling, repressed emotions, and ultimately void.
+
+Haruki Murakami has written this short story collection which shares its name with Hemingway's second collection of stories around a similar theme. I picked it out in the pocket shop before the trip by two reasons:
+
+1. I had a faint memory of reading good reviews about this Murakami.
+2. I like short stories – nicer to invest time in a few pages rather than a full novel. Short stories are often succinct and to the point. Great short stories often are incredibly sharp but still subtle.
+
+The last sentence is so very true in _Men Without Women_. Murakami's writing is full of wit, build-ups, and intense story telling. It's obviously hard to describe the plot in a collection like this, but as mentioned, they all share a common theme around male protagonists. They all have lost, are on the look for, or have rejected women in their lives.
+
+The main thing is Murakami's great skill in describing these fates, as well as his great source of fantasy. There are some weird twists and turns of the stories, and all in all it's great writing. For me, I felt once more that human beings are so damned interesting.
