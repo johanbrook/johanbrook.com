@@ -21,16 +21,9 @@ module.exports = function(config) {
   config.addCollection('writings', (collection) => {
     return (
       collection
-        .getFilteredByGlob('src/site/writings/*.md')
+        .getFilteredByTag('posts')
         // Exclude drafts from prod builds
         .filter((post) => (isDevelopment ? true : !post.data.draft))
-        .map((p) => {
-          p.data.layout = 'layouts/post';
-          p.data.permalink = `writings/${p.data.slug}/index.html`;
-
-          return p;
-        })
-        .sort((a, b) => a.date - b.date)
     );
   });
 
