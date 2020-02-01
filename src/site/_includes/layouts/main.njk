@@ -50,9 +50,7 @@ ogImage: /assets/images/og-image.png
 
   <body>
 
-    {% if home %}
-      {% include "top-navigation.njk" %}
-    {% else %}
+    {% if not home %}
       {% include "side-navigation.njk" %}
     {% endif %}
 
