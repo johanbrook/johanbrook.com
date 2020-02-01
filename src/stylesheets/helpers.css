@@ -695,6 +695,22 @@ DISPLAY
 }
 
 /*
+BORDERS
+----------------------------------------------------------------*/
+
+.border {
+  border: 1px solid var(--border-color);
+}
+
+.border-b {
+  border-width: 0 0 1px;
+}
+
+.border-t {
+  border-width: 1px 0 0;
+}
+
+/*
 COLOURS
 ----------------------------------------------------------------*/
 

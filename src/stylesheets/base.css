@@ -248,13 +248,13 @@ hr {
   border: 0;
   margin: calc(var(--lineheight) * 2) auto;
   width: 80%;
-  color: var(--border-color);
+  color: var(--hr-color);
 
   &::after {
     display: block;
     text-align: center;
     content: '***';
-    color: var(--border-color);
+    color: var(--hr-color);
     line-height: 1;
   }
 }
