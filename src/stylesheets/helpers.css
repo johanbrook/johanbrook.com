@@ -116,6 +116,14 @@ TYPESCALE
   font-size: var(--font-size-4);
 }
 
+.f5 {
+  font-size: var(--font-size-5);
+}
+
+.f6 {
+  font-size: var(--font-size-6);
+}
+
 /*
 FONT WEIGHTS
 ----------------------------------------------------------------*/
