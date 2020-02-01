@@ -20,15 +20,15 @@ jobs:
           node-version: '12.x'
 
       - name: Install & Build
+        env:
+          CI: true
+          NODE_ENV: production
         run: |
           npm install --no-save --no-audit
           npm run build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
-        env:
-          CI: true
-          NODE_ENV: production
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           # The branch the action should deploy from.
