@@ -124,7 +124,7 @@ What the author of the quote above means with his post is basically the ideologi
 
     <footer>
       
-        <p class="f4 comp-grey mt4">
+        <p class="f5 comp-grey mt5 pb3 border border-b">
           <b class="mr1">Keywords</b> <span class="Post-Keyword">Google</span><span class="Post-Keyword">iPhone</span><span class="Post-Keyword">developer</span><span class="Post-Keyword">Sparrow</span><span class="Post-Keyword">Mail</span><span class="Post-Keyword">acquisition</span><span class="Post-Keyword">e-mail</span>
         </p>
       
@@ -188,11 +188,18 @@ What the author of the quote above means with his post is basically the ideologi
     </script>
 
     <script>
-      // Only load on production environment.
-      if (window.location.host !== 'johanbrook.com')
-        window.goatcounter = {no_onload: true};
-    </script>
-    <script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  // Only load on production environment.
+  if (window.location.host !== 'johanbrook.com')
+    window.goatcounter = {no_onload: true};
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
   </body>
 
 </html>

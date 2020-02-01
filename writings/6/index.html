@@ -79,10 +79,16 @@
   <h1 class="title inset-title">Writings.</h1>
 
   <p class="fw6">
-    171 posts, from October 2010 to October 2010.
+    172 posts, from October 2010 to October 2010.
   </p>
 
   <ol class="PostsList">
+    
+      <li class="PostItem PostItem--Regular">
+        <a class="PostItem__Link" href="/writings/2010-10-31-jeremy-keith-the-design-of-html5/" title="About 1 min reading time">Jeremy Keith: The Design of HTML5 -> </a>
+
+        <time datetime="2010-10-31T11:09:00.000Z" pubdate="">2010-10-31</time>
+      </li>
     
       <li class="PostItem PostItem--Regular">
         <a class="PostItem__Link" href="/writings/2010-10-29-paris-vs-new-york-a-graphic-comparison/" title="About 1 min reading time">Paris vs. New York – a graphic comparison -> </a>
@@ -278,11 +284,18 @@
     </script>
 
     <script>
-      // Only load on production environment.
-      if (window.location.host !== 'johanbrook.com')
-        window.goatcounter = {no_onload: true};
-    </script>
-    <script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  // Only load on production environment.
+  if (window.location.host !== 'johanbrook.com')
+    window.goatcounter = {no_onload: true};
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
   </body>
 
 </html>

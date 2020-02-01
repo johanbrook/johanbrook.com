@@ -170,6 +170,10 @@
     <ol class="PostsList PostsList--Tight">
       
         <li class="PostItem PostItem--Regular" title="About 2 min reading time">
+          <a class="PostItem__Link" href="/writings/2011-01-13-after-hours/">After Hours -></a>
+        </li>
+      
+        <li class="PostItem PostItem--Regular" title="About 2 min reading time">
           <a class="PostItem__Link" href="/writings/2011-01-11-dyluni-for-wordpress/">Dyluni for Wordpress -></a>
         </li>
       
@@ -189,14 +193,10 @@
           <a class="PostItem__Link" href="/writings/2010-12-16-people-that-hire/">&quot;A note to people that hire ... &quot; -></a>
         </li>
       
-        <li class="PostItem PostItem--Regular" title="About 1 min reading time">
-          <a class="PostItem__Link" href="/writings/2010-12-16-37signals-homepage-redesign/">The road to the 37signals homepage redesign -></a>
-        </li>
-      
     </ol>
 
     <p class="f4">
-      <a title="View all" class="muted" href="/writings">…and 165 more</a>
+      <a title="View all" class="muted" href="/writings">…and 166 more</a>
     </p>
   </section>
 </main>
@@ -217,7 +217,7 @@
   <li><a href="/feed.xml">Feed</a></li>
 </ul>
 <ul class="FooterNav__Secondary">
-  <li title="Built at 2020-01-26T14:25:19.016Z" class="font-mono faded">0053097</li>
+  <li title="Built at 2020-02-01T11:06:19.968Z" class="font-mono faded">be5398c</li>
 </ul>
 
   </nav>
@@ -274,11 +274,18 @@
     </script>
 
     <script>
-      // Only load on production environment.
-      if (window.location.host !== 'johanbrook.com')
-        window.goatcounter = {no_onload: true};
-    </script>
-    <script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  // Only load on production environment.
+  if (window.location.host !== 'johanbrook.com')
+    window.goatcounter = {no_onload: true};
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
   </body>
 
 </html>

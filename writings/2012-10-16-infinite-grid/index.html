@@ -104,7 +104,7 @@ Great comparison.</p>
 
     <footer>
       
-        <p class="f4 comp-grey mt4">
+        <p class="f5 comp-grey mt5 pb3 border border-b">
           <b class="mr1">Keywords</b> <span class="Post-Keyword">CSS</span><span class="Post-Keyword">fluid</span><span class="Post-Keyword">grid</span><span class="Post-Keyword">responsive</span><span class="Post-Keyword">infinite</span><span class="Post-Keyword">water</span><span class="Post-Keyword">width</span><span class="Post-Keyword">breakpoint</span><span class="Post-Keyword">viewport</span><span class="Post-Keyword">media query</span>
         </p>
       
@@ -168,11 +168,18 @@ Great comparison.</p>
     </script>
 
     <script>
-      // Only load on production environment.
-      if (window.location.host !== 'johanbrook.com')
-        window.goatcounter = {no_onload: true};
-    </script>
-    <script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  // Only load on production environment.
+  if (window.location.host !== 'johanbrook.com')
+    window.goatcounter = {no_onload: true};
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
   </body>
 
 </html>

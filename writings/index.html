@@ -79,10 +79,16 @@
   <h1 class="title inset-title">Writings.</h1>
 
   <p class="fw6">
-    171 posts, from October 2010 to December 2019.
+    172 posts, from October 2010 to February 2020.
   </p>
 
   <ol class="PostsList">
+    
+      <li class="PostItem PostItem--Regular">
+        <a class="PostItem__Link" href="/writings/2020-02-01-recently-in-books/" title="About 3 min reading time">Recently in books -> </a>
+
+        <time datetime="2020-02-01T10:12:00.000Z" pubdate="">2020-02-01</time>
+      </li>
     
       <li class="PostItem PostItem--Regular">
         <a class="PostItem__Link" href="/writings/2019-12-08-like-knitting/" title="About 1 min reading time">Like Knitting -> </a>
@@ -258,12 +264,6 @@
         <time datetime="2013-03-12T17:09:00.000Z" pubdate="">2013-03-12</time>
       </li>
     
-      <li class="PostItem PostItem--Regular">
-        <a class="PostItem__Link" href="/writings/2013-03-11-flexible-markup/" title="About 3 min reading time">Tags and class names – on building flexible markup -> </a>
-
-        <time datetime="2013-03-11T08:14:00.000Z" pubdate="">2013-03-11</time>
-      </li>
-    
   </ol>
 
   <footer class="page-nav">
@@ -332,11 +332,18 @@
     </script>
 
     <script>
-      // Only load on production environment.
-      if (window.location.host !== 'johanbrook.com')
-        window.goatcounter = {no_onload: true};
-    </script>
-    <script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  // Only load on production environment.
+  if (window.location.host !== 'johanbrook.com')
+    window.goatcounter = {no_onload: true};
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
   </body>
 
 </html>
