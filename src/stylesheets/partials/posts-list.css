@@ -26,7 +26,7 @@ POSTS LIST
   &__Link {
     display: block;
     padding: calc(var(--lineheight) / 3) 0;
-    font-size: var(--font-size-3);
+    font-size: var(--font-size-4);
     flex: 1;
 
     &:visited {
