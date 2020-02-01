@@ -109,23 +109,11 @@
   --column-width: 3.52rem;
   --gutter-width: 1.17rem;
 
-  /* @function columns(var(--count)) {
-    @return var(--count) * var(--column-width) + (var(--count) - 1) * var(--gutter-width);
-  } */
+  --max-width: 40rem;
 
-  --max-width: calc(
-    8 * var(--column-width) + (8 - 1) * var(--gutter-width)
-  ); /* 620px */
-
-  --measure: calc(
-    7 * var(--column-width) + (7 - 1) * var(--gutter-width)
-  ); /* ~78 chars */
-  --measure-narrow: calc(
-    6 * var(--column-width) + (6 - 1) * var(--gutter-width)
-  ); /* ~45 chars */
-  --measure-wide: calc(
-    8 * var(--column-width) + (8 - 1) * var(--gutter-width)
-  ); /* ~80 chars */
+  --measure: 52ch;
+  --measure-narrow: 45ch;
+  --measure-wide: 65ch;
 
   --spacing-base: calc(var(--leading-factor) * 1rem);
 

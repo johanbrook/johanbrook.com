@@ -101,7 +101,7 @@ SIDE NAV
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 55rem) {
     width: 100%;
     padding-bottom: var(--lineheight);
     margin-bottom: calc(var(--lineheight) - 1px);

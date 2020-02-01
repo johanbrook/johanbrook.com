@@ -44,7 +44,7 @@ body {
   width: 90%;
   justify-content: center;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 55rem) {
     flex-direction: column;
   }
 }
@@ -54,7 +54,7 @@ main {
   max-width: var(--max-width);
   margin-bottom: calc(var(--lineheight) * 3);
 
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 55rem) {
     margin-top: var(--lineheight);
   }
 }
