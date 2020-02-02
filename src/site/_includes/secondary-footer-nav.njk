@@ -3,5 +3,7 @@
   <li><a href="/feed.xml">Feed</a></li>
 </ul>
 <ul class="FooterNav__Secondary">
-  <li title="Built at {{build.date}}" class="font-mono faded">{{ build.hash | substr(7) }}</li>
+  <li title="Built at {{build.date}}" class="font-mono faded">
+    <a href="https://github.com/{{ meta.repo }}/commit/{{ build.hash }}">{{ build.hash | substr(7) }}</a>
+  </li>
 </ul>
