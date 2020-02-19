@@ -43,11 +43,12 @@ ARTICLE TEXTS
     font-size: 0.9em;
   }
 
+  h1,
   h2 {
     margin-bottom: var(--lineheight);
-    max-width: 70%;
   }
 
+  h1,
   h2,
   h3 {
     margin-top: calc(var(--lineheight) * 2);
