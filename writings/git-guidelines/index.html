@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html>
+<html lang="en" class=" git-guidelines">
+
+  <head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Recent improvements in our git workflow – Johan Brook</title>
+
+    <meta charset="utf-8">
+
+    
+    <meta name="description" content="The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. Here are some">
+    
+    <meta name="keywords" content="git,commit messages,rebase">
+    <meta name="author" content="Johan Brook">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/assets/css/johan.css">
+  
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/feed.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/git-guidelines/">
+    <link rel="author" href="https://johanbrook.com">
+
+    <meta property="og:title" content="Recent improvements in our git workflow">
+    <meta property="og:url" content="https://johanbrook.com/writings/git-guidelines/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:type" content="blog">
+    <meta property="og:image" content="https://johanbrook.com/assets/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+    
+    <meta property="og:description" content="The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. Here are some">
+    
+
+    
+  </head>
+
+  <body>
+
+    
+      <nav role="navigation" class="SideNav">
+  <h1 class="f3">
+    <a href="/">Johan Brook</a>
+  </h1>
+  <ul>
+    <li class="nav--current">
+      <a href="/writings">Writings</a>
+    </li>
+    <li class="">
+      <a href="/now">Now</a>
+    </li>
+    <li class="">
+      <a href="/about">About me</a>
+    </li>
+    <li class="">
+      <a href="/contact" title="Contact and stuff">On the web</a>
+    </li>
+    <li class="">
+      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
+    </li>
+    <li class="">
+      <a href="/credits" title="Licenses and stuff.">Credits</a>
+    </li>
+    <li>
+      <a href="/feed.xml">Feed</a>
+    </li>
+  </ul>
+</nav>
+
+    
+
+    
+
+<main role="main">
+  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+    
+      <header> 
+        <h1 itemprop="name" class="title ">Recent improvements in our git workflow</h1>
+
+        <p class="mb0 fw5 mt3">
+          
+            <span class="badge mr1">Draft</span>
+          
+          <time datetime="2020-02-19T20:04:00.000Z" itemprop="datePublished" title="an hour ago" pubdate="">February 19, 2020 – 20:04</time>
+        </p>
+
+        <p class="muted mb4">
+          About 5 min reading time
+        </p>
+      </header>
+    
+
+    <div class="article-text post__body measure" itemprop="articleBody">
+      <p>The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. During last Autumn in <a href="http://lookback.io">Lookback</a>, the engineering team noticed that we needed to take care of some weeds.</p>
+<p>Not only in our committing code culture, but also in the land of code reviews and Pull Requests at GitHub.</p>
+<p>Here are some of the principles and guidelines we worked out.</p>
+<h1>Empathy for others and your future self</h1>
+<p>We say:</p>
+<blockquote>
+<p><span class="pull-double">“</span>Please have empathy for your coworkers when committing code. Be considerate of them as well as your future self”.</p>
+</blockquote>
+<p>When working in a long living code base with lots of complex and moving parts, bugs can surface weeks or months after you wrote the code. Guess what system helps you go back in time and ﬁnd exactly what, when, and who changed a line of code?! git can! Guess what doesn’t help git help you? These things:</p>
+<ul>
+<li>Unclear commit messages.</li>
+<li>Incoherent and too large commits.</li>
+<li>Not easily revertable commits (connected with the above).</li>
+<li>Merge commits.</li>
+</ul>
+<p>Failure to avoid these things will bite you when debugging something in the future.</p>
+<p>For us, we didn’t enforce or point these things out in code reviews either. One person could ﬁle a Pull Request 10+ commits, where some of them wouldn’t even be related to the PR itself. It was hard to give good feedback on a commit which said <code>fix some things in logging</code>: what did you ﬁx? Why?</p>
+<p><span class="pull-double">“</span>You’ve got to give love to receive love”. Meaning,<span class="push-double"></span> <span class="pull-double">“</span>you’ve got to give your co-workers good PRs in order to receive good feedback”. A related joke is the old<span class="push-double"></span> <span class="pull-double">“</span>20 commit PR? LGTM. One commit? A novella of feedback”.</p>
+<p>We decided to reboot our engineering culture around clean commits and PRs. What follows are some of the guidelines we drafted for working with code.</p>
+<hr>
+<h1>1. Committing code</h1>
+<p>Make each commit <strong>atomical</strong>. That is, make it include only the relevant code for your intended change. There’s a lot to read about this subject on the web.</p>
+<p>When submitting a patch for code review, consider grouping together similar commits with <code>git rebase</code>(“squashing”) to keep commit count down (<em>without</em> breaking the rule about atomical commits above!).</p>
+<p>The <code>master</code> branch’s history should ideally be a long string of commits. We should avoid merge commits by rebasing in <code>master</code> into your feature branch before merging back.</p>
+<h2>Commit messages</h2>
+<ul>
+<li>Try to focus on the <em>why</em> in commit messages. Not necessarily <em>what</em>. Think about how this commit will be read when doing a <code>git blame</code> half a year later. The reader is probably interested in <em>why</em> this change happened.</li>
+<li>Capturing the <em>why</em> context is super important, since it’s probably tricky to recover later. Save yourself some future slack and capture the why <em>now</em>.</li>
+<li>Adding any references (Clubhouse cards, etc) is appreciated.</li>
+</ul>
+<p><a href="https://chris.beams.io/posts/git-commit/"><span class="pull-double">“</span>How to Write a Git Commit Message”</a> includes some no brainer guidelines for good commit messages.</p>
+<h1>2. Submitting Pull Requests</h1>
+<p><strong>Have mercy for your coworkers.</strong> Don’t dump an unstructured, large PR on them with<span class="push-double"></span> <span class="pull-double">“</span>Review this!!”. Be considerate of their time and energy when submitting, as it might be very hard for them to get into the context you’ve been into the last couple of days while working on the code.</p>
+<p>Make all PRs minimal, concise, and relevant. Don’t include non-trivial refactors of modules in a PR that’s really supposed to do something else.</p>
+<p>Avoid long living branches. By making small, incremental changes, we avoid messy merge conﬂicts and best of all: we avoid risky deploys. It’s easier to reason about small patches, and potentially rolling them back, than huge blobs of<span class="push-double"></span> <span class="pull-double">“</span>ﬁx everything” PRs.</p>
+<p>Feel free to use GitHub’s<span class="push-double"></span> <span class="pull-double">“</span>draft pull request” mode. That means it’s not supposed to be reviewed or be merged yet. You can create a draft PR as soon as you’ve got one commit. That PR can be attached to a ClubHouse card if you’d like, and your coworkers can follow your work.</p>
+<p>Make sure your PR is rebased on <code>master</code> when submitting it. That removes the need for merge commits when merging back to <code>master</code>.</p>
+<p>When your PR is ready for review (implies that you also think it’s ready for merge), <strong>you must make sure it’s neat and tidy</strong>.</p>
+<ul>
+<li>Squash any similar commits together.</li>
+<li>Look at each commit and see if it makes sense: does it have a nice message? Is the code changes relevant and atomical? If a coworker does a <code>git log</code> in two months, will they be able to understand this change?</li>
+</ul>
+<p>After receiving a code review with change requests, always try to squash those changes together with the initial commits made when ﬁrst submitting the PR. It’s okay if you have lots of smaller commits in your feature branch <em>while working</em> with the code. But once it’s ready for review and later merge into <code>master</code>, the ﬁnal PR <em>must</em> be in a concise, minimal state.</p>
+<p>The code reviewer may reject your PR if it’s:</p>
+<ul>
+<li>Too large (“please break into separate PRs”).</li>
+<li>Unstructured/needs squashing (“please restructure this PR”,<span class="push-double"></span> <span class="pull-double">“</span>please redo your commit history”).</li>
+</ul>
+<p>This does <strong><em>not</em></strong> mean<span class="push-double"></span> <span class="pull-double">“</span>you suck”. It’s a signal that you can learn how to avoid this the next time, as well as avoding wasting your coworkers’ time. We aim to learn and become a better developer (and co-developer!) with code reviews, since it’s so easy to do your own thing when you’ve been down in a code cave for a couple of days.</p>
+<h1>3. Tools &amp; patterns</h1>
+<p>When rebasing your branch&thinsp;&mdash;&thinsp;either to rebase in <code>master</code> or rewrite history&thinsp;&mdash;&thinsp;the branch will be diverging from the remote, if you’ve pushed it already. So you need to force push next time (<code>git push -f</code>).</p>
+<h2>Commit messages</h2>
+<p>Make a one-line (max 50 chars) subject line. Optionally followed with a commit message body (max 72 chars per line).</p>
+<p>💡<strong>Tip:</strong> Use a commit message template to base messages on:</p>
+<pre><code>[one line-summary of changes]
+
+Because:
+- [relevant context]
+- [why you decided to change things]
+- [reason you're doing it now]
+
+This commit:
+- [does X]
+- [does Y]
+- [does Z]
+</code></pre>
+<p><a href="https://thoughtbot.com/blog/better-commit-messages-with-a-gitmessage-template">Read more about setting this template up</a>.</p>
+<h2>Rebasing</h2>
+<p>See this guide from the git docs: <a href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing"><span class="push-double"></span><span class="pull-double">“</span>Rebasing”</a>.</p>
+<p>For instance:</p>
+<pre class="language-bash"><code class="language-bash"><span class="highlight-line"><span class="token function">git</span> checkout my-feature-branch</span><br><span class="highlight-line"><span class="token comment"># ...do work</span></span><br><span class="highlight-line"><span class="token comment"># ...changes have been made in remote master</span></span><br><span class="highlight-line"><span class="token comment"># fetch/pull latest master</span></span><br><span class="highlight-line"><span class="token function">git</span> rebase master</span></code></pre>
+<p>This will re-apply your commits in the feature branch on top of what’s in <code>master</code>&nbsp;, to make it appear as your branch is branched off of latest commit in <code>master</code>.</p>
+<p>💡<strong>Tip:</strong> use <code>git fetch origin master:master</code> from your feature branch to fetch latest <code>master</code> without leaving your branch.</p>
+<p>There’s a ton of magic things one can do with <code>rebase</code>, please consult the internet or ask coworkers about rebasing strategies.</p>
+<ul>
+<li>Please <strong>do</strong> rebase <code>master</code> into your feature branch when there are upstream changes in <code>master</code>.</li>
+<li>Please <strong>don’t</strong> use <code>git merge</code> when including changes from <code>master</code> to your feature branch.</li>
+</ul>
+<h2>Conﬂicts</h2>
+<p>Note that there might be conﬂicts when rebasing. You’ll be able to solve them in the same way as when manually solving conﬂicts when doing <code>git merge</code>. This is all described in the terminal when there’s a conﬂict. In a nutshell</p>
+<pre class="language-bash"><code class="language-bash"><span class="highlight-line"><span class="token comment"># Find conflicts in code:</span></span><br><span class="highlight-line"><span class="token function">git</span> status</span><br><span class="highlight-line"><span class="token comment"># ..Fix them :)</span></span><br><span class="highlight-line"><span class="token comment"># Mark as resolved:</span></span><br><span class="highlight-line"><span class="token function">git</span> <span class="token function">add</span> <span class="token operator">&lt;</span>file<span class="token operator">></span></span><br><span class="highlight-line"><span class="token comment"># Continue rebasing</span></span><br><span class="highlight-line"><span class="token function">git</span> rebase --continue</span></code></pre>
+<h2>Force pushing to collaborative branches</h2>
+<p>Rewriting history requires you to force push the PR branch. I.e. you need to push with <code>git push -f</code></p>
+<p>The problem with force pushing is that anyone collaborating on the branch will not be able to just <code>git pull</code>. However, git introduced a switch on <code>pull</code> which ﬁxes this:</p>
+<pre class="language-bash"><code class="language-bash"><span class="highlight-line"><span class="token function">git</span> pull --rebase</span></code></pre>
+<p>This is essentially a</p>
+<pre class="language-bash"><code class="language-bash"><span class="highlight-line"><span class="token function">git</span> fetch origin</span><br><span class="highlight-line"><span class="token function">git</span> rebase origin/<span class="token operator">&lt;</span>your-branch<span class="token operator">></span></span></code></pre>
+<h2>Squashing commits together</h2>
+<p>This is nice for when you’ve done a lot of small, work preserving commits (WIPs or just to not lose them) that need to be<span class="push-double"></span> <span class="pull-double">“</span>beautiﬁed” before submitting for review.</p>
+<p>See this guide from the git docs: <a href="https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History"><span class="push-double"></span><span class="pull-double">“</span>Rewriting History”</a>.</p>
+<p>In a nutshell:</p>
+<pre class="language-bash"><code class="language-bash"><span class="highlight-line"><span class="token comment"># -i is for "interactive"</span></span><br><span class="highlight-line"><span class="token comment"># git rebase -i &lt;git reference></span></span><br><span class="highlight-line"><span class="token comment"># HEAD~&lt;number of commits to include in rebase></span></span><br><span class="highlight-line"><span class="token function">git</span> rebase -i HEAD~5</span><br><span class="highlight-line"><span class="token comment"># or</span></span><br><span class="highlight-line"><span class="token function">git</span> rebase -i git-hash^ <span class="token comment"># ^ is targetting the parent commit</span></span></code></pre>
+<p>An editor will open with your included commits listed. There’ll be a legend below them describing how to rewrite history. You can drop commits (<code>d</code>), squash together commits (<code>s</code>), and more. You’ll be able to rewrite the commits messages too.</p>
+<p>💡<strong>Hint:</strong> GitHub also allows you to squash and merge a PR from the GitHub UI. Could be handy.</p>
+
+    </div>
+
+    <footer>
+      
+        <p class="f5 comp-grey mt5 pb3 border border-b">
+          <b class="mr1">Keywords</b> <span class="Post-Keyword">git</span><span class="Post-Keyword">commit messages</span><span class="Post-Keyword">rebase</span>
+        </p>
+      
+
+      
+
+      <p class="mt3">
+        <a href="/writings" class="btn">&lt;- More writings</a>
+      </p>
+    </footer>
+  </article>
+</main>
+
+
+    <script type="text/javascript">
+      function init() {
+        addClasses();
+
+        function first(array, n, guard) {
+          if (array == null) return void 0;
+          if (n == null || guard) return array[0];
+
+          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
+        };
+
+        function transform(text) {
+          const DELIMITER = /\.|,/;
+          const sentences = text.split('.');
+          const index = text.search(DELIMITER);
+          const MAX_WORDS = 6;
+
+          function wrap(w, t) {
+            return `<strong>${w}</strong> ${t}`;
+          }
+
+          if (index > -1 && index <= 50) {
+            return wrap(text.split(DELIMITER)[0], text.substring(index));
+          }
+
+          const words = text.split(' ');
+          const first = words.splice(0, MAX_WORDS);
+
+          return wrap(first.join(' '), words.join(' '));
+        };
+
+        const paragraphs = document.querySelectorAll('.posts article .post__body p');
+
+        [].slice.call(paragraphs).forEach(function (p) {
+          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
+            p.innerHTML = transform(p.innerText);
+          }
+        });
+      };
+
+      function addClasses() {
+        const p = document.querySelectorAll('.post article .post__body p');
+        p.length > 0 && p[0].classList.add('ingress');
+      };
+
+      document.addEventListener('DOMContentLoaded', init, false);
+    </script>
+
+    <script>
+  // Only load on production environment.
+  if (window.location.host !== 'johanbrook.com')
+    window.goatcounter = {no_onload: true};
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+  </body>
+
+</html>
