@@ -4,12 +4,12 @@
 <html lang="en" class=" git-guidelines">
 
   <head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Recent improvements in our git workflow – Johan Brook</title>
+    <title>Recent improvements in our git discipline – Johan Brook</title>
 
     <meta charset="utf-8">
 
     
-    <meta name="description" content="The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. Here are some">
+    <meta name="description" content="The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. During last Autumn in Lookback, the engineering team noticed that we needed to take care of some weeds.">
     
     <meta name="keywords" content="git,commit messages,rebase">
     <meta name="author" content="Johan Brook">
@@ -27,7 +27,7 @@
     <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/git-guidelines/">
     <link rel="author" href="https://johanbrook.com">
 
-    <meta property="og:title" content="Recent improvements in our git workflow">
+    <meta property="og:title" content="Recent improvements in our git discipline">
     <meta property="og:url" content="https://johanbrook.com/writings/git-guidelines/">
     <meta property="og:site_name" itemprop="name" content="Johan Brook">
     <meta property="og:type" content="blog">
@@ -35,7 +35,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="1200">
     
-    <meta property="og:description" content="The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. Here are some">
+    <meta property="og:description" content="The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. During last Autumn in Lookback, the engineering team noticed that we needed to take care of some weeds.">
     
 
     
@@ -82,17 +82,15 @@
 
     
       <header> 
-        <h1 itemprop="name" class="title ">Recent improvements in our git workflow</h1>
+        <h1 itemprop="name" class="title ">Recent improvements in our git discipline</h1>
 
         <p class="mb0 fw5 mt3">
           
-            <span class="badge mr1">Draft</span>
-          
-          <time datetime="2020-02-19T20:04:00.000Z" itemprop="datePublished" title="an hour ago" pubdate="">February 19, 2020 – 20:04</time>
+          <time datetime="2020-02-23T18:42:00.000Z" itemprop="datePublished" title="in an hour" pubdate="">February 23, 2020 – 18:42</time>
         </p>
 
         <p class="muted mb4">
-          About 5 min reading time
+          About 6 min reading time
         </p>
       </header>
     
@@ -126,14 +124,13 @@
 <ul>
 <li>Try to focus on the <em>why</em> in commit messages. Not necessarily <em>what</em>. Think about how this commit will be read when doing a <code>git blame</code> half a year later. The reader is probably interested in <em>why</em> this change happened.</li>
 <li>Capturing the <em>why</em> context is super important, since it’s probably tricky to recover later. Save yourself some future slack and capture the why <em>now</em>.</li>
-<li>Adding any references (Clubhouse cards, etc) is appreciated.</li>
+<li>Adding any references (external stories, cards, etc) is appreciated.</li>
 </ul>
 <p><a href="https://chris.beams.io/posts/git-commit/"><span class="pull-double">“</span>How to Write a Git Commit Message”</a> includes some no brainer guidelines for good commit messages.</p>
 <h1>2. Submitting Pull Requests</h1>
 <p><strong>Have mercy for your coworkers.</strong> Don’t dump an unstructured, large PR on them with<span class="push-double"></span> <span class="pull-double">“</span>Review this!!”. Be considerate of their time and energy when submitting, as it might be very hard for them to get into the context you’ve been into the last couple of days while working on the code.</p>
 <p>Make all PRs minimal, concise, and relevant. Don’t include non-trivial refactors of modules in a PR that’s really supposed to do something else.</p>
 <p>Avoid long living branches. By making small, incremental changes, we avoid messy merge conﬂicts and best of all: we avoid risky deploys. It’s easier to reason about small patches, and potentially rolling them back, than huge blobs of<span class="push-double"></span> <span class="pull-double">“</span>ﬁx everything” PRs.</p>
-<p>Feel free to use GitHub’s<span class="push-double"></span> <span class="pull-double">“</span>draft pull request” mode. That means it’s not supposed to be reviewed or be merged yet. You can create a draft PR as soon as you’ve got one commit. That PR can be attached to a ClubHouse card if you’d like, and your coworkers can follow your work.</p>
 <p>Make sure your PR is rebased on <code>master</code> when submitting it. That removes the need for merge commits when merging back to <code>master</code>.</p>
 <p>When your PR is ready for review (implies that you also think it’s ready for merge), <strong>you must make sure it’s neat and tidy</strong>.</p>
 <ul>
@@ -149,9 +146,8 @@
 <p>This does <strong><em>not</em></strong> mean<span class="push-double"></span> <span class="pull-double">“</span>you suck”. It’s a signal that you can learn how to avoid this the next time, as well as avoding wasting your coworkers’ time. We aim to learn and become a better developer (and co-developer!) with code reviews, since it’s so easy to do your own thing when you’ve been down in a code cave for a couple of days.</p>
 <h1>3. Tools &amp; patterns</h1>
 <p>When rebasing your branch&thinsp;&mdash;&thinsp;either to rebase in <code>master</code> or rewrite history&thinsp;&mdash;&thinsp;the branch will be diverging from the remote, if you’ve pushed it already. So you need to force push next time (<code>git push -f</code>).</p>
-<h2>Commit messages</h2>
-<p>Make a one-line (max 50 chars) subject line. Optionally followed with a commit message body (max 72 chars per line).</p>
-<p>💡<strong>Tip:</strong> Use a commit message template to base messages on:</p>
+<h2>Commit message templates</h2>
+<p>I just learned about this a couple of months ago: git supports <strong>message templates.</strong> Every time you’re committing something from an external editor (not from the command line), you can use a pre-written template. The template I stole from the post linked below reminds me of the<span class="push-double"></span> <span class="pull-double">“</span>Because”. Why are you even doing this commit? Any business purpose, or is it tech?</p>
 <pre><code>[one line-summary of changes]
 
 Because:
@@ -173,11 +169,11 @@ This commit:
 <p>💡<strong>Tip:</strong> use <code>git fetch origin master:master</code> from your feature branch to fetch latest <code>master</code> without leaving your branch.</p>
 <p>There’s a ton of magic things one can do with <code>rebase</code>, please consult the internet or ask coworkers about rebasing strategies.</p>
 <ul>
-<li>Please <strong>do</strong> rebase <code>master</code> into your feature branch when there are upstream changes in <code>master</code>.</li>
-<li>Please <strong>don’t</strong> use <code>git merge</code> when including changes from <code>master</code> to your feature branch.</li>
+<li><strong>Do</strong> rebase <code>master</code> into your feature branch when there are upstream changes in <code>master</code>.</li>
+<li><strong>Don’t</strong> use <code>git merge</code> when including changes from <code>master</code> to your feature branch.</li>
 </ul>
 <h2>Conﬂicts</h2>
-<p>Note that there might be conﬂicts when rebasing. You’ll be able to solve them in the same way as when manually solving conﬂicts when doing <code>git merge</code>. This is all described in the terminal when there’s a conﬂict. In a nutshell</p>
+<p>At some point, there will be conﬂicts when rebasing. You’ll be able to solve them in the same way as when manually solving conﬂicts when doing <code>git merge</code>. This is all described in the terminal when there’s a conﬂict. In a nutshell</p>
 <pre class="language-bash"><code class="language-bash"><span class="highlight-line"><span class="token comment"># Find conflicts in code:</span></span><br><span class="highlight-line"><span class="token function">git</span> status</span><br><span class="highlight-line"><span class="token comment"># ..Fix them :)</span></span><br><span class="highlight-line"><span class="token comment"># Mark as resolved:</span></span><br><span class="highlight-line"><span class="token function">git</span> <span class="token function">add</span> <span class="token operator">&lt;</span>file<span class="token operator">></span></span><br><span class="highlight-line"><span class="token comment"># Continue rebasing</span></span><br><span class="highlight-line"><span class="token function">git</span> rebase --continue</span></code></pre>
 <h2>Force pushing to collaborative branches</h2>
 <p>Rewriting history requires you to force push the PR branch. I.e. you need to push with <code>git push -f</code></p>
@@ -191,7 +187,10 @@ This commit:
 <p>In a nutshell:</p>
 <pre class="language-bash"><code class="language-bash"><span class="highlight-line"><span class="token comment"># -i is for "interactive"</span></span><br><span class="highlight-line"><span class="token comment"># git rebase -i &lt;git reference></span></span><br><span class="highlight-line"><span class="token comment"># HEAD~&lt;number of commits to include in rebase></span></span><br><span class="highlight-line"><span class="token function">git</span> rebase -i HEAD~5</span><br><span class="highlight-line"><span class="token comment"># or</span></span><br><span class="highlight-line"><span class="token function">git</span> rebase -i git-hash^ <span class="token comment"># ^ is targetting the parent commit</span></span></code></pre>
 <p>An editor will open with your included commits listed. There’ll be a legend below them describing how to rewrite history. You can drop commits (<code>d</code>), squash together commits (<code>s</code>), and more. You’ll be able to rewrite the commits messages too.</p>
-<p>💡<strong>Hint:</strong> GitHub also allows you to squash and merge a PR from the GitHub UI. Could be handy.</p>
+<h1>Aftermath</h1>
+<p>After we introduced some baselines in how we commit and share code, I personally felt much more motivated to keep things neat and tidy (aka. <a href="https://en.wikipedia.org/wiki/Broken_windows_theory"><span class="push-double"></span><span class="pull-double">“</span>Broken window syndrome”</a>). Git isn’t just a tool to transport code from your laptop to a server: it’s a super cool tool created to help us collaborate better, <em>and</em> to ﬁx stuff when things go bad (which <em>will</em> happen sometime).</p>
+<p>I found myself actually enjoying writing extended paragraphs in my commit messages. It brought back some memories in doing <a href="https://en.wikipedia.org/wiki/Literate_programming">literate programming</a> in CoffeeScript for university lab assignments. The shorter the commit diff, the longer my commit message would be&thinsp;&mdash;&thinsp;a funny inverse proportional property!</p>
+<p>It also touches me every time I go back and see somebody had put in some effort in the commit message, and documented the process, the Why, and the outcome. It’s like a time machine in your colleagues’ minds, and also in their personal development to become better programmers.</p>
 
     </div>
 

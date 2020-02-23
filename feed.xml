@@ -3,12 +3,115 @@
   <title>Writings of Johan Brook</title>
   <link href="https://johanbrook.com/feed.xml" rel="self"/>
   <link href="https://johanbrook.com"/>
-  <updated>2020-02-01T10:12:00+00:00</updated>
+  <updated>2020-02-23T18:42:00+00:00</updated>
   <id>https://johanbrook.com</id>
   <author>
     <name>Johan Brook</name>
     <email>johan@johanbrook.com</email>
   </author>
+  
+  <entry>
+    <title>Recent improvements in our git discipline</title>
+    <link href="https://johanbrook.com/writings/git-guidelines/"/>
+    <updated>2020-02-23T18:42:00+00:00</updated>
+    <id>https://johanbrook.com/writings/git-guidelines/</id>
+    <content type="html">&lt;p&gt;The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. During last Autumn in &lt;a href=&quot;http://lookback.io/&quot;&gt;Lookback&lt;/a&gt;, the engineering team noticed that we needed to take care of some weeds.&lt;/p&gt;
+&lt;p&gt;Not only in our committing code culture, but also in the land of code reviews and Pull Requests at GitHub.&lt;/p&gt;
+&lt;p&gt;Here are some of the principles and guidelines we worked out.&lt;/p&gt;
+&lt;h1&gt;Empathy for others and your future self&lt;/h1&gt;
+&lt;p&gt;We say:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&amp;quot;Please have empathy for your coworkers when committing code. Be considerate of them as well as your future self&amp;quot;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;When working in a long living code base with lots of complex and moving parts, bugs can surface weeks or months after you wrote the code. Guess what system helps you go back in time and find exactly what, when, and who changed a line of code?! git can! Guess what doesn&#39;t help git help you? These things:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Unclear commit messages.&lt;/li&gt;
+&lt;li&gt;Incoherent and too large commits.&lt;/li&gt;
+&lt;li&gt;Not easily revertable commits (connected with the above).&lt;/li&gt;
+&lt;li&gt;Merge commits.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Failure to avoid these things will bite you when debugging something in the future.&lt;/p&gt;
+&lt;p&gt;For us, we didn&#39;t enforce or point these things out in code reviews either. One person could file a Pull Request 10+ commits, where some of them wouldn&#39;t even be related to the PR itself. It was hard to give good feedback on a commit which said &lt;code&gt;fix some things in logging&lt;/code&gt;: what did you fix? Why?&lt;/p&gt;
+&lt;p&gt;&amp;quot;You&#39;ve got to give love to receive love&amp;quot;. Meaning, &amp;quot;you&#39;ve got to give your co-workers good PRs in order to receive good feedback&amp;quot;. A related joke is the old &amp;quot;20 commit PR? LGTM. One commit? A novella of feedback&amp;quot;.&lt;/p&gt;
+&lt;p&gt;We decided to reboot our engineering culture around clean commits and PRs. What follows are some of the guidelines we drafted for working with code.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1&gt;1. Committing code&lt;/h1&gt;
+&lt;p&gt;Make each commit &lt;strong&gt;atomical&lt;/strong&gt;. That is, make it include only the relevant code for your intended change. There&#39;s a lot to read about this subject on the web.&lt;/p&gt;
+&lt;p&gt;When submitting a patch for code review, consider grouping together similar commits with &lt;code&gt;git rebase&lt;/code&gt;(&amp;quot;squashing&amp;quot;) to keep commit count down (&lt;em&gt;without&lt;/em&gt; breaking the rule about atomical commits above!).&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;master&lt;/code&gt; branch&#39;s history should ideally be a long string of commits. We should avoid merge commits by rebasing in &lt;code&gt;master&lt;/code&gt; into your feature branch before merging back.&lt;/p&gt;
+&lt;h2&gt;Commit messages&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Try to focus on the &lt;em&gt;why&lt;/em&gt; in commit messages. Not necessarily &lt;em&gt;what&lt;/em&gt;. Think about how this commit will be read when doing a &lt;code&gt;git blame&lt;/code&gt; half a year later. The reader is probably interested in &lt;em&gt;why&lt;/em&gt; this change happened.&lt;/li&gt;
+&lt;li&gt;Capturing the &lt;em&gt;why&lt;/em&gt; context is super important, since it&#39;s probably tricky to recover later. Save yourself some future slack and capture the why &lt;em&gt;now&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Adding any references (external stories, cards, etc) is appreciated.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://chris.beams.io/posts/git-commit/&quot;&gt;&amp;quot;How to Write a Git Commit Message&amp;quot;&lt;/a&gt; includes some no brainer guidelines for good commit messages.&lt;/p&gt;
+&lt;h1&gt;2. Submitting Pull Requests&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;Have mercy for your coworkers.&lt;/strong&gt; Don&#39;t dump an unstructured, large PR on them with &amp;quot;Review this!!&amp;quot;. Be considerate of their time and energy when submitting, as it might be very hard for them to get into the context you&#39;ve been into the last couple of days while working on the code.&lt;/p&gt;
+&lt;p&gt;Make all PRs minimal, concise, and relevant. Don&#39;t include non-trivial refactors of modules in a PR that&#39;s really supposed to do something else.&lt;/p&gt;
+&lt;p&gt;Avoid long living branches. By making small, incremental changes, we avoid messy merge conflicts and best of all: we avoid risky deploys. It&#39;s easier to reason about small patches, and potentially rolling them back, than huge blobs of &amp;quot;fix everything&amp;quot; PRs.&lt;/p&gt;
+&lt;p&gt;Make sure your PR is rebased on &lt;code&gt;master&lt;/code&gt; when submitting it. That removes the need for merge commits when merging back to &lt;code&gt;master&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;When your PR is ready for review (implies that you also think it&#39;s ready for merge), &lt;strong&gt;you must make sure it&#39;s neat and tidy&lt;/strong&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Squash any similar commits together.&lt;/li&gt;
+&lt;li&gt;Look at each commit and see if it makes sense: does it have a nice message? Is the code changes relevant and atomical? If a coworker does a &lt;code&gt;git log&lt;/code&gt; in two months, will they be able to understand this change?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;After receiving a code review with change requests, always try to squash those changes together with the initial commits made when first submitting the PR. It&#39;s okay if you have lots of smaller commits in your feature branch &lt;em&gt;while working&lt;/em&gt; with the code. But once it&#39;s ready for review and later merge into &lt;code&gt;master&lt;/code&gt;, the final PR &lt;em&gt;must&lt;/em&gt; be in a concise, minimal state.&lt;/p&gt;
+&lt;p&gt;The code reviewer may reject your PR if it&#39;s:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Too large (&amp;quot;please break into separate PRs&amp;quot;).&lt;/li&gt;
+&lt;li&gt;Unstructured/needs squashing (&amp;quot;please restructure this PR&amp;quot;, &amp;quot;please redo your commit history&amp;quot;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This does &lt;strong&gt;&lt;em&gt;not&lt;/em&gt;&lt;/strong&gt; mean &amp;quot;you suck&amp;quot;. It&#39;s a signal that you can learn how to avoid this the next time, as well as avoding wasting your coworkers&#39; time. We aim to learn and become a better developer (and co-developer!) with code reviews, since it&#39;s so easy to do your own thing when you&#39;ve been down in a code cave for a couple of days.&lt;/p&gt;
+&lt;h1&gt;3. Tools &amp;amp; patterns&lt;/h1&gt;
+&lt;p&gt;When rebasing your branch – either to rebase in &lt;code&gt;master&lt;/code&gt; or rewrite history – the branch will be diverging from the remote, if you&#39;ve pushed it already. So you need to force push next time (&lt;code&gt;git push -f&lt;/code&gt;).&lt;/p&gt;
+&lt;h2&gt;Commit message templates&lt;/h2&gt;
+&lt;p&gt;I just learned about this a couple of months ago: git supports &lt;strong&gt;message templates.&lt;/strong&gt; Every time you&#39;re committing something from an external editor (not from the command line), you can use a pre-written template. The template I stole from the post linked below reminds me of the &amp;quot;Because&amp;quot;. Why are you even doing this commit? Any business purpose, or is it tech?&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[one line-summary of changes]
+
+Because:
+- [relevant context]
+- [why you decided to change things]
+- [reason you&#39;re doing it now]
+
+This commit:
+- [does X]
+- [does Y]
+- [does Z]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href=&quot;https://thoughtbot.com/blog/better-commit-messages-with-a-gitmessage-template&quot;&gt;Read more about setting this template up&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Rebasing&lt;/h2&gt;
+&lt;p&gt;See this guide from the git docs: &lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Branching-Rebasing&quot;&gt;&amp;quot;Rebasing&amp;quot;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For instance:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; checkout my-feature-branch&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# ...do work&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# ...changes have been made in remote master&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# fetch/pull latest master&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; rebase master&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will re-apply your commits in the feature branch on top of what&#39;s in &lt;code&gt;master&lt;/code&gt; , to make it appear as your branch is branched off of latest commit in &lt;code&gt;master&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;💡&lt;strong&gt;Tip:&lt;/strong&gt; use &lt;code&gt;git fetch origin master:master&lt;/code&gt; from your feature branch to fetch latest &lt;code&gt;master&lt;/code&gt; without leaving your branch.&lt;/p&gt;
+&lt;p&gt;There&#39;s a ton of magic things one can do with &lt;code&gt;rebase&lt;/code&gt;, please consult the internet or ask coworkers about rebasing strategies.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Do&lt;/strong&gt; rebase &lt;code&gt;master&lt;/code&gt; into your feature branch when there are upstream changes in &lt;code&gt;master&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Don&#39;t&lt;/strong&gt; use &lt;code&gt;git merge&lt;/code&gt; when including changes from &lt;code&gt;master&lt;/code&gt; to your feature branch.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Conflicts&lt;/h2&gt;
+&lt;p&gt;At some point, there will be conflicts when rebasing. You&#39;ll be able to solve them in the same way as when manually solving conflicts when doing &lt;code&gt;git merge&lt;/code&gt;. This is all described in the terminal when there&#39;s a conflict. In a nutshell&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Find conflicts in code:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; status&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# ..Fix them :)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Mark as resolved:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;file&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Continue rebasing&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; rebase --continue&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Force pushing to collaborative branches&lt;/h2&gt;
+&lt;p&gt;Rewriting history requires you to force push the PR branch. I.e. you need to push with &lt;code&gt;git push -f&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The problem with force pushing is that anyone collaborating on the branch will not be able to just &lt;code&gt;git pull&lt;/code&gt;. However, git introduced a switch on &lt;code&gt;pull&lt;/code&gt; which fixes this:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; pull --rebase&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is essentially a&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; fetch origin&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; rebase origin/&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;your-branch&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Squashing commits together&lt;/h2&gt;
+&lt;p&gt;This is nice for when you&#39;ve done a lot of small, work preserving commits (WIPs or just to not lose them) that need to be &amp;quot;beautified&amp;quot; before submitting for review.&lt;/p&gt;
+&lt;p&gt;See this guide from the git docs: &lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History&quot;&gt;&amp;quot;Rewriting History&amp;quot;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In a nutshell:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# -i is for &quot;interactive&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# git rebase -i &amp;lt;git reference&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# HEAD~&amp;lt;number of commits to include in rebase&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; rebase -i HEAD~5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# or&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;highlight-line&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; rebase -i git-hash^ &lt;span class=&quot;token comment&quot;&gt;# ^ is targetting the parent commit&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;An editor will open with your included commits listed. There&#39;ll be a legend below them describing how to rewrite history. You can drop commits (&lt;code&gt;d&lt;/code&gt;), squash together commits (&lt;code&gt;s&lt;/code&gt;), and more. You&#39;ll be able to rewrite the commits messages too.&lt;/p&gt;
+&lt;h1&gt;Aftermath&lt;/h1&gt;
+&lt;p&gt;After we introduced some baselines in how we commit and share code, I personally felt much more motivated to keep things neat and tidy (aka. &lt;a href=&quot;https://en.wikipedia.org/wiki/Broken_windows_theory&quot;&gt;&amp;quot;Broken window syndrome&amp;quot;&lt;/a&gt;). Git isn&#39;t just a tool to transport code from your laptop to a server: it&#39;s a super cool tool created to help us collaborate better, &lt;em&gt;and&lt;/em&gt; to fix stuff when things go bad (which &lt;em&gt;will&lt;/em&gt; happen sometime).&lt;/p&gt;
+&lt;p&gt;I found myself actually enjoying writing extended paragraphs in my commit messages. It brought back some memories in doing &lt;a href=&quot;https://en.wikipedia.org/wiki/Literate_programming&quot;&gt;literate programming&lt;/a&gt; in CoffeeScript for university lab assignments. The shorter the commit diff, the longer my commit message would be – a funny inverse proportional property!&lt;/p&gt;
+&lt;p&gt;It also touches me every time I go back and see somebody had put in some effort in the commit message, and documented the process, the Why, and the outcome. It&#39;s like a time machine in your colleagues&#39; minds, and also in their personal development to become better programmers.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Recently in books</title>
