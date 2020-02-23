@@ -60,7 +60,7 @@ ARTICLE TEXTS
     @media screen and (min-width: 800px) {
       margin-left: calc(var(--spacing-base) * -4);
       margin-right: calc(var(--spacing-base) * -4);
-      padding-left: calc(var(--spacing-base) * 2);
+      padding-left: calc(var(--spacing-base) * 4);
     }
   }
 

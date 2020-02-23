@@ -214,14 +214,15 @@ pre {
   word-break: break-word;
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: none;
+  font-size: var(--font-size-5);
+  line-height: 1.5;
 
   @media screen and (max-width: 480px) {
     padding-left: 0.25em;
   }
 
   code {
-    font-size: var(--font-size-4);
-    line-height: 1.5;
+    font-size: 1em;
     border: 0;
     background-color: transparent;
     padding: 0;
