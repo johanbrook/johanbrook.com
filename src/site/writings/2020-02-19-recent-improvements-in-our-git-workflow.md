@@ -1,14 +1,13 @@
 ---
-title: Recent improvements in our git workflow
+title: Recent improvements in our git discipline
 slug: git-guidelines
-date: '2020-02-19T20:04'
+date: '2020-02-23T18:42'
 location: My desk in Stockholm
-excerpt: The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. Here are some
+excerpt: The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. During last Autumn in Lookback, the engineering team noticed that we needed to take care of some weeds.
 keywords:
   - git
   - commit messages
   - rebase
-draft: true
 ---
 
 The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. During last Autumn in [Lookback](http://lookback.io), the engineering team noticed that we needed to take care of some weeds.
@@ -52,7 +51,7 @@ The `master` branch's history should ideally be a long string of commits. We sho
 
 - Try to focus on the _why_ in commit messages. Not necessarily _what_. Think about how this commit will be read when doing a `git blame` half a year later. The reader is probably interested in _why_ this change happened.
 - Capturing the _why_ context is super important, since it's probably tricky to recover later. Save yourself some future slack and capture the why _now_.
-- Adding any references (Clubhouse cards, etc) is appreciated.
+- Adding any references (external stories, cards, etc) is appreciated.
 
 ["How to Write a Git Commit Message"](https://chris.beams.io/posts/git-commit/) includes some no brainer guidelines for good commit messages.
 
@@ -63,8 +62,6 @@ The `master` branch's history should ideally be a long string of commits. We sho
 Make all PRs minimal, concise, and relevant. Don't include non-trivial refactors of modules in a PR that's really supposed to do something else.
 
 Avoid long living branches. By making small, incremental changes, we avoid messy merge conflicts and best of all: we avoid risky deploys. It's easier to reason about small patches, and potentially rolling them back, than huge blobs of "fix everything" PRs.
-
-Feel free to use GitHub's "draft pull request" mode. That means it's not supposed to be reviewed or be merged yet. You can create a draft PR as soon as you've got one commit. That PR can be attached to a ClubHouse card if you'd like, and your coworkers can follow your work.
 
 Make sure your PR is rebased on `master` when submitting it. That removes the need for merge commits when merging back to `master`.
 
@@ -86,11 +83,9 @@ This does **_not_** mean "you suck". It's a signal that you can learn how to avo
 
 When rebasing your branch – either to rebase in `master` or rewrite history – the branch will be diverging from the remote, if you've pushed it already. So you need to force push next time (`git push -f`).
 
-## Commit messages
+## Commit message templates
 
-Make a one-line (max 50 chars) subject line. Optionally followed with a commit message body (max 72 chars per line).
-
-💡**Tip:** Use a commit message template to base messages on:
+I just learned about this a couple of months ago: git supports **message templates.** Every time you're committing something from an external editor (not from the command line), you can use a pre-written template. The template I stole from the post linked below reminds me of the "Because". Why are you even doing this commit? Any business purpose, or is it tech?
 
 ```
 [one line-summary of changes]
@@ -128,12 +123,12 @@ This will re-apply your commits in the feature branch on top of what's in `maste
 
 There's a ton of magic things one can do with `rebase`, please consult the internet or ask coworkers about rebasing strategies.
 
-- Please **do** rebase `master` into your feature branch when there are upstream changes in `master`.
-- Please **don't** use `git merge` when including changes from `master` to your feature branch.
+- **Do** rebase `master` into your feature branch when there are upstream changes in `master`.
+- **Don't** use `git merge` when including changes from `master` to your feature branch.
 
 ## Conflicts
 
-Note that there might be conflicts when rebasing. You'll be able to solve them in the same way as when manually solving conflicts when doing `git merge`. This is all described in the terminal when there's a conflict. In a nutshell
+At some point, there will be conflicts when rebasing. You'll be able to solve them in the same way as when manually solving conflicts when doing `git merge`. This is all described in the terminal when there's a conflict. In a nutshell
 
 ```bash
 # Find conflicts in code:
@@ -181,4 +176,10 @@ git rebase -i git-hash^ # ^ is targetting the parent commit
 
 An editor will open with your included commits listed. There'll be a legend below them describing how to rewrite history. You can drop commits (`d`), squash together commits (`s`), and more. You'll be able to rewrite the commits messages too.
 
-💡**Hint:** GitHub also allows you to squash and merge a PR from the GitHub UI. Could be handy.
+# Aftermath
+
+After we introduced some baselines in how we commit and share code, I personally felt much more motivated to keep things neat and tidy (aka. ["Broken window syndrome"](https://en.wikipedia.org/wiki/Broken_windows_theory)). Git isn't just a tool to transport code from your laptop to a server: it's a super cool tool created to help us collaborate better, _and_ to fix stuff when things go bad (which _will_ happen sometime).
+
+I found myself actually enjoying writing extended paragraphs in my commit messages. It brought back some memories in doing [literate programming](https://en.wikipedia.org/wiki/Literate_programming) in CoffeeScript for university lab assignments. The shorter the commit diff, the longer my commit message would be – a funny inverse proportional property!
+
+It also touches me every time I go back and see somebody had put in some effort in the commit message, and documented the process, the Why, and the outcome. It's like a time machine in your colleagues' minds, and also in their personal development to become better programmers.
