@@ -10,7 +10,6 @@ keywords:
   - react
   - frp
   - reactive
-draft: true
 ---
 
 At [Lookback](https://lookback.io), we've fallen in love with functional reactive programming (FRP) with streams in our frontend apps. Together with the use of Typescript for compile time type safety, we've seen a tremendous bump in overall stability and fewer runtime bugs. Actually, I dare to say that _all_ of our bugs so far have been either logic (programmer) or timing errors.
