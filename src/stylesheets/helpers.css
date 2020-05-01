@@ -25,9 +25,8 @@ ARTICLE TEXTS
 
   ul,
   ol {
-    @media screen and (max-width: 480px) {
-      padding-left: 1em;
-    }
+    padding-left: 1em;
+    margin-left: 1rem;
 
     li > ul,
     li > ol {
