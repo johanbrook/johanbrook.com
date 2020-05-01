@@ -16,6 +16,10 @@ pre[class*='language-'] {
   word-break: normal;
   hyphens: none;
   tab-size: var(--tab-size);
+
+  ins {
+    text-decoration: none;
+  }
 }
 
 /* Code blocks */
@@ -37,11 +41,8 @@ pre[class*='language-'] {
 }
 
 .highlight-line-add {
-  background-color: rgba(var(--comp-green), 0.05);
-
-  .token.comment {
-    color: darken(var(--comp-green), 20%);
-  }
+  border-radius: 2px;
+  background-color: #64b1262a;
 }
 
 /* Line numbers */
@@ -102,7 +103,7 @@ pre[class*='language-']:not(.language-bash) {
 
 .token.function,
 .token.attr-name {
-  color: #475798;
+  color: #677fdd;
 }
 
 .token.property {
