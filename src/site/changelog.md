@@ -3,11 +3,20 @@ title: Changelog
 layout: layouts/page
 description: Log over semi major life events so far.
 ogImage: /assets/images/og-image-changelog.png
+date: 2020-09-06
 ---
 
 <p class="measure">
 My life so far – versioned. Also check out experimental development: <a href="/now">what I'm doing now</a>.
 </p>
+
+<p>Updated <time>{{ date | formatDate("MMMM Do, YYYY")}}</time></p>
+
+## Version 3.7.0
+
+- Married aforementioned fiancée 🌷
+- Bought a car.
+- Realised that I don't want to live in a city mid to long term.
 
 ## Version 3.6.0
 
@@ -27,7 +36,7 @@ My life so far – versioned. Also check out experimental development: <a href=
 - Met a beautiful, cool, and loving girlfriend 🌻
   - Made Stockholm the base of operations for the near future.
 - Got myself some eye glasses.
-- Started saving for pension.
+- Started saving for retirement.
 
 ## Version 3.3.2
 
