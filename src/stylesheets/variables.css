@@ -58,7 +58,7 @@
 
     --comp-yellow: #c3a507;
 
-    --border-color: #fff;
+    --border-color: #444;
 
     @supports (color: color(display-p3 1 1 1 / 1)) {
       --link-color: color(display-p3 0.3529 0.6471 1 / 1);

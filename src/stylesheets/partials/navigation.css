@@ -60,16 +60,20 @@ SIDE NAV
 
   ul {
     flex-direction: column;
+    top: var(--lineheight);
+    position: sticky;
   }
 
   a {
     font-weight: normal;
     position: relative;
+    opacity: 0.75;
   }
 
   .nav--current a,
   a:focus {
     outline: 0;
+    opacity: 1;
 
     &::before {
       content: '->';
@@ -88,6 +92,10 @@ SIDE NAV
     color: var(--link-color-hover);
   }
 
+  a:hover {
+    opacity: 1;
+  }
+
   h1 {
     margin-top: calc(var(--lineheight) * 1.5);
     margin-bottom: var(--lineheight);
@@ -95,6 +103,7 @@ SIDE NAV
     a {
       color: #000;
       font-weight: 500;
+      opacity: 1;
 
       @media only screen and (prefers-color-scheme: dark) {
         color: #fff;
