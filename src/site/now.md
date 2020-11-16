@@ -20,7 +20,9 @@ keywords:
 
 …I've started making more cocktails at home. Classic #coronaactivity. I got myself a proper shaker kit for my birthday, with some base spirits. It's super fun to make Old Fashioneds, Boulevardiers, and Gimlets!
 
-…I've finished a few books:
+## Reading
+
+I've finished a few books:
 
 - "Godfather", by Mario Puzo
 - "Ismael", by Daniel Quinn
@@ -28,14 +30,20 @@ keywords:
 - "About a Boy", by Nick Hornby
 - "Normal People", by Sally Rooney
 
-## Currently reading
+Read my thoughts in [this post](/writings/recently-in-books-ii).
 
-Nothing at the moment.
+### Currently reading
+
+"Röde Orm", by Frans G. Bengtsson. A story about a Swedish viking set in the 900s.
+
+### Want to read
+
+"Utvandrarna", by Vilhelm Moberg.
 
 ## Habits to keep
 
 - Keep off Instagram.
-- Limit Facebook usage to once per week.
+- ~~Limit Facebook usage to once per week~~. Now I don't visit Facebook at all.
 - Keep going to the gym (it's good for you!).
 - Keep reading books.
 
