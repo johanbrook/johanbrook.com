@@ -4,7 +4,7 @@
 <html lang="en" class="home ">
 
   <head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Johan Brook – Johan Brook</title>
+    <title>Johan Brook</title>
 
     <meta charset="utf-8">
 
@@ -27,7 +27,7 @@
     <link rel="canonical" itemprop="url" href="https://johanbrook.com/23/">
     <link rel="author" href="https://johanbrook.com">
 
-    <meta property="og:title" content="Johan Brook">
+    <meta property="og:title" content="">
     <meta property="og:url" content="https://johanbrook.com/23/">
     <meta property="og:site_name" itemprop="name" content="Johan Brook">
     <meta property="og:type" content="blog">
@@ -47,10 +47,11 @@
 
   <header>
 
-  <svg viewbox="0 0 481 277" version="1.1" class="header-title" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveaspectratio="">
+    <svg viewbox="0 0 481 277" version="1.1" class="header-title" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveaspectratio="">
     <style type="text/css">
       .header-title {
         --color: #000;
+        --solid: #e8c300;
 
         width: 481px;
         height: 277px;
@@ -87,31 +88,28 @@
        }
 
        .solid {
-         fill: #F7D628;
+         fill: var(--solid);
        }
 
       @supports (color: color(display-p3 1 1 1 / 1)) {
-        .solid {
-          fill: color(display-p3 0.9686 0.8392 0.1569 / 1);
+        .header-title {
+          --solid: color(display-p3 0.9098 0.7647 0 / 1);
         }
       }
 
       @media screen and (prefers-color-scheme: dark) {
         .header-title {
           --color: #f5df1e;
+          --solid: #20201e;
         }
 
         .svg-text {
           opacity: 1;
         }
 
-        .solid {
-          fill: rgba(0,0,0, .7);
-        }
-
         @supports (color: color(display-p3 1 1 1 / 1)) {
           .header-title {
-            --color: color(display-p3 0.9608 0.8745 0.1176 / 1);
+            --color: color(display-p3 0.955 0.802 0);
           }
         }
       }
@@ -133,15 +131,14 @@
 </svg>
 
 
-    <p class="fw4 f2 mt5 mb4">I’m a <strong class="fw6">designer and developer</strong> based in Sweden.</p>
+    <p class="tagline mt5 mb4">I write code and build product. <strong>Happy to be here.</strong></p>
   </header>
 
   <section class="mb5">
     <h1>Me in eight seconds</h1>
-    
-    <p>I’m coding &amp; designering and I like working with product, user experience, and interface design and other things too. Like everybody else here.</p>
-    
-    <p>For me in eight minutes (or more), please see the <a href="/about">About page</a>. You can also check out what <a href="/now">I’m doing now</a> and what’s <a href="/changelog">happened to me so far.</a></p>
+<p>I’m coding &amp; designering and I like working with product, user experience, and interface design and other things too. Like everybody else here.</p>
+<p>For me in eight minutes (or more), please see the <a href="/about">About page</a>. You can also check out what <a href="/now">I’m doing now</a> and what’s <a href="/now">happened to me so far</a>.</p>
+
   </section>
 
   <section>
@@ -201,13 +198,14 @@
   <li class=""><a href="/credits" title="Licenses and stuff.">Credits</a></li>
   <li><a href="/feed.xml">Feed</a></li>
 </ul>
-<ul class="FooterNav__Secondary">
-  <li title="Built at 2021-01-01T13:30:30.490Z" class="font-mono faded">
-    <a href="https://github.com/johanbrook/johanbrook.com/commit/a40295206ba0968c2cf866de913a6012dad3f4a0">a402952</a>
-  </li>
-</ul>
 
   </nav>
+
+  <ul class="flex justify-center f6 list-reset">
+    <li class="muted">
+      <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/fb9bff25cbbc7c276b1bf0993ad997cc149eacb3">fb9bff2</a> on <time>2021-02-20T21:36:06.485Z</time>
+    </li>
+  </ul>
 </footer>
 
 
