@@ -3,14 +3,16 @@ title: Changelog
 layout: layouts/page
 description: Log over semi major life events so far.
 ogImage: /assets/images/og-image-changelog.png
-date: 2020-09-06
+date: 2021-02-20
 ---
 
 <p class="measure">
 My life so far – versioned. Also check out experimental development: <a href="/now">what I'm doing now</a>.
 </p>
 
-<p>Updated <time>{{ date | formatDate("MMMM Do, YYYY")}}</time></p>
+## 4.0.0
+
+- Became a father.
 
 ## Version 3.7.0
 
