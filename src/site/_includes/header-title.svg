@@ -8,6 +8,7 @@
     <style type="text/css">
       .header-title {
         --color: #000;
+        --solid: #e8c300;
 
         width: 481px;
         height: 277px;
@@ -44,31 +45,28 @@
        }
 
        .solid {
-         fill: #F7D628;
+         fill: var(--solid);
        }
 
       @supports (color: color(display-p3 1 1 1 / 1)) {
-        .solid {
-          fill: color(display-p3 0.9686 0.8392 0.1569 / 1);
+        .header-title {
+          --solid: color(display-p3 0.9098 0.7647 0 / 1);
         }
       }
 
       @media screen and (prefers-color-scheme: dark) {
         .header-title {
           --color: #f5df1e;
+          --solid: #20201e;
         }
 
         .svg-text {
           opacity: 1;
         }
 
-        .solid {
-          fill: rgba(0,0,0, .7);
-        }
-
         @supports (color: color(display-p3 1 1 1 / 1)) {
           .header-title {
-            --color: color(display-p3 0.9608 0.8745 0.1176 / 1);
+            --color: color(display-p3 0.955 0.802 0);
           }
         }
       }
