@@ -1,7 +1,7 @@
 ---
 title: Licenses & Credits
 layout: layouts/page
-date: 2020-01-20
+date: 2021-02-20
 ---
 
 - This site is generated with the [11ty](https://www.11ty.io/) static site generator initially built by [@zachleat](https://twitter.com/zachleat/).
