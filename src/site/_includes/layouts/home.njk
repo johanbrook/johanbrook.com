@@ -11,17 +11,13 @@ pagination:
 
   <header>
 
-  {% include "header-title.svg" %}
+    {% include "header-title.svg" %}
 
-    <p class="fw4 f2 mt5 mb4">I’m a <strong class="fw6">designer and developer</strong> based in Sweden.</p>
+    {% if tagline %}<p class="tagline mt5 mb4">{{ tagline | safe }}</p>{% endif %}
   </header>
 
   <section class="mb5">
-    <h1>Me in eight seconds</h1>
-    
-    <p>I’m coding &amp; designering and I like working with product, user experience, and interface design and other things too. Like everybody else here.</p>
-    
-    <p>For me in eight minutes (or more), please see the <a href="/about">About page</a>. You can also check out what <a href="/now">I’m doing now</a> and what’s <a href="/changelog">happened to me so far.</a></p>
+    {{ content | safe }}
   </section>
 
   <section>
