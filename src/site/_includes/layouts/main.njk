@@ -7,7 +7,7 @@ ogImage: /assets/images/og-image.png
 <html lang="en" class="{{'home' if home}} {{ slug or page.fileSlug }}">
 
   <head itemtype="http://schema.org/Blog" itemscope>
-    <title>{{ title }} – Johan Brook</title>
+    <title>{% if title %}{{ title }} – Johan Brook{% else %}Johan Brook{% endif %}</title>
 
     <meta charset="utf-8">
 
