@@ -132,54 +132,6 @@ SIDE NAV
   }
 }
 
-/*
-FOOTER NAV (deprecated)
-----------------------------------------------------------------*/
-
-.FooterNav {
-  flex-direction: column;
-
-  &__Primary {
-    font-size: var(--font-size-3);
-    margin-bottom: var(--lineheight);
-  }
-
-  &__Secondary {
-    font-size: var(--font-size-4);
-  }
-
-  &::before {
-    content: '';
-    display: block;
-    height: 1px;
-    background-color: var(--grey-light);
-    width: 6rem;
-    margin: calc(var(--lineheight) * 2) auto;
-  }
-
-  a {
-    padding: 0.5em 1em;
-  }
-
-  ul {
-    justify-content: center;
-  }
-
-  @media all and (max-width: 481px) {
-    ul {
-      flex-direction: column;
-    }
-
-    li:not(:last-child)::after {
-      display: none;
-    }
-
-    a {
-      display: block;
-    }
-  }
-}
-
 .mobile-nav-trigger {
   display: none;
   text-align: center;

@@ -11,4 +11,10 @@
 
     {% include "secondary-footer-nav.njk" %}
   </nav>
+
+  <ul class="flex justify-center f6 list-reset">
+    <li class="muted">
+      <a class="font-mono" href="https://github.com/{{ meta.repo }}/commit/{{ build.hash }}">{{ build.hash | substr(7) }}</a> on <time>{{build.date}}</time>
+    </li>
+  </ul>
 </footer>
