@@ -1,6 +1,6 @@
 ---
 layout: layouts/page
-date: 2021-02-20
+date: 2021-06-22
 title: Now
 location: Stockholm, Sweden
 ogImage: /assets/images/johan-map.png
@@ -14,21 +14,28 @@ keywords:
 
 ## Since the last update…
 
-…I've become a father. In December, our daughter was born. It's a whole new life, but it feels very natural. We're happy that she's well, and every day is bringing something new with it.
+…we've managed through the spring with our daughter! It's beyond expectations. I'll be off for parental leave in October, but before that we hope to go to Italy for a month. It's the first time in 7 years I'm off work this long, so I'm a bit nervous but of course excited. I'm not sure what to expect yet, since I don't know what kind of person she'll be at that time. But I'm looking forward to see how _I_ am as a non-working person. I'm not worried, just curious.
+
+Corona is still a thing in Stockholm, so there's been a stay-at-home Spring, naturally. But I'm really happy over us doing so many fun outdoor things with friends and family. We've managed to gather a lot of people for outdoors drinks and food, and of that I am proud and happy.
+
+The summer is looking good for us. A nice mix between family hanging and domestic traveling. We'll go down to the west and south coast of Sweden, which is amazing. I'm thankful for our car (which I just bought new tires for).
+
+I've been learning the programming language Rust on some evenings. It's exciting to learn something new again, where I'm thrown into a whole new paradigm. I'd like to write a post with my findings too.
 
 ## Reading
 
 I've finished:
 
-- "Röde Orm", by Frans G. Bengtsson.
+- _"Zen Mind, Beginner's Mind"_, by Suzuki Shunryu.
+- _"Please Kill Me: The Uncensored Oral History of Punk"_, by Legs McNeil and Gillian McCain.
 
 ### Currently reading
 
-_"Please Kill Me: The Uncensored Oral History Of Punk"_, by Legs McNeil and Gillian McCain.
+_"This Life – Secular Faith and Spiritual Freedom"_, by Martin Hägglund.
 
 ### Want to read
 
-"Utvandrarna", by Vilhelm Moberg.
+- _"Utvandrarna"_, by Vilhelm Moberg.
 
 ## Habits to keep
 
@@ -41,6 +48,7 @@ _"Please Kill Me: The Uncensored Oral History Of Punk"_, by Legs McNeil and Gill
 
 - Spend as much time as I can with my daughter.
 - Try to travel abroad, if possible.
+- Write more Rust code.
 
 ---
 
