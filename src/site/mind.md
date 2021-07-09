@@ -1,0 +1,17 @@
+---
+layout: layouts/page
+date: 2021-07-09
+title: What’s on my mind
+---
+
+<section>
+
+# July 9th, 2021
+
+Last day in the Swedish mountains, after a week of chilling and hiking. I wonder if I'd like living here for longer periods of time, or if I'd get cabin fever. I think I'd adjust, but friends and family are far away.
+
+Still learning programming in Rust. Still not 100% sure of what I'm doing when it comes to memory management, but the [official guide](https://doc.rust-lang.org/book/) and ["Possible Rust"](https://www.possiblerust.com/) have been of huge help. Rust feels like a very "intellectual" language (sooo much language theory has gone into it!), but I'm struck every day of how friendly the documentation and 3rd party writings on the language are. I think a super good way of learning Rust would be to actually pair program with some existing Rust programmer you know, in a non-trivial project. So that you can ask about all the small things you run into, and can be unblocked and learn forever.
+
+I'm going to be on parental leave from October until ~April 2022. Am nervous, but looking forward. Will be a bit weird to be off work for 6 months since I started. But I have zero doubts in that I'll be able to chill in the new role of being a parent 100% of the time. I'll miss coding for work though, BUT I guess I'll need to find myself a sIdE PrOjEct like everybody else?!
+
+</section>

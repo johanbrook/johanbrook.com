@@ -1,0 +1,22 @@
+.mind {
+  main {
+    section {
+      > p::first-line {
+        font-weight: bold;
+      }
+
+      &:not(:last-child)::after {
+        display: block;
+        content: '';
+        width: 25%;
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: var(--lineheight);
+        padding-bottom: var(--lineheight);
+      }
+
+      > :last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
