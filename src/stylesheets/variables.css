@@ -55,6 +55,7 @@
     --pre-color: #eee;
     --code-background: #333;
     --code-color: #fff;
+    --selection-color: var(--background-color);
 
     --comp-yellow: #c3a507;
 
