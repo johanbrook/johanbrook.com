@@ -1,6 +1,5 @@
 {
   // "editor.formatOnSave": true,
   "css.validate": false,
-  "stylelint.enable": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": true
 }
