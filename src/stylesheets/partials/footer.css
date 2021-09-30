@@ -39,7 +39,7 @@ FOOTER NAV
     justify-content: center;
   }
 
-  @media all and (max-width: 481px) {
+  @media all and (max-width: 940px) {
     ul {
       flex-direction: column;
     }

@@ -6,6 +6,7 @@ const extractExcerpt = require('./src/lib/excerpts');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
 const readingTimePlugin = require('eleventy-plugin-reading-time');
+const yaml = require('js-yaml');
 const typesetPlugin = require('./src/plugins/typeset');
 
 const env = process.env.NODE_ENV;
@@ -14,6 +15,8 @@ const isDevelopment = env === 'development';
 // https://www.11ty.io/docs/config/
 
 module.exports = function(config) {
+  config.addDataExtension('yml', (contents) => yaml.load(contents));
+
   Object.keys(helpers).forEach((name) => {
     config.addFilter(name, helpers[name]);
   });

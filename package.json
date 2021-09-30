@@ -34,6 +34,7 @@
     "gulp-serve": "^1.4.0",
     "gulp-shell": "^0.6.5",
     "gulp-sourcemaps": "^2.6.4",
+    "js-yaml": "^4.1.0",
     "moment": "^2.22.2",
     "postcss": "^7.0.17",
     "postcss-color-function": "^4.1.0",
