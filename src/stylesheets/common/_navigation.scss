@@ -18,7 +18,8 @@
   }
 }
 
-$nav-links: #000, $comp-cerise, $comp-teal-light, $comp-orange, $comp-neon;
+$nav-links: #000, $comp-cerise, $comp-teal-light, $comp-orange, $comp-neon,
+  $comp-purple;
 
 .main-navigation {
   padding: $lineheight 2%;
@@ -51,7 +52,7 @@ $nav-links: #000, $comp-cerise, $comp-teal-light, $comp-orange, $comp-neon;
     }
   }
 
-  @for $i from 1 through 5 {
+  @for $i from 1 through 6 {
     li:nth-child(#{$i}) {
       a:hover {
         color: nth($nav-links, $i);
@@ -60,7 +61,7 @@ $nav-links: #000, $comp-cerise, $comp-teal-light, $comp-orange, $comp-neon;
   }
 
   .nav--current {
-    @for $i from 1 through 5 {
+    @for $i from 1 through 6 {
       &:nth-child(#{$i}) {
         a {
           color: nth($nav-links, $i);

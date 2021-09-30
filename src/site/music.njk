@@ -1,0 +1,42 @@
+---
+template: music
+layout: layouts/main
+title: Music
+color: purple
+keywords:
+  - spotify
+  - playlists
+  - johan brook
+  - programming
+  - music
+description: My home made music playlists. For themes such as programming, cooking, and when it rains.
+---
+<main role="main">
+
+  <div id="playlists"></div>
+
+  <noscript>
+    <h1 class="tc f-5-ns f3 mb3 fw9 tracked-tight-some {{'comp-' + color}}">My Music Playlists</h1>
+
+    <div class="tc article-text page__text">
+      <p class="b comp-purple mb2 f4">
+        I like putting tracks together in lists.
+      </p>
+      <p class="muted f6">
+        For various occasions, moods, or around themes. Here are some you might like.</p>
+    </div>
+
+    <ul class="playlists-grid mw8 center w-90">
+      {% for list in playlists %}
+      <li>
+        <a href="{{list.url}}" class="playlists-grid__item">
+          <img class="playlists-grid__cover" src="/assets/images/playlist-covers/{{list.cover}}" alt="{{list.name}}">
+
+          <h2 class="playlists-grid__title">{{list.name}}</h2>
+          <p class="playlists-grid__description">{{list.description}}</p>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  <noscript>
+</main>
