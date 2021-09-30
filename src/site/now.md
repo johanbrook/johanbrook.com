@@ -22,20 +22,9 @@ The summer is looking good for us. A nice mix between family hanging and domesti
 
 I've been learning the programming language Rust on some evenings. It's exciting to learn something new again, where I'm thrown into a whole new paradigm. I'd like to write a post with my findings too.
 
-## Reading
-
-I've finished:
-
-- _"Zen Mind, Beginner's Mind"_, by Suzuki Shunryu.
-- _"Please Kill Me: The Uncensored Oral History of Punk"_, by Legs McNeil and Gillian McCain.
-
 ### Currently reading
 
-_"This Life – Secular Faith and Spiritual Freedom"_, by Martin Hägglund.
-
-### Want to read
-
-- _"Utvandrarna"_, by Vilhelm Moberg.
+See ["Reading"](/reading).
 
 ## Habits to keep
 
@@ -47,11 +36,11 @@ _"This Life – Secular Faith and Spiritual Freedom"_, by Martin Hägglund.
 ## Aspirations for 2021
 
 - Spend as much time as I can with my daughter.
-- Try to travel abroad, if possible.
+- ~~Try to travel abroad, if possible.~~ **Done**
 - Write more Rust code.
 
 ---
 
-If my life changes, I'll update this page.
+If my life changes, I'll update this page. Also see [what's on my mind](/mind).
 
 Inspired by [Derek Sivers](https://sivers.org/now).
