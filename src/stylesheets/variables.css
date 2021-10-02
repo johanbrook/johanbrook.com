@@ -88,7 +88,7 @@
   --font-size-title: calc((68 / var(--font-size-base)) * 1rem);
   --font-size-1: calc((32 / var(--font-size-base)) * 1rem);
   --font-size-2: calc((24 / var(--font-size-base)) * 1rem);
-  --font-size-3: calc((20 / var(--font-size-base)) * 1rem);
+  --font-size-3: calc((18 / var(--font-size-base)) * 1rem);
   --font-size-4: 1rem;
   --font-size-5: calc((15 / var(--font-size-base)) * 1rem);
   --font-size-6: calc((13 / var(--font-size-base)) * 1rem);
