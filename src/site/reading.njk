@@ -8,26 +8,34 @@ description: Books I've read.
   <article class="page">
     <h1 class="title">{{ title }}.</h1>
 
-    <p>All books I've read and am reading, in reverse order.</p>
+    <p>Non-exhaustive list of books I've read and am reading, in reverse chronological order.</p>
 
     <ol class="list-reset">
       {% for book in books | reverse %}
-        <li>
-          <h2 class="mb0 f3 {% if book.finished %}dimmed{% endif %}">“{{ book.title }}” <span class="f4">— {{book.author}}</span></h2>
-          
-          <p class="f5 mb-0">
+        <li class="mb2">
+          <h2 class="mb0 f3 {% if not book.finished %}dimmed{% endif %}">{{ book.title }}</h2>
+          <p class="f5 mb0">{{book.author}}</p>
+
+         {% if book.notes %}
+            <p class="f5 mb0">{{ book.notes }}</p>
+          {% endif %}
+ 
+          <p class="f5 mb0">
             {% if book.finishedAt %}
-              Finished on {{ book.finishedAt | niceDate(false) }}
+              <span title="Finished in">{{ book.finishedAt | formatDate("MMMM YYYY") }}</span>
+              {% if book.location %} – {% endif %}
             {% endif %}
-            {% if not book.finished %}
-              <b class="comp-neon">In progress</b>
+            {% if book.location %}
+              {{ book.location }}
             {% endif %}
           </p>
-          {% if book.notes %}
-            <p>{{ book.notes }}</p>
-          {% endif %}
+          {% if not book.finished %}
+              <p class="f5 comp-neon b mb0">In progress</p>
+            {% endif %}
         </li>
       {% endfor %}
     </ol>
+
+    <p class="mt4">{{ books.length }} books</p>
   </article>
 </main>

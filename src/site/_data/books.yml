@@ -1,47 +1,276 @@
+- title: The Lord of the Rings
+  author: J.R.R. Tolkien
+  finished: true
+  finishedAt: 2003-08-10T00:00:00Z
+
+- title: Bilbo
+  author: J.R.R. Tolkien
+  finished: true
+  finishedAt: 2004-08-10T00:00:00Z
+
+- title: The Silmarillion
+  author: J.R.R. Tolkien
+  finished: true
+  finishedAt: 2004-11-10T00:00:00Z
+
+- title: Animal Farm
+  author: George Orwell
+  finished: true
+  finishedAt: 2007-08-10T00:00:00Z
+
+- title: 1984
+  author: George Orwell
+  finished: true
+  finishedAt: 2007-08-10T00:00:00Z
+
+- title: The Old Man and the Sea
+  author: Ernest Hemingway
+  finished: true
+  finishedAt: 2008-05-10T00:00:00Z
+
+- title: Hammer of the Gods – The Led Zeppelin Saga
+  author: Stephen Davis
+  finished: true
+  finishedAt: 2010-01-10T00:00:00Z
+  location: Kauai, Hawaii
+
+- title: Led Zeppelin – When Giants Walked The Earth
+  author: Mick Wall
+  finished: true
+  finishedAt: 2010-01-10T00:00:00Z
+  location: Kauai, Hawaii
+
+- title: Interview wih the Vampire
+  author: Anne Rice
+  finished: true
+  finishedAt: 2010-02-10T00:00:00Z
+  location: Calgary, Canada
+
+- title: No One Here Gets Out Alive
+  author: Jerry Hopkins & Danny Sugarman
+  finished: true
+  finishedAt: 2010-05-10T00:00:00Z
+  location: Calgary, Canada
+
+- title: The Holy Blood And The Holy Grail
+  author: Michael Baigent, Richard Leigh & Henry Lincoln
+  finished: true
+  finishedAt: 2010-04-10T00:00:00Z
+  location: Calgary, Canada
+
+- title: Rework
+  author: Jason Fried & David Heinemeier Hansson
+  finished: true
+  finishedAt: 2010-05-10T00:00:00Z
+  location: Calgary, Canada
+
+- title: Infinity
+  author: Brian Clegg
+  finished: true
+  finishedAt: 2010-07-01T00:00:00Z
+  location: Calgary, Canada
+
+- title: Life of Pi
+  author: Yann Martel
+  finished: true
+  finishedAt: 2010-08-01T00:00:00Z
+  location: Calgary, Canada
+
+- title: The Road
+  author: Cormac McCarthy
+  finished: true
+  finishedAt: 2011-07-01T00:00:00Z
+
+- title: Black Sabbath
+  author: Mick Wall
+  finished: true
+  finishedAt: 2012-07-01T00:00:00Z
+
+- title: Into the Wild
+  author: Jon Krakauer
+  finished: true
+  finishedAt: 2014-01-10T00:00:00Z
+  location: Paris, France
+
+- title: Scar Tissue
+  author: Anthony Kiedis
+  finished: true
+  finishedAt: 2014-07-10T00:00:00Z
+  location: Gothenburg, Sweden
+
+- title: Shantaram
+  author: Gregory David Roberts
+  finished: true
+  finishedAt: 2015-07-10T00:00:00Z
+  location: Gothenburg, Sweden
+
+- title: Steve Jobs
+  author: Walter Isaacson
+  finished: true
+  location: Gothenburg, Sweden
+  finishedAt: 2015-08-01T00:00:00Z
+
+- title: Becoming Steve Jobs
+  author: Brent Schlender & Rick Tetzeli
+  finished: true
+  finishedAt: 2015-04-10T00:00:00Z
+  location: Gothenburg, Sweden
+
+- title: W. Axl Rose
+  author: Mick Wall
+  finished: true
+  finishedAt: 2015-01-10T00:00:00Z
+  location: Gothenburg, Sweden
+
+- title: Zen and the Art of Motorcycle Maintenance
+  author: Robert M. Pirsig
+  finished: true
+  finishedAt: 2015-09-10T00:00:00Z
+  location: Vienna, Austria
+
+- title: Just Kids
+  author: Patti Smith
+  finished: true
+  finishedAt: 2015-11-10T00:00:00Z
+  location: San Francisco, USA
+
+- title: Dancing with the Devil in the City of God
+  author: Juliana Barbassa
+  finished: true
+  finishedAt: 2016-05-10T00:00:00Z
+  location: Rio de Janeiro, Brazil
+
+- title: The Essential Hemingway
+  author: Ernest Hemingway
+  finished: true
+  finishedAt: 2016-05-10T00:00:00Z
+  location: Rio de Janeiro, Brazil
+
+- title: M Train
+  author: Patti Smith
+  finished: true
+  finishedAt: 2016-10-10T00:00:00Z
+  location: New York, USA
+
+- title: The Mountain Shadow
+  author: Gregory David Roberts
+  finished: true
+  finishedAt: 2017-07-10T00:00:00Z
+  location: Gothenburg, Sweden
+
+- title: Sapiens
+  author: Yuval Noah Harari
+  finished: true
+  finishedAt: 2017-08-10T00:00:00Z
+  location: Nice, France
+
+- title: Hero – David Bowie
+  author: Lesley-Ann Jones
+  finished: true
+  finishedAt: 2017-10-10T00:00:00Z
+  location: Lisbon, Portugal
+
+- title: 21 Lessons for the 21th Century
+  author: Yuval Noah Harari
+  finished: true
+  finishedAt: 2018-05-10T00:00:00Z
+  location: Stockholm, Sweden
+
+- title: A Little Life
+  author: Hanya Yanagihara
+  finished: true
+  finishedAt: 2018-07-10T00:00:00Z
+  location: Stockholm, Sweden
+
+- title: A Brief History of Time
+  author: Stephen Hawking
+  finished: true
+  finishedAt: 2019-03-10T00:00:00Z
+  location: Stockholm, Sweden
+
+- title: A Moveable Feast
+  author: Ernest Hemingway
+  finished: true
+  finishedAt: 2019-05-10T00:00:00Z
+  location: Barcelona, Spain
+
 - title: Men Without Women
   author: Haruki Murakami
   finished: true
+  finishedAt: 2020-01-10T00:00:00Z
+  location: Sri Lanka
 
 - title: The Snow Leopard
   author: Peter Matthiessen
   finished: true
+  finishedAt: 2020-01-10T00:00:00Z
+  location: Sri Lanka
 
 - title: The Zahir
   author: Paolo Coelho
   finished: true
+  finishedAt: 2020-01-10T00:00:00Z
+  location: Sri Lanka
 
 - title: The Alchemist
   author: Paolo Coelho
   finished: true
-
-- title: Jag Kan Ha Fel
-  author: Björn Natthiko Lindeblad
-  finished: true
-
-- title: About A Boy
-  author: Nick Hornby
-  finished: true
-
-- title: Normal People
-  author: Sally Rooney
-  finished: true
-
-- title: Herakles
-  author: Theodor Kallifatides
-  finished: true
+  finishedAt: 2020-01-10T00:00:00Z
+  location: Sri Lanka
 
 - title: The Godfather
   author: Mario Puzo
   finished: true
+  finishedAt: 2020-03-01T00:00:00Z
+  location: Stockholm, Sweden
+
+- title: Jag Kan Ha Fel
+  author: Björn Natthiko Lindeblad
+  finished: true
+  finishedAt: 2020-06-01T00:00:00Z
+  location: Stockholm, Sweden
+
+- title: About A Boy
+  author: Nick Hornby
+  finished: true
+  finishedAt: 2020-07-01T00:00:00Z
+  location: Stockholm, Sweden
 
 - title: Cosa Nostra
   author: John Dickie
   finished: true
+  finishedAt: 2020-07-01T00:00:00Z
+  location: Stockholm, Sweden
+
+- title: Normal People
+  author: Sally Rooney
+  finished: true
+  finishedAt: 2020-08-01T00:00:00Z
+  location: Stockholm, Sweden
+
+- title: Herakles
+  author: Theodor Kallifatides
+  finished: true
+  finishedAt: 2020-08-01T00:00:00Z
+  location: Stockholm, Sweden
 
 - title: Ishmael
   author: Daniel Quinn
   finished: true
   location: Österlen, Sweden
+  finishedAt: 2020-08-01T00:00:00Z
+
+- title: Zen Mind, Beginner's Mind
+  author: Shunryu Suzuki
+  finished: true
+  location: Stockholm, Sweden
+  finishedAt: 2021-02-01T00:00:00Z
+
+- title: Samlade Verk
+  author: Lydia Sandgren
+  finished: true
+  location: Österlen, Sweden
+  finishedAt: 2021-08-01T00:00:00Z
 
 - title: What I Talk About When I Talk About Running
   author: Haruki Murakami
