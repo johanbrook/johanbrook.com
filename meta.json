@@ -5,12 +5,12 @@
   "github": "johanbrook",
   "twitter": "@johanbrook",
   "tumblr": "http://log.johanbrook.com",
-  "email": "johan@johanbrook.com",
+  "email": "webmaster@johanbrook.com",
   "cv": "https://johanbrook.com/assets/johanbrook-cv.pdf",
   "versions": {
     "site": "2.0.0",
     "johan": "3.7.0",
-    "build": "a8eeecf655406d224f208feeb6a5da5427d8e0c3",
-    "builtAt": "2021-10-02T20:15:08.668Z"
+    "build": "ccfbeed0b16fa69bfad4fd4175a20b068f9f639a",
+    "builtAt": "2021-10-04T17:19:51.863Z"
   }
 }
