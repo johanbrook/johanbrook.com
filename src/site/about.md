@@ -28,6 +28,6 @@ As for non-tech things in startups, I've become more and more interested in the 
 
 **[Writing](/writing)** is something I try to do more and more (been posting pieces here since 2010). I've had a blog since my mid teens and I'm currently experimenting with much shorter texts to lower the ambition but increase the Time To Publish.
 
-As always, I love getting emails and talk with people. Reach me at [johan@johanbrook.com](mailto:johan@johanbrook.com) about anything.
+As always, I love getting emails and talk with people. Reach me at [{{ meta.email }}](mailto:{{ meta.email }}) about anything.
 
 👋
