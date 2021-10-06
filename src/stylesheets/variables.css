@@ -119,7 +119,7 @@
   --spacing-base: calc(var(--leading-factor) * 1rem);
 
   --spacing-none: 0;
-  --spacing-extra-small: calc(var(--spacing-base) / 3);
+  --spacing-extra-small: calc(var(--spacing-base) / 4);
   --spacing-small: calc(var(--spacing-base) / 2);
   --spacing-medium: var(--spacing-base);
   --spacing-large: calc(var(--spacing-base) * 2);
