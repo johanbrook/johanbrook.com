@@ -12,15 +12,15 @@ description: Books I've read.
 
     <ol class="list-reset">
       {% for book in books | reverse %}
-        <li class="mb2">
+        <li class="mb3">
           <h2 class="mb0 f3 {% if not book.finished %}dimmed{% endif %}">{{ book.title }}</h2>
           <p class="f5 mb0">{{book.author}}</p>
 
          {% if book.notes %}
-            <p class="f5 mb0">{{ book.notes }}</p>
+            <p class="f5 mb1">{{ book.notes }}</p>
           {% endif %}
  
-          <p class="f5 mb0">
+          <p class="f6 mb0">
             {% if book.finishedAt %}
               <span title="Finished in">{{ book.finishedAt | formatDate("MMMM YYYY") }}</span>
               {% if book.location %} – {% endif %}

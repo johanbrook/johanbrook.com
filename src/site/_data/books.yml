@@ -80,6 +80,7 @@
   author: Cormac McCarthy
   finished: true
   finishedAt: 2011-07-01T00:00:00Z
+  notes: 'The minimal language is perfect.'
 
 - title: Black Sabbath
   author: Mick Wall
@@ -97,6 +98,7 @@
   finished: true
   finishedAt: 2014-07-10T00:00:00Z
   location: Gothenburg, Sweden
+  notes: 'Raw and honest.'
 
 - title: Shantaram
   author: Gregory David Roberts
@@ -133,6 +135,7 @@
   finished: true
   finishedAt: 2015-11-10T00:00:00Z
   location: San Francisco, USA
+  notes: 'Very touching, and beautifully written.'
 
 - title: Dancing with the Devil in the City of God
   author: Juliana Barbassa
@@ -141,6 +144,12 @@
   location: Rio de Janeiro, Brazil
 
 - title: The Essential Hemingway
+  author: Ernest Hemingway
+  finished: true
+  finishedAt: 2016-05-10T00:00:00Z
+  location: Rio de Janeiro, Brazil
+
+- title: A Moveable Feast
   author: Ernest Hemingway
   finished: true
   finishedAt: 2016-05-10T00:00:00Z
@@ -157,6 +166,7 @@
   finished: true
   finishedAt: 2017-07-10T00:00:00Z
   location: Gothenburg, Sweden
+  notes: 'Sequel to Shantaram. Not as good, but nevertheless a good sequel.'
 
 - title: Sapiens
   author: Yuval Noah Harari
@@ -181,6 +191,7 @@
   finished: true
   finishedAt: 2018-07-10T00:00:00Z
   location: Stockholm, Sweden
+  notes: "The saddest book I've read in all my life. But oh so good."
 
 - title: A Brief History of Time
   author: Stephen Hawking
@@ -188,7 +199,7 @@
   finishedAt: 2019-03-10T00:00:00Z
   location: Stockholm, Sweden
 
-- title: A Moveable Feast
+- title: The Sun Also Rises
   author: Ernest Hemingway
   finished: true
   finishedAt: 2019-05-10T00:00:00Z
@@ -199,96 +210,112 @@
   finished: true
   finishedAt: 2020-01-10T00:00:00Z
   location: Sri Lanka
+  notes: "I like short story collections, and Murakami's language is the best. Read this."
 
 - title: The Snow Leopard
   author: Peter Matthiessen
   finished: true
   finishedAt: 2020-01-10T00:00:00Z
   location: Sri Lanka
+  notes: "A travel diary of an American in an expedition into the Himalayas. He's real goal is to catch a glimpse of the very shy Snow Leopard. This travel text captures the beauty of Zen without speaking too much about it. It's kind of dense at times, but very, very grand."
 
 - title: The Zahir
   author: Paolo Coelho
   finished: true
   finishedAt: 2020-01-10T00:00:00Z
   location: Sri Lanka
+  notes: 'Like The Alchemist, this one was boring. Poorly written, boring plot, and not believable at all.'
 
 - title: The Alchemist
   author: Paolo Coelho
   finished: true
   finishedAt: 2020-01-10T00:00:00Z
   location: Sri Lanka
+  notes: 'I loved it in the beginning, but then it turned out to be boring New Age-y stuff.'
 
 - title: The Godfather
   author: Mario Puzo
   finished: true
   finishedAt: 2020-03-01T00:00:00Z
   location: Stockholm, Sweden
+  notes: 'Even better than the movie. More details (of course), and deeper descriptions of characters.'
 
 - title: Jag Kan Ha Fel
   author: Björn Natthiko Lindeblad
   finished: true
   finishedAt: 2020-06-01T00:00:00Z
   location: Stockholm, Sweden
+  notes: "Written by a Swedish businessman who became a Buddhist monk for 17 years. It's not a classic self help book, nor some kind of teaching about Buddhism. It's merely his story, with some of his philosophies thrown in. He mixes serious subjects with wit."
 
 - title: About A Boy
   author: Nick Hornby
   finished: true
   finishedAt: 2020-07-01T00:00:00Z
   location: Stockholm, Sweden
+  notes: "Very 'fun' and unforeseeable language. The thoughts of the two main characters – the man and the boy – are written in a way that feels authentic. I liked the randomness and quick turns of the book."
 
 - title: Cosa Nostra
   author: John Dickie
   finished: true
   finishedAt: 2020-07-01T00:00:00Z
   location: Stockholm, Sweden
+  notes: 'A non-fiction history about the Sicilian mafia. Entertaining.'
 
 - title: Normal People
   author: Sally Rooney
   finished: true
   finishedAt: 2020-08-01T00:00:00Z
   location: Stockholm, Sweden
+  notes: 'I saw the series before reading the book, and both formats have their charm. The author has a great language, and manages to capture the atmosphere that surrounds that age from high school to university.'
 
 - title: Herakles
   author: Theodor Kallifatides
   finished: true
   finishedAt: 2020-08-01T00:00:00Z
   location: Stockholm, Sweden
+  notes: 'I like mythology, especially like Greek mythology. This book is a novel – I guess a bit dramatised – about the life of the hero Hercules. It was good, very vivid and nuanced.'
 
 - title: Ishmael
   author: Daniel Quinn
   finished: true
   location: Österlen, Sweden
   finishedAt: 2020-08-01T00:00:00Z
+  notes: "A philosophical discourse about the evolution of homo sapiens. Some things are controversial, like population control. The book's dialogue is about biodiversity, climate change, urbanisation: a lot of contemporary topics. It's a nice pairing together with Sapiens."
 
 - title: Zen Mind, Beginner's Mind
   author: Shunryu Suzuki
   finished: true
   location: Stockholm, Sweden
   finishedAt: 2021-02-01T00:00:00Z
+  notes: "It took me a long time to finish this very thin book. The language is dense, and I wanted to soak every page in. I had to re-read a couple of sentences. But I liked it as a whole, especially the laser focus of the author's message."
 
 - title: Samlade Verk
   author: Lydia Sandgren
   finished: true
   location: Österlen, Sweden
   finishedAt: 2021-08-01T00:00:00Z
+  notes: "This is an epic describing the live of a couple of individuals from the 1970s until the 2010s in Gothenburg, Sweden. It really touched me, on several layers. I'm very sentimental about the city Gothenburg, and I was constantly impressed by the cultural references, the plot, and the language of the relatively young author. There's this amazing melancholia hanging over the whole work."
 
 - title: What I Talk About When I Talk About Running
   author: Haruki Murakami
   finished: true
   finishedAt: 2021-09-06T00:00:00Z
   location: Florence, Italy
+  notes: "I love Murakami's straight forward language. This one made me want to start running. He's very honest about himself in this semi-biography, but never sentimental. Feels very Japanese."
 
 - title: American Psycho
   author: Bret Easton Ellis
   finished: true
   finishedAt: 2021-09-14T00:00:00Z
   location: Florence, Italy
+  notes: 'The book is a lot more psycho than the movie. More explicit than I thought. The unreliable monologues of the narrator are amazingly written, and there are more layers to the book than just the obvious one.'
 
 - title: Fight Club
   author: Chuck Palahniuk
   finished: true
   finishedAt: 2021-09-20T00:00:00Z
   location: Florence, Italy
+  notes: "I honestly think the movie is better. I'm sure the book would be cool if I'd read that first, but I couldn't stand the fast paced dialogue with random sentences thrown in between lines."
 
 - title: Less Than Zero
   author: Bret Easton Ellis
