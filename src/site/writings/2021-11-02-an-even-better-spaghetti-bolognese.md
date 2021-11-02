@@ -11,16 +11,16 @@ keywords:
 
 This is a continuation (sequel? remix?) on the post ["My Spaghetti Bolognese"](/writings/my-spaghetti-bolognese). In that one, I wrote about a spaghetti bolognese recipe which I thought I'd, pretentious as I am, perfected over the years.
 
-We recently spent a month in Florence, Italy, where we stayed with a host family in a villa. For one birthday party for their grandchild, the family father had made a ragú sauce served with penne pasta. The sauce was amazing: rich, juicy, and smooth. I asked for the recipe, and will present it in this post.
+We recently spent a month in Florence, Italy, where we stayed with a host family. For one birthday party for their grandchild, the family father had made a ragú sauce served with penne pasta. The sauce was amazing: rich, juicy, and smooth. I asked for the recipe, and will present it in this post.
 
 ## The ingredients
 
 - 1-2 finely chopped garlic cloves.
-- 500 grams of minced pork and beef meat.
+- 500g of minced pork and beef meat.
 - 1-2 celeries.
 - 1-2 carrots.
 - 1 onion (preferrably red).
-- 750 gram passata (tomato sauce).
+- 750g passata (tomato sauce). I ended up adding 1200g of passata since I wanted a saucier feeling.
 - 1 glass red wine.
 - Sugar (optional).
 - Meat broth (optional).
