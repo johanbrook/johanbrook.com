@@ -7,19 +7,21 @@ excerpt: My recipe for making a good spaghetti bolognese. Includes stuff I've le
 
 I had a free Sunday today, and I'd planned on making spaghetti bolognese for dinner. Then I thought I'd write a bit about it.
 
+**Update, November 2021:** read an [improved version of the spaghetti bolognese recipe](/writings/better-spaghetti-bolognese). It's easier and tastes better, I think, and isn't as pretentiously written.
+
 ## Introduction
 
-You've probably heard of the dish "Spaghetti bolognese", and have had it countless of times, served in schools, restaurants, and at home as an everyday dinner across Europe and America. There are equally countless variations of the recipe, with ingredients varying from celery and bacon to milk and soy. I'm not actually sure there's a "true" spaghetti bolognese, as the dish actually doesn't exist, traditionally in Italy, in the shape we non-Italians are used to. According to [a Wikipedia article](https://en.wikipedia.org/wiki/Bolognese_sauce#Spaghetti_bolognese), the tomato fueled bolognese we're used to is actually closest to the [ragù](https://en.wikipedia.org/wiki/Rag%C3%B9) served in the Naples area (*ragù alla napoletana*). The traditional ragù in the Bologna area is much more basic: meatier and less sauce-y than what you're probably used to.
+You've probably heard of the dish "Spaghetti bolognese", and have had it countless of times, served in schools, restaurants, and at home as an everyday dinner across Europe and America. There are equally countless variations of the recipe, with ingredients varying from celery and bacon to milk and soy. I'm not actually sure there's a "true" spaghetti bolognese, as the dish actually doesn't exist, traditionally in Italy, in the shape we non-Italians are used to. According to [a Wikipedia article](https://en.wikipedia.org/wiki/Bolognese_sauce#Spaghetti_bolognese), the tomato fueled bolognese we're used to is actually closest to the [ragù](https://en.wikipedia.org/wiki/Rag%C3%B9) served in the Naples area (_ragù alla napoletana_). The traditional ragù in the Bologna area is much more basic: meatier and less sauce-y than what you're probably used to.
 
-The Guardian's article aptly named [*How To Make the Perfect Bolognese*](https://www.theguardian.com/lifeandstyle/wordofmouth/2010/nov/25/how-to-make-perfect-bolognese) includes the paragraph
+The Guardian's article aptly named [_How To Make the Perfect Bolognese_](https://www.theguardian.com/lifeandstyle/wordofmouth/2010/nov/25/how-to-make-perfect-bolognese) includes the paragraph
 
 > The fact is that there is no definitive recipe for a bolognese meat sauce, but to be worthy of the name, it should respect the traditions of the area. There’s nothing wrong with a tomato-based beef ragu, rich with garlic and olive oil, except that it’s not what, traditionally at least, they’d eat in Emilia Romagna, which is dairy country. As for serving such a hearty meat sauce with delicate spaghetti – well, that is wrong. But it still tastes pretty good.
 
-In summary: *you do you*. Cooking food is (loosely) like sex: if it feels [tastes] good, it's probably fine.
+In summary: _you do you_. Cooking food is (loosely) like sex: if it feels [tastes] good, it's probably fine.
 
 ## The Dish
 
-What I've done here is to accumulate stuff I've picked up from others during the years, as well as extensive research online for more tips and tricks, in order to boil everything down to a process that fits me (I've ordered the light version of [*"The Silver Spoon"*](https://www.amazon.com/Silver-Spoon-Quick-Italian-Recipes/dp/0714870587/ref=cm_cr_arp_d_product_top?ie=UTF8) but it hasn't arrived at the time of writing).
+What I've done here is to accumulate stuff I've picked up from others during the years, as well as extensive research online for more tips and tricks, in order to boil everything down to a process that fits me (I've ordered the light version of [_"The Silver Spoon"_](https://www.amazon.com/Silver-Spoon-Quick-Italian-Recipes/dp/0714870587/ref=cm_cr_arp_d_product_top?ie=UTF8) but it hasn't arrived at the time of writing).
 
 What I love about bolognese is that it's so very versatile. It can be boiled down to a very basic recipe you can make in 40 minutes, or make it a Sunday meal activity where you long cook it for 4 hours with homemade tomato passata. Up to you (our mantra here, if you didn't pick that up).
 
@@ -27,7 +29,7 @@ What I love about bolognese is that it's so very versatile. It can be boiled dow
 
 All ingredients are stuff you can find at the local super market, of course, but as usual, try to find good quality groceries as it'll taste richer. I usually go with 100% beef meat (eco), but I guess a pork mix is fine too. I have to confess that I've cut out the celery part when I make it myself, since I hate celery beyond reason.
 
-I *usually* make bolognese on 800g of meat. But that's for Sunday dinner, and then me and the girlfriend has lunch boxes for the week at work. The bolognese tastes wonderful the day after in the microwave, so it's the perfect dish for making a large batch of. And, it's quite satisfying to make huge fucking batches of food too. Just a tip. Feel free to double all measures in the recipe below if so.
+I _usually_ make bolognese on 800g of meat. But that's for Sunday dinner, and then me and the girlfriend has lunch boxes for the week at work. The bolognese tastes wonderful the day after in the microwave, so it's the perfect dish for making a large batch of. And, it's quite satisfying to make huge fucking batches of food too. Just a tip. Feel free to double all measures in the recipe below if so.
 
 You can put in tons of fun stuff: everything from mushrooms to bacon. The latter will make it a more smokey flavour. I honestly think the mushroom taste is disappearing in the tomato sauce, but that's just me.
 
