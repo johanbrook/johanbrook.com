@@ -57,9 +57,7 @@ ARTICLE TEXTS
     margin-bottom: var(--spacing-base);
 
     @media screen and (min-width: 800px) {
-      margin-left: calc(var(--spacing-base) * -4);
       margin-right: calc(var(--spacing-base) * -4);
-      padding-left: calc(var(--spacing-base) * 4);
     }
   }
 

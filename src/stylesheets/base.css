@@ -209,13 +209,10 @@ pre {
   background: var(--pre-background);
   color: var(--pre-color);
   border-radius: 8px;
-  padding: var(--lineheight);
-  overflow-wrap: break-word;
-  word-break: break-word;
+  padding: var(--lineheight) calc(var(--lineheight) / 2);
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: none;
-  font-size: var(--font-size-5);
-  line-height: 1.5;
+  font-size: var(--font-size-6);
 
   @media screen and (max-width: 480px) {
     padding-left: 0.25em;
