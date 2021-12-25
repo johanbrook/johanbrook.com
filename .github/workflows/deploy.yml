@@ -14,18 +14,18 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - uses: denoland/setup-deno@v1
         with:
-          node-version: '16.x'
+          deno-version: v1.16.x
 
       - name: Install & Build
         env:
           CI: true
           NODE_ENV: production
+          ENV: production
         run: |
-          npm install --no-save --no-audit
-          npm run build
+          deno run -A https://deno.land/x/lume/ci.ts
+          ./script/build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
