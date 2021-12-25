@@ -1,0 +1,45 @@
+---
+layout: layouts/main.njk
+home: true
+pagination:
+  data: collections.writings
+  size: 6
+  alias: latestPosts
+  reverse: true
+---
+<main role="main">
+
+  <header>
+
+    {% include "header-title.svg" %}
+
+    {% if tagline %}<p class="tagline mt5 mb4">{{ tagline | safe }}</p>{% endif %}
+  </header>
+
+  <section class="mb5">
+    {{ content | safe }}
+  </section>
+
+  <section>
+    <header class="flex items-center pv1">
+      <h1 class="mb0">My latest writings</h1>
+      <a href="/writings" class="btn ml2 f4">View all</a>
+    </header>
+
+    <p>I write things in varying lengths and quality. Some writings are full posts, other are just half-baked thoughts.</p>
+
+    <ol class="PostsList PostsList--Tight">
+      {% for post in latestPosts %}
+        <li class="PostItem PostItem--{{ 'Update' if post.data.category == 'Updates' else 'Regular' }}" title="About {{ post | readingTime }} reading time">
+          <a class="PostItem__Link" href="{{ post.url }}">{{ post.data.title }} -></a>
+        </li>
+      {% endfor %}
+    </ol>
+
+    <p class="f4">
+      <a title="View all" class="muted" href="/writings">…and {{ collections.writings.length - pagination.size }} more</a>
+    </p>
+  </section>
+</main>
+
+{% include "footer.njk" %}
