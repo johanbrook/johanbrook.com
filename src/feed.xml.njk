@@ -11,7 +11,7 @@
     <name>{{ meta.author }}</name>
     <email>{{ meta.email }}</email>
   </author>
-  {%- for post in search.pages("type=posts", "date=desc", 10) %}
+  {%- for post in search.pages("type=post", "date=desc", 10) %}
   <entry>
     <title>{{ post.data.title }}</title>
     <link href="{{ post.data.url | url(true) }}" />
