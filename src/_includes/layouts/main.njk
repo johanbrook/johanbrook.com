@@ -1,10 +1,8 @@
 ---
 ogImage: /assets/images/og-image.png
 ---
-{% from "icon.njk" import icon %}
-
 <!DOCTYPE html>
-<html lang="en" class="{{'home' if home}} {{ slug or page.fileSlug }}">
+<html lang="en" class="{{'home' if home}} {{ slug }}">
 
   <head itemtype="http://schema.org/Blog" itemscope>
     <title>{% if title %}{{ title }} – {{ meta.title }}{% else %}{{ meta.title }}{% endif %}</title>
@@ -14,7 +12,9 @@ ogImage: /assets/images/og-image.png
     {% if excerpt or description or meta.description %}
     <meta name="description" content="{{ excerpt or description or meta.description }}">
     {% endif %}
+    {% if keywords %}
     <meta name="keywords" content="{{ keywords }}">
+    {% endif %}
     <meta name="author" content="{{ meta.author }}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,12 +26,12 @@ ogImage: /assets/images/og-image.png
     <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/feed.xml">
 
     <link rel="shortcut icon" href="/favicon.png" type="image/png">
-    <link rel="canonical" itemprop="url" href="{{ page.url | url(true) }}">
+    <link rel="canonical" itemprop="url" href="{{ url | url(true) }}">
     <link rel="author" href="https://johanbrook.com">
 
     <meta property="og:title" content="{{ title }}">
-    <meta property="og:url" content="{{ page.url | url(true) }}">
-    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    <meta property="og:url" content="{{ url | url(true) }}">
+    <meta property="og:site_name" itemprop="name" content="{{ meta.author }}">
     <meta property="og:type" content="blog">
     <meta property="og:image" content="{{ogImage | url(true)}}">
     <meta property="og:image:width" content="1200">
@@ -40,10 +40,9 @@ ogImage: /assets/images/og-image.png
     <meta property="og:description" content="{{ excerpt or description }}">
     {% endif %}
 
-    {% if tags === 'posts' %}
-    <meta property="article:author" content="http://facebook.com/johanbrook">
-    <meta property="article:tag" content="{{keywords}}">
-    <meta property="article:published_time" content="{{page.date | date("ATOM")}}">
+    {% if type === 'post' %}
+    <meta property="article:tag" content="{{ keywords }}">
+    <meta property="article:published_time" content="{{date | date("ATOM")}}">
     {% endif %}
   </head>
 
