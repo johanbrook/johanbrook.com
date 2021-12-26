@@ -14,7 +14,7 @@ jobs:
       - name: Setup deno and lume
         uses: denoland/setup-deno@v1
         with:
-          deno-version: v1.16.x
+          deno-version: v1.17.x
 
       - name: Install and Build site
         env:
