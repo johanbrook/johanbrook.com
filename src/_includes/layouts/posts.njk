@@ -1,0 +1,43 @@
+---
+layout: layouts/main.njk
+---
+
+{% set firstPost = search.pages("type=post", "date=desc", 1) | first %}
+{% set firstOnPage = results | first %}
+
+<main role="main" class="posts">
+
+  <h1 class="title inset-title">Writings.</h1>
+
+  <p class="fw6">
+    {{pagination.totalResults }} posts, from {{ firstPost.data.date | date("MMMM yyyy") }} to {{ firstOnPage.data.date | date("MMMM yyyy") }}.
+  </p>
+
+  <ol class="PostsList">
+    {% for post in results %}
+      <li class="PostItem PostItem--{{ 'Update' if post.data.category == 'Updates' else 'Regular' }}">
+        <a class="PostItem__Link" href="{{ post.data.url }}" title="About post | readingTime reading time" style="color: red">{{ post.data.title }} -> {% if post.data.draft %}<span class="badge">Draft</span>{% endif %}</a>
+
+        <time datetime="{{ post.data.date | date("ATOM") }}" pubdate>{{ post.data.date | date }}</time>
+      </li>
+    {% endfor %}
+  </ol>
+
+  <footer class="page-nav">
+    <p>
+      {% if pagination.previous %}
+        <a rel="prev" href="{{ pagination.previous }}">← Newer</a>
+        <span class="separator">/ </span>
+      {% endif %}
+
+      <span class="separator">Page {{ pagination.page }} of {{ pagination.totalPages }} </span>
+
+      {% if pagination.next %}
+        <span class="separator"> /</span>
+        <a rel="next" href="{{ pagination.next }}">Older →</a>
+      {% endif %}
+    </p>
+
+  </footer>
+
+</main>
