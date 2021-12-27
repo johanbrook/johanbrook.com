@@ -8,6 +8,7 @@ keywords:
   - web developer
   - react
   - typescript
+templateEngine: njk,md
 menu:
   visible: true
   order: 4
