@@ -90,6 +90,12 @@ figure.image--full {
   }
 }
 
+.list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 /*
 TYPESCALE
 ----------------------------------------------------------------*/
@@ -194,6 +200,14 @@ FLEXBOX
 }
 .inline-flex {
   display: inline-flex;
+}
+
+.gap-1 {
+  gap: 0.5em;
+}
+
+.gap {
+  gap: 1.5em;
 }
 
 /* 1. Fix for Chrome 44 bug.
@@ -844,12 +858,6 @@ TYPOGRAPHY
   background-color: var(--comp-yellow);
   display: inline-block;
   padding: 0.1em 0.4em;
-}
-
-.list-reset {
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 
 .sr-only {

@@ -3,5 +3,5 @@ FOOTER
 ----------------------------------------------------------------*/
 
 [role='contentinfo'] {
-  margin-bottom: calc(var(--lineheight) * 3);
+  padding-bottom: var(--lineheight);
 }

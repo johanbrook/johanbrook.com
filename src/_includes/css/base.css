@@ -2,81 +2,84 @@
 --------------------------------------------- */
 
 ::selection {
-  background-color: var(--selection-bg-color);
-  color: var(--selection-color);
+    background-color: var(--selection-bg-color);
+    color: var(--selection-color);
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-  background-color: var(--background-color);
-  font: normal calc(var(--font-size-base) * 1px) / var(--leading-factor)
-    var(--sans);
-  color: var(--text-color);
-  letter-spacing: var(--letter-spacing-tight);
-  font-kerning: normal;
-  font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1;
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background-color);
+    font: normal calc(var(--font-size-base) * 1px) / var(--leading-factor)
+        var(--sans);
+    color: var(--text-color);
+    letter-spacing: var(--letter-spacing-tight);
+    font-kerning: normal;
+    font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-  @media screen and (max-width: 480px) {
-    font-size: 1rem;
-  }
+    @media screen and (max-width: 480px) {
+        font-size: 1rem;
+    }
 
-  @media screen and (prefers-color-scheme: dark) {
-    word-spacing: 0.05em;
-  }
+    @media screen and (prefers-color-scheme: dark) {
+        word-spacing: 0.05em;
+    }
 }
 
 @supports (font-variation-settings: normal) {
-  html {
-    font-family: 'Inter var', sans-serif;
-  }
+    html {
+        font-family: 'Inter var', sans-serif;
+    }
 }
 
 body {
-  min-height: 100vh;
-  display: flex;
-  margin: 0 auto;
-  width: 90%;
-  justify-content: center;
-
-  @media screen and (max-width: 55rem) {
-    flex-direction: column;
-  }
+    min-height: 100vh;
+    margin: 0 auto;
+    width: 90%;
 }
 
 main {
-  flex: 1 0 auto;
-  max-width: var(--max-width);
-  margin-bottom: calc(var(--lineheight) * 3);
+    flex: 1 0 auto;
+    max-width: var(--max-width);
+    margin-bottom: calc(var(--lineheight) * 3);
 
-  @media screen and (min-width: 55rem) {
-    margin-top: var(--lineheight);
-  }
+    @media screen and (min-width: 55rem) {
+        margin-top: var(--lineheight);
+    }
+}
+
+.Content {
+    display: flex;
+    justify-content: center;
+
+    @media screen and (max-width: 55rem) {
+        flex-direction: column;
+    }
 }
 
 /* =HEADINGS
 --------------------------------------------- */
 
 .title {
-  font-size: var(--font-size-title);
-  font-weight: bold;
-  line-height: var(--line-height-title);
-  letter-spacing: -1px;
+    font-size: var(--font-size-title);
+    font-weight: bold;
+    line-height: var(--line-height-title);
+    letter-spacing: -1px;
 
-  &--smaller {
-    font-size: calc(var(--font-size-title) * 0.7);
-    line-height: 1.25;
-  }
+    &--smaller {
+        font-size: calc(var(--font-size-title) * 0.7);
+        line-height: 1.25;
+    }
 
-  @media screen and (max-width: 480px) {
-    font-size: 10vw;
-    line-height: 1.4;
-  }
+    @media screen and (max-width: 480px) {
+        font-size: 10vw;
+        line-height: 1.4;
+    }
 }
 
 h1,
@@ -85,73 +88,73 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
-  margin-bottom: var(--spacing-extra-small);
-  letter-spacing: var(--letter-spacing-tighter);
+    margin: 0;
+    margin-bottom: var(--spacing-extra-small);
+    letter-spacing: var(--letter-spacing-tighter);
 }
 
 h1 {
-  font-size: var(--font-size-1);
-  font-weight: 600;
+    font-size: var(--font-size-1);
+    font-weight: 600;
 }
 
 h2 {
-  font-size: var(--font-size-2);
-  font-weight: 500;
+    font-size: var(--font-size-2);
+    font-weight: 500;
 }
 
 h3 {
-  font-size: var(--font-size-3);
-  font-weight: 600;
+    font-size: var(--font-size-3);
+    font-weight: 600;
 }
 
 h4 {
-  font-size: var(--font-size-4);
-  font-weight: 500;
+    font-size: var(--font-size-4);
+    font-weight: 500;
 }
 
 h5 {
-  font-size: var(--font-size-5);
+    font-size: var(--font-size-5);
 }
 
 h6 {
-  font-size: var(--font-size-6);
+    font-size: var(--font-size-6);
 }
 
 strong,
 b {
-  font-weight: 600;
+    font-weight: 600;
 }
 
 ul,
 ol {
-  padding-left: 0;
+    padding-left: 0;
 }
 
 nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 ul {
-  list-style-type: disc;
+    list-style-type: disc;
 }
 
 a {
-  color: var(--link-color);
-  text-decoration: none;
-  position: relative;
-  font-weight: 500;
+    color: var(--link-color);
+    text-decoration: none;
+    position: relative;
+    font-weight: 500;
 
-  &:hover {
-    color: var(--link-color-hover);
-    text-decoration: underline;
-  }
+    &:hover {
+        color: var(--link-color-hover);
+        text-decoration: underline;
+    }
 
-  &:active {
-    top: 1px;
-  }
+    &:active {
+        top: 1px;
+    }
 }
 
 p,
@@ -161,100 +164,100 @@ blockquote,
 table,
 figure,
 pre {
-  margin: 0 0 var(--lineheight);
+    margin: 0 0 var(--lineheight);
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 pre,
 code {
-  font-family: var(--mono);
+    font-family: var(--mono);
 }
 
 code {
-  background-color: var(--code-background);
-  color: var(--code-color);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-size: 0.9em;
-  border: 1px solid rgba(#000, 0.15);
-  white-space: nowrap;
+    background-color: var(--code-background);
+    color: var(--code-color);
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid rgba(#000, 0.15);
+    white-space: nowrap;
 }
 
 figcaption {
-  color: var(--grey);
+    color: var(--grey);
 }
 
 table {
-  text-align: left;
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
+    text-align: left;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 th {
-  border-bottom: 1px solid var(--grey-light);
-  padding: 0.25em 0;
-  font-weight: 600;
+    border-bottom: 1px solid var(--grey-light);
+    padding: 0.25em 0;
+    font-weight: 600;
 }
 
 td {
-  padding: 0.25em 0;
+    padding: 0.25em 0;
 }
 
 pre {
-  background: var(--pre-background);
-  color: var(--pre-color);
-  border-radius: 8px;
-  padding: var(--lineheight) calc(var(--lineheight) / 2);
-  -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: none;
-  font-size: var(--font-size-6);
+    background: var(--pre-background);
+    color: var(--pre-color);
+    border-radius: 8px;
+    padding: var(--lineheight) calc(var(--lineheight) / 2);
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: none;
+    font-size: var(--font-size-6);
 
-  @media screen and (max-width: 480px) {
-    padding-left: 0.25em;
-  }
+    @media screen and (max-width: 480px) {
+        padding-left: 0.25em;
+    }
 
-  code {
-    font-size: 1em;
-    border: 0;
-    background-color: transparent;
-    padding: 0;
-    border-radius: 0;
-    box-shadow: none;
-    color: currentColor;
-    white-space: inherit;
-  }
+    code {
+        font-size: 1em;
+        border: 0;
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
+        box-shadow: none;
+        color: currentColor;
+        white-space: inherit;
+    }
 }
 
 blockquote {
-  border-left: 2px solid var(--grey-light);
-  margin: calc(var(--lineheight) * 2) 2rem calc(var(--lineheight) * 2) 0;
-  padding-left: 2rem;
-  padding-right: 2rem;
+    border-left: 2px solid var(--grey-light);
+    margin: calc(var(--lineheight) * 2) 2rem calc(var(--lineheight) * 2) 0;
+    padding-left: 2rem;
+    padding-right: 2rem;
 
-  footer {
-    color: var(--grey);
-    margin-top: var(--lineheight);
-  }
+    footer {
+        color: var(--grey);
+        margin-top: var(--lineheight);
+    }
 }
 
 hr {
-  display: block;
-  height: auto;
-  border: 0;
-  margin: calc(var(--lineheight) * 2) auto;
-  width: 80%;
-  color: var(--hr-color);
-
-  &::after {
     display: block;
-    text-align: center;
-    content: '***';
+    height: auto;
+    border: 0;
+    margin: calc(var(--lineheight) * 2) auto;
+    width: 80%;
     color: var(--hr-color);
-    line-height: 1;
-  }
+
+    &::after {
+        display: block;
+        text-align: center;
+        content: '***';
+        color: var(--hr-color);
+        line-height: 1;
+    }
 }
