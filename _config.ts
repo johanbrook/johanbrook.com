@@ -6,31 +6,31 @@ import inline from 'lume/plugins/inline.ts';
 import postcssNested from 'https://esm.sh/postcss-nested@5';
 import postcssColor from 'https://esm.sh/postcss-color-function@4';
 import postcssHexRgba from 'https://esm.sh/postcss-hexrgba@2';
+import { readingTime } from './src/_includes/plugins/reading-time.ts';
 
 const dest = 'build2';
 
 const site = lume({
-  src: 'src',
-  dest,
-  metrics: true,
+    src: 'src',
+    dest,
+    metrics: true,
 });
 
-site
-  .copy('public', '.')
-  // Plugins
-  .use(codeHighlight())
-  .use(inline())
-  .use(
-    postcss({
-      sourceMap: true,
-      keepDefaultPlugins: true,
-      plugins: [postcssNested(), postcssColor(), postcssHexRgba()],
-    })
-  )
-  .use(date())
-  // Helpers
-  .filter('substr', (str: string, len: number) => str.substr(0, len))
-  .filter('moreThan', (num: number, count: number) => num > count)
+site.copy('public', '.')
+    // Plugins
+    .use(codeHighlight())
+    .use(inline())
+    .use(
+        postcss({
+            sourceMap: true,
+            keepDefaultPlugins: true,
+            plugins: [postcssNested(), postcssColor(), postcssHexRgba()],
+        })
+    )
+    .use(date())
+    // Helpers
+    .filter('substr', (str: string, len: number) => str.substring(0, len))
+    .filter('moreThan', (num: number, count: number) => num > count)
     .filter('readingTime', (pageOrContent) => {
         if (!pageOrContent)
             throw new Error(
@@ -39,7 +39,7 @@ site
 
         return readingTime(pageOrContent);
     })
-  // Don't the entire site rebuild when --watching or --serving if .css files change
-  .scopedUpdates((path) => path.endsWith('.css'));
+    // Don't the entire site rebuild when --watching or --serving if .css files change
+    .scopedUpdates((path) => path.endsWith('.css'));
 
 export default site;
