@@ -39,6 +39,7 @@ site.copy('public', '.')
 
         return readingTime(pageOrContent);
     })
+    .filter('postAssetUrl', (filename) => `/assets/posts/${filename}`)
     // Don't the entire site rebuild when --watching or --serving if .css files change
     .scopedUpdates((path) => path.endsWith('.css'));
 
