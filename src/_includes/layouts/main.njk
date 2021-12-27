@@ -48,11 +48,15 @@ ogImage: /assets/images/og-image.png
 
   <body>
 
-    {% if not home %}
-      {% include "side-navigation.njk" %}
-    {% endif %}
+    <div class="Content">
+      {% if not home %}
+        {% include "side-navigation.njk" %}
+      {% endif %}
 
-    {{ content | safe }}
+      {{ content | safe }}
+    </div>
+
+    {% include "footer.njk" %}
 
     <script src="/js/excerpts.js" inline></script>
 
