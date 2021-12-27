@@ -31,6 +31,14 @@ site
   // Helpers
   .filter('substr', (str: string, len: number) => str.substr(0, len))
   .filter('moreThan', (num: number, count: number) => num > count)
+    .filter('readingTime', (pageOrContent) => {
+        if (!pageOrContent)
+            throw new Error(
+                `Passed falsy value to readingTime filter: ${pageOrContent}`
+            );
+
+        return readingTime(pageOrContent);
+    })
   // Don't the entire site rebuild when --watching or --serving if .css files change
   .scopedUpdates((path) => path.endsWith('.css'));
 

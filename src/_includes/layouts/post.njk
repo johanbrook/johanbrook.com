@@ -34,7 +34,7 @@ layout: layouts/main.njk
         </p>
 
         <p class="muted mb4">
-          About <span style="color: red">XXX reading time</span>
+          About {{ content | readingTime }} reading time
         </p>
       </header>
     {% endif %}
