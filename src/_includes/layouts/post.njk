@@ -1,43 +1,27 @@
 ---
 layout: layouts/main.njk
 ---
-{% set isMicro = category == 'Updates' %}
-
 <main role="main">
-  <article class="Post Post--{{ 'Update' if isMicro else 'Regular' }}" role="article" itemscope itemtype="http://schema.org/BlogPosting">
+  <article class="Post" role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
-    {% if isMicro %}
-      <header>
-        <p>
+    
+    <header> 
+      <h1 itemprop="name" class="title {{ 'title--smaller' if title.length | moreThan(50) }}">{{ title }}</h1>
+
+      <p class="mb0 fw5 mt3">
           {% if draft %}
-            <span class="badge mr1">Draft</span>
+          <span class="badge mr1">Draft</span>
           {% endif %}
           <time
-            class="f2 fw5"
-            datetime="{{ date | date("ATOM") }}"
-            itemprop="datePublished"
-            pubdate>{{ date | date("HUMAN_DATE") }}</time>
-        </p>
-      </header>
-    {% else %}
-      <header> 
-        <h1 itemprop="name" class="title {{ 'title--smaller' if title.length | moreThan(50) }}">{{ title }}</h1>
+          datetime="{{ date | date("ATOM") }}"
+          itemprop="datePublished"
+          pubdate>{{ date | date("HUMAN_DATE") }}</time>
+      </p>
 
-        <p class="mb0 fw5 mt3">
-          {% if draft %}
-            <span class="badge mr1">Draft</span>
-          {% endif %}
-          <time
-            datetime="{{ date | date("ATOM") }}"
-            itemprop="datePublished"
-            pubdate>{{ date | date("HUMAN_DATE") }}</time>
-        </p>
-
-        <p class="muted mb4">
+      <p class="muted mb4">
           About {{ content | readingTime }} reading time
-        </p>
-      </header>
-    {% endif %}
+      </p>
+    </header>
 
     <div class="article-text post__body measure" itemprop="articleBody">
       {{ content | safe }}
@@ -45,15 +29,9 @@ layout: layouts/main.njk
 
     <footer>
       {% if keywords %}
-        <p class="f5 comp-grey mt5 pb3 border border-b">
+        <p class="f5 comp-grey mt5">
           <b class="mr1">Keywords</b> {% for keyword in keywords %}<span class="Post-Keyword">{{ keyword }}</span>{% endfor %}
         </p>
-      {% endif %}
-
-      {% if isMicro %}
-        <hr class="ml0 mb3" />
-        <h1 itemprop="name" class="d-i f5 fw4 mb0">“{{ title }}”</h1>
-        {%if location %}<span class="muted f4">was posted from {{ location | lower }}</span>{% endif %}
       {% endif %}
 
       <p class="mt3">

@@ -26,7 +26,7 @@ numberPosts: 6
 
     <ol class="PostsList PostsList--Tight">
       {% for post in search.pages("type=post", "date=desc", numberPosts) %}
-        <li class="PostItem PostItem--{{ 'Update' if post.data.category == 'Updates' else 'Regular' }}" title="About {{ post | readingTime }} reading time">
+        <li class="PostItem" title="About {{ post | readingTime }} reading time">
           <a class="PostItem__Link" href="{{ post.data.url }}">{{ post.data.title }} -></a>
         </li>
       {% endfor %}
