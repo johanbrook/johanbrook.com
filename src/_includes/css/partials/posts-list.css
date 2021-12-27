@@ -17,12 +17,6 @@ POSTS LIST
     letter-spacing: -0.05em;
   }
 
-  &__ReadingTime {
-    color: var(--grey);
-    font-weight: 500;
-    margin-right: 0.25em;
-  }
-
   &__Link {
     display: block;
     padding: calc(var(--lineheight) / 3) 0;
