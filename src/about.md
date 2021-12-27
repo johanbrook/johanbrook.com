@@ -8,6 +8,9 @@ keywords:
   - web developer
   - react
   - typescript
+menu:
+  visible: true
+  order: 4
 ---
 
 <p class="f2">
