@@ -1,16 +1,17 @@
 <footer role="contentinfo">
-  <nav role="navigation" class="FooterNav">
-    <ul class="FooterNav__Primary">
-      <li class="{% if page.fileSlug == 'index' %}nav--current{% endif %}"><a href="/" title="Start">Intro</a></li>
-      <li class="{% if page.fileSlug == 'writings' or tags == 'posts'  %}nav--current{% endif %}"><a href="/writings" title="Posts and essays">Writings</a></li>
-      <li class="{% if page.fileSlug == 'about' %}nav--current{% endif %}"><a href="/about">About me</a></li>
-      <li class="{% if page.fileSlug == 'now' %}nav--current{% endif %}"><a href="/now" title="What I'm doing with my life">Now</a></li>
-      <li class="{% if page.fileSlug == 'mind' %}nav--current{% endif %}"><a href="/mind">On my mind</a></li>
-      <li class="{% if page.fileSlug == 'reading' %}nav--current{% endif %}"><a href="/reading">Reading</a></li>
-      <li class="{% if page.fileSlug == 'contact' %}nav--current{% endif %}"><a href="/contact" title="Contact and stuff">On the web</a></li>
+  <nav role="navigation" class="HorizNav mb3">
+    <ul class="mb3">
+      {%- for entry in search.pages("menu.visible=true", "menu.order") %}
+        <li {% if entry.data.url == url %} aria-current="page"{% endif %}>
+          <a href="{{ entry.data.url }}">{{ entry.data.menu.title or entry.data.title }}</a>
+        </li>
+      {%- endfor %}
     </ul>
 
-    {% include "secondary-footer-nav.njk" %}
+    <ul class="HorizNav__Sub f5">
+      <li><a href="/feed.xml" title="Atom">Feed</a></li>
+      <li><a href="/meta.json">Meta</a></li>
+    </ul>
   </nav>
 
   <ul class="flex justify-center f6 list-reset">

@@ -10,6 +10,9 @@ keywords:
   - now
   - plan
   - travels
+menu:
+  visible: true
+  order: 1
 ---
 
 ## Since the last update…

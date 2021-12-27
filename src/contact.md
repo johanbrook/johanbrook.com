@@ -2,6 +2,10 @@
 template: contact
 title: Contact
 layout: layouts/page.njk
+templateEngine: njk,md
+menu:
+  visible: true
+  order: 5
 ---
 
 | Method  | Value                                                     |

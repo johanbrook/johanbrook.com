@@ -9,6 +9,7 @@
   a {
     color: var(--text-color);
     text-decoration: none;
+    white-space: nowrap;
 
     &:hover {
       color: var(--link-color);
@@ -118,5 +119,37 @@ SIDE NAV
 
   @media all and (max-width: 481px) {
     display: block;
+  }
+}
+
+/*
+HORIZONTAL NAV
+----------------------------------------------------------------*/
+
+.HorizNav {
+  font-size: var(--font-size-3);
+
+  a {
+    padding: 0.5em 1em;
+  }
+
+  ul {
+    justify-content: center;
+    gap: 1.5em;
+  }
+
+  @media all and (max-width: 1050px) {
+    ul:not(.HorizNav__Sub) {
+      display: grid;
+      grid: repeat(2, 1fr) / auto-flow;
+    }
+
+    li:not(:last-child)::after {
+      display: none;
+    }
+
+    a {
+      display: block;
+    }
   }
 }

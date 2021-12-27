@@ -1,32 +1,13 @@
 <nav role="navigation" class="SideNav">
   <h1 class="f3">
-    <a href="/">Johan Brook</a>
+    <a href="/">{{ meta.title }}</a>
   </h1>
   <ul>
-    <li {% if page.fileSlug == 'writings' or tags == 'posts' %}aria-current="page"{% endif %}>
-      <a href="/writings">Writings</a>
-    </li>
-    <li {% if page.fileSlug == 'now' %}aria-current="page"{% endif %}>
-      <a href="/now">Now</a>
-    </li>
-    <li {% if page.fileSlug == 'mind' %}aria-current="page"{% endif %}>
-      <a href="/mind">On my mind</a>
-    </li>
-    <li {% if page.fileSlug == 'reading' %}aria-current="page"{% endif %}>
-      <a href="/reading">Reading</a>
-    </li>
-    <li {% if page.fileSlug == 'about' %}aria-current="page"{% endif %}>
-      <a href="/about">About me</a>
-    </li>
-    <li {% if page.fileSlug == 'contact' %}aria-current="page"{% endif %}>
-      <a href="/contact" title="Contact and stuff">On the web</a>
-    </li>
-    <li {% if page.fileSlug == 'changelog' %}aria-current="page"{% endif %}>
-      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
-    </li>
-    <li {% if page.fileSlug == 'credits' %}aria-current="page"{% endif %}>
-      <a href="/credits" title="Licenses and stuff.">Credits</a>
-    </li>
+    {%- for entry in search.pages("menu.visible=true", "menu.order") %}
+      <li {% if entry.data.url == url %} aria-current="page"{% endif %}>
+        <a href="{{ entry.data.url }}">{{ entry.data.menu.title or entry.data.title }}</a>
+      </li>
+    {%- endfor %}
     <li>
       <a href="/feed.xml">Feed</a>
     </li>
