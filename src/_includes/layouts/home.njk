@@ -1,11 +1,7 @@
 ---
 layout: layouts/main.njk
 home: true
-pagination:
-  data: collections.writings
-  size: 6
-  alias: latestPosts
-  reverse: true
+numberPosts: 6
 ---
 <main role="main">
 
@@ -29,15 +25,15 @@ pagination:
     <p>I write things in varying lengths and quality. Some writings are full posts, other are just half-baked thoughts.</p>
 
     <ol class="PostsList PostsList--Tight">
-      {% for post in latestPosts %}
-        <li class="PostItem PostItem--{{ 'Update' if post.data.category == 'Updates' else 'Regular' }}" title="About {{ post | readingTime }} reading time">
-          <a class="PostItem__Link" href="{{ post.url }}">{{ post.data.title }} -></a>
+      {% for post in search.pages("type=post", "date=desc", numberPosts) %}
+        <li class="PostItem PostItem--{{ 'Update' if post.data.category == 'Updates' else 'Regular' }}" title="About {{ post | readingTime }} reading time">
+          <a class="PostItem__Link" href="{{ post.data.url }}">{{ post.data.title }} -></a>
         </li>
       {% endfor %}
     </ol>
 
     <p class="f4">
-      <a title="View all" class="muted" href="/writings">…and {{ collections.writings.length - pagination.size }} more</a>
+      <a title="View all" class="muted" href="/writings">…and {{ search.pages("type=post").length - numberPosts }} more</a>
     </p>
   </section>
 </main>
