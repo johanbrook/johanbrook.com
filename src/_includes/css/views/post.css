@@ -8,15 +8,14 @@
 }
 
 .Post {
-  .title {
+  & .title {
     @media screen and (max-width: 480px) {
-      font-size: var(--font-size-1);
-      letter-spacing: -1px;
+      font-size: var(--f1);
       line-height: inherit;
     }
   }
 
-  &-Keyword {
+  & .Post-Keyword {
     display: inline-block;
     border-radius: 4px;
     padding: 0 0.5em;

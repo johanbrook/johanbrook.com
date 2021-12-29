@@ -2,12 +2,12 @@
 --------------------------------------------- */
 
 [role='navigation'] {
-  ul {
+  & ul {
     display: flex;
   }
 
-  a {
-    color: var(--text-color);
+  & a {
+    color: var(--color-text);
     text-decoration: none;
     white-space: nowrap;
 
@@ -27,22 +27,20 @@ SIDE NAV
   margin-top: var(--lineheight);
   width: 9rem;
 
-  ul {
+  & ul {
     flex-direction: column;
     top: var(--lineheight);
     position: sticky;
   }
 
-  a {
+  & a:not(h1 > a) {
     font-weight: normal;
     position: relative;
-    opacity: 0.75;
   }
 
-  [aria-current='page'] a,
-  a:focus {
+  & [aria-current='page'] a,
+  & a:focus {
     outline: 0;
-    opacity: 1;
 
     &::before {
       content: '->';
@@ -53,32 +51,23 @@ SIDE NAV
     }
   }
 
-  [aria-current='page'] a {
+  & [aria-current='page'] a {
     font-weight: 600;
   }
 
-  a:focus {
+  & a:focus {
     color: var(--link-color-hover);
   }
 
-  a:hover {
-    opacity: 1;
-  }
+  & h1 {
+    --offset-top: 17px;
+    line-height: calc(var(--lineheight) * 3);
+    margin-bottom: calc(var(--lineheight) - var(--offset-top));
+    padding-top: var(--offset-top);
 
-  h1 {
-    margin-top: calc(var(--lineheight) * 1.5);
-    margin-bottom: var(--lineheight);
-    line-height: 1;
-
-    a {
-      color: #000;
-      font-weight: 500;
-      opacity: 1;
-
-      @media only screen and (prefers-color-scheme: dark) {
-        color: #fff;
-        font-weight: 600;
-      }
+    &::after,
+    &::before {
+      display: none;
     }
   }
 
@@ -89,12 +78,12 @@ SIDE NAV
     border-bottom: 1px solid currentColor;
     margin-right: 0;
 
-    h1 {
+    & h1 {
       margin-bottom: var(--lineheight);
     }
 
-    [aria-current='page'] a,
-    a:focus {
+    & [aria-current='page'] a,
+    & a:focus {
       &::before {
         display: none;
       }
@@ -127,28 +116,30 @@ HORIZONTAL NAV
 ----------------------------------------------------------------*/
 
 .HorizNav {
-  font-size: var(--font-size-3);
+  font-size: var(--f3);
 
-  a {
+  & a {
     padding: 0.5em 1em;
   }
 
-  ul {
+  & ul {
+    display: flex;
     justify-content: center;
     gap: 1.5em;
   }
 
   @media all and (max-width: 1050px) {
-    ul:not(.HorizNav__Sub) {
+    & ul:not(.HorizNav__Sub) {
       display: grid;
-      grid: repeat(2, 1fr) / auto-flow;
+      grid: auto-flow / repeat(2, 1fr);
+      text-align: center;
     }
 
-    li:not(:last-child)::after {
+    & li:not(:last-child)::after {
       display: none;
     }
 
-    a {
+    & a {
       display: block;
     }
   }

@@ -12,13 +12,14 @@
   --comp-cerise: #e01270;
   --comp-yellow: #f7d628;
 
-  --background-color: #fff;
+  --color-bg: #fff;
+  --color-bg-secondary: hsl(252, 28.06%, 96.53%);
+  --color-text: #222;
+  --color-text-detail: GrayText;
 
-  --text-color: #333333;
   --grey: #949494;
   --grey-light: rgba(#bec7c6, 0.5);
   --grey-lightest: rgba(#bec7c6, 0.2);
-  --off-white: #fafafa;
 
   --link-color: #006ef3;
   --link-color-hover: #0055bb;
@@ -29,15 +30,10 @@
   --btn-color-hover: #005ed1;
   --btn-color-active: #004daa;
 
-  --pre-background: #fff;
-  --pre-color: #5e6687;
-  --code-background: #fff;
-  --code-color: #000;
+  --pre-background: var(--color-bg-secondary);
+  --code-background: var(--color-bg-secondary);
 
   --hr-color: #444;
-
-  --selection-bg-color: var(--comp-yellow);
-  --selection-color: var(--text-color);
 
   @supports (color: color(display-p3 1 1 1 / 1)) {
     --link-color: color(display-p3 0 0.2706 0.9569 / 1);
@@ -46,16 +42,12 @@
   }
 
   @media screen and (prefers-color-scheme: dark) {
-    --background-color: #1a1a1a;
-    --text-color: #e1e1e1;
+    --color-bg: #1a1a1a;
+    --color-bg-secondary: hsl(240, 3.36%, 14.51%);
+    --color-text: #e1e1e1;
     --link-color: #5aa5ff;
     --link-color-hover: #aed4ff;
     --link-color-visited: #7a8be5;
-    --pre-background: #222;
-    --pre-color: #eee;
-    --code-background: #333;
-    --code-color: #fff;
-    --selection-color: var(--background-color);
 
     --comp-yellow: #c3a507;
 
@@ -69,38 +61,41 @@
 
   /* Typography */
 
-  --serif: Georgia, serif;
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
   --mono: Hack, Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
     'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
     serif;
-  --headings: var(--sans);
-  --tumblr-font: var(--sans);
 
-  --font-size-base: 17;
-  --leading-factor: 1.64;
-  --leading: calc(var(--font-size-base) * var(--leading-factor));
-  --lineheight: calc(var(--leading-factor) * 1rem);
+  @supports (font-variation-settings: normal) {
+    --sans: 'Inter var', -apple-system, BlinkMacSystemFont, Helvetica,
+      sans-serif;
+  }
+
+  --font-size-base: 18;
+
+  --leading: 1.61112; /* 🔮 */
+  /* Rhythm unit */
+  --lineheight: calc(var(--leading) * 1rem);
+
+  --tracking: -0.014em;
+  --tracking-f0: -0.022em;
+  --tracking-f1: -0.021em;
+  --tracking-f2: -0.02em;
+  --tracking-f3: -0.018em;
+  --tracking-f4: -0.014em;
+  --tracking-f5: -0.009em;
+  --tracking-f6: -0.0025em;
 
   --font-size-headline: 6rem;
   --font-size-subheadline: 5rem;
 
-  --font-size-title: calc((68 / var(--font-size-base)) * 1rem);
-  --font-size-1: calc((32 / var(--font-size-base)) * 1rem);
-  --font-size-2: calc((24 / var(--font-size-base)) * 1rem);
-  --font-size-3: calc((18 / var(--font-size-base)) * 1rem);
-  --font-size-4: 1rem;
-  --font-size-5: calc((15 / var(--font-size-base)) * 1rem);
-  --font-size-6: calc((13 / var(--font-size-base)) * 1rem);
-
-  --letter-spacing-tight: -0.002em;
-  --letter-spacing-tighter: -0.025em;
-  --letter-spacing-1: 0.1em;
-  --letter-spacing-2: 0.25em;
-
-  --line-height-solid: 1;
-  --line-height-title: calc(var(--lineheight) * 3);
-  --line-height-copy: var(--leading-factor);
+  --f0: calc((68 / var(--font-size-base)) * 1rem);
+  --f1: calc((32 / var(--font-size-base)) * 1rem);
+  --f2: calc((28 / var(--font-size-base)) * 1rem);
+  --f3: calc((22 / var(--font-size-base)) * 1rem);
+  --f4: calc((18 / var(--font-size-base)) * 1rem);
+  --f5: calc((15 / var(--font-size-base)) * 1rem);
+  --f6: calc((13 / var(--font-size-base)) * 1rem);
 
   /* See https://developers.google.com/web/updates/2016/02/font-display */
   --font-strategy: fallback;
@@ -116,7 +111,7 @@
   --measure-narrow: 45ch;
   --measure-wide: 65ch;
 
-  --spacing-base: calc(var(--leading-factor) * 1rem);
+  --spacing-base: var(--lineheight);
 
   --spacing-none: 0;
   --spacing-extra-small: calc(var(--spacing-base) / 4);

@@ -12,26 +12,20 @@ POSTS LIST
   }
 
   time {
-    font-size: var(--font-size-4);
+    font-size: var(--f4);
     font-variant-numeric: tabular-nums;
-    letter-spacing: -0.05em;
+    letter-spacing: var(--tracking-f0);
   }
 
   &__Link {
     display: block;
     padding: calc(var(--lineheight) / 3) 0;
-    font-size: var(--font-size-4);
+    font-size: var(--f4);
     flex: 1;
 
     &:visited {
       color: var(--link-color-visited);
     }
-  }
-
-  &__Excerpt {
-    font-size: var(--font-size-4);
-    margin-bottom: 0;
-    max-width: var(--measure);
   }
 
   @media screen and (max-width: 480px) {

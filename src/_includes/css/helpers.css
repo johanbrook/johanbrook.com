@@ -63,7 +63,7 @@ ARTICLE TEXTS
 
   .ingress strong,
   p:first-child strong {
-    color: var(--text-color);
+    color: var(--color-text);
     font-weight: bold;
     font-size: 1.1em;
   }
@@ -94,38 +94,6 @@ figure.image--full {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-/*
-TYPESCALE
-----------------------------------------------------------------*/
-
-.f0 {
-  font-size: var(--font-size-title);
-}
-
-.f1 {
-  font-size: var(--font-size-1);
-}
-
-.f2 {
-  font-size: var(--font-size-2);
-}
-
-.f3 {
-  font-size: var(--font-size-3);
-}
-
-.f4 {
-  font-size: var(--font-size-4);
-}
-
-.f5 {
-  font-size: var(--font-size-5);
-}
-
-.f6 {
-  font-size: var(--font-size-6);
 }
 
 /*
@@ -743,7 +711,7 @@ COLOURS
 ----------------------------------------------------------------*/
 
 .text-color {
-  color: var(--text-color);
+  color: var(--color-text);
 }
 
 .comp-black {
@@ -779,11 +747,7 @@ COLOURS
 }
 
 .muted {
-  color: var(--grey);
-}
-
-.faded {
-  color: var(--grey-light);
+  color: var(--color-text-detail);
 }
 
 /*
@@ -800,10 +764,6 @@ TYPOGRAPHY
 
 .font-sans {
   font-family: var(--sans);
-}
-
-.font-serif {
-  font-family: var(--serif);
 }
 
 .font-mono {
