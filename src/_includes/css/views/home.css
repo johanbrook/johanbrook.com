@@ -18,7 +18,7 @@
 
 .tagline {
   font-weight: 400;
-  font-size: var(--font-size-2);
+  font-size: var(--f2);
 
   strong {
     font-weight: 600;

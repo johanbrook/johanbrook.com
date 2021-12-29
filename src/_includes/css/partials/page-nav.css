@@ -1,4 +1,4 @@
-.page-nav {
+.PageNav {
   text-align: center;
 
   a {
@@ -14,7 +14,7 @@
   }
 
   .separator {
-    color: var(--text-color);
+    color: var(--color-text);
     font-weight: 500;
     letter-spacing: -1px;
     font-size: 1.2em;
