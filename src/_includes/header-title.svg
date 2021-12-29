@@ -17,8 +17,15 @@
       }
 
        .svg-text {
-         font-family: Inter, sans-serif;
+         font-family: Inter, -apple-system, BlinkMacSystemFont, Helvetica,
+      sans-serif;
        }
+
+       @supports (font-variation-settings: normal) {
+           .svg-text {
+                font-family: 'Inter var', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
+            }
+        }
 
        .pre-headline {
          opacity: .72;
@@ -79,7 +86,7 @@
             <tspan x="149.134126" y="93">Welcome to</tspan>
         </text>
         <text class="svg-text headline">
-            <tspan x="111.498155" y="162">Johan′s</tspan>
+            <tspan x="111.498155" y="162">Johan’s</tspan>
         </text>
         <text class="svg-text sub-headline">
             <tspan x="142.090768" y="199">website &amp; blog</tspan>
