@@ -323,39 +323,3 @@ hr {
     line-height: 1;
   }
 }
-
-/*
-BUTTONS
-----------------------------------------------------------------*/
-
-.btn {
-  --btn-background: 0, 116, 255;
-
-  -webkit-appearance: none;
-  display: inline-block;
-
-  font: 500 1em / var(--lineheight) var(--sans);
-  color: var(--link-color);
-  text-align: center;
-  text-decoration: none;
-  border-radius: 4px;
-  padding: 0.4em 1em;
-  transition: background-color 0.2s ease;
-  background-color: rgba(var(--btn-background), 0.05);
-
-  &:hover {
-    text-decoration: none;
-    color: var(--link-color-hover);
-    background-color: rgba(var(--btn-background), 0.08);
-  }
-
-  &:active {
-    color: var(--link-color-active);
-    background-color: rgba(var(--btn-background), 0.1);
-  }
-
-  &:focus {
-    outline: 0;
-    box-shadow: var(--link-color) 0 0 0 3px;
-  }
-}
