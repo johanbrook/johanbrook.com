@@ -3,10 +3,6 @@ title: Licenses & Credits
 layout: layouts/page.njk
 date: 2021-12-27
 templateEngine: njk,md
-menu:
-  visible: true
-  order: 6
-  title: Credits
 ---
 
 - This site is generated with the [Lume](https://github.com/lumeland/lume) static site generator initially built by [Oscar Otero](https://github.com/oscarotero).
