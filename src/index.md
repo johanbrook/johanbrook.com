@@ -8,4 +8,4 @@ tagline: I write code and build product. <strong>Happy to be here.</strong>
 
 I’m coding & designering and I like working with product, user experience, and interface design and other things too. Like everybody else here.
 
-For me in eight minutes (or more), please see the [About page](/about). You can also check out what [I’m doing now](/now) and what’s [happened to me so far](/now).
+For me in eight minutes (or more), please see the [About page](/about). You can also check out what [I’m doing now](/now), what’s [on my mind](/mind), and what I'm currently [reading](/reading).
