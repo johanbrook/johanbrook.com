@@ -2,27 +2,12 @@
 --------------------------------------------- */
 
 .changelog {
-  .page__text {
-    h2 {
-      position: relative;
-
-      @media screen and (min-width: 481px) {
-        &::before {
-          content: '##';
-          position: absolute;
-          color: var(--comp-cerise);
-          left: -2em;
-          font-size: 0.8em;
-          top: 0.3ex;
-        }
-      }
-    }
-
-    > ul {
+  & .page__text {
+    & > ul {
       padding-left: 0;
-      margin-bottom: var(--lineheight) * 2;
+      margin-bottom: var(--lineheight);
 
-      ul {
+      & ul {
         margin-bottom: 0;
       }
     }
