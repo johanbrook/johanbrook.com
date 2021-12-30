@@ -64,7 +64,7 @@
       @media screen and (prefers-color-scheme: dark) {
         .header-title {
           --color: #f5df1e;
-          --solid: #20201e;
+          --solid: var(--color-bg-secondary);
         }
 
         .svg-text {
