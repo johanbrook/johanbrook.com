@@ -16,7 +16,7 @@ layout: layouts/main.njk
   <ol class="PostsList">
     {% for post in results %}
       <li class="PostItem">
-        <a class="PostItem__Link" href="{{ post.data.url }}" title="About {{ post | readingTime }} reading time">{{ post.data.title }} -> {% if post.data.draft %}<span class="badge">Draft</span>{% endif %}</a>
+        <a class="PostItem__Link" href="{{ post.data.url }}" title="About {{ post | readingTime }} reading time">{{ post.data.title }} {% if post.data.draft %}<span class="badge">Draft</span>{% endif %}</a>
 
         <time datetime="{{ post.data.date | date("ATOM") }}" pubdate>{{ post.data.date | date }}</time>
       </li>
