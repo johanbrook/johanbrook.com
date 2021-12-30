@@ -40,6 +40,9 @@ site.copy('public', '.')
         return readingTime(pageOrContent);
     })
     .filter('postAssetUrl', (filename) => `/assets/posts/${filename}`)
+    .data('slug', function (this: { ctx: { url: string } }) {
+        return this.ctx.url.replaceAll('/', '');
+    })
     // Don't the entire site rebuild when --watching or --serving if .css files change
     .scopedUpdates((path) => path.endsWith('.css'));
 
