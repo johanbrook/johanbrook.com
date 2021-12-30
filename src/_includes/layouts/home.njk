@@ -16,24 +16,13 @@ numberPosts: 6
     {{ content | safe }}
   </section>
 
-  <section>
-    <header class="flex items-center pv1">
-      <h1 class="mb0">My latest writings</h1>
-      <a href="/writings" class="btn ml2 f4">View all</a>
-    </header>
-
-    <p>I write things in varying lengths and quality. Some writings are full posts, other are just half-baked thoughts.</p>
-
-    <ol class="PostsList PostsList--Tight">
-      {% for post in search.pages("type=post", "date=desc", numberPosts) %}
-        <li class="PostItem" title="About {{ post | readingTime }} reading time">
-          <a class="PostItem__Link" href="{{ post.data.url }}">{{ post.data.title }} -></a>
-        </li>
-      {% endfor %}
-    </ol>
-
-    <p class="f4">
-      <a title="View all" class="muted" href="/writings">…and {{ search.pages("type=post").length - numberPosts }} more</a>
-    </p>
-  </section>
+  <nav role="navigation" class="HorizNav mb3 mt3">
+      <ul class="mb3">
+        {%- for entry in search.pages("menu.visible=true", "menu.order") %}
+          <li {% if entry.data.url == url %} aria-current="page"{% endif %}>
+            <a href="{{ entry.data.url }}">{{ entry.data.menu.title or entry.data.title }}</a>
+          </li>
+        {%- endfor %}
+      </ul>
+    </nav>
 </main>
