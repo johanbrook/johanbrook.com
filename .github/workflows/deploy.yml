@@ -21,7 +21,7 @@ jobs:
           CI: true
           NODE_ENV: production
           ENV: production
-        run: deno run -A https://deno.land/x/lume@v1.3.1/ci.ts --location=https://johanbrook.com
+        run: deno run -A https://deno.land/x/lume@v1.3.1/ci.ts --location=https://johanbrook.com --quiet
 
   deploy:
     runs-on: ubuntu-latest

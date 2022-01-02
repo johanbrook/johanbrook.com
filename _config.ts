@@ -3,16 +3,19 @@ import postcss from 'lume/plugins/postcss.ts';
 import codeHighlight from 'lume/plugins/code_highlight.ts';
 import date from 'lume/plugins/date.ts';
 import inline from 'lume/plugins/inline.ts';
-import postcssNested from 'https://esm.sh/postcss-nested@5';
-import postcssColor from 'https://esm.sh/postcss-color-function@4';
-import postcssHexRgba from 'https://esm.sh/postcss-hexrgba@2';
+import { minify } from './deps.ts';
 import { readingTime } from './src/_includes/plugins/reading-time.ts';
 
-const dest = 'build2';
+const DEST = 'build2';
+const MINIFY = Deno.env.get('ENV') == 'production';
+
+if (Deno.env.get('CI')) {
+    console.log('Start site build…');
+}
 
 const site = lume({
     src: 'src',
-    dest,
+    dest: DEST,
     metrics: true,
 });
 
@@ -23,8 +26,6 @@ site.copy('public', '.')
     .use(
         postcss({
             sourceMap: true,
-            keepDefaultPlugins: true,
-            plugins: [postcssNested(), postcssColor(), postcssHexRgba()],
         })
     )
     .use(date())
@@ -45,5 +46,18 @@ site.copy('public', '.')
     })
     // Don't the entire site rebuild when --watching or --serving if .css files change
     .scopedUpdates((path) => path.endsWith('.css'));
+
+if (MINIFY) {
+    site.addEventListener('afterBuild', () => {
+        console.log('Minifying CSS…');
+        minifyCss();
+    });
+}
+
+const minifyCss = () => {
+    const css = Deno.readTextFileSync(`./${DEST}/css/johan.css`);
+    const minified = minify('css', css);
+    Deno.writeTextFileSync(`./${DEST}/css/johan.css`, minified);
+};
 
 export default site;
