@@ -1,6 +1,6 @@
 # Johan's site
 
-![Build & Deploy johanbrook.com](https://github.com/johanbrook/johanbrook.com/workflows/Build%20&%20Deploy%20johanbrook.com/badge.svg)
+![Build & Deploy johanbrook.com](https://github.com/johanbrook/johanbrook.com/actions/workflows/deploy.yml/badge.svg)
 
 ## Install
 
@@ -13,7 +13,7 @@ deno run -A https://deno.land/x/lume/install.ts
 ## Build
 
 ```bash
-./script/build
+lume
 ```
 
 ## Server
