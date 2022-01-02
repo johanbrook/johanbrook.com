@@ -1,95 +1,3 @@
-/*
-ARTICLE TEXTS
-----------------------------------------------------------------*/
-
-.article-text {
-  img,
-  iframe,
-  figure,
-  svg {
-    --side-margin: calc(var(--lineheight) * 2);
-    margin: var(--side-margin) auto;
-    display: block;
-
-    @media screen and (max-width: 480px) {
-      --side-margin: var(--lineheight);
-    }
-  }
-
-  @media screen and (prefers-color-scheme: dark) {
-    img {
-      opacity: 0.9;
-      box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
-    }
-  }
-
-  ul,
-  ol {
-    padding-left: 1em;
-    margin-left: 1rem;
-
-    li > ul,
-    li > ol {
-      padding-left: 1.5rem;
-      margin-bottom: 0;
-    }
-  }
-
-  figcaption {
-    padding: 1rem 0;
-    text-align: center;
-    font-family: var(--sans);
-    font-size: 0.9em;
-  }
-
-  h1,
-  h2 {
-    margin-bottom: var(--lineheight);
-  }
-
-  h1,
-  h2,
-  h3 {
-    margin-top: calc(var(--lineheight) * 2);
-  }
-
-  pre {
-    margin-bottom: var(--spacing-base);
-
-    @media screen and (min-width: 800px) {
-      margin-right: calc(var(--spacing-base) * -4);
-    }
-  }
-
-  .ingress strong,
-  p:first-child strong {
-    color: var(--color-text);
-    font-weight: bold;
-    font-size: 1.1em;
-  }
-
-  a {
-    &:visited {
-      color: var(--link-color-visited);
-    }
-  }
-}
-
-figure.image--full {
-  margin: calc(var(--lineheight) * 2) -14vw;
-
-  img {
-    display: block;
-    margin: 0 auto;
-  }
-
-  @media screen and (max-width: 960px) {
-    /* Edge-to-edge pixelfucking. */
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
 .list-reset {
   list-style: none;
   margin: 0;
@@ -710,40 +618,8 @@ BORDERS
 COLOURS
 ----------------------------------------------------------------*/
 
-.text-color {
-  color: var(--color-text);
-}
-
-.comp-black {
-  color: #000;
-}
-
-.comp-red {
-  color: var(--comp-red);
-}
-
-.comp-blue {
-  color: var(--comp-blue);
-}
-
 .comp-neon {
   color: var(--comp-neon);
-}
-
-.comp-teal-l {
-  color: var(--comp-teal-light);
-}
-
-.comp-orange {
-  color: var(--comp-orange);
-}
-
-.comp-cerise {
-  color: var(--comp-cerise);
-}
-
-.comp-green {
-  color: var(--comp-green);
 }
 
 .muted {
@@ -762,10 +638,6 @@ OPACITY
 TYPOGRAPHY
 ----------------------------------------------------------------*/
 
-.font-sans {
-  font-family: var(--sans);
-}
-
 .font-mono {
   font-family: var(--mono);
 }
@@ -783,25 +655,6 @@ TYPOGRAPHY
 /* Measure is limited to ~45 characters */
 .measure-narrow {
   max-width: var(--measure-narrow);
-}
-
-/* Book paragraph style - paragraphs are indented with no vertical spacing. */
-.indent {
-  text-indent: 1em;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.small-caps {
-  font-variant: small-caps;
-}
-
-/* Combine this class with a width to truncate text (or just leave as is to truncate at width of containing element. */
-
-.truncate {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* Negative left margin for titles. Nice for titles with initial 'W' letter. */
