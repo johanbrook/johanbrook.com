@@ -1,20 +1,8 @@
 <footer role="contentinfo">
-  {% if home %}
-    <nav role="navigation" class="HorizNav mb3">
-      <ul class="mb3">
-        {%- for entry in search.pages("menu.visible=true", "menu.order") %}
-          <li {% if entry.data.url == url %} aria-current="page"{% endif %}>
-            <a href="{{ entry.data.url }}">{{ entry.data.menu.title or entry.data.title }}</a>
-          </li>
-        {%- endfor %}
-      </ul>
-    </nav>
-  {% endif %}
-
   <ul class="flex gap justify-center f6 list-reset mb2">
     <li><a href="/feed.xml" title="Atom">Feed</a></li>
-    <li><a href="/meta.json">Meta</a></li>
     <li><a href="/credits">Credits</a></li>
+    <li><a href="/meta.json">meta.json</a></li>
   </ul>
 
   <p class="muted f6 tc mb0">
