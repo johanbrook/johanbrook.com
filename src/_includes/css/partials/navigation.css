@@ -128,7 +128,7 @@ HORIZONTAL NAV
     gap: 1.5em;
   }
 
-  @media all and (max-width: 1050px) {
+  @media all and (max-width: 1150px) {
     & ul:not(.HorizNav__Sub) {
       display: grid;
       grid: auto-flow / repeat(2, 1fr);
