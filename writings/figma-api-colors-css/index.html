@@ -1,24 +1,21 @@
-
-
 <!DOCTYPE html>
-<html lang="en" class=" figma-api-colors-css">
-
-  <head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Using Figma&#39;s API to sync colours with your CSS – Johan Brook</title>
+<html lang="en" class=" writingsfigma-api-colors-css"><head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Using Figma's API to sync colours with your CSS –&nbsp;Johan Brook</title>
 
     <meta charset="utf-8">
 
     
-    <meta name="description" content="How I used Figma&#39;s web API to sync colours with a CSS codebase, to close the gap between design resource and the implementation.">
+    <meta name="description" content="How I used Figma's web API to sync colours with a CSS codebase, to close the gap between design resource and the implementation.">
+    
     
     <meta name="keywords" content="figma,api,tailwind,css,colors">
+    
     <meta name="author" content="Johan Brook">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Styles-->
-    <link rel="stylesheet" href="/assets/css/johan.css">
-  
+    <link rel="stylesheet" href="/css/johan.css">
 
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/feed.xml">
@@ -27,7 +24,7 @@
     <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/figma-api-colors-css/">
     <link rel="author" href="https://johanbrook.com">
 
-    <meta property="og:title" content="Using Figma&#39;s API to sync colours with your CSS">
+    <meta property="og:title" content="Using Figma's API to sync colours with your CSS">
     <meta property="og:url" content="https://johanbrook.com/writings/figma-api-colors-css/">
     <meta property="og:site_name" itemprop="name" content="Johan Brook">
     <meta property="og:type" content="blog">
@@ -35,166 +32,217 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="1200">
     
-    <meta property="og:description" content="How I used Figma&#39;s web API to sync colours with a CSS codebase, to close the gap between design resource and the implementation.">
+    <meta property="og:description" content="How I used Figma's web API to sync colours with a CSS codebase, to close the gap between design resource and the implementation.">
     
 
+    
+    <meta property="article:tag" content="figma,api,tailwind,css,colors">
+    <meta property="article:published_time" content="2019-03-30T00:00:00Z">
     
   </head>
 
   <body>
 
-    
-      <nav role="navigation" class="SideNav">
+    <div class="Content">
+      
+        <nav role="navigation" class="SideNav">
   <h1 class="f3">
     <a href="/">Johan Brook</a>
   </h1>
   <ul>
-    <li aria-current="page">
-      <a href="/writings">Writings</a>
-    </li>
-    <li>
-      <a href="/now">Now</a>
-    </li>
-    <li>
-      <a href="/mind">On my mind</a>
-    </li>
-    <li>
-      <a href="/reading">Reading</a>
-    </li>
-    <li>
-      <a href="/about">About me</a>
-    </li>
-    <li>
-      <a href="/contact" title="Contact and stuff">On the web</a>
-    </li>
-    <li>
-      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
-    </li>
-    <li>
-      <a href="/credits" title="Licenses and stuff.">Credits</a>
-    </li>
-    <li>
-      <a href="/feed.xml">Feed</a>
-    </li>
+      <li>
+        <a href="/writings/">Writings</a>
+      </li>
+      <li>
+        <a href="/now/">Now</a>
+      </li>
+      <li>
+        <a href="/mind/">On my mind</a>
+      </li>
+      <li>
+        <a href="/reading/">Reading</a>
+      </li>
+      <li>
+        <a href="/about/">About me</a>
+      </li>
+      <li>
+        <a href="/contact/">Contact</a>
+      </li>
+      <li>
+        <a href="/changelog/">Changelog</a>
+      </li>
   </ul>
 </nav>
 
-    
+      
+
+      <main role="main">
+  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
 
     
+    <header> 
+      <h1 itemprop="name" class="title">Using Figma's API to sync colours with your CSS</h1>
 
-<main role="main">
-  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-    
-      <header> 
-        <h1 itemprop="name" class="title ">Using Figma&#39;s API to sync colours with your CSS</h1>
-
-        <p class="mb0 fw5 mt3">
+      <p class="mb0 fw5 mt3">
           
-          <time datetime="2019-03-30T12:39:00.000Z" itemprop="datePublished" title="3 years ago" pubdate="">March 30, 2019 – 12:39</time>
-        </p>
+          <time datetime="2019-03-30T00:00:00Z" itemprop="datePublished" pubdate="">March 30th, 2019</time>
+      </p>
 
-        <p class="muted mb4">
+      <p class="muted mb4">
           About 4 min reading time
-        </p>
-      </header>
-    
+      </p>
+    </header>
 
     <div class="article-text post__body measure" itemprop="articleBody">
-      <p><strong>Design systems</strong> have become popular recently. Even if you don’t need a full blown one, it might be nice to collect design resources in a single, canonical location. In this post, I’ll describe how I worked with Figma and their API to sync colours with a CSS codebase.</p>
+      <p><strong>Design systems</strong> have become popular recently. Even if you don't need a full blown one, it might be nice to collect design resources in a single, canonical location. In this post, I'll describe how I worked with Figma and their API to sync colours with a CSS codebase.</p>
 <h2>The problem</h2>
-<p>At Lookback, we had all visual design collected across Sketch ﬁles. Sketch is nice, but as our platform grew with more apps, interfaces, and ﬂows, it was clear that the workﬂow of<span class="push-double"></span> <span class="pull-double">“</span>a single designer owning all ﬁles” just didn’t hold up:</p>
+<p>At Lookback, we had all visual design collected across Sketch files. Sketch is nice, but as our platform grew with more apps, interfaces, and flows, it was clear that the workflow of "a single designer owning all files" just didn't hold up:</p>
 <ul>
-<li>It would be a constant stream of new Sketch ﬁles or PNG exports being shared in the Trello cards.</li>
-<li>For each small change, the designer had to go back to the Sketch ﬁle, do a minor change, export again, upload for review.</li>
-<li>There was emphasis on collaboration. Merging in feedback from another person’s work in Sketch was a pain.</li>
-<li>Managing colours and other styles <em>across</em> Sketch ﬁles was a pain.</li>
+<li>It would be a constant stream of new Sketch files or PNG exports being shared in the Trello cards.</li>
+<li>For each small change, the designer had to go back to the Sketch file, do a minor change, export again, upload for review.</li>
+<li>There was emphasis on collaboration. Merging in feedback from another person's work in Sketch was a pain.</li>
+<li>Managing colours and other styles <em>across</em> Sketch files was a pain.</li>
 </ul>
 <p><strong>Enter Figma.</strong></p>
 <p><a href="https://www.figma.com">Figma</a> is a design software capable of everything Sketch can do, but with a few important details:</p>
 <ul>
-<li>It’s web based. Accessible everywhere with an option to install locally as an macOS app.</li>
-<li>It’s completely cloud based. No local ﬁles to sync. No merging and branching. It’s saved as you go.</li>
+<li>It's web based. Accessible everywhere with an option to install locally as an macOS app.</li>
+<li>It's completely cloud based. No local files to sync. No merging and branching. It's saved as you go.</li>
 <li>It supports shared libraries of components and styles.</li>
 <li>It supports simple prototyping right out of the box.</li>
-<li>It’s <strong>collaborative</strong>. You can design in high or low ﬁdelity with coworkers in <em>real time</em> 😍</li>
+<li>It's <strong>collaborative</strong>. You can design in high or low fidelity with coworkers in <em>real time</em> 😍</li>
 </ul>
-<p>I can’t stress the last point enough. This has severely improved our design ﬂow. It’s more democratic and transparent, as anybody with a Figma account can pop into a design and poke around. Figma has completely eliminated the old ways of doing design ﬂows.</p>
+<p>I can't stress the last point enough. This has severely improved our design flow. It's more democratic and transparent, as anybody with a Figma account can pop into a design and poke around. Figma has completely eliminated the old ways of doing design flows.</p>
 <p><strong>A month in, I think Figma is a killer app for doing interface design at the moment.</strong></p>
 <h2>Back to the problem</h2>
-<p>I set out on trying out Figma in our organisation for a while. The ﬁrst task was to structure out colour system, which at the time was very loosely deﬁned and pretty ad-hoc.</p>
+<p>I set out on trying out Figma in our organisation for a while. The first task was to structure out colour system, which at the time was very loosely defined and pretty ad-hoc.</p>
 <p>Describing how I created the colour system is out of scope for this post. The end result should anyway be</p>
 <ul>
 <li>a grid of colours named after hue and brightness,</li>
-<li>the same colours collected in Figma’s colour library</li>
+<li>the same colours collected in Figma's colour library</li>
 </ul>
 <figure class="image--full">
   <img src="/assets/posts/color-system.png" alt="Color system">
 </figure>
 <p><em>How do I use these colours in my web frontend?</em></p>
-<p>The Old Way would be to manually copy the HEX codes over to (S)CSS variables and make sure to keep them up to date. Now, the colours might not change that frequently, so this might not be a huge pain. But when you’re in the exploratory phase, it’s very messy to go back and forth all the time.</p>
+<p>The Old Way would be to manually copy the HEX codes over to (S)CSS variables and make sure to keep them up to date. Now, the colours might not change that frequently, so this might not be a huge pain. But when you're in the exploratory phase, it's very messy to go back and forth all the time.</p>
 <p>I noticed Figma has an <a href="https://www.figma.com/developers">API</a> ✨Rejoice! The <a href="https://www.figma.com/developers/docs">docs</a> are lovely, and the only thing needed to do simple HTTP REST calls is an access token you generate for yourself.</p>
 <p>My goal was to:</p>
 <ul>
-<li>Sync the <strong>names</strong> and <strong>HEX colour codes</strong> from my Figma ﬁle down into a JSON or JS ﬁle.</li>
-<li>This ﬁle was to be used in the build process for my CSS, so variables could be created.</li>
+<li>Sync the <strong>names</strong> and <strong>HEX colour codes</strong> from my Figma file down into a JSON or JS file.</li>
+<li>This file was to be used in the build process for my CSS, so variables could be created.</li>
 </ul>
-<p>After playing around, I ended up with a Node script which fetches the colour styles for a team and writes them to a <code>colors.js</code> ﬁle. It’s a super simple script which just calls their endpoints and pieces together all the styles into a big hash.</p>
+<p>After playing around, I ended up with a Node script which fetches the colour styles for a team and writes them to a <code>colors.js</code> file. It's a super simple script which just calls their endpoints and pieces together all the styles into a big hash.</p>
 <p class="tc">
-  <a class="btn" href="https://gist.github.com/brookback/cce828202ef40ddddf2d1aa731929c90">fetch-ﬁgma-colors.js</a>
+  <a class="btn" href="https://gist.github.com/brookback/cce828202ef40ddddf2d1aa731929c90">fetch-figma-colors.js</a>
 </p>
 <p>⚠️ <em>You have to tweak some variables in there!</em></p>
-<p>It was a bit ﬁddly to get the actual HEX codes of the styles, since Figma doesn’t include them in the call to the <code>/styles</code> API endpoint. Therefore, I had to cross reference the name of the styles with the colour samples in the document. I’ve sent this feedback to the Figma team.</p>
+<p>It was a bit fiddly to get the actual HEX codes of the styles, since Figma doesn't include them in the call to the <code>/styles</code> API endpoint. Therefore, I had to cross reference the name of the styles with the colour samples in the document. I've sent this feedback to the Figma team.</p>
 <p>Run it like this:</p>
-<pre class="language-bash"><code class="language-bash"><span class="highlight-line"><span class="token assign-left variable">FIGMA_PERSONAL_TOKEN</span><span class="token operator">=</span><span class="token operator">&lt;</span>your-token<span class="token operator">></span> node fetch-figma-colors.js</span></code></pre>
-<p>The resulting ﬁle, <code>colors.js</code>, will look like this:</p>
-<pre class="language-js"><code class="language-js"><span class="highlight-line"><span class="token comment">/* eslint-disable */</span></span><br><span class="highlight-line"><span class="token comment">/* Updated at Thu, 21 Mar 2019 21:06:58 GMT*/</span></span><br><span class="highlight-line">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token comment">/** Suitable as background color. */</span></span><br><span class="highlight-line">    <span class="token string">'blue-10'</span><span class="token operator">:</span> <span class="token string">'#f6fbfd'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token comment">/** Suitable as default border color. */</span></span><br><span class="highlight-line">    <span class="token string">'blue-20'</span><span class="token operator">:</span> <span class="token string">'#d7f3ff'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token string">'blue-30'</span><span class="token operator">:</span> <span class="token string">'#a4e3ff'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token string">'blue-40'</span><span class="token operator">:</span> <span class="token string">'#60ceff'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token string">'blue-50'</span><span class="token operator">:</span> <span class="token string">'#00a0e8'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token comment">/** Suitable as default button and link color. */</span></span><br><span class="highlight-line">    <span class="token string">'blue-60'</span><span class="token operator">:</span> <span class="token string">'#007db5'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token comment">/** Suitable as heading color. */</span></span><br><span class="highlight-line">    <span class="token string">'blue-70'</span><span class="token operator">:</span> <span class="token string">'#006693'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token comment">/** Suitable as body text color. */</span></span><br><span class="highlight-line">    <span class="token string">'blue-80'</span><span class="token operator">:</span> <span class="token string">'#004260'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token string">'blue-90'</span><span class="token operator">:</span> <span class="token string">'#002b3e'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token string">'blue-100'</span><span class="token operator">:</span> <span class="token string">'#041820'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token comment">// ...</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre>
+<pre><code class="language-bash hljs">FIGMA_PERSONAL_TOKEN=&lt;your-token&gt; node fetch-figma-colors.js
+</code></pre>
+<p>The resulting file, <code>colors.js</code>, will look like this:</p>
+<pre><code class="language-js hljs language-javascript"><span class="hljs-comment">/* eslint-disable */</span>
+<span class="hljs-comment">/* Updated at Thu, 21 Mar 2019 21:06:58 GMT*/</span>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+    <span class="hljs-comment">/** Suitable as background color. */</span>
+    <span class="hljs-string">'blue-10'</span>: <span class="hljs-string">'#f6fbfd'</span>,
+    <span class="hljs-comment">/** Suitable as default border color. */</span>
+    <span class="hljs-string">'blue-20'</span>: <span class="hljs-string">'#d7f3ff'</span>,
+    <span class="hljs-string">'blue-30'</span>: <span class="hljs-string">'#a4e3ff'</span>,
+    <span class="hljs-string">'blue-40'</span>: <span class="hljs-string">'#60ceff'</span>,
+    <span class="hljs-string">'blue-50'</span>: <span class="hljs-string">'#00a0e8'</span>,
+    <span class="hljs-comment">/** Suitable as default button and link color. */</span>
+    <span class="hljs-string">'blue-60'</span>: <span class="hljs-string">'#007db5'</span>,
+    <span class="hljs-comment">/** Suitable as heading color. */</span>
+    <span class="hljs-string">'blue-70'</span>: <span class="hljs-string">'#006693'</span>,
+    <span class="hljs-comment">/** Suitable as body text color. */</span>
+    <span class="hljs-string">'blue-80'</span>: <span class="hljs-string">'#004260'</span>,
+    <span class="hljs-string">'blue-90'</span>: <span class="hljs-string">'#002b3e'</span>,
+    <span class="hljs-string">'blue-100'</span>: <span class="hljs-string">'#041820'</span>,
+    <span class="hljs-comment">// ...</span>
+};
+</code></pre>
 <p>Neat! Even with custom comments I wrote for some styles in Figma! 😍</p>
 <figure>
   <img src="/assets/posts/figma-styles.png" style="width: 231px" alt="Figma styles">
 </figure>
-<p><em>Note:</em> You can of course make it be a JSON ﬁle instead if that’s your thing, but I wanted to keep the comments from Figma as JS comments, as JSON doesn’t support that.</p>
+<p><em>Note:</em> You can of course make it be a JSON file instead if that's your thing, but I wanted to keep the comments from Figma as JS comments, as JSON doesn't support that.</p>
 <h2>Using the styles in my CSS</h2>
 <p>This is were things differ for people. Some use Sass, others use LESS or PostCSS, or just <em>nothing at all</em>.</p>
-<p><strong>You have to ﬁgure out how to get this hash of colours into your styles somehow.</strong></p>
-<p>For me, I’m in the midst of moving over our CSS foundation from Sass to a PostCSS pipeline, using <a href="https://tailwindcss.com">Tailwind</a>.</p>
-<p>Tailwind is sort of like a <em>generator for design systems</em>. It’s similar to the <a href="https://tachyons.io">Tachyons toolkit</a>, but goes even further, with more things automated.</p>
+<p><strong>You have to figure out how to get this hash of colours into your styles somehow.</strong></p>
+<p>For me, I'm in the midst of moving over our CSS foundation from Sass to a PostCSS pipeline, using <a href="https://tailwindcss.com">Tailwind</a>.</p>
+<p>Tailwind is sort of like a <em>generator for design systems</em>. It's similar to the <a href="https://tachyons.io">Tachyons toolkit</a>, but goes even further, with more things automated.</p>
 <p>Both Tailwind and Tachyons are proponents of something called <em>functional CSS</em>. This is out of scope of this post, but I recommend reading these articles:</p>
 <ul>
 <li><a href="http://mrmrs.cc/writing/2016/03/24/scalable-css/">CSS and scalability</a></li>
 <li><a href="https://jon.gold/2015/07/functional-css/">Functional CSS</a></li>
 </ul>
-<p>Tailwind is nice since I can conﬁgure widths, margins, colours&thinsp;&mdash;&thinsp;everything&thinsp;&mdash;&thinsp;in a Javascript conﬁg ﬁle, and then generate a CSS foundation from that.</p>
+<p>Tailwind is nice since I can configure widths, margins, colours – everything – in a Javascript config file, and then generate a CSS foundation from that.</p>
 <p>See more in the <a href="https://tailwindcss.com/docs/configuration">documentation</a>, but in a nutshell it looks like this:</p>
-<pre class="language-js"><code class="language-js"><span class="highlight-line"><span class="token comment">// tailwind.config.js</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  theme<span class="token operator">:</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    colors<span class="token operator">:</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">      white<span class="token operator">:</span> <span class="token string">'#fff'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">      <span class="token comment">// ...</span></span><br><span class="highlight-line">    <span class="token punctuation">}</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre>
+<pre><code class="language-js hljs language-javascript"><span class="hljs-comment">// tailwind.config.js</span>
+
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">theme</span>: {
+    <span class="hljs-attr">colors</span>: {
+      <span class="hljs-attr">white</span>: <span class="hljs-string">'#fff'</span>,
+      <span class="hljs-comment">// ...</span>
+    }
+  }
+};
+</code></pre>
 <p>Tailwind uses this colour scale to create border, text, and background colours as class names. I can now use it like this in my HTML <em>or</em> CSS code:</p>
-<pre class="language-html"><code class="language-html"><span class="highlight-line"><span class="token comment">&lt;!-- HTML --></span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bg-white<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Hello!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></span><br><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span></code></pre>
+<pre><code class="language-html hljs language-xml"><span class="hljs-comment">&lt;!-- HTML --&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-white"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
 <p>or</p>
-<pre class="language-css"><code class="language-css"><span class="highlight-line"><span class="token comment">/* CSS */</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token selector">div</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token atrule"><span class="token rule">@apply</span> bg-white<span class="token punctuation">;</span></span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token comment">/* or: */</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token selector">div</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">theme</span><span class="token punctuation">(</span><span class="token string">'colors.white'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
-<p>The ﬁnal thing to do is thus to import our colours into the conﬁg, et voíla:</p>
-<pre class="language-js"><code class="language-js"><span class="highlight-line"><span class="token comment">// tailwind.config.js</span></span><br><span class="highlight-line"><span class="token keyword">const</span> colors <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./colors'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  theme<span class="token operator">:</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    colors<span class="token punctuation">,</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre>
-<pre class="language-html"><code class="language-html"><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bg-blue-10<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></span><br><span class="highlight-line">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-orange-60<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Orange 60<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span></span><br><span class="highlight-line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></span></code></pre>
+<pre><code class="language-css hljs"><span class="hljs-comment">/* CSS */</span>
+
+<span class="hljs-selector-tag">div</span> {
+  <span class="hljs-keyword">@apply</span> bg-white;
+}
+
+<span class="hljs-comment">/* or: */</span>
+
+<span class="hljs-selector-tag">div</span> {
+  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">theme</span>(<span class="hljs-string">'colors.white'</span>);
+}
+</code></pre>
+<p>The final thing to do is thus to import our colours into the config, et voíla:</p>
+<pre><code class="language-js hljs language-javascript"><span class="hljs-comment">// tailwind.config.js</span>
+<span class="hljs-keyword">const</span> colors = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./colors'</span>);
+
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
+  <span class="hljs-attr">theme</span>: {
+    colors,
+  }
+};
+</code></pre>
+<pre><code class="language-html hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-blue-10"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-orange-60"</span>&gt;</span>Orange 60<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
 <p>Done! 🌈</p>
 <h2>Recap</h2>
 <ol>
 <li>We create colour styles in Figma, according to the art on how to create colour systems.</li>
-<li>We update our CSS codebase with the colour styles’ names and HEX codes.</li>
-<li>Those are imported into our Tailwind conﬁg and the CSS is built based on the colours.</li>
-<li>We have the colours available as conﬁg variables in our CSS code or as classes in our HTML ✨</li>
+<li>We update our CSS codebase with the colour styles' names and HEX codes.</li>
+<li>Those are imported into our Tailwind config and the CSS is built based on the colours.</li>
+<li>We have the colours available as config variables in our CSS code or as classes in our HTML ✨</li>
 </ol>
-<p>Anytime you’d like to adjust the colours in your system, be sure to run the script in the CSS codebase and distribute a new version of the generated CSS ﬁle.</p>
+<p>Anytime you'd like to adjust the colours in your system, be sure to run the script in the CSS codebase and distribute a new version of the generated CSS file.</p>
 <p>Future work could include specifying whole component styles in Figma and parsing that into corresponding CSS rules ✌️</p>
 
     </div>
 
     <footer>
       
-        <p class="f5 comp-grey mt5 pb3 border border-b">
+        <p class="f5 comp-grey mt5">
           <b class="mr1">Keywords</b> <span class="Post-Keyword">figma</span><span class="Post-Keyword">api</span><span class="Post-Keyword">tailwind</span><span class="Post-Keyword">css</span><span class="Post-Keyword">colors</span>
         </p>
-      
-
       
 
       <p class="mt3">
@@ -204,54 +252,27 @@
   </article>
 </main>
 
+    </div>
 
-    <script type="text/javascript">
-      function init() {
-        addClasses();
+    <footer role="contentinfo">
+  <ul class="flex gap justify-center f6 list-reset mb2">
+    <li><a href="/feed.xml" title="Atom">Feed</a></li>
+    <li><a href="/credits">Credits</a></li>
+    <li><a href="/meta.json">meta.json</a></li>
+  </ul>
 
-        function first(array, n, guard) {
-          if (array == null) return void 0;
-          if (n == null || guard) return array[0];
+  <p class="muted f6 tc mb0">
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/f7c906d8983a43dba7e555240ce60925fe914c41">f7c906d</a> — built at <time>2022-01-02T23:14:13.833Z</time>
+  </p>
+</footer>
 
-          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
-        };
 
-        function transform(text) {
-          const DELIMITER = /\.|,/;
-          const sentences = text.split('.');
-          const index = text.search(DELIMITER);
-          const MAX_WORDS = 6;
-
-          function wrap(w, t) {
-            return `<strong>${w}</strong> ${t}`;
-          }
-
-          if (index > -1 && index <= 50) {
-            return wrap(text.split(DELIMITER)[0], text.substring(index));
-          }
-
-          const words = text.split(' ');
-          const first = words.splice(0, MAX_WORDS);
-
-          return wrap(first.join(' '), words.join(' '));
-        };
-
-        const paragraphs = document.querySelectorAll('.posts article .post__body p');
-
-        [].slice.call(paragraphs).forEach(function (p) {
-          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
-            p.innerHTML = transform(p.innerText);
-          }
-        });
-      };
-
-      function addClasses() {
-        const p = document.querySelectorAll('.post article .post__body p');
-        p.length > 0 && p[0].classList.add('ingress');
-      };
-
-      document.addEventListener('DOMContentLoaded', init, false);
-    </script>
+    <script>document.addEventListener('keydown', (evt) => {
+    if (evt.code == 'KeyG') {
+        document.body.classList.toggle('grid');
+    }
+});
+</script>
 
     <script>
   // Only load on production environment.
@@ -264,8 +285,9 @@
   if (localStorage.getItem('skipgc') === 't')
     window.goatcounter = {no_onload: true};
 </script>
-<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
-  </body>
+  
 
-</html>
+
+</body></html>

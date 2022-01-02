@@ -1,24 +1,21 @@
-
-
 <!DOCTYPE html>
-<html lang="en" class=" conditionally-composable-functions">
-
-  <head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Conditionally Composable Functions – Johan Brook</title>
+<html lang="en" class=" writingsconditionally-composable-functions"><head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Conditionally Composable Functions –&nbsp;Johan Brook</title>
 
     <meta charset="utf-8">
 
     
-    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    <meta name="description" content="I'm a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
     
     <meta name="keywords" content="code,functional programming,javascript">
+    
     <meta name="author" content="Johan Brook">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Styles-->
-    <link rel="stylesheet" href="/assets/css/johan.css">
-  
+    <link rel="stylesheet" href="/css/johan.css">
 
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/feed.xml">
@@ -37,110 +34,171 @@
     
 
     
+    <meta property="article:tag" content="code,functional programming,javascript">
+    <meta property="article:published_time" content="2016-05-21T00:00:00Z">
+    
   </head>
 
   <body>
 
-    
-      <nav role="navigation" class="SideNav">
+    <div class="Content">
+      
+        <nav role="navigation" class="SideNav">
   <h1 class="f3">
     <a href="/">Johan Brook</a>
   </h1>
   <ul>
-    <li aria-current="page">
-      <a href="/writings">Writings</a>
-    </li>
-    <li>
-      <a href="/now">Now</a>
-    </li>
-    <li>
-      <a href="/mind">On my mind</a>
-    </li>
-    <li>
-      <a href="/reading">Reading</a>
-    </li>
-    <li>
-      <a href="/about">About me</a>
-    </li>
-    <li>
-      <a href="/contact" title="Contact and stuff">On the web</a>
-    </li>
-    <li>
-      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
-    </li>
-    <li>
-      <a href="/credits" title="Licenses and stuff.">Credits</a>
-    </li>
-    <li>
-      <a href="/feed.xml">Feed</a>
-    </li>
+      <li>
+        <a href="/writings/">Writings</a>
+      </li>
+      <li>
+        <a href="/now/">Now</a>
+      </li>
+      <li>
+        <a href="/mind/">On my mind</a>
+      </li>
+      <li>
+        <a href="/reading/">Reading</a>
+      </li>
+      <li>
+        <a href="/about/">About me</a>
+      </li>
+      <li>
+        <a href="/contact/">Contact</a>
+      </li>
+      <li>
+        <a href="/changelog/">Changelog</a>
+      </li>
   </ul>
 </nav>
 
-    
+      
+
+      <main role="main">
+  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
 
     
+    <header> 
+      <h1 itemprop="name" class="title">Conditionally Composable Functions</h1>
 
-<main role="main">
-  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-    
-      <header> 
-        <h1 itemprop="name" class="title ">Conditionally Composable Functions</h1>
-
-        <p class="mb0 fw5 mt3">
+      <p class="mb0 fw5 mt3">
           
-          <time datetime="2016-05-21T11:05:00.000Z" itemprop="datePublished" title="6 years ago" pubdate="">May 21, 2016 – 11:05</time>
-        </p>
+          <time datetime="2016-05-21T00:00:00Z" itemprop="datePublished" pubdate="">May 21st, 2016</time>
+      </p>
 
-        <p class="muted mb4">
+      <p class="muted mb4">
           About 3 min reading time
-        </p>
-      </header>
-    
+      </p>
+    </header>
 
     <div class="article-text post__body measure" itemprop="articleBody">
       <p>I write a lot of Javascript at <a href="http://lookback.io">work</a>, mostly in the Meteor framework. Our web app use a client side router, and we had this helper function for fetching a team from a slug in the route URL.</p>
 <p>It looked something like this:</p>
-<pre class="language-js"><code class="language-js"><span class="highlight-line"><span class="token keyword">function</span> <span class="token function">getTeam</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token keyword">let</span> team<span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  team <span class="token operator">=</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span>slug<span class="token operator">:</span> FlowRouter<span class="token punctuation">.</span><span class="token function">getParam</span><span class="token punctuation">(</span><span class="token string">'slug'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>team<span class="token punctuation">)</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token keyword">const</span> rec <span class="token operator">=</span> RouterHelpers<span class="token punctuation">.</span><span class="token function">getRecording</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">    team <span class="token operator">=</span> rec <span class="token operator">&amp;&amp;</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>rec<span class="token punctuation">.</span>teamId<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>team<span class="token punctuation">)</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token keyword">const</span> test <span class="token operator">=</span> RouterHelpers<span class="token punctuation">.</span><span class="token function">getTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">    team <span class="token operator">=</span> test <span class="token operator">&amp;&amp;</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span>teamId<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">return</span> team<span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<pre><code class="language-js hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getTeam</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">let</span> team;
+
+  team = <span class="hljs-title class_">Teams</span>.<span class="hljs-title function_">findOne</span>({<span class="hljs-attr">slug</span>: <span class="hljs-title class_">FlowRouter</span>.<span class="hljs-title function_">getParam</span>(<span class="hljs-string">'slug'</span>)});
+
+  <span class="hljs-keyword">if</span> (!team) {
+    <span class="hljs-keyword">const</span> rec = <span class="hljs-title class_">RouterHelpers</span>.<span class="hljs-title function_">getRecording</span>();
+    team = rec &amp;&amp; <span class="hljs-title class_">Teams</span>.<span class="hljs-title function_">findOne</span>(rec.<span class="hljs-property">teamId</span>);
+  }
+
+  <span class="hljs-keyword">if</span> (!team) {
+    <span class="hljs-keyword">const</span> test = <span class="hljs-title class_">RouterHelpers</span>.<span class="hljs-title function_">getTest</span>();
+    team = test &amp;&amp; <span class="hljs-title class_">Teams</span>.<span class="hljs-title function_">findOne</span>(test.<span class="hljs-property">teamId</span>);
+  }
+
+  <span class="hljs-keyword">return</span> team;
+}
+</code></pre>
 <p>So we have a concept of Teams, Recordings, and Tests here. And in these three contexts, this function should be able to return a team, if all the details are alright.</p>
 <p>You see it looks kind of messy: repetitive, dependent on order, not that maintainable if this one would grow, so I set out to refactor it with some functional thinking in mind.</p>
-<p>I identiﬁed the obvious need for null checks and the <em>ﬂow of order</em>. What if we could abstract out the guard parts? I.e. <code>if (!team) { doThis() }</code>. The ﬂow of order can use the help of <code>compose</code>&thinsp;&mdash;&thinsp;a common function for composing several functions into one (<a href="http://underscorejs.org/#compose">link to Underscore’s docs</a>). In plain code:</p>
-<pre class="language-js"><code class="language-js"><span class="highlight-line"><span class="token keyword">const</span> <span class="token function-variable function">f</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span> <span class="token operator">=></span> val <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token keyword">const</span> <span class="token function-variable function">g</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span> <span class="token operator">=></span> val <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">const</span> h <span class="token operator">=</span> <span class="token function">compose</span><span class="token punctuation">(</span>g<span class="token punctuation">,</span> f<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Same as g(f())</span></span><br><span class="highlight-line"><span class="token function">h</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// => 4</span></span></code></pre>
-<p>You basically get a single function which is kickstarted with a parameter, and will pass each function’s return value on to the next one. Great for sequences. It corresponds to the mathematical:</p>
+<p>I identified the obvious need for null checks and the <em>flow of order</em>. What if we could abstract out the guard parts? I.e. <code>if (!team) { doThis() }</code>. The flow of order can use the help of <code>compose</code> – a common function for composing several functions into one (<a href="http://underscorejs.org/#compose">link to Underscore's docs</a>). In plain code:</p>
+<pre><code class="language-js hljs language-javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">f</span> = (<span class="hljs-params">val</span>) =&gt; val + <span class="hljs-number">1</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">g</span> = (<span class="hljs-params">val</span>) =&gt; val + <span class="hljs-number">2</span>;
+
+<span class="hljs-keyword">const</span> h = <span class="hljs-title function_">compose</span>(g, f);  <span class="hljs-comment">// Same as g(f())</span>
+<span class="hljs-title function_">h</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">// =&gt; 4</span>
+</code></pre>
+<p>You basically get a single function which is kickstarted with a parameter, and will pass each function's return value on to the next one. Great for sequences. It corresponds to the mathematical:</p>
 <pre><code>h(x) = (g ∘ f)(x) = g(f(x))
 </code></pre>
-<p>So from that, I identiﬁed three functions I wanted to be in this chain:</p>
+<p>So from that, I identified three functions I wanted to be in this chain:</p>
 <ol>
 <li><code>getTeamFromRoute</code></li>
 <li><code>getTeamFromRecording</code></li>
 <li><code>getTeamFromTest</code></li>
 </ol>
 <p>in that order.</p>
-<p>Now we <em>could</em> wire it up like the old <code>if</code> riddled example above, but then we’ve just replaced some statements with functions&thinsp;&mdash;&thinsp;that isn’t functional programming!</p>
+<p>Now we <em>could</em> wire it up like the old <code>if</code> riddled example above, but then we've just replaced some statements with functions – that isn't functional programming!</p>
 <p>So we could come up with this below, where each function checks the parameter (result from previous function invocation):</p>
-<pre class="language-js"><code class="language-js"><span class="highlight-line"><span class="token keyword">function</span> <span class="token function">getTeam</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> <span class="token function-variable function">getTeamFromRoute</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span></span><br><span class="highlight-line">    Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span>slug<span class="token operator">:</span> FlowRouter<span class="token punctuation">.</span><span class="token function">getParam</span><span class="token punctuation">(</span><span class="token string">'slug'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span></span><br><span class="highlight-line">  <span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">const</span> <span class="token function-variable function">getTeamFromRecording</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">team</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token keyword">if</span> <span class="token punctuation">(</span>team<span class="token punctuation">)</span> <span class="token keyword">return</span> team<span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">    <span class="token keyword">const</span> rec <span class="token operator">=</span> RouterHelpers<span class="token punctuation">.</span><span class="token function">getRecording</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">    <span class="token keyword">return</span> rec <span class="token operator">&amp;&amp;</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>rec<span class="token punctuation">.</span>teamId<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">const</span> <span class="token function-variable function">getTeamFromTest</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">team</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token keyword">if</span> <span class="token punctuation">(</span>team<span class="token punctuation">)</span> <span class="token keyword">return</span> team<span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">    <span class="token keyword">const</span> test <span class="token operator">=</span> RouterHelpers<span class="token punctuation">.</span><span class="token function">getTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">    <span class="token keyword">return</span> test <span class="token operator">&amp;&amp;</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span>teamId<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">return</span> _<span class="token punctuation">.</span><span class="token function">compose</span><span class="token punctuation">(</span>getTeamFromTest<span class="token punctuation">,</span> getTeamFromRecording<span class="token punctuation">,</span> getTeamFromRoute<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token comment">// Like: getTeamFromTest(getTeamFromRecording(getTeamFromRoute()));</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
-<p>This is <em>alright</em> but not great, I think. We still repeat ourselves in checking the team in the two last functions, and the functions themselves thus aren’t behaving in the same way&thinsp;&mdash;&thinsp;they have different <em>arity</em> (number of arguments taken in the signature).</p>
-<p><strong>What if</strong> we can extract the null check and thus the decision making into its own function, and invoke it outside of our getter functions? Let’s try.</p>
+<pre><code class="language-js hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getTeam</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">getTeamFromRoute</span> = (<span class="hljs-params"></span>) =&gt;
+    <span class="hljs-title class_">Teams</span>.<span class="hljs-title function_">findOne</span>({<span class="hljs-attr">slug</span>: <span class="hljs-title class_">FlowRouter</span>.<span class="hljs-title function_">getParam</span>(<span class="hljs-string">'slug'</span>)})
+  );
+
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">getTeamFromRecording</span> = (<span class="hljs-params">team</span>) =&gt; {
+    <span class="hljs-keyword">if</span> (team) <span class="hljs-keyword">return</span> team;
+
+    <span class="hljs-keyword">const</span> rec = <span class="hljs-title class_">RouterHelpers</span>.<span class="hljs-title function_">getRecording</span>();
+    <span class="hljs-keyword">return</span> rec &amp;&amp; <span class="hljs-title class_">Teams</span>.<span class="hljs-title function_">findOne</span>(rec.<span class="hljs-property">teamId</span>);
+  };
+
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">getTeamFromTest</span> = (<span class="hljs-params">team</span>) =&gt; {
+    <span class="hljs-keyword">if</span> (team) <span class="hljs-keyword">return</span> team;
+
+    <span class="hljs-keyword">const</span> test = <span class="hljs-title class_">RouterHelpers</span>.<span class="hljs-title function_">getTest</span>();
+    <span class="hljs-keyword">return</span> test &amp;&amp; <span class="hljs-title class_">Teams</span>.<span class="hljs-title function_">findOne</span>(test.<span class="hljs-property">teamId</span>);
+  };
+
+  <span class="hljs-keyword">return</span> _.<span class="hljs-title function_">compose</span>(getTeamFromTest, getTeamFromRecording, getTeamFromRoute)();
+  <span class="hljs-comment">// Like: getTeamFromTest(getTeamFromRecording(getTeamFromRoute()));</span>
+}
+</code></pre>
+<p>This is <em>alright</em> but not great, I think. We still repeat ourselves in checking the team in the two last functions, and the functions themselves thus aren't behaving in the same way – they have different <em>arity</em> (number of arguments taken in the signature).</p>
+<p><strong>What if</strong> we can extract the null check and thus the decision making into its own function, and invoke it outside of our getter functions? Let's try.</p>
 <p>What we need is a single check to see if the result from last invocation is truthy or not. If it is, we should stop and return. If not, pass on to the next function in the chain. So we will need some kind of interceptor between our function calls in <code>compose</code>, which sniffs the return value.</p>
 <p>I came up with this:</p>
-<pre class="language-js"><code class="language-js"><span class="highlight-line"><span class="token keyword">function</span> <span class="token function">getTeam</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> <span class="token function-variable function">maybeReturnTeam</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">team</span><span class="token punctuation">)</span> <span class="token operator">=></span> team <span class="token operator">||</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">const</span> getTeamFromRoute <span class="token operator">=</span> <span class="token function">maybeReturnTeam</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span></span><br><span class="highlight-line">    Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span>slug<span class="token operator">:</span> FlowRouter<span class="token punctuation">.</span><span class="token function">getParam</span><span class="token punctuation">(</span><span class="token string">'slug'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span></span><br><span class="highlight-line">  <span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">const</span> getTeamFromRecording <span class="token operator">=</span> <span class="token function">maybeReturnTeam</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token keyword">const</span> rec <span class="token operator">=</span> RouterHelpers<span class="token punctuation">.</span><span class="token function">getRecording</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">    <span class="token keyword">return</span> rec <span class="token operator">&amp;&amp;</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>rec<span class="token punctuation">.</span>teamId<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">const</span> getTeamFromTest <span class="token operator">=</span> <span class="token function">maybeReturnTeam</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token keyword">const</span> test <span class="token operator">=</span> RouterHelpers<span class="token punctuation">.</span><span class="token function">getTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">    <span class="token keyword">return</span> test <span class="token operator">&amp;&amp;</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span>teamId<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">return</span> _<span class="token punctuation">.</span><span class="token function">compose</span><span class="token punctuation">(</span>getTeamFromTest<span class="token punctuation">,</span> getTeamFromRecording<span class="token punctuation">,</span> getTeamFromRoute<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<pre><code class="language-js hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getTeam</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">maybeReturnTeam</span> = (<span class="hljs-params">callback</span>) =&gt; <span class="hljs-function">(<span class="hljs-params">team</span>) =&gt;</span> team || <span class="hljs-title function_">callback</span>();
+
+  <span class="hljs-keyword">const</span> getTeamFromRoute = <span class="hljs-title function_">maybeReturnTeam</span>(<span class="hljs-function">() =&gt;</span>
+    <span class="hljs-title class_">Teams</span>.<span class="hljs-title function_">findOne</span>({<span class="hljs-attr">slug</span>: <span class="hljs-title class_">FlowRouter</span>.<span class="hljs-title function_">getParam</span>(<span class="hljs-string">'slug'</span>)})
+  );
+
+  <span class="hljs-keyword">const</span> getTeamFromRecording = <span class="hljs-title function_">maybeReturnTeam</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">const</span> rec = <span class="hljs-title class_">RouterHelpers</span>.<span class="hljs-title function_">getRecording</span>();
+    <span class="hljs-keyword">return</span> rec &amp;&amp; <span class="hljs-title class_">Teams</span>.<span class="hljs-title function_">findOne</span>(rec.<span class="hljs-property">teamId</span>);
+  });
+
+  <span class="hljs-keyword">const</span> getTeamFromTest = <span class="hljs-title function_">maybeReturnTeam</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">const</span> test = <span class="hljs-title class_">RouterHelpers</span>.<span class="hljs-title function_">getTest</span>();
+    <span class="hljs-keyword">return</span> test &amp;&amp; <span class="hljs-title class_">Teams</span>.<span class="hljs-title function_">findOne</span>(test.<span class="hljs-property">teamId</span>);
+  });
+
+  <span class="hljs-keyword">return</span> _.<span class="hljs-title function_">compose</span>(getTeamFromTest, getTeamFromRecording, getTeamFromRoute)();
+}
+</code></pre>
 <p>Does it look weird? Perhaps, yeah. The new thing is <code>maybeReturnTeam</code>. In plain, old style Javascript, it would be:</p>
-<pre class="language-js"><code class="language-js"><span class="highlight-line"><span class="token keyword">function</span> <span class="token function">maybeReturnTeam</span> <span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">team</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token keyword">return</span> team <span class="token operator">||</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
-<p>A <em>function which returns a function which perhaps invokes a callback</em>. So each <code>callback</code> in there will be one of our getter functions. And since <code>maybeReturnTeam</code> returns a function, it’ll play well with <code>compose</code>, since it’s actually only the function returned that will be directly invoked by the composition chain.</p>
-<p>The <code>maybeReturnTeam</code> will also effectively prevent other getter functions to be called if it encounters a truthy value in the ﬁrst function. Great!</p>
+<pre><code class="language-js hljs language-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">maybeReturnTeam</span> (callback) {
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> (<span class="hljs-params">team</span>) {
+    <span class="hljs-keyword">return</span> team || <span class="hljs-title function_">callback</span>();
+  };
+}
+</code></pre>
+<p>A <em>function which returns a function which perhaps invokes a callback</em>. So each <code>callback</code> in there will be one of our getter functions. And since <code>maybeReturnTeam</code> returns a function, it'll play well with <code>compose</code>, since it's actually only the function returned that will be directly invoked by the composition chain.</p>
+<p>The <code>maybeReturnTeam</code> will also effectively prevent other getter functions to be called if it encounters a truthy value in the first function. Great!</p>
 <hr>
-<p>So we got rid of all the if’s and created a nice, ﬂowing chain of functions doing there thing. Sometimes it’s not worth it to go into crazy functional programming techniques in everyday code, since in a large code base and with a team, you need to keep readability (and <em>understandability</em>!) high. And one might argue that the original code I had there at the top is evidentally less code. But as a whole, FP makes total sense to me once you learn how to rethink how you actually do program ﬂows today.</p>
+<p>So we got rid of all the if's and created a nice, flowing chain of functions doing there thing. Sometimes it's not worth it to go into crazy functional programming techniques in everyday code, since in a large code base and with a team, you need to keep readability (and <em>understandability</em>!) high. And one might argue that the original code I had there at the top is evidentally less code. But as a whole, FP makes total sense to me once you learn how to rethink how you actually do program flows today.</p>
 
     </div>
 
     <footer>
       
-        <p class="f5 comp-grey mt5 pb3 border border-b">
+        <p class="f5 comp-grey mt5">
           <b class="mr1">Keywords</b> <span class="Post-Keyword">code</span><span class="Post-Keyword">functional programming</span><span class="Post-Keyword">javascript</span>
         </p>
-      
-
       
 
       <p class="mt3">
@@ -150,54 +208,27 @@
   </article>
 </main>
 
+    </div>
 
-    <script type="text/javascript">
-      function init() {
-        addClasses();
+    <footer role="contentinfo">
+  <ul class="flex gap justify-center f6 list-reset mb2">
+    <li><a href="/feed.xml" title="Atom">Feed</a></li>
+    <li><a href="/credits">Credits</a></li>
+    <li><a href="/meta.json">meta.json</a></li>
+  </ul>
 
-        function first(array, n, guard) {
-          if (array == null) return void 0;
-          if (n == null || guard) return array[0];
+  <p class="muted f6 tc mb0">
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/f7c906d8983a43dba7e555240ce60925fe914c41">f7c906d</a> — built at <time>2022-01-02T23:14:13.833Z</time>
+  </p>
+</footer>
 
-          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
-        };
 
-        function transform(text) {
-          const DELIMITER = /\.|,/;
-          const sentences = text.split('.');
-          const index = text.search(DELIMITER);
-          const MAX_WORDS = 6;
-
-          function wrap(w, t) {
-            return `<strong>${w}</strong> ${t}`;
-          }
-
-          if (index > -1 && index <= 50) {
-            return wrap(text.split(DELIMITER)[0], text.substring(index));
-          }
-
-          const words = text.split(' ');
-          const first = words.splice(0, MAX_WORDS);
-
-          return wrap(first.join(' '), words.join(' '));
-        };
-
-        const paragraphs = document.querySelectorAll('.posts article .post__body p');
-
-        [].slice.call(paragraphs).forEach(function (p) {
-          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
-            p.innerHTML = transform(p.innerText);
-          }
-        });
-      };
-
-      function addClasses() {
-        const p = document.querySelectorAll('.post article .post__body p');
-        p.length > 0 && p[0].classList.add('ingress');
-      };
-
-      document.addEventListener('DOMContentLoaded', init, false);
-    </script>
+    <script>document.addEventListener('keydown', (evt) => {
+    if (evt.code == 'KeyG') {
+        document.body.classList.toggle('grid');
+    }
+});
+</script>
 
     <script>
   // Only load on production environment.
@@ -210,8 +241,9 @@
   if (localStorage.getItem('skipgc') === 't')
     window.goatcounter = {no_onload: true};
 </script>
-<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
-  </body>
+  
 
-</html>
+
+</body></html>

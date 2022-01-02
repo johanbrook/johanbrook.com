@@ -1,24 +1,21 @@
-
-
 <!DOCTYPE html>
-<html lang="en" class=" bringing-order-to-css">
-
-  <head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Bringing Order to CSS – Johan Brook</title>
+<html lang="en" class=" writingsbringing-order-to-css"><head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Bringing Order to CSS –&nbsp;Johan Brook</title>
 
     <meta charset="utf-8">
 
     
-    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    <meta name="description" content="I'm a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
     
     <meta name="keywords" content="Compass,CSS,Framework,Guidelines,Less,Order,SCSS,Structure">
+    
     <meta name="author" content="Johan Brook">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Styles-->
-    <link rel="stylesheet" href="/assets/css/johan.css">
-  
+    <link rel="stylesheet" href="/css/johan.css">
 
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/feed.xml">
@@ -37,89 +34,84 @@
     
 
     
+    <meta property="article:tag" content="Compass,CSS,Framework,Guidelines,Less,Order,SCSS,Structure">
+    <meta property="article:published_time" content="2011-05-16T00:00:00Z">
+    
   </head>
 
   <body>
 
-    
-      <nav role="navigation" class="SideNav">
+    <div class="Content">
+      
+        <nav role="navigation" class="SideNav">
   <h1 class="f3">
     <a href="/">Johan Brook</a>
   </h1>
   <ul>
-    <li aria-current="page">
-      <a href="/writings">Writings</a>
-    </li>
-    <li>
-      <a href="/now">Now</a>
-    </li>
-    <li>
-      <a href="/mind">On my mind</a>
-    </li>
-    <li>
-      <a href="/reading">Reading</a>
-    </li>
-    <li>
-      <a href="/about">About me</a>
-    </li>
-    <li>
-      <a href="/contact" title="Contact and stuff">On the web</a>
-    </li>
-    <li>
-      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
-    </li>
-    <li>
-      <a href="/credits" title="Licenses and stuff.">Credits</a>
-    </li>
-    <li>
-      <a href="/feed.xml">Feed</a>
-    </li>
+      <li>
+        <a href="/writings/">Writings</a>
+      </li>
+      <li>
+        <a href="/now/">Now</a>
+      </li>
+      <li>
+        <a href="/mind/">On my mind</a>
+      </li>
+      <li>
+        <a href="/reading/">Reading</a>
+      </li>
+      <li>
+        <a href="/about/">About me</a>
+      </li>
+      <li>
+        <a href="/contact/">Contact</a>
+      </li>
+      <li>
+        <a href="/changelog/">Changelog</a>
+      </li>
   </ul>
 </nav>
 
-    
+      
+
+      <main role="main">
+  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
 
     
+    <header> 
+      <h1 itemprop="name" class="title">Bringing Order to CSS</h1>
 
-<main role="main">
-  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-    
-      <header> 
-        <h1 itemprop="name" class="title ">Bringing Order to CSS</h1>
-
-        <p class="mb0 fw5 mt3">
+      <p class="mb0 fw5 mt3">
           
-          <time datetime="2011-05-16T06:00:00.000Z" itemprop="datePublished" title="11 years ago" pubdate="">May 16, 2011 – 06:00</time>
-        </p>
+          <time datetime="2011-05-16T00:00:00Z" itemprop="datePublished" pubdate="">May 16th, 2011</time>
+      </p>
 
-        <p class="muted mb4">
+      <p class="muted mb4">
           About 6 min reading time
-        </p>
-      </header>
-    
+      </p>
+    </header>
 
     <div class="article-text post__body measure" itemprop="articleBody">
-      <p><strong>Web sites and applications</strong> are getting more and more complex. Everything that aren’t simple web sites or blogs need a couple of views, a cross-browser CSS foundation, and Javascript. The development stage is only the ﬁrst part&thinsp;&mdash;&thinsp;how are these code bases maintained, both by you and potentially other people, after the launch?</p>
+      <p><strong>Web sites and applications</strong> are getting more and more complex. Everything that aren’t simple web sites or blogs need a couple of views, a cross-browser CSS foundation, and Javascript. The development stage is only the first part – how are these code bases maintained, both by you and potentially other people, after the launch?</p>
 <p>Inexperienced developers and designers often start out with a project very enthusiastically with writing the markup (often starting on the front page), then CSS styling, and then do the same thing again for the next view. It’s quite a linear process, and it even works in most cases.</p>
 <p>But then what?</p>
-<p><strong>The client wants some changes made</strong> after a couple of weeks, and you dive back into the markup and CSS. Ugh. Yek.<span class="push-double"></span> <span class="pull-double">“</span>I wrote that?” (you can tell this happened to me). Your code makes <em>perfect sense</em> at the moment when you’re writing it, but when it’s time for a return it’s like putting your foot down in a wet, cold boot&thinsp;&mdash;&thinsp;it’s uncomfortable and weird, and you just want to get out of there. You make the necessary changes, but only to realize things are getting screwed up. The layout got broken when that element became too wide, and typographic adjustments had to be made in order to achieve a decent hierarchy.</p>
-<p>And we haven’t started talking about the mess of spaghetti code yet, which is the site’s current CSS ﬁle(s). I really hate having lots of code (whatever language) in the same physical ﬁle. I just cannot get a decent overview, how funny it may sound. As I said before: the code may make perfect sense to you at ﬁrst, but imagine coming back to it, or even another person coming back and has to start ﬁguring out how you were thinking. It’s my version of hell. I heard someone on Twitter saying something like <em><span class="push-double"></span><span class="pull-double">“</span>When writing code, imagine you’re writing it for a crazy serial-killer to read”</em>.</p>
+<p><strong>The client wants some changes made</strong> after a couple of weeks, and you dive back into the markup and CSS. Ugh. Yek. “I wrote that?” (you can tell this happened to me). Your code makes <em>perfect sense</em> at the moment when you’re writing it, but when it’s time for a return it’s like putting your foot down in a wet, cold boot – it’s uncomfortable and weird, and you just want to get out of there. You make the necessary changes, but only to realize things are getting screwed up. The layout got broken when that element became too wide, and typographic adjustments had to be made in order to achieve a decent hierarchy.</p>
+<p>And we haven’t started talking about the mess of spaghetti code yet, which is the site’s current CSS file(s). I really hate having lots of code (whatever language) in the same physical file. I just cannot get a decent overview, how funny it may sound. As I said before: the code may make perfect sense to you at first, but imagine coming back to it, or even another person coming back and has to start figuring out how you were thinking. It’s my version of hell. I heard someone on Twitter saying something like <em>“When writing code, imagine you’re writing it for a crazy serial-killer to read”</em>.</p>
 <h2>Structuring CSS</h2>
-<p>This is nothing unique in web development. Hell, whole frameworks have been built just for this: giving structure and order to many people’s development styles. Frameworks like Ruby on Rails does an outstanding job helping you write solid, future-proof code (that you actually are able to understand something from a couple of months later). Even myself, who’s not a true Ruby dev, can ﬁgure out what a Rails app does by going through some of the ﬁles and directories. Every ﬁle and code snippet has its place. I like that&thinsp;&mdash;&thinsp;it should be <em>one</em> way of doing things.</p>
+<p>This is nothing unique in web development. Hell, whole frameworks have been built just for this: giving structure and order to many people’s development styles. Frameworks like Ruby on Rails does an outstanding job helping you write solid, future-proof code (that you actually are able to understand something from a couple of months later). Even myself, who’s not a true Ruby dev, can figure out what a Rails app does by going through some of the files and directories. Every file and code snippet has its place. I like that – it should be <em>one</em> way of doing things.</p>
 <p>How is the state of CSS structuring? Not very good. There’s nothing resembling a standard in writing CSS whatsoever. Every designer/developer has to decide for themselves how the site’s style framework is going to behave (since a good site’s CSS styling really should be like a framework). Common structuring techniques includes:</p>
 <ul>
-<li><strong>Comments</strong>. Of course&thinsp;&mdash;&thinsp;the larger and more, the better.</li>
-<li><strong>External importing</strong>. With the CSS construct <code>@import</code>&nbsp;, you’re able to pull in external&nbsp;.css ﬁles, but alas with the expense of extra HTTP requests.</li>
-<li><strong>External referencing</strong>. With the <code>&lt;link&gt;</code> element. Basically have several stylesheets loading in your site. Extra requests&thinsp;&mdash;&thinsp;thumbs down.</li>
+<li><strong>Comments</strong>. Of course – the larger and more, the better.</li>
+<li><strong>External importing</strong>. With the CSS construct <code>@import</code> , you’re able to pull in external .css files, but alas with the expense of extra HTTP requests.</li>
+<li><strong>External referencing</strong>. With the <code>&lt;link&gt;</code> element. Basically have several stylesheets loading in your site. Extra requests – thumbs down.</li>
 </ul>
-<p>The last two bullet points are easily solvable with CSS pre-processors such as <a href="http://sass-lang.com">Sass</a> or <a href="http://lesscss.org/">Less</a>. You’re able to work with several stylesheets and then just concatenate them into one, single master CSS ﬁle. Then you achieve true organization without performance losses.</p>
-<p><strong>Just the very fact</strong> that Sass and Less exist is a sign of that CSS today is too simple. Many praises its simplicity, and shouts<span class="push-double"></span> <span class="pull-double">“</span>if you manage to mess up CSS, you’re doing it wrong!”, but during the months I’ve used Sass I can clearly feel the gap it ﬁlls when I work with<span class="push-double"></span> <span class="pull-double">“</span>regular” CSS. I think the WebKit team also feel this coming (I earlier <a href="http://jnbrk.se/dXBpwf">linked to a presentation</a> where a Google engineer described a draft of upcoming additions to CSS, including variables, mixins and more). CSS is quite a<span class="push-double"></span> <span class="pull-double">“</span>dumb” language, not dynamic at all, and isn’t really that beautiful either.</p>
+<p>The last two bullet points are easily solvable with CSS pre-processors such as <a href="http://sass-lang.com">Sass</a> or <a href="http://lesscss.org/">Less</a>. You’re able to work with several stylesheets and then just concatenate them into one, single master CSS file. Then you achieve true organization without performance losses.</p>
+<p><strong>Just the very fact</strong> that Sass and Less exist is a sign of that CSS today is too simple. Many praises its simplicity, and shouts “if you manage to mess up CSS, you’re doing it wrong!”, but during the months I’ve used Sass I can clearly feel the gap it fills when I work with “regular” CSS. I think the WebKit team also feel this coming (I earlier <a href="http://jnbrk.se/dXBpwf">linked to a presentation</a> where a Google engineer described a draft of upcoming additions to CSS, including variables, mixins and more). CSS is quite a “dumb” language, not dynamic at all, and isn’t really that beautiful either.</p>
 <h2>Applying Paradigms on CSS</h2>
-<p>There’s almost MVC frameworks for each programming language nowadays, with less or more strict rules how to organize the app’s ﬁles. Why can’t that exist in CSS? I ﬁrmly believe that principles and paradigms like <a href="http://en.wikipedia.org/wiki/DRY">DRY</a> (<em>Don’t Repeat Yourself</em>) and <a href="http://en.wikipedia.org/wiki/Convention_over_Configuration">Convention over conﬁguration</a> is applicable on CSS. I’m sure larger organizations already have principles and style guides something like this, but wouldn’t it be nice if we had some sort of guideline, <em>a standard</em>?</p>
+<p>There’s almost MVC frameworks for each programming language nowadays, with less or more strict rules how to organize the app’s files. Why can’t that exist in CSS? I firmly believe that principles and paradigms like <a href="http://en.wikipedia.org/wiki/DRY">DRY</a> (<em>Don’t Repeat Yourself</em>) and <a href="http://en.wikipedia.org/wiki/Convention_over_Configuration">Convention over configuration</a> is applicable on CSS. I’m sure larger organizations already have principles and style guides something like this, but wouldn’t it be nice if we had some sort of guideline, <em>a standard</em>?</p>
 <h3>DRY</h3>
-<p>Speaks for itself&thinsp;&mdash;&thinsp;don’t write duplicated code. It takes some experience to be able to write really solid CSS, where you don’t have to grab Search And Replace to make global changes. It’s a matter of being smart, and think for the future. Don’t be overly precise.</p>
-<p>Our new CSS3 properties is also a nice example of repeating yourself. You all know the dreaded Gradient syntax&thinsp;&mdash;&thinsp;or should I say&thinsp;&mdash;&thinsp;the myriad of browser vendor preﬁxes that make you write several lines of code just to pull off a simple cross-browser gradient:</p>
+<p>Speaks for itself – don’t write duplicated code. It takes some experience to be able to write really solid CSS, where you don’t have to grab Search And Replace to make global changes. It’s a matter of being smart, and think for the future. Don’t be overly precise.</p>
+<p>Our new CSS3 properties is also a nice example of repeating yourself. You all know the dreaded Gradient syntax – or should I say – the myriad of browser vendor prefixes that make you write several lines of code just to pull off a simple cross-browser gradient:</p>
 <pre><code>/* WebKit */
 background: #b4e1ea -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dcf1f5), color-stop(100%, #b4e1ea));
 
@@ -140,28 +132,26 @@ background: #b4e1ea linear-gradient(#dcf1f5, #b4e1ea);
 <p>In Sass or Less, it’s just a matter of creating a mixin returning all the different browser syntaxes and including it:</p>
 <pre><code>@include linear-gradient(#dcf1f5, #b4e1ea);
 </code></pre>
-<p>I’m not saying you’re getting rid of all gradient code in the ﬁnal stylesheet, but you <em>don’t have to look and work with it</em> while writing/maintaining. Programmer happiness.</p>
-<h3>Convention Over Conﬁguration</h3>
-<p>Larger projects demand a comprehensible set of CSS styles. There are many lines of code, and you shouldn’t be spending time actually trying to ﬁnd your way around this huge stylesheet.<span class="push-double"></span> <span class="pull-double">“</span>God dammit, where did the previous designer put the styles for this box?!”. Wouldn’t it be nice with a decent structure for where to put the styles? It should be self-explanatory, so the next guy or girl is able to ﬁnd the exact set of properties without searching too long. Every ﬁle should have its place.</p>
+<p>I’m not saying you’re getting rid of all gradient code in the final stylesheet, but you <em>don’t have to look and work with it</em> while writing/maintaining. Programmer happiness.</p>
+<h3>Convention Over Configuration</h3>
+<p>Larger projects demand a comprehensible set of CSS styles. There are many lines of code, and you shouldn’t be spending time actually trying to find your way around this huge stylesheet. “God dammit, where did the previous designer put the styles for this box?!”. Wouldn’t it be nice with a decent structure for where to put the styles? It should be self-explanatory, so the next guy or girl is able to find the exact set of properties without searching too long. Every file should have its place.</p>
 <p><img src="http://johanbrook.com/core/wp-content/uploads/2011/05/filestructure-compressed.png" alt=""> How I worked with my stylesheets in a recent project. Notice how only <code>sass/master.scss</code> is compiled into <code>stylesheets/master.css</code></p>
-<p>Above I’ve attached a screenshot of a structure I used in a recent project. Pretty straight-forward, right? You can sort of tell what the different ﬁles are doing. This is essentially what I’m talking about&thinsp;&mdash;&thinsp;a common pattern for working with stylesheets&thinsp;&mdash;&thinsp;how to name and structure them. If programmers can solve this, so can designers. This is leading me into next section:</p>
+<p>Above I’ve attached a screenshot of a structure I used in a recent project. Pretty straight-forward, right? You can sort of tell what the different files are doing. This is essentially what I’m talking about – a common pattern for working with stylesheets – how to name and structure them. If programmers can solve this, so can designers. This is leading me into next section:</p>
 <h2>Modularity</h2>
-<p>Re-use is great, actually. To grasp that you’re actually able to use the same code in different places in a project&thinsp;&mdash;&thinsp;even in <em>several</em> projects&thinsp;&mdash;&thinsp;is really something. Sass and Less provides import commands which lets you have all kinds of different ﬁles ready for re-use. As you saw in the screenshot in the last section, I had a ﬁle named <code>_base.scss</code>&nbsp;. In that ﬁle I keep all conﬁg variables, custom mixins, reset, helpers classes, et al. It’s really great when working with a micro- or daughter site&thinsp;&mdash;&thinsp;it’s just a matter of pulling in that base ﬁle and you’ve got access to the colour theme, font stacks, and other things that might’ve been tedious to specify all over again. If you feel for tweaking some stuff, it’s not a big deal since those changes will be imported into the other site’s stylesheet.</p>
-<p>Working in small modules is a valuable lesson to learn the hard way. In my case, it helps me focus on a small piece of code instead of a huge Wall of Text thing. Nowadays I like separating projects into smaller pieces of CSS: maybe one partial for all styles regarding a blog post, another for global page styles, another for the footer, and so on. A rule of thumb would be: <em><span class="push-double"></span><span class="pull-double">“</span>Better to have too many than too few”</em>. Nah, scratch that. Having too many partials/modules would be hell on earth.</p>
+<p>Re-use is great, actually. To grasp that you’re actually able to use the same code in different places in a project – even in <em>several</em> projects – is really something. Sass and Less provides import commands which lets you have all kinds of different files ready for re-use. As you saw in the screenshot in the last section, I had a file named <code>_base.scss</code> . In that file I keep all config variables, custom mixins, reset, helpers classes, et al. It’s really great when working with a micro- or daughter site – it’s just a matter of pulling in that base file and you’ve got access to the colour theme, font stacks, and other things that might’ve been tedious to specify all over again. If you feel for tweaking some stuff, it’s not a big deal since those changes will be imported into the other site’s stylesheet.</p>
+<p>Working in small modules is a valuable lesson to learn the hard way. In my case, it helps me focus on a small piece of code instead of a huge Wall of Text thing. Nowadays I like separating projects into smaller pieces of CSS: maybe one partial for all styles regarding a blog post, another for global page styles, another for the footer, and so on. A rule of thumb would be: <em>“Better to have too many than too few”</em>. Nah, scratch that. Having too many partials/modules would be hell on earth.</p>
 <h2>Outro</h2>
-<p>Imagine getting into an existing project and just <em>get</em> everything from the start. <em><span class="push-double"></span><span class="pull-double">“</span>Oh, the previous person made this quite easy for me to modify&thinsp;&mdash;&thinsp;I’m able to pull this off in no time and don’t waste time wading through swamps of code”</em>. I’m reluctant to call it a<span class="push-double"></span> <span class="pull-double">“</span>framework”&thinsp;&mdash;&thinsp;something like<span class="push-double"></span> <span class="pull-double">“</span>guidelines”,<span class="push-double"></span> <span class="pull-double">“</span>codex”,<span class="push-double"></span> <span class="pull-double">“</span>common courtesy”,<span class="push-double"></span> <span class="pull-double">“</span>pseudo-standard”&thinsp;&mdash;&thinsp;I don’t know&thinsp;&mdash;&thinsp;but I hope you get the idea.</p>
+<p>Imagine getting into an existing project and just <em>get</em> everything from the start. <em>“Oh, the previous person made this quite easy for me to modify – I’m able to pull this off in no time and don’t waste time wading through swamps of code”</em>. I’m reluctant to call it a “framework” – something like “guidelines”, “codex”, “common courtesy”, “pseudo-standard” – I don’t know – but I hope you get the idea.</p>
 <p>We’ve got the tools. Sass and Less provide the foundation, and sort-of frameworks like <a href="http://compass-style.org">Compass</a> for the former gets you started with boilerplate code in no time. Until CSS provides a native way of dealing with organizing stylesheets without resorting to the regular import methods I think Sass or Less is the way to go. It’s really not hard at all to get started. Don’t fear the command line! The projects’ sites provide great tutorials and introductions.</p>
-<p>In the end I guess it’s also about writing friendly, loose, extensible code. Code for change. Imagine the guy who’s about to work with your code being a crazy ax murderer coming after with you after the ﬁrst bug he ﬁnds.</p>
+<p>In the end I guess it’s also about writing friendly, loose, extensible code. Code for change. Imagine the guy who’s about to work with your code being a crazy ax murderer coming after with you after the first bug he finds.</p>
 
     </div>
 
     <footer>
       
-        <p class="f5 comp-grey mt5 pb3 border border-b">
+        <p class="f5 comp-grey mt5">
           <b class="mr1">Keywords</b> <span class="Post-Keyword">Compass</span><span class="Post-Keyword">CSS</span><span class="Post-Keyword">Framework</span><span class="Post-Keyword">Guidelines</span><span class="Post-Keyword">Less</span><span class="Post-Keyword">Order</span><span class="Post-Keyword">SCSS</span><span class="Post-Keyword">Structure</span>
         </p>
-      
-
       
 
       <p class="mt3">
@@ -171,54 +161,27 @@ background: #b4e1ea linear-gradient(#dcf1f5, #b4e1ea);
   </article>
 </main>
 
+    </div>
 
-    <script type="text/javascript">
-      function init() {
-        addClasses();
+    <footer role="contentinfo">
+  <ul class="flex gap justify-center f6 list-reset mb2">
+    <li><a href="/feed.xml" title="Atom">Feed</a></li>
+    <li><a href="/credits">Credits</a></li>
+    <li><a href="/meta.json">meta.json</a></li>
+  </ul>
 
-        function first(array, n, guard) {
-          if (array == null) return void 0;
-          if (n == null || guard) return array[0];
+  <p class="muted f6 tc mb0">
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/f7c906d8983a43dba7e555240ce60925fe914c41">f7c906d</a> — built at <time>2022-01-02T23:14:13.833Z</time>
+  </p>
+</footer>
 
-          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
-        };
 
-        function transform(text) {
-          const DELIMITER = /\.|,/;
-          const sentences = text.split('.');
-          const index = text.search(DELIMITER);
-          const MAX_WORDS = 6;
-
-          function wrap(w, t) {
-            return `<strong>${w}</strong> ${t}`;
-          }
-
-          if (index > -1 && index <= 50) {
-            return wrap(text.split(DELIMITER)[0], text.substring(index));
-          }
-
-          const words = text.split(' ');
-          const first = words.splice(0, MAX_WORDS);
-
-          return wrap(first.join(' '), words.join(' '));
-        };
-
-        const paragraphs = document.querySelectorAll('.posts article .post__body p');
-
-        [].slice.call(paragraphs).forEach(function (p) {
-          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
-            p.innerHTML = transform(p.innerText);
-          }
-        });
-      };
-
-      function addClasses() {
-        const p = document.querySelectorAll('.post article .post__body p');
-        p.length > 0 && p[0].classList.add('ingress');
-      };
-
-      document.addEventListener('DOMContentLoaded', init, false);
-    </script>
+    <script>document.addEventListener('keydown', (evt) => {
+    if (evt.code == 'KeyG') {
+        document.body.classList.toggle('grid');
+    }
+});
+</script>
 
     <script>
   // Only load on production environment.
@@ -231,8 +194,9 @@ background: #b4e1ea linear-gradient(#dcf1f5, #b4e1ea);
   if (localStorage.getItem('skipgc') === 't')
     window.goatcounter = {no_onload: true};
 </script>
-<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
-  </body>
+  
 
-</html>
+
+</body></html>

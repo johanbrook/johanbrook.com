@@ -1,24 +1,21 @@
-
-
 <!DOCTYPE html>
-<html lang="en" class=" how-i-set-up-my-web-development-environment-on-os-x-lion">
-
-  <head itemtype="http://schema.org/Blog" itemscope="">
-    <title>How I set up my web development environment on OS X Lion – Johan Brook</title>
+<html lang="en" class=" writingshow-i-set-up-my-web-development-environment-on-os-x-lion"><head itemtype="http://schema.org/Blog" itemscope="">
+    <title>How I set up my web development environment on OS X Lion –&nbsp;Johan Brook</title>
 
     <meta charset="utf-8">
 
     
-    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    <meta name="description" content="I'm a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
     
     <meta name="keywords" content="Compass,Git,Javascript,Mac OS X,Ruby,SCSS,Web development,Node.js,setup,Homebrew,UNIX,bash,install">
+    
     <meta name="author" content="Johan Brook">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Styles-->
-    <link rel="stylesheet" href="/assets/css/johan.css">
-  
+    <link rel="stylesheet" href="/css/johan.css">
 
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/feed.xml">
@@ -37,88 +34,83 @@
     
 
     
+    <meta property="article:tag" content="Compass,Git,Javascript,Mac OS X,Ruby,SCSS,Web development,Node.js,setup,Homebrew,UNIX,bash,install">
+    <meta property="article:published_time" content="2012-02-21T00:00:00Z">
+    
   </head>
 
   <body>
 
-    
-      <nav role="navigation" class="SideNav">
+    <div class="Content">
+      
+        <nav role="navigation" class="SideNav">
   <h1 class="f3">
     <a href="/">Johan Brook</a>
   </h1>
   <ul>
-    <li aria-current="page">
-      <a href="/writings">Writings</a>
-    </li>
-    <li>
-      <a href="/now">Now</a>
-    </li>
-    <li>
-      <a href="/mind">On my mind</a>
-    </li>
-    <li>
-      <a href="/reading">Reading</a>
-    </li>
-    <li>
-      <a href="/about">About me</a>
-    </li>
-    <li>
-      <a href="/contact" title="Contact and stuff">On the web</a>
-    </li>
-    <li>
-      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
-    </li>
-    <li>
-      <a href="/credits" title="Licenses and stuff.">Credits</a>
-    </li>
-    <li>
-      <a href="/feed.xml">Feed</a>
-    </li>
+      <li>
+        <a href="/writings/">Writings</a>
+      </li>
+      <li>
+        <a href="/now/">Now</a>
+      </li>
+      <li>
+        <a href="/mind/">On my mind</a>
+      </li>
+      <li>
+        <a href="/reading/">Reading</a>
+      </li>
+      <li>
+        <a href="/about/">About me</a>
+      </li>
+      <li>
+        <a href="/contact/">Contact</a>
+      </li>
+      <li>
+        <a href="/changelog/">Changelog</a>
+      </li>
   </ul>
 </nav>
 
-    
+      
+
+      <main role="main">
+  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
 
     
+    <header> 
+      <h1 itemprop="name" class="title">How I set up my web development environment on OS X Lion</h1>
 
-<main role="main">
-  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-    
-      <header> 
-        <h1 itemprop="name" class="title title--smaller">How I set up my web development environment on OS X Lion</h1>
-
-        <p class="mb0 fw5 mt3">
+      <p class="mb0 fw5 mt3">
           
-          <time datetime="2012-02-21T07:00:00.000Z" itemprop="datePublished" title="10 years ago" pubdate="">February 21, 2012 – 07:00</time>
-        </p>
+          <time datetime="2012-02-21T00:00:00Z" itemprop="datePublished" pubdate="">February 21st, 2012</time>
+      </p>
 
-        <p class="muted mb4">
+      <p class="muted mb4">
           About 3 min reading time
-        </p>
-      </header>
-    
+      </p>
+    </header>
 
     <div class="article-text post__body measure" itemprop="articleBody">
-      <p>I recently wiped my Macbook Pro’s hard drive and installed OS X Lion. It was nice with a clean, fresh start again, and I had for a couple of weeks looked forward to set up my dev environment from the ground up (nerd alert). Ever since I got my Mac, things had been piling up, and it felt very fragile. So this time I did everything right. During my journeys through the internets I picked up nifty tools and techniques, as well as other blog posts describing pitfalls and other general tips. Google around for something like _”setting up web development environment os x”. _Two gems are <a href="http://intridea.com/2011/7/26/setting-up-ruby-dev-on-lion?blog=company">Setting Up a Ruby Development Machine From Scratch With OS X Lion</a> and <a href="http://www.stuartellis.eu/articles/mac-setup/">Setting Up an Apple Mac for Ruby Development</a> (just skip the parts about RVM, I’ll get to that further down). I also made a list of every technology/tool/language I needed: <a href="http://cl.ly/CpSu">Johan’s Checklist</a> They are ordered by importance and dependency.</p>
+      <p>I recently wiped my Macbook Pro's hard drive and installed OS X Lion. It was nice with a clean, fresh start again, and I had for a couple of weeks looked forward to set up my dev environment from the ground up (nerd alert). Ever since I got my Mac, things had been piling up, and it felt very fragile. So this time I did everything right. During my journeys through the internets I picked up nifty tools and techniques, as well as other blog posts describing pitfalls and other general tips. Google around for something like _"setting up web development environment os x". _Two gems are <a href="http://intridea.com/2011/7/26/setting-up-ruby-dev-on-lion?blog=company">Setting Up a Ruby Development Machine From Scratch With OS X Lion</a> and <a href="http://www.stuartellis.eu/articles/mac-setup/">Setting Up an Apple Mac for Ruby Development</a> (just skip the parts about RVM, I'll get to that further down). I also made a list of every technology/tool/language I needed: <a href="http://cl.ly/CpSu">Johan's Checklist</a> They are ordered by importance and dependency.</p>
 <h2>Xcode or the GCC/LLVM compilers</h2>
-<p>Compilers are vital if you need to build dev tools and/or languages. Both you and I would like to do that. Some time ago, the only way to get the GCC and LLVM compilers up and running on a Mac was through Xcode. If you’re a web developer, chances are big that you won’t touch Xcode.app at all, and on top of that the installation footprint is quite large. Then a smart guy came along and made GCC/LLVM/other important tools available as standalone ﬁles, and put it up on GitHub!</p>
+<p>Compilers are vital if you need to build dev tools and/or languages. Both you and I would like to do that. Some time ago, the only way to get the GCC and LLVM compilers up and running on a Mac was through Xcode. If you're a web developer, chances are big that you won't touch Xcode.app at all, and on top of that the installation footprint is quite large. Then a smart guy came along and made GCC/LLVM/other important tools available as standalone files, and put it up on GitHub!</p>
 <ul>
 <li><a href="https://github.com/kennethreitz/osx-gcc-installer">osx-gcc-installer on GitHub</a></li>
 <li><a href="http://www.kennethreitz.com/xcode-gcc-and-homebrew.html">Blog post</a></li>
 </ul>
 <p>The instructions on GitHub is all you need to set it up. However, I decided to download and install Xcode 4 anyway, since I suspected I likely wanted to deal with building iOS apps later on.</p>
 <h2>Homebrew</h2>
-<p><a href="http://mxcl.github.com/homebrew/">The awesome package manager for OS X</a>. <strong>Don’t</strong> go dabble with installing tools manually, go through Homebrew. You can pull of stuff like <code>brew install mysql</code> or <code>brew install git</code> without having to download tarballs, building, managing binaries on the <code>PATH</code>&nbsp;, and … arrgghhh.</p>
+<p><a href="http://mxcl.github.com/homebrew/">The awesome package manager for OS X</a>. <strong>Don’t</strong> go dabble with installing tools manually, go through Homebrew. You can pull of stuff like <code>brew install mysql</code> or <code>brew install git</code> without having to download tarballs, building, managing binaries on the <code>PATH</code> , and … arrgghhh.</p>
 <p>To get Homebrew started:</p>
-<pre><code>$ /usr/bin/ruby -e &quot;$(curl -fsSL https://raw.github.com/gist/323731)&quot;
+<pre><code>$ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
 $ brew update
 </code></pre>
-<p>Get to know the tool with the bin command <code>brew</code>&nbsp;.</p>
+<p>Get to know the tool with the bin command <code>brew</code> .</p>
 <h2>git</h2>
 <pre><code>$ brew install git
 </code></pre>
-<p>That is all. My&nbsp;.gitconﬁg is included in my dotﬁles (linked further down).</p>
+<p>That is all. My .gitconfig is included in my dotfiles (linked further down).</p>
 <h2>Ruby</h2>
 <p>Ruby is a must-have, with all its great gems (Sass! Compass! Sinatra! Rake!). Ruby is indeed included in OS X, but we want to manage versions ourselves and stay up to date. You could download and build Ruby from the <a href="http://www.ruby-lang.org/en/">website</a>, but instead I used a Ruby version manager to do it for me.</p>
 <p>I used <a href="https://rvm.beginrescueend.com/" title="Ruby Version Manager">RVM</a> before, and it worked well. However, Sam Stephenson convinced me to switch to his tool <strong>rbenv</strong>. Read more in the <a href="https://github.com/sstephenson/rbenv#readme">rbenv Readme</a>. rbenv works just like RVM, but feels more lightweight.</p>
@@ -153,16 +145,16 @@ $ gem install bundler
 # NPM
 $ curl http://npmjs.org/install.sh | sh
 </code></pre>
-<p>And <a href="http://www.mamp.info/en/index.html">MAMP</a> for local PHP/MySQL development in an&nbsp;.app.</p>
-<h2>Dotﬁles</h2>
-<p>I’ve forked some neat dotﬁles to keep in the home folder. You can ﬁnd them in <a href="https://github.com/johanbrook/dotfiles">my GitHub project</a>. Just do:</p>
+<p>And <a href="http://www.mamp.info/en/index.html">MAMP</a> for local PHP/MySQL development in an .app.</p>
+<h2>Dotfiles</h2>
+<p>I’ve forked some neat dotfiles to keep in the home folder. You can find them in <a href="https://github.com/johanbrook/dotfiles">my GitHub project</a>. Just do:</p>
 <pre><code>$ git clone git://github.com/johanbrook/dotfiles.git
 $ rake install
 </code></pre>
-<p>The dotﬁles include:</p>
+<p>The dotfiles include:</p>
 <ul>
 <li>gitignore</li>
-<li>gitconﬁg (with aliases and settings)</li>
+<li>gitconfig (with aliases and settings)</li>
 <li>custom bash prompt</li>
 <li>git and Rake completion scripts</li>
 <li>irbrc (for irb)</li>
@@ -171,18 +163,16 @@ $ rake install
 </ul>
 <p><a href="http://f.cl.ly/items/1m1R3T160U1J361w3U3K/Terminal%20Bright.png"> <img src="http://f.cl.ly/items/1m1R3T160U1J361w3U3K/Terminal%20Bright.png" alt="Terminal Bright" title="Terminal Bright"> </a> My bash prompt and Terminal colour theme.</p>
 <h2>Outro</h2>
-<p>And there we go! We’re done! Wasn’t so bad, eh? I suppose you can put an enormous amount of hours into conﬁguring your setup, but this is enough for me. It’s a solid foundation with few unnecessary dependencies, which is important to me.</p>
+<p>And there we go! We’re done! Wasn’t so bad, eh? I suppose you can put an enormous amount of hours into configuring your setup, but this is enough for me. It’s a solid foundation with few unnecessary dependencies, which is important to me.</p>
 <p>Don’t hesitate to give me shout if anything is wrong, outdated, or simply suck.</p>
 
     </div>
 
     <footer>
       
-        <p class="f5 comp-grey mt5 pb3 border border-b">
+        <p class="f5 comp-grey mt5">
           <b class="mr1">Keywords</b> <span class="Post-Keyword">Compass</span><span class="Post-Keyword">Git</span><span class="Post-Keyword">Javascript</span><span class="Post-Keyword">Mac OS X</span><span class="Post-Keyword">Ruby</span><span class="Post-Keyword">SCSS</span><span class="Post-Keyword">Web development</span><span class="Post-Keyword">Node.js</span><span class="Post-Keyword">setup</span><span class="Post-Keyword">Homebrew</span><span class="Post-Keyword">UNIX</span><span class="Post-Keyword">bash</span><span class="Post-Keyword">install</span>
         </p>
-      
-
       
 
       <p class="mt3">
@@ -192,54 +182,27 @@ $ rake install
   </article>
 </main>
 
+    </div>
 
-    <script type="text/javascript">
-      function init() {
-        addClasses();
+    <footer role="contentinfo">
+  <ul class="flex gap justify-center f6 list-reset mb2">
+    <li><a href="/feed.xml" title="Atom">Feed</a></li>
+    <li><a href="/credits">Credits</a></li>
+    <li><a href="/meta.json">meta.json</a></li>
+  </ul>
 
-        function first(array, n, guard) {
-          if (array == null) return void 0;
-          if (n == null || guard) return array[0];
+  <p class="muted f6 tc mb0">
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/f7c906d8983a43dba7e555240ce60925fe914c41">f7c906d</a> — built at <time>2022-01-02T23:14:13.833Z</time>
+  </p>
+</footer>
 
-          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
-        };
 
-        function transform(text) {
-          const DELIMITER = /\.|,/;
-          const sentences = text.split('.');
-          const index = text.search(DELIMITER);
-          const MAX_WORDS = 6;
-
-          function wrap(w, t) {
-            return `<strong>${w}</strong> ${t}`;
-          }
-
-          if (index > -1 && index <= 50) {
-            return wrap(text.split(DELIMITER)[0], text.substring(index));
-          }
-
-          const words = text.split(' ');
-          const first = words.splice(0, MAX_WORDS);
-
-          return wrap(first.join(' '), words.join(' '));
-        };
-
-        const paragraphs = document.querySelectorAll('.posts article .post__body p');
-
-        [].slice.call(paragraphs).forEach(function (p) {
-          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
-            p.innerHTML = transform(p.innerText);
-          }
-        });
-      };
-
-      function addClasses() {
-        const p = document.querySelectorAll('.post article .post__body p');
-        p.length > 0 && p[0].classList.add('ingress');
-      };
-
-      document.addEventListener('DOMContentLoaded', init, false);
-    </script>
+    <script>document.addEventListener('keydown', (evt) => {
+    if (evt.code == 'KeyG') {
+        document.body.classList.toggle('grid');
+    }
+});
+</script>
 
     <script>
   // Only load on production environment.
@@ -252,8 +215,9 @@ $ rake install
   if (localStorage.getItem('skipgc') === 't')
     window.goatcounter = {no_onload: true};
 </script>
-<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
-  </body>
+  
 
-</html>
+
+</body></html>

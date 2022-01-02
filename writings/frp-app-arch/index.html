@@ -1,24 +1,21 @@
-
-
 <!DOCTYPE html>
-<html lang="en" class=" frp-app-arch">
-
-  <head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Building a small, functional reactive app architecture – Johan Brook</title>
+<html lang="en" class=" writingsfrp-app-arch"><head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Building a small, functional reactive app architecture –&nbsp;Johan Brook</title>
 
     <meta charset="utf-8">
 
     
-    <meta name="description" content="A long-ish read on how to build a web frontend with reactive functional streams (in Typescript!). We&#39;ll go through how we at Lookback extracted a library from patterns in our frontend, inspired by the library CycleJS.">
+    <meta name="description" content="A long-ish read on how to build a web frontend with reactive functional streams (in Typescript!). We'll go through how we at Lookback extracted a library from patterns in our frontend, inspired by the library CycleJS.">
+    
     
     <meta name="keywords" content="typescript,streams,react,frp,reactive">
+    
     <meta name="author" content="Johan Brook">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Styles-->
-    <link rel="stylesheet" href="/assets/css/johan.css">
-  
+    <link rel="stylesheet" href="/css/johan.css">
 
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/feed.xml">
@@ -35,87 +32,82 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="1200">
     
-    <meta property="og:description" content="A long-ish read on how to build a web frontend with reactive functional streams (in Typescript!). We&#39;ll go through how we at Lookback extracted a library from patterns in our frontend, inspired by the library CycleJS.">
+    <meta property="og:description" content="A long-ish read on how to build a web frontend with reactive functional streams (in Typescript!). We'll go through how we at Lookback extracted a library from patterns in our frontend, inspired by the library CycleJS.">
     
 
+    
+    <meta property="article:tag" content="typescript,streams,react,frp,reactive">
+    <meta property="article:published_time" content="2020-05-01T00:00:00Z">
     
   </head>
 
   <body>
 
-    
-      <nav role="navigation" class="SideNav">
+    <div class="Content">
+      
+        <nav role="navigation" class="SideNav">
   <h1 class="f3">
     <a href="/">Johan Brook</a>
   </h1>
   <ul>
-    <li aria-current="page">
-      <a href="/writings">Writings</a>
-    </li>
-    <li>
-      <a href="/now">Now</a>
-    </li>
-    <li>
-      <a href="/mind">On my mind</a>
-    </li>
-    <li>
-      <a href="/reading">Reading</a>
-    </li>
-    <li>
-      <a href="/about">About me</a>
-    </li>
-    <li>
-      <a href="/contact" title="Contact and stuff">On the web</a>
-    </li>
-    <li>
-      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
-    </li>
-    <li>
-      <a href="/credits" title="Licenses and stuff.">Credits</a>
-    </li>
-    <li>
-      <a href="/feed.xml">Feed</a>
-    </li>
+      <li>
+        <a href="/writings/">Writings</a>
+      </li>
+      <li>
+        <a href="/now/">Now</a>
+      </li>
+      <li>
+        <a href="/mind/">On my mind</a>
+      </li>
+      <li>
+        <a href="/reading/">Reading</a>
+      </li>
+      <li>
+        <a href="/about/">About me</a>
+      </li>
+      <li>
+        <a href="/contact/">Contact</a>
+      </li>
+      <li>
+        <a href="/changelog/">Changelog</a>
+      </li>
   </ul>
 </nav>
 
-    
+      
+
+      <main role="main">
+  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
 
     
+    <header> 
+      <h1 itemprop="name" class="title">Building a small, functional reactive app architecture</h1>
 
-<main role="main">
-  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-    
-      <header> 
-        <h1 itemprop="name" class="title title--smaller">Building a small, functional reactive app architecture</h1>
-
-        <p class="mb0 fw5 mt3">
+      <p class="mb0 fw5 mt3">
           
-          <time datetime="2020-05-01T23:19:00.000Z" itemprop="datePublished" title="2 years ago" pubdate="">May 1, 2020 – 23:19</time>
-        </p>
+          <time datetime="2020-05-01T00:00:00Z" itemprop="datePublished" pubdate="">May 1st, 2020</time>
+      </p>
 
-        <p class="muted mb4">
-          About 17 min reading time
-        </p>
-      </header>
-    
+      <p class="muted mb4">
+          About 18 min reading time
+      </p>
+    </header>
 
     <div class="article-text post__body measure" itemprop="articleBody">
-      <p>At <a href="https://lookback.io">Lookback</a>, we’ve fallen in love with functional reactive programming (FRP) with streams in our frontend apps. Together with the use of Typescript for compile time type safety, we’ve seen a tremendous bump in overall stability and fewer runtime bugs. Actually, I dare to say that <em>all</em> of our bugs so far have been either logic (programmer) or timing errors.</p>
-<h2>What this text is and what it’s not</h2>
-<p>We’ll look at how <em>easy</em> it actually is to build these kind of frontend architectures on your own. This architecture is, to be clear, <em>not</em> any new or novel idea at all. As you will read below, it’s essentially a rip-off of a library called CycleJS, but less general and made to work with React as a view before CycleJS had proper React support.</p>
-<p>What we’ll go through is how one can reason about state, side effects, and drawing the view with the data structure streams. In the end, we have the complete library.</p>
-<p><strong>I’ll assume knowledge about streams in this post.</strong> With<span class="push-double"></span> <span class="pull-double">“</span>streams”, I don’t mean the <a href="https://nodejs.org/api/stream.html">NodeJS Stream API</a>, but the functional streams popularised by libraries such as RxJS, BaconJS, and xstream. The xstream library will be used for reactive streams, but the concepts are applicable to any streams implementation with the basic operations. I will also use Typescript features to model the architecture.</p>
-<p>An architecture based on functional reactive stream isn’t for all frontend apps. Vanilla React paired with the Context API a reducer is probably ﬁne in most cases. We use FRP in our Live player, and in our Chrome extension. Both codebases need to handle the complexities of multi-peer audio/video streaming, fetching data from a GraphQL API, client state, server state, connection problems, interrupts, problems with the mic and camera, subscribing to server data. Even with Typescript, I wouldn’t want to model that in a Flux based React application. FRP has helped us handle the data ﬂows in a concise manner across the app, with the help from cozy declarative constructs as <code>map</code>, <code>filter</code>, and so on. It’s pretentious to say, but I almost feel<span class="push-double"></span> <span class="pull-double">“</span>the code writes itself” when building out the streams for the data ﬂows.</p>
+      <p>At <a href="https://lookback.io">Lookback</a>, we've fallen in love with functional reactive programming (FRP) with streams in our frontend apps. Together with the use of Typescript for compile time type safety, we've seen a tremendous bump in overall stability and fewer runtime bugs. Actually, I dare to say that <em>all</em> of our bugs so far have been either logic (programmer) or timing errors.</p>
+<h2>What this text is and what it's not</h2>
+<p>We'll look at how <em>easy</em> it actually is to build these kind of frontend architectures on your own. This architecture is, to be clear, <em>not</em> any new or novel idea at all. As you will read below, it's essentially a rip-off of a library called CycleJS, but less general and made to work with React as a view before CycleJS had proper React support.</p>
+<p>What we'll go through is how one can reason about state, side effects, and drawing the view with the data structure streams. In the end, we have the complete library.</p>
+<p><strong>I'll assume knowledge about streams in this post.</strong> With "streams", I don't mean the <a href="https://nodejs.org/api/stream.html">NodeJS Stream API</a>, but the functional streams popularised by libraries such as RxJS, BaconJS, and xstream. The xstream library will be used for reactive streams, but the concepts are applicable to any streams implementation with the basic operations. I will also use Typescript features to model the architecture.</p>
+<p>An architecture based on functional reactive stream isn't for all frontend apps. Vanilla React paired with the Context API a reducer is probably fine in most cases. We use FRP in our Live player, and in our Chrome extension. Both codebases need to handle the complexities of multi-peer audio/video streaming, fetching data from a GraphQL API, client state, server state, connection problems, interrupts, problems with the mic and camera, subscribing to server data. Even with Typescript, I wouldn't want to model that in a Flux based React application. FRP has helped us handle the data flows in a concise manner across the app, with the help from cozy declarative constructs as <code>map</code>, <code>filter</code>, and so on. It's pretentious to say, but I almost feel "the code writes itself" when building out the streams for the data flows.</p>
 <h2>The code</h2>
-<p><strong>This is not some kind of new framework.</strong> Many others already exist. The repository linked below is solely for demonstration, and to hold the ﬁnal code:</p>
+<p><strong>This is not some kind of new framework.</strong> Many others already exist. The repository linked below is solely for demonstration, and to hold the final code:</p>
 <p class="tc">
   <a href="https://github.com/lookback/frap" class="btn">✨ lookback/frap on GitHub</a>
 </p>
 <ul>
 <li><em>frap</em> is for <strong>F</strong>unctional <strong>R</strong>eactive <strong>Ap</strong>plication.</li>
-<li>🔨 ~20 Kb miniﬁed.</li>
+<li>🔨 ~20 Kb minified.</li>
 <li>📉 Has a single dependency (the <code>xstream</code> library).</li>
 <li>🏄‍♂️ The core API consists of two functions.</li>
 <li>🤝 Agnostic about the view, but assumes a stream based application.</li>
@@ -124,30 +116,82 @@
 <p>For me personally, it was all about the joy of constructing an architecture I could understand the smallest parts of, and then extracting it to make it general.</p>
 <p>It also felt good not using a 3rd party package, except for <code>xstream</code>, to solve a thing.</p>
 <h2>Credits</h2>
-<p>The main brain behind the architecture is my colleague <a href="https://twitter.com/algstn">Martin</a>. He was the drive behind the functional patterns as we pair programmed to build the architecture for Lookback’s Live player. The extraction and generalisation was made by me. As mentioned, the extraction and this post serves as a learning experience for myself too.</p>
+<p>The main brain behind the architecture is my colleague <a href="https://twitter.com/algstn">Martin</a>. He was the drive behind the functional patterns as we pair programmed to build the architecture for Lookback's Live player. The extraction and generalisation was made by me. As mentioned, the extraction and this post serves as a learning experience for myself too.</p>
 <h2>Background</h2>
-<p>We do make use of <a href="https://cycle.js.org">CycleJS</a> in one of our web clients. CycleJS introduced the concept of cyclical streams and <em>drivers</em> for side effects for us. Go ahead and read about all its features on the website. It was a bit daunting for me in the beginning to<span class="push-double"></span> <span class="pull-double">“</span>think in cyclical streams”, but a few months in I’m happier than ever building a single page client app.</p>
+<p>We do make use of <a href="https://cycle.js.org">CycleJS</a> in one of our web clients. CycleJS introduced the concept of cyclical streams and <em>drivers</em> for side effects for us. Go ahead and read about all its features on the website. It was a bit daunting for me in the beginning to "think in cyclical streams", but a few months in I'm happier than ever building a single page client app.</p>
 <p>I recommend reading these texts on streams and reactive programming:</p>
 <ul>
-<li><a href="https://cycle.js.org/streams.html"><span class="pull-double">“</span>Streams” on CycleJS.org</a></li>
-<li><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754"><span class="pull-double">“</span>The introduction to Reactive Programming you’ve been missing”</a> by André Staltz, creator of xstream and CycleJS.</li>
-<li><a href="https://futureofcoding.org/papers/comprehensible-frp/comprehensible-frp.pdf"><span class="pull-double">“</span>Explicitly Comprehensible Functional Reactive Programming (pdf)”</a></li>
+<li><a href="https://cycle.js.org/streams.html">"Streams" on CycleJS.org</a></li>
+<li><a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">"The introduction to Reactive Programming you've been missing"</a> by André Staltz, creator of xstream and CycleJS.</li>
+<li><a href="https://futureofcoding.org/papers/comprehensible-frp/comprehensible-frp.pdf">"Explicitly Comprehensible Functional Reactive Programming (pdf)"</a></li>
 </ul>
-<p>Have a look at the CycleJS documentation and guides. Then let’s see why we decided to <em>not</em> go with CycleJS for a new single page app.</p>
+<p>Have a look at the CycleJS documentation and guides. Then let's see why we decided to <em>not</em> go with CycleJS for a new single page app.</p>
 <h3>Differences in drawing a DOM</h3>
-<p>Out-of-the-box, CycleJS uses <a href="https://github.com/snabbdom/snabbdom">Snabbdom</a>&thinsp;&mdash;&thinsp;a virtual DOM library&thinsp;&mdash;&thinsp;to build your app’s HTML and insert into the browser. CycleJS supports <a href="https://cycle.js.org/components.html">components</a>, i.e. reusable functions that emit a DOM and take props.</p>
+<p>Out-of-the-box, CycleJS uses <a href="https://github.com/snabbdom/snabbdom">Snabbdom</a> – a virtual DOM library – to build your app's HTML and insert into the browser. CycleJS supports <a href="https://cycle.js.org/components.html">components</a>, i.e. reusable functions that emit a DOM and take props.</p>
 <p>A component in CycleJS/Snabbdom might look like this:</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token keyword">import</span> xs <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> div<span class="token punctuation">,</span> span<span class="token punctuation">,</span> input <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@cycle/dom'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">function</span> <span class="token function">MyComponent</span><span class="token punctuation">(</span>sources<span class="token punctuation">)</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token comment">// Incoming DOM from the outside:</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> domSource <span class="token operator">=</span> sources<span class="token punctuation">.</span><span class="token constant">DOM</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token comment">// Stream of new text values from our &lt;input> element</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> newValue$ <span class="token operator">=</span> domSource</span><br><span class="highlight-line">    <span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token string">'.input'</span><span class="token punctuation">)</span> <span class="token comment">// The &lt;input> has class="input"</span></span><br><span class="highlight-line">    <span class="token punctuation">.</span><span class="token function">events</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span> <span class="token comment">// Listen to `input` events</span></span><br><span class="highlight-line">    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>ev<span class="token punctuation">)</span> <span class="token operator">=></span> ev<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// For each input, grab the `value`</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token comment">// Build a stream of state, which looks like:</span></span><br><span class="highlight-line">  <span class="token comment">//  Stream&lt;{ value: string }></span></span><br><span class="highlight-line">  <span class="token keyword">const</span> state$ <span class="token operator">=</span> newValue$<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span> value <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">remember</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Remember last value</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token comment">// Render out the UI from our state using Snabbdom. This is</span></span><br><span class="highlight-line">  <span class="token comment">// a virtual DOM implementation, and we build the structure</span></span><br><span class="highlight-line">  <span class="token comment">// using Hyperscript.</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> vdom$ <span class="token operator">=</span> state$<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token operator">=></span></span><br><span class="highlight-line">    <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">[</span></span><br><span class="highlight-line">      <span class="token function">span</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">,</span></span><br><span class="highlight-line">      <span class="token function">input</span><span class="token punctuation">(</span><span class="token string">'.input'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">        attrs<span class="token operator">:</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">'text'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span></span><br><span class="highlight-line">      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token punctuation">]</span><span class="token punctuation">)</span></span><br><span class="highlight-line">  <span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token comment">// Finally, return our DOM to the outside, along with the</span></span><br><span class="highlight-line">  <span class="token comment">// values from our &lt;input></span></span><br><span class="highlight-line">  <span class="token keyword">return</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token constant">DOM</span><span class="token operator">:</span> vdom$<span class="token punctuation">,</span></span><br><span class="highlight-line">    value<span class="token operator">:</span> state$<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token operator">=></span> state<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">,</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
-<p>The DOM ﬂows through the component as a <em>stream</em>. Compare this with a React component where you return the virtual DOM as a lump of JSX:</p>
-<pre class="language-tsx"><code class="language-tsx"><span class="highlight-line"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">function</span> <span class="token function">MyComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> <span class="token punctuation">[</span>text<span class="token punctuation">,</span> setText<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token generic-function"><span class="token function">useState</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token builtin">string</span><span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">return</span> <span class="token punctuation">(</span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text"><br><span class="highlight-line">      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>text<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span><span class="token plain-text"></span><br><span class="highlight-line">      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span></span><br><span class="highlight-line">        <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span></span><br><span class="highlight-line">        <span class="token attr-name">defaultValue</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>text<span class="token punctuation">}</span></span></span><br><span class="highlight-line">        <span class="token attr-name">onInput</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token parameter">evt</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setText</span><span class="token punctuation">(</span>evt<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">}</span></span></span><br><span class="highlight-line">      <span class="token punctuation">/></span></span><span class="token plain-text"></span><br>    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="highlight-line">  <span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
-<p>The React component <em>probably</em> looks more straight forward to most people than the CycleJS component, I imagine. It’s because it’s <em>imperative</em>. We use <code>setText</code> and perhaps <code>this.setState</code> in React components&thinsp;&mdash;&thinsp;a concept that doesn’t exist in CycleJS’s world. In CycleJS, something needs to<span class="push-double"></span> <span class="pull-double">“</span>pull” the values through the streams through the component. Streams are, aptly, ﬂowing through the whole app.</p>
+<pre><code class="language-typescript hljs"><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+<span class="hljs-keyword">import</span> { div, span, input } <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">MyComponent</span>(<span class="hljs-params">sources</span>) {
+  <span class="hljs-comment">// Incoming DOM from the outside:</span>
+  <span class="hljs-keyword">const</span> domSource = sources.<span class="hljs-property">DOM</span>;
+
+  <span class="hljs-comment">// Stream of new text values from our &lt;input&gt; element</span>
+  <span class="hljs-keyword">const</span> newValue$ = domSource
+    .<span class="hljs-title function_">select</span>(<span class="hljs-string">'.input'</span>) <span class="hljs-comment">// The &lt;input&gt; has class="input"</span>
+    .<span class="hljs-title function_">events</span>(<span class="hljs-string">'input'</span>) <span class="hljs-comment">// Listen to `input` events</span>
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">ev</span>) =&gt;</span> ev.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>); <span class="hljs-comment">// For each input, grab the `value`</span>
+
+  <span class="hljs-comment">// Build a stream of state, which looks like:</span>
+  <span class="hljs-comment">//  Stream&lt;{ value: string }&gt;</span>
+  <span class="hljs-keyword">const</span> state$ = newValue$.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> ({ value })).<span class="hljs-title function_">remember</span>(); <span class="hljs-comment">// Remember last value</span>
+
+  <span class="hljs-comment">// Render out the UI from our state using Snabbdom. This is</span>
+  <span class="hljs-comment">// a virtual DOM implementation, and we build the structure</span>
+  <span class="hljs-comment">// using Hyperscript.</span>
+  <span class="hljs-keyword">const</span> vdom$ = state$.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span>
+    <span class="hljs-title function_">div</span>([
+      <span class="hljs-title function_">span</span>(state.<span class="hljs-property">value</span>),
+      <span class="hljs-title function_">input</span>(<span class="hljs-string">'.input'</span>, {
+        <span class="hljs-attr">attrs</span>: { <span class="hljs-attr">type</span>: <span class="hljs-string">'text'</span> },
+      }),
+    ])
+  );
+
+  <span class="hljs-comment">// Finally, return our DOM to the outside, along with the</span>
+  <span class="hljs-comment">// values from our &lt;input&gt;</span>
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">DOM</span>: vdom$,
+    <span class="hljs-attr">value</span>: state$.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state.<span class="hljs-property">value</span>),
+  };
+}
+</code></pre>
+<p>The DOM flows through the component as a <em>stream</em>. Compare this with a React component where you return the virtual DOM as a lump of JSX:</p>
+<pre><code class="language-tsx hljs language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">MyComponent</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> [text, setText] = useState&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-string">''</span>);
+
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{text}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+        <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+        <span class="hljs-attr">defaultValue</span>=<span class="hljs-string">{text}</span>
+        <span class="hljs-attr">onInput</span>=<span class="hljs-string">{(evt)</span> =&gt;</span> setText(evt.target.value)}
+      /&gt;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+}
+</code></pre>
+<p>The React component <em>probably</em> looks more straight forward to most people than the CycleJS component, I imagine. It's because it's <em>imperative</em>. We use <code>setText</code> and perhaps <code>this.setState</code> in React components – a concept that doesn't exist in CycleJS's world. In CycleJS, something needs to "pull" the values through the streams through the component. Streams are, aptly, flowing through the whole app.</p>
 <h3>Building our own</h3>
-<p>I think the Snabbdom way of building markup is interesting. It encourages me to think about my frontend code as functions even more (JSX sort of hides that away). For a rewrite of our Live player, we decided we wanted to use React for the view, instead of doing full CycleJS/Snabbdom again. This was before <a href="https://github.com/cyclejs/react">@cycle/react</a> was released, so we set out to fully ditch CycleJS for this rewrite and ﬁgure out how to make business logic in streams play well with React for the view.</p>
+<p>I think the Snabbdom way of building markup is interesting. It encourages me to think about my frontend code as functions even more (JSX sort of hides that away). For a rewrite of our Live player, we decided we wanted to use React for the view, instead of doing full CycleJS/Snabbdom again. This was before <a href="https://github.com/cyclejs/react">@cycle/react</a> was released, so we set out to fully ditch CycleJS for this rewrite and figure out how to make business logic in streams play well with React for the view.</p>
 <p>The choice of React for the view was partly due to some odd quirks in how CycleJS handles DOM events, and partly due to the nice React ecosystem. Typescript and React go perfect together too, making for robust view components.</p>
 <p>In our new architecture, we wanted to keep these concepts from CycleJS:</p>
 <ul>
 <li>All business logic as reactive streams.</li>
-<li>Handling side effects in Drivers, making for a<span class="push-double"></span> <span class="pull-double">“</span>pure” main application.</li>
+<li>Handling side effects in Drivers, making for a "pure" main application.</li>
 </ul>
 <p>We wanted to get rid of:</p>
 <ul>
@@ -157,16 +201,16 @@
 <ul>
 <li>Storing the whole app state as a central atom and draw the whole user interface based on that. Of course very common in the React world these days.</li>
 </ul>
-<p>Let’s begin!</p>
+<p>Let's begin!</p>
 <h2>Table of Contents</h2>
 <ol>
-<li>State &amp; data ﬂow</li>
+<li>State &amp; data flow</li>
 <li>State updates</li>
 <li>Sending messages</li>
 <li>The view</li>
 <li>Side effects</li>
 </ol>
-<h2>State &amp; data ﬂow</h2>
+<h2>State &amp; data flow</h2>
 <p>How to manage state in frontend applications has turned out to be a hot topic. What is app state anyway? It might be:</p>
 <ul>
 <li>An ID string of the currently signed in user.</li>
@@ -174,37 +218,94 @@
 <li>A boolean indicating if a modal is open or not.</li>
 <li>An enum for the current state in a state machine.</li>
 </ul>
-<p>And so on. The basic idea is that we should be able to <strong>draw the whole interface from this state</strong>. Sometimes, using local state in components is ﬁne. This might be state such as the active tab in a tab system, which is very local, and <em>probably</em> doesn’t concern any other parts of the system.</p>
-<p>Redux popularized the Flux architecture’s idea of state as<span class="push-double"></span> <span class="pull-double">“</span>single source of truth”. We shouldn’t scatter the state across DOM nodes, localStorage, the server, and so on. Also Elm and Om are great inspiration for state handling in client side apps. I encourage you to read the <a href="https://redux.js.org/introduction/motivation">philosophies and principles of Redux</a>.</p>
+<p>And so on. The basic idea is that we should be able to <strong>draw the whole interface from this state</strong>. Sometimes, using local state in components is fine. This might be state such as the active tab in a tab system, which is very local, and <em>probably</em> doesn't concern any other parts of the system.</p>
+<p>Redux popularized the Flux architecture's idea of state as "single source of truth". We shouldn't scatter the state across DOM nodes, localStorage, the server, and so on. Also Elm and Om are great inspiration for state handling in client side apps. I encourage you to read the <a href="https://redux.js.org/introduction/motivation">philosophies and principles of Redux</a>.</p>
 <p>A state atom might look like this:</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token keyword">const</span> state<span class="token operator">:</span> State <span class="token operator">=</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  name<span class="token operator">:</span> <span class="token string">'Johan Brook'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">  showModal<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre>
-<p>From this, we should be able to draw the full app component tree. And if we’d draw it again from the same state, the app’s UI can’t change fundamentally.</p>
+<pre><code class="language-typescript hljs"><span class="hljs-keyword">const</span> <span class="hljs-attr">state</span>: <span class="hljs-title class_">State</span> = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Johan Brook'</span>,
+  <span class="hljs-attr">showModal</span>: <span class="hljs-literal">true</span>,
+};
+</code></pre>
+<p>From this, we should be able to draw the full app component tree. And if we'd draw it again from the same state, the app's UI can't change fundamentally.</p>
 <hr>
-<p>A core principle of functional programming is immutability&thinsp;&mdash;&thinsp;the inability to change a state after it’s created. We’d like our app state to work the same. Meaning, we can’t just<span class="push-double"></span> <span class="pull-double">“</span>set a property in the state” like it’s the Wild West. We need to update properties incrementally and generate a<span class="push-double"></span> <span class="pull-double">“</span>new” state. For each of these state updates, the view should re-draw.</p>
-<p>In order to update the <code>name</code> in our state, we can design the ﬂow like this:</p>
+<p>A core principle of functional programming is immutability – the inability to change a state after it's created. We'd like our app state to work the same. Meaning, we can't just "set a property in the state" like it's the Wild West.&nbsp;We need to update properties incrementally and generate a "new" state. For each of these state updates, the view should re-draw.</p>
+<p>In order to update the <code>name</code> in our state, we can design the flow like this:</p>
 <ol>
 <li>Construct your update to the state atom. In this case <code>{ name: 'John Doe' }</code>.</li>
 <li>Send the update as a stream to a function which folds it together with the state stream:</li>
 </ol>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token keyword">const</span> state$ <span class="token operator">=</span> stateUpdate$<span class="token punctuation">.</span><span class="token function">fold</span><span class="token punctuation">(</span></span><br><span class="highlight-line">  <span class="token punctuation">(</span>prev<span class="token punctuation">,</span> update<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span>prev<span class="token punctuation">,</span> <span class="token operator">...</span>update <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span></span><br><span class="highlight-line">  startState</span><br><span class="highlight-line"><span class="token punctuation">)</span><span class="token punctuation">;</span></span></code></pre>
-<p>The xstream function <a href="http://staltz.github.io/xstream/#fold"><code>fold</code></a> is very handy to learn here. That’s the amazing function which creates our whole incremental state! The update effectively extends the existing state object to form a new one.</p>
-<p>So we’ve got a <code>state$</code> variable containing the <em>stream of states</em>. It’s very important to internalise that the<span class="push-double"></span> <span class="pull-double">“</span>stream of states” here isn’t a continuous stream, but a discrete one. It’s a like a string with ants, where each ant is a new state, and they can come in irregular patterns. The idea is to let the view listen to this <code>state$</code> stream, which will behave like this:</p>
+<pre><code class="language-typescript hljs"><span class="hljs-keyword">const</span> state$ = stateUpdate$.<span class="hljs-title function_">fold</span>(
+  <span class="hljs-function">(<span class="hljs-params">prev, update</span>) =&gt;</span> ({ ...prev, ...update }),
+  startState
+);
+</code></pre>
+<p>The xstream function <a href="http://staltz.github.io/xstream/#fold"><code>fold</code></a> is very handy to learn here. That's the amazing function which creates our whole incremental state! The update effectively extends the existing state object to form a new one.</p>
+<p>So we've got a <code>state$</code> variable containing the <em>stream of states</em>. It's very important to internalise that the "stream of states" here isn't a continuous stream, but a discrete one. It's a like a string with ants, where each ant is a new state, and they can come in irregular patterns. The idea is to let the view listen to this <code>state$</code> stream, which will behave like this:</p>
 <pre><code>stateUpdate$ = ---------- update: { name: 'Johnny Doe' }----
 
 stateUpdate$.fold(..., startState)
 
 state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
 </code></pre>
-<p>For each new element in the resulting <code>state$</code> stream, we’ll re-render the whole app (read more below about how we’ll manage the view).</p>
-<p>So what are these state updates? It’s ✨<strong>your application</strong> ✨! That’s right: all business logic will either result in state updates or side effects (read more about that in the section about Drivers below).</p>
+<p>For each new element in the resulting <code>state$</code> stream, we'll re-render the whole app (read more below about how we'll manage the view).</p>
+<p>So what are these state updates? It's ✨<strong>your application</strong> ✨! That's right: all business logic will either result in state updates or side effects (read more about that in the section about Drivers below).</p>
 <p>This can be expressed roughly like this (with xstream):</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> Stream <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">interface</span> <span class="token class-name">State</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  showModal<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token comment">// Our app just returns a new `name` instantly, but here</span></span><br><span class="highlight-line"><span class="token comment">// we would render our entire app as React components or similar.</span></span><br><span class="highlight-line"><span class="token keyword">const</span> <span class="token function-variable function">app</span> <span class="token operator">=</span> <span class="token punctuation">(</span>state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token keyword">return</span> state$<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span></span><br><span class="highlight-line">    name<span class="token operator">:</span> <span class="token string">'Mary'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">const</span> <span class="token function-variable function">run</span> <span class="token operator">=</span> <span class="token punctuation">(</span>main<span class="token operator">:</span> Main<span class="token punctuation">,</span> startState<span class="token operator">:</span> State<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token comment">// Create an incrementally updated stream of state</span></span><br><span class="highlight-line">  <span class="token comment">// XXX Fix stateUpdate$</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> state$ <span class="token operator">=</span> stateUpdate$<span class="token punctuation">.</span><span class="token function">fold</span><span class="token punctuation">(</span></span><br><span class="highlight-line">    <span class="token punctuation">(</span>prev<span class="token punctuation">,</span> update<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span>prev<span class="token punctuation">,</span> <span class="token operator">...</span>update <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    startState</span><br><span class="highlight-line">  <span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token comment">// Main app function, renders UI from state$ stream</span></span><br><span class="highlight-line">  <span class="token function">main</span><span class="token punctuation">(</span>state$<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token comment">// Kick off! 🚀</span></span><br><span class="highlight-line"><span class="token function">run</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> <span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">'Johan'</span><span class="token punctuation">,</span> showModal<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span></code></pre>
-<p>Sharp eyed readers notice that <code>stateUpdate$</code> is appearing out of nowhere. That’s supposed to come from the app function, right?! Here’s what the<span class="push-double"></span> <span class="pull-double">“</span>cyclical” in CycleJS comes in: we need to cycle back the state updates from our app up to the <code>fold</code> operation. Luckily, the xstream library has an <a href="http://staltz.github.io/xstream/#imitate"><code>imitate</code></a> method on a stream which makes it possible to create a fake stream at the top of a function, run operations on it, and then let it imitate a<span class="push-double"></span> <span class="pull-double">“</span>real” stream further down the ﬁle. This allows circular dependency of streams.</p>
-<p>Let’s ﬁx our code:</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token keyword">import</span> xs <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">const</span> <span class="token function-variable function">run</span> <span class="token operator">=</span> <span class="token punctuation">(</span>main<span class="token operator">:</span> Main<span class="token punctuation">,</span> startState<span class="token operator">:</span> State<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token comment">// Create "fake", empty update stream</span></span><br><ins class="highlight-line highlight-line-add">  <span class="token keyword">const</span> fakeUpdates$ <span class="token operator">=</span> xs<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></ins><br><span class="highlight-line"></span><br><ins class="highlight-line highlight-line-add">  <span class="token keyword">const</span> state$ <span class="token operator">=</span> fakeUpdates$<span class="token punctuation">.</span><span class="token function">fold</span><span class="token punctuation">(</span></ins><br><span class="highlight-line">    <span class="token punctuation">(</span>prev<span class="token punctuation">,</span> update<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span>prev<span class="token punctuation">,</span> <span class="token operator">...</span>update <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    startState</span><br><span class="highlight-line">  <span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><ins class="highlight-line highlight-line-add">  <span class="token keyword">const</span> appUpdate$ <span class="token operator">=</span> <span class="token function">main</span><span class="token punctuation">(</span>state$<span class="token punctuation">)</span><span class="token punctuation">;</span></ins><br><ins class="highlight-line highlight-line-add"></ins><br><ins class="highlight-line highlight-line-add">  <span class="token comment">// Imitate the real state update stream - results are</span></ins><br><ins class="highlight-line highlight-line-add">  <span class="token comment">// cycled back to the .fold operation above!</span></ins><br><ins class="highlight-line highlight-line-add">  fakeUpdates$<span class="token punctuation">.</span><span class="token function">imitate</span><span class="token punctuation">(</span>appUpdate$<span class="token punctuation">)</span><span class="token punctuation">;</span></ins><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">return</span> state$<span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre>
+<pre><code class="language-typescript hljs"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Stream</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+
+<span class="hljs-keyword">interface</span> State {
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+  <span class="hljs-attr">showModal</span>: <span class="hljs-built_in">boolean</span>;
+}
+
+<span class="hljs-comment">// Our app just returns a new `name` instantly, but here</span>
+<span class="hljs-comment">// we would render our entire app as React components or similar.</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">app</span> = (<span class="hljs-params">state$: Stream&lt;State&gt;</span>) =&gt; {
+  <span class="hljs-keyword">return</span> state$.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> ({
+    <span class="hljs-attr">name</span>: <span class="hljs-string">'Mary'</span>,
+  }));
+};
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">run</span> = (<span class="hljs-params">main: Main, startState: State</span>) =&gt; {
+  <span class="hljs-comment">// Create an incrementally updated stream of state</span>
+  <span class="hljs-comment">// XXX Fix stateUpdate$</span>
+  <span class="hljs-keyword">const</span> state$ = stateUpdate$.<span class="hljs-title function_">fold</span>(
+    <span class="hljs-function">(<span class="hljs-params">prev, update</span>) =&gt;</span> ({ ...prev, ...update }),
+    startState
+  );
+
+  <span class="hljs-comment">// Main app function, renders UI from state$ stream</span>
+  <span class="hljs-title function_">main</span>(state$);
+};
+
+<span class="hljs-comment">// Kick off! 🚀</span>
+<span class="hljs-title function_">run</span>(app, { <span class="hljs-attr">name</span>: <span class="hljs-string">'Johan'</span>, <span class="hljs-attr">showModal</span>: <span class="hljs-literal">false</span> });
+</code></pre>
+<p>Sharp eyed readers notice that <code>stateUpdate$</code> is appearing out of nowhere. That's supposed to come from the app function, right?! Here's what the "cyclical" in CycleJS comes in: we need to cycle back the state updates from our app up to the <code>fold</code> operation. Luckily, the xstream library has an <a href="http://staltz.github.io/xstream/#imitate"><code>imitate</code></a> method on a stream which makes it possible to create a fake stream at the top of a function, run operations on it, and then let it imitate a "real" stream further down the file. This allows circular dependency of streams.</p>
+<p>Let's fix our code:</p>
+<pre><code class="language-typescript/4,6,11-15/ hljs language-typescript"><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">run</span> = (<span class="hljs-params">main: Main, startState: State</span>) =&gt; {
+  <span class="hljs-comment">// Create "fake", empty update stream</span>
+  <span class="hljs-keyword">const</span> fakeUpdates$ = xs.<span class="hljs-title function_">create</span>();
+
+  <span class="hljs-keyword">const</span> state$ = fakeUpdates$.<span class="hljs-title function_">fold</span>(
+    <span class="hljs-function">(<span class="hljs-params">prev, update</span>) =&gt;</span> ({ ...prev, ...update }),
+    startState
+  );
+
+  <span class="hljs-keyword">const</span> appUpdate$ = <span class="hljs-title function_">main</span>(state$);
+
+  <span class="hljs-comment">// Imitate the real state update stream - results are</span>
+  <span class="hljs-comment">// cycled back to the .fold operation above!</span>
+  fakeUpdates$.<span class="hljs-title function_">imitate</span>(appUpdate$);
+
+  <span class="hljs-keyword">return</span> state$;
+};
+</code></pre>
 <p>-&gt; <a href="http://staltz.github.io/xstream/#create">Docs on <code>xs.create</code></a></p>
-<p>We’ve successfully achieved feeding our app with a stream of state, and made the output stream of the app update the state! 🎉 This creates a <code>main</code> function signature of:</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token keyword">type</span> <span class="token class-name">Main</span> <span class="token operator">=</span> <span class="token punctuation">(</span>state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">=></span> Stream<span class="token operator">&lt;</span>Partial<span class="token operator">&lt;</span>State<span class="token operator">>></span><span class="token punctuation">;</span></span></code></pre>
+<p>We've successfully achieved feeding our app with a stream of state, and made the output stream of the app update the state! 🎉 This creates a <code>main</code> function signature of:</p>
+<pre><code class="language-typescript hljs"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Main</span> = <span class="hljs-function">(<span class="hljs-params">state$: Stream&lt;State&gt;</span>) =&gt;</span> <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">State</span>&gt;&gt;;
+</code></pre>
 <p>Thus, state management is ticked off. You just need to provide the <code>main</code> function which is your whole app logic.</p>
 <p>Takeaways:</p>
 <ul>
@@ -214,77 +315,276 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
 <li>The view is re-rendered each time the state updates.</li>
 </ul>
 <h2>Ch..ch..changes … (to the state)</h2>
-<p>Let’s explore the <code>run</code> function from the earlier example. This code below demonstrates how you would use it in an app. The <code>run</code> function is thus an export of our library:</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token comment">// run :: (Main, State) -> Stream&lt;State></span></span><br><span class="highlight-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> run <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'frap'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">interface</span> <span class="token class-name">State</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">const</span> startState<span class="token operator">:</span> State <span class="token operator">=</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  name<span class="token operator">:</span> <span class="token string">'Johan'</span><span class="token punctuation">,</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token comment">// Our app's business logic, packaged in a single function.</span></span><br><span class="highlight-line"><span class="token comment">// Receives state stream and should return a stream of updates</span></span><br><span class="highlight-line"><span class="token comment">// to the state.</span></span><br><span class="highlight-line"><span class="token comment">// app :: (Stream&lt;State>) -> Stream&lt;Partial&lt;State>></span></span><br><span class="highlight-line"><span class="token keyword">const</span> app<span class="token operator">:</span> <span class="token function-variable function">Main</span> <span class="token operator">=</span> <span class="token punctuation">(</span>state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> stateUpdate$ <span class="token operator">=</span> xs<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">return</span> stateUpdate$<span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token comment">// Kick it off! 🚀</span></span><br><span class="highlight-line"><span class="token function">run</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> startState<span class="token punctuation">)</span><span class="token punctuation">;</span></span></code></pre>
+<p>Let's explore the <code>run</code> function from the earlier example. This code below demonstrates how you would use it in an app. The <code>run</code> function is thus an export of our library:</p>
+<pre><code class="language-typescript hljs"><span class="hljs-comment">// run :: (Main, State) -&gt; Stream&lt;State&gt;</span>
+<span class="hljs-keyword">import</span> { run } <span class="hljs-keyword">from</span> <span class="hljs-string">'frap'</span>;
+
+<span class="hljs-keyword">interface</span> State {
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">startState</span>: <span class="hljs-title class_">State</span> = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Johan'</span>,
+};
+
+<span class="hljs-comment">// Our app's business logic, packaged in a single function.</span>
+<span class="hljs-comment">// Receives state stream and should return a stream of updates</span>
+<span class="hljs-comment">// to the state.</span>
+<span class="hljs-comment">// app :: (Stream&lt;State&gt;) -&gt; Stream&lt;Partial&lt;State&gt;&gt;</span>
+<span class="hljs-keyword">const</span> <span class="hljs-attr">app</span>: <span class="hljs-title class_">Main</span> = <span class="hljs-function">(<span class="hljs-params">state$: Stream&lt;State&gt;</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> stateUpdate$ = xs.<span class="hljs-title function_">create</span>();
+
+  <span class="hljs-keyword">return</span> stateUpdate$;
+};
+
+<span class="hljs-comment">// Kick it off! 🚀</span>
+<span class="hljs-title function_">run</span>(app, startState);
+</code></pre>
 <p>That <code>app</code> function is basically everything there is to it! (almost… we just need to sort out the view rendering and handle side effects). We receive state, do stuff deriving off of it, and return our preferred updates.</p>
 <p>An example could be:</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token keyword">const</span> app<span class="token operator">:</span> <span class="token function-variable function">Main</span> <span class="token operator">=</span> <span class="token punctuation">(</span>state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> stateUpdate$ <span class="token operator">=</span> state$<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span></span><br><ins class="highlight-line highlight-line-add">    name<span class="token operator">:</span> state<span class="token punctuation">.</span>name<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span></ins><br><ins class="highlight-line highlight-line-add">  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></ins><br><ins class="highlight-line highlight-line-add"></ins><br><ins class="highlight-line highlight-line-add">  <span class="token keyword">return</span> stateUpdate$<span class="token punctuation">;</span></ins><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre>
+<pre><code class="language-typescript/2-5/ hljs language-typescript"><span class="hljs-keyword">const</span> <span class="hljs-attr">app</span>: <span class="hljs-title class_">Main</span> = <span class="hljs-function">(<span class="hljs-params">state$: Stream&lt;State&gt;</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> stateUpdate$ = state$.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> ({
+    <span class="hljs-attr">name</span>: state.<span class="hljs-property">name</span>.<span class="hljs-title function_">toUpperCase</span>(),
+  }));
+
+  <span class="hljs-keyword">return</span> stateUpdate$;
+};
+</code></pre>
 <p>-&gt; <a href="http://staltz.github.io/xstream/#map">Docs on <code>map</code></a></p>
 <p>This little app of ours would instantly update the <code>name</code> property in our state atom to uppercase:</p>
 <pre><code>--- { name: 'Johan' } ---
   app()
 --- { name: 'JOHAN' } ---
 </code></pre>
-<p>Now, this seems silly and simplistic. I thought so too.<span class="push-double"></span> <span class="pull-double">“</span>How can I ever achieve complex app logic with this?!”. Turns out you can. By using the stream operators of xstream on your data, you really <em>can</em> achieve crazy things. It all adds up. For me, it was all about separating the big state down into small functions taking care of<span class="push-double"></span> <span class="pull-double">“</span>their” domain, and then merging it all together:</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token comment">// Functions we've written to take care of stuff in our data model.</span></span><br><span class="highlight-line"><span class="token comment">// We don't care how they do it – as long as their return a stream</span></span><br><span class="highlight-line"><span class="token comment">// of state updates.</span></span><br><span class="highlight-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> nameUpdate<span class="token punctuation">,</span> posts <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./lib'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">const</span> app<span class="token operator">:</span> <span class="token function-variable function">Main</span> <span class="token operator">=</span> <span class="token punctuation">(</span>state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> nameUpdate$ <span class="token operator">=</span> <span class="token function">nameUpdate</span><span class="token punctuation">(</span>state$<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> postsUpdate$ <span class="token operator">=</span> <span class="token function">posts</span><span class="token punctuation">(</span>state$<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token comment">// All derived state updates off of existing state</span></span><br><span class="highlight-line">  <span class="token keyword">return</span> xs<span class="token punctuation">.</span><span class="token function">merge</span><span class="token punctuation">(</span>nameUpdate$<span class="token punctuation">,</span> postsUpdate$<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre>
+<p>Now, this seems silly and simplistic. I thought so too. "How can I ever achieve complex app logic with this?!". Turns out you can. By using the stream operators of xstream on your data, you really <em>can</em> achieve crazy things. It all adds up. For me, it was all about separating the big state down into small functions taking care of "their" domain, and then merging it all together:</p>
+<pre><code class="language-typescript hljs"><span class="hljs-comment">// Functions we've written to take care of stuff in our data model.</span>
+<span class="hljs-comment">// We don't care how they do it – as long as their return a stream</span>
+<span class="hljs-comment">// of state updates.</span>
+<span class="hljs-keyword">import</span> { nameUpdate, posts } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib'</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">app</span>: <span class="hljs-title class_">Main</span> = <span class="hljs-function">(<span class="hljs-params">state$: Stream&lt;State&gt;</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> nameUpdate$ = <span class="hljs-title function_">nameUpdate</span>(state$);
+  <span class="hljs-keyword">const</span> postsUpdate$ = <span class="hljs-title function_">posts</span>(state$);
+
+  <span class="hljs-comment">// All derived state updates off of existing state</span>
+  <span class="hljs-keyword">return</span> xs.<span class="hljs-title function_">merge</span>(nameUpdate$, postsUpdate$);
+};
+</code></pre>
 <p>-&gt; <a href="http://staltz.github.io/xstream/#merge">Docs on <code>xs.merge</code></a></p>
 <p>One important aspect here is the <em>cyclical</em> aspect of our app architecture. Notice how the state stream is constantly giving us new state as elements in the stream. Our <code>app</code> function is merely a transformer along the way, returning state updates as sinks and receives the new state as source:</p>
 <pre><code>------a---ax---ax------
   app() # Transforms the source stream
 ------ax--ax---axy-----
 </code></pre>
-<p>Once you’re used to<span class="push-double"></span> <span class="pull-double">“</span>thinking in cycles”, it creates quite a nice way of programming even complex apps, since the pattern is very scalable. You’ll be thinking in<span class="push-double"></span> <span class="pull-double">“</span>inputs and outputs”, and solely how you will transform the inputs to a given output.</p>
-<p>But derived state ain’t no fun. In a real app, we’ve got lots of inputs! Mouse clicks from the user, async calls coming back from web APIs&thinsp;&mdash;&thinsp;a myriad of things that should update our state. Let’s investigate the former!</p>
+<p>Once you're used to "thinking in cycles", it creates quite a nice way of programming even complex apps, since the pattern is very scalable. You'll be thinking in "inputs and outputs", and solely how you will transform the inputs to a given output.</p>
+<p>But derived state ain't no fun. In a real app, we've got lots of inputs! Mouse clicks from the user, async calls coming back from web APIs – a myriad of things that should update our state. Let's investigate the former!</p>
 <h2>Sending -&gt; Messages</h2>
-<p>Any app must deal with user input. Button clicks, text ﬁelds, forms, and so on. As our app architecture looks so far, there’s only derived state updates. Meaning, we only transform the state we have already.</p>
+<p>Any app must deal with user input. Button clicks, text fields, forms, and so on. As our app architecture looks so far, there's only derived state updates. Meaning, we only transform the state we have already.</p>
 <p><strong>We need to construct a way to let the view pass messages to our app function.</strong></p>
-<p>We haven’t looked at the view yet, but remember it’s <strong>outside</strong> our pure, cozy, functional world inside of our app function. In the app function, we solely deal with functional streams which we apply <code>map</code>, <code>filter</code> and other operations on.</p>
+<p>We haven't looked at the view yet, but remember it's <strong>outside</strong> our pure, cozy, functional world inside of our app function. In the app function, we solely deal with functional streams which we apply <code>map</code>, <code>filter</code> and other operations on.</p>
 <p>When I say <em>messages</em>, I refer to something like <em>signals</em> or <em>events</em> that are emitted from the UI element the user interacted with. We need two things in these messages:</p>
 <ol>
-<li>An identiﬁer in order to distinguish between different kinds of messages.</li>
+<li>An identifier in order to distinguish between different kinds of messages.</li>
 <li>An optional payload with data attached to the message.</li>
 </ol>
-<p>Let’s see how we can get those messages into our app function!</p>
-<p>We’ve modelled data as streams so far, so why not continue on that track. Imagine a <code>view$</code> stream which is a stream of <em>all</em> different kinds of messages&thinsp;&mdash;&thinsp;user input&thinsp;&mdash;&thinsp;coming from the view.</p>
-<p>I imagine this ﬂow being something like this:</p>
+<p>Let's see how we can get those messages into our app function!</p>
+<p>We've modelled data as streams so far, so why not continue on that track. Imagine a <code>view$</code> stream which is a stream of <em>all</em> different kinds of messages – user input – coming from the view.</p>
+<p>I imagine this flow being something like this:</p>
 <figure id="view-model">
   <img width="413" alt="Messages flow" src="/assets/posts/frap-messages.png">
-  <figcaption>Simpliﬁed ﬂow diagram.</figcaption>
+  <figcaption>Simplified flow diagram.</figcaption>
 </figure>
 <p>How does a message look like then? Perhaps like this:</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token keyword">interface</span> <span class="token class-name">ToggleModal</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  kind<span class="token operator">:</span> <span class="token string">'toggle_modal'</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  modalName<span class="token operator">:</span> <span class="token string">'surveyModal'</span> <span class="token operator">|</span> <span class="token string">'loginModal'</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  open<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">interface</span> <span class="token class-name">SetPerson</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  kind<span class="token operator">:</span> <span class="token string">'set_person'</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  person<span class="token operator">:</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span></span><br><span class="highlight-line">    age<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">type</span> <span class="token class-name">ViewMsg</span> <span class="token operator">=</span> ToggleModal <span class="token operator">|</span> SetPerson<span class="token punctuation">;</span></span></code></pre>
-<p>These resemble<span class="push-double"></span> <span class="pull-double">“</span>actions” you would send to a reducer when using the Flux architecture.</p>
-<p>The last <code>ViewMsg</code> type forms the union type which our messages stream consists of: <code>Stream&lt;ViewMsg&gt;</code>. Let’s investigate how this ﬁts into our app architecture.</p>
-<p>We’ve got our <code>app</code> function which produces state updates and receives state from <code>run</code>. The latter can be modiﬁed to accept a stream of view messages:</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token keyword">import</span> xs <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">const</span> run <span class="token operator">=</span> <span class="token operator">&lt;</span>ViewMsg<span class="token operator">></span><span class="token punctuation">(</span></span><br><span class="highlight-line">  main<span class="token operator">:</span> Main<span class="token punctuation">,</span></span><br><span class="highlight-line">  view$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>ViewMsg<span class="token operator">></span><span class="token punctuation">,</span></span><br><span class="highlight-line">  startState<span class="token operator">:</span> State</span><br><span class="highlight-line"><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> fakeUpdates$ <span class="token operator">=</span> xs<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">const</span> state$ <span class="token operator">=</span> stateUpdate$<span class="token punctuation">.</span><span class="token function">fold</span><span class="token punctuation">(</span></span><br><span class="highlight-line">    <span class="token punctuation">(</span>prev<span class="token punctuation">,</span> update<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span>prev<span class="token punctuation">,</span> <span class="token operator">...</span>update <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    startState</span><br><span class="highlight-line">  <span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">const</span> appUpdate$ <span class="token operator">=</span> <span class="token function">main</span><span class="token punctuation">(</span>state$<span class="token punctuation">,</span> view$<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  fakeUpdates$<span class="token punctuation">.</span><span class="token function">imitate</span><span class="token punctuation">(</span>appUpdate$<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">return</span> state$<span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre>
-<p>I’ve introduced a generic type <code>ViewMsg</code> in the <code>run</code> function. Let’s start our app:</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token comment">// run :: (Main, Stream&lt;V>, State) -> Stream&lt;State></span></span><br><span class="highlight-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> run <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'frap'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">State</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">export</span> <span class="token keyword">const</span> startState<span class="token operator">:</span> State <span class="token operator">=</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  name<span class="token operator">:</span> <span class="token string">'Johan'</span><span class="token punctuation">,</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">interface</span> <span class="token class-name">SetName</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  kind<span class="token operator">:</span> <span class="token string">'set_name'</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">ViewMsg</span> <span class="token operator">=</span> SetName<span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">const</span> app<span class="token operator">:</span> <span class="token function-variable function">Main</span> <span class="token operator">=</span> <span class="token punctuation">(</span>state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">></span><span class="token punctuation">,</span> view$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>ViewMsg<span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> stateUpdate$ <span class="token operator">=</span> view$</span><br><span class="highlight-line">    <span class="token comment">// Only filter on the `SetName` type of messages</span></span><br><span class="highlight-line">    <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token operator">:</span> m <span class="token keyword">is</span> SetName <span class="token operator">=></span> <span class="token operator">!</span><span class="token operator">!</span>m<span class="token punctuation">.</span>kind <span class="token operator">&amp;&amp;</span> m<span class="token punctuation">.</span>kind <span class="token operator">===</span> <span class="token string">'set_name'</span><span class="token punctuation">)</span></span><br><span class="highlight-line">    <span class="token comment">// Set a new name by mapping the payload from the message to a state update</span></span><br><span class="highlight-line">    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">{</span></span><br><span class="highlight-line">      name<span class="token operator">:</span> m<span class="token punctuation">.</span>name<span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">return</span> xs<span class="token punctuation">.</span><span class="token function">merge</span><span class="token punctuation">(</span>stateUpdate$<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token comment">// TODO Build view and construct messages stream</span></span><br><span class="highlight-line"><span class="token keyword">const</span> view$ <span class="token operator">=</span> xs<span class="token punctuation">.</span><span class="token generic-function"><span class="token function">create</span><span class="token generic class-name"><span class="token operator">&lt;</span>ViewMsg<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token comment">// Kick it off! 🚀</span></span><br><span class="highlight-line"><span class="token function">run</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> view$<span class="token punctuation">,</span> startState<span class="token punctuation">)</span><span class="token punctuation">;</span></span></code></pre>
-<p>Now, <em>imagine</em> that the <code>view$</code> stream is working. Imagine that for every time a user is submitting a form text ﬁeld with some text, the view will construct the <code>SetName</code> message object and put it on the view stream. This view stream can ﬂow through our app’s business logic as a regular function parameter, and we can <code>filter</code> to get speciﬁc messages and then <code>map</code> them to do state updates.</p>
-<p>This makes the separation between view and business logic pretty clear&thinsp;&mdash;&thinsp;which is a good thing! We can test our app in isolation by feeding mocked messages into the view stream and asserting the resulting state without having to mount the view. The view’s actions don’t have to be side effects, as it’s often regarded to be in other app setups.</p>
+<pre><code class="language-typescript hljs"><span class="hljs-keyword">interface</span> ToggleModal {
+  <span class="hljs-attr">kind</span>: <span class="hljs-string">'toggle_modal'</span>;
+  <span class="hljs-attr">modalName</span>: <span class="hljs-string">'surveyModal'</span> | <span class="hljs-string">'loginModal'</span>;
+  <span class="hljs-attr">open</span>: <span class="hljs-built_in">boolean</span>;
+}
+
+<span class="hljs-keyword">interface</span> SetPerson {
+  <span class="hljs-attr">kind</span>: <span class="hljs-string">'set_person'</span>;
+  <span class="hljs-attr">person</span>: {
+    <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+    <span class="hljs-attr">age</span>: <span class="hljs-built_in">number</span>;
+  };
+}
+
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">ViewMsg</span> = <span class="hljs-title class_">ToggleModal</span> | <span class="hljs-title class_">SetPerson</span>;
+</code></pre>
+<p>These resemble "actions" you would send to a reducer when using the Flux architecture.</p>
+<p>The last <code>ViewMsg</code> type forms the union type which our messages stream consists of: <code>Stream&lt;ViewMsg&gt;</code>. Let's investigate how this fits into our app architecture.</p>
+<p>We've got our <code>app</code> function which produces state updates and receives state from <code>run</code>. The latter can be modified to accept a stream of view messages:</p>
+<pre><code class="language-typescript hljs"><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+
+<span class="hljs-keyword">const</span> run = &lt;<span class="hljs-title class_">ViewMsg</span>&gt;<span class="hljs-function">(<span class="hljs-params">
+  main: Main,
+  view$: Stream&lt;ViewMsg&gt;,
+  startState: State
+</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> fakeUpdates$ = xs.<span class="hljs-title function_">create</span>();
+
+  <span class="hljs-keyword">const</span> state$ = stateUpdate$.<span class="hljs-title function_">fold</span>(
+    <span class="hljs-function">(<span class="hljs-params">prev, update</span>) =&gt;</span> ({ ...prev, ...update }),
+    startState
+  );
+
+  <span class="hljs-keyword">const</span> appUpdate$ = <span class="hljs-title function_">main</span>(state$, view$);
+
+  fakeUpdates$.<span class="hljs-title function_">imitate</span>(appUpdate$);
+
+  <span class="hljs-keyword">return</span> state$;
+};
+</code></pre>
+<p>I've introduced a generic type <code>ViewMsg</code> in the <code>run</code> function. Let's start our app:</p>
+<pre><code class="language-typescript hljs"><span class="hljs-comment">// run :: (Main, Stream&lt;V&gt;, State) -&gt; Stream&lt;State&gt;</span>
+<span class="hljs-keyword">import</span> { run } <span class="hljs-keyword">from</span> <span class="hljs-string">'frap'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> State {
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">startState</span>: <span class="hljs-title class_">State</span> = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Johan'</span>,
+};
+
+<span class="hljs-keyword">interface</span> SetName {
+  <span class="hljs-attr">kind</span>: <span class="hljs-string">'set_name'</span>;
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">ViewMsg</span> = <span class="hljs-title class_">SetName</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">app</span>: <span class="hljs-title class_">Main</span> = <span class="hljs-function">(<span class="hljs-params">state$: Stream&lt;State&gt;, view$: Stream&lt;ViewMsg&gt;</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> stateUpdate$ = view$
+    <span class="hljs-comment">// Only filter on the `SetName` type of messages</span>
+    .<span class="hljs-title function_">filter</span>((m): m is <span class="hljs-title class_">SetName</span> =&gt; !!m.<span class="hljs-property">kind</span> &amp;&amp; m.<span class="hljs-property">kind</span> === <span class="hljs-string">'set_name'</span>)
+    <span class="hljs-comment">// Set a new name by mapping the payload from the message to a state update</span>
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">m</span>) =&gt;</span> ({
+      <span class="hljs-attr">name</span>: m.<span class="hljs-property">name</span>,
+    }));
+
+  <span class="hljs-keyword">return</span> xs.<span class="hljs-title function_">merge</span>(stateUpdate$);
+};
+
+<span class="hljs-comment">// TODO Build view and construct messages stream</span>
+<span class="hljs-keyword">const</span> view$ = xs.<span class="hljs-property">create</span>&lt;<span class="hljs-title class_">ViewMsg</span>&gt;();
+
+<span class="hljs-comment">// Kick it off! 🚀</span>
+<span class="hljs-title function_">run</span>(app, view$, startState);
+</code></pre>
+<p>Now, <em>imagine</em> that the <code>view$</code> stream is working. Imagine that for every time a user is submitting a form text field with some text, the view will construct the <code>SetName</code> message object and put it on the view stream. This view stream can flow through our app's business logic as a regular function parameter, and we can <code>filter</code> to get specific messages and then <code>map</code> them to do state updates.</p>
+<p>This makes the separation between view and business logic pretty clear – which is a good thing! We can test our app in isolation by feeding mocked messages into the view stream and asserting the resulting state without having to mount the view. The view's actions don't have to be side effects, as it's often regarded to be in other app setups.</p>
 <hr>
-<p>So far, we’ve stayed inside or pure, functional domain of streams. The next section will go through the elephant in the room.</p>
+<p>So far, we've stayed inside or pure, functional domain of streams. The next section will go through the elephant in the room.</p>
 <h2>A View to a <s>kill</s> Stream</h2>
 <p>We begin with this simple but beautiful idea:</p>
 <blockquote>
 <p>ui = view(state)</p>
 </blockquote>
 <p><em>The View is a function of state, producing User Interface.</em></p>
-<p>This idea isn’t new of course: it exists in various shapes and philosophies, such as MVC, MVVM, MVI, and so on. The concept of having a view that listens to state is a baseline in many design patterns.</p>
+<p>This idea isn't new of course: it exists in various shapes and philosophies, such as MVC, MVVM, MVI, and so on. The concept of having a view that listens to state is a baseline in many design patterns.</p>
 <p><strong>Q:</strong> But how do we do this in Frap? Where we have a single stream of state?</p>
 <p><strong>A:</strong> We rely on a virtual DOM!</p>
 <p>This means, we re-render our whole component tree on each new state update. This feels terribly expensive and weird, but we must simply rely on that our virtual DOM implementation will calculate the smallest diff in the real DOM and apply that. The whole design idea behind React is built on this principle: to rely on the virtual DOM.</p>
-<p>As you saw above in the code samples at the top, UI components in CycleJS use streams as ﬁrst class citizens. The components are really just functions which accepts input streams and return output streams. A common lingo in the streams world is <em>Sources</em> and <em>Sinks</em> to signify the input and outputs. Thanks to this property of CycleJS, components can receive a stream of values (“props” in React world) and return a stream of virtual DOM nodes and a stream of new values, emitted from the component. React works differently. React components <em>must</em> return JSX (or a virtual DOM node, however you choose to write it). So we just can’t make React components return a stream of JSX and expect things to work, of course.</p>
-<p>Have a look at the <a href="#view-model">view ﬁgure</a> again. We see that the view should accept a state stream and<span class="push-double"></span> <span class="pull-double">“</span>return” a messages stream (I say<span class="push-double"></span> <span class="pull-double">“</span>return” within quotes since it’s not really gonna return the stream).</p>
-<p>But how do we draw a whole React app from a stream? We can’t return a stream of virtual DOM nodes here?</p>
+<p>As you saw above in the code samples at the top, UI components in CycleJS use streams as first class citizens. The components are really just functions which accepts input streams and return output streams. A common lingo in the streams world is <em>Sources</em> and <em>Sinks</em> to signify the input and outputs. Thanks to this property of CycleJS, components can receive a stream of values ("props" in React world) and return a stream of virtual DOM nodes and a stream of new values, emitted from the component. React works differently. React components <em>must</em> return JSX (or a virtual DOM node, however you choose to write it). So we just can't make React components return a stream of JSX and expect things to work, of course.</p>
+<p>Have a look at the <a href="#view-model">view figure</a> again. We see that the view should accept a state stream and "return" a messages stream (I say "return" within quotes since it's not really gonna return the stream).</p>
+<p>But how do we draw a whole React app from a stream? We can't return a stream of virtual DOM nodes here?</p>
 <p><strong>We must open up the state stream somehow and let it drive the rendering of the top level component.</strong></p>
-<p>(This means the React app will re-render on each state update. <em>Again, this is ﬁne</em>. Does the app feel slow? Proﬁle with React’s dev tools, as <a href="https://twitter.com/ryanflorence/status/1126734015950536706">this tweet</a> advises).</p>
-<p>In most stream libraries, there’s a method called <code>subscribe</code> which you can use on a stream. In xstream, it adds a listener on a stream and returns a subscription that can be used to remove that listener (read the <a href="http://staltz.github.io/xstream/#subscribe">docs</a>). We can use that to subscribe to state updates, and then unsubscribe when our app unmounts.</p>
-<p>In the <code>next</code> callback of <code>subscribe</code>, we’ll receive each new element in the stream (we can also catch errors in <code>error</code>). We use <code>next</code> to set the state of the React component at top level. From then on, we’ll let React ﬁgure out how to draw the DOM based on that very state. For each new state update, <code>next</code> will be called, and React will re-render the tree. Incremental, immutable state.</p>
-<p>Here’s the function signature of <code>run</code>:</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token keyword">type</span> <span class="token class-name">Run</span> <span class="token operator">=</span> <span class="token punctuation">(</span>Main<span class="token punctuation">,</span> view$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>ViewMsg<span class="token operator">></span><span class="token punctuation">,</span> startState<span class="token operator">:</span> State<span class="token punctuation">)</span> <span class="token operator">=></span> Stream<span class="token operator">&lt;</span>State<span class="token operator">></span><span class="token punctuation">;</span></span></code></pre>
-<p>Before, we’ve just called <code>run</code> for funsies without really thinking too much about where and how we’ll handle it’s output stream. I can reveal to you now that the function should ideally be called when your top level React component mounts.</p>
-<pre class="language-tsx"><code class="language-tsx"><span class="highlight-line"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> Stream<span class="token punctuation">,</span> Subscription <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> run <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'frap'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token comment">// Imported from our main file</span></span><br><span class="highlight-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> app<span class="token punctuation">,</span> State<span class="token punctuation">,</span> ViewMsg<span class="token punctuation">,</span> startState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./main.ts'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token comment">/** The state of our React component */</span></span><br><span class="highlight-line"><span class="token keyword">interface</span> <span class="token class-name">AppState</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">></span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token comment">/** This holds our "real" app state – ready to render! */</span></span><br><span class="highlight-line">  appState<span class="token operator">:</span> State<span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">type</span> <span class="token class-name">Send</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">event<span class="token operator">:</span> ViewMsg</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">React</span><span class="token punctuation">.</span>Component<span class="token operator">&lt;</span><span class="token builtin">any</span><span class="token punctuation">,</span> AppState<span class="token operator">></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token comment">/** Instance variable holding the subscription to the state stream. */</span></span><br><span class="highlight-line">  sub<span class="token operator">:</span> Subscription<span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token comment">/** Instance function used to drive messages into the view stream. */</span></span><br><span class="highlight-line">  send<span class="token operator">:</span> Send <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">    <span class="token comment">// Stream of input from the views.</span></span><br><span class="highlight-line">    <span class="token keyword">const</span> view$ <span class="token operator">=</span> xs<span class="token punctuation">.</span><span class="token generic-function"><span class="token function">create</span><span class="token generic class-name"><span class="token operator">&lt;</span>ViewMsg<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">    <span class="token comment">// Create our "send" function which will drive messages on to</span></span><br><span class="highlight-line">    <span class="token comment">// the view stream above.</span></span><br><span class="highlight-line">    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">send</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">v<span class="token operator">:</span> ViewMsg</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">      view$<span class="token punctuation">.</span><span class="token function">shamefullySendNext</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">    <span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">    <span class="token comment">// Kick everything off! 🚀</span></span><br><span class="highlight-line">    <span class="token keyword">const</span> state$ <span class="token operator">=</span> <span class="token function">run</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> view$<span class="token punctuation">,</span> startState<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">    <span class="token comment">// Attach on component's local state so we an access it</span></span><br><span class="highlight-line">    <span class="token comment">// in life cycle methods</span></span><br><span class="highlight-line">    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">      state$<span class="token punctuation">,</span></span><br><span class="highlight-line">      appState<span class="token operator">:</span> startState<span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token comment">// Start subscribing to incoming state and set the local</span></span><br><span class="highlight-line">    <span class="token comment">// state of our React component. Will trigger re-render.</span></span><br><span class="highlight-line">    <span class="token keyword">this</span><span class="token punctuation">.</span>sub <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>state$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span></span><br><span class="highlight-line">      <span class="token function-variable function">next</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">appState</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> appState <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">      <span class="token punctuation">}</span><span class="token punctuation">,</span></span><br><span class="highlight-line">      <span class="token function-variable function">error</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">      <span class="token punctuation">}</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token comment">// Unsubscribe from state subscription:</span></span><br><span class="highlight-line">    <span class="token keyword">this</span><span class="token punctuation">.</span>sub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> React<span class="token punctuation">.</span>ReactNode <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token keyword">const</span> <span class="token punctuation">{</span> appState <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">    <span class="token comment">// Render the 'name' state and a button to change it.</span></span><br><span class="highlight-line">    <span class="token keyword">return</span> <span class="token punctuation">(</span></span><br>      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token plain-text"><br><span class="highlight-line">        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text">Hi </span><span class="token punctuation">{</span>appState<span class="token punctuation">.</span>name<span class="token punctuation">}</span><span class="token plain-text">!</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><span class="token plain-text"></span><br><span class="highlight-line"></span><br><span class="highlight-line">        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span></span><br>          <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span><br><span class="highlight-line">            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">{</span></span><br><span class="highlight-line">              kind<span class="token operator">:</span> <span class="token string">'set_name'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">              name<span class="token operator">:</span> <span class="token string">'Johnny Doe'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">            <span class="token punctuation">}</span><span class="token punctuation">)</span></span><br>          <span class="token punctuation">}</span></span><br><span class="highlight-line">        <span class="token punctuation">></span></span><span class="token plain-text"></span><br><span class="highlight-line">          Set another name</span><br><span class="highlight-line">        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span><span class="token plain-text"></span><br>      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><br><span class="highlight-line">    <span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
-<p>(The class approach is a bit verbose, but React Hooks is still a new concept which is outside the scope of this post. Here’s a <a href="https://gist.github.com/brookback/d98efdfb4a3087dbba767910f2eec2f3">GitHub Gist</a> including a Hooks version).</p>
+<p>(This means the React app will re-render on each state update. <em>Again, this is fine</em>. Does the app feel slow? Profile with React's dev tools, as <a href="https://twitter.com/ryanflorence/status/1126734015950536706">this tweet</a> advises).</p>
+<p>In most stream libraries, there's a method called <code>subscribe</code> which you can use on a stream. In xstream, it adds a listener on a stream and returns a subscription that can be used to remove that listener (read the <a href="http://staltz.github.io/xstream/#subscribe">docs</a>). We can use that to subscribe to state updates, and then unsubscribe when our app unmounts.</p>
+<p>In the <code>next</code> callback of <code>subscribe</code>, we'll receive each new element in the stream (we can also catch errors in <code>error</code>). We use <code>next</code> to set the state of the React component at top level. From then on, we'll let React figure out how to draw the DOM based on that very state. For each new state update, <code>next</code> will be called, and React will re-render the tree. Incremental, immutable state.</p>
+<p>Here's the function signature of <code>run</code>:</p>
+<pre><code class="language-typescript hljs"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Run</span> = <span class="hljs-function">(<span class="hljs-params">Main, view$: Stream&lt;ViewMsg&gt;, startState: State</span>) =&gt;</span> <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">State</span>&gt;;
+</code></pre>
+<p>Before, we've just called <code>run</code> for funsies without really thinking too much about where and how we'll handle it's output stream. I can reveal to you now that the function should ideally be called when your top level React component mounts.</p>
+<pre><code class="language-tsx hljs language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Stream</span>, <span class="hljs-title class_">Subscription</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+<span class="hljs-keyword">import</span> { run } <span class="hljs-keyword">from</span> <span class="hljs-string">'frap'</span>;
+
+<span class="hljs-comment">// Imported from our main file</span>
+<span class="hljs-keyword">import</span> { app, <span class="hljs-title class_">State</span>, <span class="hljs-title class_">ViewMsg</span>, startState } <span class="hljs-keyword">from</span> <span class="hljs-string">'./main.ts'</span>;
+
+<span class="hljs-comment">/** The state of our React component */</span>
+<span class="hljs-keyword">interface</span> AppState {
+  <span class="hljs-attr">state$</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">State</span>&gt;;
+  <span class="hljs-comment">/** This holds our "real" app state – ready to render! */</span>
+  <span class="hljs-attr">appState</span>: <span class="hljs-title class_">State</span>;
+}
+
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Send</span> = <span class="hljs-function">(<span class="hljs-params">event: ViewMsg</span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span>&lt;<span class="hljs-built_in">any</span>, <span class="hljs-title class_">AppState</span>&gt; {
+  <span class="hljs-comment">/** Instance variable holding the subscription to the state stream. */</span>
+  <span class="hljs-attr">sub</span>: <span class="hljs-title class_">Subscription</span>;
+
+  <span class="hljs-comment">/** Instance function used to drive messages into the view stream. */</span>
+  <span class="hljs-attr">send</span>: <span class="hljs-title class_">Send</span> | <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;
+
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) {
+    <span class="hljs-variable language_">super</span>(props);
+
+    <span class="hljs-comment">// Stream of input from the views.</span>
+    <span class="hljs-keyword">const</span> view$ = xs.<span class="hljs-property">create</span>&lt;<span class="hljs-title class_">ViewMsg</span>&gt;();
+
+    <span class="hljs-comment">// Create our "send" function which will drive messages on to</span>
+    <span class="hljs-comment">// the view stream above.</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">send</span> = <span class="hljs-function">(<span class="hljs-params">v: ViewMsg</span>) =&gt;</span> {
+      view$.<span class="hljs-title function_">shamefullySendNext</span>(v);
+    };
+
+    <span class="hljs-comment">// Kick everything off! 🚀</span>
+    <span class="hljs-keyword">const</span> state$ = <span class="hljs-title function_">run</span>(app, view$, startState);
+
+    <span class="hljs-comment">// Attach on component's local state so we an access it</span>
+    <span class="hljs-comment">// in life cycle methods</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = {
+      state$,
+      <span class="hljs-attr">appState</span>: startState,
+    };
+  }
+
+  <span class="hljs-title function_">componentDidMount</span>(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-comment">// Start subscribing to incoming state and set the local</span>
+    <span class="hljs-comment">// state of our React component. Will trigger re-render.</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">sub</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">state$</span>.<span class="hljs-title function_">subscribe</span>({
+      <span class="hljs-attr">next</span>: <span class="hljs-function">(<span class="hljs-params">appState</span>) =&gt;</span> {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({ appState });
+      },
+      <span class="hljs-attr">error</span>: <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err);
+      },
+    });
+  }
+
+  <span class="hljs-title function_">componentWillUnmount</span>(): <span class="hljs-built_in">void</span> {
+    <span class="hljs-comment">// Unsubscribe from state subscription:</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">sub</span>.<span class="hljs-title function_">unsubscribe</span>();
+  }
+
+  <span class="hljs-title function_">render</span>(): <span class="hljs-title class_">React</span>.<span class="hljs-property">ReactNode</span> {
+    <span class="hljs-keyword">const</span> { appState } = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>;
+
+    <span class="hljs-comment">// Render the 'name' state and a button to change it.</span>
+    <span class="hljs-keyword">return</span> (
+      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hi {appState.name}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+          <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span>
+            this.send({
+              kind: 'set_name',
+              name: 'Johnny Doe',
+            })
+          }
+        &gt;
+          Set another name
+        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+  }
+}
+</code></pre>
+<p>(The class approach is a bit verbose, but React Hooks is still a new concept which is outside the scope of this post. Here's a <a href="https://gist.github.com/brookback/d98efdfb4a3087dbba767910f2eec2f3">GitHub Gist</a> including a Hooks version).</p>
 <p>Notice how we:</p>
 <ol>
 <li>Create a <code>view$</code> stream in the constructor and pass it to <code>run</code>.</li>
@@ -292,32 +592,32 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
 <li>Subscribe to state updates when mounted.</li>
 <li>Render the state in <code>render()</code>.</li>
 </ol>
-<p>The main ﬁshy thing here might be the <code>shamefullySendNext</code> method in <code>send</code>. As from the <a href="http://staltz.github.io/xstream/#shamefullySendNext">docs</a>, this method forces a new value to be emitted to the stream. This is the one of the two<span class="push-double"></span> <span class="pull-double">“</span>bridges” between our functional app world and the imperative view (the <code>subscribe()</code> call being the other one).</p>
-<p>Phew. Lots of code and concepts. In this section, we’ve:</p>
+<p>The main fishy thing here might be the <code>shamefullySendNext</code> method in <code>send</code>. As from the <a href="http://staltz.github.io/xstream/#shamefullySendNext">docs</a>, this method forces a new value to be emitted to the stream. This is the one of the two "bridges" between our functional app world and the imperative view (the <code>subscribe()</code> call being the other one).</p>
+<p>Phew. Lots of code and concepts. In this section, we've:</p>
 <ul>
 <li>seen how to add the view layer (here React) to our app architecture.</li>
 <li>how to pass actual messages from the view.</li>
 <li>render a React component from our state.</li>
 </ul>
-<p>There’s one thing missing still. Where are all the async API calls, browser API functions, and logging utilities?</p>
+<p>There's one thing missing still. Where are all the async API calls, browser API functions, and logging utilities?</p>
 <p>Yes: where are the <em>side effects</em>?</p>
 <h2>Side effects 💀</h2>
 <p>In any non-trivial application, there <em>will</em> be side effects. Side effects in this case refer to things similar to:</p>
 <ul>
 <li>Fetching JSON from an API server</li>
-<li>Using Chrome’s media APIs to gain access to the web camera</li>
+<li>Using Chrome's media APIs to gain access to the web camera</li>
 </ul>
-<p>The common denominator is that drivers include <em>imperative code</em>. Code that isn’t functional streams. Code that affect the outside world. Code that is non-pure.</p>
-<p>I recommend reading the <em>Drivers</em> section on <a href="https://cycle.js.org/drivers.html">CycleJS’s page</a>, since we stole the concept of Drivers from there. There are many good examples there as well.</p>
-<p>Once you’ve done that, return back here.</p>
+<p>The common denominator is that drivers include <em>imperative code</em>. Code that isn't functional streams. Code that affect the outside world. Code that is non-pure.</p>
+<p>I recommend reading the <em>Drivers</em> section on <a href="https://cycle.js.org/drivers.html">CycleJS's page</a>, since we stole the concept of Drivers from there. There are many good examples there as well.</p>
+<p>Once you've done that, return back here.</p>
 <hr>
-<p>We’re gonna use the exact same concept of drivers in Frap. Drivers receive <em>Sinks</em> and return <em>Sources</em>. This is in contrast to our main app function, which receives <em>Sources</em> and returns <em>Sinks</em>.</p>
-<p>The ﬂow diagram thus becomes:</p>
+<p>We're gonna use the exact same concept of drivers in Frap. Drivers receive <em>Sinks</em> and return <em>Sources</em>. This is in contrast to our main app function, which receives <em>Sources</em> and returns <em>Sinks</em>.</p>
+<p>The flow diagram thus becomes:</p>
 <figure id="view-model">
   <img width="624" alt="Driver flow" src="/assets/posts/frap-driver-flow.png">
   <figcaption>App architecture with drivers and view.</figcaption>
 </figure>
-<p>Let’s nail down our Sources and Sinks here.</p>
+<p>Let's nail down our Sources and Sinks here.</p>
 <ul>
 <li><strong>To our <code>app</code> function,</strong> Sources are all input sources it needs to do its job. View messages, driver input, the state stream. Sinks are output instructions to drivers and state updates.</li>
 <li><strong>To the drivers,</strong> Sources are the output instructions (as a stream) from <code>app()</code>. Sinks can be anything.</li>
@@ -325,37 +625,164 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
 <p>The <code>run()</code> function from Frap takes care of glueing all of this together.</p>
 <p>We communicate with the drivers with a single <em>out</em> stream with messages. A driver can thus look like:</p>
 <p><strong>Driver</strong></p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token comment">// ConsoleLogDriver.ts</span></span><br><span class="highlight-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> Stream <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">interface</span> <span class="token class-name">DoLog</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  kind<span class="token operator">:</span> <span class="token string">'do_log'</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  label<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  args<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">ConsoleOut</span> <span class="token operator">=</span> DoLog<span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="token comment">/** A logging driver that consumes log messages and<br><span class="highlight-line"> * only performs writes to the console.</span><br> */</span><br><span class="highlight-line"><span class="token keyword">const</span> <span class="token function-variable function">ConsoleLogDriver</span> <span class="token operator">=</span> <span class="token punctuation">(</span>out$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>ConsoleOut<span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  out$</span><br><span class="highlight-line">    <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token operator">:</span> m <span class="token keyword">is</span> DoLog <span class="token operator">=></span> <span class="token operator">!</span><span class="token operator">!</span>m<span class="token punctuation">.</span>kind <span class="token operator">&amp;&amp;</span> m<span class="token punctuation">.</span>kind <span class="token operator">===</span> <span class="token string">'do_log'</span><span class="token punctuation">)</span></span><br><span class="highlight-line">    <span class="token punctuation">.</span><span class="token function">addListener</span><span class="token punctuation">(</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span>label<span class="token punctuation">,</span> <span class="token operator">...</span>m<span class="token punctuation">.</span>args<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">export</span> <span class="token keyword">default</span> ConsoleLogDriver<span class="token punctuation">;</span></span></code></pre>
+<pre><code class="language-typescript hljs"><span class="hljs-comment">// ConsoleLogDriver.ts</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Stream</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+
+<span class="hljs-keyword">interface</span> DoLog {
+  <span class="hljs-attr">kind</span>: <span class="hljs-string">'do_log'</span>;
+  <span class="hljs-attr">label</span>: <span class="hljs-built_in">string</span>;
+  args?: <span class="hljs-built_in">any</span>[];
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">ConsoleOut</span> = <span class="hljs-title class_">DoLog</span>;
+
+<span class="hljs-comment">/** A logging driver that consumes log messages and
+ * only performs writes to the console.
+ */</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">ConsoleLogDriver</span> = (<span class="hljs-params">out$: Stream&lt;ConsoleOut&gt;</span>) =&gt; {
+  out$
+    .<span class="hljs-title function_">filter</span>((m): m is <span class="hljs-title class_">DoLog</span> =&gt; !!m.<span class="hljs-property">kind</span> &amp;&amp; m.<span class="hljs-property">kind</span> === <span class="hljs-string">'do_log'</span>)
+    .<span class="hljs-title function_">addListener</span>(<span class="hljs-function">(<span class="hljs-params">m</span>) =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(m.<span class="hljs-property">label</span>, ...m.<span class="hljs-property">args</span>));
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">ConsoleLogDriver</span>;
+</code></pre>
 <p>As you see, a driver is 🌈Just A Function 🌈.</p>
-<p>This particular example of a driver only consumes sinks but doesn’t return any sources back to our <code>app()</code> function.</p>
+<p>This particular example of a driver only consumes sinks but doesn't return any sources back to our <code>app()</code> function.</p>
 <p>How do we hook up this driver? We need to modify the <code>run</code> function!</p>
 <p><strong>Run</strong></p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token keyword">import</span> xs <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">interface</span> <span class="token class-name">Sources<span class="token operator">&lt;</span><span class="token constant">V</span><span class="token operator">></span></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  view$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token constant">V</span><span class="token operator">></span><span class="token punctuation">;</span></span><br><span class="highlight-line">  drivers<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token punctuation">[</span>key<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">(</span>s<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token builtin">any</span><span class="token operator">></span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token keyword">void</span> <span class="token operator">|</span> Stream<span class="token operator">&lt;</span><span class="token builtin">any</span><span class="token operator">></span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">const</span> run <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token constant">V</span><span class="token operator">></span><span class="token punctuation">(</span>main<span class="token operator">:</span> Main<span class="token punctuation">,</span> sources<span class="token operator">:</span> Sources<span class="token punctuation">,</span> startState<span class="token operator">:</span> State<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> <span class="token punctuation">{</span> view$<span class="token punctuation">,</span> drivers <span class="token punctuation">}</span> <span class="token operator">=</span> sources<span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">const</span> fakeUpdates$ <span class="token operator">=</span> xs<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> fakeDriverOuts <span class="token operator">=</span> <span class="token function">createFakeDriverOut</span><span class="token punctuation">(</span>drivers<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">const</span> state$ <span class="token operator">=</span> stateUpdate$<span class="token punctuation">.</span><span class="token function">fold</span><span class="token punctuation">(</span><span class="token punctuation">(</span>prev<span class="token punctuation">,</span> update<span class="token punctuation">)</span> <span class="token operator">=></span></span><br><span class="highlight-line">    <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span>prev<span class="token punctuation">,</span> <span class="token operator">...</span>update <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span> startState<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token comment">// The sources to our app: state, messages, and driver input</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> mainSources <span class="token operator">=</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    state$<span class="token punctuation">,</span></span><br><span class="highlight-line">    view$<span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token operator">...</span><span class="token function">callDrivers</span><span class="token punctuation">(</span>drivers<span class="token punctuation">,</span> fakeDriverOuts<span class="token punctuation">)</span><span class="token punctuation">,</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">const</span> <span class="token punctuation">{</span> stateUpdate$<span class="token punctuation">,</span> <span class="token operator">...</span>driverSinks <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">main</span><span class="token punctuation">(</span>mainSources<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  fakeUpdates$<span class="token punctuation">.</span><span class="token function">imitate</span><span class="token punctuation">(</span>stateUpdate$<span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> name <span class="token keyword">in</span> fakeDriverOuts<span class="token punctuation">)</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token keyword">const</span> fake$ <span class="token operator">=</span> fakeDriverOuts<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">;</span></span><br><span class="highlight-line">    <span class="token keyword">const</span> driverOut$ <span class="token operator">=</span> driverSinks<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">    fake$<span class="token punctuation">.</span><span class="token function">imitate</span><span class="token punctuation">(</span>driverOut$<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">return</span> state$<span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre>
-<p>This might look a bit hairy. I’ve left out the implementation of two functions here:</p>
+<pre><code class="language-typescript hljs"><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+
+<span class="hljs-keyword">interface</span> Sources&lt;V&gt; {
+  <span class="hljs-attr">view$</span>: <span class="hljs-title class_">Stream</span>&lt;V&gt;;
+  drivers?: {
+    [<span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>]: <span class="hljs-function">(<span class="hljs-params">s: Stream&lt;<span class="hljs-built_in">any</span>&gt;</span>) =&gt;</span> <span class="hljs-built_in">void</span> | <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-built_in">any</span>&gt;;
+  };
+}
+
+<span class="hljs-keyword">const</span> run = &lt;V&gt;<span class="hljs-function">(<span class="hljs-params">main: Main, sources: Sources, startState: State</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> { view$, drivers } = sources;
+
+  <span class="hljs-keyword">const</span> fakeUpdates$ = xs.<span class="hljs-title function_">create</span>();
+  <span class="hljs-keyword">const</span> fakeDriverOuts = <span class="hljs-title function_">createFakeDriverOut</span>(drivers);
+
+  <span class="hljs-keyword">const</span> state$ = stateUpdate$.<span class="hljs-title function_">fold</span>(<span class="hljs-function">(<span class="hljs-params">prev, update</span>) =&gt;</span>
+    ({ ...prev, ...update }), startState);
+
+  <span class="hljs-comment">// The sources to our app: state, messages, and driver input</span>
+  <span class="hljs-keyword">const</span> mainSources = {
+    state$,
+    view$,
+    ...<span class="hljs-title function_">callDrivers</span>(drivers, fakeDriverOuts),
+  }
+
+  <span class="hljs-keyword">const</span> { stateUpdate$, ...driverSinks } = <span class="hljs-title function_">main</span>(mainSources);
+
+  fakeUpdates$.<span class="hljs-title function_">imitate</span>(stateUpdate$);
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> name <span class="hljs-keyword">in</span> fakeDriverOuts) {
+    <span class="hljs-keyword">const</span> fake$ = fakeDriverOuts[name];
+    <span class="hljs-keyword">const</span> driverOut$ = driverSinks[name];
+
+    fake$.<span class="hljs-title function_">imitate</span>(driverOut$));
+  }
+
+  <span class="hljs-keyword">return</span> state$;
+};
+</code></pre>
+<p>This might look a bit hairy. I've left out the implementation of two functions here:</p>
 <ul>
-<li><code>createFakeDriverOut</code>. Similarily to the state updates, we need to have a cyclic relationship between the drivers’ sinks and sources and the main app function. In this function, we create a fake stream for each driver speciﬁed.</li>
-<li><code>callDrivers</code>. We call all the driver functions with the fake outputs and feed the drivers’ returned output as sources to our main app function.</li>
+<li><code>createFakeDriverOut</code>. Similarily to the state updates, we need to have a cyclic relationship between the drivers' sinks and sources and the main app function. In this function, we create a fake stream for each driver specified.</li>
+<li><code>callDrivers</code>. We call all the driver functions with the fake outputs and feed the drivers' returned output as sources to our main app function.</li>
 </ul>
 <p><strong>Main app</strong></p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token comment">// main.ts</span></span><br><span class="highlight-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> run <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'frap'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token keyword">import</span> <span class="token punctuation">{</span> ConsoleOut <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./ConsoleLogDriver.ts'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">State</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">export</span> <span class="token keyword">const</span> startState<span class="token operator">:</span> State <span class="token operator">=</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  name<span class="token operator">:</span> <span class="token string">'Johan'</span><span class="token punctuation">,</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">interface</span> <span class="token class-name">SetName</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  kind<span class="token operator">:</span> <span class="token string">'set_name'</span><span class="token punctuation">;</span></span><br><span class="highlight-line">  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">ViewMsg</span> <span class="token operator">=</span> SetName<span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">interface</span> <span class="token class-name">MainSources</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  view$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>ViewMsg<span class="token operator">></span><span class="token punctuation">;</span></span><br><span class="highlight-line">  state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">></span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">interface</span> <span class="token class-name">MainSinks</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">  stateUpdate$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>Partial<span class="token operator">&lt;</span>State<span class="token operator">>></span><span class="token punctuation">;</span></span><br><span class="highlight-line">  <span class="token builtin">console</span><span class="token operator">:</span> Stream<span class="token operator">&lt;</span>ConsoleOut<span class="token operator">></span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token keyword">const</span> app<span class="token operator">:</span> Main <span class="token operator">=</span> <span class="token punctuation">(</span>sources<span class="token operator">:</span> MainSources<span class="token punctuation">)</span><span class="token operator">:</span> MainSinks <span class="token operator">=></span> <span class="token punctuation">{</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token comment">// Access driver sources with:</span></span><br><span class="highlight-line">  <span class="token comment">//   sources.myDriver.*</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token keyword">const</span> stateUpdate$ <span class="token operator">=</span> <span class="token comment">/* updates to state */</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token comment">// Send log message to log driver every second:</span></span><br><span class="highlight-line">  <span class="token keyword">const</span> logDriverOut$ <span class="token operator">=</span> xs</span><br><span class="highlight-line">    <span class="token punctuation">.</span><span class="token function">periodic</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span></span><br><span class="highlight-line">    <span class="token punctuation">.</span><span class="token function">mapTo</span><span class="token punctuation">(</span><span class="token punctuation">{</span></span><br><span class="highlight-line">      kind<span class="token operator">:</span> <span class="token string">'do_log'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">      label<span class="token operator">:</span> <span class="token string">'Hello!'</span><span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">:</span></span><br><span class="highlight-line"></span><br><span class="highlight-line">  <span class="token comment">// Return sinks</span></span><br><span class="highlight-line">  <span class="token keyword">return</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">    <span class="token comment">// State updates as usual</span></span><br><span class="highlight-line">    stateUpdate$<span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token comment">// Output instructions to the console driver. The key</span></span><br><span class="highlight-line">    <span class="token comment">// needs to match the name of the driver specified in</span></span><br><span class="highlight-line">    <span class="token comment">// the `drivers` argument to `run` below.</span></span><br><span class="highlight-line">    <span class="token builtin">console</span><span class="token operator">:</span> logDriverOut$<span class="token punctuation">,</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span><span class="token punctuation">;</span></span><br><span class="highlight-line"><span class="token punctuation">}</span><span class="token punctuation">;</span></span></code></pre>
+<pre><code class="language-typescript hljs"><span class="hljs-comment">// main.ts</span>
+<span class="hljs-keyword">import</span> { run } <span class="hljs-keyword">from</span> <span class="hljs-string">'frap'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">ConsoleOut</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'./ConsoleLogDriver.ts'</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> State {
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">startState</span>: <span class="hljs-title class_">State</span> = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">'Johan'</span>,
+};
+
+<span class="hljs-keyword">interface</span> SetName {
+  <span class="hljs-attr">kind</span>: <span class="hljs-string">'set_name'</span>;
+  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">ViewMsg</span> = <span class="hljs-title class_">SetName</span>;
+
+<span class="hljs-keyword">interface</span> MainSources {
+  <span class="hljs-attr">view$</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">ViewMsg</span>&gt;;
+  <span class="hljs-attr">state$</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">State</span>&gt;;
+}
+
+<span class="hljs-keyword">interface</span> MainSinks {
+  <span class="hljs-attr">stateUpdate$</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">State</span>&gt;&gt;;
+  <span class="hljs-attr">console</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">ConsoleOut</span>&gt;;
+}
+
+<span class="hljs-keyword">const</span> <span class="hljs-attr">app</span>: <span class="hljs-title class_">Main</span> = (<span class="hljs-attr">sources</span>: <span class="hljs-title class_">MainSources</span>): <span class="hljs-function"><span class="hljs-params">MainSinks</span> =&gt;</span> {
+
+  <span class="hljs-comment">// Access driver sources with:</span>
+  <span class="hljs-comment">//   sources.myDriver.*</span>
+
+  <span class="hljs-keyword">const</span> stateUpdate$ = <span class="hljs-comment">/* updates to state */</span>;
+
+  <span class="hljs-comment">// Send log message to log driver every second:</span>
+  <span class="hljs-keyword">const</span> logDriverOut$ = xs
+    .<span class="hljs-title function_">periodic</span>(<span class="hljs-number">1000</span>)
+    .<span class="hljs-title function_">mapTo</span>({
+      <span class="hljs-attr">kind</span>: <span class="hljs-string">'do_log'</span>,
+      <span class="hljs-attr">label</span>: <span class="hljs-string">'Hello!'</span>,
+    }):
+
+  <span class="hljs-comment">// Return sinks</span>
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-comment">// State updates as usual</span>
+    stateUpdate$,
+    <span class="hljs-comment">// Output instructions to the console driver. The key</span>
+    <span class="hljs-comment">// needs to match the name of the driver specified in</span>
+    <span class="hljs-comment">// the `drivers` argument to `run` below.</span>
+    <span class="hljs-attr">console</span>: logDriverOut$,
+  };
+};
+</code></pre>
 <p><strong>View</strong></p>
-<pre class="language-typescript"><code class="language-typescript"><span class="highlight-line"><span class="token keyword">import</span> ConsoleLogDriver <span class="token keyword">from</span> <span class="token string">'./ConsoleLogDriver.ts'</span><span class="token punctuation">;</span></span><br><span class="highlight-line"></span><br><span class="highlight-line"><span class="token comment">// In the react view, run our app:</span></span><br><span class="highlight-line"><span class="token function">run</span><span class="token punctuation">(</span></span><br><span class="highlight-line">  app<span class="token punctuation">,</span></span><br><span class="highlight-line">  <span class="token punctuation">{</span></span><br><span class="highlight-line">    view$<span class="token punctuation">,</span></span><br><span class="highlight-line">    drivers<span class="token operator">:</span> <span class="token punctuation">{</span></span><br><span class="highlight-line">      <span class="token comment">// ... with the console log driver function</span></span><br><span class="highlight-line">      <span class="token builtin">console</span><span class="token operator">:</span> ConsoleLogDriver<span class="token punctuation">,</span></span><br><span class="highlight-line">    <span class="token punctuation">}</span><span class="token punctuation">,</span></span><br><span class="highlight-line">  <span class="token punctuation">}</span><span class="token punctuation">,</span></span><br><span class="highlight-line">  startState</span><br><span class="highlight-line"><span class="token punctuation">)</span><span class="token punctuation">;</span></span></code></pre>
+<pre><code class="language-typescript hljs"><span class="hljs-keyword">import</span> <span class="hljs-title class_">ConsoleLogDriver</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'./ConsoleLogDriver.ts'</span>;
+
+<span class="hljs-comment">// In the react view, run our app:</span>
+<span class="hljs-title function_">run</span>(
+  app,
+  {
+    view$,
+    <span class="hljs-attr">drivers</span>: {
+      <span class="hljs-comment">// ... with the console log driver function</span>
+      <span class="hljs-attr">console</span>: <span class="hljs-title class_">ConsoleLogDriver</span>,
+    },
+  },
+  startState
+);
+</code></pre>
 <hr>
-<p>That’s it! Now we can handle all side effects in their special drivers, where they can do all kinds of reads and writes with the external world, and safely pass back their results as sources (“input”) to our app.</p>
+<p>That's it! Now we can handle all side effects in their special drivers, where they can do all kinds of reads and writes with the external world, and safely pass back their results as sources ("input") to our app.</p>
 <h2>Parting words</h2>
-<p>What I love about this architecture we’ve just built are these things:</p>
+<p>What I love about this architecture we've just built are these things:</p>
 <ul>
-<li>Reasoning in reactive streams! 😍 Forget about mutability and writing imperative code. Say hello to declarative code and<span class="push-double"></span> <span class="pull-double">“</span>tight” business logic.</li>
-<li>How well it goes along with React’s virtual DOM nature.</li>
-<li>How the architecture is ﬂexible enough to allow for all varieties of organising your app, still being strict with what types you pass around.</li>
-<li>How well it scales. Almost every new feature you’ll add to your app will be written in the same style.</li>
+<li>Reasoning in reactive streams! 😍 Forget about mutability and writing imperative code. Say hello to declarative code and "tight" business logic.</li>
+<li>How well it goes along with React's virtual DOM nature.</li>
+<li>How the architecture is flexible enough to allow for all varieties of organising your app, still being strict with what types you pass around.</li>
+<li>How well it scales. Almost every new feature you'll add to your app will be written in the same style.</li>
 <li>How safe I feel when everything from the library layer (Frap) to the view layer (React) is handled with a type system (Typescript).</li>
 </ul>
-<p>Here’s the complete library code:</p>
+<p>Here's the complete library code:</p>
 <p class="tc">
   <a href="https://github.com/lookback/frap" class="btn">lookback/frap</a>
 </p>
-<p>A huge shoutout to the creators of CycleJS. We’ve been inspired by them in just about everything. Thanks for popularising the ideas of cyclical data ﬂows!</p>
+<p>A huge shoutout to the creators of CycleJS. We've been inspired by them in just about everything. Thanks for popularising the ideas of cyclical data flows!</p>
 <p class="tc">
   <strong>Thank you so much for reading ✨</strong>
 </p>
@@ -364,11 +791,9 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
 
     <footer>
       
-        <p class="f5 comp-grey mt5 pb3 border border-b">
+        <p class="f5 comp-grey mt5">
           <b class="mr1">Keywords</b> <span class="Post-Keyword">typescript</span><span class="Post-Keyword">streams</span><span class="Post-Keyword">react</span><span class="Post-Keyword">frp</span><span class="Post-Keyword">reactive</span>
         </p>
-      
-
       
 
       <p class="mt3">
@@ -378,54 +803,27 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
   </article>
 </main>
 
+    </div>
 
-    <script type="text/javascript">
-      function init() {
-        addClasses();
+    <footer role="contentinfo">
+  <ul class="flex gap justify-center f6 list-reset mb2">
+    <li><a href="/feed.xml" title="Atom">Feed</a></li>
+    <li><a href="/credits">Credits</a></li>
+    <li><a href="/meta.json">meta.json</a></li>
+  </ul>
 
-        function first(array, n, guard) {
-          if (array == null) return void 0;
-          if (n == null || guard) return array[0];
+  <p class="muted f6 tc mb0">
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/f7c906d8983a43dba7e555240ce60925fe914c41">f7c906d</a> — built at <time>2022-01-02T23:14:13.833Z</time>
+  </p>
+</footer>
 
-          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
-        };
 
-        function transform(text) {
-          const DELIMITER = /\.|,/;
-          const sentences = text.split('.');
-          const index = text.search(DELIMITER);
-          const MAX_WORDS = 6;
-
-          function wrap(w, t) {
-            return `<strong>${w}</strong> ${t}`;
-          }
-
-          if (index > -1 && index <= 50) {
-            return wrap(text.split(DELIMITER)[0], text.substring(index));
-          }
-
-          const words = text.split(' ');
-          const first = words.splice(0, MAX_WORDS);
-
-          return wrap(first.join(' '), words.join(' '));
-        };
-
-        const paragraphs = document.querySelectorAll('.posts article .post__body p');
-
-        [].slice.call(paragraphs).forEach(function (p) {
-          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
-            p.innerHTML = transform(p.innerText);
-          }
-        });
-      };
-
-      function addClasses() {
-        const p = document.querySelectorAll('.post article .post__body p');
-        p.length > 0 && p[0].classList.add('ingress');
-      };
-
-      document.addEventListener('DOMContentLoaded', init, false);
-    </script>
+    <script>document.addEventListener('keydown', (evt) => {
+    if (evt.code == 'KeyG') {
+        document.body.classList.toggle('grid');
+    }
+});
+</script>
 
     <script>
   // Only load on production environment.
@@ -438,8 +836,9 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
   if (localStorage.getItem('skipgc') === 't')
     window.goatcounter = {no_onload: true};
 </script>
-<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
-  </body>
+  
 
-</html>
+
+</body></html>

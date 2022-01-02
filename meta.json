@@ -1,16 +1,14 @@
 {
-  "description": "I'm a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding & designering and I like working with product, user experience, interface design, and other things too.",
-  "shortbio": "I’m coding & designering, and I like working with product.",
+  "description": "I'm a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding & designering and I like working with product, user experience, interface design, and other things too.",
+  "shortbio": "I'm coding & designering, and I like working with product.",
   "site": "https://johanbrook.com",
   "github": "johanbrook",
   "twitter": "@johanbrook",
-  "tumblr": "http://log.johanbrook.com",
   "email": "webmaster@johanbrook.com",
   "cv": "https://johanbrook.com/assets/johanbrook-cv.pdf",
   "versions": {
-    "site": "2.0.0",
-    "johan": "3.7.0",
-    "build": "f7bdda245d4347bba6bb624c2ecac2daefe69b52",
-    "builtAt": "2021-12-14T21:54:36.492Z"
+    "johan": "4.0.0",
+    "build": "f7c906d8983a43dba7e555240ce60925fe914c41",
+    "builtAt": "2022-01-02T23:14:13.833Z"
   }
 }

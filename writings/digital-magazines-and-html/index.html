@@ -1,24 +1,21 @@
-
-
 <!DOCTYPE html>
-<html lang="en" class=" digital-magazines-and-html">
-
-  <head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Digital magazines and HTML – Johan Brook</title>
+<html lang="en" class=" writingsdigital-magazines-and-html"><head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Digital magazines and HTML –&nbsp;Johan Brook</title>
 
     <meta charset="utf-8">
 
     
-    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    <meta name="description" content="I'm a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
     
     <meta name="keywords" content="Cocoa,Framework,HTML,iPad,Javascript,Magazines,Tool">
+    
     <meta name="author" content="Johan Brook">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Styles-->
-    <link rel="stylesheet" href="/assets/css/johan.css">
-  
+    <link rel="stylesheet" href="/css/johan.css">
 
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/feed.xml">
@@ -37,70 +34,65 @@
     
 
     
+    <meta property="article:tag" content="Cocoa,Framework,HTML,iPad,Javascript,Magazines,Tool">
+    <meta property="article:published_time" content="2011-04-06T00:00:00Z">
+    
   </head>
 
   <body>
 
-    
-      <nav role="navigation" class="SideNav">
+    <div class="Content">
+      
+        <nav role="navigation" class="SideNav">
   <h1 class="f3">
     <a href="/">Johan Brook</a>
   </h1>
   <ul>
-    <li aria-current="page">
-      <a href="/writings">Writings</a>
-    </li>
-    <li>
-      <a href="/now">Now</a>
-    </li>
-    <li>
-      <a href="/mind">On my mind</a>
-    </li>
-    <li>
-      <a href="/reading">Reading</a>
-    </li>
-    <li>
-      <a href="/about">About me</a>
-    </li>
-    <li>
-      <a href="/contact" title="Contact and stuff">On the web</a>
-    </li>
-    <li>
-      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
-    </li>
-    <li>
-      <a href="/credits" title="Licenses and stuff.">Credits</a>
-    </li>
-    <li>
-      <a href="/feed.xml">Feed</a>
-    </li>
+      <li>
+        <a href="/writings/">Writings</a>
+      </li>
+      <li>
+        <a href="/now/">Now</a>
+      </li>
+      <li>
+        <a href="/mind/">On my mind</a>
+      </li>
+      <li>
+        <a href="/reading/">Reading</a>
+      </li>
+      <li>
+        <a href="/about/">About me</a>
+      </li>
+      <li>
+        <a href="/contact/">Contact</a>
+      </li>
+      <li>
+        <a href="/changelog/">Changelog</a>
+      </li>
   </ul>
 </nav>
 
-    
+      
+
+      <main role="main">
+  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
 
     
+    <header> 
+      <h1 itemprop="name" class="title">Digital magazines and HTML</h1>
 
-<main role="main">
-  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-    
-      <header> 
-        <h1 itemprop="name" class="title ">Digital magazines and HTML</h1>
-
-        <p class="mb0 fw5 mt3">
+      <p class="mb0 fw5 mt3">
           
-          <time datetime="2011-04-06T08:00:00.000Z" itemprop="datePublished" title="11 years ago" pubdate="">April 6, 2011 – 08:00</time>
-        </p>
+          <time datetime="2011-04-06T00:00:00Z" itemprop="datePublished" pubdate="">April 6th, 2011</time>
+      </p>
 
-        <p class="muted mb4">
+      <p class="muted mb4">
           About 5 min reading time
-        </p>
-      </header>
-    
+      </p>
+    </header>
 
     <div class="article-text post__body measure" itemprop="articleBody">
-      <p>Not too long after the original iPad was announced, the device was predicted to be the savior of magazines. Made by Apple, at least it wasn’t going to be a (huge) ﬂop. A couple of months into the raging campaign of the iPad vs. the rest of the (newly assembled) tablet manufacturer crowd, it’s clear that the former is a hit. But what about magazines? There’s been quite a boom on the digital magazine front&thinsp;&mdash;&thinsp;large and small publishers have pushed issues out on the App Store, or via publishing platforms like Qiozk, Paperton and Mag+. But there hasn’t been any<span class="push-double"></span> <span class="pull-double">“</span>Wow”-effect. Many of the magazines consists of static images (!) made<span class="push-double"></span> <span class="pull-double">“</span>interactive” with ﬂashy animations and layer effects.</p>
+      <p>Not too long after the original iPad was announced, the device was predicted to be the savior of magazines. Made by Apple, at least it wasn't going to be a (huge) flop. A couple of months into the raging campaign of the iPad vs. the rest of the (newly assembled) tablet manufacturer crowd, it's clear that the former is a hit. But what about magazines? There's been quite a boom on the digital magazine front – large and small publishers have pushed issues out on the App Store, or via publishing platforms like Qiozk, Paperton and Mag+. But there hasn't been any "Wow"-effect. Many of the magazines consists of static images (!) made "interactive" with flashy animations and layer effects.</p>
 <h2>Requirements for a basic iPad magazine/news app</h2>
 <p>Peter Esse, editor at the Swedish Mac site Allt om Mac, has constructed this list of requirements for magazine/news apps in <a href="http://alltommac.se/artiklar/tidningsapparna-ett-han-mot-lasarna/">his article</a>:</p>
 <ul>
@@ -111,36 +103,34 @@
 <li>Photos and video should be able to be resized.</li>
 <li>Headings on the front cover and table of contents should be hyperlinked to the relevant article.</li>
 <li>The price should be reasonable.</li>
-<li>The issue shouldn’t take forever to buy/download. A newspaper has to be able to download well in the middle of nowhere.</li>
+<li>The issue shouldn't take forever to buy/download. A newspaper has to be able to download well in the middle of nowhere.</li>
 <li>Simple and slick to use. Minimal amount of loading screens.</li>
-<li>The digital version mustn’t feel like a secondary spinoff to the paper issue.</li>
+<li>The digital version mustn't feel like a secondary spinoff to the paper issue.</li>
 </ul>
-<p>(translated to English by me) Some of these requirements may be subjective, but the list sets a good starting point. The thing is, publishers can’t expect savvy customers to pay a relatively great deal of money for magazines where the content just is static images! I highly recommend reading Oliver Reichenstein’s article about the Wired iPad app: <a href="http://www.informationarchitects.jp/en/wired-on-ipad-just-like-a-paper-tiger/"><span class="push-double"></span><span class="pull-double">“</span>WIRED on iPad: Just like a Paper Tiger …<span class="push-double"></span> <span class="pull-double">”</span></a>. He brings up fundamental typographic errors, as well as strange behaviors and interaction mistakes. While I’m at it I should make sure to link to Khoi Vinh’s series of iPad magazine articles:  <a href="http://bit.ly/gSVtmY">http://bit.ly/gSVtmY</a>. Very thoughtful from a guy who knows what he’s talking about.</p>
+<p>(translated to English by me) Some of these requirements may be subjective, but the list sets a good starting point. The thing is, publishers can't expect savvy customers to pay a&nbsp;relatively&nbsp;great deal of money for magazines where the content just is static images! I highly recommend reading Oliver Reichenstein's article about the Wired iPad app: <a href="http://www.informationarchitects.jp/en/wired-on-ipad-just-like-a-paper-tiger/">"WIRED on iPad: Just like a Paper Tiger ... "</a>. He brings up fundamental typographic errors, as well as strange behaviors and interaction mistakes. While I'm at it I should make sure to link to Khoi Vinh's series of iPad magazine articles:&nbsp; <a href="http://bit.ly/gSVtmY">http://bit.ly/gSVtmY</a>. Very thoughtful from a guy who knows what he's talking about.</p>
 <h2>The best of both worlds</h2>
-<p>The problem, as I see it, with magazine production for tablets is that the sides are switched. Web designers are expected to create magazine layouts, and print designers are suddenly ﬁnding themselves producing issues for digital devices. The ultimate magazine would utilize the best of these two camps, in a native wrapper. But there’s a third camp: the native Cocoa camp. I’m one of those who think you should create applications with native tools for the platform you’re targeting. That means no Flash/Javascript-to-Objective C compilers. It just doesn’t feel right in the end. Web frameworks like Sencha Touch mimics native UI pretty well, and you could pull off pretty awesome stuff with HTML5′s Javascript APIs, but it’s nowhere near the sophistication of Apple’s native APIs&thinsp;&mdash;&thinsp;both performance wise and when it comes to user experience. <img src="http://213.185.255.138/core/wp-content/uploads/2011/04/background2x-644x419.jpg" alt="" title="Push Pop Press"> <a href="http://www.pushpoppress.com/">Push Pop Press</a> is an upcoming book publishing tool (?) exclusively for the iPad. Behind the project are former Apple designers and engineers, and <a href="http://daringfireball.net/2011/02/push_pop_press">John Grubers loves the demo he was shown</a>. Books are said to be smooth, beautiful and slick. Pure, raw, native code. As there are no details about Push Pop Press yet, I can’t speculate further about it, except for the fact that it looks really promising.</p>
+<p>The problem, as I see it, with magazine production for tablets is that the sides are switched. Web designers are expected to create magazine layouts, and print designers are suddenly finding themselves producing issues for digital devices. The ultimate magazine would utilize the best of these two camps, in a native wrapper. But there's a third camp: the native Cocoa camp. I'm one of those who think you should create applications with native tools for the platform you're targeting. That means no Flash/Javascript-to-Objective C compilers. It just doesn't feel right in the end. Web frameworks like Sencha Touch mimics native UI pretty well, and you could pull off pretty awesome stuff with HTML5's Javascript APIs, but it's nowhere near the sophistication of Apple's native APIs – both performance wise and when it comes to user experience. <img src="http://213.185.255.138/core/wp-content/uploads/2011/04/background2x-644x419.jpg" alt="" title="Push Pop Press"> <a href="http://www.pushpoppress.com/">Push Pop Press</a> is an upcoming book publishing tool (?)&nbsp;exclusively&nbsp;for the iPad. Behind the project are former Apple designers and engineers, and <a href="http://daringfireball.net/2011/02/push_pop_press">John Grubers loves the demo he was shown</a>. Books are said to be smooth, beautiful and slick. Pure, raw, native code. As there are no details about Push Pop Press yet, I can't speculate further about it, except for the fact that it looks really promising.</p>
 <h2>A tool</h2>
-<p>We need some sort of tool/framework, in which we’re able to use the styling capabilities of HTML and CSS together with the native effects and performance of Cocoa. A perfect mix of them both, built on a solid framework for producing the HTML and CSS rapidly, would do great I think. Especially the HTML and CSS part could actually borrow a lot of philosophies from how InDesign works. Writing markup and styles by hand is quite a process&thinsp;&mdash;&thinsp;imagine writing it all over again for each new issue. Generating markup directly from InDesign is a bad idea&thinsp;&mdash;&thinsp;I don’t ever trust generated code&thinsp;&mdash;&thinsp;but we still need to produce each issue in a fairly rapid manor. I’m just thinking out loud, but a ﬂexible base grid and an extensive set of CSS helper classes ought to do it. Issues could be easily distributed in packages of HTML, CSS and JS code, and managed by a branded<span class="push-double"></span> <span class="pull-double">“</span>mother app” on the iPad, where you’re able to purchase and manage issues. Personally I dislike the idea of having separate apps for each issue: it just doesn’t make sense. I want to manage all the issues of a magazine subscription in a single<span class="push-double"></span> <span class="pull-double">“</span>mother app”&thinsp;&mdash;&thinsp;not in one of the iPad’s homescreens.</p>
+<p>We need some sort of tool/framework, in which we're able to use the styling capabilities of HTML and CSS together with the native effects and performance of Cocoa. A perfect mix of them both, built on a solid framework for producing the HTML and CSS rapidly, would do great I think. Especially the HTML and CSS part could actually borrow a lot of philosophies from how InDesign works. Writing markup and styles by hand is quite a process – imagine writing it all over again for each new issue. Generating markup directly from InDesign is a bad idea – I don't ever trust generated code – but we still need to produce each issue in a fairly rapid manor. I'm just thinking out loud, but a flexible base grid and an extensive set of CSS helper classes ought to do it. Issues could be easily distributed in packages of HTML, CSS and JS code, and managed by a branded "mother app" on the iPad, where you're able to purchase and manage issues. Personally I dislike the idea of having separate apps for each issue: it just doesn't make sense. I want to manage all the issues of a magazine subscription in a single "mother app" – not in one of the iPad's homescreens.</p>
 <h2>Existing tools</h2>
-<p><a href="http://magplus.com">Bonnier’s Mag+</a> tools were released to the public for a couple of days ago&thinsp;&mdash;&thinsp;free for anyone to download and use. I downloaded the package and checked it out; it’s a nice initiative and well documented. It’s basically an InDesign plugin, an Adobe AIR production tool and an iPad review app, along with InDesign templates. I like the project’s overall attitude, but it’s not optimal. The InDesign plugin still generates static images (the Popular Science magazine was built using Mag+) and you have to publish through Bonnier’s platform (which will cost you $2,500 for the ﬁrst ﬁve months, then $500 per issue or month). <a href="http://treesaverjs.com/">Treesaver</a> is a pure Javascript framework for<span class="push-double"></span> <span class="pull-double">“</span>creating magazine-style layouts using standards-compliant HTML and CSS”. Again: it’s a great initiative. The way you structure the markup is quite alright, and I like how the magazine columns are created (text is able to ﬂow through several columns, through several pages). However, the swiping is a bit awkward and non-native, and one of the demos crashed in iPad’s Safari a few times = a pure web solution won’t work performance wise and experience wise. Using these Javascript<span class="push-double"></span> <span class="pull-double">“</span>substitutes” which are mimicking native functionality still doesn’t feel 100% right. <a href="http://bakerframework.com/">Baker</a> is built for packaging eBooks in an iPad app for release on the App Store. You create the book with web technologies, package it in the HPub format, then create a native app for it with the included Xcode project template. Really easy, straight-forward, and open. But I’m afraid this is meant primarily for books to be read as standalone apps&thinsp;&mdash;&thinsp;not vivid, rich magazines. <a href="http://flipboard.com/">Flipboard</a> is not really a tool nor framework, but it’s a great app and concept. To me, they got everything right in regards to typography, performance, readability, user experience, et al. I can spend hours just reading, reading, reading stuff I would never had read on a computer display&thinsp;&mdash;&thinsp;still, the stories live in the same RSS stream of mine! And on top of that, I don’t even have to ﬁnd the content myself&thinsp;&mdash;&thinsp;I’ll just check out one of the built-in channels and I’m fed with fresh, new content. Flipboard captures the newspaper feel, but never really gets in my way. Along with a great grid (which rotates seamlessly on an iPad orientation change) Flipboard is the number one app for the iPad. A fusion of these kind of projects would be my dream tool:</p>
+<p><a href="http://magplus.com">Bonnier's Mag+</a> tools were released to the public for a couple of days ago – free for anyone to download and use. I downloaded the package and checked it out; it's a nice initiative and well documented. It's basically an InDesign plugin, an Adobe AIR production tool and an iPad review app, along with InDesign templates. I like the project's overall attitude, but it's not optimal. The InDesign plugin still generates static images (the Popular Science magazine was built using Mag+) and you have to publish through Bonnier's platform (which will cost you $2,500 for the first five months, then $500 per issue or month). <a href="http://treesaverjs.com/">Treesaver</a> is a pure Javascript framework&nbsp;for "creating magazine-style layouts using standards-compliant HTML and CSS". Again: it's a great initiative. The way you structure the markup is quite alright, and I like how the magazine columns are created (text is able to flow through several columns, through several pages). However, the swiping is a bit awkward and non-native, and one of the demos crashed in iPad's Safari a few times = a pure web solution won't work performance wise and experience wise. Using these Javascript "substitutes" which are&nbsp;mimicking&nbsp;native functionality still doesn't feel 100% right. <a href="http://bakerframework.com/">Baker</a> is built for packaging eBooks in an iPad app for release on the App Store. You create the book with web technologies, package it in the HPub format, then create a native app for it with the included Xcode project template. Really easy, straight-forward, and open. But I'm afraid this is meant&nbsp;primarily&nbsp;for books to be read as standalone apps – not vivid, rich magazines. <a href="http://flipboard.com/">Flipboard</a> is not really a tool nor framework, but it's a great app and concept. To me, they got everything right in regards to typography, performance, readability, user experience, et al. I can spend hours just reading, reading, reading stuff I would never had read on a computer display – still, the stories live in the same RSS stream of mine! And on top of that, I don't even have to find the content myself – I'll just check out one of the built-in channels and I'm fed with fresh, new content. Flipboard captures the newspaper feel, but never really gets in my way. Along with a great grid (which rotates seamlessly on an iPad orientation change) Flipboard is the number one app for the iPad. A fusion of these kind of projects would be my dream tool:</p>
 <ul>
-<li>Use the ﬂexibility of web technologies</li>
-<li>Use the power of native Cocoa frameworks to follow Apple’s HIG</li>
+<li>Use the flexibility of web technologies</li>
+<li>Use the power of native Cocoa frameworks to follow Apple's HIG</li>
 <li>Provide an easy way to brand the native app</li>
 <li>Be able to quickly produce clean, semantic HTML</li>
-<li>Use a library of ﬂexible CSS classes to provide art direction to the issue, and be able to painlessly reorder the layout if things change.</li>
-<li>Blur the lines between web and native&thinsp;&mdash;&thinsp;use them together (like Flipboard does with WebViews here and there)</li>
+<li>Use a library of flexible CSS classes to provide art direction to the issue, and be able to painlessly reorder the layout if things change.</li>
+<li>Blur the lines between web and native – use them together (like Flipboard does with WebViews here and there)</li>
 </ul>
-<p>Magazines on the iPad could be really great. Just don’t screw it up with incompetence, greed or lack of plain common knowledge.</p>
+<p>Magazines on the iPad could be really great. Just don't screw it up with incompetence, greed or lack of plain common knowledge.</p>
 
     </div>
 
     <footer>
       
-        <p class="f5 comp-grey mt5 pb3 border border-b">
+        <p class="f5 comp-grey mt5">
           <b class="mr1">Keywords</b> <span class="Post-Keyword">Cocoa</span><span class="Post-Keyword">Framework</span><span class="Post-Keyword">HTML</span><span class="Post-Keyword">iPad</span><span class="Post-Keyword">Javascript</span><span class="Post-Keyword">Magazines</span><span class="Post-Keyword">Tool</span>
         </p>
-      
-
       
 
       <p class="mt3">
@@ -150,54 +140,27 @@
   </article>
 </main>
 
+    </div>
 
-    <script type="text/javascript">
-      function init() {
-        addClasses();
+    <footer role="contentinfo">
+  <ul class="flex gap justify-center f6 list-reset mb2">
+    <li><a href="/feed.xml" title="Atom">Feed</a></li>
+    <li><a href="/credits">Credits</a></li>
+    <li><a href="/meta.json">meta.json</a></li>
+  </ul>
 
-        function first(array, n, guard) {
-          if (array == null) return void 0;
-          if (n == null || guard) return array[0];
+  <p class="muted f6 tc mb0">
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/f7c906d8983a43dba7e555240ce60925fe914c41">f7c906d</a> — built at <time>2022-01-02T23:14:13.833Z</time>
+  </p>
+</footer>
 
-          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
-        };
 
-        function transform(text) {
-          const DELIMITER = /\.|,/;
-          const sentences = text.split('.');
-          const index = text.search(DELIMITER);
-          const MAX_WORDS = 6;
-
-          function wrap(w, t) {
-            return `<strong>${w}</strong> ${t}`;
-          }
-
-          if (index > -1 && index <= 50) {
-            return wrap(text.split(DELIMITER)[0], text.substring(index));
-          }
-
-          const words = text.split(' ');
-          const first = words.splice(0, MAX_WORDS);
-
-          return wrap(first.join(' '), words.join(' '));
-        };
-
-        const paragraphs = document.querySelectorAll('.posts article .post__body p');
-
-        [].slice.call(paragraphs).forEach(function (p) {
-          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
-            p.innerHTML = transform(p.innerText);
-          }
-        });
-      };
-
-      function addClasses() {
-        const p = document.querySelectorAll('.post article .post__body p');
-        p.length > 0 && p[0].classList.add('ingress');
-      };
-
-      document.addEventListener('DOMContentLoaded', init, false);
-    </script>
+    <script>document.addEventListener('keydown', (evt) => {
+    if (evt.code == 'KeyG') {
+        document.body.classList.toggle('grid');
+    }
+});
+</script>
 
     <script>
   // Only load on production environment.
@@ -210,8 +173,9 @@
   if (localStorage.getItem('skipgc') === 't')
     window.goatcounter = {no_onload: true};
 </script>
-<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
-  </body>
+  
 
-</html>
+
+</body></html>

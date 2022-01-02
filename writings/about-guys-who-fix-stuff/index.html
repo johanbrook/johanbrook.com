@@ -1,24 +1,21 @@
-
-
 <!DOCTYPE html>
-<html lang="en" class=" about-guys-who-fix-stuff">
-
-  <head itemtype="http://schema.org/Blog" itemscope="">
-    <title>About guys who fix stuff – Johan Brook</title>
+<html lang="en" class=" writingsabout-guys-who-fix-stuff"><head itemtype="http://schema.org/Blog" itemscope="">
+    <title>About guys who fix stuff –&nbsp;Johan Brook</title>
 
     <meta charset="utf-8">
 
     
-    <meta name="description" content="I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I’m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    <meta name="description" content="I'm a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
     
     <meta name="keywords" content="Code,programming,Projects">
+    
     <meta name="author" content="Johan Brook">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Styles-->
-    <link rel="stylesheet" href="/assets/css/johan.css">
-  
+    <link rel="stylesheet" href="/css/johan.css">
 
     <!-- RSS -->
     <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/feed.xml">
@@ -37,84 +34,77 @@
     
 
     
+    <meta property="article:tag" content="Code,programming,Projects">
+    <meta property="article:published_time" content="2012-03-05T00:00:00Z">
+    
   </head>
 
   <body>
 
-    
-      <nav role="navigation" class="SideNav">
+    <div class="Content">
+      
+        <nav role="navigation" class="SideNav">
   <h1 class="f3">
     <a href="/">Johan Brook</a>
   </h1>
   <ul>
-    <li aria-current="page">
-      <a href="/writings">Writings</a>
-    </li>
-    <li>
-      <a href="/now">Now</a>
-    </li>
-    <li>
-      <a href="/mind">On my mind</a>
-    </li>
-    <li>
-      <a href="/reading">Reading</a>
-    </li>
-    <li>
-      <a href="/about">About me</a>
-    </li>
-    <li>
-      <a href="/contact" title="Contact and stuff">On the web</a>
-    </li>
-    <li>
-      <a href="/changelog" title="What's happened in my life so far">Changelog</a>
-    </li>
-    <li>
-      <a href="/credits" title="Licenses and stuff.">Credits</a>
-    </li>
-    <li>
-      <a href="/feed.xml">Feed</a>
-    </li>
+      <li>
+        <a href="/writings/">Writings</a>
+      </li>
+      <li>
+        <a href="/now/">Now</a>
+      </li>
+      <li>
+        <a href="/mind/">On my mind</a>
+      </li>
+      <li>
+        <a href="/reading/">Reading</a>
+      </li>
+      <li>
+        <a href="/about/">About me</a>
+      </li>
+      <li>
+        <a href="/contact/">Contact</a>
+      </li>
+      <li>
+        <a href="/changelog/">Changelog</a>
+      </li>
   </ul>
 </nav>
 
-    
+      
+
+      <main role="main">
+  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
 
     
+    <header> 
+      <h1 itemprop="name" class="title">About guys who fix stuff</h1>
 
-<main role="main">
-  <article class="Post Post--Regular" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-    
-      <header> 
-        <h1 itemprop="name" class="title ">About guys who fix stuff</h1>
-
-        <p class="mb0 fw5 mt3">
+      <p class="mb0 fw5 mt3">
           
-          <time datetime="2012-03-05T10:00:00.000Z" itemprop="datePublished" title="10 years ago" pubdate="">March 5, 2012 – 10:00</time>
-        </p>
+          <time datetime="2012-03-05T00:00:00Z" itemprop="datePublished" pubdate="">March 5th, 2012</time>
+      </p>
 
-        <p class="muted mb4">
+      <p class="muted mb4">
           About 2 min reading time
-        </p>
-      </header>
-    
+      </p>
+    </header>
 
     <div class="article-text post__body measure" itemprop="articleBody">
-      <p><strong>In <a href="http://chalmers.se">school</a>, we recently ﬁnished a project</strong> in the GUI design course, where we (a group of four people) built an application for grocery shopping, aimed towards elderly people. The tools were quite horrible: Java, Swing, Netbeans, and the currently deprecated Swing Application Framework. In two weeks, a working prototype had to be ﬁnished, and for freshmen who just had taken an autumn of two introductory courses in Java, it seemed a bit harsh. After all, the course is about<span class="push-double"></span> <span class="pull-double">“</span>GUI design”&thinsp;&mdash;&thinsp;that doesn’t ring very well together with<span class="push-double"></span> <span class="pull-double">“</span>Java” and<span class="push-double"></span> <span class="pull-double">“</span>Swing”.</p>
-<p>Anyway, there were four of us, building this application. Everything went very well in my opinion: through the sketches, paper prototype, user testings and ﬁnally software prototype we discussed, developed, and weighed different options. Really interesting process. We had big visions about the application’s interface features, but there was this nagging thing in my head saying that it would be hard pulling off all these things in Java and Swing. This ain’t no ﬂexible HTML/CSS/JS, nor fancy Objective-C/Cocoa. In this case, all my skills as a <em>web</em> developer almost counted for nothing. Animation in Swing? I had no bloody clue how to pull that off. Showing/hiding panels? Nope. Fading, tweening, navigational patterns? Hell no. Since I’ve been working solo for some time, I instinctively started to plot things up in my head, but we divided the tasks among us, and each of us set for home with our stuff.</p>
-<p><strong>Here’s the reason for this post.</strong> I had relinquished control over some key features (<em>very</em> unlike me) and trusted the others. And it worked. The next day, a member in the group came and casually said:<span class="push-double"></span> <span class="pull-double">“</span>– Um, that sliding modal overlay panel we talked about - I ﬁxed it last night. It’s pretty cool now”. I was really happy then. It was <em>exactly</em> as we had pictured the panel in the mockups. I never would have done it better myself (with some time perhaps). This guy just solved the problem I had been worried about for some time, and it felt great receiving those news.</p>
-<p>The moral of the story is that <strong>these guys who ﬁx stuff is worth their weight in gold</strong>. I realized I’ve been that guy for many, but I experienced it myself in this project. It’s wonderful to be able to hand a problem to a person and know that they’ll go to hell and back again just to solve the bloody problem.</p>
-<p>They are the real programmers&thinsp;&mdash;&thinsp;stubborn, eager, and thirsty for knowledge, glory and awesome code.</p>
+      <p><strong>In <a href="http://chalmers.se">school</a>, we recently finished a project</strong> in the GUI design course, where we (a group of four people) built an application for grocery shopping, aimed towards elderly people. The tools were quite horrible: Java, Swing, Netbeans, and the currently deprecated Swing Application Framework. In two weeks, a working prototype had to be finished, and for freshmen who just had taken an autumn of two introductory courses in Java, it seemed a bit harsh. After all, the course is about "GUI design" – that doesn't ring very well together with "Java" and "Swing".</p>
+<p>Anyway, there were four of us, building this application. Everything went very well in my opinion: through the sketches, paper prototype, user testings and finally software prototype we discussed, developed, and weighed different options. Really interesting process. We had big visions about the application's interface features, but there was this nagging thing in my head saying that it would be hard pulling off all these things in Java and Swing. This ain't no flexible HTML/CSS/JS, nor fancy Objective-C/Cocoa. In this case, all my skills as a <em>web</em> developer almost counted for nothing. Animation in Swing? I had no bloody clue how to pull that off. Showing/hiding panels? Nope. Fading, tweening, navigational patterns? Hell no. Since I've been working solo for some time, I instinctively started to plot things up in my head, but we divided the tasks among us, and each of us set for home with our stuff.</p>
+<p><strong>Here's the reason for this post.</strong> I had&nbsp;relinquished&nbsp;control over some key features (<em>very</em> unlike me) and trusted the others. And it worked. The next day, a member in the group came and casually said: "– Um, that sliding modal overlay panel we talked about - I fixed it last night. It's pretty cool now". I was really happy then. It was <em>exactly</em>&nbsp;as we had pictured the panel in the mockups. I never would have done it better myself (with some time perhaps). This guy just solved the problem I had been worried about for some time, and it felt great receiving those news.</p>
+<p>The moral of the story is that <strong>these guys who fix stuff is worth their weight in gold</strong>. I realized I've been that guy for many, but I experienced it myself in this project. It's wonderful to be able to hand a problem to a person and know that they'll go to hell and back again just to solve the bloody problem.</p>
+<p>They are the real programmers – stubborn, eager, and thirsty for knowledge, glory and awesome code.</p>
 
     </div>
 
     <footer>
       
-        <p class="f5 comp-grey mt5 pb3 border border-b">
+        <p class="f5 comp-grey mt5">
           <b class="mr1">Keywords</b> <span class="Post-Keyword">Code</span><span class="Post-Keyword">programming</span><span class="Post-Keyword">Projects</span>
         </p>
-      
-
       
 
       <p class="mt3">
@@ -124,54 +114,27 @@
   </article>
 </main>
 
+    </div>
 
-    <script type="text/javascript">
-      function init() {
-        addClasses();
+    <footer role="contentinfo">
+  <ul class="flex gap justify-center f6 list-reset mb2">
+    <li><a href="/feed.xml" title="Atom">Feed</a></li>
+    <li><a href="/credits">Credits</a></li>
+    <li><a href="/meta.json">meta.json</a></li>
+  </ul>
 
-        function first(array, n, guard) {
-          if (array == null) return void 0;
-          if (n == null || guard) return array[0];
+  <p class="muted f6 tc mb0">
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/f7c906d8983a43dba7e555240ce60925fe914c41">f7c906d</a> — built at <time>2022-01-02T23:14:13.833Z</time>
+  </p>
+</footer>
 
-          return [].slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
-        };
 
-        function transform(text) {
-          const DELIMITER = /\.|,/;
-          const sentences = text.split('.');
-          const index = text.search(DELIMITER);
-          const MAX_WORDS = 6;
-
-          function wrap(w, t) {
-            return `<strong>${w}</strong> ${t}`;
-          }
-
-          if (index > -1 && index <= 50) {
-            return wrap(text.split(DELIMITER)[0], text.substring(index));
-          }
-
-          const words = text.split(' ');
-          const first = words.splice(0, MAX_WORDS);
-
-          return wrap(first.join(' '), words.join(' '));
-        };
-
-        const paragraphs = document.querySelectorAll('.posts article .post__body p');
-
-        [].slice.call(paragraphs).forEach(function (p) {
-          if (p.firstChild && (!p.firstChild.tagName || p.firstChild.tagName !== 'STRONG')) {
-            p.innerHTML = transform(p.innerText);
-          }
-        });
-      };
-
-      function addClasses() {
-        const p = document.querySelectorAll('.post article .post__body p');
-        p.length > 0 && p[0].classList.add('ingress');
-      };
-
-      document.addEventListener('DOMContentLoaded', init, false);
-    </script>
+    <script>document.addEventListener('keydown', (evt) => {
+    if (evt.code == 'KeyG') {
+        document.body.classList.toggle('grid');
+    }
+});
+</script>
 
     <script>
   // Only load on production environment.
@@ -184,8 +147,9 @@
   if (localStorage.getItem('skipgc') === 't')
     window.goatcounter = {no_onload: true};
 </script>
-<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
-  </body>
+  
 
-</html>
+
+</body></html>
