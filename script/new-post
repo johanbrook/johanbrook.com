@@ -1,36 +1,26 @@
-#!/usr/bin/env node
-
-const fs = require('fs');
-const path = require('path');
-const slug = require('slug');
-const moment = require('moment');
-const exec = require('child_process').exec;
-
-let arg = process.argv[2];
-let title = process.argv[3] || 'New post';
-
-if (arg.indexOf('-') !== 0) {
-  title = arg;
-}
-
-const titleSlug = slug(title, { lower: true });
-
-const options = {
-  destination: path.join(__dirname, '../src/site/writings'),
-  prefix: moment().format('YYYY-MM-DD'),
-  silent: arg === '--silent',
-  editor: arg === '--editor',
-  extension: 'md',
-};
+#!/usr/bin/env deno run --allow-read --allow-write --allow-run
 
 /*
-  Create a new post with the title format:
-    2015-01-01-slugified-title.md
+    Usage:
+
+        ./script/new-post "This is a title"
+
+    Will create the file with a template and open it in VS Code. The filename
+    will follow the template: [yyyy-MM-dd]-[slugified-title].md.
 */
+
+import { format } from 'https://deno.land/std@0.119.0/datetime/mod.ts';
+
+const DEST = Deno.cwd() + '/src/posts';
+
+const title = Deno.args[0] ?? 'New post';
+const slug = title.toLowerCase().replace(/\s+/g, '-').trim();
+const date = format(new Date(), 'yyyy-MM-dd');
+
 const TEMPLATE = `---
 title: ${title}
-slug: ${titleSlug}
-date: '${moment().format('YYYY-MM-DDTHH:mm')}'
+slug: ${slug}
+date: ${date}
 location: <where>
 excerpt: <excerpt>
 keywords:
@@ -39,21 +29,27 @@ draft: true
 ---\n
 `;
 
-const fileName = `${options.prefix}-${titleSlug}.${options.extension}`;
-const fullPath = path.join(options.destination, fileName);
+const fileName = `${date}-${slug}.md`;
+const fullPath = DEST + '/' + fileName;
 
-fs.writeFile(fullPath, TEMPLATE, (err) => {
-  if (err) {
-    console.error(`✘ ${err.message}`);
-  } else {
-    if (options.editor) {
-      // Fire up editor for this file
-      exec(`$EDITOR ${fullPath}`, { encoding: 'utf-8' });
-    } else if (options.silent) {
-      // Just pipe output to stdout
-      console.log(fullPath);
-    } else {
-      console.log(`✔︎ Created ${fileName}`);
-    }
-  }
+await Deno.writeTextFile(fullPath, TEMPLATE, {
+    append: true,
 });
+
+console.log(`Created ${fullPath}`);
+
+const editor = Deno.run({
+    cmd: ['code', fullPath], // XXX Can't use shell variable $EDITOR here :(
+    stdout: 'piped',
+    stderr: 'piped',
+});
+
+const { code } = await editor.status();
+const rawError = await editor.stderrOutput();
+
+if (code != 0) {
+    const errorString = new TextDecoder().decode(rawError);
+    console.log('Error from process: ', errorString);
+}
+
+Deno.exit(code);
