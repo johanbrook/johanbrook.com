@@ -6,7 +6,7 @@ import inline from 'lume/plugins/inline.ts';
 import { minify } from './deps.ts';
 import { readingTime } from './src/_includes/plugins/reading-time.ts';
 
-const DEST = 'build2';
+const DEST = 'build';
 const MINIFY = Deno.env.get('ENV') == 'production';
 const CI = !!Deno.env.get('CI');
 
