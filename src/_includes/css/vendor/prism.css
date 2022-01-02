@@ -37,7 +37,7 @@ pre[class*='language-'] {
 }
 
 .highlight-line-active {
-  background-color: rgba(var(--comp-yellow), 0.08);
+  background-color: rgba(var(--yellow), 0.08);
 }
 
 .highlight-line-add {
@@ -76,13 +76,13 @@ pre[class*='language-']:not(.language-bash) {
 
   .highlight-line-active {
     &::before {
-      color: var(--comp-yellow);
+      color: var(--yellow);
     }
   }
 
   .highlight-line-add {
     &::before {
-      color: var(--comp-green);
+      color: green;
       content: '+';
     }
   }

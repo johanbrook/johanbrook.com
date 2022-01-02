@@ -619,7 +619,7 @@ COLOURS
 ----------------------------------------------------------------*/
 
 .comp-neon {
-  color: var(--comp-neon);
+  color: var(--neon);
 }
 
 .muted {
@@ -668,7 +668,7 @@ TYPOGRAPHY
   border-radius: 3px;
   color: #222;
   font-weight: 600;
-  background-color: var(--comp-yellow);
+  background-color: var(--yellow);
   display: inline-block;
   padding: 0.1em 0.4em;
 }
