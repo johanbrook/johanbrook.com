@@ -11,13 +11,13 @@ POSTS LIST
     border-bottom: 0;
   }
 
-  time {
-    font-size: var(--f4);
+  & time {
+    font-size: var(--f5);
     font-variant-numeric: tabular-nums;
     letter-spacing: var(--tracking-f0);
   }
 
-  &__Link {
+  & .PostItem__Link {
     display: block;
     padding: calc(var(--lineheight) / 3) 0;
     font-size: var(--f4);
@@ -33,7 +33,7 @@ POSTS LIST
     flex-direction: column;
     margin-bottom: calc(var(--lineheight) / 3);
 
-    &__Link {
+    & .PostItem__Link {
       max-width: 90%;
       font-size: 1em;
     }
@@ -43,7 +43,7 @@ POSTS LIST
 .PostsList {
   list-style: none;
 
-  &--Tight {
+  & .PostsList--Tight {
     .PostItem {
       border: 1px solid var(--grey-light);
       border-width: 0 0 1px;
@@ -52,8 +52,8 @@ POSTS LIST
   }
 
   @media screen and (prefers-color-scheme: dark) {
-    &--Tight {
-      .PostItem {
+    & .PostsList--Tight {
+      & .PostItem {
         border: 0;
       }
     }

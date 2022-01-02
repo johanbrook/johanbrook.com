@@ -283,7 +283,7 @@ pre {
     padding-left: 0.25em;
   }
 
-  code {
+  & code {
     font-size: 1em;
     border: 0;
     background-color: transparent;
@@ -301,7 +301,7 @@ blockquote {
   padding-left: 2rem;
   padding-right: 2rem;
 
-  footer {
+  & footer {
     color: var(--grey);
     margin-top: var(--lineheight);
   }

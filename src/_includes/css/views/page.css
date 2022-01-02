@@ -1,6 +1,0 @@
-.page {
-  .title {
-    margin-bottom: calc(var(--lineheight) - 0.2ex);
-    line-height: 1;
-  }
-}
