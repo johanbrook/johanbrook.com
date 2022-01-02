@@ -1,5 +1,4 @@
 ---
-template: contact
 title: Contact
 layout: layouts/page.njk
 templateEngine: njk,md
