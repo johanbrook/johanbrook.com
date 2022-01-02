@@ -8,15 +8,16 @@ import { readingTime } from './src/_includes/plugins/reading-time.ts';
 
 const DEST = 'build2';
 const MINIFY = Deno.env.get('ENV') == 'production';
+const CI = !!Deno.env.get('CI');
 
-if (Deno.env.get('CI')) {
+if (CI) {
     console.log('Start site build…');
 }
 
 const site = lume({
     src: 'src',
     dest: DEST,
-    metrics: true,
+    metrics: CI,
 });
 
 site.copy('public', '.')
