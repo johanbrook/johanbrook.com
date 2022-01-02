@@ -36,9 +36,9 @@
   --hr-color: #444;
 
   @supports (color: color(display-p3 1 1 1 / 1)) {
-    --link-color: color(display-p3 0 0.2706 0.9569 / 1);
-    --link-color-hover: color(display-p3 0 0.3333 0.7333 / 1);
-    --link-color-visited: color(display-p3 0.3882 0 0.8863 / 1);
+    --link-color: color(display-p3 0.053 0.412 0.965);
+    --link-color-hover: color(display-p3 0 0.293 0.645);
+    --link-color-visited: color(display-p3 0.431 0.053 0.965);
   }
 
   @media screen and (prefers-color-scheme: dark) {
@@ -54,7 +54,7 @@
     --border-color: #444;
 
     @supports (color: color(display-p3 1 1 1 / 1)) {
-      --link-color: color(display-p3 0.3529 0.6471 1 / 1);
+      --link-color: color(display-p3 0.34 0.64 1);
       --link-color-hover: color(display-p3 0.6824 0.8314 1 / 1);
     }
   }
