@@ -12,7 +12,7 @@
   --color-text: hsl(0 0% 13%);
   --color-text-detail: var(--grey);
 
-  --link-color: hsl(213 100% 48%);
+  --link-color: hsl(213 100% 40.75%);
   --link-color-hover: hsl(213 100% 37%);
   --link-color-visited: hsl(266 100% 44%);
   --border-color: hsl(0 0% 91%);
@@ -27,8 +27,8 @@
   --hr-color: var(--color-text);
 
   @supports (color: color(display-p3 1 1 1 / 1)) {
-    --link-color: color(display-p3 0.053 0.412 0.965);
-    --link-color-hover: color(display-p3 0 0.293 0.645);
+    --link-color: color(display-p3 0 0.374 0.82);
+    --link-color-hover: color(display-p3 0 0.252 0.55);
     --link-color-visited: color(display-p3 0.431 0.053 0.965);
   }
 
@@ -38,13 +38,13 @@
     --color-bg: #1a1a1a;
     --color-bg-secondary: hsl(240 3.36% 14.51%);
     --color-text: #e1e1e1;
-    --link-color: #5aa5ff;
+    --link-color: #6cafff;
     --link-color-hover: #aed4ff;
     --link-color-visited: #7a8be5;
     --border-color: #444;
 
     @supports (color: color(display-p3 1 1 1 / 1)) {
-      --link-color: color(display-p3 0.34 0.64 1);
+      --link-color: color(display-p3 0.43 0.688 1);
       --link-color-hover: color(display-p3 0.6824 0.8314 1 / 1);
     }
   }
