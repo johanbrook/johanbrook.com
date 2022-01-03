@@ -91,7 +91,7 @@
       </p>
     </header>
 
-    <div class="article-text post__body measure" itemprop="articleBody">
+    <div class="prose measure" itemprop="articleBody">
       <p><strong>Quite a few people</strong> use this style of quick links or short posts (myself included). Daring Fireball, Shawn Blanc and others. When linking to an article of site, the post heading itself becomes the link. It's quite good usability and UX, and is not that hard to re-create in Wordpress.</p>
 <p>When I attach links to my custom post type for short posts, Quickies, I use custom fields in Wordpress. I've got two fields for link: "Link" and "Link Name". The "Link" field contains the URL and is the important one here. In the post template (in my case <code>single-quickie.php</code> you can get the custom field with this:</p>
 <pre><code>$meta_link = get_post_meta(get_the_ID(), "Link", true);
@@ -153,7 +153,7 @@ add_filter('the_permalink_rss', 'johan_permalink_rss');
   </ul>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/f7c906d8983a43dba7e555240ce60925fe914c41">f7c906d</a> — built at <time>2022-01-02T23:14:13.833Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/82a2274cfa4d018eecdf25da12d81daf7fd56384">82a2274</a> — built at <time>2022-01-03T04:42:27.297Z</time>
   </p>
 </footer>
 
