@@ -3,7 +3,7 @@
 
   --neon: hsl(145 56% 57%);
   --yellow: hsl(50 93% 56%);
-  --grey: hsl(0 0% 58%);
+  --grey: hsl(214.51 7.24% 47.56%);
   --grey-light: hsl(173 7% 76% / 0.5);
   --grey-lightest: hsl(173 7% 76% / 0.2);
 
@@ -83,19 +83,16 @@
   --f1: calc((32 / var(--font-size-base)) * 1rem);
   --f2: calc((28 / var(--font-size-base)) * 1rem);
   --f3: calc((22 / var(--font-size-base)) * 1rem);
-  --f4: calc((18 / var(--font-size-base)) * 1rem);
+  --f4: calc((17 / var(--font-size-base)) * 1rem);
   --f5: calc((15 / var(--font-size-base)) * 1rem);
   --f6: calc((13 / var(--font-size-base)) * 1rem);
+  --f7: calc((11 / var(--font-size-base)) * 1rem);
 
   /* See https://developers.google.com/web/updates/2016/02/font-display */
   --font-strategy: fallback;
 
   /* Measures */
-
-  --column-width: 3.52rem;
-  --gutter-width: 1.17rem;
-
-  --max-width: 40rem;
+  --main-width: var(--measure);
 
   --measure: 56ch;
   --measure-narrow: 45ch;

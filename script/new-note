@@ -3,33 +3,26 @@
 /*
     Usage:
 
-        ./script/new-post "This is a title"
+        ./script/new-note
 
     Will create the file with a template and open it in VS Code. The filename
-    will follow the template: [yyyy-MM-dd]-[slugified-title].md.
+    will follow the template: [yyyy-MM-dd-HH-mm].md.
 */
 
 import { format } from '../deps.ts';
 
-const DEST = Deno.cwd() + '/src/posts';
+const DEST = Deno.cwd() + '/src/notes';
 
-const title = Deno.args[0] ?? 'New post';
-const slug = title.toLowerCase().replace(/\s+/g, '-').trim();
-const date = format(new Date(), 'yyyy-MM-dd');
+const date = format(new Date(), 'yyyy-MM-dd-HH-mm');
 
 const TEMPLATE = `---
-title: ${title}
-slug: ${slug}
 date: ${date}
 location: <where>
-excerpt: <excerpt>
-keywords:
-  - key
 draft: true
 ---\n
 `;
 
-const fileName = `${date}-${slug}.md`;
+const fileName = `${date}.md`;
 const fullPath = DEST + '/' + fileName;
 
 await Deno.writeTextFile(fullPath, TEMPLATE, {

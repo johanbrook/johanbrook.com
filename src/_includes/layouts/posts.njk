@@ -7,7 +7,7 @@ layout: layouts/main.njk
 
 <main role="main" class="posts">
 
-  <h1 class="title inset-title">Writings.</h1>
+  <h1 class="title inset-title">{{ title }}</h1>
 
   <p class="fw6">
     {{pagination.totalResults }} posts, from {{ firstEverPost.data.date | date("MMMM yyyy") }} to {{ firstOnPage.data.date | date("MMMM yyyy") }}.
@@ -16,28 +16,13 @@ layout: layouts/main.njk
   <ol class="PostsList">
     {% for post in results %}
       <li class="PostItem">
-        <a class="PostItem__Link" href="{{ post.data.url }}" title="About {{ post | readingTime }} reading time">{{ post.data.title }} {% if post.data.draft %}<span class="badge">Draft</span>{% endif %}</a>
+        <a class="PostItem__Link" href="{{ post.data.url | url }}" title="About {{ post | readingTime }} reading time">{{ post.data.title }} {% if post.data.draft %}<span class="badge">Draft</span>{% endif %}</a>
 
         <time datetime="{{ post.data.date | date("ATOM") }}" pubdate>{{ post.data.date | date }}</time>
       </li>
     {% endfor %}
   </ol>
 
-  <footer class="PageNav">
-    <p>
-      {% if pagination.previous %}
-        <a rel="prev" href="{{ pagination.previous }}">← Newer</a>
-        <span class="separator">/ </span>
-      {% endif %}
-
-      <span class="separator">Page {{ pagination.page }} of {{ pagination.totalPages }} </span>
-
-      {% if pagination.next %}
-        <span class="separator"> /</span>
-        <a rel="next" href="{{ pagination.next }}">Older →</a>
-      {% endif %}
-    </p>
-
-  </footer>
+  {% include "page-nav.njk" %}
 
 </main>

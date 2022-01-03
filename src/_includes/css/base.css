@@ -66,7 +66,7 @@ body {
 
 main {
   flex: 1 0 auto;
-  max-width: var(--max-width);
+  max-width: var(--main-width);
   margin-bottom: calc(var(--lineheight) * 3);
 
   @media screen and (min-width: 55rem) {
@@ -96,10 +96,10 @@ h6 {
   margin-bottom: calc(var(--lineheight) / 2);
 }
 
-h1,
-.f1,
-h2,
-.f2 {
+h1:not(.no-rhythm),
+.f1:not(.no-rhythm),
+h2:not(.no-rhythm),
+.f2:not(.no-rhythm) {
   margin-bottom: var(--lineheight);
   line-height: 1.5;
 

@@ -11,7 +11,7 @@ keywords:
 templateEngine: njk,md
 menu:
   visible: true
-  order: 4
+  order: 5
 ---
 
 <p class="f2">

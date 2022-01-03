@@ -6,6 +6,8 @@ FOOTER
   padding-bottom: var(--lineheight);
 
   & nav {
+    text-transform: lowercase;
+
     & a {
       font-weight: 500;
     }

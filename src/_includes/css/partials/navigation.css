@@ -55,7 +55,7 @@ SIDE NAV
   }
 
   & h1 {
-    --offset-top: 17px;
+    --offset-top: 27px;
     line-height: calc(var(--lineheight) * 3);
     margin-bottom: calc(var(--lineheight) - var(--offset-top));
     padding-top: var(--offset-top);

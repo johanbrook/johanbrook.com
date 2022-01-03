@@ -1,0 +1,32 @@
+---
+layout: layouts/main.njk
+title: On my mind
+menu:
+  visible: true
+  order: 2
+  title: On my mind
+---
+
+<main role="main" class="notes">
+
+  <h1 class="title inset-title">{{ title }}</h1>
+
+  <ol class="NotesList list-reset">
+    {% for post in search.pages("type=note", "date=desc") %}
+      <li>
+        <article id="{{ post.data.date | date("NUMERIC") }}">
+          <header>
+            <h1 class="f4 fw5 no-rhythm">
+              <a href="#{{ post.data.date | date("NUMERIC") }}" title="Permalink">{{ post.data.date | date("PPP — HH:mm")}} <span class="target">#</span></a>
+            </h1>
+          </header>
+
+          <div class="prose">
+            {{ post.content | safe }}
+          </div>
+        </article>
+      </li>
+    {% endfor %}
+  </ol>
+
+</main>

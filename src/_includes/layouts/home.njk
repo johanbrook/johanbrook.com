@@ -5,7 +5,7 @@ numberPosts: 6
 ---
 <main role="main">
 
-  <header>
+  <header class="tc">
 
     {% include "header-title.svg" %}
 
@@ -13,7 +13,53 @@ numberPosts: 6
 
   <div class="measure mx-auto">
     <section class="mb4 mt4">
-        {{ content | safe }}
+      {{ content | safe }}
+    </section>
+
+    <section class="mb4">
+      <header class="flex items-center mb2">
+        <h1 class="f3 no-rhythm mb0">On my mind</h1>
+        
+        <p class="mb0 ml3">
+          <a href="/mind.xml" class="btn">Feed</a>
+          <a href="/mind" class="btn ml1">/mind</a>
+        </p>
+      </header>
+
+      <ol class="list-reset">
+        {% for note in search.pages("type=note", "date=desc", 1) %}
+          <li>
+            <h2 class="f6 fw4 no-rhythm">
+              <a href="{{ note.data.permalink() | url }}" class="muted">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
+            </h2>
+            <div class="prose">
+              {{ note.content | safe }}
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+    </section>
+
+    <section>
+      <header class="flex items-center mb3">
+        <h1 class="f3 no-rhythm mb0">Writings</h1>
+        
+        <p class="mb0 ml3">
+          <a href="/feed.xml" class="btn">Feed</a>
+          <a href="/writings" class="btn ml1">/writings</a>
+        </p>
+      </header>
+
+      <ol class="list-reset">
+        {% for post in search.pages("type=post", "date=desc", 3) %}
+          <li class="{% if not loop.last %}mb1{% endif %}">
+            <h2 class="f4 no-rhythm fw4 mb0">
+              <a href="{{ post.data.url | url }}">{{ post.data.title }}</a>
+            </h2>
+            <p class="f5 muted mb0">{{ post.data.date | date("HUMAN_DATE") }}</p>
+          </li>
+        {% endfor %}
+      </ol>
     </section>
   </div>
 </main>

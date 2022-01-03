@@ -4,7 +4,7 @@ layout: layouts/page.njk
 templateEngine: njk,md
 menu:
   visible: true
-  order: 5
+  order: 6
 ---
 
 | Method  | Value                                                     |

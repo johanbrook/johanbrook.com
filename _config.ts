@@ -20,6 +20,8 @@ const site = lume({
     metrics: CI,
 });
 
+const NUMERIC = 'yyyyMMddHHmm';
+
 site.copy('public', '.')
     // Plugins
     .use(codeHighlight())
@@ -29,7 +31,13 @@ site.copy('public', '.')
             sourceMap: true,
         })
     )
-    .use(date())
+    .use(
+        date({
+            formats: {
+                NUMERIC,
+            },
+        })
+    )
     // Helpers
     .filter('substr', (str: string, len: number) => str.substring(0, len))
     .filter('moreThan', (num: number, count: number) => num > count)
@@ -42,6 +50,7 @@ site.copy('public', '.')
         return readingTime(pageOrContent);
     })
     .filter('postAssetUrl', (filename) => `/assets/posts/${filename}`)
+    // Data
     .data('slug', function (this: { ctx: { url: string } }) {
         return this.ctx.url.replaceAll('/', '');
     })

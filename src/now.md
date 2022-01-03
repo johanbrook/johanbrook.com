@@ -12,7 +12,7 @@ keywords:
   - travels
 menu:
   visible: true
-  order: 1
+  order: 2
 ---
 
 ## Since the last update…
