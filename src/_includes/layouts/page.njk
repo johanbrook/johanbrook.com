@@ -6,7 +6,7 @@ layout: layouts/main.njk
   <article class="page">
     <h1 class="title {{ "comp-" + color if color }}">{{ title }}.</h1>
 
-    <div class="article-text page__text">
+    <div class="prose page__text measure">
       {{ content | safe }}
     </div>
   </article>

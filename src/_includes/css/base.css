@@ -13,19 +13,18 @@
   }
 }
 
-/* For Safari on iOS. Hacky, but it works. */
-@supports (background-color: -apple-system-control-background) and (color: text) {
+/* For browsers that support automatic dark/light mode
+     As well as system colors, set those */
+@supports (color-scheme: light dark) and (background-color: Canvas) {
   :root {
-    --color-bg: -apple-system-control-background;
+    --color-bg: Canvas;
   }
 }
 
-/* For browsers that support automatic dark/light mode
-     As well as system colors, set those */
-@supports (color-scheme: light dark) and (background-color: Canvas) and
-  (color: CanvasText) {
+/* For Safari on iOS. Hacky, but it works. */
+@supports (background-color: -apple-system-control-background) {
   :root {
-    --color-bg: Canvas;
+    --color-bg: -apple-system-control-background;
   }
 }
 
@@ -98,7 +97,9 @@ h6 {
 }
 
 h1,
-h2 {
+.f1,
+h2,
+.f2 {
   margin-bottom: var(--lineheight);
   line-height: 1.5;
 

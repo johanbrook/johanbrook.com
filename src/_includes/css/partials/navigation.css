@@ -79,7 +79,9 @@ SIDE NAV
     margin-right: 0;
 
     & h1 {
+      line-height: var(--lineheight);
       margin-bottom: var(--lineheight);
+      padding-top: 0;
     }
 
     & [aria-current='page'] a,
