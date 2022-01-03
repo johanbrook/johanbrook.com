@@ -47,12 +47,6 @@ PROSE
     font-family: var(--sans);
     font-size: 0.9em;
   }
-
-  & a {
-    &:visited {
-      color: var(--link-color-visited);
-    }
-  }
 }
 
 & figure.image--full {
@@ -509,6 +503,11 @@ SPACING
   margin-left: var(--spacing-extra-extra-extra-large);
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .mr0 {
   margin-right: var(--spacing-none);
 }
@@ -749,6 +748,12 @@ TYPOGRAPHY
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.sep {
+  color: var(--color-text-detail);
+  display: inline-block;
+  margin: 0 0.5em;
 }
 
 /*

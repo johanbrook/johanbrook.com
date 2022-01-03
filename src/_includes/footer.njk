@@ -1,9 +1,12 @@
 <footer role="contentinfo">
-  <ul class="flex gap justify-center f6 list-reset mb2">
-    <li><a href="/feed.xml" title="Atom">Feed</a></li>
-    <li><a href="/credits">Credits</a></li>
+  <nav>
+    <ul class="flex gap justify-center f6 list-reset mb2">
+        <li><a href="/feed.xml" title="Atom">Feed</a></li>
+        <li><a href="/credits">Credits</a></li>
+        <li><a href="/changelog">Changelog</a></li>
         <li><a href="/api.json">api.json</a></li>
-  </ul>
+    </ul>
+  </nav>
 
   <p class="muted f6 tc mb0">
     Using <a class="font-mono" href="https://github.com/{{ meta.repo }}/commit/{{ build.hash }}">{{ build.hash | substr(7) }}</a> — built at <time>{{ build.date }}</time>

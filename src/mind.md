@@ -1,11 +1,7 @@
 ---
+title: What’s on my mind
 layout: layouts/page.njk
 date: 2021-09-30
-title: What’s on my mind
-menu:
-  visible: true
-  order: 2
-  title: On my mind
 ---
 
 <section>

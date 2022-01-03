@@ -1,23 +1,3 @@
-/* =NAVIGATION
---------------------------------------------- */
-
-[role='navigation'] {
-  & ul {
-    display: flex;
-  }
-
-  & a {
-    color: var(--color-text);
-    text-decoration: none;
-    white-space: nowrap;
-
-    &:hover {
-      color: var(--link-color);
-      text-decoration: underline;
-    }
-  }
-}
-
 /*
 SIDE NAV
 ----------------------------------------------------------------*/
@@ -27,7 +7,18 @@ SIDE NAV
   margin-top: var(--lineheight);
   width: 9rem;
 
+  & a {
+    color: var(--color-text);
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--link-color);
+      text-decoration: underline;
+    }
+  }
+
   & ul {
+    display: flex;
     flex-direction: column;
     top: var(--lineheight);
     position: sticky;
@@ -36,6 +27,10 @@ SIDE NAV
   & a:not(h1 > a) {
     font-weight: normal;
     position: relative;
+  }
+
+  & h1 > a {
+    font-weight: 500;
   }
 
   & [aria-current='page'] a,
@@ -110,39 +105,5 @@ SIDE NAV
 
   @media all and (max-width: 481px) {
     display: block;
-  }
-}
-
-/*
-HORIZONTAL NAV
-----------------------------------------------------------------*/
-
-.HorizNav {
-  font-size: var(--f3);
-
-  & a {
-    padding: 0.5em 1em;
-  }
-
-  & ul {
-    display: flex;
-    justify-content: center;
-    gap: 1.5em;
-  }
-
-  @media all and (max-width: 1150px) {
-    & ul:not(.HorizNav__Sub) {
-      display: grid;
-      grid: auto-flow / repeat(2, 1fr);
-      text-align: center;
-    }
-
-    & li:not(:last-child)::after {
-      display: none;
-    }
-
-    & a {
-      display: block;
-    }
   }
 }

@@ -4,4 +4,10 @@ FOOTER
 
 [role='contentinfo'] {
   padding-bottom: var(--lineheight);
+
+  & nav {
+    & a {
+      font-weight: 500;
+    }
+  }
 }
