@@ -101,7 +101,8 @@ h1:not(.no-rhythm),
 h2:not(.no-rhythm),
 .f2:not(.no-rhythm) {
   margin-bottom: var(--lineheight);
-  line-height: 1.5;
+  line-height: 1.3;
+  vertical-align: top;
 
   &:first-line {
     vertical-align: bottom;
