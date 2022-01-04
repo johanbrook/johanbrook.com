@@ -5,6 +5,7 @@ import date from 'lume/plugins/date.ts';
 import inline from 'lume/plugins/inline.ts';
 import { minify } from './deps.ts';
 import { readingTime } from './src/_includes/plugins/reading-time.ts';
+import { extractExcerpt } from './src/_includes/plugins/excerpts.ts';
 
 const DEST = 'build';
 const MINIFY = Deno.env.get('ENV') == 'production';
@@ -40,7 +41,6 @@ site.copy('public', '.')
     )
     // Helpers
     .filter('substr', (str: string, len: number) => str.substring(0, len))
-    .filter('moreThan', (num: number, count: number) => num > count)
     .filter('readingTime', (pageOrContent) => {
         if (!pageOrContent)
             throw new Error(
@@ -50,6 +50,7 @@ site.copy('public', '.')
         return readingTime(pageOrContent);
     })
     .filter('postAssetUrl', (filename) => `/assets/posts/${filename}`)
+    .filter('excerpt', (content: string) => extractExcerpt(content))
     // Data
     .data('slug', function (this: { ctx: { url: string } }) {
         return this.ctx.url.replaceAll('/', '');

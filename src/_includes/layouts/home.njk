@@ -33,8 +33,14 @@ numberPosts: 6
               <a href="{{ note.data.permalink() | url }}" class="muted">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
             </h2>
             <div class="prose">
-              {{ note.data.content | md | safe }}
+              {{ note.data.content | excerpt | md | safe }}
             </div>
+
+            {% if (note.data.content | excerpt | length) < (note.data.content | trim | length)  %}
+                <p class="mt1">
+                  <a href="{{ note.data.permalink() | url }}" class="muted f6">continued →</a>
+                </p>
+            {% endif %}
           </li>
         {% endfor %}
       </ol>
