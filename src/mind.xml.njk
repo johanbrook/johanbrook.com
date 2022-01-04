@@ -4,7 +4,7 @@
   <link href="{{ url | url(true) }}" rel="self"/>
   <link href="{{ "/mind" | url(true) }}"/>
   <id>{{ "/mind" | url(true) }}</id>
-  {% set lastPage = search.pages("type=note", "date=desc") | last %}
+  {% set lastPage = search.pages("type=note", "date=asc") | last %}
   <updated>{{ lastPage.data.date | date("ATOM") }}</updated>
   <author>
     <name>{{ meta.author }}</name>
