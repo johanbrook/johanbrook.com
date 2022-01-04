@@ -13,7 +13,8 @@ import { format } from '../deps.ts';
 
 const DEST = Deno.cwd() + '/src/notes';
 
-const date = format(new Date(), 'yyyy-MM-dd-HH-mm');
+const date = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
+const fileDate = format(new Date(), 'yyyy-MM-dd-HH-mm');
 
 const TEMPLATE = `---
 date: ${date}
@@ -22,7 +23,7 @@ draft: true
 ---\n
 `;
 
-const fileName = `${date}.md`;
+const fileName = `${fileDate}.md`;
 const fullPath = DEST + '/' + fileName;
 
 await Deno.writeTextFile(fullPath, TEMPLATE, {
