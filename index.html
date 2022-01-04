@@ -41,7 +41,7 @@
 
       <main role="main">
 
-  <header>
+  <header class="tc">
 
     <svg viewbox="0 0 481 277" version="1.1" class="header-title" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" preserveaspectratio="">
     <style type="text/css">
@@ -134,54 +134,94 @@
 </svg>
 
 
-    <p class="tagline mt5 mb4">I write code and build product. <strong>Happy to be here.</strong></p>
   </header>
 
-  <section class="mb5">
-    <h1>Me in eight seconds</h1>
+  <div class="measure mx-auto">
+    <section class="mb4 mt4">
+      <h3>Greetings</h3>
 <p>I’m coding &amp; designering and I like working with product, user experience, and interface design and other things too. Like everybody else here.</p>
-<p>For me in eight minutes (or more), please see the <a href="/about">About page</a>. You can also check out what <a href="/now">I’m doing now</a>, what’s <a href="/mind">on my mind</a>, and what I'm currently <a href="/reading">reading</a>.</p>
+<p>For me in eight minutes (or more), please see the <a href="/about">About page</a>. You can also check out what <a href="/now">I’m doing now</a>, short notes on <a href="/mind">what’s on my mind</a>, and what I'm currently <a href="/reading">reading</a>.</p>
+<p>You can reach me on <a href="mailto:webmaster@johanbrook.com">email</a> or on <a href="https://twitter.com/@johanbrook">Twitter</a>.</p>
 
-  </section>
+    </section>
 
-  <nav role="navigation" class="HorizNav mb3 mt3">
-      <ul class="mb3">
+    <section class="mb4">
+      <header class="flex items-center mb0">
+        <h1 class="f3 no-rhythm mb0">On my mind</h1>
+        
+        <p class="mb0 ml3">
+          <a href="/mind.xml" class="btn">Feed</a>
+          <a href="/mind" class="btn ml1">/mind</a>
+        </p>
+      </header>
+
+      <ol class="list-reset">
+        
           <li>
-            <a href="/writings/">Writings</a>
+            <h2 class="f6 fw4 no-rhythm">
+              <a href="/mind#202201040937" class="muted">Latest: January 4th, 2022 — 09:37</a>
+            </h2>
+            <div class="prose">
+              <p>i've rewrote my site (using <a href="https://lumeland.github.io">lume</a> 💛) and made a ton of tweaks. classic neverending parental leave chores. it's built with <a href="https://deno.land">deno</a>, which I love even more. i'm finally free from the node/npm APIs and build systems! everything is much simpler now, and i should probably write about it in the even more classic post of "i've rewritten my blog" which usually shows up in January every year.</p>
+            </div>
           </li>
-          <li>
-            <a href="/now/">Now</a>
+        
+      </ol>
+    </section>
+
+    <section>
+      <header class="flex items-center mb3">
+        <h1 class="f3 no-rhythm mb0">Writings</h1>
+        
+        <p class="mb0 ml3">
+          <a href="/feed.xml" class="btn">Feed</a>
+          <a href="/writings" class="btn ml1">/writings</a>
+        </p>
+      </header>
+
+      <ol class="list-reset">
+        
+          <li class="mb1">
+            <h2 class="f4 no-rhythm fw4 mb0">
+              <a href="/writings/ios-homescreen-web-app/">Setting up an iOS home screen web app in 2021</a>
+            </h2>
+            <p class="f5 muted mb0">December 14th, 2021</p>
           </li>
-          <li>
-            <a href="/mind/">On my mind</a>
+        
+          <li class="mb1">
+            <h2 class="f4 no-rhythm fw4 mb0">
+              <a href="/writings/better-spaghetti-bolognese/">An Even Better Spaghetti Bolognese</a>
+            </h2>
+            <p class="f5 muted mb0">November 2nd, 2021</p>
           </li>
-          <li>
-            <a href="/reading/">Reading</a>
+        
+          <li class="">
+            <h2 class="f4 no-rhythm fw4 mb0">
+              <a href="/writings/recently-in-books-ii/">Recently in books II</a>
+            </h2>
+            <p class="f5 muted mb0">December 31st, 2020</p>
           </li>
-          <li>
-            <a href="/about/">About me</a>
-          </li>
-          <li>
-            <a href="/contact/">Contact</a>
-          </li>
-          <li>
-            <a href="/changelog/">Changelog</a>
-          </li>
-      </ul>
-    </nav>
+        
+      </ol>
+    </section>
+  </div>
 </main>
 
     </div>
 
     <footer role="contentinfo">
-  <ul class="flex gap justify-center f6 list-reset mb2">
-    <li><a href="/feed.xml" title="Atom">Feed</a></li>
-    <li><a href="/credits">Credits</a></li>
-    <li><a href="/meta.json">meta.json</a></li>
-  </ul>
+  <nav>
+    <ul class="flex gap justify-center f6 list-reset mb2">
+        <li><a href="/feed.xml" title="Atom">Feed</a></li>
+        <li><a href="/mind.xml" title="Atom">Mind feed</a></li>
+        <li><a href="/credits">Credits</a></li>
+        <li><a href="/changelog">Changelog</a></li>
+        <li><a href="/api.json">api.json</a></li>
+    </ul>
+  </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/82a2274cfa4d018eecdf25da12d81daf7fd56384">82a2274</a> — built at <time>2022-01-03T04:42:27.297Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/c8b03e5f037832f627d62f3db660a72e1869cb82">c8b03e5</a> — built at <time>2022-01-04T08:57:46.285Z</time>
   </p>
 </footer>
 
