@@ -15,14 +15,15 @@ menu:
     {% for post in search.pages("type=note", "date=desc") %}
       <li>
         <article id="{{ post.data.date | date("NUMERIC") }}">
-          <header>
-            <h1 class="f4 fw5 no-rhythm">
+          <header class="mb2">
+            <h1 class="f4 fw5 no-rhythm mb0">
               <a href="#{{ post.data.date | date("NUMERIC") }}" title="Permalink">{{ post.data.date | date("PPP — HH:mm")}} <span class="target">#</span></a>
             </h1>
+            {% if post.data.location %}<p class="muted mb0 f6">from {{ post.data.location | lower }}</p>{% endif %}
           </header>
 
           <div class="prose">
-            {{ post.content | safe }}
+            {{ post.data.content | md | safe }}
           </div>
         </article>
       </li>

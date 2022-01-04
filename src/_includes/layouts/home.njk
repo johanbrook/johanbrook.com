@@ -17,7 +17,7 @@ numberPosts: 6
     </section>
 
     <section class="mb4">
-      <header class="flex items-center mb2">
+      <header class="flex items-center mb0">
         <h1 class="f3 no-rhythm mb0">On my mind</h1>
         
         <p class="mb0 ml3">
@@ -33,7 +33,7 @@ numberPosts: 6
               <a href="{{ note.data.permalink() | url }}" class="muted">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
             </h2>
             <div class="prose">
-              {{ note.content | safe }}
+              {{ note.data.content | md | safe }}
             </div>
           </li>
         {% endfor %}
