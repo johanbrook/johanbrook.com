@@ -9,16 +9,10 @@ import { extractExcerpt } from './src/_includes/plugins/excerpts.ts';
 
 const DEST = 'build';
 const MINIFY = Deno.env.get('ENV') == 'production';
-const CI = !!Deno.env.get('CI');
-
-if (CI) {
-    console.log('Start site build…');
-}
 
 const site = lume({
     src: 'src',
     dest: DEST,
-    metrics: CI,
 });
 
 const NUMERIC = 'yyyyMMddHHmm';
