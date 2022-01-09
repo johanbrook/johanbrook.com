@@ -2,6 +2,7 @@
   "css.validate": false,
   "editor.formatOnSave": true,
   "deno.enable": true,
+  "deno.config": "deno.jsonc",
   "deno.lint": true,
   "deno.unstable": true,
   "deno.suggest.imports.hosts": {
