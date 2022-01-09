@@ -1,6 +1,7 @@
 import lume from 'lume/mod.ts';
 import postcss from 'lume/plugins/postcss.ts';
 import codeHighlight from 'lume/plugins/code_highlight.ts';
+import bundler from 'lume/plugins/bundler.ts';
 import date from 'lume/plugins/date.ts';
 import inline from 'lume/plugins/inline.ts';
 import { minify } from './deps.ts';
@@ -17,7 +18,17 @@ const site = lume({
 
 const NUMERIC = 'yyyyMMddHHmm';
 
-site.copy('public', '.')
+site
+    //
+    .use(
+        bundler({
+            sourceMap: true,
+            options: {
+                bundle: 'module',
+            },
+        })
+    )
+    .copy('public', '.')
     // Plugins
     .use(codeHighlight())
     .use(inline())
