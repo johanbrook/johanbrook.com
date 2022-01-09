@@ -46,7 +46,7 @@ site.copy('public', '.')
     .filter('postAssetUrl', (filename) => `/assets/posts/${filename}`)
     .filter('excerpt', (content: string) => extractExcerpt(content))
     // Data
-    .data('slug', function (this: { ctx: { url: string } }) {
+    .data('pageSlug', function (this: { ctx: { url: string } }) {
         return this.ctx.url.replaceAll('/', '');
     })
     // Don't the entire site rebuild when --watching or --serving if .css files change
