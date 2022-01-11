@@ -73,9 +73,9 @@ if (MINIFY) {
 }
 
 const minifyCss = () => {
-    const css = Deno.readTextFileSync(`./${DEST}/css/johan.css`);
+    const css = Deno.readTextFileSync(`./${DEST}/johan.css`);
     const minified = minifier.minify('css', css);
-    Deno.writeTextFileSync(`./${DEST}/css/johan.css`, minified);
+    Deno.writeTextFileSync(`./${DEST}/johan.css`, minified);
 };
 
 export default site;
