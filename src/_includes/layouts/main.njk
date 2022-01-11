@@ -58,7 +58,13 @@ ogImage: /assets/images/og-image.png
 
     {% include "footer.njk" %}
 
-    <script src="/js/debug.js" inline></script>
+    <script>
+        document.addEventListener('keydown', (evt) => {
+            if (evt.code == 'KeyG') {
+                document.body.classList.toggle('grid');
+            }
+        });
+    </script>
 
     {% include "analytics.njk" %}
   </body>
