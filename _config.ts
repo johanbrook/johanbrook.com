@@ -4,7 +4,7 @@ import codeHighlight from 'lume/plugins/code_highlight.ts';
 import bundler from 'lume/plugins/bundler.ts';
 import date from 'lume/plugins/date.ts';
 import inline from 'lume/plugins/inline.ts';
-import { minify } from './deps.ts';
+import { minifier } from './deps.ts';
 import { readingTime } from './src/_lume-plugins/reading-time.ts';
 import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
 
@@ -74,7 +74,7 @@ if (MINIFY) {
 
 const minifyCss = () => {
     const css = Deno.readTextFileSync(`./${DEST}/css/johan.css`);
-    const minified = minify('css', css);
+    const minified = minifier.minify('css', css);
     Deno.writeTextFileSync(`./${DEST}/css/johan.css`, minified);
 };
 
