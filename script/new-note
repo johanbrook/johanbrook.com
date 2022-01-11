@@ -9,12 +9,12 @@
     will follow the template: [yyyy-MM-dd-HH-mm].md.
 */
 
-import { format } from '../deps.ts';
+import { formatDate } from './util.js';
 
 const DEST = Deno.cwd() + '/src/notes';
 
-const date = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
-const fileDate = format(new Date(), 'yyyy-MM-dd-HH-mm');
+const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss');
+const fileDate = formatDate(new Date(), 'yyyy-MM-dd-HH-mm');
 
 const TEMPLATE = `---
 date: ${date}

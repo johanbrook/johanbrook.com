@@ -9,13 +9,13 @@
     will follow the template: [yyyy-MM-dd]-[slugified-title].md.
 */
 
-import { format } from '../deps.ts';
+import { formatDate } from './util.js';
 
 const DEST = Deno.cwd() + '/src/posts';
 
 const title = Deno.args[0] ?? 'New post';
 const slug = title.toLowerCase().replace(/\s+/g, '-').trim();
-const date = format(new Date(), 'yyyy-MM-dd');
+const date = formatDate(new Date(), 'yyyy-MM-dd');
 
 const TEMPLATE = `---
 title: ${title}
