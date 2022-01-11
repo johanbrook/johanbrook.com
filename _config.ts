@@ -5,8 +5,8 @@ import bundler from 'lume/plugins/bundler.ts';
 import date from 'lume/plugins/date.ts';
 import inline from 'lume/plugins/inline.ts';
 import { minify } from './deps.ts';
-import { readingTime } from './src/_includes/plugins/reading-time.ts';
-import { extractExcerpt } from './src/_includes/plugins/excerpts.ts';
+import { readingTime } from './src/_lume-plugins/reading-time.ts';
+import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
 
 const DEST = 'build';
 const MINIFY = Deno.env.get('ENV') == 'production';
@@ -20,6 +20,8 @@ const NUMERIC = 'yyyyMMddHHmm';
 
 site
     //
+    .includes(['.ts', '.js'], 'lib')
+    .includes(['.css'], 'css')
     .use(
         bundler({
             sourceMap: true,

@@ -20,6 +20,7 @@
   --btn-color: hsl(213 100% 50%);
   --btn-color-hover: hsl(213 100% 41%);
   --btn-color-active: hsl(213 100% 33%);
+  --btn-color-disabled: var(--grey);
 
   --pre-background: var(--color-bg-secondary);
   --code-background: var(--color-bg-secondary);

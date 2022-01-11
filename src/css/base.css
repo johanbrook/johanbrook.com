@@ -177,6 +177,10 @@ h6,
   letter-spacing: var(--tracking-f6);
 }
 
+.f7 {
+  font-size: var(--f7);
+}
+
 .title {
   font-weight: bold;
   line-height: calc(var(--lineheight) * 3);
@@ -320,5 +324,17 @@ hr {
     content: '***';
     color: var(--hr-color);
     line-height: 1;
+  }
+}
+
+textarea {
+  padding: 0.5em;
+  border: 1px solid var(--grey);
+  border-radius: 0.4em;
+  resize: vertical;
+
+  &:focus {
+    outline: 0;
+    border-color: var(--link-color);
   }
 }

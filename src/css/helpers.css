@@ -5,6 +5,45 @@
 }
 
 /*
+BUTTONS
+----------------------------------------------------------------*/
+
+.btn {
+  -webkit-appearance: none;
+  border: 0;
+  background: none;
+  color: var(--link-color);
+  text-align: center;
+  text-transform: lowercase;
+  border-radius: 6px;
+  font-weight: 500;
+  box-shadow: currentColor 0 0 0 1px;
+  padding: 0.3em 1em;
+
+  &:not([disabled]) {
+    cursor: pointer;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: var(--link-color-hover);
+  }
+
+  &:active,
+  &:active {
+    color: var(--link-color-active);
+  }
+
+  &[disabled] {
+    color: var(--btn-color-disabled);
+  }
+}
+
+/*
 PROSE
 ----------------------------------------------------------------*/
 
@@ -129,6 +168,10 @@ TEXT ALIGNMENT
 }
 .tj {
   text-align: justify;
+}
+
+.w-full {
+  width: 100%;
 }
 
 /*
@@ -762,34 +805,4 @@ TYPOGRAPHY
   color: var(--color-text-detail);
   display: inline-block;
   margin: 0 0.5em;
-}
-
-/*
-BUTTONS
-----------------------------------------------------------------*/
-
-.btn {
-  -webkit-appearance: none;
-  color: var(--link-color);
-  font-size: var(--f7);
-  text-align: center;
-  text-transform: lowercase;
-  border-radius: 6px;
-  font-weight: 500;
-  box-shadow: currentColor 0 0 0 1px;
-  padding: 0.3em 1em;
-
-  &:hover {
-    text-decoration: none;
-  }
-
-  &:hover {
-    text-decoration: none;
-    color: var(--link-color-hover);
-  }
-
-  &:active,
-  &:active {
-    color: var(--link-color-active);
-  }
 }
