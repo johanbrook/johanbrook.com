@@ -1,0 +1,18 @@
+name = "github-oauth"
+type = "javascript"
+account_id = "96a73ee8d5a6a04f37dd5136d875497e"
+route = ''
+zone_id = ''
+usage_model = ''
+compatibility_flags = []
+workers_dev = true
+compatibility_date = "2022-01-05"
+
+[vars]
+REDIRECT_URI = "https://johanbrook.com/admin/"
+
+[dev]
+port = 3001
+
+[env.dev.vars]
+REDIRECT_URI = "http://localhost:3000/admin/"
