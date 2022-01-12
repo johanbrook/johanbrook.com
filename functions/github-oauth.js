@@ -16,7 +16,7 @@ const client_id = CLIENT_ID;
 const client_secret = CLIENT_SECRET;
 
 if (!client_id || !client_secret) {
-    throw new Error('Missing required env var(s)');
+    throw new Error('Missing some required env var(s)');
 }
 
 async function handle(request) {
