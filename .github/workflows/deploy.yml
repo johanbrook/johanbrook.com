@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and deploy website
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
         with:
           deno-version: v1.17.x
 
-      - name: Install and Build site
+      - name: Install and build site
         env:
           CI: true
           NODE_ENV: production
