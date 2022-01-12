@@ -18,6 +18,7 @@ export interface CreateNoteResult {
 }
 
 export interface Service {
+    maybeLogin: () => void;
     fetchToken: (code: string) => Promise<Token | Err>;
     createNote: (text: string) => Promise<Result<CreateNoteResult>>;
 }

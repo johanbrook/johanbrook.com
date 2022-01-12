@@ -105,6 +105,8 @@ const App = (svc: Service) => {
             }
         }
 
+        svc.maybeLogin();
+
         if (state.err) {
             return Error(state.err);
         }

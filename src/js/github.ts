@@ -171,7 +171,16 @@ ${text}\n
         };
     };
 
+    const maybeLogin: Service['maybeLogin'] = () => {
+        const storedTok = getStoredToken();
+
+        if (!storedTok) {
+            location.href = url;
+        }
+    };
+
     return {
+        maybeLogin,
         fetchToken,
         createNote,
     };
