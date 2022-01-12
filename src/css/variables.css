@@ -64,6 +64,10 @@
 
   --font-size-base: 17;
 
+  @media screen and (max-width: 500px) {
+    --font-size-base: 16;
+  }
+
   --leading: 1.61112; /* 🔮 */
   /* Rhythm unit */
   --lineheight: calc(var(--leading) * 1rem);
@@ -93,6 +97,8 @@
   --font-strategy: fallback;
 
   /* Measures */
+
+  --inset: calc(var(--lineheight) / 2);
   --main-width: var(--measure);
 
   --measure: 56ch;

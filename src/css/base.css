@@ -43,8 +43,6 @@ html {
 }
 
 body {
-  --inset: var(--lineheight);
-
   margin: var(--inset) auto;
   min-height: calc(100vh - (var(--inset) * 2));
   width: calc(100% - (var(--inset) * 2));
@@ -61,10 +59,6 @@ body {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  @media screen and (max-width: 480px) {
-    font-size: 1rem;
-  }
 
   @media screen and (prefers-color-scheme: dark) {
     word-spacing: 0.05em;
