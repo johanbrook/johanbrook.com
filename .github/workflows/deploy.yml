@@ -1,6 +1,12 @@
 name: Build and Deploy
 
-on: push
+on:
+  push:
+    paths:
+      - 'src/**/*'
+      - '_config.ts'
+      - 'CNAME'
+      - 'deps.ts'
 
 jobs:
   build-and-deploy:
