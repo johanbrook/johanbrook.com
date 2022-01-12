@@ -38,7 +38,7 @@ bare: true
 
             {% if (note.data.content | excerpt | length) < (note.data.content | trim | length)  %}
                 <p class="mt1">
-                  <a href="{{ note.data.permalink() | url }}" class="muted f6">continued →</a>
+                  <a href="{{ note.data.permalink() | url }}" class="muted f6">continued ⇢</a>
                 </p>
             {% endif %}
           </li>
