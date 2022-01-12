@@ -31,15 +31,12 @@ jobs:
 
       - name: Deploy to GitHub Pages
         if: github.ref_name == 'main'
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          # The branch the action should deploy from.
-          BASE_BRANCH: main
           # The branch the action should deploy to.
-          BRANCH: gh-pages
+          branch: gh-pages
           # The folder the action should deploy.
-          FOLDER: build
+          folder: build
 
       - name: Purge Cloudflare cache
         if: github.ref_name == 'main'
