@@ -4,7 +4,6 @@ SIDE NAV
 
 .SideNav {
   margin-right: 3rem;
-  margin-top: var(--lineheight);
   width: 9rem;
 
   & a {
@@ -55,15 +54,10 @@ SIDE NAV
   }
 
   & h1 {
-    --offset-top: 27px;
+    --offset-top: 17px;
     line-height: calc(var(--lineheight) * 3);
     margin-bottom: calc(var(--lineheight) - var(--offset-top));
     padding-top: var(--offset-top);
-
-    &::after,
-    &::before {
-      display: none;
-    }
   }
 
   @media screen and (max-width: 55rem) {

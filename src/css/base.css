@@ -43,10 +43,17 @@ html {
 }
 
 body {
-  min-height: 100vh;
+  --inset: var(--lineheight);
+
+  margin: var(--inset) auto;
+  min-height: calc(100vh - (var(--inset) * 2));
+  width: calc(100% - (var(--inset) * 2));
+
+  /* Push the footer down */
+  display: flex;
+  flex-direction: column;
+
   line-height: var(--lineheight);
-  margin: 0 auto;
-  width: 90%;
   letter-spacing: var(--tracking);
   font-kerning: normal;
   font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1;
@@ -68,15 +75,12 @@ main {
   flex: 1 0 auto;
   max-width: var(--main-width);
   margin-bottom: calc(var(--lineheight) * 3);
-
-  @media screen and (min-width: 55rem) {
-    margin-top: var(--lineheight);
-  }
 }
 
 .Content {
   display: flex;
   justify-content: center;
+  flex: 1; /* Take up vertical space */
 
   @media screen and (max-width: 55rem) {
     flex-direction: column;
@@ -99,9 +103,10 @@ h6 {
 h1:not(.no-rhythm),
 .f1:not(.no-rhythm),
 h2:not(.no-rhythm),
-.f2:not(.no-rhythm) {
+.f2:not(.no-rhythm),
+.f3:not(.no-rhythm) {
   margin-bottom: var(--lineheight);
-  line-height: 1.3;
+  line-height: 1.5;
   vertical-align: top;
 
   &:first-line {
@@ -181,7 +186,7 @@ h6,
   font-size: var(--f7);
 }
 
-.title {
+h1.title {
   font-weight: bold;
   line-height: calc(var(--lineheight) * 3);
 

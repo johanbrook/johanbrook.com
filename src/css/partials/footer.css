@@ -3,8 +3,6 @@ FOOTER
 ----------------------------------------------------------------*/
 
 [role='contentinfo'] {
-  padding-bottom: var(--lineheight);
-
   & nav {
     text-transform: lowercase;
 
