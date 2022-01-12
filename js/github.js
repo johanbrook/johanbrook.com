@@ -112,7 +112,14 @@ ${text}\n
             fileUrl: res.content.html_url
         };
     };
+    const maybeLogin = ()=>{
+        const storedTok = getStoredToken();
+        if (!storedTok) {
+            location.href = url;
+        }
+    };
     return {
+        maybeLogin,
         fetchToken,
         createNote
     };

@@ -112,7 +112,14 @@ ${text}\n
             fileUrl: res.content.html_url
         };
     };
+    const maybeLogin = ()=>{
+        const storedTok = getStoredToken();
+        if (!storedTok) {
+            location.href = url;
+        }
+    };
     return {
+        maybeLogin,
         fetchToken,
         createNote
     };
@@ -209,6 +216,7 @@ const App = (svc)=>{
                 return Error1(res);
             }
         }
+        svc.maybeLogin();
         if (state.err) {
             return Error1(state.err);
         }
