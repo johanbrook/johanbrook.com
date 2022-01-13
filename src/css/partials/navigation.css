@@ -37,7 +37,7 @@ SIDE NAV
     outline: 0;
 
     &::before {
-      content: '->';
+      content: '⇢';
       display: block;
       position: absolute;
       right: calc(100% + 0.5em);
