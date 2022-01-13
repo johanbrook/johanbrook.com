@@ -18,7 +18,7 @@ BUTTONS
   border-radius: 6px;
   font-weight: 500;
   box-shadow: currentColor 0 0 0 1px;
-  padding: 0.3em 1em;
+  padding: 0.4em 1em;
 
   &:not([disabled]) {
     cursor: pointer;
