@@ -110,7 +110,7 @@
 <h3>DRY</h3>
 <p>Speaks for itself – don’t write duplicated code. It takes some experience to be able to write really solid CSS, where you don’t have to grab Search And Replace to make global changes. It’s a matter of being smart, and think for the future. Don’t be overly precise.</p>
 <p>Our new CSS3 properties is also a nice example of repeating yourself. You all know the dreaded Gradient syntax – or should I say – the myriad of browser vendor prefixes that make you write several lines of code just to pull off a simple cross-browser gradient:</p>
-<pre><code>/* WebKit */
+<pre class="language-none" tabindex="0"><code class="language-none">/* WebKit */
 background: #b4e1ea -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dcf1f5), color-stop(100%, #b4e1ea));
 
 /* New-ish WebKit: Chrome style */
@@ -128,7 +128,7 @@ background: #b4e1ea linear-gradient(#dcf1f5, #b4e1ea);
 <p>(haven’t included code for generating SVG gradients for IE9)</p>
 <p>Even though this is a necessary evil until things change, you shouldn’t have to write this. It’s craziness! Tedious to maintain, bloated, and just plain wrong.</p>
 <p>In Sass or Less, it’s just a matter of creating a mixin returning all the different browser syntaxes and including it:</p>
-<pre><code>@include linear-gradient(#dcf1f5, #b4e1ea);
+<pre class="language-none" tabindex="0"><code class="language-none">@include linear-gradient(#dcf1f5, #b4e1ea);
 </code></pre>
 <p>I’m not saying you’re getting rid of all gradient code in the final stylesheet, but you <em>don’t have to look and work with it</em> while writing/maintaining. Programmer happiness.</p>
 <h3>Convention Over Configuration</h3>
@@ -174,7 +174,7 @@ background: #b4e1ea linear-gradient(#dcf1f5, #b4e1ea);
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/dc7d9e28ec05d86e499b77d4d3fea41a181d96fc">dc7d9e2</a> — built at <time>2022-01-17T10:12:57.678Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
   </p>
 </footer>
 

@@ -137,29 +137,29 @@
 <p>⚠️ <em>You have to tweak some variables in there!</em></p>
 <p>It was a bit fiddly to get the actual HEX codes of the styles, since Figma doesn't include them in the call to the <code>/styles</code> API endpoint. Therefore, I had to cross reference the name of the styles with the colour samples in the document. I've sent this feedback to the Figma team.</p>
 <p>Run it like this:</p>
-<pre><code class="language-bash hljs">FIGMA_PERSONAL_TOKEN=&lt;your-token&gt; node fetch-figma-colors.js
+<pre class="language-bash" tabindex="0"><code class="language-bash">FIGMA_PERSONAL_TOKEN=&lt;your-token&gt; node fetch-figma-colors.js
 </code></pre>
 <p>The resulting file, <code>colors.js</code>, will look like this:</p>
-<pre><code class="language-js hljs language-javascript"><span class="hljs-comment">/* eslint-disable */</span>
-<span class="hljs-comment">/* Updated at Thu, 21 Mar 2019 21:06:58 GMT*/</span>
-<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
-    <span class="hljs-comment">/** Suitable as background color. */</span>
-    <span class="hljs-string">'blue-10'</span>: <span class="hljs-string">'#f6fbfd'</span>,
-    <span class="hljs-comment">/** Suitable as default border color. */</span>
-    <span class="hljs-string">'blue-20'</span>: <span class="hljs-string">'#d7f3ff'</span>,
-    <span class="hljs-string">'blue-30'</span>: <span class="hljs-string">'#a4e3ff'</span>,
-    <span class="hljs-string">'blue-40'</span>: <span class="hljs-string">'#60ceff'</span>,
-    <span class="hljs-string">'blue-50'</span>: <span class="hljs-string">'#00a0e8'</span>,
-    <span class="hljs-comment">/** Suitable as default button and link color. */</span>
-    <span class="hljs-string">'blue-60'</span>: <span class="hljs-string">'#007db5'</span>,
-    <span class="hljs-comment">/** Suitable as heading color. */</span>
-    <span class="hljs-string">'blue-70'</span>: <span class="hljs-string">'#006693'</span>,
-    <span class="hljs-comment">/** Suitable as body text color. */</span>
-    <span class="hljs-string">'blue-80'</span>: <span class="hljs-string">'#004260'</span>,
-    <span class="hljs-string">'blue-90'</span>: <span class="hljs-string">'#002b3e'</span>,
-    <span class="hljs-string">'blue-100'</span>: <span class="hljs-string">'#041820'</span>,
-    <span class="hljs-comment">// ...</span>
-};
+<pre class="language-js" tabindex="0"><code class="language-js"><span class="token comment">/* eslint-disable */</span>
+<span class="token comment">/* Updated at Thu, 21 Mar 2019 21:06:58 GMT*/</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token comment">/** Suitable as background color. */</span>
+    <span class="token string-property property">'blue-10'</span><span class="token operator">:</span> <span class="token string">'#f6fbfd'</span><span class="token punctuation">,</span>
+    <span class="token comment">/** Suitable as default border color. */</span>
+    <span class="token string-property property">'blue-20'</span><span class="token operator">:</span> <span class="token string">'#d7f3ff'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'blue-30'</span><span class="token operator">:</span> <span class="token string">'#a4e3ff'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'blue-40'</span><span class="token operator">:</span> <span class="token string">'#60ceff'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'blue-50'</span><span class="token operator">:</span> <span class="token string">'#00a0e8'</span><span class="token punctuation">,</span>
+    <span class="token comment">/** Suitable as default button and link color. */</span>
+    <span class="token string-property property">'blue-60'</span><span class="token operator">:</span> <span class="token string">'#007db5'</span><span class="token punctuation">,</span>
+    <span class="token comment">/** Suitable as heading color. */</span>
+    <span class="token string-property property">'blue-70'</span><span class="token operator">:</span> <span class="token string">'#006693'</span><span class="token punctuation">,</span>
+    <span class="token comment">/** Suitable as body text color. */</span>
+    <span class="token string-property property">'blue-80'</span><span class="token operator">:</span> <span class="token string">'#004260'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'blue-90'</span><span class="token operator">:</span> <span class="token string">'#002b3e'</span><span class="token punctuation">,</span>
+    <span class="token string-property property">'blue-100'</span><span class="token operator">:</span> <span class="token string">'#041820'</span><span class="token punctuation">,</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Neat! Even with custom comments I wrote for some styles in Figma! 😍</p>
 <figure>
@@ -178,50 +178,50 @@
 </ul>
 <p>Tailwind is nice since I can configure widths, margins, colours – everything – in a Javascript config file, and then generate a CSS foundation from that.</p>
 <p>See more in the <a href="https://tailwindcss.com/docs/configuration">documentation</a>, but in a nutshell it looks like this:</p>
-<pre><code class="language-js hljs language-javascript"><span class="hljs-comment">// tailwind.config.js</span>
+<pre class="language-js" tabindex="0"><code class="language-js"><span class="token comment">// tailwind.config.js</span>
 
-<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
-  <span class="hljs-attr">theme</span>: {
-    <span class="hljs-attr">colors</span>: {
-      <span class="hljs-attr">white</span>: <span class="hljs-string">'#fff'</span>,
-      <span class="hljs-comment">// ...</span>
-    }
-  }
-};
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">theme</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">colors</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">white</span><span class="token operator">:</span> <span class="token string">'#fff'</span><span class="token punctuation">,</span>
+      <span class="token comment">// ...</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Tailwind uses this colour scale to create border, text, and background colours as class names. I can now use it like this in my HTML <em>or</em> CSS code:</p>
-<pre><code class="language-html hljs language-xml"><span class="hljs-comment">&lt;!-- HTML --&gt;</span>
+<pre class="language-html" tabindex="0"><code class="language-html"><span class="token comment">&lt;!-- HTML --&gt;</span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-white"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello!<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bg-white<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Hello!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 </code></pre>
 <p>or</p>
-<pre><code class="language-css hljs"><span class="hljs-comment">/* CSS */</span>
+<pre class="language-css" tabindex="0"><code class="language-css"><span class="token comment">/* CSS */</span>
 
-<span class="hljs-selector-tag">div</span> {
-  <span class="hljs-keyword">@apply</span> bg-white;
-}
+<span class="token selector">div</span> <span class="token punctuation">{</span>
+  <span class="token atrule"><span class="token rule">@apply</span> bg-white<span class="token punctuation">;</span></span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-comment">/* or: */</span>
+<span class="token comment">/* or: */</span>
 
-<span class="hljs-selector-tag">div</span> {
-  <span class="hljs-attribute">background-color</span>: <span class="hljs-built_in">theme</span>(<span class="hljs-string">'colors.white'</span>);
-}
+<span class="token selector">div</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">theme</span><span class="token punctuation">(</span><span class="token string">'colors.white'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>The final thing to do is thus to import our colours into the config, et voíla:</p>
-<pre><code class="language-js hljs language-javascript"><span class="hljs-comment">// tailwind.config.js</span>
-<span class="hljs-keyword">const</span> colors = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./colors'</span>);
+<pre class="language-js" tabindex="0"><code class="language-js"><span class="token comment">// tailwind.config.js</span>
+<span class="token keyword">const</span> colors <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./colors'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = {
-  <span class="hljs-attr">theme</span>: {
-    colors,
-  }
-};
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">theme</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    colors<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<pre><code class="language-html hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"bg-blue-10"</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"text-orange-60"</span>&gt;</span>Orange 60<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<pre class="language-html" tabindex="0"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bg-blue-10<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-orange-60<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Orange 60<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 </code></pre>
 <p>Done! 🌈</p>
 <h2>Recap</h2>
@@ -265,7 +265,7 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/dc7d9e28ec05d86e499b77d4d3fea41a181d96fc">dc7d9e2</a> — built at <time>2022-01-17T10:12:57.678Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
   </p>
 </footer>
 

@@ -127,58 +127,58 @@
 <h3>Differences in drawing a DOM</h3>
 <p>Out-of-the-box, CycleJS uses <a href="https://github.com/snabbdom/snabbdom">Snabbdom</a> – a virtual DOM library – to build your app's HTML and insert into the browser. CycleJS supports <a href="https://cycle.js.org/components.html">components</a>, i.e. reusable functions that emit a DOM and take props.</p>
 <p>A component in CycleJS/Snabbdom might look like this:</p>
-<pre><code class="language-typescript hljs"><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
-<span class="hljs-keyword">import</span> { div, span, input } <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">import</span> xs <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> div<span class="token punctuation">,</span> span<span class="token punctuation">,</span> input <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@cycle/dom'</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">MyComponent</span>(<span class="hljs-params">sources</span>) {
-  <span class="hljs-comment">// Incoming DOM from the outside:</span>
-  <span class="hljs-keyword">const</span> domSource = sources.<span class="hljs-property">DOM</span>;
+<span class="token keyword">function</span> <span class="token function">MyComponent</span><span class="token punctuation">(</span>sources<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Incoming DOM from the outside:</span>
+  <span class="token keyword">const</span> domSource <span class="token operator">=</span> sources<span class="token punctuation">.</span><span class="token constant">DOM</span><span class="token punctuation">;</span>
 
-  <span class="hljs-comment">// Stream of new text values from our &lt;input&gt; element</span>
-  <span class="hljs-keyword">const</span> newValue$ = domSource
-    .<span class="hljs-title function_">select</span>(<span class="hljs-string">'.input'</span>) <span class="hljs-comment">// The &lt;input&gt; has class="input"</span>
-    .<span class="hljs-title function_">events</span>(<span class="hljs-string">'input'</span>) <span class="hljs-comment">// Listen to `input` events</span>
-    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">ev</span>) =&gt;</span> ev.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>); <span class="hljs-comment">// For each input, grab the `value`</span>
+  <span class="token comment">// Stream of new text values from our &lt;input&gt; element</span>
+  <span class="token keyword">const</span> newValue$ <span class="token operator">=</span> domSource
+    <span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token string">'.input'</span><span class="token punctuation">)</span> <span class="token comment">// The &lt;input&gt; has class="input"</span>
+    <span class="token punctuation">.</span><span class="token function">events</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span> <span class="token comment">// Listen to `input` events</span>
+    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>ev<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> ev<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// For each input, grab the `value`</span>
 
-  <span class="hljs-comment">// Build a stream of state, which looks like:</span>
-  <span class="hljs-comment">//  Stream&lt;{ value: string }&gt;</span>
-  <span class="hljs-keyword">const</span> state$ = newValue$.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> ({ value })).<span class="hljs-title function_">remember</span>(); <span class="hljs-comment">// Remember last value</span>
+  <span class="token comment">// Build a stream of state, which looks like:</span>
+  <span class="token comment">//  Stream&lt;{ value: string }&gt;</span>
+  <span class="token keyword">const</span> state$ <span class="token operator">=</span> newValue$<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> value <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">remember</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Remember last value</span>
 
-  <span class="hljs-comment">// Render out the UI from our state using Snabbdom. This is</span>
-  <span class="hljs-comment">// a virtual DOM implementation, and we build the structure</span>
-  <span class="hljs-comment">// using Hyperscript.</span>
-  <span class="hljs-keyword">const</span> vdom$ = state$.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span>
-    <span class="hljs-title function_">div</span>([
-      <span class="hljs-title function_">span</span>(state.<span class="hljs-property">value</span>),
-      <span class="hljs-title function_">input</span>(<span class="hljs-string">'.input'</span>, {
-        <span class="hljs-attr">attrs</span>: { <span class="hljs-attr">type</span>: <span class="hljs-string">'text'</span> },
-      }),
-    ])
-  );
+  <span class="token comment">// Render out the UI from our state using Snabbdom. This is</span>
+  <span class="token comment">// a virtual DOM implementation, and we build the structure</span>
+  <span class="token comment">// using Hyperscript.</span>
+  <span class="token keyword">const</span> vdom$ <span class="token operator">=</span> state$<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+    <span class="token function">div</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+      <span class="token function">span</span><span class="token punctuation">(</span>state<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">input</span><span class="token punctuation">(</span><span class="token string">'.input'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        attrs<span class="token operator">:</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">'text'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="hljs-comment">// Finally, return our DOM to the outside, along with the</span>
-  <span class="hljs-comment">// values from our &lt;input&gt;</span>
-  <span class="hljs-keyword">return</span> {
-    <span class="hljs-attr">DOM</span>: vdom$,
-    <span class="hljs-attr">value</span>: state$.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state.<span class="hljs-property">value</span>),
-  };
-}
+  <span class="token comment">// Finally, return our DOM to the outside, along with the</span>
+  <span class="token comment">// values from our &lt;input&gt;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token constant">DOM</span><span class="token operator">:</span> vdom$<span class="token punctuation">,</span>
+    value<span class="token operator">:</span> state$<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> state<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>The DOM flows through the component as a <em>stream</em>. Compare this with a React component where you return the virtual DOM as a lump of JSX:</p>
-<pre><code class="language-tsx hljs language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<pre class="language-tsx" tabindex="0"><code class="language-tsx">import React, { useState } from 'react';
 
-<span class="hljs-keyword">function</span> <span class="hljs-title function_">MyComponent</span>(<span class="hljs-params"></span>) {
-  <span class="hljs-keyword">const</span> [text, setText] = useState&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-string">''</span>);
+function MyComponent() {
+  const [text, setText] = useState&lt;string&gt;('');
 
-  <span class="hljs-keyword">return</span> (
-    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{text}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
-        <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
-        <span class="hljs-attr">defaultValue</span>=<span class="hljs-string">{text}</span>
-        <span class="hljs-attr">onInput</span>=<span class="hljs-string">{(evt)</span> =&gt;</span> setText(evt.target.value)}
+  return (
+    &lt;div&gt;
+      &lt;span&gt;{text}&lt;/span&gt;
+      &lt;input
+        type="text"
+        defaultValue={text}
+        onInput={(evt) =&gt; setText(evt.target.value)}
       /&gt;
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    &lt;/div&gt;
   );
 }
 </code></pre>
@@ -219,10 +219,10 @@
 <p>And so on. The basic idea is that we should be able to <strong>draw the whole interface from this state</strong>. Sometimes, using local state in components is fine. This might be state such as the active tab in a tab system, which is very local, and <em>probably</em> doesn't concern any other parts of the system.</p>
 <p>Redux popularized the Flux architecture's idea of state as "single source of truth". We shouldn't scatter the state across DOM nodes, localStorage, the server, and so on. Also Elm and Om are great inspiration for state handling in client side apps. I encourage you to read the <a href="https://redux.js.org/introduction/motivation">philosophies and principles of Redux</a>.</p>
 <p>A state atom might look like this:</p>
-<pre><code class="language-typescript hljs"><span class="hljs-keyword">const</span> <span class="hljs-attr">state</span>: <span class="hljs-title class_">State</span> = {
-  <span class="hljs-attr">name</span>: <span class="hljs-string">'Johan Brook'</span>,
-  <span class="hljs-attr">showModal</span>: <span class="hljs-literal">true</span>,
-};
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">const</span> state<span class="token operator">:</span> State <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'Johan Brook'</span><span class="token punctuation">,</span>
+  showModal<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>From this, we should be able to draw the full app component tree. And if we'd draw it again from the same state, the app's UI can't change fundamentally.</p>
 <hr>
@@ -232,14 +232,14 @@
 <li>Construct your update to the state atom. In this case <code>{ name: 'John Doe' }</code>.</li>
 <li>Send the update as a stream to a function which folds it together with the state stream:</li>
 </ol>
-<pre><code class="language-typescript hljs"><span class="hljs-keyword">const</span> state$ = stateUpdate$.<span class="hljs-title function_">fold</span>(
-  <span class="hljs-function">(<span class="hljs-params">prev, update</span>) =&gt;</span> ({ ...prev, ...update }),
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">const</span> state$ <span class="token operator">=</span> stateUpdate$<span class="token punctuation">.</span><span class="token function">fold</span><span class="token punctuation">(</span>
+  <span class="token punctuation">(</span>prev<span class="token punctuation">,</span> update<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span>prev<span class="token punctuation">,</span> <span class="token operator">...</span>update <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   startState
-);
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>The xstream function <a href="http://staltz.github.io/xstream/#fold"><code>fold</code></a> is very handy to learn here. That's the amazing function which creates our whole incremental state! The update effectively extends the existing state object to form a new one.</p>
 <p>So we've got a <code>state$</code> variable containing the <em>stream of states</em>. It's very important to internalise that the "stream of states" here isn't a continuous stream, but a discrete one. It's a like a string with ants, where each ant is a new state, and they can come in irregular patterns. The idea is to let the view listen to this <code>state$</code> stream, which will behave like this:</p>
-<pre><code>stateUpdate$ = ---------- update: { name: 'Johnny Doe' }----
+<pre class="language-none" tabindex="0"><code class="language-none">stateUpdate$ = ---------- update: { name: 'Johnny Doe' }----
 
 stateUpdate$.fold(..., startState)
 
@@ -248,61 +248,61 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
 <p>For each new element in the resulting <code>state$</code> stream, we'll re-render the whole app (read more below about how we'll manage the view).</p>
 <p>So what are these state updates? It's ✨<strong>your application</strong> ✨! That's right: all business logic will either result in state updates or side effects (read more about that in the section about Drivers below).</p>
 <p>This can be expressed roughly like this (with xstream):</p>
-<pre><code class="language-typescript hljs"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Stream</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Stream <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">interface</span> State {
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
-  <span class="hljs-attr">showModal</span>: <span class="hljs-built_in">boolean</span>;
-}
+<span class="token keyword">interface</span> <span class="token class-name">State</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  showModal<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-comment">// Our app just returns a new `name` instantly, but here</span>
-<span class="hljs-comment">// we would render our entire app as React components or similar.</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">app</span> = (<span class="hljs-params">state$: Stream&lt;State&gt;</span>) =&gt; {
-  <span class="hljs-keyword">return</span> state$.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> ({
-    <span class="hljs-attr">name</span>: <span class="hljs-string">'Mary'</span>,
-  }));
-};
+<span class="token comment">// Our app just returns a new `name` instantly, but here</span>
+<span class="token comment">// we would render our entire app as React components or similar.</span>
+<span class="token keyword">const</span> <span class="token function-variable function">app</span> <span class="token operator">=</span> <span class="token punctuation">(</span>state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">&gt;</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> state$<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">'Mary'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">run</span> = (<span class="hljs-params">main: Main, startState: State</span>) =&gt; {
-  <span class="hljs-comment">// Create an incrementally updated stream of state</span>
-  <span class="hljs-comment">// XXX Fix stateUpdate$</span>
-  <span class="hljs-keyword">const</span> state$ = stateUpdate$.<span class="hljs-title function_">fold</span>(
-    <span class="hljs-function">(<span class="hljs-params">prev, update</span>) =&gt;</span> ({ ...prev, ...update }),
+<span class="token keyword">const</span> <span class="token function-variable function">run</span> <span class="token operator">=</span> <span class="token punctuation">(</span>main<span class="token operator">:</span> Main<span class="token punctuation">,</span> startState<span class="token operator">:</span> State<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Create an incrementally updated stream of state</span>
+  <span class="token comment">// XXX Fix stateUpdate$</span>
+  <span class="token keyword">const</span> state$ <span class="token operator">=</span> stateUpdate$<span class="token punctuation">.</span><span class="token function">fold</span><span class="token punctuation">(</span>
+    <span class="token punctuation">(</span>prev<span class="token punctuation">,</span> update<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span>prev<span class="token punctuation">,</span> <span class="token operator">...</span>update <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
     startState
-  );
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="hljs-comment">// Main app function, renders UI from state$ stream</span>
-  <span class="hljs-title function_">main</span>(state$);
-};
+  <span class="token comment">// Main app function, renders UI from state$ stream</span>
+  <span class="token function">main</span><span class="token punctuation">(</span>state$<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="hljs-comment">// Kick off! 🚀</span>
-<span class="hljs-title function_">run</span>(app, { <span class="hljs-attr">name</span>: <span class="hljs-string">'Johan'</span>, <span class="hljs-attr">showModal</span>: <span class="hljs-literal">false</span> });
+<span class="token comment">// Kick off! 🚀</span>
+<span class="token function">run</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> <span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">'Johan'</span><span class="token punctuation">,</span> showModal<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Sharp eyed readers notice that <code>stateUpdate$</code> is appearing out of nowhere. That's supposed to come from the app function, right?! Here's what the "cyclical" in CycleJS comes in: we need to cycle back the state updates from our app up to the <code>fold</code> operation. Luckily, the xstream library has an <a href="http://staltz.github.io/xstream/#imitate"><code>imitate</code></a> method on a stream which makes it possible to create a fake stream at the top of a function, run operations on it, and then let it imitate a "real" stream further down the file. This allows circular dependency of streams.</p>
 <p>Let's fix our code:</p>
-<pre><code class="language-typescript/4,6,11-15/ hljs language-typescript"><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+<pre class="language-none" tabindex="0"><code class="language-typescript/4,6,11-15/ language-none">import xs from 'xstream';
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">run</span> = (<span class="hljs-params">main: Main, startState: State</span>) =&gt; {
-  <span class="hljs-comment">// Create "fake", empty update stream</span>
-  <span class="hljs-keyword">const</span> fakeUpdates$ = xs.<span class="hljs-title function_">create</span>();
+const run = (main: Main, startState: State) =&gt; {
+  // Create "fake", empty update stream
+  const fakeUpdates$ = xs.create();
 
-  <span class="hljs-keyword">const</span> state$ = fakeUpdates$.<span class="hljs-title function_">fold</span>(
-    <span class="hljs-function">(<span class="hljs-params">prev, update</span>) =&gt;</span> ({ ...prev, ...update }),
+  const state$ = fakeUpdates$.fold(
+    (prev, update) =&gt; ({ ...prev, ...update }),
     startState
   );
 
-  <span class="hljs-keyword">const</span> appUpdate$ = <span class="hljs-title function_">main</span>(state$);
+  const appUpdate$ = main(state$);
 
-  <span class="hljs-comment">// Imitate the real state update stream - results are</span>
-  <span class="hljs-comment">// cycled back to the .fold operation above!</span>
-  fakeUpdates$.<span class="hljs-title function_">imitate</span>(appUpdate$);
+  // Imitate the real state update stream - results are
+  // cycled back to the .fold operation above!
+  fakeUpdates$.imitate(appUpdate$);
 
-  <span class="hljs-keyword">return</span> state$;
+  return state$;
 };
 </code></pre>
 <p>-&gt; <a href="http://staltz.github.io/xstream/#create">Docs on <code>xs.create</code></a></p>
 <p>We've successfully achieved feeding our app with a stream of state, and made the output stream of the app update the state! 🎉 This creates a <code>main</code> function signature of:</p>
-<pre><code class="language-typescript hljs"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Main</span> = <span class="hljs-function">(<span class="hljs-params">state$: Stream&lt;State&gt;</span>) =&gt;</span> <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">State</span>&gt;&gt;;
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">type</span> <span class="token class-name">Main</span> <span class="token operator">=</span> <span class="token punctuation">(</span>state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">&gt;</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Stream<span class="token operator">&lt;</span>Partial<span class="token operator">&lt;</span>State<span class="token operator">&gt;&gt;</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Thus, state management is ticked off. You just need to provide the <code>main</code> function which is your whole app logic.</p>
 <p>Takeaways:</p>
@@ -314,63 +314,63 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
 </ul>
 <h2>Ch..ch..changes … (to the state)</h2>
 <p>Let's explore the <code>run</code> function from the earlier example. This code below demonstrates how you would use it in an app. The <code>run</code> function is thus an export of our library:</p>
-<pre><code class="language-typescript hljs"><span class="hljs-comment">// run :: (Main, State) -&gt; Stream&lt;State&gt;</span>
-<span class="hljs-keyword">import</span> { run } <span class="hljs-keyword">from</span> <span class="hljs-string">'frap'</span>;
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token comment">// run :: (Main, State) -&gt; Stream&lt;State&gt;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> run <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'frap'</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">interface</span> State {
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
-}
+<span class="token keyword">interface</span> <span class="token class-name">State</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-attr">startState</span>: <span class="hljs-title class_">State</span> = {
-  <span class="hljs-attr">name</span>: <span class="hljs-string">'Johan'</span>,
-};
+<span class="token keyword">const</span> startState<span class="token operator">:</span> State <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'Johan'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="hljs-comment">// Our app's business logic, packaged in a single function.</span>
-<span class="hljs-comment">// Receives state stream and should return a stream of updates</span>
-<span class="hljs-comment">// to the state.</span>
-<span class="hljs-comment">// app :: (Stream&lt;State&gt;) -&gt; Stream&lt;Partial&lt;State&gt;&gt;</span>
-<span class="hljs-keyword">const</span> <span class="hljs-attr">app</span>: <span class="hljs-title class_">Main</span> = <span class="hljs-function">(<span class="hljs-params">state$: Stream&lt;State&gt;</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> stateUpdate$ = xs.<span class="hljs-title function_">create</span>();
+<span class="token comment">// Our app's business logic, packaged in a single function.</span>
+<span class="token comment">// Receives state stream and should return a stream of updates</span>
+<span class="token comment">// to the state.</span>
+<span class="token comment">// app :: (Stream&lt;State&gt;) -&gt; Stream&lt;Partial&lt;State&gt;&gt;</span>
+<span class="token keyword">const</span> app<span class="token operator">:</span> <span class="token function-variable function">Main</span> <span class="token operator">=</span> <span class="token punctuation">(</span>state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">&gt;</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> stateUpdate$ <span class="token operator">=</span> xs<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="hljs-keyword">return</span> stateUpdate$;
-};
+  <span class="token keyword">return</span> stateUpdate$<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="hljs-comment">// Kick it off! 🚀</span>
-<span class="hljs-title function_">run</span>(app, startState);
+<span class="token comment">// Kick it off! 🚀</span>
+<span class="token function">run</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> startState<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>That <code>app</code> function is basically everything there is to it! (almost… we just need to sort out the view rendering and handle side effects). We receive state, do stuff deriving off of it, and return our preferred updates.</p>
 <p>An example could be:</p>
-<pre><code class="language-typescript/2-5/ hljs language-typescript"><span class="hljs-keyword">const</span> <span class="hljs-attr">app</span>: <span class="hljs-title class_">Main</span> = <span class="hljs-function">(<span class="hljs-params">state$: Stream&lt;State&gt;</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> stateUpdate$ = state$.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> ({
-    <span class="hljs-attr">name</span>: state.<span class="hljs-property">name</span>.<span class="hljs-title function_">toUpperCase</span>(),
+<pre class="language-none" tabindex="0"><code class="language-typescript/2-5/ language-none">const app: Main = (state$: Stream&lt;State&gt;) =&gt; {
+  const stateUpdate$ = state$.map((state) =&gt; ({
+    name: state.name.toUpperCase(),
   }));
 
-  <span class="hljs-keyword">return</span> stateUpdate$;
+  return stateUpdate$;
 };
 </code></pre>
 <p>-&gt; <a href="http://staltz.github.io/xstream/#map">Docs on <code>map</code></a></p>
 <p>This little app of ours would instantly update the <code>name</code> property in our state atom to uppercase:</p>
-<pre><code>--- { name: 'Johan' } ---
+<pre class="language-none" tabindex="0"><code class="language-none">--- { name: 'Johan' } ---
   app()
 --- { name: 'JOHAN' } ---
 </code></pre>
 <p>Now, this seems silly and simplistic. I thought so too. "How can I ever achieve complex app logic with this?!". Turns out you can. By using the stream operators of xstream on your data, you really <em>can</em> achieve crazy things. It all adds up. For me, it was all about separating the big state down into small functions taking care of "their" domain, and then merging it all together:</p>
-<pre><code class="language-typescript hljs"><span class="hljs-comment">// Functions we've written to take care of stuff in our data model.</span>
-<span class="hljs-comment">// We don't care how they do it – as long as their return a stream</span>
-<span class="hljs-comment">// of state updates.</span>
-<span class="hljs-keyword">import</span> { nameUpdate, posts } <span class="hljs-keyword">from</span> <span class="hljs-string">'./lib'</span>;
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token comment">// Functions we've written to take care of stuff in our data model.</span>
+<span class="token comment">// We don't care how they do it – as long as their return a stream</span>
+<span class="token comment">// of state updates.</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> nameUpdate<span class="token punctuation">,</span> posts <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./lib'</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-attr">app</span>: <span class="hljs-title class_">Main</span> = <span class="hljs-function">(<span class="hljs-params">state$: Stream&lt;State&gt;</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> nameUpdate$ = <span class="hljs-title function_">nameUpdate</span>(state$);
-  <span class="hljs-keyword">const</span> postsUpdate$ = <span class="hljs-title function_">posts</span>(state$);
+<span class="token keyword">const</span> app<span class="token operator">:</span> <span class="token function-variable function">Main</span> <span class="token operator">=</span> <span class="token punctuation">(</span>state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">&gt;</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> nameUpdate$ <span class="token operator">=</span> <span class="token function">nameUpdate</span><span class="token punctuation">(</span>state$<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> postsUpdate$ <span class="token operator">=</span> <span class="token function">posts</span><span class="token punctuation">(</span>state$<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="hljs-comment">// All derived state updates off of existing state</span>
-  <span class="hljs-keyword">return</span> xs.<span class="hljs-title function_">merge</span>(nameUpdate$, postsUpdate$);
-};
+  <span class="token comment">// All derived state updates off of existing state</span>
+  <span class="token keyword">return</span> xs<span class="token punctuation">.</span><span class="token function">merge</span><span class="token punctuation">(</span>nameUpdate$<span class="token punctuation">,</span> postsUpdate$<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>-&gt; <a href="http://staltz.github.io/xstream/#merge">Docs on <code>xs.merge</code></a></p>
 <p>One important aspect here is the <em>cyclical</em> aspect of our app architecture. Notice how the state stream is constantly giving us new state as elements in the stream. Our <code>app</code> function is merely a transformer along the way, returning state updates as sinks and receives the new state as source:</p>
-<pre><code>------a---ax---ax------
+<pre class="language-none" tabindex="0"><code class="language-none">------a---ax---ax------
   app() # Transforms the source stream
 ------ax--ax---axy-----
 </code></pre>
@@ -393,82 +393,82 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
   <figcaption>Simplified flow diagram.</figcaption>
 </figure>
 <p>How does a message look like then? Perhaps like this:</p>
-<pre><code class="language-typescript hljs"><span class="hljs-keyword">interface</span> ToggleModal {
-  <span class="hljs-attr">kind</span>: <span class="hljs-string">'toggle_modal'</span>;
-  <span class="hljs-attr">modalName</span>: <span class="hljs-string">'surveyModal'</span> | <span class="hljs-string">'loginModal'</span>;
-  <span class="hljs-attr">open</span>: <span class="hljs-built_in">boolean</span>;
-}
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">interface</span> <span class="token class-name">ToggleModal</span> <span class="token punctuation">{</span>
+  kind<span class="token operator">:</span> <span class="token string">'toggle_modal'</span><span class="token punctuation">;</span>
+  modalName<span class="token operator">:</span> <span class="token string">'surveyModal'</span> <span class="token operator">|</span> <span class="token string">'loginModal'</span><span class="token punctuation">;</span>
+  open<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">interface</span> SetPerson {
-  <span class="hljs-attr">kind</span>: <span class="hljs-string">'set_person'</span>;
-  <span class="hljs-attr">person</span>: {
-    <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
-    <span class="hljs-attr">age</span>: <span class="hljs-built_in">number</span>;
-  };
-}
+<span class="token keyword">interface</span> <span class="token class-name">SetPerson</span> <span class="token punctuation">{</span>
+  kind<span class="token operator">:</span> <span class="token string">'set_person'</span><span class="token punctuation">;</span>
+  person<span class="token operator">:</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+    age<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">type</span> <span class="hljs-title class_">ViewMsg</span> = <span class="hljs-title class_">ToggleModal</span> | <span class="hljs-title class_">SetPerson</span>;
+<span class="token keyword">type</span> <span class="token class-name">ViewMsg</span> <span class="token operator">=</span> ToggleModal <span class="token operator">|</span> SetPerson<span class="token punctuation">;</span>
 </code></pre>
 <p>These resemble "actions" you would send to a reducer when using the Flux architecture.</p>
 <p>The last <code>ViewMsg</code> type forms the union type which our messages stream consists of: <code>Stream&lt;ViewMsg&gt;</code>. Let's investigate how this fits into our app architecture.</p>
 <p>We've got our <code>app</code> function which produces state updates and receives state from <code>run</code>. The latter can be modified to accept a stream of view messages:</p>
-<pre><code class="language-typescript hljs"><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">import</span> xs <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">const</span> run = &lt;<span class="hljs-title class_">ViewMsg</span>&gt;<span class="hljs-function">(<span class="hljs-params">
-  main: Main,
-  view$: Stream&lt;ViewMsg&gt;,
-  startState: State
-</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> fakeUpdates$ = xs.<span class="hljs-title function_">create</span>();
+<span class="token keyword">const</span> run <span class="token operator">=</span> <span class="token operator">&lt;</span>ViewMsg<span class="token operator">&gt;</span><span class="token punctuation">(</span>
+  main<span class="token operator">:</span> Main<span class="token punctuation">,</span>
+  view$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>ViewMsg<span class="token operator">&gt;</span><span class="token punctuation">,</span>
+  startState<span class="token operator">:</span> State
+<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> fakeUpdates$ <span class="token operator">=</span> xs<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="hljs-keyword">const</span> state$ = stateUpdate$.<span class="hljs-title function_">fold</span>(
-    <span class="hljs-function">(<span class="hljs-params">prev, update</span>) =&gt;</span> ({ ...prev, ...update }),
+  <span class="token keyword">const</span> state$ <span class="token operator">=</span> stateUpdate$<span class="token punctuation">.</span><span class="token function">fold</span><span class="token punctuation">(</span>
+    <span class="token punctuation">(</span>prev<span class="token punctuation">,</span> update<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span>prev<span class="token punctuation">,</span> <span class="token operator">...</span>update <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
     startState
-  );
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="hljs-keyword">const</span> appUpdate$ = <span class="hljs-title function_">main</span>(state$, view$);
+  <span class="token keyword">const</span> appUpdate$ <span class="token operator">=</span> <span class="token function">main</span><span class="token punctuation">(</span>state$<span class="token punctuation">,</span> view$<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  fakeUpdates$.<span class="hljs-title function_">imitate</span>(appUpdate$);
+  fakeUpdates$<span class="token punctuation">.</span><span class="token function">imitate</span><span class="token punctuation">(</span>appUpdate$<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="hljs-keyword">return</span> state$;
-};
+  <span class="token keyword">return</span> state$<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>I've introduced a generic type <code>ViewMsg</code> in the <code>run</code> function. Let's start our app:</p>
-<pre><code class="language-typescript hljs"><span class="hljs-comment">// run :: (Main, Stream&lt;V&gt;, State) -&gt; Stream&lt;State&gt;</span>
-<span class="hljs-keyword">import</span> { run } <span class="hljs-keyword">from</span> <span class="hljs-string">'frap'</span>;
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token comment">// run :: (Main, Stream&lt;V&gt;, State) -&gt; Stream&lt;State&gt;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> run <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'frap'</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> State {
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
-}
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">State</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">startState</span>: <span class="hljs-title class_">State</span> = {
-  <span class="hljs-attr">name</span>: <span class="hljs-string">'Johan'</span>,
-};
+<span class="token keyword">export</span> <span class="token keyword">const</span> startState<span class="token operator">:</span> State <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'Johan'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">interface</span> SetName {
-  <span class="hljs-attr">kind</span>: <span class="hljs-string">'set_name'</span>;
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
-}
+<span class="token keyword">interface</span> <span class="token class-name">SetName</span> <span class="token punctuation">{</span>
+  kind<span class="token operator">:</span> <span class="token string">'set_name'</span><span class="token punctuation">;</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">ViewMsg</span> = <span class="hljs-title class_">SetName</span>;
+<span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">ViewMsg</span> <span class="token operator">=</span> SetName<span class="token punctuation">;</span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-attr">app</span>: <span class="hljs-title class_">Main</span> = <span class="hljs-function">(<span class="hljs-params">state$: Stream&lt;State&gt;, view$: Stream&lt;ViewMsg&gt;</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> stateUpdate$ = view$
-    <span class="hljs-comment">// Only filter on the `SetName` type of messages</span>
-    .<span class="hljs-title function_">filter</span>((m): m is <span class="hljs-title class_">SetName</span> =&gt; !!m.<span class="hljs-property">kind</span> &amp;&amp; m.<span class="hljs-property">kind</span> === <span class="hljs-string">'set_name'</span>)
-    <span class="hljs-comment">// Set a new name by mapping the payload from the message to a state update</span>
-    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">m</span>) =&gt;</span> ({
-      <span class="hljs-attr">name</span>: m.<span class="hljs-property">name</span>,
-    }));
+<span class="token keyword">const</span> app<span class="token operator">:</span> <span class="token function-variable function">Main</span> <span class="token operator">=</span> <span class="token punctuation">(</span>state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">&gt;</span><span class="token punctuation">,</span> view$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>ViewMsg<span class="token operator">&gt;</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> stateUpdate$ <span class="token operator">=</span> view$
+    <span class="token comment">// Only filter on the `SetName` type of messages</span>
+    <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token operator">:</span> m <span class="token keyword">is</span> SetName <span class="token operator">=&gt;</span> <span class="token operator">!</span><span class="token operator">!</span>m<span class="token punctuation">.</span>kind <span class="token operator">&amp;&amp;</span> m<span class="token punctuation">.</span>kind <span class="token operator">===</span> <span class="token string">'set_name'</span><span class="token punctuation">)</span>
+    <span class="token comment">// Set a new name by mapping the payload from the message to a state update</span>
+    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>
+      name<span class="token operator">:</span> m<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="hljs-keyword">return</span> xs.<span class="hljs-title function_">merge</span>(stateUpdate$);
-};
+  <span class="token keyword">return</span> xs<span class="token punctuation">.</span><span class="token function">merge</span><span class="token punctuation">(</span>stateUpdate$<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="hljs-comment">// TODO Build view and construct messages stream</span>
-<span class="hljs-keyword">const</span> view$ = xs.<span class="hljs-property">create</span>&lt;<span class="hljs-title class_">ViewMsg</span>&gt;();
+<span class="token comment">// TODO Build view and construct messages stream</span>
+<span class="token keyword">const</span> view$ <span class="token operator">=</span> xs<span class="token punctuation">.</span><span class="token generic-function"><span class="token function">create</span><span class="token generic class-name"><span class="token operator">&lt;</span>ViewMsg<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="hljs-comment">// Kick it off! 🚀</span>
-<span class="hljs-title function_">run</span>(app, view$, startState);
+<span class="token comment">// Kick it off! 🚀</span>
+<span class="token function">run</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> view$<span class="token punctuation">,</span> startState<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Now, <em>imagine</em> that the <code>view$</code> stream is working. Imagine that for every time a user is submitting a form text field with some text, the view will construct the <code>SetName</code> message object and put it on the view stream. This view stream can flow through our app's business logic as a regular function parameter, and we can <code>filter</code> to get specific messages and then <code>map</code> them to do state updates.</p>
 <p>This makes the separation between view and business logic pretty clear – which is a good thing! We can test our app in isolation by feeding mocked messages into the view stream and asserting the resulting state without having to mount the view. The view's actions don't have to be side effects, as it's often regarded to be in other app setups.</p>
@@ -492,83 +492,83 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
 <p>In most stream libraries, there's a method called <code>subscribe</code> which you can use on a stream. In xstream, it adds a listener on a stream and returns a subscription that can be used to remove that listener (read the <a href="http://staltz.github.io/xstream/#subscribe">docs</a>). We can use that to subscribe to state updates, and then unsubscribe when our app unmounts.</p>
 <p>In the <code>next</code> callback of <code>subscribe</code>, we'll receive each new element in the stream (we can also catch errors in <code>error</code>). We use <code>next</code> to set the state of the React component at top level. From then on, we'll let React figure out how to draw the DOM based on that very state. For each new state update, <code>next</code> will be called, and React will re-render the tree. Incremental, immutable state.</p>
 <p>Here's the function signature of <code>run</code>:</p>
-<pre><code class="language-typescript hljs"><span class="hljs-keyword">type</span> <span class="hljs-title class_">Run</span> = <span class="hljs-function">(<span class="hljs-params">Main, view$: Stream&lt;ViewMsg&gt;, startState: State</span>) =&gt;</span> <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">State</span>&gt;;
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">type</span> <span class="token class-name">Run</span> <span class="token operator">=</span> <span class="token punctuation">(</span>Main<span class="token punctuation">,</span> view$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>ViewMsg<span class="token operator">&gt;</span><span class="token punctuation">,</span> startState<span class="token operator">:</span> State<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">&gt;</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Before, we've just called <code>run</code> for funsies without really thinking too much about where and how we'll handle it's output stream. I can reveal to you now that the function should ideally be called when your top level React component mounts.</p>
-<pre><code class="language-tsx hljs language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Stream</span>, <span class="hljs-title class_">Subscription</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
-<span class="hljs-keyword">import</span> { run } <span class="hljs-keyword">from</span> <span class="hljs-string">'frap'</span>;
+<pre class="language-tsx" tabindex="0"><code class="language-tsx">import React from 'react';
+import { Stream, Subscription } from 'xstream';
+import { run } from 'frap';
 
-<span class="hljs-comment">// Imported from our main file</span>
-<span class="hljs-keyword">import</span> { app, <span class="hljs-title class_">State</span>, <span class="hljs-title class_">ViewMsg</span>, startState } <span class="hljs-keyword">from</span> <span class="hljs-string">'./main.ts'</span>;
+// Imported from our main file
+import { app, State, ViewMsg, startState } from './main.ts';
 
-<span class="hljs-comment">/** The state of our React component */</span>
-<span class="hljs-keyword">interface</span> AppState {
-  <span class="hljs-attr">state$</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">State</span>&gt;;
-  <span class="hljs-comment">/** This holds our "real" app state – ready to render! */</span>
-  <span class="hljs-attr">appState</span>: <span class="hljs-title class_">State</span>;
+/** The state of our React component */
+interface AppState {
+  state$: Stream&lt;State&gt;;
+  /** This holds our "real" app state – ready to render! */
+  appState: State;
 }
 
-<span class="hljs-keyword">type</span> <span class="hljs-title class_">Send</span> = <span class="hljs-function">(<span class="hljs-params">event: ViewMsg</span>) =&gt;</span> <span class="hljs-built_in">void</span>;
+type Send = (event: ViewMsg) =&gt; void;
 
-<span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span>&lt;<span class="hljs-built_in">any</span>, <span class="hljs-title class_">AppState</span>&gt; {
-  <span class="hljs-comment">/** Instance variable holding the subscription to the state stream. */</span>
-  <span class="hljs-attr">sub</span>: <span class="hljs-title class_">Subscription</span>;
+class App extends React.Component&lt;any, AppState&gt; {
+  /** Instance variable holding the subscription to the state stream. */
+  sub: Subscription;
 
-  <span class="hljs-comment">/** Instance function used to drive messages into the view stream. */</span>
-  <span class="hljs-attr">send</span>: <span class="hljs-title class_">Send</span> | <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;
+  /** Instance function used to drive messages into the view stream. */
+  send: Send | null = null;
 
-  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props</span>) {
-    <span class="hljs-variable language_">super</span>(props);
+  constructor(props) {
+    super(props);
 
-    <span class="hljs-comment">// Stream of input from the views.</span>
-    <span class="hljs-keyword">const</span> view$ = xs.<span class="hljs-property">create</span>&lt;<span class="hljs-title class_">ViewMsg</span>&gt;();
+    // Stream of input from the views.
+    const view$ = xs.create&lt;ViewMsg&gt;();
 
-    <span class="hljs-comment">// Create our "send" function which will drive messages on to</span>
-    <span class="hljs-comment">// the view stream above.</span>
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">send</span> = <span class="hljs-function">(<span class="hljs-params">v: ViewMsg</span>) =&gt;</span> {
-      view$.<span class="hljs-title function_">shamefullySendNext</span>(v);
+    // Create our "send" function which will drive messages on to
+    // the view stream above.
+    this.send = (v: ViewMsg) =&gt; {
+      view$.shamefullySendNext(v);
     };
 
-    <span class="hljs-comment">// Kick everything off! 🚀</span>
-    <span class="hljs-keyword">const</span> state$ = <span class="hljs-title function_">run</span>(app, view$, startState);
+    // Kick everything off! 🚀
+    const state$ = run(app, view$, startState);
 
-    <span class="hljs-comment">// Attach on component's local state so we an access it</span>
-    <span class="hljs-comment">// in life cycle methods</span>
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = {
+    // Attach on component's local state so we an access it
+    // in life cycle methods
+    this.state = {
       state$,
-      <span class="hljs-attr">appState</span>: startState,
+      appState: startState,
     };
   }
 
-  <span class="hljs-title function_">componentDidMount</span>(): <span class="hljs-built_in">void</span> {
-    <span class="hljs-comment">// Start subscribing to incoming state and set the local</span>
-    <span class="hljs-comment">// state of our React component. Will trigger re-render.</span>
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">sub</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">state$</span>.<span class="hljs-title function_">subscribe</span>({
-      <span class="hljs-attr">next</span>: <span class="hljs-function">(<span class="hljs-params">appState</span>) =&gt;</span> {
-        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({ appState });
+  componentDidMount(): void {
+    // Start subscribing to incoming state and set the local
+    // state of our React component. Will trigger re-render.
+    this.sub = this.state.state$.subscribe({
+      next: (appState) =&gt; {
+        this.setState({ appState });
       },
-      <span class="hljs-attr">error</span>: <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> {
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err);
+      error: (err) =&gt; {
+        console.error(err);
       },
     });
   }
 
-  <span class="hljs-title function_">componentWillUnmount</span>(): <span class="hljs-built_in">void</span> {
-    <span class="hljs-comment">// Unsubscribe from state subscription:</span>
-    <span class="hljs-variable language_">this</span>.<span class="hljs-property">sub</span>.<span class="hljs-title function_">unsubscribe</span>();
+  componentWillUnmount(): void {
+    // Unsubscribe from state subscription:
+    this.sub.unsubscribe();
   }
 
-  <span class="hljs-title function_">render</span>(): <span class="hljs-title class_">React</span>.<span class="hljs-property">ReactNode</span> {
-    <span class="hljs-keyword">const</span> { appState } = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>;
+  render(): React.ReactNode {
+    const { appState } = this.state;
 
-    <span class="hljs-comment">// Render the 'name' state and a button to change it.</span>
-    <span class="hljs-keyword">return</span> (
-      <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hi {appState.name}!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    // Render the 'name' state and a button to change it.
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;Hi {appState.name}!&lt;/h1&gt;
 
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
-          <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span>
+        &lt;button
+          onClick={() =&gt;
             this.send({
               kind: 'set_name',
               name: 'Johnny Doe',
@@ -576,8 +576,8 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
           }
         &gt;
           Set another name
-        <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+        &lt;/button&gt;
+      &lt;/div&gt;
     );
   }
 }
@@ -623,70 +623,70 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
 <p>The <code>run()</code> function from Frap takes care of glueing all of this together.</p>
 <p>We communicate with the drivers with a single <em>out</em> stream with messages. A driver can thus look like:</p>
 <p><strong>Driver</strong></p>
-<pre><code class="language-typescript hljs"><span class="hljs-comment">// ConsoleLogDriver.ts</span>
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Stream</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token comment">// ConsoleLogDriver.ts</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Stream <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">interface</span> DoLog {
-  <span class="hljs-attr">kind</span>: <span class="hljs-string">'do_log'</span>;
-  <span class="hljs-attr">label</span>: <span class="hljs-built_in">string</span>;
-  args?: <span class="hljs-built_in">any</span>[];
-}
+<span class="token keyword">interface</span> <span class="token class-name">DoLog</span> <span class="token punctuation">{</span>
+  kind<span class="token operator">:</span> <span class="token string">'do_log'</span><span class="token punctuation">;</span>
+  label<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+  args<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">ConsoleOut</span> = <span class="hljs-title class_">DoLog</span>;
+<span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">ConsoleOut</span> <span class="token operator">=</span> DoLog<span class="token punctuation">;</span>
 
-<span class="hljs-comment">/** A logging driver that consumes log messages and
+<span class="token comment">/** A logging driver that consumes log messages and
  * only performs writes to the console.
  */</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">ConsoleLogDriver</span> = (<span class="hljs-params">out$: Stream&lt;ConsoleOut&gt;</span>) =&gt; {
+<span class="token keyword">const</span> <span class="token function-variable function">ConsoleLogDriver</span> <span class="token operator">=</span> <span class="token punctuation">(</span>out$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>ConsoleOut<span class="token operator">&gt;</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
   out$
-    .<span class="hljs-title function_">filter</span>((m): m is <span class="hljs-title class_">DoLog</span> =&gt; !!m.<span class="hljs-property">kind</span> &amp;&amp; m.<span class="hljs-property">kind</span> === <span class="hljs-string">'do_log'</span>)
-    .<span class="hljs-title function_">addListener</span>(<span class="hljs-function">(<span class="hljs-params">m</span>) =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(m.<span class="hljs-property">label</span>, ...m.<span class="hljs-property">args</span>));
-};
+    <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token operator">:</span> m <span class="token keyword">is</span> DoLog <span class="token operator">=&gt;</span> <span class="token operator">!</span><span class="token operator">!</span>m<span class="token punctuation">.</span>kind <span class="token operator">&amp;&amp;</span> m<span class="token punctuation">.</span>kind <span class="token operator">===</span> <span class="token string">'do_log'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">addListener</span><span class="token punctuation">(</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>m<span class="token punctuation">.</span>label<span class="token punctuation">,</span> <span class="token operator">...</span>m<span class="token punctuation">.</span>args<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">ConsoleLogDriver</span>;
+<span class="token keyword">export</span> <span class="token keyword">default</span> ConsoleLogDriver<span class="token punctuation">;</span>
 </code></pre>
 <p>As you see, a driver is 🌈Just A Function 🌈.</p>
 <p>This particular example of a driver only consumes sinks but doesn't return any sources back to our <code>app()</code> function.</p>
 <p>How do we hook up this driver? We need to modify the <code>run</code> function!</p>
 <p><strong>Run</strong></p>
-<pre><code class="language-typescript hljs"><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">import</span> xs <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">interface</span> Sources&lt;V&gt; {
-  <span class="hljs-attr">view$</span>: <span class="hljs-title class_">Stream</span>&lt;V&gt;;
-  drivers?: {
-    [<span class="hljs-attr">key</span>: <span class="hljs-built_in">string</span>]: <span class="hljs-function">(<span class="hljs-params">s: Stream&lt;<span class="hljs-built_in">any</span>&gt;</span>) =&gt;</span> <span class="hljs-built_in">void</span> | <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-built_in">any</span>&gt;;
-  };
-}
+<span class="token keyword">interface</span> <span class="token class-name">Sources&lt;V&gt;</span> <span class="token punctuation">{</span>
+  view$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token constant">V</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+  drivers<span class="token operator">?</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">[</span>key<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">]</span><span class="token operator">:</span> <span class="token punctuation">(</span>s<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token builtin">any</span><span class="token operator">&gt;</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">void</span> <span class="token operator">|</span> Stream<span class="token operator">&lt;</span><span class="token builtin">any</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">const</span> run = &lt;V&gt;<span class="hljs-function">(<span class="hljs-params">main: Main, sources: Sources, startState: State</span>) =&gt;</span> {
-  <span class="hljs-keyword">const</span> { view$, drivers } = sources;
+<span class="token keyword">const</span> run <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token constant">V</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>main<span class="token operator">:</span> Main<span class="token punctuation">,</span> sources<span class="token operator">:</span> Sources<span class="token punctuation">,</span> startState<span class="token operator">:</span> State<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> view$<span class="token punctuation">,</span> drivers <span class="token punctuation">}</span> <span class="token operator">=</span> sources<span class="token punctuation">;</span>
 
-  <span class="hljs-keyword">const</span> fakeUpdates$ = xs.<span class="hljs-title function_">create</span>();
-  <span class="hljs-keyword">const</span> fakeDriverOuts = <span class="hljs-title function_">createFakeDriverOut</span>(drivers);
+  <span class="token keyword">const</span> fakeUpdates$ <span class="token operator">=</span> xs<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> fakeDriverOuts <span class="token operator">=</span> <span class="token function">createFakeDriverOut</span><span class="token punctuation">(</span>drivers<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="hljs-keyword">const</span> state$ = stateUpdate$.<span class="hljs-title function_">fold</span>(<span class="hljs-function">(<span class="hljs-params">prev, update</span>) =&gt;</span>
-    ({ ...prev, ...update }), startState);
+  <span class="token keyword">const</span> state$ <span class="token operator">=</span> stateUpdate$<span class="token punctuation">.</span><span class="token function">fold</span><span class="token punctuation">(</span><span class="token punctuation">(</span>prev<span class="token punctuation">,</span> update<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+    <span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">...</span>prev<span class="token punctuation">,</span> <span class="token operator">...</span>update <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span> startState<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="hljs-comment">// The sources to our app: state, messages, and driver input</span>
-  <span class="hljs-keyword">const</span> mainSources = {
-    state$,
-    view$,
-    ...<span class="hljs-title function_">callDrivers</span>(drivers, fakeDriverOuts),
-  }
+  <span class="token comment">// The sources to our app: state, messages, and driver input</span>
+  <span class="token keyword">const</span> mainSources <span class="token operator">=</span> <span class="token punctuation">{</span>
+    state$<span class="token punctuation">,</span>
+    view$<span class="token punctuation">,</span>
+    <span class="token operator">...</span><span class="token function">callDrivers</span><span class="token punctuation">(</span>drivers<span class="token punctuation">,</span> fakeDriverOuts<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span>
 
-  <span class="hljs-keyword">const</span> { stateUpdate$, ...driverSinks } = <span class="hljs-title function_">main</span>(mainSources);
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> stateUpdate$<span class="token punctuation">,</span> <span class="token operator">...</span>driverSinks <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">main</span><span class="token punctuation">(</span>mainSources<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  fakeUpdates$.<span class="hljs-title function_">imitate</span>(stateUpdate$);
+  fakeUpdates$<span class="token punctuation">.</span><span class="token function">imitate</span><span class="token punctuation">(</span>stateUpdate$<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> name <span class="hljs-keyword">in</span> fakeDriverOuts) {
-    <span class="hljs-keyword">const</span> fake$ = fakeDriverOuts[name];
-    <span class="hljs-keyword">const</span> driverOut$ = driverSinks[name];
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> name <span class="token keyword">in</span> fakeDriverOuts<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> fake$ <span class="token operator">=</span> fakeDriverOuts<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> driverOut$ <span class="token operator">=</span> driverSinks<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token punctuation">;</span>
 
-    fake$.<span class="hljs-title function_">imitate</span>(driverOut$));
-  }
+    fake$<span class="token punctuation">.</span><span class="token function">imitate</span><span class="token punctuation">(</span>driverOut$<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  <span class="hljs-keyword">return</span> state$;
-};
+  <span class="token keyword">return</span> state$<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>This might look a bit hairy. I've left out the implementation of two functions here:</p>
 <ul>
@@ -694,76 +694,76 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
 <li><code>callDrivers</code>. We call all the driver functions with the fake outputs and feed the drivers' returned output as sources to our main app function.</li>
 </ul>
 <p><strong>Main app</strong></p>
-<pre><code class="language-typescript hljs"><span class="hljs-comment">// main.ts</span>
-<span class="hljs-keyword">import</span> { run } <span class="hljs-keyword">from</span> <span class="hljs-string">'frap'</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">ConsoleOut</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'./ConsoleLogDriver.ts'</span>;
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token comment">// main.ts</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> run <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'frap'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ConsoleOut <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./ConsoleLogDriver.ts'</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> State {
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
-}
+<span class="token keyword">export</span> <span class="token keyword">interface</span> <span class="token class-name">State</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">startState</span>: <span class="hljs-title class_">State</span> = {
-  <span class="hljs-attr">name</span>: <span class="hljs-string">'Johan'</span>,
-};
+<span class="token keyword">export</span> <span class="token keyword">const</span> startState<span class="token operator">:</span> State <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'Johan'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">interface</span> SetName {
-  <span class="hljs-attr">kind</span>: <span class="hljs-string">'set_name'</span>;
-  <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>;
-}
+<span class="token keyword">interface</span> <span class="token class-name">SetName</span> <span class="token punctuation">{</span>
+  kind<span class="token operator">:</span> <span class="token string">'set_name'</span><span class="token punctuation">;</span>
+  name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">ViewMsg</span> = <span class="hljs-title class_">SetName</span>;
+<span class="token keyword">export</span> <span class="token keyword">type</span> <span class="token class-name">ViewMsg</span> <span class="token operator">=</span> SetName<span class="token punctuation">;</span>
 
-<span class="hljs-keyword">interface</span> MainSources {
-  <span class="hljs-attr">view$</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">ViewMsg</span>&gt;;
-  <span class="hljs-attr">state$</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">State</span>&gt;;
-}
+<span class="token keyword">interface</span> <span class="token class-name">MainSources</span> <span class="token punctuation">{</span>
+  view$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>ViewMsg<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+  state$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>State<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">interface</span> MainSinks {
-  <span class="hljs-attr">stateUpdate$</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">State</span>&gt;&gt;;
-  <span class="hljs-attr">console</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-title class_">ConsoleOut</span>&gt;;
-}
+<span class="token keyword">interface</span> <span class="token class-name">MainSinks</span> <span class="token punctuation">{</span>
+  stateUpdate$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span>Partial<span class="token operator">&lt;</span>State<span class="token operator">&gt;&gt;</span><span class="token punctuation">;</span>
+  <span class="token builtin">console</span><span class="token operator">:</span> Stream<span class="token operator">&lt;</span>ConsoleOut<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-<span class="hljs-keyword">const</span> <span class="hljs-attr">app</span>: <span class="hljs-title class_">Main</span> = (<span class="hljs-attr">sources</span>: <span class="hljs-title class_">MainSources</span>): <span class="hljs-function"><span class="hljs-params">MainSinks</span> =&gt;</span> {
+<span class="token keyword">const</span> app<span class="token operator">:</span> Main <span class="token operator">=</span> <span class="token punctuation">(</span>sources<span class="token operator">:</span> MainSources<span class="token punctuation">)</span><span class="token operator">:</span> MainSinks <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
 
-  <span class="hljs-comment">// Access driver sources with:</span>
-  <span class="hljs-comment">//   sources.myDriver.*</span>
+  <span class="token comment">// Access driver sources with:</span>
+  <span class="token comment">//   sources.myDriver.*</span>
 
-  <span class="hljs-keyword">const</span> stateUpdate$ = <span class="hljs-comment">/* updates to state */</span>;
+  <span class="token keyword">const</span> stateUpdate$ <span class="token operator">=</span> <span class="token comment">/* updates to state */</span><span class="token punctuation">;</span>
 
-  <span class="hljs-comment">// Send log message to log driver every second:</span>
-  <span class="hljs-keyword">const</span> logDriverOut$ = xs
-    .<span class="hljs-title function_">periodic</span>(<span class="hljs-number">1000</span>)
-    .<span class="hljs-title function_">mapTo</span>({
-      <span class="hljs-attr">kind</span>: <span class="hljs-string">'do_log'</span>,
-      <span class="hljs-attr">label</span>: <span class="hljs-string">'Hello!'</span>,
-    }):
+  <span class="token comment">// Send log message to log driver every second:</span>
+  <span class="token keyword">const</span> logDriverOut$ <span class="token operator">=</span> xs
+    <span class="token punctuation">.</span><span class="token function">periodic</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">mapTo</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      kind<span class="token operator">:</span> <span class="token string">'do_log'</span><span class="token punctuation">,</span>
+      label<span class="token operator">:</span> <span class="token string">'Hello!'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token operator">:</span>
 
-  <span class="hljs-comment">// Return sinks</span>
-  <span class="hljs-keyword">return</span> {
-    <span class="hljs-comment">// State updates as usual</span>
-    stateUpdate$,
-    <span class="hljs-comment">// Output instructions to the console driver. The key</span>
-    <span class="hljs-comment">// needs to match the name of the driver specified in</span>
-    <span class="hljs-comment">// the `drivers` argument to `run` below.</span>
-    <span class="hljs-attr">console</span>: logDriverOut$,
-  };
-};
+  <span class="token comment">// Return sinks</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token comment">// State updates as usual</span>
+    stateUpdate$<span class="token punctuation">,</span>
+    <span class="token comment">// Output instructions to the console driver. The key</span>
+    <span class="token comment">// needs to match the name of the driver specified in</span>
+    <span class="token comment">// the `drivers` argument to `run` below.</span>
+    <span class="token builtin">console</span><span class="token operator">:</span> logDriverOut$<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p><strong>View</strong></p>
-<pre><code class="language-typescript hljs"><span class="hljs-keyword">import</span> <span class="hljs-title class_">ConsoleLogDriver</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'./ConsoleLogDriver.ts'</span>;
+<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">import</span> ConsoleLogDriver <span class="token keyword">from</span> <span class="token string">'./ConsoleLogDriver.ts'</span><span class="token punctuation">;</span>
 
-<span class="hljs-comment">// In the react view, run our app:</span>
-<span class="hljs-title function_">run</span>(
-  app,
-  {
-    view$,
-    <span class="hljs-attr">drivers</span>: {
-      <span class="hljs-comment">// ... with the console log driver function</span>
-      <span class="hljs-attr">console</span>: <span class="hljs-title class_">ConsoleLogDriver</span>,
-    },
-  },
+<span class="token comment">// In the react view, run our app:</span>
+<span class="token function">run</span><span class="token punctuation">(</span>
+  app<span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    view$<span class="token punctuation">,</span>
+    drivers<span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// ... with the console log driver function</span>
+      <span class="token builtin">console</span><span class="token operator">:</span> ConsoleLogDriver<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
   startState
-);
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <hr>
 <p>That's it! Now we can handle all side effects in their special drivers, where they can do all kinds of reads and writes with the external world, and safely pass back their results as sources ("input") to our app.</p>
@@ -816,7 +816,7 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/dc7d9e28ec05d86e499b77d4d3fea41a181d96fc">dc7d9e2</a> — built at <time>2022-01-17T10:12:57.678Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
   </p>
 </footer>
 

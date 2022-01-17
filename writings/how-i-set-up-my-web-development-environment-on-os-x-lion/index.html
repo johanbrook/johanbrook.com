@@ -101,19 +101,19 @@
 <h2>Homebrew</h2>
 <p><a href="http://mxcl.github.com/homebrew/">The awesome package manager for OS X</a>. <strong>Don’t</strong> go dabble with installing tools manually, go through Homebrew. You can pull of stuff like <code>brew install mysql</code> or <code>brew install git</code> without having to download tarballs, building, managing binaries on the <code>PATH</code> , and … arrgghhh.</p>
 <p>To get Homebrew started:</p>
-<pre><code>$ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+<pre class="language-none" tabindex="0"><code class="language-none">$ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
 $ brew update
 </code></pre>
 <p>Get to know the tool with the bin command <code>brew</code> .</p>
 <h2>git</h2>
-<pre><code>$ brew install git
+<pre class="language-none" tabindex="0"><code class="language-none">$ brew install git
 </code></pre>
 <p>That is all. My .gitconfig is included in my dotfiles (linked further down).</p>
 <h2>Ruby</h2>
 <p>Ruby is a must-have, with all its great gems (Sass! Compass! Sinatra! Rake!). Ruby is indeed included in OS X, but we want to manage versions ourselves and stay up to date. You could download and build Ruby from the <a href="http://www.ruby-lang.org/en/">website</a>, but instead I used a Ruby version manager to do it for me.</p>
 <p>I used <a href="https://rvm.beginrescueend.com/" title="Ruby Version Manager">RVM</a> before, and it worked well. However, Sam Stephenson convinced me to switch to his tool <strong>rbenv</strong>. Read more in the <a href="https://github.com/sstephenson/rbenv#readme">rbenv Readme</a>. rbenv works just like RVM, but feels more lightweight.</p>
 <p>Everything you need to know is explained in the Readme. Note that you’ll need <strong>ruby-build</strong> to actually build the Ruby versions ( <a href="https://github.com/sstephenson/ruby-build">GitHub project</a>).</p>
-<pre><code>$ brew install rbenv
+<pre class="language-none" tabindex="0"><code class="language-none">$ brew install rbenv
 $ brew install ruby-build
 
 # Install Ruby 1.9.3
@@ -125,10 +125,10 @@ ruby 1.9.3p0 (2011-10-30 revision 33570) [x86_64-darwin11.2.0]
 </code></pre>
 <h2>RubyGems</h2>
 <p><a href="http://rubygems.org/">RubyGems</a> manages all Ruby gems, and is included in OS X. But remember to update it to the latest version before you do anything.</p>
-<pre><code>$ gem update --system
+<pre class="language-none" tabindex="0"><code class="language-none">$ gem update --system
 </code></pre>
 <p>Then I installed some handy gems.</p>
-<pre><code>$ gem update rake
+<pre class="language-none" tabindex="0"><code class="language-none">$ gem update rake
 $ gem update rails
 $ gem install rack
 $ gem install sass
@@ -138,7 +138,7 @@ $ gem install bundler
 </code></pre>
 <h2>Other</h2>
 <p>If there’s anything else you need, it’s probably in Homebrew:</p>
-<pre><code>$ brew install wget mysql node mongodb
+<pre class="language-none" tabindex="0"><code class="language-none">$ brew install wget mysql node mongodb
 
 # NPM
 $ curl http://npmjs.org/install.sh | sh
@@ -146,7 +146,7 @@ $ curl http://npmjs.org/install.sh | sh
 <p>And <a href="http://www.mamp.info/en/index.html">MAMP</a> for local PHP/MySQL development in an .app.</p>
 <h2>Dotfiles</h2>
 <p>I’ve forked some neat dotfiles to keep in the home folder. You can find them in <a href="https://github.com/johanbrook/dotfiles">my GitHub project</a>. Just do:</p>
-<pre><code>$ git clone git://github.com/johanbrook/dotfiles.git
+<pre class="language-none" tabindex="0"><code class="language-none">$ git clone git://github.com/johanbrook/dotfiles.git
 $ rake install
 </code></pre>
 <p>The dotfiles include:</p>
@@ -195,7 +195,7 @@ $ rake install
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/dc7d9e28ec05d86e499b77d4d3fea41a181d96fc">dc7d9e2</a> — built at <time>2022-01-17T10:12:57.678Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
   </p>
 </footer>
 

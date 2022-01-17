@@ -93,7 +93,7 @@
       <p><strong>It is said your markup</strong> should be&nbsp;<em>clean</em> and&nbsp;<em>semantic</em>. What does that mean, exactly? As few tags as possible? The correct tags for the job? Few or no ID and class attributes? At least that's been the main formula for a while now. Littering ID and class attributes over your markup has been frowned upon. But what does the alternative mean?</p>
 <p>During my years of coding HTML I've done some bad things. Some really bad things, man. I've coded myself into corners, made huge refactors, and so on. One of the main issues I've seen is that the HTML hasn't been&nbsp;<strong>flexible</strong> enough. I've made my markup and styling&nbsp;<em>too tightly coupled</em>. Sadly, one of the factors of that has been my urge to do clean and semantic HTML with few attributes on my tags. Changing one thing made me to changes in another place as well. Not DRY.</p>
 <p>An example. Here's a box for author information in the bottom of a blog post.</p>
-<pre><code>&lt;footer&gt;
+<pre class="language-none" tabindex="0"><code class="language-none">&lt;footer&gt;
 	&lt;h2&gt;Joe Doe&lt;/h2&gt;
 
 	&lt;img src="avatar-joe.jpg" alt="Joe" /&gt;
@@ -105,13 +105,13 @@ One morning, when Gregor Samsa woke from troubled dreams, he found himself trans
 &lt;/footer&gt;
 </code></pre>
 <p>Minimal but good example of clean HTML. But a bit naïve. How would you style the image avatar in CSS? Piece of cake (assuming the <code>footer</code> element is in an <code>article</code> ):</p>
-<pre><code>article footer img {
+<pre class="language-none" tabindex="0"><code class="language-none">article footer img {
 	float: left;
 }
 </code></pre>
 <p>Okay. But say you wrap the <code>img</code> tag in a <code>figure</code> for example? Then your styling perhaps doesn't behave as expected. If you add more images in the box, weird stuff may happen as well.</p>
 <p>The author description (in the <code>p</code> tag) is interesting too. I've made this example minimal, but now the text is wrapped in a single paragraph tag. But what if you need more paragraphs? Other elements in the description? Then some refactorings has to be made.</p>
-<pre><code>&lt;footer class="post-author"&gt;
+<pre class="language-none" tabindex="0"><code class="language-none">&lt;footer class="post-author"&gt;
 	&lt;h2&gt;Joe Doe&lt;/h2&gt;
 
 	&lt;figure class="author-avatar"&gt;	
@@ -162,7 +162,7 @@ One morning, when Gregor Samsa woke from troubled dreams, he found himself trans
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/dc7d9e28ec05d86e499b77d4d3fea41a181d96fc">dc7d9e2</a> — built at <time>2022-01-17T10:12:57.678Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
   </p>
 </footer>
 

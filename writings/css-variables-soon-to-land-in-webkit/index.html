@@ -91,7 +91,7 @@
 
     <div class="prose measure" itemprop="articleBody">
       <p>CSS variables are powerful and almost vital for me nowadays. They are supported in SCSS, LESS and Stylus (all preprocessors). But now WebKit now seem to be on its way of implementing a pure CSS version:</p>
-<pre><code>-webkit-var-foreground: green;
+<pre class="language-none" tabindex="0"><code class="language-none">-webkit-var-foreground: green;
 -webkit-var-background: rgb(255, 255, 255);
 
 color: -webkit-var(foreground);
@@ -100,7 +100,7 @@ background-color: -webkit-var(background);
 </code></pre>
 <p><a href="http://johanbrook.com/design/css/webkit-css-variables-mixins-nesting/">I've written about a CSS variable implementation before</a>, and even back then I noted that the proposed syntax is bulky and ugly. In the example above you'll note verbosity and even a vendor prefix (!).</p>
 <p>I certainly hope this will be revised and rethought. The way Sass and other preprocessors do it is the way to go:</p>
-<pre><code>$foreground: green;
+<pre class="language-none" tabindex="0"><code class="language-none">$foreground: green;
 $background: rgb(255,255,255);
 
 color: $foreground;
@@ -139,7 +139,7 @@ background-color: $background;
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/dc7d9e28ec05d86e499b77d4d3fea41a181d96fc">dc7d9e2</a> — built at <time>2022-01-17T10:12:57.678Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
   </p>
 </footer>
 

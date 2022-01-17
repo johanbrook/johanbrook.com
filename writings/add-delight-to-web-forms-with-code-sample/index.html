@@ -102,7 +102,7 @@
 <h2>A quick example of nice UX:</h2>
 <p>Automatically fetch the city based on a postal code
 How to you add delight to a form, without writing a whole jQuery plugin for it? Let's say you have a sign up form which includes a postal code and city.</p>
-<pre><code>&lt;form method="POST" action=""&gt;
+<pre class="language-none" tabindex="0"><code class="language-none">&lt;form method="POST" action=""&gt;
 	&lt;label&gt;Postal code 
 		&lt;input type="text" placeholder="810 20" id="postal-code" /&gt;
 	&lt;/label&gt;
@@ -118,7 +118,7 @@ How to you add delight to a form, without writing a whole jQuery plugin for it? 
 <p>Nothing weird going on. Now imagine if we could automatically fill the "City" field based on the value from the postal code field. That would be rad, wouldn't it? (Yep, I'm bringing "rad" back).</p>
 <p>What's needed? Well, we have to figure out the actual city name. Luckily, there are services for that. You might want to find one for your own country – I found <a href="http://postnummersok.se/">Postnummersök</a> and <a href="http://yourmoneyisnowmymoney.com/api/">Zip Code API</a> for Swedish postal codes. I'm pretty confident APIs exist for postal code lookups in your country ( <a href="http://www.google.se/search?sourceid=chrome&amp;ie=UTF-8&amp;q=zip+code+to+city+api">Google will help you</a>). Go for a simple API, preferably REST and optimally a version which offers JSONP, which means you're able to fetch data right from the Javascript – working around the cross domain restriction.</p>
 <p>I ended up with Postnummersok.se, whose API is really simple and straightforward: just send a REST GET request to <code>http://postnummersok.se/api</code> with the postal code in the <code>q</code> parameter. The response will be returned in JSON (yay!). Even JSONP is possible if you use the <code>callback</code> parameter. Follow along below.</p>
-<pre><code>$("#postal-code").blur(function(){ 
+<pre class="language-none" tabindex="0"><code class="language-none">$("#postal-code").blur(function(){ 
 	var url = "http://postnummersok.se/api?callback=?",
 		// remove whitespace in postal code 
 		code = encodeURI(this.value.replace(/s+/g, "")); 
@@ -172,7 +172,7 @@ How to you add delight to a form, without writing a whole jQuery plugin for it? 
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/dc7d9e28ec05d86e499b77d4d3fea41a181d96fc">dc7d9e2</a> — built at <time>2022-01-17T10:12:57.678Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
   </p>
 </footer>
 

@@ -144,7 +144,7 @@
 <p>When rebasing your branch – either to rebase in <code>master</code> or rewrite history – the branch will be diverging from the remote, if you've pushed it already. So you need to force push next time (<code>git push -f</code>).</p>
 <h2>Commit message templates</h2>
 <p>I just learned about this a couple of months ago: git supports <strong>message templates.</strong> Every time you're committing something from an external editor (not from the command line), you can use a pre-written template. The template I stole from the post linked below reminds me of the "Because". Why are you even doing this commit? Any business purpose, or is it tech?</p>
-<pre><code>[one line-summary of changes]
+<pre class="language-none" tabindex="0"><code class="language-none">[one line-summary of changes]
 
 Because:
 - [relevant context]
@@ -160,10 +160,10 @@ This commit:
 <h2>Rebasing</h2>
 <p>See this guide from the git docs: <a href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing">"Rebasing"</a>.</p>
 <p>For instance:</p>
-<pre><code class="language-bash hljs">git checkout my-feature-branch
-<span class="hljs-comment"># ...do work</span>
-<span class="hljs-comment"># ...changes have been made in remote master</span>
-<span class="hljs-comment"># fetch/pull latest master</span>
+<pre class="language-bash" tabindex="0"><code class="language-bash">git checkout my-feature-branch
+# ...do work
+# ...changes have been made in remote master
+# fetch/pull latest master
 git rebase master
 </code></pre>
 <p>This will re-apply your commits in the feature branch on top of what's in <code>master</code> , to make it appear as your branch is branched off of latest commit in <code>master</code>.</p>
@@ -175,33 +175,33 @@ git rebase master
 </ul>
 <h2>Conflicts</h2>
 <p>At some point, there will be conflicts when rebasing. You'll be able to solve them in the same way as when manually solving conflicts when doing <code>git merge</code>. This is all described in the terminal when there's a conflict. In a nutshell</p>
-<pre><code class="language-bash hljs"><span class="hljs-comment"># Find conflicts in code:</span>
+<pre class="language-bash" tabindex="0"><code class="language-bash"># Find conflicts in code:
 git status
-<span class="hljs-comment"># ..Fix them :)</span>
-<span class="hljs-comment"># Mark as resolved:</span>
+# ..Fix them :)
+# Mark as resolved:
 git add &lt;file&gt;
-<span class="hljs-comment"># Continue rebasing</span>
-git rebase --<span class="hljs-built_in">continue</span>
+# Continue rebasing
+git rebase --continue
 </code></pre>
 <h2>Force pushing to collaborative branches</h2>
 <p>Rewriting history requires you to force push the PR branch. I.e. you need to push with <code>git push -f</code></p>
 <p>The problem with force pushing is that anyone collaborating on the branch will not be able to just <code>git pull</code>. However, git introduced a switch on <code>pull</code> which fixes this:</p>
-<pre><code class="language-bash hljs">git pull --rebase
+<pre class="language-bash" tabindex="0"><code class="language-bash">git pull --rebase
 </code></pre>
 <p>This is essentially a</p>
-<pre><code class="language-bash hljs">git fetch origin
+<pre class="language-bash" tabindex="0"><code class="language-bash">git fetch origin
 git rebase origin/&lt;your-branch&gt;
 </code></pre>
 <h2>Squashing commits together</h2>
 <p>This is nice for when you've done a lot of small, work preserving commits (WIPs or just to not lose them) that need to be "beautified" before submitting for review.</p>
 <p>See this guide from the git docs: <a href="https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History">"Rewriting History"</a>.</p>
 <p>In a nutshell:</p>
-<pre><code class="language-bash hljs"><span class="hljs-comment"># -i is for "interactive"</span>
-<span class="hljs-comment"># git rebase -i &lt;git reference&gt;</span>
-<span class="hljs-comment"># HEAD~&lt;number of commits to include in rebase&gt;</span>
+<pre class="language-bash" tabindex="0"><code class="language-bash"># -i is for "interactive"
+# git rebase -i &lt;git reference&gt;
+# HEAD~&lt;number of commits to include in rebase&gt;
 git rebase -i HEAD~5
-<span class="hljs-comment"># or</span>
-git rebase -i git-hash^ <span class="hljs-comment"># ^ is targetting the parent commit</span>
+# or
+git rebase -i git-hash^ # ^ is targetting the parent commit
 </code></pre>
 <p>An editor will open with your included commits listed. There'll be a legend below them describing how to rewrite history. You can drop commits (<code>d</code>), squash together commits (<code>s</code>), and more. You'll be able to rewrite the commits messages too.</p>
 <h1>Aftermath</h1>
@@ -240,7 +240,7 @@ git rebase -i git-hash^ <span class="hljs-comment"># ^ is targetting the parent 
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/dc7d9e28ec05d86e499b77d4d3fea41a181d96fc">dc7d9e2</a> — built at <time>2022-01-17T10:12:57.678Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
   </p>
 </footer>
 

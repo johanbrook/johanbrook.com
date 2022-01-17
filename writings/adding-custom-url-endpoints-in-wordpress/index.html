@@ -91,10 +91,10 @@
 
     <div class="prose measure" itemprop="articleBody">
       <p>In a current Wordpress project, we wanted to have a permalink to a photo gallery filled with images (attachments) for a post. Wordpress supports permalinks to single attachments, such as</p>
-<pre><code>site.com/single-post/attachment/flower
+<pre class="language-none" tabindex="0"><code class="language-none">site.com/single-post/attachment/flower
 </code></pre>
 <p>That's cool. However, we wanted something like this:</p>
-<pre><code>site.com/single-post/photos
+<pre class="language-none" tabindex="0"><code class="language-none">site.com/single-post/photos
 </code></pre>
 <p>... where all attachments would be listed. The <code>/photos</code> part is called an <em>endpoint</em>. So how do you add them in Wordpress? And how do you assign this endpoint to render a specific template file?</p>
 <h2>Relevant APIs</h2>
@@ -110,7 +110,7 @@
 <h2>The code</h2>
 <p>After reading through these, I simply implemented the necessary filters and callbacks in the <code>functions.php</code> file.</p>
 <p>I began with this:</p>
-<pre><code>add_filter( 'query_vars', 'add_query_vars');
+<pre class="language-none" tabindex="0"><code class="language-none">add_filter( 'query_vars', 'add_query_vars');
 
 /**
 *   Add the 'photos' query variable so Wordpress
@@ -123,10 +123,10 @@ function add_query_vars($vars){
 </code></pre>
 <p>As you can see, I'm working with my <code>/photos</code> endpoint. I have to tell Wordpress' rewrite engine to take our special query variable ("photos") into account when rewriting URLs, so I used the <code>query_vars</code> filter for this (see the <a href="http://codex.wordpress.org/Plugin_API/Filter_Reference">Filter Reference</a>).</p>
 <p>Next, I registered the actual endpoint with the built-in function <code>add_rewrite_endpoint()</code> ( <a href="http://codex.wordpress.org/Rewrite_API/add_rewrite_endpoint">Docs</a>). It takes a string (the endpoint) and a <code>place</code> . "Place" is where the endpoint will be active, and the docs only specify a couple: "EP_PERMALINK, EP_PAGES, EP_ATTACHMENT, etc". From other examples I've spotted <code>EP_ALL</code> as well. I used <code>EP_PERMALINK</code> :</p>
-<pre><code>add_rewrite_endpoint('photos', EP_PERMALINK);
+<pre class="language-none" tabindex="0"><code class="language-none">add_rewrite_endpoint('photos', EP_PERMALINK);
 </code></pre>
 <p>Right. The endpoint is up and running, but as I said at the top, I wanted a specific template to render when this URL is visited. It's doable! Check out the <a href="http://codex.wordpress.org/Plugin_API/Filter_Reference/_single_template">single_template filter</a>.</p>
-<pre><code>add_filter( 'single_template', 'project_attachments_template' );
+<pre class="language-none" tabindex="0"><code class="language-none">add_filter( 'single_template', 'project_attachments_template' );
 
 /**
 *	From http://codex.wordpress.org/Template_Hierarchy
@@ -193,7 +193,7 @@ function project_attachments_template($templates = ""){
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/dc7d9e28ec05d86e499b77d4d3fea41a181d96fc">dc7d9e2</a> — built at <time>2022-01-17T10:12:57.678Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
   </p>
 </footer>
 

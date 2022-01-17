@@ -97,17 +97,17 @@
 <p>I realised the beauty of hooks in user interface components when creating a component which shows the current time in a recording. We've recently started using Functional Reactive Streams for the frontend at Lookback (specifically, we're using the <a href="http://staltz.github.io/xstream/">xstream</a> library, but the concepts are similar in other libraries). Explaining the concept with streams is out of scope in this post, but the gist is that you manage state as immutable streams of values. <a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">This post</a> is a nice intro to streams/reactive programming.</p>
 <p>Streams actually play well with React. It's <em>basically</em>, on a conceptual level, all about doing a <code>.map</code> on a stream of values and draw the React virtual DOM based on the values. But React components must either have a <code>render()</code> function which return JSX, or be a function which returns JSX. How do we render our current time from a stream?</p>
 <p>An intuitive approach of mine would be:</p>
-<pre><code class="language-tsx hljs language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Stream</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+<pre class="language-tsx" tabindex="0"><code class="language-tsx">import React from 'react';
+import { Stream } from 'xstream';
 
-<span class="hljs-keyword">interface</span> Props {
-  <span class="hljs-attr">currentTime$</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-built_in">number</span>&gt;;
+interface Props {
+  currentTime$: Stream&lt;number&gt;;
 }
 
-<span class="hljs-comment">// This won't work: our component can't return a Stream!</span>
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">CurrentTime</span> = (<span class="hljs-params">props: Props</span>) =&gt;
-  props.<span class="hljs-property">currentTime$</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">time</span> =&gt;</span>
-    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">time</span>&gt;</span>{time}<span class="hljs-tag">&lt;/<span class="hljs-name">time</span>&gt;</span></span>
+// This won't work: our component can't return a Stream!
+const CurrentTime = (props: Props) =&gt;
+  props.currentTime$.map(time =&gt;
+    &lt;time&gt;{time}&lt;/time&gt;
   );
 </code></pre>
 <p>We can't return a stream from a React component –&nbsp;it must somehow devour the stream and return JSX.</p>
@@ -120,81 +120,81 @@
 <li>Tear down the subscription on unmount.</li>
 </ol>
 <p>Very well then:</p>
-<pre><code class="language-tsx hljs language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Stream</span>, <span class="hljs-title class_">Subscription</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
-<span class="hljs-keyword">import</span> formatTime <span class="hljs-keyword">from</span> <span class="hljs-string">'./libs/format-time'</span>;
+<pre class="language-tsx" tabindex="0"><code class="language-tsx">import React from 'react';
+import { Stream, Subscription } from 'xstream';
+import formatTime from './libs/format-time';
 
-<span class="hljs-keyword">interface</span> Props {
-    <span class="hljs-attr">currentTime$</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-built_in">number</span>&gt;;
+interface Props {
+    currentTime$: Stream&lt;number&gt;;
 }
 
-<span class="hljs-keyword">interface</span> State {
-    <span class="hljs-attr">timeInSeconds</span>: <span class="hljs-built_in">number</span>;
+interface State {
+    timeInSeconds: number;
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TimeCounter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.PureComponent</span>&lt;<span class="hljs-title class_">Props</span>, <span class="hljs-title class_">State</span>&gt; {
-    sub?: <span class="hljs-title class_">Subscription</span>;
+export default class TimeCounter extends React.PureComponent&lt;Props, State&gt; {
+    sub?: Subscription;
 
-    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props: Props</span>) {
-        <span class="hljs-variable language_">super</span>(props);
+    constructor(props: Props) {
+        super(props);
 
-        <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = {
-            <span class="hljs-attr">timeInSeconds</span>: <span class="hljs-number">0</span>,
+        this.state = {
+            timeInSeconds: 0,
         };
     }
 
-    <span class="hljs-title function_">componentDidMount</span>(): <span class="hljs-built_in">void</span> {
-        <span class="hljs-variable language_">this</span>.<span class="hljs-property">sub</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">currentTime$</span>.<span class="hljs-title function_">subscribe</span>({
-            <span class="hljs-attr">next</span>: <span class="hljs-function">(<span class="hljs-params">time</span>) =&gt;</span> {
-                <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setState</span>({ <span class="hljs-attr">timeInSeconds</span>: time });
+    componentDidMount(): void {
+        this.sub = this.props.currentTime$.subscribe({
+            next: (time) =&gt; {
+                this.setState({ timeInSeconds: time });
             },
         });
     }
 
-    <span class="hljs-title function_">componentWillUnmount</span>(): <span class="hljs-built_in">void</span> {
-        <span class="hljs-variable language_">this</span>.<span class="hljs-property">sub</span> &amp;&amp; <span class="hljs-variable language_">this</span>.<span class="hljs-property">sub</span>.<span class="hljs-title function_">unsubscribe</span>();
+    componentWillUnmount(): void {
+        this.sub &amp;&amp; this.sub.unsubscribe();
     }
 
-    <span class="hljs-title function_">render</span>(): <span class="hljs-title class_">React</span>.<span class="hljs-property">ReactNode</span> {
-        <span class="hljs-keyword">const</span> { timeInSeconds } = <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>;
+    render(): React.ReactNode {
+        const { timeInSeconds } = this.state;
 
-        <span class="hljs-comment">// Renders something like: "00:10"</span>
-        <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">time</span>&gt;</span>{formatTime(timeInSeconds)}<span class="hljs-tag">&lt;/<span class="hljs-name">time</span>&gt;</span></span>;
+        // Renders something like: "00:10"
+        return &lt;time&gt;{formatTime(timeInSeconds)}&lt;/time&gt;;
     }
 }
 </code></pre>
 <p>This totally works, but yeah... Very verbose and imperative. Hooks to the rescue!</p>
 <h2>The Hook approach</h2>
 <p>Let's follow the intro to Hooks from the React website, and convert our class to a function:</p>
-<pre><code class="language-tsx hljs language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>, { useState, useEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Stream</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
-<span class="hljs-keyword">import</span> formatTime <span class="hljs-keyword">from</span> <span class="hljs-string">'./libs/format-time'</span>;
+<pre class="language-tsx" tabindex="0"><code class="language-tsx">import React, { useState, useEffect } from 'react';
+import { Stream } from 'xstream';
+import formatTime from './libs/format-time';
 
-<span class="hljs-keyword">interface</span> Props {
-  <span class="hljs-attr">currentTime$</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-built_in">number</span>&gt;;
+interface Props {
+  currentTime$: Stream&lt;number&gt;;
 }
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">TimeCounter</span> = (<span class="hljs-params">props: Props</span>) =&gt; {
-  <span class="hljs-comment">// Create a state hook for our time state, with initial state of zero:</span>
-  <span class="hljs-keyword">const</span> [current, setCurrent] = useState&lt;<span class="hljs-built_in">number</span>&gt;(<span class="hljs-number">0</span>);
+const TimeCounter = (props: Props) =&gt; {
+  // Create a state hook for our time state, with initial state of zero:
+  const [current, setCurrent] = useState&lt;number&gt;(0);
 
-  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
-      <span class="hljs-comment">// On component mount, set up a side effect that subscribes to</span>
-      <span class="hljs-comment">// the stream, and let `setCurrent` be called for new values:</span>
-      <span class="hljs-keyword">const</span> sub = props.<span class="hljs-property">currentTime$</span>.<span class="hljs-title function_">subscribe</span>({
-          <span class="hljs-attr">next</span>: setCurrent,
+  useEffect(() =&gt; {
+      // On component mount, set up a side effect that subscribes to
+      // the stream, and let `setCurrent` be called for new values:
+      const sub = props.currentTime$.subscribe({
+          next: setCurrent,
       });
 
-      <span class="hljs-comment">// Unsubscribe on component tear down:</span>
-      <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> sub.<span class="hljs-title function_">unsubscribe</span>();
+      // Unsubscribe on component tear down:
+      return () =&gt; sub.unsubscribe();
   });
 
-  <span class="hljs-comment">// Render our current time state as the returned JSX!</span>
-  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">time</span>&gt;</span>{formatDuration(currentTime)}<span class="hljs-tag">&lt;/<span class="hljs-name">time</span>&gt;</span></span>;
+  // Render our current time state as the returned JSX!
+  return &lt;time&gt;{formatDuration(currentTime)}&lt;/time&gt;;
 }
 
-<span class="hljs-comment">// Elsewhere, render as usual:</span>
-&lt;<span class="hljs-title class_">TimeCounter</span> currentTime$={myStreamOfNumbers$} /&gt;
+// Elsewhere, render as usual:
+&lt;TimeCounter currentTime$={myStreamOfNumbers$} /&gt;
 </code></pre>
 <ul>
 <li>We call <code>useEffect</code> to set up a subscription on the incoming stream. <a href="https://reactjs.org/docs/hooks-effect.html">Read more</a> about the effect hook.</li>
@@ -205,43 +205,43 @@
 <p>Since Hooks are <em>just functions</em>, we can extract common functional patterns into our own hooks and use them in other components. I found myself writing another component which also subscribed to an incoming stream and rendered its values. What a candidate for extraction into a hook!</p>
 <p>If we analyse the component above, we see that <code>useState</code> and <code>useEffect</code> are going to work roughly, if not exactly, the same for any other component. Only the types in the incoming stream differ. Here we use the type <code>number</code>, but we can make our new Hook generic thanks to TypeScript's generics.</p>
 <p>I came up with this:</p>
-<pre><code class="language-ts hljs language-typescript"><span class="hljs-comment">// use-stream.ts</span>
-<span class="hljs-keyword">import</span> { useEffect, useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Stream</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
+<pre class="language-ts" tabindex="0"><code class="language-ts"><span class="token comment">// use-stream.ts</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> useEffect<span class="token punctuation">,</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Stream <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">const</span> useStream = &lt;T&gt;<span class="hljs-function">(<span class="hljs-params">stream$: Stream&lt;T&gt;, initialState: T | <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span></span>) =&gt;</span> {
-    <span class="hljs-keyword">const</span> [current, setCurrent] = useState&lt;T&gt;(initialState);
+<span class="token keyword">const</span> useStream <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>stream$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> initialState<span class="token operator">:</span> <span class="token constant">T</span> <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">[</span>current<span class="token punctuation">,</span> setCurrent<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token generic-function"><span class="token function">useState</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>initialState<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
-        <span class="hljs-keyword">const</span> sub = stream$.<span class="hljs-title function_">subscribe</span>({
-            <span class="hljs-attr">next</span>: setCurrent,
-        });
+    <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> sub <span class="token operator">=</span> stream$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            next<span class="token operator">:</span> setCurrent<span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> sub.<span class="hljs-title function_">unsubscribe</span>();
-    });
+        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> sub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="hljs-comment">// Just return our current value, since that's the thing we're interested in</span>
-    <span class="hljs-comment">// (to render) when using this hook:</span>
-    <span class="hljs-keyword">return</span> current;
-};
+    <span class="token comment">// Just return our current value, since that's the thing we're interested in</span>
+    <span class="token comment">// (to render) when using this hook:</span>
+    <span class="token keyword">return</span> current<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useStream;
+<span class="token keyword">export</span> <span class="token keyword">default</span> useStream<span class="token punctuation">;</span>
 </code></pre>
 <p>We've just made our own <code>useStream</code> hook by composing <code>useEffect</code> and <code>useState</code>!</p>
 <p>The hook can be used like this:</p>
-<pre><code class="language-tsx hljs language-typescript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Stream</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>;
-<span class="hljs-keyword">import</span> { formatDuration } <span class="hljs-keyword">from</span> <span class="hljs-string">'./libs/format-time'</span>;
-<span class="hljs-keyword">import</span> useStream <span class="hljs-keyword">from</span> <span class="hljs-string">'./hooks/use-stream'</span>;
+<pre class="language-tsx" tabindex="0"><code class="language-tsx">import React from 'react';
+import { Stream } from 'xstream';
+import { formatDuration } from './libs/format-time';
+import useStream from './hooks/use-stream';
 
-<span class="hljs-keyword">interface</span> Props {
-    <span class="hljs-attr">currentTime$</span>: <span class="hljs-title class_">Stream</span>&lt;<span class="hljs-built_in">number</span>&gt;;
+interface Props {
+    currentTime$: Stream&lt;number&gt;;
 }
 
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">CurrentTimeCounter</span> = (<span class="hljs-params">props: Props</span>) =&gt; {
-    <span class="hljs-keyword">const</span> <span class="hljs-attr">currentTime</span>: <span class="hljs-built_in">number</span> = useStream&lt;<span class="hljs-built_in">number</span>&gt;(props.<span class="hljs-property">currentTime$</span>, <span class="hljs-number">0</span>);
+const CurrentTimeCounter = (props: Props) =&gt; {
+    const currentTime: number = useStream&lt;number&gt;(props.currentTime$, 0);
 
-    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">time</span>&gt;</span>{formatDuration(currentTime)}<span class="hljs-tag">&lt;/<span class="hljs-name">time</span>&gt;</span></span>;
+    return &lt;time&gt;{formatDuration(currentTime)}&lt;/time&gt;;
 };
 </code></pre>
 <p>And at last, there is beauty.</p>
@@ -277,7 +277,7 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/dc7d9e28ec05d86e499b77d4d3fea41a181d96fc">dc7d9e2</a> — built at <time>2022-01-17T10:12:57.678Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
   </p>
 </footer>
 

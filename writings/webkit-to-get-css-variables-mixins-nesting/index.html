@@ -95,14 +95,14 @@
 <p><em>This article is also translated to <a href="http://science.webhostinggeeks.com/desing-css">Serbo-Croatian</a> language by Anja Skrba from <a href="http://webhostinggeeks.com/">Webhostinggeeks.com</a></em></p>
 <h2>Variables</h2>
 <p>The syntax of CSS variables brought up in the presentation is as follows:</p>
-<pre><code>@var header-color color #006;
+<pre class="language-none" tabindex="0"><code class="language-none">@var header-color color #006;
 @var main-color color #06c;
 @var secondary-color color #c06;
 
 a { color: var(main-color); }
 </code></pre>
 <p>The corresponding Sass syntax would be:</p>
-<pre><code>$header-color: #006;
+<pre class="language-none" tabindex="0"><code class="language-none">$header-color: #006;
 $main-color: #06c;
 $secondary-color: #c06;
 
@@ -113,7 +113,7 @@ a { color: $main-color; }
 <h2>Mixins</h2>
 <p>Mixins are blocks of code you may include anywhere in the document. It's great for code reuse, and to get away from non-semantic classes in your HTML code. A prime example is the clearfix method: instead of applying a <code>clearfix</code> class to an HTML element, just write (in Sass) <code>@include clearfix;</code> in the stylesheet for that element. Nice and clean.</p>
 <p>In the proposed CSS syntax you declare mixins by writing:</p>
-<pre><code>@mixin error {
+<pre class="language-none" tabindex="0"><code class="language-none">@mixin error {
    background: #fdd;
    color: red;
    font-weight: bold;
@@ -128,7 +128,7 @@ div.error {
 <p>It's a really slick way to reuse code. Growing sick of writing <a href="http://jnbrk.se/fp7c68">long, messy CSS3 gradient code?</a> Just define a mixin with some parameters and include it where appropriate. This syntax is alright, though I find the parameter declaration a bit weird.</p>
 <h2>Nesting</h2>
 <p>When writing regular CSS you can't nest selectors. That is, you can't step down in the DOM hierarchy without having to write all the parent selectors again, like this:</p>
-<pre><code>#main &gt; header &gt; h1{
+<pre class="language-none" tabindex="0"><code class="language-none">#main &gt; header &gt; h1{
    font-size: 2em;
    background: blue;
    color: white;
@@ -141,7 +141,7 @@ div.error {
 }
 </code></pre>
 <p>I hate this kind of writing. It feels so unnecessary and unintuitive. Atkins has proposed this syntax:</p>
-<pre><code>#main &gt; header &gt; h1 {
+<pre class="language-none" tabindex="0"><code class="language-none">#main &gt; header &gt; h1 {
   font-size: 2em;
   background: blue;
   color: white;
@@ -191,7 +191,7 @@ div.error {
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/dc7d9e28ec05d86e499b77d4d3fea41a181d96fc">dc7d9e2</a> — built at <time>2022-01-17T10:12:57.678Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
   </p>
 </footer>
 

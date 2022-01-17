@@ -92,10 +92,10 @@
     <div class="prose measure" itemprop="articleBody">
       <p><strong>Quite a few people</strong> use this style of quick links or short posts (myself included). Daring Fireball, Shawn Blanc and others. When linking to an article of site, the post heading itself becomes the link. It's quite good usability and UX, and is not that hard to re-create in Wordpress.</p>
 <p>When I attach links to my custom post type for short posts, Quickies, I use custom fields in Wordpress. I've got two fields for link: "Link" and "Link Name". The "Link" field contains the URL and is the important one here. In the post template (in my case <code>single-quickie.php</code> you can get the custom field with this:</p>
-<pre><code>$meta_link = get_post_meta(get_the_ID(), "Link", true);
+<pre class="language-none" tabindex="0"><code class="language-none">$meta_link = get_post_meta(get_the_ID(), "Link", true);
 </code></pre>
 <p>Where "Link" is the custom field name. After that, it's just a matter of inserting it in the post's heading tag:</p>
-<pre><code>&lt;h1&gt;
+<pre class="language-none" tabindex="0"><code class="language-none">&lt;h1&gt;
    &lt;?php if($meta_link):?&gt;
       &lt;a title="follow link" href="&lt;?php echo $meta_link;?&gt;"&gt; &lt;?php the_title();?&gt; ›&lt;/a&gt;
    &lt;?php else: ?&gt;
@@ -104,7 +104,7 @@
 &lt;/h1&gt;
 </code></pre>
 <p>There we go. If there's a link attached to the post, create an <code>&lt;a&gt;</code> element for it inside the heading. But how do we work this out for RSS readers? Many people (myself included again) usually read posts directly from within the reader, and Wordpress automatically makes the RSS heading link point to the post's permalink – not our custom link. Check it out next time you're reading a Daring Fireball linked post: when you click on the main heading you're instantly taken to the link he's talking about. How to create this in Wordpress? I first tried to hack the RSS file, <code>feed-rss2.php</code> but that's seldom a good thing. You should leave the core files alone. Instead, you can filter the template tag for outputting the RSS heading in your <code>functions.php</code> :</p>
-<pre><code>function johan_permalink_rss($content) { 
+<pre class="language-none" tabindex="0"><code class="language-none">function johan_permalink_rss($content) { 
    global $wp_query; 
    $postid = $wp_query-&gt;post-&gt;ID; 
    $link = get_post_meta($postid, 'Link', true); 
@@ -156,7 +156,7 @@ add_filter('the_permalink_rss', 'johan_permalink_rss');
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/dc7d9e28ec05d86e499b77d4d3fea41a181d96fc">dc7d9e2</a> — built at <time>2022-01-17T10:12:57.678Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
   </p>
 </footer>
 
