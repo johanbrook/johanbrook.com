@@ -35,6 +35,7 @@
 
   @media screen and (prefers-color-scheme: dark) {
     --yellow: #c3a507;
+    --grey: hsl(214.51, 6.64%, 61.44%);
 
     --color-bg: #1a1a1a;
     --color-bg-secondary: hsl(240 3.36% 14.51%);
