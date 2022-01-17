@@ -1,20 +1,25 @@
 ---
 layout: layouts/main.njk
+title: Writings
+menu:
+  visible: true
+  order: 0
 ---
 
-{% set firstEverPost = search.pages("type=post", "date=asc") | first %}
-{% set firstOnPage = results | first %}
+{% set posts = search.pages("type=post", "date=desc") %}
+{% set firstEverPost = posts | last %}
+{% set latestPost = posts | first %}
 
 <main role="main" class="posts">
 
   <h1 class="title inset-title">{{ title }}</h1>
 
   <p class="fw6">
-    {{pagination.totalResults }} posts, from {{ firstEverPost.data.date | date("MMMM yyyy") }} to {{ firstOnPage.data.date | date("MMMM yyyy") }}.
+    {{posts | length }} posts, from {{ firstEverPost.data.date | date("MMMM yyyy") }} to {{ latestPost.data.date | date("MMMM yyyy") }}.
   </p>
 
   <ol class="PostsList">
-    {% for post in results %}
+    {% for post in posts %}
       <li class="PostItem">
         <a class="PostItem__Link" href="{{ post.data.url | url }}" title="About {{ post | readingTime }} reading time">{{ post.data.title }} {% if post.data.draft %}<span class="badge">Draft</span>{% endif %}</a>
 
@@ -23,6 +28,6 @@ layout: layouts/main.njk
     {% endfor %}
   </ol>
 
-  {% include "page-nav.njk" %}
+  {# {% include "page-nav.njk" %} #}
 
 </main>
