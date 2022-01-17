@@ -245,7 +245,7 @@ code {
   font-family: var(--mono);
 }
 
-code {
+:not(pre) > code {
   background-color: var(--code-background);
   padding: 2px 4px;
   border-radius: 4px;
@@ -274,9 +274,18 @@ td {
 }
 
 pre {
+  --tab-size: 2;
+
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  hyphens: none;
+  tab-size: var(--tab-size);
   background: var(--pre-background);
   border-radius: 8px;
-  padding: var(--lineheight) calc(var(--lineheight) / 2);
+  padding: calc(var(--lineheight) / 2);
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: none;
   font-size: var(--f6);
@@ -286,16 +295,14 @@ pre {
     padding-left: 0.25em;
   }
 
-  & code {
-    font-size: 1em;
-    border: 0;
-    background-color: transparent;
-    padding: 0;
-    border-radius: 0;
-    box-shadow: none;
-    color: currentColor;
-    white-space: inherit;
+  & ins {
+    text-decoration: none;
   }
+}
+
+/* Syntax highlighting */
+code.hljs {
+  display: block;
 }
 
 blockquote {

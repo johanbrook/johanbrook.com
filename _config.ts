@@ -1,12 +1,12 @@
 import lume from 'lume/mod.ts';
 import postcss from 'lume/plugins/postcss.ts';
-import codeHighlight from 'lume/plugins/code_highlight.ts';
 import bundler from 'lume/plugins/bundler.ts';
 import date from 'lume/plugins/date.ts';
 import inline from 'lume/plugins/inline.ts';
 import { minifier } from './deps.ts';
 import { readingTime } from './src/_lume-plugins/reading-time.ts';
 import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
+import prism from './src/_lume-plugins/prism.ts';
 
 const DEST = 'build';
 const MINIFY = Deno.env.get('ENV') == 'production';
@@ -32,7 +32,7 @@ site
     )
     .copy('public', '.')
     // Plugins
-    .use(codeHighlight())
+    .use(prism())
     .use(inline())
     .use(
         postcss({

@@ -11,7 +11,7 @@ Just kidding.
 @import 'css/variables.css';
 @import 'css/base.css';
 
-@import 'css/vendor/prism.css';
+@import 'css/vendor/prism-matrix.css';
 @import 'css/vendor/typeset.css';
 
 @import 'css/partials';
