@@ -5,7 +5,7 @@ ogImage: /assets/images/og-image.png
 <html lang="en" class="{{'home' if home}} {{ pageSlug() }}">
 
   <head itemtype="http://schema.org/Blog" itemscope>
-    <title>{% if title %}{{ title | lower }} – {{ meta.title | lower }}{% else %}{{ meta.title | lower }}{% endif %}</title>
+    <title>{% if title %}{{ title | lower }} – {{ meta.title | lower }}{% else %}{{ meta.title | lower }}{% endif %}</title>
 
     <meta charset="utf-8">
 
@@ -23,7 +23,8 @@ ogImage: /assets/images/og-image.png
     <link rel="stylesheet" href="/johan.css">
 
     <!-- RSS -->
-    <link rel="alternate" type="application/rss+xml" title="Johan's RSS feed" href="/feed.xml">
+    <link rel="alternate" type="application/rss+xml" title="Posts feed" href="/feed.xml">
+    <link rel="alternate" type="application/rss+xml" title="Mind feed" href="/mind.xml">
 
     <link rel="shortcut icon" href="/favicon.png" type="image/png">
     <link rel="canonical" itemprop="url" href="{{ url | url(true) }}">
