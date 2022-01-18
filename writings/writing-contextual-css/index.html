@@ -100,7 +100,7 @@
 <p>This approach can go for responsive CSS as well. One often has separate stylesheets for different viewports where all CSS for that particular viewport goes. Perhaps <code>small.css</code>, <code>medium.css</code>, and so on. This is cool. If I want to tweak styles for a particular viewport I visit that file, simple as that.</p>
 <p><em>But</em>, that also calls for jumping between contexts, and I've started to find that tiring. When an element's properties are spread out over several files I tend to lose grasp of the whole thing. This is a nightmare in semi to large projects.</p>
 <p>But pre-processors got our back. By using inline media queries, mixins, SCSS placeholders, and variables, one can write the responsive styles in the same context as the element is defined in the core CSS:</p>
-<pre class="language-css" tabindex="0"><code class="language-css">// Custom mixin using SCSS placeholders
+<pre class="language-css"><code class="language-css">// Custom mixin using SCSS placeholders
 <span class="token atrule"><span class="token rule">@mixin</span> <span class="token function">respond</span><span class="token punctuation">(</span>$width<span class="token punctuation">,</span> $<span class="token property">mode</span><span class="token punctuation">:</span> <span class="token string">"max"</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
 	<span class="token atrule"><span class="token rule">@media</span> <span class="token keyword">only</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span>#</span><span class="token punctuation">{</span>$mode<span class="token punctuation">}</span><span class="token selector">-width: $width)</span> <span class="token punctuation">{</span>
 		<span class="token atrule"><span class="token rule">@content</span><span class="token punctuation">;</span></span>
@@ -119,7 +119,7 @@ $<span class="token property">small-screen</span><span class="token punctuation"
 <span class="token punctuation">}</span>
 </code></pre>
 <p>will compile to</p>
-<pre class="language-css" tabindex="0"><code class="language-css"><span class="token selector">h1</span> <span class="token punctuation">{</span>
+<pre class="language-css"><code class="language-css"><span class="token selector">h1</span> <span class="token punctuation">{</span>
   <span class="token property">color</span><span class="token punctuation">:</span> #000<span class="token punctuation">;</span>
   <span class="token property">font-size</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
@@ -169,7 +169,7 @@ $<span class="token property">small-screen</span><span class="token punctuation"
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d849e1b9df85235716906a1ed2809e3fc0b20c16">d849e1b</a> — built at <time>2022-01-18T20:53:36.914Z</time>
   </p>
 </footer>
 

@@ -97,7 +97,7 @@
 <h2>Sass</h2>
 <p><a href="http://sass-lang.com">Sass</a> is everything CSS isn’t. CSS3 is great and all, but it’s still a rather dumb language. It’s not dynamic, it’s not encouraging re-use and modularity. Even stylesheets for semi-small sites tend to be huge and bloated – frustrating to work with – since we have to build for many browsers, environments, and devices. I started out with Sass thinking “hey, this is pretty cool. Variables, mixins and stuff. This will be handy”. Actually, it’s been more than handy. I’d have a hard time going back to regular CSS again. I’ve built <a href="https://github.com/johanbrook/Johan-Compass-Kit">some</a> <a href="https://github.com/johanbrook/dyluni">stuff</a> with Sass as well.</p>
 <p>With Sass you’re able to pull off stuff like:</p>
-<pre class="language-none" tabindex="0"><code class="language-none">$color: red;
+<pre><code>$color: red;
 
 nav{
     background: $color;
@@ -118,13 +118,13 @@ nav{
 <p>If we’re talking about Sass, we have to mention Ruby. Ruby is a programming language originally from Japan, actually created around the same time as PHP. The goals with Ruby were to be more powerful than Perl and more object-oriented than Python. I’ve been reading about it on and off during a couple of years, but it’s never really stuck (I blame the regular “lack of time”). I think it’s because I’ve never been forced to use it: I studied Java and PHP in school (uhh … ) and of course HTML/CSS and Javascript.</p>
 <p>I’m attracted to Ruby thanks to its simplicity and non-bloat. Generally it’s amusingly easy and in the same time incredibly hard to write clean, simple and clear code, but I’d say Ruby encourages and helps you more than, say, PHP.</p>
 <p>For me, the “Ruby way” is crystallized in this code:</p>
-<pre class="language-none" tabindex="0"><code class="language-none">5.times do |number|
+<pre><code>5.times do |number|
     puts "Number is #{number}"
 end
 </code></pre>
 <p>It’s object-oriented ( <code>5.times</code> ? Craziness!). It’s human-readable at first glance.</p>
 <p>Or in this:</p>
-<pre class="language-none" tabindex="0"><code class="language-none">name, other_name = "Johan", "John"
+<pre><code>name, other_name = "Johan", "John"
 
 puts "Oops, the name isn't #{other_name}" unless name == other_name
 </code></pre>
@@ -149,7 +149,7 @@ puts "Oops, the name isn't #{other_name}" unless name == other_name
 <h2>Rake</h2>
 <p>Finding yourself doing the same things over and over again during the course of a project? It might be compiling Sass, minifying and concatenating Javascript, or other boring stuff. With <a href="http://rake.rubyforge.org/">Rake</a> (“Ruby Make”) it’s possible to write <em>tasks</em> in Ruby, where lots of stuff can be done.</p>
 <p>For example, this tasks compiles my Compass project in production mode:</p>
-<pre class="language-none" tabindex="0"><code class="language-none">require "rake"
+<pre><code>require "rake"
 
 desc "Make sure the master Sass file is compiled for production"
 task :sass do
@@ -158,10 +158,10 @@ task :sass do
 end
 </code></pre>
 <p>I invoke this task from the command line with</p>
-<pre class="language-none" tabindex="0"><code class="language-none">$ rake sass
+<pre><code>$ rake sass
 </code></pre>
 <p>I can write a couple of boring tasks like this:</p>
-<pre class="language-none" tabindex="0"><code class="language-none">require "rake"
+<pre><code>require "rake"
 
 desc "Build site"
 task :build =&gt; [:concat, :minify, :sass] do
@@ -189,16 +189,16 @@ task :sass do
 end
 </code></pre>
 <p>And run the <code>:build</code> task from the command line:</p>
-<pre class="language-none" tabindex="0"><code class="language-none">$ rake build
+<pre><code>$ rake build
 </code></pre>
 <p>… and all of the above are executed. Actually, it’s not even required to have a <code>:build</code> task: instead specify a default task like this:</p>
-<pre class="language-none" tabindex="0"><code class="language-none">task :default =&gt; [:concat, :minify, :sass]
+<pre><code>task :default =&gt; [:concat, :minify, :sass]
 </code></pre>
 <p>Now those three tasks will be executed whenever you run <code>rake</code> (without anything else) in the command prompt.</p>
 <p>I learned the basics of Rake from googling around for tutorials, and I encourage you to do the same. <a href="http://jasonseifer.com/2010/04/06/rake-tutorial">This is an excellent walkthrough</a> of the features you most likely will use on an everyday basis.</p>
 <h2>RubyGems and Node Package Manager</h2>
 <p>Remembered when code libraries where distributed in zip files? Download, unzip, place in a <code>library</code> directory, keep track of new versions. Nah, things could work better. <a href="http://rubygems.org/">RubyGems</a> is a command line utility which makes this a breeze. Each library (or package of code) is a <em>gem</em>. You install gems by typing</p>
-<pre class="language-none" tabindex="0"><code class="language-none">$ gem install &lt;name&gt;
+<pre><code>$ gem install &lt;name&gt;
 </code></pre>
 <p>Simple, simple, simple. Wanna install the latest Rails? Run <code>gem install rails</code> ( <a href="http://rubygems.org/gems/rails">RubyGem page</a>). The Twitter gem? <code>gem install twitter</code> ( <a href="http://rubygems.org/gems/twitter">RubyGem page</a>). It’s a superb way of distributing code. Those libraries might be used on the command line (like Sass and Compass) or in code (or both).</p>
 <p><a href="http://npmjs.org/">Node Package Manager</a> (or “NPM”) is similar to RubyGems, but for Javascript libraries (built with Node.js). Haven’t dealt a whole lot with NPM so far, but it gets the job done.</p>
@@ -238,7 +238,7 @@ end
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d849e1b9df85235716906a1ed2809e3fc0b20c16">d849e1b</a> — built at <time>2022-01-18T20:53:36.914Z</time>
   </p>
 </footer>
 

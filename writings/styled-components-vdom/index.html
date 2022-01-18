@@ -102,7 +102,7 @@
 <p>Be sure to check out the <a href="https://tachyons.io/">Tachyons CSS library</a> (I've based Lookback's internal functional CSS library off Tachyons' structure).</p>
 <h2>A primer on functional CSS</h2>
 <p>Let's say we've got these CSS rules:</p>
-<pre class="language-scss" tabindex="0"><code class="language-scss">// headings.scss
+<pre class="language-scss"><code class="language-scss">// headings.scss
 
 h1 {
   margin-bottom: $spacing-base;
@@ -121,7 +121,7 @@ h1 {
 }
 </code></pre>
 <p>And here we've got the markup for modal content (here the scenario of creating a new project inside of a generic web app):</p>
-<pre class="language-html" tabindex="0"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>New Project<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
 
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span><span class="token punctuation">&gt;</span></span>
@@ -140,7 +140,7 @@ h1 {
 <p><strong>Enter functional CSS.</strong></p>
 <p>Using functional CSS is to depart from the classical thought of <em>"No styling in the markup"</em>. We're not embedding inline styles <em>per se</em>, but we're applying styling information that does not make any semantic sense from a markup perspective.</p>
 <p>This is the above example refactored to use functional CSS classes:</p>
-<pre class="language-scss" tabindex="0"><code class="language-scss">// headings.scss
+<pre class="language-scss"><code class="language-scss">// headings.scss
 
 h1 {
   margin-bottom: $spacing-base;
@@ -170,7 +170,7 @@ h1 {
   text-align: right;
 }
 </code></pre>
-<pre class="language-html" tabindex="0"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>modal<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mb0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>New Project<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
 
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tl<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -179,7 +179,7 @@ h1 {
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 </code></pre>
 <p>Note how the classes form a sort of domain specific language in describing which style rule or rules that are applied. With functional CSS, I'm free to combine styles on elements by composition, as well as deviate from common styling wherever I need to. I can use a <code>.f1</code> class to denote the largest font size, and bind it to a Sass variable:</p>
-<pre class="language-scss" tabindex="0"><code class="language-scss">// typography.scss
+<pre class="language-scss"><code class="language-scss">// typography.scss
 .f1 {
   font-size: $font-size-1;
 }
@@ -195,7 +195,7 @@ h1 {
 <p>Let's talk more about each one real quick:</p>
 <h3>Composition</h3>
 <p>Thanks to minimal functional CSS classes, we can do things like this:</p>
-<pre class="language-html" tabindex="0"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>.f7.tracked.c-muted.mb1.b<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Foo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>.f7.tracked.c-muted.mb1.b<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Foo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
 </code></pre>
 <p>This kind of cryptic class name string translates to:</p>
 <ul>
@@ -208,7 +208,7 @@ h1 {
 <p>All these properties together make up a re-usable style stack.</p>
 <h3>Markup as functions</h3>
 <p>The virtual DOM in CycleJS is called <a href="https://github.com/snabbdom/snabbdom">Snabbdom</a>. In CycleJS, it looks like this:</p>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> div<span class="token punctuation">,</span> h1<span class="token punctuation">,</span> p<span class="token punctuation">,</span> strong <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@cycle/dom'</span><span class="token punctuation">;</span>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> div<span class="token punctuation">,</span> h1<span class="token punctuation">,</span> p<span class="token punctuation">,</span> strong <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@cycle/dom'</span><span class="token punctuation">;</span>
 
 <span class="token comment">/*
 This becomes:
@@ -232,7 +232,7 @@ This becomes:
 <p>I thought to myself, <em>"If styling with functional CSS is only about applying small, atomic classes, and classes in Snabbdom is just a selector string, I could store the classes a strings somewhere and just import them and use them in the VDOM"</em>.</p>
 <h3>Take One</h3>
 <p>This became my first iteration:</p>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token comment">// styles.ts</span>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// styles.ts</span>
 
 <span class="token comment">// Keep shared styles in this dict.</span>
 <span class="token keyword">export</span> <span class="token keyword">const</span> Styles <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -241,7 +241,7 @@ This becomes:
   TopHeading<span class="token operator">:</span> <span class="token string">'.lh-title.mb4'</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token comment">// SomeComponent.ts</span>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// SomeComponent.ts</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> h1<span class="token punctuation">,</span> label<span class="token punctuation">,</span> form<span class="token punctuation">,</span> input <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@cycle/dom'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Styles <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./styles'</span><span class="token punctuation">;</span>
 
@@ -260,15 +260,15 @@ This becomes:
 <p>This was quite fine, but still didn't feel component-y enough. What about extensibility? If I wanted to apply more styles to a <code>TopHeading</code>, I'd have to do an ES6 style string literal <code>${Styles.TopHeading}.more-classes</code> and apply as selector. Not that elegant, and a lot to type.</p>
 <p>Since VDOM elements are functions, we can implement a backing function which <em>enhances</em> a VDOM element with a given selector, and returns the element ready to be used.</p>
 <p>The signature would look like:</p>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">enhanceWithStyle</span><span class="token punctuation">(</span>domTag<span class="token operator">:</span> DomTag<span class="token punctuation">,</span> classes<span class="token operator">:</span> Selector<span class="token punctuation">)</span><span class="token operator">:</span> DomTag<span class="token punctuation">;</span>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">function</span> <span class="token function">enhanceWithStyle</span><span class="token punctuation">(</span>domTag<span class="token operator">:</span> DomTag<span class="token punctuation">,</span> classes<span class="token operator">:</span> Selector<span class="token punctuation">)</span><span class="token operator">:</span> DomTag<span class="token punctuation">;</span>
 </code></pre>
 <p>where we've got the types:</p>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token keyword">type</span> <span class="token class-name">Selector</span> <span class="token operator">=</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">type</span> <span class="token class-name">Selector</span> <span class="token operator">=</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
 <span class="token comment">// This is the signature for a Snabbdom helper, like h1(), p(), etc.</span>
 <span class="token keyword">type</span> <span class="token class-name">DomTag</span> <span class="token operator">=</span> <span class="token punctuation">(</span>sel<span class="token operator">?</span><span class="token operator">:</span> Selector <span class="token operator">|</span> <span class="token builtin">any</span><span class="token punctuation">,</span> <span class="token operator">...</span>args<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> VNode<span class="token punctuation">;</span>
 </code></pre>
 <p>Let's enhance!</p>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token comment">// styles.ts</span>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// styles.ts</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> label<span class="token punctuation">,</span> h1 <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@cycle/dom'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> Styles <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -281,7 +281,7 @@ This becomes:
 
 <span class="token keyword">export</span> <span class="token keyword">const</span> TopHeading <span class="token operator">=</span> <span class="token function">enhanceWithStyle</span><span class="token punctuation">(</span>h1<span class="token punctuation">,</span> Styles<span class="token punctuation">.</span>TopHeading<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token comment">// SomeComponent.ts</span>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// SomeComponent.ts</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> form<span class="token punctuation">,</span> input <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@cycle/dom'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> SmallFormLabel<span class="token punctuation">,</span> TopHeading <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./styles'</span><span class="token punctuation">;</span>
 
@@ -298,7 +298,7 @@ This becomes:
 <p>Voíla! We can use our custom components just like any other, since it uses the signature <code>(selector?, props?, children?)</code>. Composable and re-usable.</p>
 <h3>Implementation</h3>
 <p>The implementation for the enhance function is:</p>
-<pre class="language-typescript" tabindex="0"><code class="language-typescript"><span class="token comment">// styles.ts</span>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// styles.ts</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> VNode <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@cycle/dom'</span><span class="token punctuation">;</span>
 
 <span class="token comment">// specific type for selectors</span>
@@ -390,7 +390,7 @@ This becomes:
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d849e1b9df85235716906a1ed2809e3fc0b20c16">d849e1b</a> — built at <time>2022-01-18T20:53:36.914Z</time>
   </p>
 </footer>
 

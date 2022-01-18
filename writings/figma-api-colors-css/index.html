@@ -137,10 +137,10 @@
 <p>⚠️ <em>You have to tweak some variables in there!</em></p>
 <p>It was a bit fiddly to get the actual HEX codes of the styles, since Figma doesn't include them in the call to the <code>/styles</code> API endpoint. Therefore, I had to cross reference the name of the styles with the colour samples in the document. I've sent this feedback to the Figma team.</p>
 <p>Run it like this:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash">FIGMA_PERSONAL_TOKEN=&lt;your-token&gt; node fetch-figma-colors.js
-</code></pre>
+<pre class="language-bash"><code class="language-bash">FIGMA_PERSONAL_TOKEN=<your-token> node fetch-figma-colors.js
+</your-token></code></pre>
 <p>The resulting file, <code>colors.js</code>, will look like this:</p>
-<pre class="language-js" tabindex="0"><code class="language-js"><span class="token comment">/* eslint-disable */</span>
+<pre class="language-js"><code class="language-js"><span class="token comment">/* eslint-disable */</span>
 <span class="token comment">/* Updated at Thu, 21 Mar 2019 21:06:58 GMT*/</span>
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
     <span class="token comment">/** Suitable as background color. */</span>
@@ -178,7 +178,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 </ul>
 <p>Tailwind is nice since I can configure widths, margins, colours – everything – in a Javascript config file, and then generate a CSS foundation from that.</p>
 <p>See more in the <a href="https://tailwindcss.com/docs/configuration">documentation</a>, but in a nutshell it looks like this:</p>
-<pre class="language-js" tabindex="0"><code class="language-js"><span class="token comment">// tailwind.config.js</span>
+<pre class="language-js"><code class="language-js"><span class="token comment">// tailwind.config.js</span>
 
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
   <span class="token literal-property property">theme</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -190,14 +190,14 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Tailwind uses this colour scale to create border, text, and background colours as class names. I can now use it like this in my HTML <em>or</em> CSS code:</p>
-<pre class="language-html" tabindex="0"><code class="language-html"><span class="token comment">&lt;!-- HTML --&gt;</span>
+<pre class="language-html"><code class="language-html"><span class="token comment">&lt;!-- HTML --&gt;</span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bg-white<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Hello!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 </code></pre>
 <p>or</p>
-<pre class="language-css" tabindex="0"><code class="language-css"><span class="token comment">/* CSS */</span>
+<pre class="language-css"><code class="language-css"><span class="token comment">/* CSS */</span>
 
 <span class="token selector">div</span> <span class="token punctuation">{</span>
   <span class="token atrule"><span class="token rule">@apply</span> bg-white<span class="token punctuation">;</span></span>
@@ -210,7 +210,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <span class="token punctuation">}</span>
 </code></pre>
 <p>The final thing to do is thus to import our colours into the config, et voíla:</p>
-<pre class="language-js" tabindex="0"><code class="language-js"><span class="token comment">// tailwind.config.js</span>
+<pre class="language-js"><code class="language-js"><span class="token comment">// tailwind.config.js</span>
 <span class="token keyword">const</span> colors <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./colors'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
@@ -219,7 +219,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<pre class="language-html" tabindex="0"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bg-blue-10<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bg-blue-10<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-orange-60<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Orange 60<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
 </code></pre>
@@ -265,7 +265,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d849e1b9df85235716906a1ed2809e3fc0b20c16">d849e1b</a> — built at <time>2022-01-18T20:53:36.914Z</time>
   </p>
 </footer>
 

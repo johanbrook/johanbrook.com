@@ -144,7 +144,7 @@
 <p>When rebasing your branch – either to rebase in <code>master</code> or rewrite history – the branch will be diverging from the remote, if you've pushed it already. So you need to force push next time (<code>git push -f</code>).</p>
 <h2>Commit message templates</h2>
 <p>I just learned about this a couple of months ago: git supports <strong>message templates.</strong> Every time you're committing something from an external editor (not from the command line), you can use a pre-written template. The template I stole from the post linked below reminds me of the "Because". Why are you even doing this commit? Any business purpose, or is it tech?</p>
-<pre class="language-none" tabindex="0"><code class="language-none">[one line-summary of changes]
+<pre><code>[one line-summary of changes]
 
 Because:
 - [relevant context]
@@ -160,7 +160,7 @@ This commit:
 <h2>Rebasing</h2>
 <p>See this guide from the git docs: <a href="https://git-scm.com/book/en/v2/Git-Branching-Rebasing">"Rebasing"</a>.</p>
 <p>For instance:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash">git checkout my-feature-branch
+<pre class="language-bash"><code class="language-bash">git checkout my-feature-branch
 # ...do work
 # ...changes have been made in remote master
 # fetch/pull latest master
@@ -175,34 +175,34 @@ git rebase master
 </ul>
 <h2>Conflicts</h2>
 <p>At some point, there will be conflicts when rebasing. You'll be able to solve them in the same way as when manually solving conflicts when doing <code>git merge</code>. This is all described in the terminal when there's a conflict. In a nutshell</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"># Find conflicts in code:
+<pre class="language-bash"><code class="language-bash"># Find conflicts in code:
 git status
 # ..Fix them :)
 # Mark as resolved:
-git add &lt;file&gt;
+git add <file>
 # Continue rebasing
 git rebase --continue
-</code></pre>
+</file></code></pre>
 <h2>Force pushing to collaborative branches</h2>
 <p>Rewriting history requires you to force push the PR branch. I.e. you need to push with <code>git push -f</code></p>
 <p>The problem with force pushing is that anyone collaborating on the branch will not be able to just <code>git pull</code>. However, git introduced a switch on <code>pull</code> which fixes this:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash">git pull --rebase
+<pre class="language-bash"><code class="language-bash">git pull --rebase
 </code></pre>
 <p>This is essentially a</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash">git fetch origin
-git rebase origin/&lt;your-branch&gt;
-</code></pre>
+<pre class="language-bash"><code class="language-bash">git fetch origin
+git rebase origin/<your-branch>
+</your-branch></code></pre>
 <h2>Squashing commits together</h2>
 <p>This is nice for when you've done a lot of small, work preserving commits (WIPs or just to not lose them) that need to be "beautified" before submitting for review.</p>
 <p>See this guide from the git docs: <a href="https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History">"Rewriting History"</a>.</p>
 <p>In a nutshell:</p>
-<pre class="language-bash" tabindex="0"><code class="language-bash"># -i is for "interactive"
-# git rebase -i &lt;git reference&gt;
-# HEAD~&lt;number of commits to include in rebase&gt;
+<pre class="language-bash"><code class="language-bash"># -i is for "interactive"
+# git rebase -i <git reference="">
+# HEAD~<number of="" commits="" to="" include="" in="" rebase="">
 git rebase -i HEAD~5
 # or
 git rebase -i git-hash^ # ^ is targetting the parent commit
-</code></pre>
+</number></git></code></pre>
 <p>An editor will open with your included commits listed. There'll be a legend below them describing how to rewrite history. You can drop commits (<code>d</code>), squash together commits (<code>s</code>), and more. You'll be able to rewrite the commits messages too.</p>
 <h1>Aftermath</h1>
 <p>After we introduced some baselines in how we commit and share code, I personally felt much more motivated to keep things neat and tidy (aka. <a href="https://en.wikipedia.org/wiki/Broken_windows_theory">"Broken window syndrome"</a>). Git isn't just a tool to transport code from your laptop to a server: it's a super cool tool created to help us collaborate better, <em>and</em> to fix stuff when things go bad (which <em>will</em> happen sometime).</p>
@@ -240,7 +240,7 @@ git rebase -i git-hash^ # ^ is targetting the parent commit
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/bfb130ca0802c51f92e07621dc5b640de974f0d8">bfb130c</a> — built at <time>2022-01-17T19:16:55.454Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d849e1b9df85235716906a1ed2809e3fc0b20c16">d849e1b</a> — built at <time>2022-01-18T20:53:36.914Z</time>
   </p>
 </footer>
 
