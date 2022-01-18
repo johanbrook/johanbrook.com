@@ -275,6 +275,7 @@ td {
 
 pre {
   --tab-size: 2;
+  --top-inset: calc(var(--lineheight) / 2);
 
   direction: ltr;
   text-align: left;
@@ -285,23 +286,37 @@ pre {
   tab-size: var(--tab-size);
   background: var(--pre-background);
   border-radius: 8px;
-  padding: calc(var(--lineheight) / 2);
+  padding: var(--top-inset) calc(var(--lineheight));
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: none;
   font-size: var(--f6);
   overflow: auto;
+  position: relative;
 
   @media screen and (max-width: 480px) {
     padding-left: 0.25em;
   }
 
-  & ins {
+  & .line-highlight {
+    --cycle: 27px;
+    --color: 112 20% 50%;
     text-decoration: none;
+    position: absolute;
+    height: calc(var(--rows) * var(--cycle));
+    top: calc(var(--top-inset) + (var(--start) - 1) * var(--cycle));
+    background-color: hsl(var(--color) / 4%);
+    color: hsl(var(--color) / 80%);
+    left: 0;
+    width: 100%;
+    display: block;
+    pointer-events: none;
+    padding: 0 6px;
+    font-size: var(--f7);
   }
 }
 
 /* Syntax highlighting */
-code.hljs {
+code[class*='language-'] {
   display: block;
 }
 

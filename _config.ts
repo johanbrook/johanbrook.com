@@ -6,15 +6,26 @@ import inline from 'lume/plugins/inline.ts';
 import { minifier } from './deps.ts';
 import { readingTime } from './src/_lume-plugins/reading-time.ts';
 import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
-import prism from './src/_lume-plugins/prism.ts';
+import { loadLanguages, prismMarkdown } from './src/_lume-plugins/prism.ts';
 
 const DEST = 'build';
 const MINIFY = Deno.env.get('ENV') == 'production';
 
-const site = lume({
-    src: 'src',
-    dest: DEST,
-});
+loadLanguages();
+
+const site = lume(
+    {
+        src: 'src',
+        dest: DEST,
+    },
+    {
+        markdown: {
+            options: {
+                highlight: prismMarkdown,
+            },
+        },
+    }
+);
 
 const NUMERIC = 'yyyyMMddHHmm';
 
@@ -32,7 +43,6 @@ site
     )
     .copy('public', '.')
     // Plugins
-    .use(prism())
     .use(inline())
     .use(
         postcss({
