@@ -1,4 +1,4 @@
-#!/usr/bin/env deno run --allow-read --allow-write --allow-run
+#!/usr/bin/env deno run --no-check --allow-read --allow-write --allow-run
 
 /*
     Usage:
