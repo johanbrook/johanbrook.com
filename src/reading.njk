@@ -17,16 +17,16 @@ menu:
       {% for book in books | reverse %}
         <li class="mb4">
           <h2 class="mb0 no-rhythm f3 {% if not book.finished %}dimmed{% endif %}">{{ book.title }}</h2>
-          <p class="f5 mb2 fw5">{{book.author}}</p>
+          <p class="f5 mb0 fw5">{{book.author}}</p>
 
          {% if book.notes %}
-            <p class="f5 mb1">{{ book.notes }}</p>
+            <p class="f5 mt1 mb1">{{ book.notes }}</p>
           {% endif %}
  
           <p class="f6 mb0 fw6">
             {% if book.finishedAt %}
               <span title="Finished in">{{ book.finishedAt | date("MMMM yyyy") }}</span>
-              {% if book.location %} – {% endif %}
+              {% if book.location %} — {% endif %}
             {% endif %}
             {% if book.location %}
               {{ book.location }}
