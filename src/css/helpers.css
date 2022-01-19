@@ -776,13 +776,12 @@ TYPOGRAPHY
 
 .badge {
   font-size: var(--f7);
-  line-height: 20px;
   text-transform: lowercase;
-  border-radius: 5em;
+  border-radius: 4px;
   font-weight: 500;
-  box-shadow: currentColor 0 0 0 1px;
-  display: inline-block;
-  padding: 0.1em 1em;
+  background-color: var(--neon);
+  color: var(--color-bg);
+  padding: 0.4em 0.8em;
 
   &:hover {
     text-decoration: none;

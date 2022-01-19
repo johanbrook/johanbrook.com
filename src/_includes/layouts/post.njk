@@ -9,13 +9,13 @@ layout: layouts/main.njk
       <h1 itemprop="name" class="title">{{ title }}</h1>
 
       <p class="mb0 fw5 mt3">
-          {% if draft %}
-          <span class="badge mr1">Draft</span>
-          {% endif %}
           <time
           datetime="{{ date | date("ATOM") }}"
           itemprop="datePublished"
           pubdate>{{ date | date("HUMAN_DATE") }}</time>
+          {% if draft %}
+            <span class="badge ml1">Draft</span>
+          {% endif %}
       </p>
 
       <p class="muted mb4">
