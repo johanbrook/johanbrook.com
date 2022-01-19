@@ -19,7 +19,7 @@ layout: layouts/main.njk
       </p>
 
       <p class="muted mb4">
-          About {{ content | readingTime }} reading time
+          About {{ content | default("No content", true) | readingTime }} reading time
       </p>
     </header>
 
