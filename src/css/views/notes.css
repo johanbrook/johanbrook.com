@@ -11,6 +11,10 @@
 
   & header h1 a {
     color: var(--color-text);
+
+    &:hover .target {
+      color: var(--neon);
+    }
   }
 
   & > li:not(:last-child) {
