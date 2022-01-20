@@ -5,12 +5,117 @@
   <link href="https://johanbrook.com/feed.xml" rel="self"/>
   <link href="https://johanbrook.com/writings"/>
   
-  <updated>2021-12-14T00:00:00Z</updated>
+  <updated>2022-01-19T00:00:00Z</updated>
   <id>https://johanbrook.com/writings</id>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johanbrook.com</email>
   </author>
+  
+  <entry>
+    <title>A whole new world with Deno</title>
+    <link href="https://johanbrook.com/writings/deno/" />
+    <updated>2022-01-19T00:00:00Z</updated>
+    <id>https://johanbrook.com/writings/deno/</id>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;https://deno.land/&quot;&gt;Deno&lt;/a&gt; is a new &lt;em&gt;runtime&lt;/em&gt; for Javascript. Before, NodeJS used to be the one and only way to run Javascript on the server. But no more! Deno has reached stable state (it&#39;s on version 1.17 at the time of writing). It runs Typescript natively, supports ES imports (why did I feel I had to specify that as a feature?), and is built with Rust (again! This isn&#39;t a feature, but it feels good that it&#39;s Rust somehow, doesn&#39;t it?).&lt;/p&gt;
+&lt;p&gt;Until now, I&#39;ve just read the &lt;a href=&quot;https://deno.land/manual&quot;&gt;Deno manual&lt;/a&gt; and lurked in their &lt;a href=&quot;https://deno.land/std&quot;&gt;standard library&lt;/a&gt;. Then I played around with a server + client app for a couple of days, and after that I converted this site to use &lt;a href=&quot;https://lumeland.github.io/&quot;&gt;lume&lt;/a&gt;, which is a static site generator based on Deno.&lt;/p&gt;
+&lt;p&gt;Here are some of my personal favourites in Deno, with some love for lume as an appendix.&lt;/p&gt;
+&lt;h1&gt;Web APIs we know and love&lt;/h1&gt;
+&lt;p&gt;Deno includes a ton of niceties that just sparks joy for the hardest of the hardcore NodeJS developers out there. &lt;code&gt;fetch&lt;/code&gt; &lt;em&gt;just works&lt;/em&gt; (we&#39;ve internalised that one needs to &lt;code&gt;npm install&lt;/code&gt; some external library for HTTP requests in NodeJS). Hell, even doing the very browser-y &lt;code&gt;alert&lt;/code&gt; and &lt;code&gt;confirm&lt;/code&gt; in your Deno based CLI script will work on the command line to show a message and prompt for yes/no, respectively. Opinions might differ whether this is good or bad, but personally I appreciate not having to pull in a lib or visit StackOverflow each time I need user input.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;For APIs where a web standard already exists, like fetch for HTTP requests, Deno uses these rather than inventing a new proprietary API.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The above line from &lt;a href=&quot;https://deno.land/manual/runtime&quot;&gt;&amp;quot;The Runtime&amp;quot;&lt;/a&gt; section of the Manual is the red line throughout the Deno API.&lt;/p&gt;
+&lt;p&gt;That means, instead of doing&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Node&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; request &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;some-random-npm-request-lib&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; request&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;https://deno.land&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;you&#39;d do&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Deno/browsers&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;fetch&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;https://deno.land&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In Deno, you can use a ton of browser-y APIs, such as &lt;code&gt;location&lt;/code&gt;, &lt;code&gt;local/sessionStorage&lt;/code&gt;, &lt;a href=&quot;https://deno.land/manual@v1.17.3/runtime/web_platform_apis#other-apis&quot;&gt;and more&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Another example: you can use the same CSS based styling for &lt;code&gt;console&lt;/code&gt; calls as you&#39;d do in the browser:&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Deno/browsers&lt;/span&gt;
+&lt;span class=&quot;token builtin&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&#39;%cHi there. %cSome background?&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&#39;color: red&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&#39;background-color: gray&#39;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No need for terminal escape codes or pulling in yet another library.&lt;/p&gt;
+&lt;p&gt;I hope it&#39;s clear where I&#39;m getting at: there are things included in Deno that you &lt;em&gt;just know already&lt;/em&gt; because you&#39;ve been writing web code for years. It lowers the iteration speed when writing code, as well as lowers the overhead when reading it, when you don&#39;t have to refer to third party dependencies or in-house modules all the time. To me, this feels much better when writing code in Deno.&lt;/p&gt;
+&lt;p&gt;The use of third party dependencies have been a debate in Javascript land during the past couple of months, due to … incidents around security and feelings of the module authors themselves. Surely the best dependency is no dependency, right? Surely a ton of npm modules can be deprecated if only NodeJS (or Javascript itself) had a better standard library?&lt;/p&gt;
+&lt;p&gt;I hope that we in the future look at &amp;quot;old&amp;quot; code and say: &amp;quot;Oh, did you pull in a dependency for &lt;em&gt;that&lt;/em&gt;?&amp;quot;.&lt;/p&gt;
+&lt;h1&gt;Typescript as a first class citizen&lt;/h1&gt;
+&lt;p&gt;I was in tears (tears of joy, I assure you) when I first read about Typescript support in Deno when the latter was introduced years ago. No need for a build step for &lt;code&gt;.ts&lt;/code&gt; and &lt;code&gt;.tsx&lt;/code&gt; files, just &lt;code&gt;deno run&lt;/code&gt; and off you go. I just works.&lt;/p&gt;
+&lt;p&gt;One neat API is &lt;a href=&quot;https://deno.land/manual/typescript/runtime&quot;&gt;&lt;code&gt;Deno.emit&lt;/code&gt;&lt;/a&gt;. With it, you can programmatically compile and bundle Typescript code to Javascript.&lt;/p&gt;
+&lt;p&gt;I&#39;ve got not much more to say about this than &lt;em&gt;&amp;quot;Finally&amp;quot;&lt;/em&gt;.&lt;/p&gt;
+&lt;h1&gt;Testing&lt;/h1&gt;
+&lt;p&gt;Let&#39;s play a game. How many test runners for Javascript code can you think of?&lt;/p&gt;
+&lt;p&gt;…&lt;/p&gt;
+&lt;p&gt;Okay, tough question, as the correct answer probably is: &amp;quot;The number is approaching &lt;code&gt;Infinity&lt;/code&gt;&amp;quot;.&lt;/p&gt;
+&lt;p&gt;How many test runners do you &lt;em&gt;need&lt;/em&gt;? One. There&#39;s one built-in in Deno:&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;Deno&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;My test&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// test things&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Name the file &lt;code&gt;something.test.ts&lt;/code&gt; and run it with:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;deno test something.test.ts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I love this. Standardised, one way of doing things, minimal. No arguing in the team about which is the best test runner this month.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;https://deno.land/std/testing&quot;&gt;&lt;code&gt;testing&lt;/code&gt;&lt;/a&gt; module from the Deno std lib includes a couple of assertions – you probably don&#39;t need more than those. (I also see it exports tools for benchmarking your code as well, iihhh!)&lt;/p&gt;
+&lt;h1&gt;Distributed dependency management&lt;/h1&gt;
+&lt;p&gt;…with no &lt;code&gt;package.json&lt;/code&gt;! In Deno, you import external, remote, dependencies with URLs. Again, just like we&#39;ve done in the browser since the 90s (&lt;code&gt;&amp;lt;script src=&amp;quot;http://cdn.example.com/script.js&amp;gt;&lt;/code&gt; amirite). When Deno first runs your code, it&#39;ll fetch the remote script and cache it locally for the next runs. Don&#39;t be scared: Deno do support reading and writing a lockfile with options to &lt;code&gt;deno run&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;This is how it looks like:&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; dependency &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;https://somesite.com/mod.ts&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(By convention, modules should have a &lt;code&gt;mod.ts&lt;/code&gt; which is the entrypoint for consumers. Note that there&#39;s no concept of some silly &lt;code&gt;index.js&lt;/code&gt; file in Deno land: that&#39;s one thing the Node creator Ryan wanted to get rid of when he created Deno.)&lt;/p&gt;
+&lt;p&gt;This is actually fairly liberating once you&#39;ve sweated out the feelings of chaos in your codebase. Remember, this is all source code! You can centralise all these third party imports to a single file and re-export them. In fact, that&#39;s what &lt;a href=&quot;https://deno.land/manual@v1.18.0/linking_to_external_code#it-seems-unwieldy-to-import-urls-everywhere&quot;&gt;they recommend in the Deno Manual&lt;/a&gt;:&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// deps.ts (naming convention!)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; assert &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;https://deno.land/std@0.122.0/testing/asserts.ts&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;quot;Sooo how do I get my fav npm hosted lib into my Deno code then?&amp;quot;, you ask.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Check &lt;a href=&quot;https://deno.land/x&quot;&gt;deno.land/x&lt;/a&gt; if the module is hosted there. There are a lot of Deno specific modules.&lt;/li&gt;
+&lt;li&gt;Import from any of the services below.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Services reading from npm:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.skypack.dev/&quot;&gt;Skypack&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://esm.sh/&quot;&gt;esm.sh&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://unpkg.com/&quot;&gt;unpkg.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://cdnjs.com/&quot;&gt;cdnjs.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Skypack and esm.sh will actually bundle code from npm into modern ES module syntax. Both of them are Deno friendly.&lt;/p&gt;
+&lt;p&gt;The beauty with these is that if one of them is failing, or if you&#39;re unhappy with the service, you can just switch out the URL imports in your &lt;code&gt;deps.ts&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Tip: with Skypack and esm.sh (from what I know) you get Typescript types too. esm.sh will do this automatically, and with Skypack you can append a &lt;code&gt;?dts&lt;/code&gt; query parameter to the imported URL. See their respective config query parameters: it&#39;s super cool what they can do these days.&lt;/p&gt;
+&lt;p&gt;One thing that tripped me up was that it&#39;s not always easy to find a suitable entrypoint file when importing via URLs. Deno friendly modules has a &lt;code&gt;mod.ts&lt;/code&gt; in the repo somewhere, but often you have to hunt down a file yourself.&lt;/p&gt;
+&lt;h2&gt;Import maps&lt;/h2&gt;
+&lt;p&gt;I&#39;ve glossed over the technology that is &lt;a href=&quot;https://github.com/WICG/import-maps&quot;&gt;Import Maps&lt;/a&gt;. In my own words, I&#39;d say it&#39;s a file where you specify from where the source code&#39;s &lt;code&gt;import&lt;/code&gt; statements should look for the code to be imported. In a way, it&#39;s emulating npm&#39;s way of looking in &lt;code&gt;node_modules&lt;/code&gt;, but this is even more powerful.&lt;/p&gt;
+&lt;p&gt;If you were annoyed over importing &amp;quot;raw&amp;quot; URLs in the section above, this will save you!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Import map&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;imports&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;react&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://esm.sh/react@17.0.2&quot;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Source code&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;react&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Remember to specify &lt;code&gt;--import-map&lt;/code&gt; for &lt;code&gt;deno run&lt;/code&gt;! Nothing in Deno is implicit: it won&#39;t pick up the import map by itself.&lt;/p&gt;
+&lt;h1&gt;Summary&lt;/h1&gt;
+&lt;p&gt;My overall impression of Deno that while it&#39;s new technology, it&#39;s quite mature and well documented. And if you&#39;ve got a hairy question, you can pop into their Discord server and ask there. The &lt;code&gt;std&lt;/code&gt; modules are very modern in the way they&#39;re written (compared to Node, which &lt;em&gt;just&lt;/em&gt; got Promise based APIs…). It&#39;s actually fun to write Javascript code again. I&#39;d attribute that to the decrease of &amp;quot;Javascript fatigue&amp;quot; in Deno, since there are so many built-in modules you&#39;d previously assume you&#39;d need to get from a third party.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;When&lt;/strong&gt; (hehe) you install Deno, be sure to do &lt;code&gt;deno help&lt;/code&gt; in a terminal to see the range of nice sub commands. &lt;code&gt;deno types&lt;/code&gt; and &lt;code&gt;deno doc&lt;/code&gt; are favourites of mine. &lt;code&gt;deno compile&lt;/code&gt; is also cool if you&#39;re writing a script which should be run as a self contained executable, suitable for distribution.&lt;/p&gt;
+&lt;h1&gt;Appendix: lume&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://lumeland.github.io/&quot;&gt;lume&lt;/a&gt; is a static site generator, built with Deno. I read through the documentation and jumped around in the source code for a while before I fell in love and ported johanbrook.com to it.&lt;/p&gt;
+&lt;p&gt;Lume is a joy to work with. The built-in functionality and plugins fill 95% of my use cases – very little custom code needed. And &lt;em&gt;if&lt;/em&gt; I don&#39;t understand the documentation, reading the source code is no problem.&lt;/p&gt;
+&lt;p&gt;It &lt;em&gt;feels&lt;/em&gt; easier to use than other generators I&#39;ve tried (Jekyll, Middleman, Metalsmith, Eleventy) but yet very powerful. During the porting my code I was not too annoyed during the process: something that you easily get when trying a brand new site generator. The fact that its written in Typescript is &lt;em&gt;so&lt;/em&gt; nice, as you get static typing and don&#39;t have to guess what objects and properties to read.&lt;/p&gt;
+&lt;p&gt;Try it out!&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>Setting up an iOS home screen web app in 2021</title>
@@ -1424,166 +1529,6 @@ module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;
 &lt;/ol&gt;
 &lt;p&gt;Anytime you&#39;d like to adjust the colours in your system, be sure to run the script in the CSS codebase and distribute a new version of the generated CSS file.&lt;/p&gt;
 &lt;p&gt;Future work could include specifying whole component styles in Figma and parsing that into corresponding CSS rules ✌️&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>Using streams in React with Hooks</title>
-    <link href="https://johanbrook.com/writings/react-hooks-streams/" />
-    <updated>2019-03-03T00:00:00Z</updated>
-    <id>https://johanbrook.com/writings/react-hooks-streams/</id>
-    <content type="html">&lt;p&gt;&lt;strong&gt;As of React 16.8,&lt;/strong&gt; there&#39;s a new tool in the toolbox: &lt;a href=&quot;https://reactjs.org/docs/hooks-intro.html&quot;&gt;Hooks&lt;/a&gt;. Hooks are used in functional React components, extending their functionality to include state and side effects.&lt;/p&gt;
-&lt;p&gt;I recommend reading &lt;a href=&quot;https://overreacted.io/making-setinterval-declarative-with-react-hooks/&quot;&gt;this article&lt;/a&gt; by Dan Abramov for a deeper understanding of hooks. It shows how the coding style moves away from imperative class code to declarative code.&lt;/p&gt;
-&lt;p&gt;I realised the beauty of hooks in user interface components when creating a component which shows the current time in a recording. We&#39;ve recently started using Functional Reactive Streams for the frontend at Lookback (specifically, we&#39;re using the &lt;a href=&quot;http://staltz.github.io/xstream/&quot;&gt;xstream&lt;/a&gt; library, but the concepts are similar in other libraries). Explaining the concept with streams is out of scope in this post, but the gist is that you manage state as immutable streams of values. &lt;a href=&quot;https://gist.github.com/staltz/868e7e9bc2a7b8c1f754&quot;&gt;This post&lt;/a&gt; is a nice intro to streams/reactive programming.&lt;/p&gt;
-&lt;p&gt;Streams actually play well with React. It&#39;s &lt;em&gt;basically&lt;/em&gt;, on a conceptual level, all about doing a &lt;code&gt;.map&lt;/code&gt; on a stream of values and draw the React virtual DOM based on the values. But React components must either have a &lt;code&gt;render()&lt;/code&gt; function which return JSX, or be a function which returns JSX. How do we render our current time from a stream?&lt;/p&gt;
-&lt;p&gt;An intuitive approach of mine would be:&lt;/p&gt;
-&lt;pre class=&quot;language-tsx&quot;&gt;&lt;code class=&quot;language-tsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;react&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; Stream &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;xstream&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Props&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  currentTime$&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Stream&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;// This won&#39;t work: our component can&#39;t return a Stream!&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;CurrentTime&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Props&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt;
-  props&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;currentTime$&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;time &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt;
-    &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;time&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;time&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;time&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We can&#39;t return a stream from a React component – it must somehow devour the stream and return JSX.&lt;/p&gt;
-&lt;h2&gt;The class(ical) approach&lt;/h2&gt;
-&lt;p&gt;So we need to take a more verbose approach:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Subscribe to the stream in a class component.&lt;/li&gt;
-&lt;li&gt;For each new value, set the local state to the value.&lt;/li&gt;
-&lt;li&gt;Render based on local state.&lt;/li&gt;
-&lt;li&gt;Tear down the subscription on unmount.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Very well then:&lt;/p&gt;
-&lt;pre class=&quot;language-tsx&quot;&gt;&lt;code class=&quot;language-tsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;react&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; Stream&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Subscription &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;xstream&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; formatTime &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;./libs/format-time&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Props&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    currentTime$&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Stream&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;State&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    timeInSeconds&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TimeCounter&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;PureComponent&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Props&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; State&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    sub&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Subscription&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;token function&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Props&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-        &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;state &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-            timeInSeconds&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;token function&quot;&gt;componentDidMount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;sub &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;currentTime$&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;token function-variable function&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;time&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; timeInSeconds&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; time &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;token function&quot;&gt;componentWillUnmount&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;sub &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;sub&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;unsubscribe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;token function&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ReactNode &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; timeInSeconds &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;state&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-        &lt;span class=&quot;token comment&quot;&gt;// Renders something like: &quot;00:10&quot;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;time&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;formatTime&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;timeInSeconds&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;time&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This totally works, but yeah... Very verbose and imperative. Hooks to the rescue!&lt;/p&gt;
-&lt;h2&gt;The Hook approach&lt;/h2&gt;
-&lt;p&gt;Let&#39;s follow the intro to Hooks from the React website, and convert our class to a function:&lt;/p&gt;
-&lt;pre class=&quot;language-tsx&quot;&gt;&lt;code class=&quot;language-tsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; useState&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; useEffect &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;react&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; Stream &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;xstream&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; formatTime &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;./libs/format-time&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Props&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  currentTime$&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Stream&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;TimeCounter&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Props&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token comment&quot;&gt;// Create a state hook for our time state, with initial state of zero:&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;current&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; setCurrent&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token generic-function&quot;&gt;&lt;span class=&quot;token function&quot;&gt;useState&lt;/span&gt;&lt;span class=&quot;token generic class-name&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-  &lt;span class=&quot;token function&quot;&gt;useEffect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token comment&quot;&gt;// On component mount, set up a side effect that subscribes to&lt;/span&gt;
-      &lt;span class=&quot;token comment&quot;&gt;// the stream, and let `setCurrent` be called for new values:&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; sub &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; props&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;currentTime$&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-          next&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; setCurrent&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-      &lt;span class=&quot;token comment&quot;&gt;// Unsubscribe on component tear down:&lt;/span&gt;
-      &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; sub&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;unsubscribe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-  &lt;span class=&quot;token comment&quot;&gt;// Render our current time state as the returned JSX!&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;time&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;formatDuration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentTime&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;time&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;// Elsewhere, render as usual:&lt;/span&gt;
-&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;TimeCounter&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;currentTime$&lt;/span&gt;&lt;span class=&quot;token script language-javascript&quot;&gt;&lt;span class=&quot;token script-punctuation punctuation&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;myStreamOfNumbers$&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;/&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;We call &lt;code&gt;useEffect&lt;/code&gt; to set up a subscription on the incoming stream. &lt;a href=&quot;https://reactjs.org/docs/hooks-effect.html&quot;&gt;Read more&lt;/a&gt; about the effect hook.&lt;/li&gt;
-&lt;li&gt;We call &lt;code&gt;useState&lt;/code&gt; with an inital value and receive back a tuple of the current value and a setter. &lt;a href=&quot;https://reactjs.org/docs/hooks-state.html&quot;&gt;Read more&lt;/a&gt; about the state hook.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So minimal, still readable. Even &lt;em&gt;more&lt;/em&gt; readable than the class version, I think.&lt;/p&gt;
-&lt;h2&gt;Extracting our hook&lt;/h2&gt;
-&lt;p&gt;Since Hooks are &lt;em&gt;just functions&lt;/em&gt;, we can extract common functional patterns into our own hooks and use them in other components. I found myself writing another component which also subscribed to an incoming stream and rendered its values. What a candidate for extraction into a hook!&lt;/p&gt;
-&lt;p&gt;If we analyse the component above, we see that &lt;code&gt;useState&lt;/code&gt; and &lt;code&gt;useEffect&lt;/code&gt; are going to work roughly, if not exactly, the same for any other component. Only the types in the incoming stream differ. Here we use the type &lt;code&gt;number&lt;/code&gt;, but we can make our new Hook generic thanks to TypeScript&#39;s generics.&lt;/p&gt;
-&lt;p&gt;I came up with this:&lt;/p&gt;
-&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// use-stream.ts&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; useEffect&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; useState &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;react&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; Stream &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;xstream&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; useStream &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;stream$&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Stream&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; initialState&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;current&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; setCurrent&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token generic-function&quot;&gt;&lt;span class=&quot;token function&quot;&gt;useState&lt;/span&gt;&lt;span class=&quot;token generic class-name&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;initialState&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;token function&quot;&gt;useEffect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; sub &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; stream$&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;subscribe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-            next&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; setCurrent&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; sub&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;unsubscribe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;token comment&quot;&gt;// Just return our current value, since that&#39;s the thing we&#39;re interested in&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;// (to render) when using this hook:&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; current&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; useStream&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We&#39;ve just made our own &lt;code&gt;useStream&lt;/code&gt; hook by composing &lt;code&gt;useEffect&lt;/code&gt; and &lt;code&gt;useState&lt;/code&gt;!&lt;/p&gt;
-&lt;p&gt;The hook can be used like this:&lt;/p&gt;
-&lt;pre class=&quot;language-tsx&quot;&gt;&lt;code class=&quot;language-tsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;react&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; Stream &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;xstream&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; formatDuration &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;./libs/format-time&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; useStream &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;./hooks/use-stream&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Props&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    currentTime$&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Stream&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;CurrentTimeCounter&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Props&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; currentTime&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token generic-function&quot;&gt;&lt;span class=&quot;token function&quot;&gt;useStream&lt;/span&gt;&lt;span class=&quot;token generic class-name&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;props&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;currentTime$&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;time&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;formatDuration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;currentTime&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;time&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And at last, there is beauty.&lt;/p&gt;</content>
   </entry>
   
 </feed>
