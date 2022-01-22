@@ -100,7 +100,7 @@ h2:not(.no-rhythm),
 .f2:not(.no-rhythm),
 .f3:not(.no-rhythm) {
   margin-bottom: var(--lineheight);
-  line-height: 1.5;
+  line-height: 1.2;
   vertical-align: top;
 
   &:first-line {
@@ -131,7 +131,7 @@ h1,
 }
 
 h1 {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 h2,
@@ -279,6 +279,7 @@ pre {
 
   direction: ltr;
   text-align: left;
+  line-height: var(--leading);
   white-space: pre;
   word-spacing: normal;
   word-break: normal;
