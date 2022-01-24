@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Writings of Johan Brook</title>
   <subtitle>I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I&#39;m coding &amp; designering and I like working with product, user experience, interface design, and other things too.</subtitle>
-  <link href="https://johanbrook.com/feed.xml" rel="self"/>
-  <link href="https://johanbrook.com/writings"/>
+  <link href="https://johan.im/feed.xml" rel="self"/>
+  <link href="https://johan.im/writings"/>
   
   <updated>2022-01-19T00:00:00Z</updated>
-  <id>https://johanbrook.com/writings</id>
+  <id>https://johan.im/writings</id>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johanbrook.com</email>
@@ -14,9 +14,9 @@
   
   <entry>
     <title>A whole new world with Deno</title>
-    <link href="https://johanbrook.com/writings/deno/" />
+    <link href="https://johan.im/writings/deno/" />
     <updated>2022-01-19T00:00:00Z</updated>
-    <id>https://johanbrook.com/writings/deno/</id>
+    <id>https://johan.im/writings/deno/</id>
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://deno.land/&quot;&gt;Deno&lt;/a&gt; is a new &lt;em&gt;runtime&lt;/em&gt; for Javascript. Before, NodeJS used to be the most popular way to run Javascript on the server. But no more! Deno has reached stable state (it&#39;s on version 1.17 at the time of writing). It runs Typescript natively, supports ES imports (why did I feel I had to specify that as a feature?), and is built with Rust (again! This isn&#39;t a feature, but it feels good that it&#39;s Rust somehow, doesn&#39;t it?).&lt;/p&gt;
 &lt;p&gt;Until now, I&#39;ve just read the &lt;a href=&quot;https://deno.land/manual&quot;&gt;Deno manual&lt;/a&gt; and lurked in their &lt;a href=&quot;https://deno.land/std&quot;&gt;standard library&lt;/a&gt;. Then I played around with a server + client app for a couple of days, and after that I converted this site to use &lt;a href=&quot;https://lumeland.github.io/&quot;&gt;lume&lt;/a&gt;, which is a static site generator based on Deno.&lt;/p&gt;
 &lt;p&gt;Here are some of my personal favourites in Deno, with some love for lume as an appendix.&lt;/p&gt;
@@ -119,9 +119,9 @@
   
   <entry>
     <title>Setting up an iOS home screen web app in 2021</title>
-    <link href="https://johanbrook.com/writings/ios-homescreen-web-app/" />
+    <link href="https://johan.im/writings/ios-homescreen-web-app/" />
     <updated>2021-12-14T00:00:00Z</updated>
-    <id>https://johanbrook.com/writings/ios-homescreen-web-app/</id>
+    <id>https://johan.im/writings/ios-homescreen-web-app/</id>
     <content type="html">&lt;h2&gt;Background&lt;/h2&gt;
 &lt;p&gt;During parental leave, I&#39;ve started to run. Not away from the baby, for heaven&#39;s sakes, but regular exercise running. I really prioritised keeping it super straight-forward: I refuse wear any kind of wearable, such an Apple Watch or Garmin in order to track heart rate and so on (I won&#39;t go into why here, I just don&#39;t need another tech device). But. Even I see the need for tracking basic stats, like duration, length of run, and average speed. Those are literally the three things I need.&lt;/p&gt;
 &lt;p&gt;Let&#39;s see what running apps there are! &lt;em&gt;Opens up App Store.&lt;/em&gt; &amp;quot;Strava, yes I&#39;ve heard about that one. Runkeeper… that one I&#39;ve used before! ( = a lifetime ago)&amp;quot;. I installed Strava because it was at the top, and hell begins. It prompts me for an account, which is fair enough I guess, but it still put me off a bit. It&#39;s also paid. Monthly subscription. And it shows nagging reminders to upgrade to a paid plan &lt;em&gt;everywhere&lt;/em&gt;. And it has social features, which I of course don&#39;t need. It has so much &lt;em&gt;stuff&lt;/em&gt; I neither need nor want! As a developer on leave, the only sane thing to do is to write my own running app.&lt;/p&gt;
@@ -393,10 +393,10 @@ document&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
   
   <entry>
     <title>An Even Better Spaghetti Bolognese</title>
-    <link href="https://johanbrook.com/writings/better-spaghetti-bolognese/" />
+    <link href="https://johan.im/writings/better-spaghetti-bolognese/" />
     <updated>2021-11-02T00:00:00Z</updated>
-    <id>https://johanbrook.com/writings/better-spaghetti-bolognese/</id>
-    <content type="html">&lt;p&gt;This is a continuation (sequel? remix?) on the post &lt;a href=&quot;https://johanbrook.com/writings/my-spaghetti-bolognese&quot;&gt;&amp;quot;My Spaghetti Bolognese&amp;quot;&lt;/a&gt;. In that one, I wrote about a spaghetti bolognese recipe which I thought I&#39;d, pretentious as I am, perfected over the years.&lt;/p&gt;
+    <id>https://johan.im/writings/better-spaghetti-bolognese/</id>
+    <content type="html">&lt;p&gt;This is a continuation (sequel? remix?) on the post &lt;a href=&quot;https://johan.im/writings/my-spaghetti-bolognese&quot;&gt;&amp;quot;My Spaghetti Bolognese&amp;quot;&lt;/a&gt;. In that one, I wrote about a spaghetti bolognese recipe which I thought I&#39;d, pretentious as I am, perfected over the years.&lt;/p&gt;
 &lt;p&gt;We recently spent a month in Florence, Italy, where we stayed with a host family. For one birthday party for their grandchild, the family father had made a ragú sauce served with penne pasta. The sauce was amazing: rich, juicy, and smooth. I asked for the recipe, and will present it in this post.&lt;/p&gt;
 &lt;h2&gt;The ingredients&lt;/h2&gt;
 &lt;ul&gt;
@@ -439,10 +439,10 @@ document&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
   
   <entry>
     <title>Recently in books II</title>
-    <link href="https://johanbrook.com/writings/recently-in-books-ii/" />
+    <link href="https://johan.im/writings/recently-in-books-ii/" />
     <updated>2020-12-31T00:00:00Z</updated>
-    <id>https://johanbrook.com/writings/recently-in-books-ii/</id>
-    <content type="html">&lt;p&gt;This is a long overdue post on some books I&#39;ve read since the &lt;a href=&quot;https://johanbrook.com/writings/recently-in-books&quot;&gt;last update&lt;/a&gt;.&lt;/p&gt;
+    <id>https://johan.im/writings/recently-in-books-ii/</id>
+    <content type="html">&lt;p&gt;This is a long overdue post on some books I&#39;ve read since the &lt;a href=&quot;https://johan.im/writings/recently-in-books&quot;&gt;last update&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;&amp;quot;Ishmael&amp;quot; by Daniel Quinn&lt;/h2&gt;
 &lt;p&gt;My father in law borrowed me this one, not without a glimpse in his eye. It&#39;s hard to describe this novel. It&#39;s not what it seems to be in the first few pages, which is about a man who starts talking with a gorilla via telepathy. The bulk of the novel is the philosophical conversation between the odd couple, where the gorilla acts as the teacher for the man, who acts as narrator.&lt;/p&gt;
 &lt;p&gt;My immediate thoughts about this book are these:&lt;/p&gt;
@@ -492,9 +492,9 @@ document&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
   
   <entry>
     <title>Building a small, functional reactive app architecture</title>
-    <link href="https://johanbrook.com/writings/frp-app-arch/" />
+    <link href="https://johan.im/writings/frp-app-arch/" />
     <updated>2020-05-01T00:00:00Z</updated>
-    <id>https://johanbrook.com/writings/frp-app-arch/</id>
+    <id>https://johan.im/writings/frp-app-arch/</id>
     <content type="html">&lt;p&gt;At &lt;a href=&quot;https://lookback.io/&quot;&gt;Lookback&lt;/a&gt;, we&#39;ve fallen in love with functional reactive programming (FRP) with streams in our frontend apps. Together with the use of Typescript for compile time type safety, we&#39;ve seen a tremendous bump in overall stability and fewer runtime bugs. Actually, I dare to say that &lt;em&gt;all&lt;/em&gt; of our bugs so far have been either logic (programmer) or timing errors.&lt;/p&gt;
 &lt;h2&gt;What this text is and what it&#39;s not&lt;/h2&gt;
 &lt;p&gt;We&#39;ll look at how &lt;em&gt;easy&lt;/em&gt; it actually is to build these kind of frontend architectures on your own. This architecture is, to be clear, &lt;em&gt;not&lt;/em&gt; any new or novel idea at all. As you will read below, it&#39;s essentially a rip-off of a library called CycleJS, but less general and made to work with React as a view before CycleJS had proper React support.&lt;/p&gt;
@@ -793,7 +793,7 @@ state$ = ---{ name: &#39;Johan Brook&#39; }--{ name: &#39;Johnny Doe&#39; }-
 &lt;p&gt;We&#39;ve modelled data as streams so far, so why not continue on that track. Imagine a &lt;code&gt;view$&lt;/code&gt; stream which is a stream of &lt;em&gt;all&lt;/em&gt; different kinds of messages – user input – coming from the view.&lt;/p&gt;
 &lt;p&gt;I imagine this flow being something like this:&lt;/p&gt;
 &lt;figure id=&quot;view-model&quot;&gt;
-  &lt;img width=&quot;413&quot; alt=&quot;Messages flow&quot; src=&quot;https://johanbrook.com/{{ &#39;frap-messages.png&#39; | postAssetUrl }}&quot; /&gt;
+  &lt;img width=&quot;413&quot; alt=&quot;Messages flow&quot; src=&quot;https://johan.im/{{ &#39;frap-messages.png&#39; | postAssetUrl }}&quot; /&gt;
   &lt;figcaption&gt;Simplified flow diagram.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;How does a message look like then? Perhaps like this:&lt;/p&gt;
@@ -1016,7 +1016,7 @@ state$ = ---{ name: &#39;Johan Brook&#39; }--{ name: &#39;Johnny Doe&#39; }-
 &lt;p&gt;We&#39;re gonna use the exact same concept of drivers in Frap. Drivers receive &lt;em&gt;Sinks&lt;/em&gt; and return &lt;em&gt;Sources&lt;/em&gt;. This is in contrast to our main app function, which receives &lt;em&gt;Sources&lt;/em&gt; and returns &lt;em&gt;Sinks&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;The flow diagram thus becomes:&lt;/p&gt;
 &lt;figure id=&quot;view-model&quot;&gt;
-  &lt;img width=&quot;624&quot; alt=&quot;Driver flow&quot; src=&quot;https://johanbrook.com/{{ &#39;frap-driver-flow.png&#39; | postAssetUrl }}&quot; /&gt;
+  &lt;img width=&quot;624&quot; alt=&quot;Driver flow&quot; src=&quot;https://johan.im/{{ &#39;frap-driver-flow.png&#39; | postAssetUrl }}&quot; /&gt;
   &lt;figcaption&gt;App architecture with drivers and view.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Let&#39;s nail down our Sources and Sinks here.&lt;/p&gt;
@@ -1192,9 +1192,9 @@ state$ = ---{ name: &#39;Johan Brook&#39; }--{ name: &#39;Johnny Doe&#39; }-
   
   <entry>
     <title>Recent improvements in our git discipline</title>
-    <link href="https://johanbrook.com/writings/git-guidelines/" />
+    <link href="https://johan.im/writings/git-guidelines/" />
     <updated>2020-02-23T00:00:00Z</updated>
-    <id>https://johanbrook.com/writings/git-guidelines/</id>
+    <id>https://johan.im/writings/git-guidelines/</id>
     <content type="html">&lt;p&gt;The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. During last Autumn in &lt;a href=&quot;http://lookback.io/&quot;&gt;Lookback&lt;/a&gt;, the engineering team noticed that we needed to take care of some weeds.&lt;/p&gt;
 &lt;p&gt;Not only in our committing code culture, but also in the land of code reviews and Pull Requests at GitHub.&lt;/p&gt;
 &lt;p&gt;Here are some of the principles and guidelines we worked out.&lt;/p&gt;
@@ -1315,9 +1315,9 @@ git rebase -i git-hash^ # ^ is targetting the parent commit
   
   <entry>
     <title>Recently in books</title>
-    <link href="https://johanbrook.com/writings/recently-in-books/" />
+    <link href="https://johan.im/writings/recently-in-books/" />
     <updated>2020-02-01T00:00:00Z</updated>
-    <id>https://johanbrook.com/writings/recently-in-books/</id>
+    <id>https://johan.im/writings/recently-in-books/</id>
     <content type="html">&lt;p&gt;The year started off with three weeks in Sri Lanka, where I naturally didn&#39;t bring my laptop. I also only had phone internet while on wi-fi (didn&#39;t buy a data plan), which was lovely. This, combined with early evenings, led me to read much more than during whole 2019.&lt;/p&gt;
 &lt;p&gt;Here are the ones I worked through:&lt;/p&gt;
 &lt;h2&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/The_Alchemist_(novel)&quot;&gt;&amp;quot;The Alchemist&amp;quot;&lt;/a&gt; – Paolo Coelho&lt;/h2&gt;
@@ -1353,9 +1353,9 @@ git rebase -i git-hash^ # ^ is targetting the parent commit
   
   <entry>
     <title>Like Knitting</title>
-    <link href="https://johanbrook.com/writings/coding-like-knitting/" />
+    <link href="https://johan.im/writings/coding-like-knitting/" />
     <updated>2019-12-08T00:00:00Z</updated>
-    <id>https://johanbrook.com/writings/coding-like-knitting/</id>
+    <id>https://johan.im/writings/coding-like-knitting/</id>
     <content type="html">&lt;p&gt;A colleague mentioned this the other day in the company chat:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;I like coding. It&#39;s like knitting.&lt;/p&gt;
@@ -1375,9 +1375,9 @@ git rebase -i git-hash^ # ^ is targetting the parent commit
   
   <entry>
     <title>Euphoria</title>
-    <link href="https://johanbrook.com/writings/euphoria/" />
+    <link href="https://johan.im/writings/euphoria/" />
     <updated>2019-08-31T00:00:00Z</updated>
-    <id>https://johanbrook.com/writings/euphoria/</id>
+    <id>https://johan.im/writings/euphoria/</id>
     <content type="html">&lt;p&gt;![Rue]({{ &amp;quot;euphoria.jpg&amp;quot; | postAssetUrl }})&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Euphoria_(American_TV_series&quot;&gt;Euphoria&lt;/a&gt; on HBO is my new favourite series. Even though my experience with the American teenage upbringing is non-existent, the show is very realistic and well made. It&#39;s like &lt;a href=&quot;https://en.wikipedia.org/wiki/Skam_(TV_series)&quot;&gt;Skam&lt;/a&gt; but with heavier drugs and … heavier of everything.&lt;/p&gt;
 &lt;p&gt;I especially like the cinematography and fast paced storytelling. You get sucked in pretty easily. The main character, Rue, is portrayed perfectly. I find it interesting how they don&#39;t romanticise youth, as other shows are doing. This show is &lt;em&gt;dark&lt;/em&gt; – be prepared – it&#39;s not this &lt;em&gt;&amp;quot;Youth is wasted on the young&amp;quot;&lt;/em&gt; thing. More like &lt;em&gt;&amp;quot;I&#39;m glad you&#39;re still alive, carrying all this shit around&lt;/em&gt;&amp;quot;.&lt;/p&gt;</content>
@@ -1385,9 +1385,9 @@ git rebase -i git-hash^ # ^ is targetting the parent commit
   
   <entry>
     <title>Using Figma&#39;s API to sync colours with your CSS</title>
-    <link href="https://johanbrook.com/writings/figma-api-colors-css/" />
+    <link href="https://johan.im/writings/figma-api-colors-css/" />
     <updated>2019-03-30T00:00:00Z</updated>
-    <id>https://johanbrook.com/writings/figma-api-colors-css/</id>
+    <id>https://johan.im/writings/figma-api-colors-css/</id>
     <content type="html">&lt;p&gt;&lt;strong&gt;Design systems&lt;/strong&gt; have become popular recently. Even if you don&#39;t need a full blown one, it might be nice to collect design resources in a single, canonical location. In this post, I&#39;ll describe how I worked with Figma and their API to sync colours with a CSS codebase.&lt;/p&gt;
 &lt;h2&gt;The problem&lt;/h2&gt;
 &lt;p&gt;At Lookback, we had all visual design collected across Sketch files. Sketch is nice, but as our platform grew with more apps, interfaces, and flows, it was clear that the workflow of &amp;quot;a single designer owning all files&amp;quot; just didn&#39;t hold up:&lt;/p&gt;
@@ -1416,7 +1416,7 @@ git rebase -i git-hash^ # ^ is targetting the parent commit
 &lt;li&gt;the same colours collected in Figma&#39;s colour library&lt;/li&gt;
 &lt;/ul&gt;
 &lt;figure class=&quot;image--full&quot;&gt;
-  &lt;img src=&quot;https://johanbrook.com/assets/posts/color-system.png&quot; alt=&quot;Color system&quot;&gt;
+  &lt;img src=&quot;https://johan.im/assets/posts/color-system.png&quot; alt=&quot;Color system&quot;&gt;
 &lt;/figure&gt;
 &lt;p&gt;&lt;em&gt;How do I use these colours in my web frontend?&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The Old Way would be to manually copy the HEX codes over to (S)CSS variables and make sure to keep them up to date. Now, the colours might not change that frequently, so this might not be a huge pain. But when you&#39;re in the exploratory phase, it&#39;s very messy to go back and forth all the time.&lt;/p&gt;
@@ -1459,7 +1459,7 @@ module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Neat! Even with custom comments I wrote for some styles in Figma! 😍&lt;/p&gt;
 &lt;figure&gt;
-  &lt;img src=&quot;https://johanbrook.com/assets/posts/figma-styles.png&quot; style=&quot;width: 231px&quot; alt=&quot;Figma styles&quot;&gt;
+  &lt;img src=&quot;https://johan.im/assets/posts/figma-styles.png&quot; style=&quot;width: 231px&quot; alt=&quot;Figma styles&quot;&gt;
 &lt;/figure&gt;
 &lt;p&gt;&lt;em&gt;Note:&lt;/em&gt; You can of course make it be a JSON file instead if that&#39;s your thing, but I wanted to keep the comments from Figma as JS comments, as JSON doesn&#39;t support that.&lt;/p&gt;
 &lt;h2&gt;Using the styles in my CSS&lt;/h2&gt;

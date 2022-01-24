@@ -22,14 +22,14 @@
     <link rel="alternate" type="application/rss+xml" title="Mind feed" href="/mind.xml">
 
     <link rel="shortcut icon" href="/favicon.png" type="image/png">
-    <link rel="canonical" itemprop="url" href="https://johanbrook.com/writings/realigning-johanbrookcom/">
-    <link rel="author" href="https://johanbrook.com">
+    <link rel="canonical" itemprop="url" href="https://johan.im/writings/realigning-johanbrookcom/">
+    <link rel="author" href="https://johan.im">
 
     <meta property="og:title" content="Realigning Johanbrook.com">
-    <meta property="og:url" content="https://johanbrook.com/writings/realigning-johanbrookcom/">
+    <meta property="og:url" content="https://johan.im/writings/realigning-johanbrookcom/">
     <meta property="og:site_name" itemprop="name" content="Johan Brook">
     <meta property="og:type" content="blog">
-    <meta property="og:image" content="https://johanbrook.com/assets/images/og-image.png">
+    <meta property="og:image" content="https://johan.im/assets/images/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="1200">
     
@@ -53,10 +53,10 @@
         <a href="/writings/">Writings</a>
       </li>
       <li>
-        <a href="/mind/">On my mind</a>
+        <a href="/now/">Now</a>
       </li>
       <li>
-        <a href="/now/">Now</a>
+        <a href="/mind/">On my mind</a>
       </li>
       <li>
         <a href="/reading/">Reading</a>
@@ -143,15 +143,16 @@ Frontpage with Golden Ratio, module, and baseline overlay</p>
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/465d7429e010969d1cb5ac8fbd581277ded1e007">465d742</a> — built at <time>2022-01-23T11:51:41.823Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/0848bfb49fc4b2292d119a4bf359251cbc5225d7">0848bfb</a> — built at <time>2022-01-24T21:25:47.850Z</time>
   </p>
 </footer>
 
 
     <script>
   // Only load on production environment.
-  if (window.location.host !== 'johanbrook.com')
+  if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};
+  }
 
   // Skip own views
   if (window.location.hash === '#skipgc')
