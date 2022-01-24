@@ -3,8 +3,6 @@ layout: layouts/main.njk
 ---
 <main role="main">
   <article class="Post" role="article" itemscope itemtype="http://schema.org/BlogPosting">
-
-    
     <header> 
       <h1 itemprop="name" class="title">{{ title }}</h1>
 
@@ -24,6 +22,11 @@ layout: layouts/main.njk
     </header>
 
     <div class="prose measure" itemprop="articleBody">
+      {% if link %}
+        <p class="f3 mb4 no-rhythm">
+          <a class="btn" title="{{ link }}" href="{{ link }}">Follow link to {{ link | hostname }} →</a>
+        </p>
+      {% endif %}
       {{ content | safe }}
     </div>
 

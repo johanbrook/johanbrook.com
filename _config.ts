@@ -68,6 +68,7 @@ site
     })
     .filter('postAssetUrl', (filename) => `/assets/posts/${filename}`)
     .filter('excerpt', (content: string) => extractExcerpt(content))
+    .filter('hostname', (url: string) => new URL(url).host)
     // Data
     .data('pageSlug', function (this: { ctx: { url: string } }) {
         return this.ctx.url.replaceAll('/', '');
