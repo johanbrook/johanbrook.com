@@ -7,6 +7,7 @@ on:
       - '_config.ts'
       - 'CNAME'
       - 'deps.ts'
+      - 'README.md' # Just to be able to trigger rebuilds from dummy commits
 
 jobs:
   build-and-deploy:
