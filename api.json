@@ -4,11 +4,11 @@
   "site": "https://johan.im",
   "github": "johanbrook",
   "twitter": "@johanbrook",
-  "email": "webmaster@johanbrook.com",
+  "email": "webmaster@johan.im",
   "cv": "https://johan.im/johanbrook-cv.pdf",
   "versions": {
     "johan": "4.0.0",
-    "build": "0848bfb49fc4b2292d119a4bf359251cbc5225d7",
-    "builtAt": "2022-01-24T21:25:47.850Z"
+    "build": "47e6f43e6b4729cff78b2a34f0119273ce79c9e2",
+    "builtAt": "2022-01-24T21:57:57.185Z"
   }
 }
