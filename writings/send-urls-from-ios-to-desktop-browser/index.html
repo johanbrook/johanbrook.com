@@ -74,10 +74,8 @@
 
       <main role="main">
   <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-    
     <header> 
-      <h1 itemprop="name" class="title">Send URLs from iOS to desktop browser</h1>
+      <h1 itemprop="name" class="fw6 pt3">Send URLs from iOS to desktop browser</h1>
 
       <p class="mb0 fw5 mt3">
           <time datetime="2011-02-14T00:00:00Z" itemprop="datePublished" pubdate="">February 14th, 2011</time>
@@ -90,6 +88,11 @@
     </header>
 
     <div class="prose measure" itemprop="articleBody">
+      
+        <p class="f3 mb4 no-rhythm">
+          <a class="btn" title="http://www.macstories.net/tutorials/how-to-send-any-webpage-from-ios-to-your-mac-browser/" href="http://www.macstories.net/tutorials/how-to-send-any-webpage-from-ios-to-your-mac-browser/">Follow link to macstories.net →</a>
+        </p>
+      
       <p>Sometimes while browsing the web in Mobile Safari you might find yourself wanting to view the current site in your desktop browser. We all know it's tedious, boring and plain wrong to type in the URL from the Mobile Safari window into the desktop browser's address field, so of course someone has come up with a solution for this. Well, many solutions. I hear from other people that Tapbots' <a href="http://tapbots.com/software/pastebot/">Pastebot</a> works great, but this means you've got to go through a third party app. Not everybody want that. So of course there's a quick, hacky and dirty solution to the problem, which uses nothing but native OS X/iOS technologies and the amazing Dropbox as always (as well as a free web service). Check out the link above for the complete guide. In short: connect your Dropbox to the free <a href="http://sendtodropbox.com/">Send to Dropbox</a> service which lets you e-mail stuff to your Dropbox account (in this case the web page URL as a text file), and set up a Automator folder action which runs a Ruby script that opens the text file and put the URL in your browser window.</p>
 <pre><code>ARGV.each do |f|
    file = File.new(f, "r")
@@ -134,7 +137,7 @@ end
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/63476c1dae17ff55554f54b5387b7a9c4c415db4">63476c1</a> — built at <time>2022-01-24T22:45:14.451Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/cf95f3be5d21e7b603565915236c7b9d337d4b33">cf95f3b</a> — built at <time>2022-01-24T23:01:11.686Z</time>
   </p>
 </footer>
 

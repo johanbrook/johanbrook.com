@@ -74,8 +74,6 @@
 
       <main role="main">
   <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-    
     <header> 
       <h1 itemprop="name" class="title">Linked List style posts in Wordpress</h1>
 
@@ -90,6 +88,7 @@
     </header>
 
     <div class="prose measure" itemprop="articleBody">
+      
       <p><strong>Quite a few people</strong> use this style of quick links or short posts (myself included). Daring Fireball, Shawn Blanc and others. When linking to an article of site, the post heading itself becomes the link. It's quite good usability and UX, and is not that hard to re-create in Wordpress.</p>
 <p>When I attach links to my custom post type for short posts, Quickies, I use custom fields in Wordpress. I've got two fields for link: "Link" and "Link Name". The "Link" field contains the URL and is the important one here. In the post template (in my case <code>single-quickie.php</code> you can get the custom field with this:</p>
 <pre><code>$meta_link = get_post_meta(get_the_ID(), "Link", true);
@@ -156,7 +155,7 @@ add_filter('the_permalink_rss', 'johan_permalink_rss');
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/63476c1dae17ff55554f54b5387b7a9c4c415db4">63476c1</a> — built at <time>2022-01-24T22:45:14.451Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/cf95f3be5d21e7b603565915236c7b9d337d4b33">cf95f3b</a> — built at <time>2022-01-24T23:01:11.686Z</time>
   </p>
 </footer>
 

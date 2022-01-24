@@ -74,10 +74,8 @@
 
       <main role="main">
   <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-    
     <header> 
-      <h1 itemprop="name" class="title">A fix for antialiasing issues in WebKit browsers</h1>
+      <h1 itemprop="name" class="fw6 pt3">A fix for antialiasing issues in WebKit browsers</h1>
 
       <p class="mb0 fw5 mt3">
           <time datetime="2011-05-19T00:00:00Z" itemprop="datePublished" pubdate="">May 19th, 2011</time>
@@ -90,6 +88,11 @@
     </header>
 
     <div class="prose measure" itemprop="articleBody">
+      
+        <p class="f3 mb4 no-rhythm">
+          <a class="btn" title="http://technology.posterous.com/webkit-hardware-acceleration-bleeding-into-su" href="http://technology.posterous.com/webkit-hardware-acceleration-bleeding-into-su">Follow link to technology.posterous.com →</a>
+        </p>
+      
       <p>CSS Transforms, Transitions and Animations are great and all, but apparently they are causing issues with some text on a page. I've experienced those issues on my site, and I couldn't for my life figure out what the problem was. Some text paragraphs could suddenly lose their antialiasing, and look very jagged and, yeah, aliased. They would yet get antialiasing again when I scrolled the page up and down, or resized the browser window. Weirdness. Follow the link above for a post on the Posterous blog about the issue. Apparently, WebKit's 3D Transforms were the culprits, since it gives the relevant elements hardware acceleration, and ...</p>
 <blockquote>
 <p>When an element gets hardware accelerated in Webkit, sub-pixel anti-aliasing no longer works.</p>
@@ -128,7 +131,7 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/63476c1dae17ff55554f54b5387b7a9c4c415db4">63476c1</a> — built at <time>2022-01-24T22:45:14.451Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/cf95f3be5d21e7b603565915236c7b9d337d4b33">cf95f3b</a> — built at <time>2022-01-24T23:01:11.686Z</time>
   </p>
 </footer>
 

@@ -76,8 +76,6 @@
 
       <main role="main">
   <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-
-    
     <header> 
       <h1 itemprop="name" class="title">Styled components in a virtual DOM</h1>
 
@@ -92,6 +90,7 @@
     </header>
 
     <div class="prose measure" itemprop="articleBody">
+      
       <p><strong>At Lookback, we've recently tried out using CycleJS</strong> for a web client code base. <a href="https://github.com/cyclejs/cyclejs">CycleJS</a> is all about <em>cyclic reactive functional streams</em> and promises nice separation of concerns by separating out side effects and handling of external APIs into something called <em>Drivers</em>. It uses a virtual DOM, like React, to translate app state to user interface. Add a dash of TypeScript, and you've got a really nice and tight web frontend setup.</p>
 <p>My interest for both frontend architecture and design systems made me see an opportunity to create styled components for for re-use in the virtual DOM. The idea is to construct small, re-usable components to use instead of marking up content with the regular approach of using CSS classes. The key in our approach here isn't inline CSS embedded on the component, but about applying <em>functional CSS</em> classes.</p>
 <p>I once held a pretty strong opinion that one should separate markup and styling of a web page. That works out pretty good for web content with document style content – just like all the early web pages were. When building complex information architectures in ever changing web apps, where the cascading part of CSS just gets in your way, I've turned to investigate this functional CSS class approach instead. There's writing on this philosophy elsewhere:</p>
@@ -390,7 +389,7 @@ This becomes:
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/63476c1dae17ff55554f54b5387b7a9c4c415db4">63476c1</a> — built at <time>2022-01-24T22:45:14.451Z</time>
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/cf95f3be5d21e7b603565915236c7b9d337d4b33">cf95f3b</a> — built at <time>2022-01-24T23:01:11.686Z</time>
   </p>
 </footer>
 
