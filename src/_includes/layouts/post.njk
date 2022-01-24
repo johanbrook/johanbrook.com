@@ -4,7 +4,7 @@ layout: layouts/main.njk
 <main role="main">
   <article class="Post" role="article" itemscope itemtype="http://schema.org/BlogPosting">
     <header> 
-      <h1 itemprop="name" class="title">{{ title }}</h1>
+      <h1 itemprop="name" class="{% if link %}fw6 pt3{% else %}title{% endif %}">{{ title }}</h1>
 
       <p class="mb0 fw5 mt3">
           <time
