@@ -16,7 +16,7 @@ deno run -A https://deno.land/x/lume/install.ts
 lume
 ```
 
-## Server
+## Serve
 
 ```bash
 lume --serve
