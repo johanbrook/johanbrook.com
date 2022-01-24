@@ -51,7 +51,7 @@ body {
   display: flex;
   flex-direction: column;
 
-  line-height: var(--lineheight);
+  line-height: var(--leading);
   letter-spacing: var(--tracking);
   font-kerning: normal;
   font-feature-settings: 'calt' 1, 'kern' 1, 'liga' 1;
@@ -100,7 +100,7 @@ h2:not(.no-rhythm),
 .f2:not(.no-rhythm),
 .f3:not(.no-rhythm) {
   margin-bottom: var(--lineheight);
-  line-height: 1.2;
+  line-height: 1.5;
   vertical-align: top;
 
   &:first-line {
