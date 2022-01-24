@@ -9,7 +9,7 @@ workers_dev = true
 compatibility_date = "2022-01-05"
 
 [vars]
-REDIRECT_URI = "https://johanbrook.com/admin/"
+REDIRECT_URI = "https://johan.im/admin/"
 
 [dev]
 port = 3001

@@ -1,6 +1,6 @@
 # Johan's site
 
-![Build & Deploy johanbrook.com](https://github.com/johanbrook/johanbrook.com/actions/workflows/deploy.yml/badge.svg)
+![Build & Deploy](https://github.com/johanbrook/johanbrook.com/actions/workflows/deploy.yml/badge.svg)
 
 ## Install
 

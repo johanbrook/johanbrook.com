@@ -1,7 +1,8 @@
 <script>
   // Only load on production environment.
-  if (window.location.host !== 'johanbrook.com')
+  if (window.location.host !== new URL('{{ meta.site }}').host) {
     window.goatcounter = {no_onload: true};
+  }
 
   // Skip own views
   if (window.location.hash === '#skipgc')
