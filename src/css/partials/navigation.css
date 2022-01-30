@@ -5,6 +5,12 @@ SIDE NAV
 .SideNav {
   margin-right: 3rem;
   width: 9rem;
+  position: relative;
+  z-index: 2;
+
+  & .SideNav__toggle {
+    border: 1px solid;
+  }
 
   & a {
     color: var(--color-text);
@@ -60,17 +66,61 @@ SIDE NAV
     padding-top: var(--offset-top);
   }
 
+  @media only screen and (min-width: 55rem) {
+    & .SideNav__toggle {
+      display: none;
+    }
+  }
+
   @media screen and (max-width: 55rem) {
     width: 100%;
-    padding-bottom: var(--lineheight);
     margin-bottom: calc(var(--lineheight) - 1px);
     border-bottom: 1px solid currentColor;
     margin-right: 0;
+    position: sticky;
+    inset: 0;
+    background-color: var(--color-bg);
+
+    /* Suuuper hack to cover the missing space */
+    &::before {
+      content: '\feff'; /* zero-width nbsp */
+      display: block;
+      position: absolute;
+      z-index: 3;
+      height: var(--inset);
+      top: calc(var(--inset) * -1);
+      left: 0;
+      right: 0;
+      background-color: var(--color-bg);
+    }
+
+    & .SideNav__inner {
+      display: flex;
+      padding: var(--inset) 0;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+      background-color: var(--color-bg);
+      padding-right: 1px;
+    }
 
     & h1 {
       line-height: var(--lineheight);
-      margin-bottom: var(--lineheight);
-      padding-top: 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    & ul {
+      position: absolute;
+      padding-bottom: var(--inset);
+      left: 0;
+      right: 0;
+      top: 100%;
+      background-color: var(--color-bg);
+      transition: transform 200ms ease-out;
+      border-bottom: 1px solid currentColor;
+      transform: translate3d(0, -100%, 0);
+      transform-origin: center top;
     }
 
     & [aria-current='page'] a,
@@ -80,24 +130,12 @@ SIDE NAV
       }
     }
   }
-}
 
-.mobile-nav-trigger {
-  display: none;
-  text-align: center;
-  text-decoration: none;
-  font-family: var(--sans);
-  font-size: to_rem(13);
-  padding: 1em 0.5em;
-  color: var(--grey);
+  & #mobile-nav-trigger {
+    display: none;
 
-  .icon {
-    position: relative;
-    top: -1px;
-    color: var(--grey-light);
-  }
-
-  @media all and (max-width: 481px) {
-    display: block;
+    &:checked + ul {
+      transform: translate3d(0, 0, 0);
+    }
   }
 }

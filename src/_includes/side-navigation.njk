@@ -1,7 +1,18 @@
 <nav role="navigation" class="SideNav">
-  <h1 class="f3 no-rhythm">
-    <a href="/">{{ meta.title }}</a>
-  </h1>
+  <div class="SideNav__inner">
+    <h1 class="f3 no-rhythm">
+      <a href="/">{{ meta.title }}</a>
+    </h1>
+
+    <div>
+      <label class="SideNav__toggle btn" for="mobile-nav-trigger">
+        Menu
+      </label>
+    </div>
+  </div>
+
+  <input type="checkbox" id="mobile-nav-trigger">
+
   <ul>
     {%- for entry in search.pages("menu.visible=true", "menu.order") %}
       <li {% if entry.data.url == url %} aria-current="page"{% endif %}>

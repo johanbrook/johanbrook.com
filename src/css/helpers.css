@@ -9,7 +9,7 @@ BUTTONS
 ----------------------------------------------------------------*/
 
 .btn {
-  -webkit-appearance: none;
+  appearance: none;
   border: 0;
   background: none;
   color: var(--link-color);
@@ -18,7 +18,7 @@ BUTTONS
   border-radius: 6px;
   font-weight: 500;
   box-shadow: currentColor 0 0 0 1px;
-  padding: 0.4em 1em;
+  padding: 0.3em 0.6em;
 
   &:not([disabled]) {
     cursor: pointer;
@@ -767,11 +767,6 @@ TYPOGRAPHY
 /* Measure is limited to ~45 characters */
 .measure-narrow {
   max-width: var(--measure-narrow);
-}
-
-/* Negative left margin for titles. Nice for titles with initial 'W' letter. */
-.inset-title {
-  margin-left: -0.15em;
 }
 
 .badge {
