@@ -78,7 +78,6 @@ main {
 
   @media screen and (max-width: 55rem) {
     flex-direction: column;
-    overflow: hidden;
   }
 }
 

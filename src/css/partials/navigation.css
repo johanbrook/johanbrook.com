@@ -117,10 +117,9 @@ SIDE NAV
       right: 0;
       top: 100%;
       background-color: var(--color-bg);
-      transition: transform 200ms ease-out;
       border-bottom: 1px solid currentColor;
       transform: translate3d(0, -100%, 0);
-      transform-origin: center top;
+      opacity: 0;
     }
 
     & [aria-current='page'] a,
@@ -135,7 +134,17 @@ SIDE NAV
     display: none;
 
     &:checked + ul {
-      transform: translate3d(0, 0, 0);
+      animation: nav 200ms ease-out both;
     }
+  }
+}
+
+@keyframes nav {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
