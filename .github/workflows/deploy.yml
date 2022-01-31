@@ -8,6 +8,7 @@ on:
       - 'CNAME'
       - 'deps.ts'
       - 'README.md' # Just to be able to trigger rebuilds from dummy commits
+      - '.rebuild' # same ^^
 
 jobs:
   build-and-deploy:
