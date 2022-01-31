@@ -16,17 +16,6 @@
         font-size: 70px;
       }
 
-       .svg-text {
-         font-family: Inter, -apple-system, BlinkMacSystemFont, Helvetica,
-      sans-serif;
-       }
-
-       @supports (font-variation-settings: normal) {
-           .svg-text {
-                font-family: 'Inter var', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
-            }
-        }
-
        .pre-headline {
          opacity: .72;
          font-size: 0.18em;
