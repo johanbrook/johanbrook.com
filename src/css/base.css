@@ -218,6 +218,10 @@ a {
   text-decoration: none;
   position: relative;
 
+  &:not(.btn) {
+    text-shadow: 0 0 5px var(--link-shadow);
+  }
+
   &:hover {
     color: var(--link-color-hover);
     text-decoration: underline;
