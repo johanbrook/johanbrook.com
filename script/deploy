@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Usage:
+#   ./script/deploy
+#
+# Increments the number in .rebuild and pushes to trigger a deploy.
+
+curr=$(<.rebuild)
+new=$(bc <<< "1 + $curr")
+
+echo $new > .rebuild && \
+    git add .rebuild && \
+    git commit -m "Manual deploy $new" && \
+    git push origin
