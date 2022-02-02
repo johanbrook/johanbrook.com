@@ -1,6 +1,6 @@
 import lume from 'lume/mod.ts';
 import postcss from 'lume/plugins/postcss.ts';
-import bundler from 'lume/plugins/bundler.ts';
+import esbuild from 'lume/plugins/esbuild.ts';
 import date from 'lume/plugins/date.ts';
 import inline from 'lume/plugins/inline.ts';
 import { minifier } from './deps.ts';
@@ -33,14 +33,7 @@ site
     //
     .includes(['.ts', '.js'], 'lib')
     .includes(['.css'], 'css')
-    .use(
-        bundler({
-            sourceMap: true,
-            options: {
-                bundle: 'module',
-            },
-        })
-    )
+    .use(esbuild())
     .copy('public', '.')
     // Plugins
     .use(inline())
