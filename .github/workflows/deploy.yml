@@ -1,49 +1,49 @@
 name: Build and deploy website
 
 on:
-  push:
-    paths:
-      - 'src/**/*'
-      - '_config.ts'
-      - 'CNAME'
-      - 'deps.ts'
-      - 'README.md' # Just to be able to trigger rebuilds from dummy commits
-      - '.rebuild' # same ^^
-      - '.github/workflows/deploy.yml'
+    push:
+        paths:
+            - 'src/**/*'
+            - '_config.ts'
+            - 'CNAME'
+            - 'deps.ts'
+            - 'README.md' # Just to be able to trigger rebuilds from dummy commits
+            - '.rebuild' # same ^^
+            - '.github/workflows/deploy.yml'
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+              with:
+                  persist-credentials: false
 
-      - name: Setup deno and lume
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: v1.18.x
+            - name: Setup deno and lume
+              uses: denoland/setup-deno@v1
+              with:
+                  deno-version: v1.18.x
 
-      - name: Install and build site
-        env:
-          CI: true
-          NODE_ENV: production
-          ENV: production
-        run: deno run -A https://deno.land/x/lume@v1.4.3/ci.ts --location=https://johan.im --quiet
+            - name: Install and build site
+              env:
+                  CI: true
+                  NODE_ENV: production
+                  ENV: production
+              run: deno run -A https://deno.land/x/lume@v1.5.1/ci.ts --location=https://johan.im --quiet
 
-      - name: Deploy to GitHub Pages
-        if: github.ref_name == 'main'
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          # The branch the action should deploy to.
-          branch: gh-pages
-          # The folder the action should deploy.
-          folder: build
+            - name: Deploy to GitHub Pages
+              if: github.ref_name == 'main'
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                  # The branch the action should deploy to.
+                  branch: gh-pages
+                  # The folder the action should deploy.
+                  folder: build
 
-      - name: Purge Cloudflare cache
-        if: github.ref_name == 'main'
-        uses: jakejarvis/cloudflare-purge-action@master
-        env:
-          CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
-          CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+            - name: Purge Cloudflare cache
+              if: github.ref_name == 'main'
+              uses: jakejarvis/cloudflare-purge-action@master
+              env:
+                  CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
+                  CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
