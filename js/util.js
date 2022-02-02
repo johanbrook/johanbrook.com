@@ -1,12 +1,1 @@
-// deno-fmt-ignore-file
-// deno-lint-ignore-file
-// This code was bundled using `deno bundle` and it's not recommended to edit it manually
-
-const promiseResult = (p)=>new Promise((rs, rj)=>p.then((v)=>isErr(v) ? rj(new Error(v.msg)) : rs(v)
-        ).catch(rj)
-    )
-;
-const isErr = (t)=>t.kind == 'err'
-;
-export { promiseResult as promiseResult };
-export { isErr as isErr };
+var n=Object.defineProperty;var t=(r,e)=>n(r,"name",{value:e,configurable:!0});var c=t(r=>new Promise((e,o)=>r.then(s=>i(s)?o(new Error(s.msg)):e(s)).catch(o)),"promiseResult"),i=t(r=>r.kind=="err","isErr");export{i as isErr,c as promiseResult};

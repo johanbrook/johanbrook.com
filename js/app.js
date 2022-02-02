@@ -1,281 +1,35 @@
-// deno-fmt-ignore-file
-// deno-lint-ignore-file
-// This code was bundled using `deno bundle` and it's not recommended to edit it manually
-
-const config = {
-    owner: 'johanbrook',
-    repo: 'johanbrook.com',
-    notesDir: 'src/notes'
-};
-const isLocal = ()=>location.hostname == 'localhost'
-;
-const isErr = (t)=>t.kind == 'err'
-;
-const STORAGE_KEY = 'jb_tok';
-const API_ROOT = 'https://api.github.com';
-const mkGitHub = ({ url  })=>{
-    const doAuth = ()=>{
-        location.href = url;
-    };
-    const request = async (resource, { method ='GET' , query , body  } = {})=>{
-        const storedTok = getStoredToken();
-        if (!storedTok) {
-            doAuth();
-            return Promise.resolve({});
-        }
-        const qs = query ? '?' + new URLSearchParams(query).toString() : '';
-        const res = await fetch(API_ROOT + resource + qs, {
-            method,
-            headers: {
-                accept: 'application/vnd.github.v3+json',
-                authorization: `token ${storedTok}`
-            },
-            body: body ? JSON.stringify(body) : undefined
-        });
-        const json = await res.json();
-        if (!res.ok) {
-            if (res.status == 401) {
-                doAuth();
-                return Promise.resolve({});
-            }
-            return {
-                kind: 'err',
-                msg: 'Failed to request GitHub REST data',
-                cause: new Error(`${method} ${res.status} ${resource}: ${json.message || res.statusText}`)
-            };
-        }
-        return json;
-    };
-    const isAuthError = (err)=>!!err.error
-    ;
-    const fetchToken = async (code)=>{
-        const path = location.pathname + location.search.replace(/\bcode=\w+/, '').replace(/\?$/, '');
-        history.pushState({}, '', path);
-        const res = await fetch(url, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({
-                code
-            })
-        });
-        if (!res.ok) {
-            return {
-                kind: 'err',
-                msg: res.statusText
-            };
-        }
-        const result = await res.json();
-        if (isAuthError(result)) {
-            return {
-                kind: 'err',
-                msg: result.error
-            };
-        }
-        try {
-            localStorage.setItem(STORAGE_KEY, result.token);
-        } catch (_ex) {}
-        return {
-            kind: 'token',
-            tok: result.token
-        };
-    };
-    const createNote = async (text)=>{
-        const d = new Date();
-        const { repo , owner , notesDir  } = config;
-        const branch = isLocal() ? 'dev' : 'main';
-        const date = formatDate(d);
-        const fileDate = formatDate(d, true);
-        const content = `---
-date: ${date}
+var P=Object.defineProperty;var r=(t,e)=>P(t,"name",{value:e,configurable:!0});var l={owner:"johanbrook",repo:"johanbrook.com",notesDir:"src/notes"},T=r(()=>location.hostname=="localhost","isLocal");var g=r(t=>t.kind=="err","isErr");var E="jb_tok",_="https://api.github.com",w=r(({url:t})=>{let e=r(()=>{location.href=t},"doAuth"),o=r(async(n,{method:i="GET",query:a,body:c}={})=>{let h=k();if(!h)return e(),Promise.resolve({});let b=a?"?"+new URLSearchParams(a).toString():"",d=await fetch(_+n+b,{method:i,headers:{accept:"application/vnd.github.v3+json",authorization:`token ${h}`},body:c?JSON.stringify(c):void 0}),S=await d.json();return d.ok?S:d.status==401?(e(),Promise.resolve({})):{kind:"err",msg:"Failed to request GitHub REST data",cause:new Error(`${i} ${d.status} ${n}: ${S.message||d.statusText}`)}},"request"),s=r(n=>!!n.error,"isAuthError");return{maybeLogin:r(()=>{k()||(location.href=t)},"maybeLogin"),fetchToken:r(async n=>{let i=location.pathname+location.search.replace(/\bcode=\w+/,"").replace(/\?$/,"");history.pushState({},"",i);let a=await fetch(t,{method:"POST",mode:"cors",headers:{"content-type":"application/json"},body:JSON.stringify({code:n})});if(!a.ok)return{kind:"err",msg:a.statusText};let c=await a.json();if(s(c))return{kind:"err",msg:c.error};try{localStorage.setItem(E,c.token)}catch{}return{kind:"token",tok:c.token}},"fetchToken"),createNote:r(async n=>{let i=new Date,{repo:a,owner:c,notesDir:h}=l,b=T()?"dev":"main",d=y(i),S=y(i,!0),$=`---
+date: ${d}
 location: On the run
 ---
 
-${text}\n
-`;
-        const fileName = `${fileDate}.md`;
-        const path = notesDir + '/' + fileName;
-        const res = await request(`/repos/${owner}/${repo}/contents/${path}`, {
-            method: 'PUT',
-            body: {
-                message: 'Add note from GUI app',
-                content: base64(content),
-                branch
-            }
-        });
-        if (isErr(res)) return res;
-        if (!res.content?.name || !res.content?.html_url || !res.commit.html_url) return {
-            kind: 'err',
-            msg: 'Unexpected response when creating a note'
-        };
-        return {
-            commitUrl: res.commit.html_url,
-            file: res.content.name,
-            fileUrl: res.content.html_url
-        };
-    };
-    const maybeLogin = ()=>{
-        const storedTok = getStoredToken();
-        if (!storedTok) {
-            location.href = url;
-        }
-    };
-    return {
-        maybeLogin,
-        fetchToken,
-        createNote
-    };
-};
-const getStoredToken = ()=>{
-    try {
-        return localStorage.getItem(STORAGE_KEY);
-    } catch (_ex) {
-        return null;
-    }
-};
-const base64 = (str)=>btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_match, p1)=>String.fromCharCode(parseInt(p1, 16))
-    ))
-;
-const formatDate = (date, fileName = false)=>{
-    const datePart = [
-        date.getUTCFullYear(),
-        date.getUTCMonth() + 1,
-        date.getUTCDate(), 
-    ].map((n)=>String(n).padStart(2, '0')
-    ).join('-');
-    const timePart = [
-        date.getUTCHours(),
-        date.getUTCMinutes(),
-        fileName ? null : date.getUTCSeconds(), 
-    ].filter(Boolean).map((n)=>String(n).padStart(2, '0')
-    ).join(fileName ? '-' : ':');
-    if (fileName) {
-        return datePart + '-' + timePart;
-    }
-    return datePart + ' ' + timePart;
-};
-const WORKER_URL = isLocal() ? 'http://localhost:3001' : 'https://github-oauth.brookie.workers.dev';
-const mkService = (_service, args)=>{
-    return mkGitHub(args);
-};
-const runApp = async ()=>{
-    const svc = mkService('github', {
-        url: WORKER_URL
-    });
-    const root = document.getElementById('root');
-    const initial = initialState();
-    const setState = reducer(initial);
-    const renderApp = App(svc);
-    const html = async (s)=>{
-        root.innerHTML = await renderApp(s);
-    };
-    const tick = async (update)=>{
-        console.log('update', update);
-        const state = setState(update);
-        console.log('state', state);
-        await html(state);
-    };
-    window.handleEvt = async (evt, action)=>{
-        console.log('event', evt, action);
-        switch(action.kind){
-            case 'note_input':
-                {
-                    const textarea = evt.target;
-                    window.submitNote.disabled = textarea.value.trim().length == 0;
-                    textarea.parentElement.dataset.replicatedValue = textarea.value;
-                    break;
-                }
-            case 'submit_note':
-                {
-                    evt.preventDefault();
-                    const text = evt.target.querySelector('textarea').value.trim();
-                    if (!text) {
-                        return;
-                    }
-                    const res = await svc.createNote(text);
-                    if (isErr(res)) {
-                        await tick({
-                            err: res
-                        });
-                    } else {
-                        flash(window.submitNote, '✨ posted! ✨');
-                        await tick({
-                            createNote: res
-                        });
-                    }
-                    break;
-                }
-        }
-    };
-    await tick(initial);
-};
-const App = (svc)=>{
-    return async (state)=>{
-        const code = new URL(location.href).searchParams.get('code');
-        if (code) {
-            const res = await svc.fetchToken(code);
-            if (isErr(res)) {
-                return Error1(res);
-            }
-        }
-        svc.maybeLogin();
-        if (state.err) {
-            return Error1(state.err);
-        }
-        return `
+${n}
+
+`,N=`${S}.md`,A=h+"/"+N,p=await o(`/repos/${c}/${a}/contents/${A}`,{method:"PUT",body:{message:"Add note from GUI app",content:L($),branch:b}});return g(p)?p:!p.content?.name||!p.content?.html_url||!p.commit.html_url?{kind:"err",msg:"Unexpected response when creating a note"}:{commitUrl:p.commit.html_url,file:p.content.name,fileUrl:p.content.html_url}},"createNote")}},"mkGitHub"),k=r(()=>{try{return localStorage.getItem(E)}catch{return null}},"getStoredToken"),L=r(t=>btoa(encodeURIComponent(t).replace(/%([0-9A-F]{2})/g,(e,o)=>String.fromCharCode(parseInt(o,16)))),"base64"),y=r((t,e=!1)=>{let o=[t.getUTCFullYear(),t.getUTCMonth()+1,t.getUTCDate()].map(u=>String(u).padStart(2,"0")).join("-"),s=[t.getUTCHours(),t.getUTCMinutes(),e?null:t.getUTCSeconds()].filter(Boolean).map(u=>String(u).padStart(2,"0")).join(e?"-":":");return e?o+"-"+s:o+" "+s},"formatDate");var U=T()?"http://localhost:3001":"https://github-oauth.brookie.workers.dev",R=r((t,e)=>w(e),"mkService"),W=r(async()=>{let t=R("github",{url:U}),e=document.getElementById("root"),o=j(),s=H(o),u=I(t),m=r(async n=>{e.innerHTML=await u(n)},"html"),f=r(async n=>{console.log("update",n);let i=s(n);console.log("state",i),await m(i)},"tick");window.handleEvt=async(n,i)=>{switch(console.log("event",n,i),i.kind){case"note_input":{let a=n.target;window.submitNote.disabled=a.value.trim().length==0,a.parentElement.dataset.replicatedValue=a.value;break}case"submit_note":{n.preventDefault();let a=n.target.querySelector("textarea").value.trim();if(!a)return;let c=await t.createNote(a);g(c)?await f({err:c}):(O(window.submitNote,"\u2728 posted! \u2728"),await f({createNote:c}));break}}},await f(o)},"runApp"),I=r(t=>async e=>{let o=new URL(location.href).searchParams.get("code");if(o){let s=await t.fetchToken(o);if(g(s))return x(s)}return t.maybeLogin(),e.err?x(e.err):`
             <section>
-                <h1 class="mb2 no-rhythm">${config.repo}</h1>
+                <h1 class="mb2 no-rhythm">${l.repo}</h1>
                 <p>
-                    <a href="https://github.com/${config.owner}/${config.repo}">${config.owner}/${config.repo}</a>
+                    <a href="https://github.com/${l.owner}/${l.repo}">${l.owner}/${l.repo}</a>
                 </p>
 
-                ${NewNote()}
+                ${C()}
 
-                ${state.createNote ? `<p>Note created in repo: <a href="${state.createNote.fileUrl}">${state.createNote.file}</a></p>` : ''}
+                ${e.createNote?`<p>Note created in repo: <a href="${e.createNote.fileUrl}">${e.createNote.file}</a></p>`:""}
 
                 <p>
                     <a href="/mind" class="f6">View all notes</a>
                 </p>
-            </section>`;
-    };
-};
-const reducer = (state)=>{
-    function* gen() {
-        let update = {};
-        let prev = state;
-        while(true){
-            const newState = {
-                ...prev,
-                ...update
-            };
-            prev = newState;
-            update = yield newState;
-        }
-    }
-    const r = gen();
-    r.next(state);
-    return (update)=>r.next(update).value
-    ;
-};
-const ev = (e, action)=>`on${e}='handleEvt(event${action ? ', ' + JSON.stringify(action) : ''})'`
-;
-const NewNote = ()=>`
+            </section>`},"App"),H=r(t=>{function*e(){let s={},u=t;for(;;){let m={...u,...s};u=m,s=yield m}}r(e,"gen");let o=e();return o.next(t),s=>o.next(s).value},"reducer"),v=r((t,e)=>`on${t}='handleEvt(event${e?", "+JSON.stringify(e):""})'`,"ev"),C=r(()=>`
     <form
-        ${ev('submit', {
-        kind: 'submit_note'
-    })}
+        ${v("submit",{kind:"submit_note"})}
         class="measure-narrow mx-auto"
     >
         <h2>New note</h2>
 
         <div class="grow-wrap mb3">
             <textarea
-                ${ev('input', {
-        kind: 'note_input'
-    })}
-                placeholder="Text…"
+                ${v("input",{kind:"note_input"})}
+                placeholder="Text\u2026"
                 class="w-full f5"
             ></textarea>
         </div>
@@ -290,40 +44,10 @@ const NewNote = ()=>`
             />
         </p>
     </form>
-`
-;
-const Error1 = (err)=>`
+`,"NewNote"),x=r(t=>`
     <section>
         <h1>Error</h1>
-        <p>${err.msg}</p>
-        ${err.cause ? `<pre>${err.cause.message}</pre>` : ''}
+        <p>${t.msg}</p>
+        ${t.cause?`<pre>${t.cause.message}</pre>`:""}
     </section>
-`
-;
-const flash = (el, msg)=>{
-    const org = el instanceof HTMLInputElement ? el.value : el.innerText;
-    const set = (str, disable)=>{
-        if (el instanceof HTMLInputElement) {
-            el.value = str;
-            el.disabled = disable;
-        } else {
-            el.innerText = str;
-        }
-    };
-    set(msg, true);
-    setTimeout(()=>{
-        set(org, false);
-    }, 3000);
-};
-const initialState = ()=>{
-    (()=>{
-        try {
-            const json = localStorage.getItem('jb_state') ?? '{}';
-            return JSON.parse(json);
-        } catch (_ex) {
-            return {};
-        }
-    })();
-    return {};
-};
-export { runApp as runApp };
+`,"Error"),O=r((t,e)=>{let o=t instanceof HTMLInputElement?t.value:t.innerText,s=r((u,m)=>{t instanceof HTMLInputElement?(t.value=u,t.disabled=m):t.innerText=u},"set");s(e,!0),setTimeout(()=>{s(o,!1)},3e3)},"flash");var j=r(()=>{let t=(()=>{try{let e=localStorage.getItem("jb_state")??"{}";return JSON.parse(e)}catch{return{}}})();return{}},"initialState");export{W as runApp};

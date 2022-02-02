@@ -1,13 +1,1 @@
-// deno-fmt-ignore-file
-// deno-lint-ignore-file
-// This code was bundled using `deno bundle` and it's not recommended to edit it manually
-
-const config = {
-    owner: 'johanbrook',
-    repo: 'johanbrook.com',
-    notesDir: 'src/notes'
-};
-const isLocal = ()=>location.hostname == 'localhost'
-;
-export { config as config };
-export { isLocal as isLocal };
+var t=Object.defineProperty;var o=(n,r)=>t(n,"name",{value:r,configurable:!0});var s={owner:"johanbrook",repo:"johanbrook.com",notesDir:"src/notes"},i=o(()=>location.hostname=="localhost","isLocal");export{s as config,i as isLocal};
