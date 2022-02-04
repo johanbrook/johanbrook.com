@@ -10,7 +10,6 @@ FOOTER
       display: flex;
       gap: 1em;
       justify-content: center;
-      margin-bottom: var(--spacing-medium);
       flex-wrap: wrap;
     }
 

@@ -1,6 +1,6 @@
-<footer role="contentinfo">
+<footer role="contentinfo" class="mb3">
   <nav>
-    <ul class="f6 list-reset">
+    <ul class="f6 list-reset mb3">
         <li><a href="/">Home</a></li>
         <li><a href="/feed.xml" title="Atom">Post feed</a></li>
         <li><a href="/mind.xml" title="Atom">Mind feed</a></li>
@@ -11,6 +11,6 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/{{ meta.repo }}/commit/{{ build.hash }}">{{ build.hash | substr(7) }}</a> — built at <time>{{ build.date }}</time>
+    Using <a class="font-mono" href="https://github.com/{{ meta.repo }}/commit/{{ build.hash }}">{{ build.hash | substr(7) }}</a> — built at <time>{{ build.date }}</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
