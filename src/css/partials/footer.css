@@ -6,8 +6,17 @@ FOOTER
   & nav {
     text-transform: lowercase;
 
+    & ul {
+      display: flex;
+      gap: 1em;
+      justify-content: center;
+      margin-bottom: var(--spacing-medium);
+      flex-wrap: wrap;
+    }
+
     & a {
       font-weight: 500;
+      white-space: nowrap;
     }
   }
 }
