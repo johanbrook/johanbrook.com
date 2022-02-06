@@ -1,7 +1,7 @@
-import { Endpoints } from '../../deps.ts';
-import { config, isLocal } from './config.ts';
-import type { Service } from './service.ts';
-import { type Err, isErr } from './util.ts';
+import { Endpoints } from '../../deps';
+import { config, isLocal } from './config';
+import type { Service } from './service';
+import { type Err, isErr } from './util';
 
 const STORAGE_KEY = 'jb_tok';
 
@@ -60,8 +60,7 @@ export const mkGitHub = ({ url }: Args): Service => {
                 kind: 'err',
                 msg: 'Failed to request GitHub REST data',
                 cause: new Error(
-                    `${method} ${res.status} ${resource}: ${
-                        json.message || res.statusText
+                    `${method} ${res.status} ${resource}: ${json.message || res.statusText
                     }`
                 ),
             };
@@ -120,7 +119,7 @@ export const mkGitHub = ({ url }: Args): Service => {
         };
     };
 
-    const createNote: Service['createNote'] = async (text) => {
+    const createNote: Service['createNote'] = async (text, draft) => {
         type Endpoint = Endpoints['PUT /repos/{owner}/{repo}/contents/{path}'];
 
         const d = new Date();
@@ -129,13 +128,16 @@ export const mkGitHub = ({ url }: Args): Service => {
         const date = formatDate(d);
         const fileDate = formatDate(d, true);
 
-        const content = `---
+        let content = `---
 date: ${date}
 location: On the run
----
-
-${text}\n
 `;
+
+        if (draft) {
+            content += 'draft: true';
+        }
+
+        content += `\n---\n${text}\n`;
 
         const fileName = `${fileDate}.md`;
         const path = notesDir + '/' + fileName;

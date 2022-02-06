@@ -800,3 +800,8 @@ TYPOGRAPHY
   display: inline-block;
   margin: 0 0.5em;
 }
+
+.checkbox-fix {
+  position: relative;
+  top: -1px;
+}

@@ -1,7 +1,7 @@
-import { config, isLocal } from './config.ts';
-import { Args as GitHubArgs, mkGitHub } from './github.ts';
-import type { CreateNoteResult, Service } from './service.ts';
-import { Err, isErr } from './util.ts';
+import { config, isLocal } from './config';
+import { Args as GitHubArgs, mkGitHub } from './github';
+import type { CreateNoteResult, Service } from './service';
+import { Err, isErr } from './util';
 
 const WORKER_URL = isLocal()
     ? 'http://localhost:3001'
@@ -63,15 +63,21 @@ export const runApp = async () => {
 
             case 'submit_note': {
                 evt.preventDefault();
-                const text = (evt.target as HTMLFormElement)
+                const form = (evt.target as HTMLFormElement);
+
+                const text = form
                     .querySelector('textarea')!
                     .value.trim();
+
+                const draft = form
+                    .querySelector<HTMLInputElement>('#draft-check')
+                    .checked;
 
                 if (!text) {
                     return;
                 }
 
-                const res = await svc.createNote(text);
+                const res = await svc.createNote(text, draft);
 
                 if (isErr(res)) {
                     await tick({ err: res });
@@ -115,18 +121,16 @@ const App = (svc: Service) => {
             <section>
                 <h1 class="mb2 no-rhythm">${config.repo}</h1>
                 <p>
-                    <a href="https://github.com/${config.owner}/${
-            config.repo
-        }">${config.owner}/${config.repo}</a>
+                    <a href="https://github.com/${config.owner}/${config.repo
+            }">${config.owner}/${config.repo}</a>
                 </p>
 
                 ${NewNote()}
 
-                ${
-                    state.createNote
-                        ? `<p>Note created in repo: <a href="${state.createNote.fileUrl}">${state.createNote.file}</a></p>`
-                        : ''
-                }
+                ${state.createNote
+                ? `<p>Note created in repo: <a href="${state.createNote.fileUrl}">${state.createNote.file}</a></p>`
+                : ''
+            }
 
                 <p>
                     <a href="/mind" class="f6">View all notes</a>
@@ -161,7 +165,11 @@ interface NoteInput {
     kind: 'note_input';
 }
 
-type Action = SubmitNote | NoteInput;
+interface ToggleDraft {
+    kind: 'toggle_draft';
+}
+
+type Action = SubmitNote | NoteInput | ToggleDraft;
 
 const ev = <T extends keyof DocumentEventMap>(e: T, action: Action) =>
     `on${e}='handleEvt(event${action ? ', ' + JSON.stringify(action) : ''})'`;
@@ -169,8 +177,8 @@ const ev = <T extends keyof DocumentEventMap>(e: T, action: Action) =>
 const NewNote = () => /* HTML */ `
     <form
         ${ev('submit', {
-            kind: 'submit_note',
-        })}
+    kind: 'submit_note',
+})}
         class="measure-narrow mx-auto"
     >
         <h2>New note</h2>
@@ -182,6 +190,13 @@ const NewNote = () => /* HTML */ `
                 class="w-full f5"
             ></textarea>
         </div>
+
+        <p>
+            <label>
+                <input class="checkbox-fix" type="checkbox" id="draft-check">
+                Draft
+            </label>
+        </p>
 
         <p>
             <input

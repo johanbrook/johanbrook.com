@@ -1,4 +1,4 @@
-import type { Err, Result } from './util.ts';
+import type { Err, Result } from './util';
 
 /** An access token used for authenticating API requests. */
 export interface Token {
@@ -20,5 +20,5 @@ export interface CreateNoteResult {
 export interface Service {
     maybeLogin: () => void;
     fetchToken: (code: string) => Promise<Token | Err>;
-    createNote: (text: string) => Promise<Result<CreateNoteResult>>;
+    createNote: (text: string, draft: boolean) => Promise<Result<CreateNoteResult>>;
 }
