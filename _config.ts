@@ -31,7 +31,7 @@ const NUMERIC = 'yyyyMMddHHmm';
 
 site
     //
-    .includes(['.ts', '.js'], 'lib')
+    .includes(['.ts', '.js'], 'js')
     .includes(['.css'], 'css')
     .use(esbuild())
     .copy('public', '.')
