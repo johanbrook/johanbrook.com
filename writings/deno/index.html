@@ -91,12 +91,19 @@
       <h1 itemprop="name" class="title">A whole new world with Deno</h1>
 
       <p class="mb0 fw5 mt3">
-          <time datetime="2022-01-19T00:00:00Z" itemprop="datePublished" pubdate="">January 19th, 2022</time>
+          <time datetime="2022-01-19T00:00:00Z" itemprop="datePublished" pubdate="">
+            January 19th, 2022
+          </time>
+          
+            <time title="Updated at" class="muted normal ml-1" datetime="2022-02-08T00:00:00Z" itemprop="dateModified">
+                (February 8th, 2022)
+            </time>
+          
           
       </p>
 
       <p class="muted mb4">
-          About 5 min reading time
+          About 6 min reading time
       </p>
     </header>
 
@@ -134,6 +141,7 @@
 <p>I hope it's clear where I'm getting at: there are things included in Deno that you <em>just know already</em> because you've been writing web code for years. It lowers the iteration speed when writing code, as well as lowers the overhead when reading it, when you don't have to refer to third party dependencies or in-house modules all the time. To me, this feels much better when writing code in Deno.</p>
 <p>The use of third party dependencies have been a debate in Javascript land during the past couple of months, due to … incidents around security and feelings of the module authors themselves. Surely the best dependency is no dependency, right? Surely a ton of npm modules can be deprecated if only NodeJS (or Javascript itself) had a better standard library?</p>
 <p>I hope that we in the future look at "old" code and say: "Oh, did you pull in a dependency for <em>that</em>?".</p>
+<p><strong><em>Update, 2022-02-08:</em></strong> the Deno authors have written a neat <a href="https://deno.com/blog/every-web-api-in-deno">blog post</a> detailing all web platform APIs implemented in Deno, with examples. You'll get a very fuzzy feeling when reading the list.</p>
 <h1>Typescript as a first class citizen</h1>
 <p>I was in tears (tears of joy, I assure you) when I first read about Typescript support in Deno when the latter was introduced years ago. No need for a build step for <code>.ts</code> and <code>.tsx</code> files, just <code>deno run</code> and off you go. I just works.</p>
 <p>One neat API is <a href="https://deno.land/manual/typescript/runtime"><code>Deno.emit</code></a>. With it, you can programmatically compile and bundle Typescript code to Javascript.</p>
@@ -232,7 +240,7 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/da92f9e0f5e56a18f9ce2157965bb371c146dead">da92f9e</a> — built at <time>2022-02-08T08:35:24.647Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/091ac645803d9d3b3394d01bc38bc7b12e74f159">091ac64</a> — built at <time>2022-02-08T12:42:27.994Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 
