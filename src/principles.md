@@ -1,5 +1,7 @@
 ---
 title: Principles
+layout: layouts/page.njk
+date: 2022-02-08
 ---
 
 1. I should always try to have a clear mind.
