@@ -5,11 +5,58 @@
   <link href="https://johan.im/mind"/>
   <id>https://johan.im/mind</id>
   
-  <updated>2022-02-02T17:51:48Z</updated>
+  <updated>2022-02-08T08:50:00Z</updated>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johan.im</email>
   </author>
+  
+  <entry>
+    <title>February 8th, 2022 at 8:50:00 AM GMT+0</title>
+    <link href="https://johan.im/mind#202202080850" />
+    <updated>2022-02-08T08:50:00Z</updated>
+    <id>https://johan.im/mind#202202080850</id>
+    <content type="html">&lt;p&gt;i&#39;m switching to sublime text from vs code as main code editor, and man – it&#39;s much more config to do before it&#39;s usable to me. vs code follows more of a &amp;quot;batteries included&amp;quot; and &amp;quot;sensible defaults&amp;quot; approach.&lt;/p&gt;
+&lt;p&gt;this is my behavioural config (typography stuff removed):&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;create_window_at_startup&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;draw_indent_guides&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;enable_tab_scrolling&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;ensure_newline_at_eof_on_save&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;highlight_modified_tabs&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;highlight_line&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;remember_open_files&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;translate_tabs_to_spaces&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;shift_tab_unindent&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;hide_new_tab_button&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;caret_style&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;blink&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;caret_extra_top&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;caret_extra_bottom&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;trim_trailing_white_space_on_save&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;all&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;scroll_past_end&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;mini_diff&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;auto&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;folder_exclude_patterns&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&quot;.svn&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&quot;.git&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&quot;.hg&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&quot;CVS&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&quot;.Trash&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&quot;.Trash-*&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&quot;node_modules&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token string&quot;&gt;&quot;build&quot;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;the last one is especially interesting. as of january 2022, there&#39;s &lt;strong&gt;still no way to tell sublime to ignore files in &lt;code&gt;.gitignore&lt;/code&gt;&lt;/strong&gt;. sublime should hide/gray out the files/folders in the sidebar, and &lt;em&gt;not&lt;/em&gt; make them appear in the quick open dialog. so i have to add folders such as &lt;code&gt;node_modules&lt;/code&gt; and &lt;code&gt;build&lt;/code&gt; to the global config. people tell me to use some plugin (&lt;code&gt;sublime-gitignorer&lt;/code&gt;), but meh... &lt;a href=&quot;https://github.com/sublimehq/sublime_text/issues/2787&quot;&gt;this issue&lt;/a&gt; from 2019 is still open.&lt;/p&gt;
+&lt;p&gt;then i couldn&#39;t get the &lt;code&gt;editorconfig&lt;/code&gt; plugin to work. i tried changing &lt;code&gt;indent_size&lt;/code&gt; in my &lt;code&gt;.editorconfig&lt;/code&gt; file, but the change wasn&#39;t reflected in the editor. joy.&lt;/p&gt;
+&lt;p&gt;then i realised that the typescript in sublime 4 isn&#39;t really &amp;quot;support&amp;quot;: it&#39;s more &amp;quot;the syntax highlighting&amp;quot; is working. one has to install a typescript package for the Language Server Plugin for intellisense (completions, etc) to work. &lt;a href=&quot;https://forum.sublimetext.com/t/typescript-is-not-there-yet-to-be-called-supported/58768&quot;&gt;people don&#39;t like this&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;then i installed prettier along with the sublime plugin, but formatting on every save isn&#39;t viable since it&#39;s &lt;em&gt;very&lt;/em&gt; slow. somebody online said that vs code&#39;s prettier extension is keeping long running node processes instead of spawning a single one for each save. sublime&#39;s plugin is evidently not doing that. may have to check out &lt;a href=&quot;https://github.com/dprint/dprint-sublime&quot;&gt;dprint&lt;/a&gt;, but that plugin isn&#39;t even out in package control yet. hehe.&lt;/p&gt;
+&lt;p&gt;then there are these small annoyances like i can&#39;t do &lt;code&gt;backspace&lt;/code&gt; to delete a file when it&#39;s focused in the sidebar. or hit &lt;code&gt;enter&lt;/code&gt; to rename it. but no can do. like, what?! this is standard file explorer shortcuts? i timeboxed 5 min to find a keybinding but couldn&#39;t. i guess my mental model from atom and vs code differs from sublime&#39;s.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;so is switching worth it? sublime is &lt;em&gt;so&lt;/em&gt; much faster than the electron based editors it&#39;s ridiculous. when i&#39;m comparing opening this repo&#39;s folder with &lt;code&gt;code .&lt;/code&gt; and &lt;code&gt;subl .&lt;/code&gt; from the command line, i understand how gaslighted i&#39;ve been with the electron editors. sublime just flashes and it&#39;s open while vs code is busy booting another chromium app or whatever it&#39;s doing.&lt;/p&gt;
+&lt;p&gt;but i dislike having to carry around a set of plugins and settings when i switch computers. vs code has this nice settings sync feature built in, but i&#39;m 100% sure i need to sort that out myself for sublime with some esoretic github gist based thing…&lt;/p&gt;
+&lt;p&gt;maybe &lt;a href=&quot;https://www.jetbrains.com/fleet/&quot;&gt;Jetbrains Fleet&lt;/a&gt; will be The One editor: native, without bloat, and configurable?&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>February 2nd, 2022 at 5:51:48 PM GMT+0</title>
@@ -116,17 +163,6 @@
     <updated>2022-01-04T09:37:51Z</updated>
     <id>https://johan.im/mind#202201040937</id>
     <content type="html">&lt;p&gt;i&#39;ve rewrote my site (using &lt;a href=&quot;https://lumeland.github.io/&quot;&gt;lume&lt;/a&gt; 💛) and made a ton of tweaks. classic neverending parental leave chores. it&#39;s built with &lt;a href=&quot;https://deno.land/&quot;&gt;deno&lt;/a&gt;, which I love even more. i&#39;m finally free from the node/npm APIs and build systems! everything is much simpler now, and i should probably write about it in the even more classic post of &amp;quot;i&#39;ve rewritten my blog&amp;quot; which usually shows up in January every year.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>September 30th, 2021 at 12:00:00 AM GMT+0</title>
-    <link href="https://johan.im/mind#202109300000" />
-    <updated>2021-09-30T00:00:00Z</updated>
-    <id>https://johan.im/mind#202109300000</id>
-    <content type="html">&lt;p&gt;Summer is over, after vacation in August down on the Swedish west and south coasts. Weather was so-so, but it was nice with a change of scenery. We also spent the month of September in Florence, Italy, which was such a blast. We travelled abroad with our 10 months old daughter for the first time, and everything went quite well actually (I had expected the worst). I was so inspired by the stay in Italy, and hope I can bring some of that energy into the day-to-day life back in Sweden.&lt;/p&gt;
-&lt;p&gt;On Monday I&#39;ll officially start my parental leave until April 2022. Scary but exciting. I&#39;m actually looking forward to just &lt;em&gt;not work&lt;/em&gt; for the first time in 7 years. Who knows what kind of person I&#39;ll be after this leave?&lt;/p&gt;
-&lt;p&gt;I was inspired by the book &amp;quot;What I Talk About When I Talk About Running&amp;quot; by Haruki Murakami, so I want to start running this Autumn.&lt;/p&gt;
-&lt;p&gt;Also, I&#39;d like to start making my own pasta. I took a pasta making course in Florence, and it was super fun. So simple! So fresh!&lt;/p&gt;</content>
   </entry>
   
 </feed>

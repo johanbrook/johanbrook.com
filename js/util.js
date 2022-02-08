@@ -1,1 +1,0 @@
-var n=Object.defineProperty;var t=(r,e)=>n(r,"name",{value:e,configurable:!0});var c=t(r=>new Promise((e,o)=>r.then(s=>i(s)?o(new Error(s.msg)):e(s)).catch(o)),"promiseResult"),i=t(r=>r.kind=="err","isErr");export{i as isErr,c as promiseResult};

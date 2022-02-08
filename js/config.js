@@ -1,1 +1,0 @@
-var t=Object.defineProperty;var o=(n,r)=>t(n,"name",{value:r,configurable:!0});var s={owner:"johanbrook",repo:"johanbrook.com",notesDir:"src/notes"},i=o(()=>location.hostname=="localhost","isLocal");export{s as config,i as isLocal};
