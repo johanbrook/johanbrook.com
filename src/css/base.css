@@ -342,18 +342,12 @@ blockquote {
 
 hr {
   display: block;
-  height: auto;
+  height: 2px;
   border: 0;
-  margin: calc(var(--lineheight) * 2) auto;
-  width: 80%;
-
-  &::after {
-    display: block;
-    text-align: center;
-    content: '***';
-    color: var(--hr-color);
-    line-height: 1;
-  }
+  margin: calc(var(--lineheight) * 1.5) 0;
+  max-width: 10rem;
+  width: 100%;
+  background-color: var(--hr-color);
 }
 
 textarea {
