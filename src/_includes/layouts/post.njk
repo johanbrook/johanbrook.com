@@ -7,10 +7,14 @@ layout: layouts/main.njk
       <h1 itemprop="name" class="{% if link %}fw6 pt3{% else %}title{% endif %}">{{ title }}</h1>
 
       <p class="mb0 fw5 mt3">
-          <time
-          datetime="{{ date | date("ATOM") }}"
-          itemprop="datePublished"
-          pubdate>{{ date | date("HUMAN_DATE") }}</time>
+          <time datetime="{{ date | date("ATOM") }}" itemprop="datePublished" pubdate>
+            {{ date | date("HUMAN_DATE") }}
+          </time>
+          {% if updated %}
+            <time title="Updated at" class="muted normal ml-1" datetime="{{ updated | date("ATOM") }}" itemprop="dateModified">
+                ({{ updated | date("HUMAN_DATE") }})
+            </time>
+          {% endif %}
           {% if draft %}
             <span class="badge ml1">Draft</span>
           {% endif %}
