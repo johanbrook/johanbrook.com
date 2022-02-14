@@ -33,7 +33,7 @@ await Deno.writeTextFile(fullPath, TEMPLATE, {
 console.log(`Created ${fullPath}`);
 
 const editor = Deno.run({
-    cmd: ['code', fullPath], // XXX Can't use shell variable $EDITOR here :(
+    cmd: ['subl', fullPath],
     stdout: 'piped',
     stderr: 'piped',
 });
@@ -45,5 +45,7 @@ if (code != 0) {
     const errorString = new TextDecoder().decode(rawError);
     console.log('Error from process: ', errorString);
 }
+
+editor.close();
 
 Deno.exit(code);
