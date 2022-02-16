@@ -5,11 +5,27 @@
   <link href="https://johan.im/mind"/>
   <id>https://johan.im/mind</id>
   
-  <updated>2022-02-08T08:50:00Z</updated>
+  <updated>2022-02-14T10:20:37Z</updated>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johan.im</email>
   </author>
+  
+  <entry>
+    <title>February 14th, 2022 at 10:20:37 AM GMT+0</title>
+    <link href="https://johan.im/mind#202202141020" />
+    <updated>2022-02-14T10:20:37Z</updated>
+    <id>https://johan.im/mind#202202141020</id>
+    <content type="html">&lt;p&gt;i love this quote from Nils van der Poel (emphasis mine):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I think it&#39;s important to understand that you&#39;re not doing it for a gold medal. &lt;strong&gt;Regardless of which life you chose to live, you will sacrifice something, that&#39;s the way it is.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As soon as you go in one direction, you also choose to not go in all other directions at the same time. It&#39;s the basic precondition for going anywhere at all.&lt;/p&gt;
+&lt;p&gt;But on the path you take, you will experience fantastic things, even though it&#39;s uphill there will be a great view when you&#39;re at the top, and that&#39;s what makes it worth it, to be on this journey with people you love. It doesn&#39;t matter that much where the journey ends. A movie with a sad ending is also a good movie - and a movie with a nice ending makes you happy.&lt;/p&gt;
+&lt;p&gt;I&#39;m very happy for this medal around my neck, and for getting all the way here. But why do you do it? I don&#39;t think you get to pick your dreams, they pick us. It&#39;s up to us to realize them or not, and it seems like people who try to realize their dreams are happier.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Nils van der Poel is a swedish olympic speed skater who just won two gold medals in the beijing 2022 olympics.&lt;/p&gt;
+&lt;p&gt;source: &lt;a href=&quot;https://twitter.com/Radiosporten/status/1491090244652969984&quot;&gt;Radiosporten&#39;s Twitter (swedish)&lt;/a&gt;. translated to english by &lt;a href=&quot;https://news.ycombinator.com/item?id=30329660&quot;&gt;jacobr&lt;/a&gt;.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>February 8th, 2022 at 8:50:00 AM GMT+0</title>
@@ -157,14 +173,6 @@
     <id>https://johan.im/mind#202201061155</id>
     <content type="html">&lt;p&gt;i&#39;m coding together something that will let me write post and notes in my static site from anywhere, and it&#39;s super fun. need to deal with github auth and their api, learning about Cloudflare Workers, and extending lume as i go.&lt;/p&gt;
 &lt;p&gt;the idea is to create a new post or note file with a request from an authed github session. not sure how generic i want to make this code – it could be of use for others. the existing &amp;quot;CMSes&amp;quot; i&#39;ve seen for static pages are just &lt;em&gt;too&lt;/em&gt; much.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>January 4th, 2022 at 9:37:51 AM GMT+0</title>
-    <link href="https://johan.im/mind#202201040937" />
-    <updated>2022-01-04T09:37:51Z</updated>
-    <id>https://johan.im/mind#202201040937</id>
-    <content type="html">&lt;p&gt;i&#39;ve rewrote my site (using &lt;a href=&quot;https://lumeland.github.io/&quot;&gt;lume&lt;/a&gt; 💛) and made a ton of tweaks. classic neverending parental leave chores. it&#39;s built with &lt;a href=&quot;https://deno.land/&quot;&gt;deno&lt;/a&gt;, which I love even more. i&#39;m finally free from the node/npm APIs and build systems! everything is much simpler now, and i should probably write about it in the even more classic post of &amp;quot;i&#39;ve rewritten my blog&amp;quot; which usually shows up in January every year.&lt;/p&gt;</content>
   </entry>
   
 </feed>

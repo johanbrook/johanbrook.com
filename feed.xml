@@ -5,12 +5,180 @@
   <link href="https://johan.im/feed.xml" rel="self"/>
   <link href="https://johan.im/writings"/>
   
-  <updated>2022-01-19T00:00:00Z</updated>
+  <updated>2022-02-16T00:00:00Z</updated>
   <id>https://johan.im/writings</id>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johan.im</email>
   </author>
+  
+  <entry>
+    <title>Setting up Sublime Text for Deno</title>
+    <link href="https://johan.im/writings/sublime-text-deno/" />
+    <updated>2022-02-16T00:00:00Z</updated>
+    <id>https://johan.im/writings/sublime-text-deno/</id>
+    <content type="html">&lt;p&gt;I&#39;ve recently switched back to Sublime Text as main editor, as described in a recent &lt;a href=&quot;https://johan.im/mind/#202202080950&quot;&gt;/mind post&lt;/a&gt;. As a test to get a feel for the ecosystem, I&#39;ve set out on a journey to make it more ergonomic to develop &lt;a href=&quot;https://deno.land/&quot;&gt;Deno&lt;/a&gt; code. &amp;quot;Ergonomic&amp;quot; as in &amp;quot;actually use Typescript features and not show any red compile errors for Deno specific code&amp;quot;. Also, I want to try to have Sublime support &lt;a href=&quot;https://deno.land/manual/linking_to_external_code/import_maps&quot;&gt;import maps&lt;/a&gt;, &lt;a href=&quot;https://deno.land/manual/getting_started/configuration_file&quot;&gt;the Deno config file&lt;/a&gt;, and format on save.&lt;/p&gt;
+&lt;h2&gt;Install necessary packages&lt;/h2&gt;
+&lt;p&gt;(I assume you have &lt;a href=&quot;https://packagecontrol.io/installation&quot;&gt;Package Control up and running&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Required:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://packagecontrol.io/packages/LSP&quot;&gt;LSP&lt;/a&gt;. Client implementation of the Language Server Protocol for Sublime Text. This is a base package, which is used by other language specific packages. There are packages for Typescript, CSS, Deno, JSON, Lua, Vue, etc. etc.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://packagecontrol.io/packages/LSP-Deno&quot;&gt;LSP-Deno&lt;/a&gt;. Convenience package for starting the Deno LSP server. This enables Deno features in Sublime.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Optional:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://packagecontrol.io/packages/LSP-json&quot;&gt;LSP-json&lt;/a&gt;. Schema validation/completions for your JSON and Sublime files. This is for making JSON files more &amp;quot;VS Code like&amp;quot; in the way that keys in various settings files can be autocompleted and validated. Handy but in no way required.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Sublime project configuration&lt;/h2&gt;
+&lt;p&gt;First of all, we need a place where we can instruct Sublime (and installed packages) where to look for custom Deno settings. That is, settings that describe paths to files, and lint and format config. Essentially holding the values described in &lt;a href=&quot;https://deno.land/manual/getting_started/configuration_file&quot;&gt;&amp;quot;Configuration file&amp;quot;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;These will go into a &lt;code&gt;xxx.sublime-project&lt;/code&gt; file, where &lt;code&gt;xxx&lt;/code&gt; is the name of your project (anything). Create one if you haven&#39;t.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;(Sublime has this concept of &amp;quot;projects&amp;quot; I don&#39;t really like. One has to go to &lt;em&gt;Window -&amp;gt; Open project…&lt;/em&gt; in order for the editor to actually load the project config file, &lt;em&gt;or&lt;/em&gt; use &lt;code&gt;subl --project path/to/project.sublime-project&lt;/code&gt;. It&#39;s not loaded when the editor is brought up via &lt;code&gt;subl .&lt;/code&gt; from the command line. This feels lame. Sort of &lt;a href=&quot;https://github.com/sublimehq/sublime_text/issues/828&quot;&gt;tracked here&lt;/a&gt;.)&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;This is a sample &lt;code&gt;xxx.sublime-project&lt;/code&gt; for Deno:&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;settings&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;LSP&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;LSP-typescript&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;token property&quot;&gt;&quot;enabled&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;Deno&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;token property&quot;&gt;&quot;enabled&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token property&quot;&gt;&quot;settings&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;token property&quot;&gt;&quot;deno.config&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./deno.jsonc&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;token property&quot;&gt;&quot;deno.unstable&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;token property&quot;&gt;&quot;deno.importMap&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./import_map.json&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;token property&quot;&gt;&quot;deno.suggest.imports.hosts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                        &lt;span class=&quot;token property&quot;&gt;&quot;https://deno.land&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                        &lt;span class=&quot;token property&quot;&gt;&quot;https://some-other-cdn.com&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+                    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;All &lt;code&gt;deno.*&lt;/code&gt; settings are documented &lt;a href=&quot;https://github.com/sublimelsp/LSP-Deno/blob/main/LSP-Deno.sublime-settings&quot;&gt;here, with defaults&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Line by line:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;LSP-typescript&lt;/code&gt;. Let&#39;s be really sure to disable the TypeScript Language Server, since that&#39;ll interfere with &lt;code&gt;.ts&lt;/code&gt; files with Deno calls.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;deno.config&lt;/code&gt;: Path to the Deno &lt;a href=&quot;https://deno.land/manual/getting_started/configuration_file&quot;&gt;configuration file&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;deno.unstable&lt;/code&gt;: Enable unstable features or not.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;deno.importMap&lt;/code&gt;: Path to an &lt;a href=&quot;https://deno.land/manual/npm_nodejs/import_maps&quot;&gt;import map&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;deno.suggest.imports.hosts&lt;/code&gt;: Hosts that will appear as suggestions when importing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(As mentioned above, the LSP-json package really helps you with the autocomplete here. I found it tricky to figure out the exact structure of these settings.)&lt;/p&gt;
+&lt;p&gt;For me, there&#39;s no need to do further tweaks in most Deno projects.&lt;/p&gt;
+&lt;p&gt;Now, Sublime should be able to pick up your import map, as well as your Deno configuration.&lt;/p&gt;
+&lt;p&gt;If configured correctly, you should be able to&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;get IntelliSense popups when hovering over functions&lt;/li&gt;
+&lt;li&gt;have working import maps&lt;/li&gt;
+&lt;li&gt;get proper type info and autocompletions when coding&lt;/li&gt;
+&lt;li&gt;have correct &lt;code&gt;compilerOptions&lt;/code&gt; from your Deno config&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;and lots more.&lt;/p&gt;
+&lt;p&gt;![IntelliSense documentation popup]({{ &amp;quot;deno-intellisense.png&amp;quot; | postAssetUrl }})&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; at the time of writing, there&#39;s an issue with the &lt;code&gt;deno.suggest.imports.hosts&lt;/code&gt; key. If you toggle the LSP log panel (&lt;em&gt;Command palette -&amp;gt; &amp;quot;LSP: Toggle log panel&amp;quot;&lt;/em&gt;), you&#39;ll see that it says:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;failed to update settings: invalid type: map, expected a boolean
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I&#39;ve filed an &lt;a href=&quot;https://github.com/sublimelsp/LSP-Deno/issues/10&quot;&gt;issue for LSP-Deno here&lt;/a&gt;. I&#39;ve noticed that this setting interfers with the other settings, so I&#39;ve removed it for now.&lt;/p&gt;
+&lt;h2&gt;Click to go to definition&lt;/h2&gt;
+&lt;p&gt;This is a feature I heavily used in VS Code: use the combo of &lt;code&gt;option+click&lt;/code&gt; (Mac) to go to the definition of a variable, function, or type. This uses the LSP, so it&#39;ll be &amp;quot;intelligent&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Mouse bindings live in this file (create it if it doesn&#39;t exist):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;~/Library/Application\ Support/Sublime\ Text/Packages/User/Default\ (OSX).sublime-mousemap
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then add this:&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;button&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;button1&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;count&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;modifiers&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&quot;alt&quot;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;press_command&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;lsp_symbol_definition&quot;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can now use &lt;code&gt;alt+click&lt;/code&gt; to jump around.&lt;/p&gt;
+&lt;h2&gt;Rename symbols&lt;/h2&gt;
+&lt;p&gt;Another nifty feature we can use the Language Server&#39;s capabilities for is to do smart renames, i.e. rename functions and variables and have them be intelligently updated across files.&lt;/p&gt;
+&lt;p&gt;In VS Code, I used the key binding &lt;code&gt;cmd+shift+r&lt;/code&gt; (Mac).&lt;/p&gt;
+&lt;p&gt;Open up Key Bindings (&lt;em&gt;Preferences -&amp;gt; Key Bindings&lt;/em&gt;) or:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;subl ~/Library/Application\ Support/Sublime\ Text/Packages/User/Default\ (OSX).sublime-keymap
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then add this:&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;keys&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;super+shift+r&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;command&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;lsp_symbol_rename&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;context&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;token property&quot;&gt;&quot;key&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;lsp.session_with_capability&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token property&quot;&gt;&quot;operator&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;equal&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token property&quot;&gt;&quot;operand&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;renameProvider&quot;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Diagnostics panel&lt;/h2&gt;
+&lt;p&gt;By default, the LSP package will show a diagnostics panel if there are TypeScript errors or warnings in your project. I found this really annoying, so I turned it off with:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Preferences -&amp;gt; Package Settings -&amp;gt; LSP -&amp;gt; Settings&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Then add:&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// Open the diagnostics panel automatically on save when diagnostics level is&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// equal to or less than:&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// none: 0 (never open the panel automatically)&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// error: 1&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// warning: 2&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// info: 3&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// hint: 4&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;show_diagnostics_panel_on_save&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// default is 2, turn off with 0&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; You can still toggle the &lt;em&gt;Diagnostics&lt;/em&gt; panel with &lt;code&gt;cmd+alt+m&lt;/code&gt; (Mac) or search for it in the command palette. It&#39;ll show any TypeScript errors or warnings in the project.&lt;/p&gt;
+&lt;h2&gt;Code formatting&lt;/h2&gt;
+&lt;p&gt;Deno comes with a built-in formatter, which the LSP in Sublime can use.&lt;/p&gt;
+&lt;p&gt;Either run &lt;code&gt;LSP: Format file&lt;/code&gt; from the command palette to format manually, or use format on save. The latter is configured in the LSP settings, &lt;em&gt;but&lt;/em&gt; you should probably do it on a project basis. This means adding this to your Sublime project file:&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;settings&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;lsp_format_on_save&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The exact formatting config lives in your Deno configuration. For me, it&#39;s &lt;code&gt;deno.jsonc&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;fmt&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;options&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;useTabs&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;lineWidth&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;singleQuote&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token property&quot;&gt;&quot;indentWidth&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Bonus: JSON schema support for &lt;code&gt;deno.json&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;There&#39;s no built-in support for autocompletions in &lt;code&gt;deno.{json,jsonc}&lt;/code&gt; files. But with our newly installed LSP-json package, there is a way! Deno publishes its schema for the config file on a URL, which we can add to &amp;quot;user schemas&amp;quot; in the LSP-json settings.&lt;/p&gt;
+&lt;p&gt;Open &lt;code&gt;LSP-json.sublime-settings&lt;/code&gt; or run &lt;code&gt;LSP-json Settings&lt;/code&gt; in the command palette. Then add this:&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token property&quot;&gt;&quot;settings&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token property&quot;&gt;&quot;userSchemas&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;token property&quot;&gt;&quot;fileMatch&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;deno.json&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;deno.jsonc&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;token property&quot;&gt;&quot;uri&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;https://deno.land/x/deno@v1.18.2/cli/schemas/config-file.v1.json&quot;&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I guess one has to update the versions in there manually, but the package wouldn&#39;t follow the URL linked from Deno&#39;s &lt;a href=&quot;https://deno.land/manual/getting_started/configuration_file&quot;&gt;documentation page&lt;/a&gt;, probably since it redirects: &lt;a href=&quot;https://deno.land/x/deno/cli/schemas/config-file.v1.json&quot;&gt;https://deno.land/x/deno/cli/schemas/config-file.v1.json&lt;/a&gt;.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;That&#39;s it! &lt;a href=&quot;https://johan.im/contact&quot;&gt;Let me know&lt;/a&gt; if you&#39;ve got more tricks for working with Deno in Sublime.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>A whole new world with Deno</title>
@@ -119,7 +287,7 @@
   </entry>
   
   <entry>
-    <title>Setting up an iOS home screen web app in 2021</title>
+    <title>Customising an iOS home screen web app in 2021</title>
     <link href="https://johan.im/writings/ios-homescreen-web-app/" />
     <updated>2021-12-14T00:00:00Z</updated>
     <id>https://johan.im/writings/ios-homescreen-web-app/</id>
@@ -1382,154 +1550,6 @@ git rebase -i git-hash^ # ^ is targetting the parent commit
     <content type="html">&lt;p&gt;![Rue]({{ &amp;quot;euphoria.jpg&amp;quot; | postAssetUrl }})&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Euphoria_(American_TV_series&quot;&gt;Euphoria&lt;/a&gt; on HBO is my new favourite series. Even though my experience with the American teenage upbringing is non-existent, the show is very realistic and well made. It&#39;s like &lt;a href=&quot;https://en.wikipedia.org/wiki/Skam_(TV_series)&quot;&gt;Skam&lt;/a&gt; but with heavier drugs and … heavier of everything.&lt;/p&gt;
 &lt;p&gt;I especially like the cinematography and fast paced storytelling. You get sucked in pretty easily. The main character, Rue, is portrayed perfectly. I find it interesting how they don&#39;t romanticise youth, as other shows are doing. This show is &lt;em&gt;dark&lt;/em&gt; – be prepared – it&#39;s not this &lt;em&gt;&amp;quot;Youth is wasted on the young&amp;quot;&lt;/em&gt; thing. More like &lt;em&gt;&amp;quot;I&#39;m glad you&#39;re still alive, carrying all this shit around&lt;/em&gt;&amp;quot;.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>Using Figma&#39;s API to sync colours with your CSS</title>
-    <link href="https://johan.im/writings/figma-api-colors-css/" />
-    <updated>2019-03-30T00:00:00Z</updated>
-    <id>https://johan.im/writings/figma-api-colors-css/</id>
-    <content type="html">&lt;p&gt;&lt;strong&gt;Design systems&lt;/strong&gt; have become popular recently. Even if you don&#39;t need a full blown one, it might be nice to collect design resources in a single, canonical location. In this post, I&#39;ll describe how I worked with Figma and their API to sync colours with a CSS codebase.&lt;/p&gt;
-&lt;h2&gt;The problem&lt;/h2&gt;
-&lt;p&gt;At Lookback, we had all visual design collected across Sketch files. Sketch is nice, but as our platform grew with more apps, interfaces, and flows, it was clear that the workflow of &amp;quot;a single designer owning all files&amp;quot; just didn&#39;t hold up:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;It would be a constant stream of new Sketch files or PNG exports being shared in the Trello cards.&lt;/li&gt;
-&lt;li&gt;For each small change, the designer had to go back to the Sketch file, do a minor change, export again, upload for review.&lt;/li&gt;
-&lt;li&gt;There was emphasis on collaboration. Merging in feedback from another person&#39;s work in Sketch was a pain.&lt;/li&gt;
-&lt;li&gt;Managing colours and other styles &lt;em&gt;across&lt;/em&gt; Sketch files was a pain.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Enter Figma.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://www.figma.com/&quot;&gt;Figma&lt;/a&gt; is a design software capable of everything Sketch can do, but with a few important details:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;It&#39;s web based. Accessible everywhere with an option to install locally as an macOS app.&lt;/li&gt;
-&lt;li&gt;It&#39;s completely cloud based. No local files to sync. No merging and branching. It&#39;s saved as you go.&lt;/li&gt;
-&lt;li&gt;It supports shared libraries of components and styles.&lt;/li&gt;
-&lt;li&gt;It supports simple prototyping right out of the box.&lt;/li&gt;
-&lt;li&gt;It&#39;s &lt;strong&gt;collaborative&lt;/strong&gt;. You can design in high or low fidelity with coworkers in &lt;em&gt;real time&lt;/em&gt; 😍&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I can&#39;t stress the last point enough. This has severely improved our design flow. It&#39;s more democratic and transparent, as anybody with a Figma account can pop into a design and poke around. Figma has completely eliminated the old ways of doing design flows.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;A month in, I think Figma is a killer app for doing interface design at the moment.&lt;/strong&gt;&lt;/p&gt;
-&lt;h2&gt;Back to the problem&lt;/h2&gt;
-&lt;p&gt;I set out on trying out Figma in our organisation for a while. The first task was to structure out colour system, which at the time was very loosely defined and pretty ad-hoc.&lt;/p&gt;
-&lt;p&gt;Describing how I created the colour system is out of scope for this post. The end result should anyway be&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;a grid of colours named after hue and brightness,&lt;/li&gt;
-&lt;li&gt;the same colours collected in Figma&#39;s colour library&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure class=&quot;image--full&quot;&gt;
-  &lt;img src=&quot;https://johan.im/assets/posts/color-system.png&quot; alt=&quot;Color system&quot;&gt;
-&lt;/figure&gt;
-&lt;p&gt;&lt;em&gt;How do I use these colours in my web frontend?&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;The Old Way would be to manually copy the HEX codes over to (S)CSS variables and make sure to keep them up to date. Now, the colours might not change that frequently, so this might not be a huge pain. But when you&#39;re in the exploratory phase, it&#39;s very messy to go back and forth all the time.&lt;/p&gt;
-&lt;p&gt;I noticed Figma has an &lt;a href=&quot;https://www.figma.com/developers&quot;&gt;API&lt;/a&gt; ✨Rejoice! The &lt;a href=&quot;https://www.figma.com/developers/docs&quot;&gt;docs&lt;/a&gt; are lovely, and the only thing needed to do simple HTTP REST calls is an access token you generate for yourself.&lt;/p&gt;
-&lt;p&gt;My goal was to:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Sync the &lt;strong&gt;names&lt;/strong&gt; and &lt;strong&gt;HEX colour codes&lt;/strong&gt; from my Figma file down into a JSON or JS file.&lt;/li&gt;
-&lt;li&gt;This file was to be used in the build process for my CSS, so variables could be created.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;After playing around, I ended up with a Node script which fetches the colour styles for a team and writes them to a &lt;code&gt;colors.js&lt;/code&gt; file. It&#39;s a super simple script which just calls their endpoints and pieces together all the styles into a big hash.&lt;/p&gt;
-&lt;p class=&quot;tc&quot;&gt;
-  &lt;a class=&quot;btn&quot; href=&quot;https://gist.github.com/brookback/cce828202ef40ddddf2d1aa731929c90&quot;&gt;fetch-figma-colors.js&lt;/a&gt;
-&lt;/p&gt;
-&lt;p&gt;⚠️ &lt;em&gt;You have to tweak some variables in there!&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;It was a bit fiddly to get the actual HEX codes of the styles, since Figma doesn&#39;t include them in the call to the &lt;code&gt;/styles&lt;/code&gt; API endpoint. Therefore, I had to cross reference the name of the styles with the colour samples in the document. I&#39;ve sent this feedback to the Figma team.&lt;/p&gt;
-&lt;p&gt;Run it like this:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;FIGMA_PERSONAL_TOKEN=&lt;your-token&gt; node fetch-figma-colors.js
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The resulting file, &lt;code&gt;colors.js&lt;/code&gt;, will look like this:&lt;/p&gt;
-&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/* eslint-disable */&lt;/span&gt;
-&lt;span class=&quot;token comment&quot;&gt;/* Updated at Thu, 21 Mar 2019 21:06:58 GMT*/&lt;/span&gt;
-module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;/** Suitable as background color. */&lt;/span&gt;
-    &lt;span class=&quot;token string-property property&quot;&gt;&#39;blue-10&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;#f6fbfd&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;/** Suitable as default border color. */&lt;/span&gt;
-    &lt;span class=&quot;token string-property property&quot;&gt;&#39;blue-20&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;#d7f3ff&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token string-property property&quot;&gt;&#39;blue-30&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;#a4e3ff&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token string-property property&quot;&gt;&#39;blue-40&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;#60ceff&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token string-property property&quot;&gt;&#39;blue-50&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;#00a0e8&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;/** Suitable as default button and link color. */&lt;/span&gt;
-    &lt;span class=&quot;token string-property property&quot;&gt;&#39;blue-60&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;#007db5&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;/** Suitable as heading color. */&lt;/span&gt;
-    &lt;span class=&quot;token string-property property&quot;&gt;&#39;blue-70&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;#006693&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;/** Suitable as body text color. */&lt;/span&gt;
-    &lt;span class=&quot;token string-property property&quot;&gt;&#39;blue-80&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;#004260&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token string-property property&quot;&gt;&#39;blue-90&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;#002b3e&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token string-property property&quot;&gt;&#39;blue-100&#39;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;#041820&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token comment&quot;&gt;// ...&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Neat! Even with custom comments I wrote for some styles in Figma! 😍&lt;/p&gt;
-&lt;figure&gt;
-  &lt;img src=&quot;https://johan.im/assets/posts/figma-styles.png&quot; style=&quot;width: 231px&quot; alt=&quot;Figma styles&quot;&gt;
-&lt;/figure&gt;
-&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt; You can of course make it be a JSON file instead if that&#39;s your thing, but I wanted to keep the comments from Figma as JS comments, as JSON doesn&#39;t support that.&lt;/p&gt;
-&lt;h2&gt;Using the styles in my CSS&lt;/h2&gt;
-&lt;p&gt;This is were things differ for people. Some use Sass, others use LESS or PostCSS, or just &lt;em&gt;nothing at all&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;You have to figure out how to get this hash of colours into your styles somehow.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;For me, I&#39;m in the midst of moving over our CSS foundation from Sass to a PostCSS pipeline, using &lt;a href=&quot;https://tailwindcss.com/&quot;&gt;Tailwind&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Tailwind is sort of like a &lt;em&gt;generator for design systems&lt;/em&gt;. It&#39;s similar to the &lt;a href=&quot;https://tachyons.io/&quot;&gt;Tachyons toolkit&lt;/a&gt;, but goes even further, with more things automated.&lt;/p&gt;
-&lt;p&gt;Both Tailwind and Tachyons are proponents of something called &lt;em&gt;functional CSS&lt;/em&gt;. This is out of scope of this post, but I recommend reading these articles:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://mrmrs.cc/writing/2016/03/24/scalable-css/&quot;&gt;CSS and scalability&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://jon.gold/2015/07/functional-css/&quot;&gt;Functional CSS&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Tailwind is nice since I can configure widths, margins, colours – everything – in a Javascript config file, and then generate a CSS foundation from that.&lt;/p&gt;
-&lt;p&gt;See more in the &lt;a href=&quot;https://tailwindcss.com/docs/configuration&quot;&gt;documentation&lt;/a&gt;, but in a nutshell it looks like this:&lt;/p&gt;
-&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// tailwind.config.js&lt;/span&gt;
-
-module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token literal-property property&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token literal-property property&quot;&gt;colors&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;token literal-property property&quot;&gt;white&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;#fff&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;token comment&quot;&gt;// ...&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Tailwind uses this colour scale to create border, text, and background colours as class names. I can now use it like this in my HTML &lt;em&gt;or&lt;/em&gt; CSS code:&lt;/p&gt;
-&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;&amp;lt;!-- HTML --&gt;&lt;/span&gt;
-
-&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;bg-white&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;p&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;Hello!&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;p&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;div&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;or&lt;/p&gt;
-&lt;pre class=&quot;language-css&quot;&gt;&lt;code class=&quot;language-css&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/* CSS */&lt;/span&gt;
-
-&lt;span class=&quot;token selector&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token atrule&quot;&gt;&lt;span class=&quot;token rule&quot;&gt;@apply&lt;/span&gt; bg-white&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;token comment&quot;&gt;/* or: */&lt;/span&gt;
-
-&lt;span class=&quot;token selector&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token property&quot;&gt;background-color&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;colors.white&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The final thing to do is thus to import our colours into the config, et voíla:&lt;/p&gt;
-&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// tailwind.config.js&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; colors &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;./colors&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-
-module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token literal-property property&quot;&gt;theme&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    colors&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;bg-blue-10&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;h1&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;text-orange-60&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;Orange 60&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;h1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;div&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Done! 🌈&lt;/p&gt;
-&lt;h2&gt;Recap&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;We create colour styles in Figma, according to the art on how to create colour systems.&lt;/li&gt;
-&lt;li&gt;We update our CSS codebase with the colour styles&#39; names and HEX codes.&lt;/li&gt;
-&lt;li&gt;Those are imported into our Tailwind config and the CSS is built based on the colours.&lt;/li&gt;
-&lt;li&gt;We have the colours available as config variables in our CSS code or as classes in our HTML ✨&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Anytime you&#39;d like to adjust the colours in your system, be sure to run the script in the CSS codebase and distribute a new version of the generated CSS file.&lt;/p&gt;
-&lt;p&gt;Future work could include specifying whole component styles in Figma and parsing that into corresponding CSS rules ✌️&lt;/p&gt;</content>
   </entry>
   
 </feed>
