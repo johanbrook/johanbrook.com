@@ -9,5 +9,5 @@
     "https://deno.land": true,
     "https://cdn.skypack.dev": true
   },
-  "deno.importMap": ".vscode/lume_import_map.json"
+  "deno.importMap": "../import_map.json"
 }
