@@ -3,3 +3,4 @@ npm-debug.log
 .sass-cache/
 .DS_Store
 build*/
+*.sublime-workspace

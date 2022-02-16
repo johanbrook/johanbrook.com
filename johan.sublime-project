@@ -1,0 +1,26 @@
+{
+    "folders": [
+        {
+            "path": ".",
+            "folder_exclude_patterns": [
+                "build"
+            ]
+        }
+    ],
+    "settings": {
+        "lsp_format_on_save": true,
+        "LSP": {
+            "LSP-typescript": {
+                "enabled": false,
+            },
+            "Deno": {
+                "enabled": true,
+                "settings": {
+                    "deno.config": "./deno.jsonc",
+                    "deno.unstable": true,
+                    "deno.importMap": "./import_map.json"
+                }
+            },
+        },
+    },
+}
