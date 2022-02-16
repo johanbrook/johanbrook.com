@@ -6,7 +6,7 @@ pre[class*='language-'] {
   background-color: hsl(112, 29.98%, 97.78%);
 
   @media (prefers-color-scheme: dark) {
-    color: hsl(112, 50%, 92%);
+    color: hsl(112, 70%, 80%);
     background-color: hsl(112, 1.27%, 13.33%);
   }
 }

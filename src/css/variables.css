@@ -25,6 +25,7 @@
 
   --pre-background: var(--color-bg-secondary);
   --code-background: var(--color-bg-secondary);
+  --code-color: hsl(112, 70%, 80%);
 
   --hr-color: var(--grey-lightest);
 
@@ -56,7 +57,7 @@
   /* Typography */
 
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
-  --mono: Hack, Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
+  --mono: 'Comic Mono', 'Fira Code', Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
     'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
     serif;
 

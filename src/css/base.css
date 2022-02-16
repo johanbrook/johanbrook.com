@@ -257,6 +257,7 @@ code {
   padding: 2px 4px;
   border-radius: 4px;
   white-space: nowrap;
+  color: var(--code-color);
 }
 
 figcaption {
@@ -293,11 +294,12 @@ pre {
   hyphens: none;
   tab-size: var(--tab-size);
   background: var(--pre-background);
+  color: var(--code-color);
   border-radius: 8px;
   padding: var(--top-inset) calc(var(--lineheight));
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: none;
-  font-size: var(--f6);
+  font-size: var(--f5);
   overflow: auto;
   position: relative;
 
