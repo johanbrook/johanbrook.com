@@ -1,5 +1,5 @@
 ---
-title: Setting up an iOS home screen web app in 2021
+title: Customising an iOS home screen web app in 2021
 slug: ios-homescreen-web-app
 date: 2021-12-14
 location: Stockholm
