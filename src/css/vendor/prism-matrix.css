@@ -26,7 +26,6 @@ pre[class*='language-'] {
 .token.doctype,
 .token.cdata {
   --alpha: 80%;
-  font-style: italic;
 }
 
 .token.punctuation {
@@ -114,7 +113,6 @@ pre[class*='language-'] {
   .token.doctype,
   .token.cdata {
     --sat: 10%;
-    font-style: italic;
   }
 
   .token.punctuation {
