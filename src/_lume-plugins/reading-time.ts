@@ -2,12 +2,11 @@ import type { Page } from 'lume/core.ts';
 
 export const readingTime = (
     pageOrContent: Page | string,
-    { printSeconds = false, raw = false, speed = 300 } = {}
+    { printSeconds = false, raw = false, speed = 300 } = {},
 ) => {
-    const htmlContent: string =
-        typeof pageOrContent == 'string'
-            ? pageOrContent
-            : (pageOrContent as any).data.content;
+    const htmlContent: string = typeof pageOrContent == 'string'
+        ? pageOrContent
+        : (pageOrContent as any).data.content;
 
     if (typeof htmlContent != 'string') {
         return `0 ${printSeconds ? 'seconds' : 'minutes'}`;

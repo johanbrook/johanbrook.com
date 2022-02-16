@@ -25,10 +25,9 @@ export const prismMarkdown = (str: string, _lang: string): string => {
     if (_lang) {
         const [lang, lines] = _lang.split('/');
 
-        const html =
-            lang == 'text' || !prism.languages[lang]
-                ? str
-                : prism.highlight(str, prism.languages[lang], lang);
+        const html = lang == 'text' || !prism.languages[lang]
+            ? str
+            : prism.highlight(str, prism.languages[lang], lang);
 
         const klass = `class="language-${lang}"`;
 
@@ -47,9 +46,7 @@ const highlightLines = (ranges: Range[]): string => {
         .map((r) => {
             const [start, end] = r.split('-');
 
-            const rows = end
-                ? Math.abs(parseInt(end, 10) - parseInt(start, 10))
-                : 1;
+            const rows = end ? Math.abs(parseInt(end, 10) - parseInt(start, 10)) : 1;
 
             return /* html */ `<ins aria-hidden="true" style="--start: ${start}; --rows: ${rows}" class="line-highlight">${start}</ins>`;
         })
@@ -80,7 +77,7 @@ const addTsLang = (p: typeof Prism) => {
             // keywords that have to be followed by an identifier
             /\b(?:asserts|infer|interface|module|namespace|type)\b(?=\s*(?:[{_$a-zA-Z\xA0-\uFFFF]|$))/,
             // This is for `import type *, {}`
-            /\btype\b(?=\s*(?:[\{*]|$))/
+            /\btype\b(?=\s*(?:[\{*]|$))/,
         );
     }
 
@@ -113,8 +110,7 @@ const addTsLang = (p: typeof Prism) => {
                 /#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>(?=\s*\()/,
             greedy: true,
             inside: {
-                function:
-                    /^#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*/,
+                function: /^#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*/,
                 generic: {
                     pattern: /<[\s\S]+/, // everything after the first <
                     alias: 'class-name',
@@ -188,7 +184,7 @@ const addJsxLang = (prism: typeof Prism) => {
     if (isTokenObject(prism.languages.jsx.tag)) {
         prism.languages.jsx.tag.pattern = re(
             /<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/
-                .source
+                .source,
         );
 
         // @ts-ignore I can't be bothered
@@ -197,8 +193,7 @@ const addJsxLang = (prism: typeof Prism) => {
         prism.languages.jsx.tag.inside['attr-value'].pattern =
             /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
         // @ts-ignore I can't be bothered
-        prism.languages.jsx.tag.inside['tag'].inside['class-name'] =
-            /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
+        prism.languages.jsx.tag.inside['tag'].inside['class-name'] = /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
         // @ts-ignore I can't be bothered
         prism.languages.jsx.tag.inside['comment'] = javascript['comment'];
     }
@@ -213,7 +208,7 @@ const addJsxLang = (prism: typeof Prism) => {
             },
         },
         // @ts-ignore I can't be bothered
-        prism.languages.jsx.tag
+        prism.languages.jsx.tag,
     );
 
     prism.languages.insertBefore(
@@ -235,7 +230,7 @@ const addJsxLang = (prism: typeof Prism) => {
                 },
             },
         },
-        prism.languages.jsx.tag
+        prism.languages.jsx.tag,
     );
 
     // The following will handle plain text inside tags
@@ -279,14 +274,14 @@ const addJsxLang = (prism: typeof Prism) => {
                     } else {
                         if (
                             token.content[token.content.length - 1].content ===
-                            '/>'
+                                '/>'
                         ) {
                             // Autoclosed tag, ignore
                         } else {
                             // Opening tag
                             openedTags.push({
                                 tagName: stringifyToken(
-                                    token.content[0].content[1]
+                                    token.content[0].content[1],
                                 ),
                                 openedBraces: 0,
                             });
@@ -344,7 +339,7 @@ const addJsxLang = (prism: typeof Prism) => {
                         plainText,
                         // @ts-ignore I can't be bothered
                         null,
-                        plainText
+                        plainText,
                     );
                 }
             }
@@ -379,11 +374,10 @@ const addTsxlang = (prism: typeof Prism) => {
     if (isTokenObject(tag)) {
         tag.pattern = RegExp(
             /(^|[^\w$]|(?=<\/))/.source + '(?:' + tag.pattern.source + ')',
-            tag.pattern.flags
+            tag.pattern.flags,
         );
         tag.lookbehind = true;
     }
 };
 
-const isTokenObject = (t: any): t is Prism.TokenObject =>
-    !!t.inside && !!t.pattern;
+const isTokenObject = (t: any): t is Prism.TokenObject => !!t.inside && !!t.pattern;

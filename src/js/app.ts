@@ -3,9 +3,7 @@ import { Args as GitHubArgs, mkGitHub } from './github';
 import type { CreateNoteResult, Service } from './service';
 import { Err, isErr } from './util';
 
-const WORKER_URL = isLocal()
-    ? 'http://localhost:3001'
-    : 'https://github-oauth.brookie.workers.dev';
+const WORKER_URL = isLocal() ? 'http://localhost:3001' : 'https://github-oauth.brookie.workers.dev';
 
 interface Services {
     github: GitHubArgs;
@@ -13,7 +11,7 @@ interface Services {
 
 const mkService = <T extends keyof Services>(
     _service: T,
-    args: Services[T]
+    args: Services[T],
 ): Service => {
     return mkGitHub(args);
 };
@@ -56,8 +54,7 @@ export const runApp = async () => {
                     textarea.value.trim().length == 0;
 
                 // Autogrow
-                textarea.parentElement!.dataset.replicatedValue =
-                    textarea.value;
+                textarea.parentElement!.dataset.replicatedValue = textarea.value;
                 break;
             }
 
@@ -84,7 +81,7 @@ export const runApp = async () => {
                 } else {
                     flash(
                         (window as any).submitNote as HTMLInputElement,
-                        '✨ posted! ✨'
+                        '✨ posted! ✨',
                     );
 
                     await tick({ createNote: res });
@@ -121,16 +118,16 @@ const App = (svc: Service) => {
             <section>
                 <h1 class="mb2 no-rhythm">${config.repo}</h1>
                 <p>
-                    <a href="https://github.com/${config.owner}/${config.repo
-            }">${config.owner}/${config.repo}</a>
+                    <a href="https://github.com/${config.owner}/${config.repo}">${config.owner}/${config.repo}</a>
                 </p>
 
                 ${NewNote()}
 
-                ${state.createNote
+                ${
+            state.createNote
                 ? `<p>Note created in repo: <a href="${state.createNote.fileUrl}">${state.createNote.file}</a></p>`
                 : ''
-            }
+        }
 
                 <p>
                     <a href="/mind" class="f6">View all notes</a>
@@ -176,9 +173,11 @@ const ev = <T extends keyof DocumentEventMap>(e: T, action: Action) =>
 
 const NewNote = () => /* HTML */ `
     <form
-        ${ev('submit', {
-    kind: 'submit_note',
-})}
+        ${
+    ev('submit', {
+        kind: 'submit_note',
+    })
+}
         class="measure-narrow mx-auto"
     >
         <h2>New note</h2>
