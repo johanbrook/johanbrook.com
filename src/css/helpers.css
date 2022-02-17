@@ -90,6 +90,14 @@ PROSE
     font-family: var(--sans);
     font-size: 0.9em;
   }
+
+  /* Break links and code */
+  & code:not(pre > code),
+  & a {
+    word-break: break-word;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
 }
 
 & figure.image--full {

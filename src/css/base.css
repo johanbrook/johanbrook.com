@@ -256,7 +256,6 @@ code {
   background-color: var(--code-background);
   padding: 2px 4px;
   border-radius: 4px;
-  white-space: nowrap;
   color: var(--code-color);
 }
 
