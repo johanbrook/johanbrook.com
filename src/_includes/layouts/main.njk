@@ -8,6 +8,11 @@ ogImage: /assets/images/og-image.png
     <title>{% if title %}{{ title | lower }} – {{ meta.title | lower }}{% else %}{{ meta.title | lower }}{% endif %}</title>
 
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preload" as="font" type="font/ttf" href="/assets/ComicMono.ttf">
+    <link rel="preload" as="font" type="font/ttf" href="/assets/ComicMono-Bold.ttf">
+    <link rel="preload" as="style" type="text/css" href="https://rsms.me/inter/inter.css">
 
     {% if excerpt or description or meta.description %}
     <meta name="description" content="{{ excerpt or description or meta.description }}">
@@ -16,8 +21,6 @@ ogImage: /assets/images/og-image.png
     <meta name="keywords" content="{{ keywords }}">
     {% endif %}
     <meta name="author" content="{{ meta.author }}">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Styles-->
     <link rel="stylesheet" href="/johan.css">
