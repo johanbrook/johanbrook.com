@@ -324,6 +324,11 @@ pre {
   }
 }
 
+li > pre {
+  margin-top: calc(var(--lineheight) / 2);
+  margin-bottom: calc(var(--lineheight) / 2);
+}
+
 /* Syntax highlighting */
 code[class*='language-'] {
   display: block;
