@@ -89,6 +89,40 @@
   <ol class="NotesList list-reset">
     
       <li>
+        <article id="202203161958">
+          <div class="prose">
+            <p>i don't think everyone need heavy test runners and framework for every project. a single file with <code>import assert from 'assert'</code> (node) and a bunch of assertions can suffice for a tiny prototype project.</p>
+<p>if you want more structure, where do you go? the npm libraries <code>tape</code> and <code>tap</code> have ~20 dependencies each. <code>ava</code> has ~40. i don't even want to think about <code>jest</code>…</p>
+<p>i'm sure these packages are great for certain things. but here's a minimal test runner i've written: https://gist.github.com/johanbrook/598d07fa89357f8577d6d0d6e88747a5.</p>
+<p>it works as you'd expect:</p>
+<ol>
+<li>create a test file.</li>
+<li>import <code>test</code> and write test cases.</li>
+</ol>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> test <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./_test-helper"</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> assert <span class="token keyword">from</span> <span class="token string">'assert/strict'</span><span class="token punctuation">;</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'it works'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>i use node's <code>assert</code> for assertions. want typescript support? add <code>esbuild</code> and <code>esbuild-register</code> as dev dependencies and run tests with:</p>
+<pre class="language-bash"><code class="language-bash">node -r esbuild-register run-tests.ts
+</code></pre>
+<p>the runner supports returning promises, as well as printing fancy file names for each test case.</p>
+<p>i appreciate taking this approach before jumping to <code>npm install &lt;dep&gt;</code>. it gives me very much peace of mind, as long as you don't spend too much time maintaining your own tooling.</p>
+          </div>
+
+          <header class="mt3 tr">
+            <h1 class="f5 fw5 no-rhythm mb0">
+              <a href="#202203161958" title="Permalink">march 16th, 2022 — 19:58 <span class="target">#</span></a>
+            </h1>
+            <p class="muted mb0 f6">from on the run</p>
+          </header>
+        </article>
+      </li>
+    
+      <li>
         <article id="202203151012">
           <div class="prose">
             <p>my latest favourite cocktail is this gin sour with bergamot and black tea. you've probably felt the scent of bergamot in earl grey tea or in perfumes. it's a highly aromatic citrus fruit: it looks like a large, more spherical, lemon. it's also surprisingly hard to find here in stockholm – even when it's in season.</p>
@@ -483,7 +517,7 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/832f2da276b36766a7734a1974e73d4c0880fd15">832f2da</a> — built at <time>2022-03-15T10:56:51.864Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/5f545af57a73b6856e9774a5b004f8b9753bcef8">5f545af</a> — built at <time>2022-03-16T19:59:28.977Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 
