@@ -19,7 +19,7 @@
     <content type="html">&lt;p&gt;i don&#39;t think everyone need heavy test runners and framework for every project. a single file with &lt;code&gt;import assert from &#39;assert&#39;&lt;/code&gt; (node) and a bunch of assertions can suffice for a tiny prototype project.&lt;/p&gt;
 &lt;p&gt;if you want more structure, where do you go? the npm libraries &lt;code&gt;tape&lt;/code&gt; and &lt;code&gt;tap&lt;/code&gt; have ~20 dependencies each. &lt;code&gt;ava&lt;/code&gt; has ~40. i don&#39;t even want to think about &lt;code&gt;jest&lt;/code&gt;…&lt;/p&gt;
 &lt;p&gt;i&#39;m sure these packages are great for certain things. but here&#39;s a minimal test runner i&#39;ve written:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://gist.github.com/johanbrook/598d07fa89357f8577d6d0d6e88747a5&quot;&gt;Johan&#39;s Test Runner&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://gist.github.com/johanbrook/598d07fa89357f8577d6d0d6e88747a5&quot;&gt;Johan&#39;s Test Runner →&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;it works as you&#39;d expect:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;create a test file.&lt;/li&gt;
