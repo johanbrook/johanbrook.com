@@ -328,6 +328,12 @@
   finishedAt: 2021-11-01T00:00:00Z
   notes: 'An okay account of the history of the band, told by themselves in interview format.'
 
-- title: Killing Commendatore
-  author: Haruki Murakami
+- title: Once Upon A Time… In Hollywood
+  author: Quentin Tarantino
   location: Stockholm, Sweden
+  finished: true
+  finishedAt: 2022-04-11T17:40:00Z
+  notes: "It's quite rare that a book is written after a film, and by the film's creator too. I loved this one:
+  it's 100% Quentin Tarantino-ness all way through. He has space to go deeper in the conversations between the
+  characters, whose stories he can give justice too. Like the film, it somehow entertains me without having
+  a real plot."
