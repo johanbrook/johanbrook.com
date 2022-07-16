@@ -875,8 +875,16 @@ BORDERS
 COLOURS
 ----------------------------------------------------------------*/
 
+.text-bg {
+	color: var(--color-bg);
+}
+
 .comp-neon {
 	color: var(--neon);
+}
+
+.bg-comp-neon {
+	background-color: var(--neon);
 }
 
 .muted {
@@ -912,6 +920,18 @@ TYPOGRAPHY
 /* Measure is limited to ~45 characters */
 .measure-narrow {
 	max-width: var(--measure-narrow);
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.tracking {
+	letter-spacing: 1px;
+}
+
+.rounded-small {
+	border-radius: .25em;
 }
 
 .badge {

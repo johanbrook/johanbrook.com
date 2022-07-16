@@ -16,14 +16,14 @@ menu:
     <ol class="list-reset">
       {% for book in books | reverse %}
         <li class="mb4">
-          <h2 class="mb0 no-rhythm f3 {% if not book.finished %}dimmed{% endif %}">{{ book.title }}</h2>
+          <h2 class="mb0 no-rhythm f3">{{ book.title }}</h2>
           <p class="f5 mb0 fw5">{{book.author}}</p>
 
          {% if book.notes %}
             <p class="f5 mt1 mb1">{{ book.notes }}</p>
           {% endif %}
  
-          <p class="f6 mb0 fw6">
+          <p class="f6 mb1 fw6">
             {% if book.finishedAt %}
               <span title="Finished in">{{ book.finishedAt | date("MMMM yyyy") }}</span>
               {% if book.location %} — {% endif %}
@@ -33,7 +33,7 @@ menu:
             {% endif %}
           </p>
           {% if not book.finished %}
-              <p class="f5 comp-neon b mb0">In progress</p>
+              <p class="f6"><span class="bg-comp-neon text-bg b mb0 uppercase tracking rounded-small" style="padding: 3px">In progress</span></p>
             {% endif %}
         </li>
       {% endfor %}
