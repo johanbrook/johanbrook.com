@@ -17,7 +17,8 @@ A colleague mentioned this the other day in the company chat:
 
 This is the perfect description of programming to me.
 
-I've yet to discover a more suitable response to tell family, friends, and my girlfriend when they ask the repeated question _"What is it you love so much about coding?!"_.
+I've yet to discover a more suitable response to tell family, friends, and my girlfriend when they
+ask the repeated question _"What is it you love so much about coding?!"_.
 
 While I'm writing code, I'm:
 

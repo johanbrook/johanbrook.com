@@ -11,4 +11,5 @@ category: Design
 slug: the-road-to-the-37signals-homepage-redesign
 ---
 
-Jamie of 37signals talk about the process behind the realigning of 37signals.com. Cool to read about the several iterations.
+Jamie of 37signals talk about the process behind the realigning of 37signals.com. Cool to read about
+the several iterations.

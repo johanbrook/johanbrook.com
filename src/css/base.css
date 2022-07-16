@@ -7,81 +7,88 @@
    don't handle system dark mode for you automatically 
    (Firefox), handle it for them. */
 @supports not (color-scheme: light dark) {
-  html {
-    background: var(--color-bg);
-    color: var(--color-text);
-  }
+	html {
+		background: var(--color-bg);
+		color: var(--color-text);
+	}
 }
 
 /* For browsers that support automatic dark/light mode
      As well as system colors, set those */
 @supports (color-scheme: light dark) and (background-color: Canvas) {
-  :root {
-    --color-bg: Canvas;
-  }
+	:root {
+		--color-bg: Canvas;
+	}
 }
 
 /* For Safari on iOS. Hacky, but it works. */
 @supports (background-color: -apple-system-control-background) {
-  :root {
-    --color-bg: -apple-system-control-background;
-  }
+	:root {
+		--color-bg: -apple-system-control-background;
+	}
 }
 
 :root {
-  color-scheme: light dark;
+	color-scheme: light dark;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
-  font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--sans);
-  background-color: var(--color-bg);
-  color: var(--color-text);
+	font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--sans);
+	background-color: var(--color-bg);
+	color: var(--color-text);
 }
 
 body {
-  margin: var(--inset) auto;
-  min-height: calc(100vh - (var(--inset) * 2));
-  width: calc(100% - (var(--inset) * 2));
+	margin: var(--inset) auto;
+	min-height: calc(100vh - (var(--inset) * 2));
+	width: calc(100% - (var(--inset) * 2));
 
-  /* Push the footer down */
-  display: flex;
-  flex-direction: column;
+	/* Push the footer down */
+	display: flex;
+	flex-direction: column;
 
-  line-height: var(--leading);
-  letter-spacing: var(--tracking);
-  font-kerning: normal;
-  font-feature-settings:
-  /* Contextual alternates */ 'calt' 1, 'kern' 1,
-    'liga' 1, /* Open digis */ 'ss01' 1, /* Curved 'r' */ 'ss03' 1,
-    /* Disambiguation */ 'ss04' 1, 'frac' 1;
-  font-variant-ligatures: contextual common-ligatures;
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	line-height: var(--leading);
+	letter-spacing: var(--tracking);
+	font-kerning: normal;
+	font-feature-settings:
+		/* Contextual alternates */
+		'calt' 1, 'kern' 1,
+		'liga' 1,
+		/* Open digis */
+		'ss01' 1,
+		/* Curved 'r' */
+		'ss03' 1,
+		/* Disambiguation */
+		'ss04' 1, 'frac' 1;
+	font-variant-ligatures: contextual common-ligatures;
+	scroll-behavior: smooth;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
-  @media screen and (prefers-color-scheme: dark) {
-    word-spacing: 0.05em;
-  }
+	@media screen and (prefers-color-scheme: dark) {
+		word-spacing: 0.05em;
+	}
 }
 
 main {
-  flex: 1 0 auto;
-  max-width: var(--main-width);
-  margin-bottom: calc(var(--lineheight) * 3);
+	flex: 1 0 auto;
+	max-width: var(--main-width);
+	margin-bottom: calc(var(--lineheight) * 3);
 }
 
 .Content {
-  display: flex;
-  justify-content: center;
-  flex: 1; /* Take up vertical space */
+	display: flex;
+	justify-content: center;
+	flex: 1;
+	/* Take up vertical space */
 
-  @media screen and (max-width: 55rem) {
-    flex-direction: column;
-  }
+	@media screen and (max-width: 55rem) {
+		flex-direction: column;
+	}
 }
 
 /* =HEADINGS
@@ -93,8 +100,8 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
-  margin-bottom: calc(var(--lineheight) / 2);
+	margin: 0;
+	margin-bottom: calc(var(--lineheight) / 2);
 }
 
 h1:not(.no-rhythm),
@@ -102,134 +109,135 @@ h1:not(.no-rhythm),
 h2:not(.no-rhythm),
 .f2:not(.no-rhythm),
 .f3:not(.no-rhythm) {
-  margin-bottom: var(--lineheight);
-  line-height: 1.5;
-  vertical-align: top;
+	margin-bottom: var(--lineheight);
+	line-height: 1.5;
+	vertical-align: top;
 
-  &:first-line {
-    vertical-align: bottom;
-  }
+	&:first-line {
+		vertical-align: bottom;
+	}
 
-  /* Magic from https://gist.github.com/jonathanhefner/3173850 */
-  &::before,
-  &::after {
-    content: '\feff'; /* zero-width nbsp */
-    display: inline-block;
-    width: 1px;
-    margin-left: -1px;
-    height: calc(var(--lineheight) * 2);
-  }
+	/* Magic from https://gist.github.com/jonathanhefner/3173850 */
+	&::before,
+	&::after {
+		content: '\feff';
+		/* zero-width nbsp */
+		display: inline-block;
+		width: 1px;
+		margin-left: -1px;
+		height: calc(var(--lineheight) * 2);
+	}
 }
 
 .f0,
 .title {
-  font-size: var(--f0);
-  letter-spacing: var(--tracking-f0);
+	font-size: var(--f0);
+	letter-spacing: var(--tracking-f0);
 }
 
 h1,
 .f1 {
-  font-size: var(--f1);
-  letter-spacing: var(--tracking-f1);
+	font-size: var(--f1);
+	letter-spacing: var(--tracking-f1);
 }
 
 h1 {
-  font-weight: 500;
+	font-weight: 500;
 }
 
 h2,
 .f2 {
-  font-size: var(--f2);
-  letter-spacing: var(--tracking-f2);
+	font-size: var(--f2);
+	letter-spacing: var(--tracking-f2);
 }
 
 h2 {
-  font-weight: 500;
+	font-weight: 500;
 }
 
 h3,
 .f3 {
-  font-size: var(--f3);
-  letter-spacing: var(--tracking-f3);
+	font-size: var(--f3);
+	letter-spacing: var(--tracking-f3);
 }
 
 h3 {
-  font-weight: 500;
+	font-weight: 500;
 }
 
 h4,
 .f4 {
-  font-size: var(--f4);
-  letter-spacing: var(--tracking-f4);
+	font-size: var(--f4);
+	letter-spacing: var(--tracking-f4);
 }
 
 h4 {
-  font-weight: 500;
+	font-weight: 500;
 }
 
 h5,
 .f5 {
-  font-size: var(--f5);
-  letter-spacing: var(--tracking-f5);
+	font-size: var(--f5);
+	letter-spacing: var(--tracking-f5);
 }
 
 h6,
 .f6 {
-  font-size: var(--f6);
-  letter-spacing: var(--tracking-f6);
+	font-size: var(--f6);
+	letter-spacing: var(--tracking-f6);
 }
 
 .f7 {
-  font-size: var(--f7);
+	font-size: var(--f7);
 }
 
 h1.title {
-  font-weight: bold;
-  line-height: calc(var(--lineheight) * 3);
+	font-weight: bold;
+	line-height: calc(var(--lineheight) * 3);
 
-  @media screen and (max-width: 480px) {
-    font-size: 10vw;
-    line-height: 1.4;
-  }
+	@media screen and (max-width: 480px) {
+		font-size: 10vw;
+		line-height: 1.4;
+	}
 }
 
 strong,
 b {
-  font-weight: 600;
+	font-weight: 600;
 }
 
 ul,
 ol {
-  padding-left: 0;
+	padding-left: 0;
 }
 
 nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 ul {
-  list-style-type: square;
+	list-style-type: square;
 }
 
 a {
-  color: var(--link-color);
-  text-decoration: none;
-  position: relative;
+	color: var(--link-color);
+	text-decoration: none;
+	position: relative;
 
-  &:not(.btn) {
-    text-shadow: 0 0 5px var(--link-shadow);
-  }
+	&:not(.btn) {
+		text-shadow: 0 0 5px var(--link-shadow);
+	}
 
-  &:hover {
-    color: var(--link-color-hover);
-    text-decoration: underline;
-  }
+	&:hover {
+		color: var(--link-color-hover);
+		text-decoration: underline;
+	}
 
-  &:active {
-    top: 1px;
-  }
+	&:active {
+		top: 1px;
+	}
 }
 
 p,
@@ -239,131 +247,131 @@ blockquote,
 table,
 figure,
 pre {
-  margin: 0 0 var(--lineheight);
+	margin: 0 0 var(--lineheight);
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+	max-width: 100%;
+	height: auto;
 }
 
 pre,
 code {
-  font-family: var(--mono);
+	font-family: var(--mono);
 }
 
-:not(pre) > code {
-  background-color: var(--code-background);
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: var(--code-color);
+:not(pre)>code {
+	background-color: var(--code-background);
+	padding: 2px 4px;
+	border-radius: 4px;
+	color: var(--code-color);
 }
 
 figcaption {
-  color: var(--grey);
+	color: var(--grey);
 }
 
 table {
-  text-align: left;
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
+	text-align: left;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 th {
-  border-bottom: 1px solid var(--grey-light);
-  padding: 0.25em 0;
-  font-weight: 600;
+	border-bottom: 1px solid var(--grey-light);
+	padding: 0.25em 0;
+	font-weight: 600;
 }
 
 td {
-  padding: 0.25em 0;
+	padding: 0.25em 0;
 }
 
 pre {
-  --tab-size: 2;
-  --top-inset: calc(var(--lineheight) / 2);
+	--tab-size: 2;
+	--top-inset: calc(var(--lineheight) / 2);
 
-  direction: ltr;
-  text-align: left;
-  line-height: var(--leading);
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  hyphens: none;
-  tab-size: var(--tab-size);
-  background: var(--pre-background);
-  color: var(--code-color);
-  border-radius: 8px;
-  padding: var(--top-inset) calc(var(--lineheight));
-  -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: none;
-  font-size: var(--f5);
-  overflow: auto;
-  position: relative;
+	direction: ltr;
+	text-align: left;
+	line-height: var(--leading);
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	hyphens: none;
+	tab-size: var(--tab-size);
+	background: var(--pre-background);
+	color: var(--code-color);
+	border-radius: 8px;
+	padding: var(--top-inset) calc(var(--lineheight));
+	-webkit-font-smoothing: subpixel-antialiased;
+	-moz-osx-font-smoothing: none;
+	font-size: var(--f5);
+	overflow: auto;
+	position: relative;
 
-  @media screen and (max-width: 480px) {
-    padding-left: 0.25em;
-  }
+	@media screen and (max-width: 480px) {
+		padding-left: 0.25em;
+	}
 
-  & .line-highlight {
-    --cycle: 27px;
-    --color: 112 20% 50%;
-    text-decoration: none;
-    position: absolute;
-    height: calc(var(--rows) * var(--cycle));
-    top: calc(var(--top-inset) + (var(--start) - 1) * var(--cycle));
-    background-color: hsl(var(--color) / 4%);
-    color: hsl(var(--color) / 80%);
-    left: 0;
-    width: 100%;
-    display: block;
-    pointer-events: none;
-    padding: 0 6px;
-    font-size: var(--f7);
-  }
+	& .line-highlight {
+		--cycle: 27px;
+		--color: 112 20% 50%;
+		text-decoration: none;
+		position: absolute;
+		height: calc(var(--rows) * var(--cycle));
+		top: calc(var(--top-inset) + (var(--start) - 1) * var(--cycle));
+		background-color: hsl(var(--color) / 4%);
+		color: hsl(var(--color) / 80%);
+		left: 0;
+		width: 100%;
+		display: block;
+		pointer-events: none;
+		padding: 0 6px;
+		font-size: var(--f7);
+	}
 }
 
-li > pre {
-  margin-top: calc(var(--lineheight) / 2);
-  margin-bottom: calc(var(--lineheight) / 2);
+li>pre {
+	margin-top: calc(var(--lineheight) / 2);
+	margin-bottom: calc(var(--lineheight) / 2);
 }
 
 /* Syntax highlighting */
 code[class*='language-'] {
-  display: block;
+	display: block;
 }
 
 blockquote {
-  border-left: 2px solid var(--grey-light);
-  margin: calc(var(--lineheight) * 2) 2rem calc(var(--lineheight) * 2) 0;
-  padding-left: 2rem;
-  padding-right: 2rem;
+	border-left: 2px solid var(--grey-light);
+	margin: calc(var(--lineheight) * 2) 2rem calc(var(--lineheight) * 2) 0;
+	padding-left: 2rem;
+	padding-right: 2rem;
 
-  & footer {
-    color: var(--grey);
-    margin-top: var(--lineheight);
-  }
+	& footer {
+		color: var(--grey);
+		margin-top: var(--lineheight);
+	}
 }
 
 hr {
-  display: block;
-  height: 2px;
-  border: 0;
-  margin: calc(var(--lineheight) * 1.5) 0;
-  max-width: 10rem;
-  width: 100%;
-  background-color: var(--hr-color);
+	display: block;
+	height: 2px;
+	border: 0;
+	margin: calc(var(--lineheight) * 1.5) 0;
+	max-width: 10rem;
+	width: 100%;
+	background-color: var(--hr-color);
 }
 
 textarea {
-  padding: 0.5em;
-  border: 1px solid var(--grey);
-  border-radius: 0.4em;
-  resize: vertical;
+	padding: 0.5em;
+	border: 1px solid var(--grey);
+	border-radius: 0.4em;
+	resize: vertical;
 
-  &:focus {
-    outline: 0;
-    border-color: var(--link-color);
-  }
+	&:focus {
+		outline: 0;
+		border-color: var(--link-color);
+	}
 }

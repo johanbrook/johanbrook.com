@@ -10,4 +10,7 @@ category: Design
 slug: universal-wrapping-paper
 ---
 
-![](http://www.davidairey.com/images/packaging/universal-wrapping-paper-1.jpg "Universal wrapping paper") Clever idea: use this universal wrapping paper for all occasions. Just mark a special greeting (follow the link for more photos and a map of all greetings). It's a smart and fun idea, but I could argue over the personal feel to it.
+![](http://www.davidairey.com/images/packaging/universal-wrapping-paper-1.jpg "Universal wrapping paper")
+Clever idea: use this universal wrapping paper for all occasions. Just mark a special greeting
+(follow the link for more photos and a map of all greetings). It's a smart and fun idea, but I could
+argue over the personal feel to it.

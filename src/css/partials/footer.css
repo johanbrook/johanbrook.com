@@ -3,19 +3,19 @@ FOOTER
 ----------------------------------------------------------------*/
 
 [role='contentinfo'] {
-  & nav {
-    text-transform: lowercase;
+	& nav {
+		text-transform: lowercase;
 
-    & ul {
-      display: flex;
-      gap: 1em;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+		& ul {
+			display: flex;
+			gap: 1em;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
 
-    & a {
-      font-weight: 500;
-      white-space: nowrap;
-    }
-  }
+		& a {
+			font-weight: 500;
+			white-space: nowrap;
+		}
+	}
 }

@@ -5,9 +5,13 @@ date: 2021-12-27
 templateEngine: njk,md
 ---
 
-- This site is generated with the [Lume](https://github.com/lumeland/lume) static site generator initially built by [Oscar Otero](https://github.com/oscarotero).
-- The source code of this site is [available on GitHub](https://github.com/johanbrook/johanbrook.com).
-- The only font used is [Inter](https://rsms.me/inter). It is made by [@rsms](https://twitter.com/rsms) ([source](https://github.com/rsms/inter)). Inter is licensed under the [SIL Open Font License 1.1](https://choosealicense.com/licenses/ofl-1.1/).
+- This site is generated with the [Lume](https://github.com/lumeland/lume) static site generator
+  initially built by [Oscar Otero](https://github.com/oscarotero).
+- The source code of this site is
+  [available on GitHub](https://github.com/johanbrook/johanbrook.com).
+- The only font used is [Inter](https://rsms.me/inter). It is made by
+  [@rsms](https://twitter.com/rsms) ([source](https://github.com/rsms/inter)). Inter is licensed
+  under the [SIL Open Font License 1.1](https://choosealicense.com/licenses/ofl-1.1/).
 
 This site's simple license:
 

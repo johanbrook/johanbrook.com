@@ -1,9 +1,9 @@
 .header-title {
-  max-width: 100%;
+	max-width: 100%;
 }
 
 .home {
-  & main {
-    margin: calc(var(--lineheight) * 2) auto;
-  }
+	& main {
+		margin: calc(var(--lineheight) * 2) auto;
+	}
 }

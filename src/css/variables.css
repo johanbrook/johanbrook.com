@@ -1,129 +1,141 @@
 :root {
-  /* Colors */
+	/* Colors */
 
-  --neon: hsl(145 56% 57%);
-  --yellow: hsl(50 93% 56%);
-  --grey: hsl(214.51 7.24% 47.56%);
-  --grey-light: hsl(173 7% 76% / 0.5);
-  --grey-lightest: hsl(173 7% 76% / 0.2);
+	--neon: hsl(145 56% 57%);
+	--yellow: hsl(50 93% 56%);
+	--grey: hsl(214.51 7.24% 47.56%);
+	--grey-light: hsl(173 7% 76% / 0.5);
+	--grey-lightest: hsl(173 7% 76% / 0.2);
 
-  --color-bg: #fff;
-  --color-bg-secondary: hsl(112 29.98% 97%);
-  --color-text: hsl(0 0% 13%);
-  --color-text-detail: var(--grey);
+	--color-bg: #fff;
+	--color-bg-secondary: hsl(112 29.98% 97%);
+	--color-text: hsl(0 0% 13%);
+	--color-text-detail: var(--grey);
 
-  --link-color: hsl(213 100% 40.75%);
-  --link-color-hover: hsl(213 100% 37%);
-  --link-color-visited: hsl(266 100% 44%);
-  --link-shadow: hsl(213 100% 40.75% / 0.2);
-  --border-color: hsl(0 0% 91%);
+	--link-color: hsl(213 100% 40.75%);
+	--link-color-hover: hsl(213 100% 37%);
+	--link-color-visited: hsl(266 100% 44%);
+	--link-shadow: hsl(213 100% 40.75% / 0.2);
+	--border-color: hsl(0 0% 91%);
 
-  --btn-color: hsl(213 100% 50%);
-  --btn-color-hover: hsl(213 100% 41%);
-  --btn-color-active: hsl(213 100% 33%);
-  --btn-color-disabled: var(--grey);
+	--btn-color: hsl(213 100% 50%);
+	--btn-color-hover: hsl(213 100% 41%);
+	--btn-color-active: hsl(213 100% 33%);
+	--btn-color-disabled: var(--grey);
 
-  --pre-background: var(--color-bg-secondary);
-  --code-background: var(--color-bg-secondary);
-  --code-color: hsl(112 30% 30%);
+	--pre-background: var(--color-bg-secondary);
+	--code-background: var(--color-bg-secondary);
+	--code-color: hsl(112 30% 30%);
 
-  --hr-color: var(--grey-lightest);
+	--hr-color: var(--grey-lightest);
 
-  @supports (color: color(display-p3 1 1 1 / 1)) {
-    --link-color: color(display-p3 0 0.374 0.82);
-    --link-color-hover: color(display-p3 0 0.252 0.55);
-    --link-color-visited: color(display-p3 0.431 0.053 0.965);
-    --link-shadow: color(display-p3 0.43 0.688 1 / 0.2);
-  }
+	@supports (color: color(display-p3 1 1 1 / 1)) {
+		--link-color: color(display-p3 0 0.374 0.82);
+		--link-color-hover: color(display-p3 0 0.252 0.55);
+		--link-color-visited: color(display-p3 0.431 0.053 0.965);
+		--link-shadow: color(display-p3 0.43 0.688 1 / 0.2);
+	}
 
-  @media screen and (prefers-color-scheme: dark) {
-    --yellow: #c3a507;
-    --grey: hsl(214.51, 6.64%, 61.44%);
+	@media screen and (prefers-color-scheme: dark) {
+		--yellow: #c3a507;
+		--grey: hsl(214.51, 6.64%, 61.44%);
 
-    --color-bg: #1a1a1a;
-    --color-bg-secondary: hsl(240 3.36% 14.51%);
-    --color-text: #e1e1e1;
-    --link-color: #6cafff;
-    --link-color-hover: #aed4ff;
-    --link-color-visited: #7a8be5;
-    --border-color: #444;
-    --code-color: hsl(112 80% 80%);
+		--color-bg: #1a1a1a;
+		--color-bg-secondary: hsl(240 3.36% 14.51%);
+		--color-text: #e1e1e1;
+		--link-color: #6cafff;
+		--link-color-hover: #aed4ff;
+		--link-color-visited: #7a8be5;
+		--border-color: #444;
+		--code-color: hsl(112 80% 80%);
 
-    @supports (color: color(display-p3 1 1 1 / 1)) {
-      --link-color: color(display-p3 0.43 0.688 1);
-      --link-color-hover: color(display-p3 0.6824 0.8314 1 / 1);
-    }
-  }
+		@supports (color: color(display-p3 1 1 1 / 1)) {
+			--link-color: color(display-p3 0.43 0.688 1);
+			--link-color-hover: color(display-p3 0.6824 0.8314 1 / 1);
+		}
+	}
 
-  /* Typography */
+	/* Typography */
 
-  --sans: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
-  --mono: 'Comic Mono', 'Fira Code', Menlo, Monaco, 'Lucida Console', 'Liberation Mono',
-    'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace,
-    serif;
+	--sans: 'Inter',
+	-apple-system,
+	BlinkMacSystemFont,
+	Helvetica,
+	sans-serif;
+	--mono: 'Comic Mono',
+	'Fira Code',
+	Menlo,
+	Monaco,
+	'Lucida Console',
+	'Liberation Mono',
+	'DejaVu Sans Mono',
+	'Bitstream Vera Sans Mono',
+	'Courier New',
+	monospace,
+	serif;
 
-  @supports (font-variation-settings: normal) {
-    --sans: 'Inter var', -apple-system, BlinkMacSystemFont, Helvetica,
-      sans-serif;
-  }
+	@supports (font-variation-settings: normal) {
+		--sans: 'Inter var', -apple-system, BlinkMacSystemFont, Helvetica,
+			sans-serif;
+	}
 
-  --font-size-base: 16;
-  --leading: 1.5;
-  /* Rhythm unit */
-  --lineheight: calc(var(--leading) * 1rem);
+	--font-size-base: 16;
+	--leading: 1.5;
+	/* Rhythm unit */
+	--lineheight: calc(var(--leading) * 1rem);
 
-  --tracking: -0.014em;
-  --tracking-f0: -0.022em;
-  --tracking-f1: -0.021em;
-  --tracking-f2: -0.02em;
-  --tracking-f3: -0.018em;
-  --tracking-f4: -0.014em;
-  --tracking-f5: -0.009em;
-  --tracking-f6: -0.0025em;
+	--tracking: -0.014em;
+	--tracking-f0: -0.022em;
+	--tracking-f1: -0.021em;
+	--tracking-f2: -0.02em;
+	--tracking-f3: -0.018em;
+	--tracking-f4: -0.014em;
+	--tracking-f5: -0.009em;
+	--tracking-f6: -0.0025em;
 
-  --font-size-headline: 6rem;
-  --font-size-subheadline: 5rem;
+	--font-size-headline: 6rem;
+	--font-size-subheadline: 5rem;
 
-  --f0: calc((68 / var(--font-size-base)) * 1rem);
-  --f1: calc((28 / var(--font-size-base)) * 1rem);
-  --f2: calc((24 / var(--font-size-base)) * 1rem);
-  --f3: calc((20 / var(--font-size-base)) * 1rem);
-  --f4: calc((16 / var(--font-size-base)) * 1rem);
-  --f5: calc((14 / var(--font-size-base)) * 1rem);
-  --f6: calc((12 / var(--font-size-base)) * 1rem);
-  --f7: calc((11 / var(--font-size-base)) * 1rem);
+	--f0: calc((68 / var(--font-size-base)) * 1rem);
+	--f1: calc((28 / var(--font-size-base)) * 1rem);
+	--f2: calc((24 / var(--font-size-base)) * 1rem);
+	--f3: calc((20 / var(--font-size-base)) * 1rem);
+	--f4: calc((16 / var(--font-size-base)) * 1rem);
+	--f5: calc((14 / var(--font-size-base)) * 1rem);
+	--f6: calc((12 / var(--font-size-base)) * 1rem);
+	--f7: calc((11 / var(--font-size-base)) * 1rem);
 
-  /* See https://developers.google.com/web/updates/2016/02/font-display */
-  --font-strategy: fallback;
+	/* See https://developers.google.com/web/updates/2016/02/font-display */
+	--font-strategy: fallback;
 
-  /* Measures */
+	/* Measures */
 
-  --inset: calc(var(--lineheight) / 2);
-  --main-width: var(--measure);
+	--inset: calc(var(--lineheight) / 2);
+	--main-width: var(--measure);
 
-  --measure: 56ch;
-  --measure-narrow: 45ch;
-  --measure-wide: 65ch;
+	--measure: 56ch;
+	--measure-narrow: 45ch;
+	--measure-wide: 65ch;
 
-  --spacing-base: var(--lineheight);
+	--spacing-base: var(--lineheight);
 
-  --spacing-none: 0;
-  --spacing-extra-small: calc(var(--spacing-base) / 4);
-  --spacing-small: calc(var(--spacing-base) / 2);
-  --spacing-medium: var(--spacing-base);
-  --spacing-large: calc(var(--spacing-base) * 2);
-  --spacing-extra-large: calc(var(--spacing-base) * 3);
-  --spacing-extra-extra-large: calc(var(--spacing-base) * 4);
-  --spacing-extra-extra-extra-large: calc(var(--spacing-base) * 6);
+	--spacing-none: 0;
+	--spacing-extra-small: calc(var(--spacing-base) / 4);
+	--spacing-small: calc(var(--spacing-base) / 2);
+	--spacing-medium: var(--spacing-base);
+	--spacing-large: calc(var(--spacing-base) * 2);
+	--spacing-extra-large: calc(var(--spacing-base) * 3);
+	--spacing-extra-extra-large: calc(var(--spacing-base) * 4);
+	--spacing-extra-extra-extra-large: calc(var(--spacing-base) * 6);
 
-  /* Breakpoints */
+	/* Breakpoints */
 
-  --desktop: 1700px;
-  --laptop: 1281px;
-  --tablet: 768px;
-  --handheld: 481px;
+	--desktop: 1700px;
+	--laptop: 1281px;
+	--tablet: 768px;
+	--handheld: 481px;
 
-  --breakpoint-not-small: screen and (min-width: var(--handheld));
-  --breakpoint-medium: screen and (min-width: 30em) and (max-width: 60em);
-  --breakpoint-large: screen and (min-width: 60em);
+	--breakpoint-not-small: screen and (min-width: var(--handheld));
+	--breakpoint-medium: screen and (min-width: 30em) and (max-width: 60em);
+	--breakpoint-large: screen and (min-width: 60em);
 }

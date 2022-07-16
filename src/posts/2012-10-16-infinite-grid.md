@@ -17,7 +17,7 @@ category: 'Responsive Design'
 slug: responsive-web-design-the-infinite-grid-and-water
 ---
 
-> Water’s state change is caused by the rearrangement of its molecules. When an infinite grid changes state, we rearrange its components.
- 
- Chris Armstrong
-Great comparison.
+> Water’s state change is caused by the rearrangement of its molecules. When an infinite grid
+> changes state, we rearrange its components.
+
+Chris Armstrong Great comparison.

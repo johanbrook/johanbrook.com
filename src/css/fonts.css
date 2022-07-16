@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'Comic Mono';
-  font-weight: normal;
-  font-display: swap;
-  src: url('/assets/ComicMono.ttf');
+	font-family: 'Comic Mono';
+	font-weight: normal;
+	font-display: swap;
+	src: url('/assets/ComicMono.ttf');
 }
 
 @font-face {
-  font-family: 'Comic Mono';
-  font-weight: bold;
-  font-display: swap;
-  src: url('/assets/ComicMono-Bold.ttf');
+	font-family: 'Comic Mono';
+	font-weight: bold;
+	font-display: swap;
+	src: url('/assets/ComicMono-Bold.ttf');
 }

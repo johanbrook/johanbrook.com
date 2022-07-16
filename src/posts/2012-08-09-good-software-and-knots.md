@@ -17,11 +17,10 @@ _Warning: philosophical, almost silly, post about knots ahead_
 
 While I was getting our sailing boat in order for a trip during the past weekend, I had an insight.
 
->
-
 > Good software code is like a reliable knot
 
-I was tying some ropes and it hit me how knots can be as beautiful, simple, messy and complex as code is.
+I was tying some ropes and it hit me how knots can be as beautiful, simple, messy and complex as
+code is.
 
 - A good knot should be elegant but robust
 - A good knot should be simple enough to understand and solve by another person
@@ -31,4 +30,5 @@ I was tying some ropes and it hit me how knots can be as beautiful, simple, mess
 
 Now switch _knot_ above to _piece of code_ or _software_.
 
-I reckon you might be able to draw parallels about programming to many areas, but I think knots are one of the clearest comparisons.
+I reckon you might be able to draw parallels about programming to many areas, but I think knots are
+one of the clearest comparisons.

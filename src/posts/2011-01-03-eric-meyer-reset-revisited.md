@@ -12,4 +12,6 @@ category: CSS
 slug: eric-meyer-reset-revisited
 ---
 
-[Eric Meyer](http://twitter.com/meyerweb), the markup and CSS guru, has posted an updated version of his famous CSS reset. He includes a changelog in the post, but the addition of HTML5 elements are the most notable difference.
+[Eric Meyer](http://twitter.com/meyerweb), the markup and CSS guru, has posted an updated version of
+his famous CSS reset. He includes a changelog in the post, but the addition of HTML5 elements are
+the most notable difference.

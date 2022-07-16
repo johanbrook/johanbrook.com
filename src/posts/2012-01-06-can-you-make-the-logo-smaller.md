@@ -10,4 +10,5 @@ category: Freelancing
 slug: can-you-make-the-logo-smaller
 ---
 
-_"Things we wish clients would say"_ include some gems which would be like sweet, soft conditioner to designer and developer's ears.
+_"Things we wish clients would say"_ include some gems which would be like sweet, soft conditioner
+to designer and developer's ears.

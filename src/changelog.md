@@ -55,10 +55,12 @@ My life so far – versioned. Also check out experimental development: <a href=
 
 ## Version 3.3
 
-- Thanks to flexible remote work opportunity in Lookback, I decided to start travelling full time ("nomading").
+- Thanks to flexible remote work opportunity in Lookback, I decided to start travelling full time
+  ("nomading").
   - Lived in Brazil, UK, Spain, United States, Austria, Canada, and Paraguay.
   - Gained invaluable experiences in foreign cultures.
-  - Made friends with crazy warm people from all over the world, but felt more lonely than in a long while.
+  - Made friends with crazy warm people from all over the world, but felt more lonely than in a long
+    while.
 - Started to appreciate South American culture very much.
 
 ## Version 3.2
@@ -70,26 +72,31 @@ My life so far – versioned. Also check out experimental development: <a href=
 
 ## Version 3.1
 
-- Joined [sexIT](http://sexit.chalmers.it) – the social society at the Software Engineering faculty at Chalmers.
+- Joined [sexIT](http://sexit.chalmers.it) – the social society at the Software Engineering faculty
+  at Chalmers.
   - Had the time of my life.
 
 # Version 3.0
 
-- Started studying Software Engineering at **Chalmers University of Technology** in Gothenburg, Sweden.
+- Started studying Software Engineering at **Chalmers University of Technology** in Gothenburg,
+  Sweden.
   - Was severely challenged in technical studies.
   - Gained closest relationships I've ever had and still have.
 - Learned about love, and how to screw it up.
 
 ## Version 2.1
 
-- Started freelancing in graphic and web design/development. Gained experience in working with small, medium, and large company clients. Developed in business communication and tech skills, as well as dealing with setting up my own company.
+- Started freelancing in graphic and web design/development. Gained experience in working with
+  small, medium, and large company clients. Developed in business communication and tech skills, as
+  well as dealing with setting up my own company.
 - Began noting thoughts, poems, sketches, lyrics and quotes in a Moleskine journal.
 
 # Version 2.0
 
 - Moved to **Calgary, Canada** for a year, to stay with relatives.
   - Started working at Starbucks in Calgary. Earned bullshit "Certified Barista" badge.
-  - Emerged in foreign environment and developed in English, social interactions, as well as learning to take care of myself, to some extent.
+  - Emerged in foreign environment and developed in English, social interactions, as well as
+    learning to take care of myself, to some extent.
   - Visited Hawaii, Saskatchewan, and British Columbia.
 - Bought _johanbrook.com_ and started iterating on my own homepage.
 
@@ -97,7 +104,8 @@ My life so far – versioned. Also check out experimental development: <a href=
 
 - Ended high school, with personal focus on web design and development.
 - Developed as a person in social interactions.
-- Decided to _not_ apply for university right after, and instead try to work in a non-computerized environment.
+- Decided to _not_ apply for university right after, and instead try to work in a non-computerized
+  environment.
 
 ## Version 1.1
 
@@ -106,4 +114,5 @@ My life so far – versioned. Also check out experimental development: <a href=
 
 # Version 1.0
 
-- Born. <small class="muted"><em>Note:</em> At this stage, my external APIs was conceived, but they were not regarded as "stable" until 2.0.
+- Born. <small class="muted"><em>Note:</em> At this stage, my external APIs was conceived, but they
+  were not regarded as "stable" until 2.0.

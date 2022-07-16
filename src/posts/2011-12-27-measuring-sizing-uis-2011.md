@@ -16,4 +16,6 @@ category: CSS
 slug: measuring-and-sizing-uis-2011-style
 ---
 
-Harry Roberts ("CSS Wizardry") wraps up the current state of measuring on the web, which I personally enjoyed reading about. I often dabble between doctrines when setting measures and sizes of type, margins, paddings, widths, etc. etc., and a concluding write-up was welcomed.
+Harry Roberts ("CSS Wizardry") wraps up the current state of measuring on the web, which I
+personally enjoyed reading about. I often dabble between doctrines when setting measures and sizes
+of type, margins, paddings, widths, etc. etc., and a concluding write-up was welcomed.

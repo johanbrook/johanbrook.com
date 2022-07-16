@@ -6,4 +6,5 @@ category: Freelancing
 slug: comparison-between-a-plumber-and-a-freelancing-designer
 ---
 
-Chris Spooner is showing the similarities between his plumber and the life of a freelancing designer, and everything is quite true.
+Chris Spooner is showing the similarities between his plumber and the life of a freelancing
+designer, and everything is quite true.

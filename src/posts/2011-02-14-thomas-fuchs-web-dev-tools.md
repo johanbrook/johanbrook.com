@@ -10,4 +10,7 @@ category: Tools
 slug: thomas-fuchs-web-dev-tools
 ---
 
-> IDEs are not my kind of idea of how software should be developed. If your programming language, toolkit or library is so extensive and complicated that you need an IDE to develop, something is wrong. Small is beautiful. A plain old text editor is enough to make the world’s most amazing web applications.
+> IDEs are not my kind of idea of how software should be developed. If your programming language,
+> toolkit or library is so extensive and complicated that you need an IDE to develop, something is
+> wrong. Small is beautiful. A plain old text editor is enough to make the world’s most amazing web
+> applications.

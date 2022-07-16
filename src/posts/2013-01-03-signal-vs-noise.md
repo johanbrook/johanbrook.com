@@ -11,4 +11,5 @@ category: 'The internet'
 slug: signal-vs-noise
 ---
 
-[37signals](http://37signals.com) is really on fire with their blog, "Signal vs. Noise". Lots of insightful and interesting posts about mixed subjects recently. Don't miss it.
+[37signals](http://37signals.com) is really on fire with their blog, "Signal vs. Noise". Lots of
+insightful and interesting posts about mixed subjects recently. Don't miss it.

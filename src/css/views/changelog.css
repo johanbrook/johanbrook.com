@@ -2,14 +2,14 @@
 --------------------------------------------- */
 
 .changelog {
-  & .page__text {
-    & > ul {
-      padding-left: 0;
-      margin-bottom: var(--lineheight);
+	& .page__text {
+		&>ul {
+			padding-left: 0;
+			margin-bottom: var(--lineheight);
 
-      & ul {
-        margin-bottom: 0;
-      }
-    }
-  }
+			& ul {
+				margin-bottom: 0;
+			}
+		}
+	}
 }

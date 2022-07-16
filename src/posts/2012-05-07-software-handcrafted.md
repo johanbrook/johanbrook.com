@@ -11,5 +11,8 @@ category: Business
 slug: software-is-handcrafted
 ---
 
-> First, name one other thing in the world, he said, that is used by so many people and which is created entirely by hand? Stuff that is made by hand is hard to make, and even more hard to make well, and tends to be less sturdy than things made by machines.
-I hadn't thought of this either – how all code in the software we build is handcrafted. Read the post, its arguments are true and insightful.
+> First, name one other thing in the world, he said, that is used by so many people and which is
+> created entirely by hand? Stuff that is made by hand is hard to make, and even more hard to make
+> well, and tends to be less sturdy than things made by machines. I hadn't thought of this either –
+> how all code in the software we build is handcrafted. Read the post, its arguments are true and
+> insightful.

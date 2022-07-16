@@ -12,4 +12,7 @@ category: Freelancing
 slug: a-note-to-people-that-hire
 ---
 
-[Mitch Bartlett](http://mbartlett.me/) has written a very thoughtful, honest and true piece about and to people who initiates projects with freelancers but then, well, screws them over in the end. Please read. If you're "the hiring guy" – don't be that bad person who act this way when dealing with craftsmen. Pay for the work and don't be a cheap-o.
+[Mitch Bartlett](http://mbartlett.me/) has written a very thoughtful, honest and true piece about
+and to people who initiates projects with freelancers but then, well, screws them over in the end.
+Please read. If you're "the hiring guy" – don't be that bad person who act this way when dealing
+with craftsmen. Pay for the work and don't be a cheap-o.

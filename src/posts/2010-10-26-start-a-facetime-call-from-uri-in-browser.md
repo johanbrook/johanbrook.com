@@ -10,4 +10,5 @@ category: Resources
 slug: start-a-facetime-call-from-uri-in-browser
 ---
 
-Facetime in both OS X and iOS responds to the URI scheme `facetime://appleid` or `facetime://emailaddress` or `facetime://phonenumber.`
+Facetime in both OS X and iOS responds to the URI scheme `facetime://appleid` or
+`facetime://emailaddress` or `facetime://phonenumber.`

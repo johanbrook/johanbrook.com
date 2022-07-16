@@ -2,27 +2,27 @@
 --------------------------------------------- */
 
 .posts {
-  .title {
-    margin-bottom: calc(var(--lineheight) * 0.5);
-  }
+	.title {
+		margin-bottom: calc(var(--lineheight) * 0.5);
+	}
 }
 
 .Post {
-  & .title {
-    @media screen and (max-width: 480px) {
-      font-size: var(--f1);
-    }
-  }
+	& .title {
+		@media screen and (max-width: 480px) {
+			font-size: var(--f1);
+		}
+	}
 
-  & .Post-Keyword {
-    display: inline-block;
-    border-radius: 4px;
-    padding: 0 0.5em;
-    background-color: var(--grey-lightest);
-    font-weight: 500;
+	& .Post-Keyword {
+		display: inline-block;
+		border-radius: 4px;
+		padding: 0 0.5em;
+		background-color: var(--grey-lightest);
+		font-weight: 500;
 
-    &:not(:last-child) {
-      margin-right: 3px;
-    }
-  }
+		&:not(:last-child) {
+			margin-right: 3px;
+		}
+	}
 }

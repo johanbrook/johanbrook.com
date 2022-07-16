@@ -14,7 +14,5 @@ category: Interviews
 slug: how-ryan-singer-builds-products
 ---
 
-> 
- Our company DNA at 37signals is make things we want, and to make them the way that we want them
- Ryan Singer
-Great interview with Ryan Singer about product design.
+Our company DNA at 37signals is make things we want, and to make them the way that we want them Ryan
+Singer Great interview with Ryan Singer about product design.

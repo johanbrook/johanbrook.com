@@ -10,4 +10,6 @@ category: Design
 slug: posters-by-avraham-cornfeld
 ---
 
-![](http://avraham.me/postposter/wp-content/uploads/2009/01/13_frans_kamermans01.png "Avraham Cornfeld") Great looking posters by Avraham Cornfeld (which also has created the grid system I use in website designs: [The Square Grid](http://thesquaregrid.com/)).
+![](http://avraham.me/postposter/wp-content/uploads/2009/01/13_frans_kamermans01.png "Avraham Cornfeld")
+Great looking posters by Avraham Cornfeld (which also has created the grid system I use in website
+designs: [The Square Grid](http://thesquaregrid.com/)).

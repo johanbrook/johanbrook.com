@@ -1,29 +1,29 @@
 .NotesList {
-  & article {
-    scroll-margin: var(--lineheight);
+	& article {
+		scroll-margin: var(--lineheight);
 
-    &:target {
-      & .target {
-        color: var(--neon);
-      }
-    }
-  }
+		&:target {
+			& .target {
+				color: var(--neon);
+			}
+		}
+	}
 
-  & header h1 a {
-    color: var(--color-text);
+	& header h1 a {
+		color: var(--color-text);
 
-    &:hover .target {
-      color: var(--neon);
-    }
-  }
+		&:hover .target {
+			color: var(--neon);
+		}
+	}
 
-  & > li:not(:last-child) {
-    margin-bottom: calc(var(--lineheight) * 2);
-    padding-bottom: calc(var(--lineheight) * 2 - 2px);
-    border-bottom: 2px solid var(--border-color);
-  }
+	&>li:not(:last-child) {
+		margin-bottom: calc(var(--lineheight) * 2);
+		padding-bottom: calc(var(--lineheight) * 2 - 2px);
+		border-bottom: 2px solid var(--border-color);
+	}
 
-  & .prose > :last-child {
-    margin-bottom: 0;
-  }
+	& .prose> :last-child {
+		margin-bottom: 0;
+	}
 }
