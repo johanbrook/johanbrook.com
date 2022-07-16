@@ -108,58 +108,81 @@
 
     <div class="prose measure" itemprop="articleBody">
       
-      <p>I've recently switched back to Sublime Text as main editor, as described in a recent <a href="/mind/#202202080950">/mind post</a>. As a test to get a feel for the ecosystem, I've set out on a journey to make it more ergonomic to develop <a href="https://deno.land">Deno</a> code. "Ergonomic" as in "actually use Typescript features and not show any red compile errors for Deno specific code". Also, I want to try to have Sublime support <a href="https://deno.land/manual/linking_to_external_code/import_maps">import maps</a>, <a href="https://deno.land/manual/getting_started/configuration_file">the Deno config file</a>, and format on save.</p>
+      <p>I've recently switched back to Sublime Text as main editor, as described in a recent
+<a href="/mind/#202202080950">/mind post</a>. As a test to get a feel for the ecosystem, I've set out on a
+journey to make it more ergonomic to develop <a href="https://deno.land">Deno</a> code. "Ergonomic" as in
+"actually use Typescript features and not show any red compile errors for Deno specific code". Also,
+I want to try to have Sublime support
+<a href="https://deno.land/manual/linking_to_external_code/import_maps">import maps</a>,
+<a href="https://deno.land/manual/getting_started/configuration_file">the Deno config file</a>, and format on
+save.</p>
 <h2>Install necessary packages</h2>
 <p>(I assume you have <a href="https://packagecontrol.io/installation">Package Control up and running</a>.)</p>
 <p><strong>Required:</strong></p>
 <ul>
-<li><a href="https://packagecontrol.io/packages/LSP">LSP</a>. Client implementation of the Language Server Protocol for Sublime Text. This is a base package, which is used by other language specific packages. There are packages for Typescript, CSS, Deno, JSON, Lua, Vue, etc. etc.</li>
-<li><a href="https://packagecontrol.io/packages/LSP-Deno">LSP-Deno</a>. Convenience package for starting the Deno LSP server. This enables Deno features in Sublime.</li>
+<li><a href="https://packagecontrol.io/packages/LSP">LSP</a>. Client implementation of the Language Server
+Protocol for Sublime Text. This is a base package, which is used by other language specific
+packages. There are packages for Typescript, CSS, Deno, JSON, Lua, Vue, etc. etc.</li>
+<li><a href="https://packagecontrol.io/packages/LSP-Deno">LSP-Deno</a>. Convenience package for starting the Deno
+LSP server. This enables Deno features in Sublime.</li>
 </ul>
 <p><strong>Optional:</strong></p>
 <ul>
-<li><a href="https://packagecontrol.io/packages/LSP-json">LSP-json</a>. Schema validation/completions for your JSON and Sublime files. This is for making JSON files more "VS Code like" in the way that keys in various settings files can be autocompleted and validated. Handy but in no way required.</li>
+<li><a href="https://packagecontrol.io/packages/LSP-json">LSP-json</a>. Schema validation/completions for your
+JSON and Sublime files. This is for making JSON files more "VS Code like" in the way that keys in
+various settings files can be autocompleted and validated. Handy but in no way required.</li>
 </ul>
 <h2>Sublime project configuration</h2>
-<p>First of all, we need a place where we can instruct Sublime (and installed packages) where to look for custom Deno settings. That is, settings that describe paths to files, and lint and format config. Essentially holding the values described in <a href="https://deno.land/manual/getting_started/configuration_file">"Configuration file"</a>.</p>
-<p>These will go into a <code>xxx.sublime-project</code> file, where <code>xxx</code> is the name of your project (anything). Create one if you haven't.</p>
+<p>First of all, we need a place where we can instruct Sublime (and installed packages) where to look
+for custom Deno settings. That is, settings that describe paths to files, and lint and format
+config. Essentially holding the values described in
+<a href="https://deno.land/manual/getting_started/configuration_file">"Configuration file"</a>.</p>
+<p>These will go into a <code>xxx.sublime-project</code> file, where <code>xxx</code> is the name of your project (anything).
+Create one if you haven't.</p>
 <hr>
-<p>(Sublime has this concept of "projects" I don't really like. One has to go to <em>Window -&gt; Open project…</em> in order for the editor to actually load the project config file, <em>or</em> use <code>subl --project path/to/project.sublime-project</code>. It's not loaded when the editor is brought up via <code>subl .</code> from the command line. This feels lame. Sort of <a href="https://github.com/sublimehq/sublime_text/issues/828">tracked here</a>.)</p>
+<p>(Sublime has this concept of "projects" I don't really like. One has to go to <em>Window -&gt; Open
+project…</em> in order for the editor to actually load the project config file, <em>or</em> use
+<code>subl --project path/to/project.sublime-project</code>. It's not loaded when the editor is brought up via
+<code>subl .</code> from the command line. This feels lame. Sort of
+<a href="https://github.com/sublimehq/sublime_text/issues/828">tracked here</a>.)</p>
 <hr>
 <p>This is a sample <code>xxx.sublime-project</code> for Deno:</p>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-    <span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token property">"LSP"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-            <span class="token property">"LSP-typescript"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-                <span class="token property">"enabled"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-            <span class="token punctuation">}</span><span class="token punctuation">,</span>
-            <span class="token property">"Deno"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-                <span class="token property">"enabled"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-                <span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-                    <span class="token property">"deno.config"</span><span class="token operator">:</span> <span class="token string">"./deno.jsonc"</span><span class="token punctuation">,</span>
-                    <span class="token property">"deno.unstable"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-                    <span class="token property">"deno.importMap"</span><span class="token operator">:</span> <span class="token string">"./import_map.json"</span><span class="token punctuation">,</span>
-                    <span class="token property">"deno.suggest.imports.hosts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-                        <span class="token property">"https://deno.land"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-                        <span class="token property">"https://some-other-cdn.com"</span><span class="token operator">:</span> <span class="token boolean">true</span>
-                    <span class="token punctuation">}</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+	<span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">"LSP"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">"LSP-typescript"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+				<span class="token property">"enabled"</span><span class="token operator">:</span> <span class="token boolean">false</span>
+			<span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token property">"Deno"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+				<span class="token property">"enabled"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+				<span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+					<span class="token property">"deno.config"</span><span class="token operator">:</span> <span class="token string">"./deno.jsonc"</span><span class="token punctuation">,</span>
+					<span class="token property">"deno.unstable"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+					<span class="token property">"deno.importMap"</span><span class="token operator">:</span> <span class="token string">"./import_map.json"</span><span class="token punctuation">,</span>
+					<span class="token property">"deno.suggest.imports.hosts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+						<span class="token property">"https://deno.land"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+						<span class="token property">"https://some-other-cdn.com"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+					<span class="token punctuation">}</span>
+				<span class="token punctuation">}</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-
 </code></pre>
-<p>All <code>deno.*</code> settings are documented <a href="https://github.com/sublimelsp/LSP-Deno/blob/main/LSP-Deno.sublime-settings">here, with defaults</a>.</p>
+<p>All <code>deno.*</code> settings are documented
+<a href="https://github.com/sublimelsp/LSP-Deno/blob/main/LSP-Deno.sublime-settings">here, with defaults</a>.</p>
 <p>Line by line:</p>
 <ul>
-<li><code>LSP-typescript</code>. Let's be really sure to disable the TypeScript Language Server, since that'll interfere with <code>.ts</code> files with Deno calls.</li>
-<li><code>deno.config</code>: Path to the Deno <a href="https://deno.land/manual/getting_started/configuration_file">configuration file</a>.</li>
+<li><code>LSP-typescript</code>. Let's be really sure to disable the TypeScript Language Server, since that'll
+interfere with <code>.ts</code> files with Deno calls.</li>
+<li><code>deno.config</code>: Path to the Deno
+<a href="https://deno.land/manual/getting_started/configuration_file">configuration file</a>.</li>
 <li><code>deno.unstable</code>: Enable unstable features or not.</li>
 <li><code>deno.importMap</code>: Path to an <a href="https://deno.land/manual/npm_nodejs/import_maps">import map</a>.</li>
 <li><code>deno.suggest.imports.hosts</code>: Hosts that will appear as suggestions when importing.</li>
 </ul>
-<p>(As mentioned above, the LSP-json package really helps you with the autocomplete here. I found it tricky to figure out the exact structure of these settings.)</p>
+<p>(As mentioned above, the LSP-json package really helps you with the autocomplete here. I found it
+tricky to figure out the exact structure of these settings.)</p>
 <p>For me, there's no need to do further tweaks in most Deno projects.</p>
 <p>Now, Sublime should be able to pick up your import map, as well as your Deno configuration.</p>
 <p>If configured correctly, you should be able to</p>
@@ -172,101 +195,115 @@
 <p>and lots more.</p>
 <p><img src="/assets/posts/deno-intellisense.png" alt="IntelliSense documentation popup"></p>
 <hr>
-<p><strong>Note:</strong> at the time of writing, there's an issue with the <code>deno.suggest.imports.hosts</code> key. If you toggle the LSP log panel (<em>Command palette -&gt; "LSP: Toggle log panel"</em>), you'll see that it says:</p>
+<p><strong>Note:</strong> at the time of writing, there's an issue with the <code>deno.suggest.imports.hosts</code> key. If you
+toggle the LSP log panel (<em>Command palette -&gt; "LSP: Toggle log panel"</em>), you'll see that it says:</p>
 <pre><code>failed to update settings: invalid type: map, expected a boolean
 </code></pre>
-<p>I've filed an <a href="https://github.com/sublimelsp/LSP-Deno/issues/10">issue for LSP-Deno here</a>. I've noticed that this setting interfers with the other settings, so I've removed it for now.</p>
+<p>I've filed an <a href="https://github.com/sublimelsp/LSP-Deno/issues/10">issue for LSP-Deno here</a>. I've
+noticed that this setting interfers with the other settings, so I've removed it for now.</p>
 <h2>Click to go to definition</h2>
-<p>This is a feature I heavily used in VS Code: use the combo of <code>option+click</code> (Mac) to go to the definition of a variable, function, or type. This uses the LSP, so it'll be "intelligent".</p>
+<p>This is a feature I heavily used in VS Code: use the combo of <code>option+click</code> (Mac) to go to the
+definition of a variable, function, or type. This uses the LSP, so it'll be "intelligent".</p>
 <p>Mouse bindings live in this file (create it if it doesn't exist):</p>
 <pre><code>~/Library/Application\ Support/Sublime\ Text/Packages/User/Default\ (OSX).sublime-mousemap
 </code></pre>
 <p>Then add this:</p>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">[</span>
-    <span class="token punctuation">{</span>
-        <span class="token property">"button"</span><span class="token operator">:</span> <span class="token string">"button1"</span><span class="token punctuation">,</span>
-        <span class="token property">"count"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-        <span class="token property">"modifiers"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-            <span class="token string">"alt"</span>
-        <span class="token punctuation">]</span><span class="token punctuation">,</span>
-        <span class="token property">"press_command"</span><span class="token operator">:</span> <span class="token string">"lsp_symbol_definition"</span>
-    <span class="token punctuation">}</span>
+	<span class="token punctuation">{</span>
+		<span class="token property">"button"</span><span class="token operator">:</span> <span class="token string">"button1"</span><span class="token punctuation">,</span>
+		<span class="token property">"count"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+		<span class="token property">"modifiers"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token string">"alt"</span>
+		<span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token property">"press_command"</span><span class="token operator">:</span> <span class="token string">"lsp_symbol_definition"</span>
+	<span class="token punctuation">}</span>
 <span class="token punctuation">]</span>
 </code></pre>
 <p>You can now use <code>alt+click</code> to jump around.</p>
 <h2>Rename symbols</h2>
-<p>Another nifty feature we can use the Language Server's capabilities for is to do smart renames, i.e. rename functions and variables and have them be intelligently updated across files.</p>
+<p>Another nifty feature we can use the Language Server's capabilities for is to do smart renames, i.e.
+rename functions and variables and have them be intelligently updated across files.</p>
 <p>In VS Code, I used the key binding <code>cmd+shift+r</code> (Mac).</p>
 <p>Open up Key Bindings (<em>Preferences -&gt; Key Bindings</em>) or:</p>
 <pre class="language-bash"><code class="language-bash">subl ~/Library/Application\ Support/Sublime\ Text/Packages/User/Default\ (OSX).sublime-keymap
 </code></pre>
 <p>Then add this:</p>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">[</span>
-    <span class="token punctuation">{</span>
-        <span class="token property">"keys"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"super+shift+r"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-        <span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"lsp_symbol_rename"</span><span class="token punctuation">,</span>
-        <span class="token property">"context"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-            <span class="token punctuation">{</span>
-                <span class="token property">"key"</span><span class="token operator">:</span> <span class="token string">"lsp.session_with_capability"</span><span class="token punctuation">,</span>
-                <span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equal"</span><span class="token punctuation">,</span>
-                <span class="token property">"operand"</span><span class="token operator">:</span> <span class="token string">"renameProvider"</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">]</span>
-    <span class="token punctuation">}</span>
+	<span class="token punctuation">{</span>
+		<span class="token property">"keys"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"super+shift+r"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token property">"command"</span><span class="token operator">:</span> <span class="token string">"lsp_symbol_rename"</span><span class="token punctuation">,</span>
+		<span class="token property">"context"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token punctuation">{</span>
+				<span class="token property">"key"</span><span class="token operator">:</span> <span class="token string">"lsp.session_with_capability"</span><span class="token punctuation">,</span>
+				<span class="token property">"operator"</span><span class="token operator">:</span> <span class="token string">"equal"</span><span class="token punctuation">,</span>
+				<span class="token property">"operand"</span><span class="token operator">:</span> <span class="token string">"renameProvider"</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">}</span>
 <span class="token punctuation">]</span>
 </code></pre>
 <h2>Diagnostics panel</h2>
-<p>By default, the LSP package will show a diagnostics panel if there are TypeScript errors or warnings in your project. I found this really annoying, so I turned it off with:</p>
+<p>By default, the LSP package will show a diagnostics panel if there are TypeScript errors or warnings
+in your project. I found this really annoying, so I turned it off with:</p>
 <p><em>Preferences -&gt; Package Settings -&gt; LSP -&gt; Settings</em></p>
 <p>Then add:</p>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-    <span class="token comment">// Open the diagnostics panel automatically on save when diagnostics level is</span>
-    <span class="token comment">// equal to or less than:</span>
-    <span class="token comment">// none: 0 (never open the panel automatically)</span>
-    <span class="token comment">// error: 1</span>
-    <span class="token comment">// warning: 2</span>
-    <span class="token comment">// info: 3</span>
-    <span class="token comment">// hint: 4</span>
-    <span class="token property">"show_diagnostics_panel_on_save"</span><span class="token operator">:</span> <span class="token number">0</span> <span class="token comment">// default is 2, turn off with 0</span>
+	<span class="token comment">// Open the diagnostics panel automatically on save when diagnostics level is</span>
+	<span class="token comment">// equal to or less than:</span>
+	<span class="token comment">// none: 0 (never open the panel automatically)</span>
+	<span class="token comment">// error: 1</span>
+	<span class="token comment">// warning: 2</span>
+	<span class="token comment">// info: 3</span>
+	<span class="token comment">// hint: 4</span>
+	<span class="token property">"show_diagnostics_panel_on_save"</span><span class="token operator">:</span> <span class="token number">0</span> <span class="token comment">// default is 2, turn off with 0</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p><strong>Tip:</strong> You can still toggle the <em>Diagnostics</em> panel with <code>cmd+alt+m</code> (Mac) or search for it in the command palette. It'll show any TypeScript errors or warnings in the project.</p>
+<p><strong>Tip:</strong> You can still toggle the <em>Diagnostics</em> panel with <code>cmd+alt+m</code> (Mac) or search for it in the
+command palette. It'll show any TypeScript errors or warnings in the project.</p>
 <h2>Code formatting</h2>
 <p>Deno comes with a built-in formatter, which the LSP in Sublime can use.</p>
-<p>Either run <code>LSP: Format file</code> from the command palette to format manually, or use format on save. The latter is configured in the LSP settings, <em>but</em> you should probably do it on a project basis. This means adding this to your Sublime project file:</p>
+<p>Either run <code>LSP: Format file</code> from the command palette to format manually, or use format on save.
+The latter is configured in the LSP settings, <em>but</em> you should probably do it on a project basis.
+This means adding this to your Sublime project file:</p>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-    <span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token property">"lsp_format_on_save"</span><span class="token operator">:</span> <span class="token boolean">true</span>
-    <span class="token punctuation">}</span>
+	<span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">"lsp_format_on_save"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>The exact formatting config lives in your Deno configuration. For me, it's <code>deno.jsonc</code>:</p>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-    <span class="token property">"fmt"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token property">"options"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-            <span class="token property">"useTabs"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-            <span class="token property">"lineWidth"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
-            <span class="token property">"singleQuote"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-            <span class="token property">"indentWidth"</span><span class="token operator">:</span> <span class="token number">4</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
+	<span class="token property">"fmt"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">"options"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">"useTabs"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+			<span class="token property">"lineWidth"</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+			<span class="token property">"singleQuote"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+			<span class="token property">"indentWidth"</span><span class="token operator">:</span> <span class="token number">4</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <h2>Bonus: JSON schema support for <code>deno.json</code></h2>
-<p>There's no built-in support for autocompletions in <code>deno.{json,jsonc}</code> files. But with our newly installed LSP-json package, there is a way! Deno publishes its schema for the config file on a URL, which we can add to "user schemas" in the LSP-json settings.</p>
+<p>There's no built-in support for autocompletions in <code>deno.{json,jsonc}</code> files. But with our newly
+installed LSP-json package, there is a way! Deno publishes its schema for the config file on a URL,
+which we can add to "user schemas" in the LSP-json settings.</p>
 <p>Open <code>LSP-json.sublime-settings</code> or run <code>LSP-json Settings</code> in the command palette. Then add this:</p>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-    <span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-        <span class="token property">"userSchemas"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-            <span class="token punctuation">{</span>
-                <span class="token property">"fileMatch"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"deno.json"</span><span class="token punctuation">,</span> <span class="token string">"deno.jsonc"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-                <span class="token property">"uri"</span><span class="token operator">:</span> <span class="token string">"https://deno.land/x/deno@v1.18.2/cli/schemas/config-file.v1.json"</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">]</span>
-    <span class="token punctuation">}</span>
+	<span class="token property">"settings"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">"userSchemas"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token punctuation">{</span>
+				<span class="token property">"fileMatch"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"deno.json"</span><span class="token punctuation">,</span> <span class="token string">"deno.jsonc"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+				<span class="token property">"uri"</span><span class="token operator">:</span> <span class="token string">"https://deno.land/x/deno@v1.18.2/cli/schemas/config-file.v1.json"</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>I guess one has to update the versions in there manually, but the package wouldn't follow the URL linked from Deno's <a href="https://deno.land/manual/getting_started/configuration_file">documentation page</a>, probably since it redirects: <a href="https://deno.land/x/deno/cli/schemas/config-file.v1.json">https://deno.land/x/deno/cli/schemas/config-file.v1.json</a>.</p>
+<p>I guess one has to update the versions in there manually, but the package wouldn't follow the URL
+linked from Deno's
+<a href="https://deno.land/manual/getting_started/configuration_file">documentation page</a>, probably since it
+redirects:
+<a href="https://deno.land/x/deno/cli/schemas/config-file.v1.json">https://deno.land/x/deno/cli/schemas/config-file.v1.json</a>.</p>
 <hr>
 <p>That's it! <a href="/contact">Let me know</a> if you've got more tricks for working with Deno in Sublime.</p>
 
@@ -301,7 +338,7 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

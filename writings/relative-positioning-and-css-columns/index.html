@@ -106,12 +106,23 @@
 
     <div class="prose measure" itemprop="articleBody">
       
-      <p>Live as you teach, they say. In the <a href="http://jnbrk.se/kkstoA">last post</a> I linked to a solution to text rendering problems in conjunction with <code>position: relative</code> in the CSS. Removing the property, or declaring <code>position: static</code> solves the issue.</p>
-<p>I usually set relative positioning globally on common block level elements, since it helps me position other elements inside them easily. I added it to my common, reusable CSS file since it felt like I was declaring <code>position: relative</code> on every other div and paragraph tag. But as you know, firing a shotgun feels great at first, but you always have to deal with the mess afterwards.</p>
+      <p>Live as you teach, they say. In the <a href="http://jnbrk.se/kkstoA">last post</a> I linked to a solution to
+text rendering problems in conjunction with <code>position: relative</code> in the CSS. Removing the property,
+or declaring <code>position: static</code> solves the issue.</p>
+<p>I usually set relative positioning globally on common block level elements, since it helps me
+position other elements inside them easily. I added it to my common, reusable CSS file since it felt
+like I was declaring <code>position: relative</code> on every other div and paragraph tag. But as you know,
+firing a shotgun feels great at first, but you always have to deal with the mess afterwards.</p>
 <p>I actually had two problems with relative positioning, and they were showing up in Safari:</p>
-<p><img src="http://a.yfrog.com/img612/5716/qpqy.png" alt="Text rendering problems in Safari"> Column and text rendering issues in Safari</p>
-<p>Huge thanks to <a href="http://twitter.com/ViktorBijlenga">@ViktorBijlenga</a> for bringing this to my attention</p>
-<p>The text rendering/aliasing issues are identical to the ones I linked to in the <a href="http://jnbrk.se/kkstoA">last post</a>. Timing, right? <code>position: relative</code> was the crook here as well. But what about the columns? Safari seemingly refused to accept the <code>-webkit-column-count/gap</code> declarations. Chrome went along well. Turns out <strong>child elements to a parent where CSS Columns are declared cant’t have relative positioning</strong>. It’ll cause troubles in Safari.</p>
+<p><img src="http://a.yfrog.com/img612/5716/qpqy.png" alt="Text rendering problems in Safari"> Column and text
+rendering issues in Safari</p>
+<p>Huge thanks to <a href="http://twitter.com/ViktorBijlenga">@ViktorBijlenga</a> for bringing this to my
+attention</p>
+<p>The text rendering/aliasing issues are identical to the ones I linked to in the
+<a href="http://jnbrk.se/kkstoA">last post</a>. Timing, right? <code>position: relative</code> was the crook here as well.
+But what about the columns? Safari seemingly refused to accept the <code>-webkit-column-count/gap</code>
+declarations. Chrome went along well. Turns out <strong>child elements to a parent where CSS Columns are
+declared cant’t have relative positioning</strong>. It’ll cause troubles in Safari.</p>
 <p>Therefore:</p>
 <pre><code>.columns{
     -webkit-column-count: 3;
@@ -155,7 +166,7 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

@@ -110,7 +110,18 @@
           <a class="btn" title="http://www.macstories.net/tutorials/how-to-send-any-webpage-from-ios-to-your-mac-browser/" href="http://www.macstories.net/tutorials/how-to-send-any-webpage-from-ios-to-your-mac-browser/">Follow link to macstories.net →</a>
         </p>
       
-      <p>Sometimes while browsing the web in Mobile Safari you might find yourself wanting to view the current site in your desktop browser. We all know it's tedious, boring and plain wrong to type in the URL from the Mobile Safari window into the desktop browser's address field, so of course someone has come up with a solution for this. Well, many solutions. I hear from other people that Tapbots' <a href="http://tapbots.com/software/pastebot/">Pastebot</a> works great, but this means you've got to go through a third party app. Not everybody want that. So of course there's a quick, hacky and dirty solution to the problem, which uses nothing but native OS X/iOS technologies and the amazing Dropbox as always (as well as a free web service). Check out the link above for the complete guide. In short: connect your Dropbox to the free <a href="http://sendtodropbox.com/">Send to Dropbox</a> service which lets you e-mail stuff to your Dropbox account (in this case the web page URL as a text file), and set up a Automator folder action which runs a Ruby script that opens the text file and put the URL in your browser window.</p>
+      <p>Sometimes while browsing the web in Mobile Safari you might find yourself wanting to view the
+current site in your desktop browser. We all know it's tedious, boring and plain wrong to type in
+the URL from the Mobile Safari window into the desktop browser's address field, so of course someone
+has come up with a solution for this. Well, many solutions. I hear from other people that Tapbots'
+<a href="http://tapbots.com/software/pastebot/">Pastebot</a> works great, but this means you've got to go
+through a third party app. Not everybody want that. So of course there's a quick, hacky and dirty
+solution to the problem, which uses nothing but native OS X/iOS technologies and the amazing Dropbox
+as always (as well as a free web service). Check out the link above for the complete guide. In
+short: connect your Dropbox to the free <a href="http://sendtodropbox.com/">Send to Dropbox</a> service which
+lets you e-mail stuff to your Dropbox account (in this case the web page URL as a text file), and
+set up a Automator folder action which runs a Ruby script that opens the text file and put the URL
+in your browser window.</p>
 <pre><code>ARGV.each do |f|
    file = File.new(f, "r")
    
@@ -121,7 +132,8 @@
    file.close
 end
 </code></pre>
-<p>It's minimal, hacky and lovely. I'll never stop being amazed over the power of Dropbox and Automator.</p>
+<p>It's minimal, hacky and lovely. I'll never stop being amazed over the power of Dropbox and
+Automator.</p>
 
     </div>
 
@@ -154,7 +166,7 @@ end
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

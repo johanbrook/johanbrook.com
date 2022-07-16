@@ -110,7 +110,9 @@
           <a class="btn" title="http://trac.webkit.org/browser/trunk/LayoutTests/fast/css/variables/colors-test.html" href="http://trac.webkit.org/browser/trunk/LayoutTests/fast/css/variables/colors-test.html">Follow link to trac.webkit.org →</a>
         </p>
       
-      <p>CSS variables are powerful and almost vital for me nowadays. They are supported in SCSS, LESS and Stylus (all preprocessors). But now WebKit now seem to be on its way of implementing a pure CSS version:</p>
+      <p>CSS variables are powerful and almost vital for me nowadays. They are supported in SCSS, LESS and
+Stylus (all preprocessors). But now WebKit now seem to be on its way of implementing a pure CSS
+version:</p>
 <pre><code>-webkit-var-foreground: green;
 -webkit-var-background: rgb(255, 255, 255);
 
@@ -118,8 +120,11 @@ color: -webkit-var(foreground);
 background-color: red;
 background-color: -webkit-var(background);
 </code></pre>
-<p><a href="http://johanbrook.com/design/css/webkit-css-variables-mixins-nesting/">I've written about a CSS variable implementation before</a>, and even back then I noted that the proposed syntax is bulky and ugly. In the example above you'll note verbosity and even a vendor prefix (!).</p>
-<p>I certainly hope this will be revised and rethought. The way Sass and other preprocessors do it is the way to go:</p>
+<p><a href="http://johanbrook.com/design/css/webkit-css-variables-mixins-nesting/">I've written about a CSS variable implementation before</a>,
+and even back then I noted that the proposed syntax is bulky and ugly. In the example above you'll
+note verbosity and even a vendor prefix (!).</p>
+<p>I certainly hope this will be revised and rethought. The way Sass and other preprocessors do it is
+the way to go:</p>
 <pre><code>$foreground: green;
 $background: rgb(255,255,255);
 
@@ -159,7 +164,7 @@ background-color: $background;
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

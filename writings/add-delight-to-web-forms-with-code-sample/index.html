@@ -106,18 +106,33 @@
 
     <div class="prose measure" itemprop="articleBody">
       
-      <p>Marking up and styling forms in HTML and CSS is something you either love or hate. Personally I love it, since it's one of these things I can be really nitty-picky with – to iterate and iterate over the appearance and behavior of the form. "Is this simple enough? Is this section necessary? Should we separate this from that?", and so on.</p>
-<p>I also love the small details in forms where the regular visitor in me thinks "Huh, that's neat of the form to do that for me", and the web developer in me raises a smile and a quiet chuckle. A great example is the ordering form for <a href="https://www.panic.com/transmit/buy.html">Panic's Transmit</a>.</p>
+      <p>Marking up and styling forms in HTML and CSS is something you either love or hate. Personally I love
+it, since it's one of these things I can be really nitty-picky with – to iterate and iterate over
+the appearance and behavior of the form. "Is this simple enough? Is this section necessary? Should
+we separate this from that?", and so on.</p>
+<p>I also love the small details in forms where the regular visitor in me thinks "Huh, that's neat of
+the form to do that for me", and the web developer in me raises a smile and a quiet chuckle. A great
+example is the ordering form for <a href="https://www.panic.com/transmit/buy.html">Panic's Transmit</a>.</p>
 <h2>Exhibit A: "How many copy may I get you?"</h2>
-<p><a href="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-1-copy.png"> <img src="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-1-copy.png" alt="Panic Transmit"> </a> Everything looks as it should do. Nothing unusual. <a href="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-3-copies.png"> <img src="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-3-copies.png" alt="Panic Transmit"> </a> Try changing the amount of copies, and watch the grammar of the sentence change as well. Also: switch between the "Transmit 4" and "Transmit 4 Upgrade" options and see the sentences change.</p>
-<p>That's cool, isn't it? Those small details which really feel logical – <em>how it should be done everywhere</em>. It's quite interesting that we're stunned over these kind of details when it should be obvious for a web developer to implement this. This is how we expect forms to work.</p>
+<p><a href="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-1-copy.png"><img src="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-1-copy.png" alt="Panic Transmit"></a>
+Everything looks as it should do. Nothing unusual.
+<a href="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-3-copies.png"><img src="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-3-copies.png" alt="Panic Transmit"></a>
+Try changing the amount of copies, and watch the grammar of the sentence change as well. Also:
+switch between the "Transmit 4" and "Transmit 4 Upgrade" options and see the sentences change.</p>
+<p>That's cool, isn't it? Those small details which really feel logical – <em>how it should be done
+everywhere</em>. It's quite interesting that we're stunned over these kind of details when it should be
+obvious for a web developer to implement this. This is how we expect forms to work.</p>
 <h2>Exhibit B: "Are we there yet?"</h2>
-<p>In the same form, scroll to the bottom and you'll find the submit button disguised as a progress meter. It'll update live as you complete the form, giving you instant feedback on the eternal question: "Did I get 'em all now?".</p>
-<p><a href="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-Process.png"> <img src="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-Process.png" alt="Panic Transmit"> </a> <a href="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-Done.png"> <img src="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-Done.png" alt="Panic Transmit"> </a></p>
+<p>In the same form, scroll to the bottom and you'll find the submit button disguised as a progress
+meter. It'll update live as you complete the form, giving you instant feedback on the eternal
+question: "Did I get 'em all now?".</p>
+<p><a href="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-Process.png"><img src="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-Process.png" alt="Panic Transmit"></a>
+<a href="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-Done.png"><img src="http://johanbrook.com/core/wp-content/uploads/2011/07/Panic-Transmit-Done.png" alt="Panic Transmit"></a></p>
 <p>I'm sure there are a ton of cases like these all over the websites belonging to hip companies.</p>
 <h2>A quick example of nice UX:</h2>
-<p>Automatically fetch the city based on a postal code
-How to you add delight to a form, without writing a whole jQuery plugin for it? Let's say you have a sign up form which includes a postal code and city.</p>
+<p>Automatically fetch the city based on a postal code How to you add delight to a form, without
+writing a whole jQuery plugin for it? Let's say you have a sign up form which includes a postal code
+and city.</p>
 <pre><code>&lt;form method="POST" action=""&gt;
 	&lt;label&gt;Postal code 
 		&lt;input type="text" placeholder="810 20" id="postal-code" /&gt;
@@ -131,9 +146,19 @@ How to you add delight to a form, without writing a whole jQuery plugin for it? 
 <p>That code would produce this:</p>
 <p>Postal code</p>
 <p>City</p>
-<p>Nothing weird going on. Now imagine if we could automatically fill the "City" field based on the value from the postal code field. That would be rad, wouldn't it? (Yep, I'm bringing "rad" back).</p>
-<p>What's needed? Well, we have to figure out the actual city name. Luckily, there are services for that. You might want to find one for your own country – I found <a href="http://postnummersok.se/">Postnummersök</a> and <a href="http://yourmoneyisnowmymoney.com/api/">Zip Code API</a> for Swedish postal codes. I'm pretty confident APIs exist for postal code lookups in your country ( <a href="http://www.google.se/search?sourceid=chrome&amp;ie=UTF-8&amp;q=zip+code+to+city+api">Google will help you</a>). Go for a simple API, preferably REST and optimally a version which offers JSONP, which means you're able to fetch data right from the Javascript – working around the cross domain restriction.</p>
-<p>I ended up with Postnummersok.se, whose API is really simple and straightforward: just send a REST GET request to <code>http://postnummersok.se/api</code> with the postal code in the <code>q</code> parameter. The response will be returned in JSON (yay!). Even JSONP is possible if you use the <code>callback</code> parameter. Follow along below.</p>
+<p>Nothing weird going on. Now imagine if we could automatically fill the "City" field based on the
+value from the postal code field. That would be rad, wouldn't it? (Yep, I'm bringing "rad" back).</p>
+<p>What's needed? Well, we have to figure out the actual city name. Luckily, there are services for
+that. You might want to find one for your own country – I found
+<a href="http://postnummersok.se/">Postnummersök</a> and <a href="http://yourmoneyisnowmymoney.com/api/">Zip Code API</a>
+for Swedish postal codes. I'm pretty confident APIs exist for postal code lookups in your country (
+<a href="http://www.google.se/search?sourceid=chrome&amp;ie=UTF-8&amp;q=zip+code+to+city+api">Google will help you</a>).
+Go for a simple API, preferably REST and optimally a version which offers JSONP, which means you're
+able to fetch data right from the Javascript – working around the cross domain restriction.</p>
+<p>I ended up with Postnummersok.se, whose API is really simple and straightforward: just send a REST
+GET request to <code>http://postnummersok.se/api</code> with the postal code in the <code>q</code> parameter. The response
+will be returned in JSON (yay!). Even JSONP is possible if you use the <code>callback</code> parameter. Follow
+along below.</p>
 <pre><code>$("#postal-code").blur(function(){ 
 	var url = "http://postnummersok.se/api?callback=?",
 		// remove whitespace in postal code 
@@ -146,16 +171,30 @@ How to you add delight to a form, without writing a whole jQuery plugin for it? 
 	}); 
 });
 </code></pre>
-<p>As you can see I'm using jQuery in this example. A simple <code>blur</code> event is binded to the postal code field, and the API URL is defined. Note the <code>?callback=?</code> piece, which tells the jQuery XHR to treat the call as JSONP <a href="http://api.jquery.com/jQuery.getJSON/#jsonp">(read more in the API)</a>.</p>
-<p>I also removed whitespace in the postal code (some people may write it as "810 20", and others "81020") since I discovered the API didn't like the whitespace formatted version (even though it's URI encoded).</p>
-<p>The XHR call is made with <code>$.getJSON</code> specifying the postal code as query parameter. A JSON object is returned in the success callback and then I put it in the city field. In this case the JSON consisted of an array – hence the <code>json[0]</code> construct – and I want the first (and only) value of that array. Lastly I made sure to select/highlight the input field with <code>select()</code> to provide a quick way for the visitor to erase the city name if it's incorrect.</p>
+<p>As you can see I'm using jQuery in this example. A simple <code>blur</code> event is binded to the postal code
+field, and the API URL is defined. Note the <code>?callback=?</code> piece, which tells the jQuery XHR to treat
+the call as JSONP <a href="http://api.jquery.com/jQuery.getJSON/#jsonp">(read more in the API)</a>.</p>
+<p>I also removed whitespace in the postal code (some people may write it as "810 20", and others
+"81020") since I discovered the API didn't like the whitespace formatted version (even though it's
+URI encoded).</p>
+<p>The XHR call is made with <code>$.getJSON</code> specifying the postal code as query parameter. A JSON object
+is returned in the success callback and then I put it in the city field. In this case the JSON
+consisted of an array – hence the <code>json[0]</code> construct – and I want the first (and only) value of
+that array. Lastly I made sure to select/highlight the input field with <code>select()</code> to provide a
+quick way for the visitor to erase the city name if it's incorrect.</p>
 <p>Try it out:</p>
 <p>Postal code</p>
 <p>City</p>
 <p>(As mentioned, it's only taking Swedish postal codes. Try "810 20" and "810 22", as an example).</p>
-<p>Neat, isn't it? Thanks to jQuery and the simplicity of the postal code API, we have created this great UX feature just in a couple of lines of code. It's easy for the visitor to get around (just erase the selected city suggestion) and it degrades well (there are no vital features depending on Javascript here).</p>
+<p>Neat, isn't it? Thanks to jQuery and the simplicity of the postal code API, we have created this
+great UX feature just in a couple of lines of code. It's easy for the visitor to get around (just
+erase the selected city suggestion) and it degrades well (there are no vital features depending on
+Javascript here).</p>
 <h2>Outro</h2>
-<p>When building forms: put some effort into it, and use your fantasy. "How could I make this super boring form really awesome, easy, and even fun to fill in?". Add delight, but don't get in the visitor's way. Add helpful validation messages, and other help text without bloating the whitespace. Form building is truly a form of art, therefore: iterate, iterate, iterate.</p>
+<p>When building forms: put some effort into it, and use your fantasy. "How could I make this super
+boring form really awesome, easy, and even fun to fill in?". Add delight, but don't get in the
+visitor's way. Add helpful validation messages, and other help text without bloating the whitespace.
+Form building is truly a form of art, therefore: iterate, iterate, iterate.</p>
 
     </div>
 
@@ -188,7 +227,7 @@ How to you add delight to a form, without writing a whole jQuery plugin for it? 
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

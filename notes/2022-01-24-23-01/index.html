@@ -101,14 +101,24 @@
 
     <div class="prose measure" itemprop="articleBody">
       
-      <p>i've bought a new domain for this site! from now on, it's <a href="https://johan.im">johan.im</a>. short and sweet. johanbrook.com redirects to johan.im.</p>
+      <p>i've bought a new domain for this site! from now on, it's <a href="https://johan.im">johan.im</a>. short and
+sweet. johanbrook.com redirects to johan.im.</p>
 <p>i appreciate these services/tools soooo much right now:</p>
 <ul>
 <li>Cloudflare</li>
 <li>Fastmail</li>
 </ul>
-<p>Cloudflare's dashboard is easy to understand and efficient enough to be dangerous — even though i'm not a DNS/networking/cache elite ninja. Cloudflare might look simplistic compared to beasts like AWS, but if you look under the hood, they support more than what they show off (perhaps they should show off more?). example: like the noob i am, i just redirected <code>johanbrook.com/* → johan.im/*</code>. but the paths after that slash of course weren't kept. so a URL <code>johanbrook.com/writings</code> would just end up at <code>johan.im</code> (the root). uh-oh. i read in a <a href="https://support.cloudflare.com/hc/en-us/articles/218411427#h_6N5SySNYCjYUUnCKnC1Ea6">help article</a> that Cloudflare's Page Rules feature supports <em>wildcard referencing</em>. tears of joy! so i could just do <code>johanbrook.com/* → johan.im/$1</code> to keep those nice paths.</p>
-<p>Fastmail's wizard for adding a new custom domain is so lovely. i could even pick Cloudflare as my DNS manager, and they'd customise the wizard for Cloudflare's dashboard UI.</p>
+<p>Cloudflare's dashboard is easy to understand and efficient enough to be dangerous — even though i'm
+not a DNS/networking/cache elite ninja. Cloudflare might look simplistic compared to beasts like
+AWS, but if you look under the hood, they support more than what they show off (perhaps they should
+show off more?). example: like the noob i am, i just redirected <code>johanbrook.com/* → johan.im/*</code>. but
+the paths after that slash of course weren't kept. so a URL <code>johanbrook.com/writings</code> would just end
+up at <code>johan.im</code> (the root). uh-oh. i read in a
+<a href="https://support.cloudflare.com/hc/en-us/articles/218411427#h_6N5SySNYCjYUUnCKnC1Ea6">help article</a>
+that Cloudflare's Page Rules feature supports <em>wildcard referencing</em>. tears of joy! so i could just
+do <code>johanbrook.com/* → johan.im/$1</code> to keep those nice paths.</p>
+<p>Fastmail's wizard for adding a new custom domain is so lovely. i could even pick Cloudflare as my
+DNS manager, and they'd customise the wizard for Cloudflare's dashboard UI.</p>
 
     </div>
 
@@ -137,7 +147,7 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

@@ -106,18 +106,55 @@
 
     <div class="prose measure" itemprop="articleBody">
       
-      <p><strong>Backups are important.</strong> Really, really important. They say if you don’t have two or more copies of a file, the file doesn’t exist. I had no backups whatsoever until a couple of weeks ago, when I thought to myself: <em>“What would I do if my hard drive breaks? Would I do well losing years and years of work?”</em>. Of course not! I really had to start securing and backing up my data, and what follows is a quick writeup on the process.</p>
+      <p><strong>Backups are important.</strong> Really, really important. They say if you don’t have two or more copies
+of a file, the file doesn’t exist. I had no backups whatsoever until a couple of weeks ago, when I
+thought to myself: <em>“What would I do if my hard drive breaks? Would I do well losing years and years
+of work?”</em>. Of course not! I really had to start securing and backing up my data, and what follows
+is a quick writeup on the process.</p>
 <h2>Locally</h2>
 <h3>Time Machine</h3>
-<p>This is the first obvious backup solution in OS X for the Average Joe. Time Machine works in the background and does everything for you. No fuzz or fine tuning. I’ve got a 1TB <a href="http://go.iomega.com/en/products/external-hard-drive-desktop/ultramax-minimax/ultramax-plus/?partner=4740">Iomega UltraMax Plus Desktop</a> external hard drive in RAID1 mode (mirrored, that is) for complete backups of my files (no system files). Since Time Machine do most of the work (and doing it good so far) I couldn’t motivate getting another kind of backup software. It works seamlessly, and since the drive consists of two mirrored internal hard drives, all data is actually stored in two places for extra redundancy. Normally I don’t like putting an automated application in control over the backup of my precious files, but Time Machine “feels” good. Time Machine doesn’t only work as a safety net in the case of emergency – it’s great for simply archiving your files. You’re able to roll back and forth if you realize you accidently deleted that particular file earlier that day/week/month.</p>
+<p>This is the first obvious backup solution in OS X for the Average Joe. Time Machine works in the
+background and does everything for you. No fuzz or fine tuning. I’ve got a 1TB
+<a href="http://go.iomega.com/en/products/external-hard-drive-desktop/ultramax-minimax/ultramax-plus/?partner=4740">Iomega UltraMax Plus Desktop</a>
+external hard drive in RAID1 mode (mirrored, that is) for complete backups of my files (no system
+files). Since Time Machine do most of the work (and doing it good so far) I couldn’t motivate
+getting another kind of backup software. It works seamlessly, and since the drive consists of two
+mirrored internal hard drives, all data is actually stored in two places for extra redundancy.
+Normally I don’t like putting an automated application in control over the backup of my precious
+files, but Time Machine “feels” good. Time Machine doesn’t only work as a safety net in the case of
+emergency – it’s great for simply archiving your files. You’re able to roll back and forth if you
+realize you accidently deleted that particular file earlier that day/week/month.</p>
 <h3>Super Duper</h3>
-<p>While Time Machine is great and all, it’s actually just for everyday backup of your files. What if you would like a complete, bootable copy of your entire hard drive? This is where Super Duper will help you. It’s a nifty app which lets you copy the contents of your hard drive to an external drive (ideally). I find it calming to know that I have a safety net if something would happen to my computer; like physical damage, theft or something else. Then it’s just a matter of booting from that Super Duper copy. Nifty.</p>
+<p>While Time Machine is great and all, it’s actually just for everyday backup of your files. What if
+you would like a complete, bootable copy of your entire hard drive? This is where Super Duper will
+help you. It’s a nifty app which lets you copy the contents of your hard drive to an external drive
+(ideally). I find it calming to know that I have a safety net if something would happen to my
+computer; like physical damage, theft or something else. Then it’s just a matter of booting from
+that Super Duper copy. Nifty.</p>
 <h2>Offsite backup</h2>
-<p>What if my house would be burnt down by fire, and my precious files would be lost on the external backup drive? (which I couldn’t save from the flames). What if a burglary would leave me with no computer or drive? Offiste, over-the-air backup comes to the resque. On the courtesy of <a href="http://macpro.se">Joacim Melin</a> I have the privilege of using <a href="http://crashplan.com">CrashPlan Pro</a>. The Crashplan client constantly copies all new and updated files over the internet to a Crashplan server, securely storing my data offsite if something would happen.</p>
+<p>What if my house would be burnt down by fire, and my precious files would be lost on the external
+backup drive? (which I couldn’t save from the flames). What if a burglary would leave me with no
+computer or drive? Offiste, over-the-air backup comes to the resque. On the courtesy of
+<a href="http://macpro.se">Joacim Melin</a> I have the privilege of using
+<a href="http://crashplan.com">CrashPlan Pro</a>. The Crashplan client constantly copies all new and updated
+files over the internet to a Crashplan server, securely storing my data offsite if something would
+happen.</p>
 <h2>Dropbox</h2>
-<p><a href="http://dropbox.com">Dropbox</a> is a wonderful service, giving you free space to store small and large files in the cloud, and doing a great job syncing them between devices. I use Dropbox to store important files, such as text files and assets, which I might want to access from my iPhone on the go, or even a completely different computer. As long as I’ve got an internet connection I’m assured that the file I’m working with is saved and synced “up to the cloud”. An interesting solution by application developers is to store libraries and configuration files in the user’s Dropbox, making syncronization between devices seamless ( <a href="http://agilewebsolutions.com/onepassword">1Password</a> is a great example: my keychain library file is synced between the application on my Mac as well as on my iPhone – no hassle with tedious typing or duplicated entries). Also, Dropbox offers basic versioning for your files, with the ability to rollback changes. Great for backup.</p>
+<p><a href="http://dropbox.com">Dropbox</a> is a wonderful service, giving you free space to store small and large
+files in the cloud, and doing a great job syncing them between devices. I use Dropbox to store
+important files, such as text files and assets, which I might want to access from my iPhone on the
+go, or even a completely different computer. As long as I’ve got an internet connection I’m assured
+that the file I’m working with is saved and synced “up to the cloud”. An interesting solution by
+application developers is to store libraries and configuration files in the user’s Dropbox, making
+syncronization between devices seamless ( <a href="http://agilewebsolutions.com/onepassword">1Password</a> is a
+great example: my keychain library file is synced between the application on my Mac as well as on my
+iPhone – no hassle with tedious typing or duplicated entries). Also, Dropbox offers basic versioning
+for your files, with the ability to rollback changes. Great for backup.</p>
 <h2>More</h2>
-<p>When writing this post, I was inspired by <a href="http://shawnblanc.net/2008/02/bulletproof-backups/">this post by Shawn Blanc on backups in OS X</a> as well as <a href="http://blog.frankchimero.com/post/2799470127/the-setup">Frank Chimero’s thorough writeup on his backup setup</a>.</p>
+<p>When writing this post, I was inspired by
+<a href="http://shawnblanc.net/2008/02/bulletproof-backups/">this post by Shawn Blanc on backups in OS X</a> as
+well as
+<a href="http://blog.frankchimero.com/post/2799470127/the-setup">Frank Chimero’s thorough writeup on his backup setup</a>.</p>
 
     </div>
 
@@ -150,7 +187,7 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

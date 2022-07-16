@@ -106,16 +106,39 @@
 
     <div class="prose measure" itemprop="articleBody">
       
-      <p>Organization and structure of CSS might be one of the largest difficulties for beginners as for professionals in web design. It <em>is</em> hard writing good CSS. It is somewhat easer with pre-processors (SCSS, LESS, Stylus), but they'll only give you the tools: it's up to you how to use them (what I can't do without is the <code>@import</code> feature).</p>
-<p>What I've learnt during recent years is to write <strong>contextual CSS</strong>: how similar elements and properties should be close to each other in the code. How I want to find the properties of an element in <em>one</em> place. This post details how I prefer to write CSS, based on the number of projects where I've been forced to dig through my own code.</p>
+      <p>Organization and structure of CSS might be one of the largest difficulties for beginners as for
+professionals in web design. It <em>is</em> hard writing good CSS. It is somewhat easer with pre-processors
+(SCSS, LESS, Stylus), but they'll only give you the tools: it's up to you how to use them (what I
+can't do without is the <code>@import</code> feature).</p>
+<p>What I've learnt during recent years is to write <strong>contextual CSS</strong>: how similar elements and
+properties should be close to each other in the code. How I want to find the properties of an
+element in <em>one</em> place. This post details how I prefer to write CSS, based on the number of projects
+where I've been forced to dig through my own code.</p>
 <h2>Finding all properties in one place</h2>
-<p>When I first started doing web design, I (as you often do) started out by reading other people's HTML and CSS. Inspecting every element, checking out the underlying CSS structure. I noted that many developers tended to split their stylesheets in files such as <code>layout.css</code>, <code>typography.css</code>, and more. I didn't questioned why, but did the same. I ended up disliking the approach. Why? I jumped between the two stylesheets to find and alter properties.</p>
-<p>When going through my (and others') CSS, I want to find properties of an element and find them fast. Depending on how one is doing abstractions (that's a future post of mine) I don't want to jump around in the partials to find that particular place where those special properties are sneaked into the code.</p>
-<p>I believe it's perfectly fine to mix and match all kinds of CSS properties: colors, typography, box model stuff. Go nuts. Since it's very seldom those categories won't end up affecting each other anyway, I don't see any reason why they can't go together. For instance, when you're changing font sizes you may also have to tweak the paddings.</p>
+<p>When I first started doing web design, I (as you often do) started out by reading other people's
+HTML and CSS. Inspecting every element, checking out the underlying CSS structure. I noted that many
+developers tended to split their stylesheets in files such as <code>layout.css</code>, <code>typography.css</code>, and
+more. I didn't questioned why, but did the same. I ended up disliking the approach. Why? I jumped
+between the two stylesheets to find and alter properties.</p>
+<p>When going through my (and others') CSS, I want to find properties of an element and find them fast.
+Depending on how one is doing abstractions (that's a future post of mine) I don't want to jump
+around in the partials to find that particular place where those special properties are sneaked into
+the code.</p>
+<p>I believe it's perfectly fine to mix and match all kinds of CSS properties: colors, typography, box
+model stuff. Go nuts. Since it's very seldom those categories won't end up affecting each other
+anyway, I don't see any reason why they can't go together. For instance, when you're changing font
+sizes you may also have to tweak the paddings.</p>
 <h2>Proximity of responsive styles: inline media queries</h2>
-<p>This approach can go for responsive CSS as well. One often has separate stylesheets for different viewports where all CSS for that particular viewport goes. Perhaps <code>small.css</code>, <code>medium.css</code>, and so on. This is cool. If I want to tweak styles for a particular viewport I visit that file, simple as that.</p>
-<p><em>But</em>, that also calls for jumping between contexts, and I've started to find that tiring. When an element's properties are spread out over several files I tend to lose grasp of the whole thing. This is a nightmare in semi to large projects.</p>
-<p>But pre-processors got our back. By using inline media queries, mixins, SCSS placeholders, and variables, one can write the responsive styles in the same context as the element is defined in the core CSS:</p>
+<p>This approach can go for responsive CSS as well. One often has separate stylesheets for different
+viewports where all CSS for that particular viewport goes. Perhaps <code>small.css</code>, <code>medium.css</code>, and so
+on. This is cool. If I want to tweak styles for a particular viewport I visit that file, simple as
+that.</p>
+<p><em>But</em>, that also calls for jumping between contexts, and I've started to find that tiring. When an
+element's properties are spread out over several files I tend to lose grasp of the whole thing. This
+is a nightmare in semi to large projects.</p>
+<p>But pre-processors got our back. By using inline media queries, mixins, SCSS placeholders, and
+variables, one can write the responsive styles in the same context as the element is defined in the
+core CSS:</p>
 <pre class="language-css"><code class="language-css">// Custom mixin using SCSS placeholders
 <span class="token atrule"><span class="token rule">@mixin</span> <span class="token function">respond</span><span class="token punctuation">(</span>$width<span class="token punctuation">,</span> $<span class="token property">mode</span><span class="token punctuation">:</span> <span class="token string">"max"</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
 	<span class="token atrule"><span class="token rule">@media</span> <span class="token keyword">only</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span>#</span><span class="token punctuation">{</span>$mode<span class="token punctuation">}</span><span class="token selector">-width: $width)</span> <span class="token punctuation">{</span>
@@ -145,14 +168,25 @@ $<span class="token property">small-screen</span><span class="token punctuation"
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>So instead of having the declaration of the <code>h1</code> font site in a separate <code>_small.scss</code> partial, we can write it beside the original definition (if that position is suitable).</p>
-<p>I've started to fall in love in this solution and have used it in a couple of smaller live projects. My workflow becomes much efficient when I can tweak the different media queries at one place.</p>
+<p>So instead of having the declaration of the <code>h1</code> font site in a separate <code>_small.scss</code> partial, we
+can write it beside the original definition (if that position is suitable).</p>
+<p>I've started to fall in love in this solution and have used it in a couple of smaller live projects.
+My workflow becomes much efficient when I can tweak the different media queries at one place.</p>
 <h3>Performance of repeated media query blocks</h3>
 <p><em>"That's not DRY!"</em>, you might say. Well, it really doesn't matter, others have concluded.</p>
-<p>The post <a href="http://sasscast.tumblr.com/post/38673939456/sass-and-media-queries">Sass and Media Queries</a> on SassCast comes to the conclusion that for performance, it really doesn't matter if you're having repeated media query blocks inlined in your SCSS code, <em>unless</em> it's a huge number (around 2000+ blocks).</p>
-<p>There's a <a href="http://css-tricks.com/forums/topic/scss-inline-media-queries-vs-separate-media-query-blocks/">thread</a> on this subject in the CSS Tricks forums ("SCSS: Inline media queries vs separate media query blocks"). A commenter mentioned a Ruby gem for merging repeated media query blocks together: <a href="https://github.com/aaronjensen/sass-media_query_combiner">Sass Media Query Combiner</a>.</p>
+<p>The post
+<a href="http://sasscast.tumblr.com/post/38673939456/sass-and-media-queries">Sass and Media Queries</a> on
+SassCast comes to the conclusion that for performance, it really doesn't matter if you're having
+repeated media query blocks inlined in your SCSS code, <em>unless</em> it's a huge number (around 2000+
+blocks).</p>
+<p>There's a
+<a href="http://css-tricks.com/forums/topic/scss-inline-media-queries-vs-separate-media-query-blocks/">thread</a>
+on this subject in the CSS Tricks forums ("SCSS: Inline media queries vs separate media query
+blocks"). A commenter mentioned a Ruby gem for merging repeated media query blocks together:
+<a href="https://github.com/aaronjensen/sass-media_query_combiner">Sass Media Query Combiner</a>.</p>
 <h2>Conclusion</h2>
-<p>This might seem like a small detail, not worthy of a post, but try it out: I find it really awesome. Life's too short for premature optimization of CSS files: Gzip will have your back.</p>
+<p>This might seem like a small detail, not worthy of a post, but try it out: I find it really awesome.
+Life's too short for premature optimization of CSS files: Gzip will have your back.</p>
 
     </div>
 
@@ -185,7 +219,7 @@ $<span class="token property">small-screen</span><span class="token punctuation"
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

@@ -110,9 +110,17 @@
           <a class="btn" title="http://www.xanthir.com/talks/2011-01-12/slides.html" href="http://www.xanthir.com/talks/2011-01-12/slides.html">Follow link to xanthir.com →</a>
         </p>
       
-      <p><a href="http://twitter.com/tabatkins">Tab Atkins</a> of Google has made a couple of slides (navigate with the arrow keys) explaining a couple of possible upcoming features to Webkit: CSS variables, mixin blocks and selector nesting. That's pretty huge, given that people have been screaming for those features for years and years. Hell, a couple of smart guys even wrote scripts to compile (yeah, <em>compile</em>) their own form of CSS syntax to regular CSS ( <a href="http://sass-lang.com">Sass</a> and <a href="http://lesscss.org/">Less</a>).</p>
-<p>According to Atkins' slides the features are very experimental, and we probably won't see them until the end of the year. I'm gonna talk about the three most sought after features: variables, mixins and nesting.</p>
-<p><em>This article is also translated to <a href="http://science.webhostinggeeks.com/desing-css">Serbo-Croatian</a> language by Anja Skrba from <a href="http://webhostinggeeks.com/">Webhostinggeeks.com</a></em></p>
+      <p><a href="http://twitter.com/tabatkins">Tab Atkins</a> of Google has made a couple of slides (navigate with the
+arrow keys) explaining a couple of possible upcoming features to Webkit: CSS variables, mixin blocks
+and selector nesting. That's pretty huge, given that people have been screaming for those features
+for years and years. Hell, a couple of smart guys even wrote scripts to compile (yeah, <em>compile</em>)
+their own form of CSS syntax to regular CSS ( <a href="http://sass-lang.com">Sass</a> and
+<a href="http://lesscss.org/">Less</a>).</p>
+<p>According to Atkins' slides the features are very experimental, and we probably won't see them until
+the end of the year. I'm gonna talk about the three most sought after features: variables, mixins
+and nesting.</p>
+<p><em>This article is also translated to <a href="http://science.webhostinggeeks.com/desing-css">Serbo-Croatian</a>
+language by Anja Skrba from <a href="http://webhostinggeeks.com/">Webhostinggeeks.com</a></em></p>
 <h2>Variables</h2>
 <p>The syntax of CSS variables brought up in the presentation is as follows:</p>
 <pre><code>@var header-color color #006;
@@ -128,10 +136,16 @@ $secondary-color: #c06;
 
 a { color: $main-color; }
 </code></pre>
-<p>You declare with the keyword <code>@var</code> , then the name and last the value. You insert the variable by writing <code>var(var-name)</code> . Pretty straight-forward, but personally I find the syntax a bit awkward. Why the need for the <code>@var</code> keyword? Why not just <code>@var-name</code> ? Why no colon between the variable name and the value? And why the tedious <code>var(variable-name)</code> construction?</p>
+<p>You declare with the keyword <code>@var</code> , then the name and last the value. You insert the variable by
+writing <code>var(var-name)</code> . Pretty straight-forward, but personally I find the syntax a bit awkward.
+Why the need for the <code>@var</code> keyword? Why not just <code>@var-name</code> ? Why no colon between the variable
+name and the value? And why the tedious <code>var(variable-name)</code> construction?</p>
 <p>Variables are great. I use them every day in Sass, but I'd be happy to see a less clunky syntax.</p>
 <h2>Mixins</h2>
-<p>Mixins are blocks of code you may include anywhere in the document. It's great for code reuse, and to get away from non-semantic classes in your HTML code. A prime example is the clearfix method: instead of applying a <code>clearfix</code> class to an HTML element, just write (in Sass) <code>@include clearfix;</code> in the stylesheet for that element. Nice and clean.</p>
+<p>Mixins are blocks of code you may include anywhere in the document. It's great for code reuse, and
+to get away from non-semantic classes in your HTML code. A prime example is the clearfix method:
+instead of applying a <code>clearfix</code> class to an HTML element, just write (in Sass) <code>@include clearfix;</code>
+in the stylesheet for that element. Nice and clean.</p>
 <p>In the proposed CSS syntax you declare mixins by writing:</p>
 <pre><code>@mixin error {
    background: #fdd;
@@ -145,9 +159,13 @@ div.error {
    @mixin error;
 }
 </code></pre>
-<p>It's a really slick way to reuse code. Growing sick of writing <a href="http://jnbrk.se/fp7c68">long, messy CSS3 gradient code?</a> Just define a mixin with some parameters and include it where appropriate. This syntax is alright, though I find the parameter declaration a bit weird.</p>
+<p>It's a really slick way to reuse code. Growing sick of writing
+<a href="http://jnbrk.se/fp7c68">long, messy CSS3 gradient code?</a> Just define a mixin with some parameters
+and include it where appropriate. This syntax is alright, though I find the parameter declaration a
+bit weird.</p>
 <h2>Nesting</h2>
-<p>When writing regular CSS you can't nest selectors. That is, you can't step down in the DOM hierarchy without having to write all the parent selectors again, like this:</p>
+<p>When writing regular CSS you can't nest selectors. That is, you can't step down in the DOM hierarchy
+without having to write all the parent selectors again, like this:</p>
 <pre><code>#main &gt; header &gt; h1{
    font-size: 2em;
    background: blue;
@@ -160,7 +178,8 @@ div.error {
    color: #fdf;
 }
 </code></pre>
-<p>I hate this kind of writing. It feels so unnecessary and unintuitive. Atkins has proposed this syntax:</p>
+<p>I hate this kind of writing. It feels so unnecessary and unintuitive. Atkins has proposed this
+syntax:</p>
 <pre><code>#main &gt; header &gt; h1 {
   font-size: 2em;
   background: blue;
@@ -175,10 +194,19 @@ div.error {
   }
 }
 </code></pre>
-<p>This feels more natural and flexible. Changing the id attribute of the header? No problem, just change at one place in the code. The syntax in Sass and Less isn't too far away from this one either.</p>
+<p>This feels more natural and flexible. Changing the id attribute of the header? No problem, just
+change at one place in the code. The syntax in Sass and Less isn't too far away from this one
+either.</p>
 <h2>Outro</h2>
-<p>I've been using Sass since last summer, and I always make use of it for every project by now. Since you compile to regular CSS, there are no compability issues whatsoever. The question is: if these fancy features would make into Safari and Chrome sometime in the future, how would we handle the stylesheets for Firefox, Internet Explorer and Opera? Separate ones? Nope, I wouldn't think so. It has to be a standard to work out, and we all know that the working groups are slooow to decide things.</p>
-<p>For now Sass works great for me, but I think it's time to make a serious attempt to push the features "into the broad mass". To see some cleaner stylesheets out on the interwebz would be a godsend gift.</p>
+<p>I've been using Sass since last summer, and I always make use of it for every project by now. Since
+you compile to regular CSS, there are no compability issues whatsoever. The question is: if these
+fancy features would make into Safari and Chrome sometime in the future, how would we handle the
+stylesheets for Firefox, Internet Explorer and Opera? Separate ones? Nope, I wouldn't think so. It
+has to be a standard to work out, and we all know that the working groups are slooow to decide
+things.</p>
+<p>For now Sass works great for me, but I think it's time to make a serious attempt to push the
+features "into the broad mass". To see some cleaner stylesheets out on the interwebz would be a
+godsend gift.</p>
 
     </div>
 
@@ -211,7 +239,7 @@ div.error {
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

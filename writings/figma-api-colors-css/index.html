@@ -108,29 +108,41 @@
 
     <div class="prose measure" itemprop="articleBody">
       
-      <p><strong>Design systems</strong> have become popular recently. Even if you don't need a full blown one, it might be nice to collect design resources in a single, canonical location. In this post, I'll describe how I worked with Figma and their API to sync colours with a CSS codebase.</p>
+      <p><strong>Design systems</strong> have become popular recently. Even if you don't need a full blown one, it might
+be nice to collect design resources in a single, canonical location. In this post, I'll describe how
+I worked with Figma and their API to sync colours with a CSS codebase.</p>
 <h2>The problem</h2>
-<p>At Lookback, we had all visual design collected across Sketch files. Sketch is nice, but as our platform grew with more apps, interfaces, and flows, it was clear that the workflow of "a single designer owning all files" just didn't hold up:</p>
+<p>At Lookback, we had all visual design collected across Sketch files. Sketch is nice, but as our
+platform grew with more apps, interfaces, and flows, it was clear that the workflow of "a single
+designer owning all files" just didn't hold up:</p>
 <ul>
 <li>It would be a constant stream of new Sketch files or PNG exports being shared in the Trello cards.</li>
-<li>For each small change, the designer had to go back to the Sketch file, do a minor change, export again, upload for review.</li>
-<li>There was emphasis on collaboration. Merging in feedback from another person's work in Sketch was a pain.</li>
+<li>For each small change, the designer had to go back to the Sketch file, do a minor change, export
+again, upload for review.</li>
+<li>There was emphasis on collaboration. Merging in feedback from another person's work in Sketch was
+a pain.</li>
 <li>Managing colours and other styles <em>across</em> Sketch files was a pain.</li>
 </ul>
 <p><strong>Enter Figma.</strong></p>
-<p><a href="https://www.figma.com">Figma</a> is a design software capable of everything Sketch can do, but with a few important details:</p>
+<p><a href="https://www.figma.com">Figma</a> is a design software capable of everything Sketch can do, but with a
+few important details:</p>
 <ul>
 <li>It's web based. Accessible everywhere with an option to install locally as an macOS app.</li>
-<li>It's completely cloud based. No local files to sync. No merging and branching. It's saved as you go.</li>
+<li>It's completely cloud based. No local files to sync. No merging and branching. It's saved as you
+go.</li>
 <li>It supports shared libraries of components and styles.</li>
 <li>It supports simple prototyping right out of the box.</li>
 <li>It's <strong>collaborative</strong>. You can design in high or low fidelity with coworkers in <em>real time</em> 😍</li>
 </ul>
-<p>I can't stress the last point enough. This has severely improved our design flow. It's more democratic and transparent, as anybody with a Figma account can pop into a design and poke around. Figma has completely eliminated the old ways of doing design flows.</p>
+<p>I can't stress the last point enough. This has severely improved our design flow. It's more
+democratic and transparent, as anybody with a Figma account can pop into a design and poke around.
+Figma has completely eliminated the old ways of doing design flows.</p>
 <p><strong>A month in, I think Figma is a killer app for doing interface design at the moment.</strong></p>
 <h2>Back to the problem</h2>
-<p>I set out on trying out Figma in our organisation for a while. The first task was to structure out colour system, which at the time was very loosely defined and pretty ad-hoc.</p>
-<p>Describing how I created the colour system is out of scope for this post. The end result should anyway be</p>
+<p>I set out on trying out Figma in our organisation for a while. The first task was to structure out
+colour system, which at the time was very loosely defined and pretty ad-hoc.</p>
+<p>Describing how I created the colour system is out of scope for this post. The end result should
+anyway be</p>
 <ul>
 <li>a grid of colours named after hue and brightness,</li>
 <li>the same colours collected in Figma's colour library</li>
@@ -139,19 +151,27 @@
   <img src="/assets/posts/color-system.png" alt="Color system">
 </figure>
 <p><em>How do I use these colours in my web frontend?</em></p>
-<p>The Old Way would be to manually copy the HEX codes over to (S)CSS variables and make sure to keep them up to date. Now, the colours might not change that frequently, so this might not be a huge pain. But when you're in the exploratory phase, it's very messy to go back and forth all the time.</p>
-<p>I noticed Figma has an <a href="https://www.figma.com/developers">API</a> ✨Rejoice! The <a href="https://www.figma.com/developers/docs">docs</a> are lovely, and the only thing needed to do simple HTTP REST calls is an access token you generate for yourself.</p>
+<p>The Old Way would be to manually copy the HEX codes over to (S)CSS variables and make sure to keep
+them up to date. Now, the colours might not change that frequently, so this might not be a huge
+pain. But when you're in the exploratory phase, it's very messy to go back and forth all the time.</p>
+<p>I noticed Figma has an <a href="https://www.figma.com/developers">API</a> ✨Rejoice! The
+<a href="https://www.figma.com/developers/docs">docs</a> are lovely, and the only thing needed to do simple
+HTTP REST calls is an access token you generate for yourself.</p>
 <p>My goal was to:</p>
 <ul>
 <li>Sync the <strong>names</strong> and <strong>HEX colour codes</strong> from my Figma file down into a JSON or JS file.</li>
 <li>This file was to be used in the build process for my CSS, so variables could be created.</li>
 </ul>
-<p>After playing around, I ended up with a Node script which fetches the colour styles for a team and writes them to a <code>colors.js</code> file. It's a super simple script which just calls their endpoints and pieces together all the styles into a big hash.</p>
+<p>After playing around, I ended up with a Node script which fetches the colour styles for a team and
+writes them to a <code>colors.js</code> file. It's a super simple script which just calls their endpoints and
+pieces together all the styles into a big hash.</p>
 <p class="tc">
   <a class="btn" href="https://gist.github.com/brookback/cce828202ef40ddddf2d1aa731929c90">fetch-figma-colors.js</a>
 </p>
 <p>⚠️ <em>You have to tweak some variables in there!</em></p>
-<p>It was a bit fiddly to get the actual HEX codes of the styles, since Figma doesn't include them in the call to the <code>/styles</code> API endpoint. Therefore, I had to cross reference the name of the styles with the colour samples in the document. I've sent this feedback to the Figma team.</p>
+<p>It was a bit fiddly to get the actual HEX codes of the styles, since Figma doesn't include them in
+the call to the <code>/styles</code> API endpoint. Therefore, I had to cross reference the name of the styles
+with the colour samples in the document. I've sent this feedback to the Figma team.</p>
 <p>Run it like this:</p>
 <pre class="language-bash"><code class="language-bash">FIGMA_PERSONAL_TOKEN=<your-token> node fetch-figma-colors.js
 </your-token></code></pre>
@@ -159,53 +179,61 @@
 <pre class="language-js"><code class="language-js"><span class="token comment">/* eslint-disable */</span>
 <span class="token comment">/* Updated at Thu, 21 Mar 2019 21:06:58 GMT*/</span>
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token comment">/** Suitable as background color. */</span>
-    <span class="token string-property property">'blue-10'</span><span class="token operator">:</span> <span class="token string">'#f6fbfd'</span><span class="token punctuation">,</span>
-    <span class="token comment">/** Suitable as default border color. */</span>
-    <span class="token string-property property">'blue-20'</span><span class="token operator">:</span> <span class="token string">'#d7f3ff'</span><span class="token punctuation">,</span>
-    <span class="token string-property property">'blue-30'</span><span class="token operator">:</span> <span class="token string">'#a4e3ff'</span><span class="token punctuation">,</span>
-    <span class="token string-property property">'blue-40'</span><span class="token operator">:</span> <span class="token string">'#60ceff'</span><span class="token punctuation">,</span>
-    <span class="token string-property property">'blue-50'</span><span class="token operator">:</span> <span class="token string">'#00a0e8'</span><span class="token punctuation">,</span>
-    <span class="token comment">/** Suitable as default button and link color. */</span>
-    <span class="token string-property property">'blue-60'</span><span class="token operator">:</span> <span class="token string">'#007db5'</span><span class="token punctuation">,</span>
-    <span class="token comment">/** Suitable as heading color. */</span>
-    <span class="token string-property property">'blue-70'</span><span class="token operator">:</span> <span class="token string">'#006693'</span><span class="token punctuation">,</span>
-    <span class="token comment">/** Suitable as body text color. */</span>
-    <span class="token string-property property">'blue-80'</span><span class="token operator">:</span> <span class="token string">'#004260'</span><span class="token punctuation">,</span>
-    <span class="token string-property property">'blue-90'</span><span class="token operator">:</span> <span class="token string">'#002b3e'</span><span class="token punctuation">,</span>
-    <span class="token string-property property">'blue-100'</span><span class="token operator">:</span> <span class="token string">'#041820'</span><span class="token punctuation">,</span>
-    <span class="token comment">// ...</span>
+	<span class="token comment">/** Suitable as background color. */</span>
+	<span class="token string-property property">'blue-10'</span><span class="token operator">:</span> <span class="token string">'#f6fbfd'</span><span class="token punctuation">,</span>
+	<span class="token comment">/** Suitable as default border color. */</span>
+	<span class="token string-property property">'blue-20'</span><span class="token operator">:</span> <span class="token string">'#d7f3ff'</span><span class="token punctuation">,</span>
+	<span class="token string-property property">'blue-30'</span><span class="token operator">:</span> <span class="token string">'#a4e3ff'</span><span class="token punctuation">,</span>
+	<span class="token string-property property">'blue-40'</span><span class="token operator">:</span> <span class="token string">'#60ceff'</span><span class="token punctuation">,</span>
+	<span class="token string-property property">'blue-50'</span><span class="token operator">:</span> <span class="token string">'#00a0e8'</span><span class="token punctuation">,</span>
+	<span class="token comment">/** Suitable as default button and link color. */</span>
+	<span class="token string-property property">'blue-60'</span><span class="token operator">:</span> <span class="token string">'#007db5'</span><span class="token punctuation">,</span>
+	<span class="token comment">/** Suitable as heading color. */</span>
+	<span class="token string-property property">'blue-70'</span><span class="token operator">:</span> <span class="token string">'#006693'</span><span class="token punctuation">,</span>
+	<span class="token comment">/** Suitable as body text color. */</span>
+	<span class="token string-property property">'blue-80'</span><span class="token operator">:</span> <span class="token string">'#004260'</span><span class="token punctuation">,</span>
+	<span class="token string-property property">'blue-90'</span><span class="token operator">:</span> <span class="token string">'#002b3e'</span><span class="token punctuation">,</span>
+	<span class="token string-property property">'blue-100'</span><span class="token operator">:</span> <span class="token string">'#041820'</span><span class="token punctuation">,</span>
+	<span class="token comment">// ...</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>Neat! Even with custom comments I wrote for some styles in Figma! 😍</p>
 <figure>
   <img src="/assets/posts/figma-styles.png" style="width: 231px" alt="Figma styles">
 </figure>
-<p><em>Note:</em> You can of course make it be a JSON file instead if that's your thing, but I wanted to keep the comments from Figma as JS comments, as JSON doesn't support that.</p>
+<p><em>Note:</em> You can of course make it be a JSON file instead if that's your thing, but I wanted to keep
+the comments from Figma as JS comments, as JSON doesn't support that.</p>
 <h2>Using the styles in my CSS</h2>
-<p>This is were things differ for people. Some use Sass, others use LESS or PostCSS, or just <em>nothing at all</em>.</p>
+<p>This is were things differ for people. Some use Sass, others use LESS or PostCSS, or just <em>nothing
+at all</em>.</p>
 <p><strong>You have to figure out how to get this hash of colours into your styles somehow.</strong></p>
-<p>For me, I'm in the midst of moving over our CSS foundation from Sass to a PostCSS pipeline, using <a href="https://tailwindcss.com">Tailwind</a>.</p>
-<p>Tailwind is sort of like a <em>generator for design systems</em>. It's similar to the <a href="https://tachyons.io">Tachyons toolkit</a>, but goes even further, with more things automated.</p>
-<p>Both Tailwind and Tachyons are proponents of something called <em>functional CSS</em>. This is out of scope of this post, but I recommend reading these articles:</p>
+<p>For me, I'm in the midst of moving over our CSS foundation from Sass to a PostCSS pipeline, using
+<a href="https://tailwindcss.com">Tailwind</a>.</p>
+<p>Tailwind is sort of like a <em>generator for design systems</em>. It's similar to the
+<a href="https://tachyons.io">Tachyons toolkit</a>, but goes even further, with more things automated.</p>
+<p>Both Tailwind and Tachyons are proponents of something called <em>functional CSS</em>. This is out of scope
+of this post, but I recommend reading these articles:</p>
 <ul>
 <li><a href="http://mrmrs.cc/writing/2016/03/24/scalable-css/">CSS and scalability</a></li>
 <li><a href="https://jon.gold/2015/07/functional-css/">Functional CSS</a></li>
 </ul>
-<p>Tailwind is nice since I can configure widths, margins, colours – everything – in a Javascript config file, and then generate a CSS foundation from that.</p>
-<p>See more in the <a href="https://tailwindcss.com/docs/configuration">documentation</a>, but in a nutshell it looks like this:</p>
+<p>Tailwind is nice since I can configure widths, margins, colours – everything – in a Javascript
+config file, and then generate a CSS foundation from that.</p>
+<p>See more in the <a href="https://tailwindcss.com/docs/configuration">documentation</a>, but in a nutshell it
+looks like this:</p>
 <pre class="language-js"><code class="language-js"><span class="token comment">// tailwind.config.js</span>
 
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-  <span class="token literal-property property">theme</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    <span class="token literal-property property">colors</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-      <span class="token literal-property property">white</span><span class="token operator">:</span> <span class="token string">'#fff'</span><span class="token punctuation">,</span>
-      <span class="token comment">// ...</span>
-    <span class="token punctuation">}</span>
-  <span class="token punctuation">}</span>
+	<span class="token literal-property property">theme</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token literal-property property">colors</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token literal-property property">white</span><span class="token operator">:</span> <span class="token string">'#fff'</span><span class="token punctuation">,</span>
+			<span class="token comment">// ...</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>Tailwind uses this colour scale to create border, text, and background colours as class names. I can now use it like this in my HTML <em>or</em> CSS code:</p>
+<p>Tailwind uses this colour scale to create border, text, and background colours as class names. I can
+now use it like this in my HTML <em>or</em> CSS code:</p>
 <pre class="language-html"><code class="language-html"><span class="token comment">&lt;!-- HTML --&gt;</span>
 
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bg-white<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -230,9 +258,9 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <span class="token keyword">const</span> colors <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./colors'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
-  <span class="token literal-property property">theme</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-    colors<span class="token punctuation">,</span>
-  <span class="token punctuation">}</span>
+	<span class="token literal-property property">theme</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		colors<span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bg-blue-10<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -247,8 +275,10 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 <li>Those are imported into our Tailwind config and the CSS is built based on the colours.</li>
 <li>We have the colours available as config variables in our CSS code or as classes in our HTML ✨</li>
 </ol>
-<p>Anytime you'd like to adjust the colours in your system, be sure to run the script in the CSS codebase and distribute a new version of the generated CSS file.</p>
-<p>Future work could include specifying whole component styles in Figma and parsing that into corresponding CSS rules ✌️</p>
+<p>Anytime you'd like to adjust the colours in your system, be sure to run the script in the CSS
+codebase and distribute a new version of the generated CSS file.</p>
+<p>Future work could include specifying whole component styles in Figma and parsing that into
+corresponding CSS rules ✌️</p>
 
     </div>
 
@@ -281,7 +311,7 @@ module<span class="token punctuation">.</span>exports <span class="token operato
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

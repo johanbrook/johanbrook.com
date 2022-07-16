@@ -106,15 +106,18 @@
 
     <div class="prose measure" itemprop="articleBody">
       
-      <p>In a current Wordpress project, we wanted to have a permalink to a photo gallery filled with images (attachments) for a post. Wordpress supports permalinks to single attachments, such as</p>
+      <p>In a current Wordpress project, we wanted to have a permalink to a photo gallery filled with images
+(attachments) for a post. Wordpress supports permalinks to single attachments, such as</p>
 <pre><code>site.com/single-post/attachment/flower
 </code></pre>
 <p>That's cool. However, we wanted something like this:</p>
 <pre><code>site.com/single-post/photos
 </code></pre>
-<p>... where all attachments would be listed. The <code>/photos</code> part is called an <em>endpoint</em>. So how do you add them in Wordpress? And how do you assign this endpoint to render a specific template file?</p>
+<p>... where all attachments would be listed. The <code>/photos</code> part is called an <em>endpoint</em>. So how do you
+add them in Wordpress? And how do you assign this endpoint to render a specific template file?</p>
 <h2>Relevant APIs</h2>
-<p>After some quick googling to find out if this was possible and worth a try, I found the <a href="http://codex.wordpress.org/Rewrite_API">Rewrite API</a> in the Codex. Neat stuff.</p>
+<p>After some quick googling to find out if this was possible and worth a try, I found the
+<a href="http://codex.wordpress.org/Rewrite_API">Rewrite API</a> in the Codex. Neat stuff.</p>
 <p>Other resources I found during my quest:</p>
 <ul>
 <li><a href="http://johnbeales.com/20090824/endpoints-a-little-secret-for-url-manipulation-in-wordpress/">http://johnbeales.com/20090824/endpoints-a-little-secret-for-url-manipulation-in-wordpress/</a></li>
@@ -124,7 +127,8 @@
 <li><a href="http://codex.wordpress.org/Template_Hierarchy">http://codex.wordpress.org/Template_Hierarchy</a></li>
 </ul>
 <h2>The code</h2>
-<p>After reading through these, I simply implemented the necessary filters and callbacks in the <code>functions.php</code> file.</p>
+<p>After reading through these, I simply implemented the necessary filters and callbacks in the
+<code>functions.php</code> file.</p>
 <p>I began with this:</p>
 <pre><code>add_filter( 'query_vars', 'add_query_vars');
 
@@ -137,11 +141,20 @@ function add_query_vars($vars){
     return $vars;
 }
 </code></pre>
-<p>As you can see, I'm working with my <code>/photos</code> endpoint. I have to tell Wordpress' rewrite engine to take our special query variable ("photos") into account when rewriting URLs, so I used the <code>query_vars</code> filter for this (see the <a href="http://codex.wordpress.org/Plugin_API/Filter_Reference">Filter Reference</a>).</p>
-<p>Next, I registered the actual endpoint with the built-in function <code>add_rewrite_endpoint()</code> ( <a href="http://codex.wordpress.org/Rewrite_API/add_rewrite_endpoint">Docs</a>). It takes a string (the endpoint) and a <code>place</code> . "Place" is where the endpoint will be active, and the docs only specify a couple: "EP_PERMALINK, EP_PAGES, EP_ATTACHMENT, etc". From other examples I've spotted <code>EP_ALL</code> as well. I used <code>EP_PERMALINK</code> :</p>
+<p>As you can see, I'm working with my <code>/photos</code> endpoint. I have to tell Wordpress' rewrite engine to
+take our special query variable ("photos") into account when rewriting URLs, so I used the
+<code>query_vars</code> filter for this (see the
+<a href="http://codex.wordpress.org/Plugin_API/Filter_Reference">Filter Reference</a>).</p>
+<p>Next, I registered the actual endpoint with the built-in function <code>add_rewrite_endpoint()</code> (
+<a href="http://codex.wordpress.org/Rewrite_API/add_rewrite_endpoint">Docs</a>). It takes a string (the
+endpoint) and a <code>place</code> . "Place" is where the endpoint will be active, and the docs only specify a
+couple: "EP_PERMALINK, EP_PAGES, EP_ATTACHMENT, etc". From other examples I've spotted <code>EP_ALL</code>
+as well. I used <code>EP_PERMALINK</code> :</p>
 <pre><code>add_rewrite_endpoint('photos', EP_PERMALINK);
 </code></pre>
-<p>Right. The endpoint is up and running, but as I said at the top, I wanted a specific template to render when this URL is visited. It's doable! Check out the <a href="http://codex.wordpress.org/Plugin_API/Filter_Reference/_single_template">single_template filter</a>.</p>
+<p>Right. The endpoint is up and running, but as I said at the top, I wanted a specific template to
+render when this URL is visited. It's doable! Check out the
+<a href="http://codex.wordpress.org/Plugin_API/Filter_Reference/_single_template">single_template filter</a>.</p>
 <pre><code>add_filter( 'single_template', 'project_attachments_template' );
 
 /**
@@ -174,9 +187,12 @@ function project_attachments_template($templates = ""){
 	return $templates;
 }
 </code></pre>
-<p>I've hard coded the file <code>photos.php</code> above. Create this file in the theme folder, and you're all set! In this template you've got access to the global <code>$post</code> variable, so you're able to pull in all kinds of post data into it.</p>
+<p>I've hard coded the file <code>photos.php</code> above. Create this file in the theme folder, and you're all
+set! In this template you've got access to the global <code>$post</code> variable, so you're able to pull in
+all kinds of post data into it.</p>
 <h2>Outro</h2>
-<p>Pretty cool to bend Wordpress to your will, eh? I can imagine this functionality is pretty nifty to have when doing more advanced things in Wordpress.</p>
+<p>Pretty cool to bend Wordpress to your will, eh? I can imagine this functionality is pretty nifty to
+have when doing more advanced things in Wordpress.</p>
 
     </div>
 
@@ -209,7 +225,7 @@ function project_attachments_template($templates = ""){
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

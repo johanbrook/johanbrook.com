@@ -110,12 +110,21 @@
           <a class="btn" title="http://technology.posterous.com/webkit-hardware-acceleration-bleeding-into-su" href="http://technology.posterous.com/webkit-hardware-acceleration-bleeding-into-su">Follow link to technology.posterous.com →</a>
         </p>
       
-      <p>CSS Transforms, Transitions and Animations are great and all, but apparently they are causing issues with some text on a page. I've experienced those issues on my site, and I couldn't for my life figure out what the problem was. Some text paragraphs could suddenly lose their antialiasing, and look very jagged and, yeah, aliased. They would yet get antialiasing again when I scrolled the page up and down, or resized the browser window. Weirdness. Follow the link above for a post on the Posterous blog about the issue. Apparently, WebKit's 3D Transforms were the culprits, since it gives the relevant elements hardware acceleration, and ...</p>
+      <p>CSS Transforms, Transitions and Animations are great and all, but apparently they are causing issues
+with some text on a page. I've experienced those issues on my site, and I couldn't for my life
+figure out what the problem was. Some text paragraphs could suddenly lose their antialiasing, and
+look very jagged and, yeah, aliased. They would yet get antialiasing again when I scrolled the page
+up and down, or resized the browser window. Weirdness. Follow the link above for a post on the
+Posterous blog about the issue. Apparently, WebKit's 3D Transforms were the culprits, since it gives
+the relevant elements hardware acceleration, and ...</p>
 <blockquote>
 <p>When an element gets hardware accelerated in Webkit, sub-pixel anti-aliasing no longer works.</p>
 </blockquote>
 <h2>Fix</h2>
-<p>How to fix? Play around with the 3D Transforms on the page, or remove any <code>position: relative;</code> on parent elements. Webkit removes antialiasing on text while animating (which is a huge gain in performance), and somehow relative positioning screws things up. Better: recent WebKit nightly builds fix this issue, so I guess I have to play the waiting game.</p>
+<p>How to fix? Play around with the 3D Transforms on the page, or remove any <code>position: relative;</code> on
+parent elements. Webkit removes antialiasing on text while animating (which is a huge gain in
+performance), and somehow relative positioning screws things up. Better: recent WebKit nightly
+builds fix this issue, so I guess I have to play the waiting game.</p>
 
     </div>
 
@@ -148,7 +157,7 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

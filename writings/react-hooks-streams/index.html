@@ -108,23 +108,34 @@
 
     <div class="prose measure" itemprop="articleBody">
       
-      <p><strong>As of React 16.8,</strong> there's a new tool in the toolbox: <a href="https://reactjs.org/docs/hooks-intro.html">Hooks</a>. Hooks are used in functional React components, extending their functionality to include state and side effects.</p>
-<p>I recommend reading <a href="https://overreacted.io/making-setinterval-declarative-with-react-hooks/">this article</a> by Dan Abramov for a deeper understanding of hooks. It shows how the coding style moves away from imperative class code to declarative code.</p>
-<p>I realised the beauty of hooks in user interface components when creating a component which shows the current time in a recording. We've recently started using Functional Reactive Streams for the frontend at Lookback (specifically, we're using the <a href="http://staltz.github.io/xstream/">xstream</a> library, but the concepts are similar in other libraries). Explaining the concept with streams is out of scope in this post, but the gist is that you manage state as immutable streams of values. <a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">This post</a> is a nice intro to streams/reactive programming.</p>
-<p>Streams actually play well with React. It's <em>basically</em>, on a conceptual level, all about doing a <code>.map</code> on a stream of values and draw the React virtual DOM based on the values. But React components must either have a <code>render()</code> function which return JSX, or be a function which returns JSX. How do we render our current time from a stream?</p>
+      <p><strong>As of React 16.8,</strong> there's a new tool in the toolbox:
+<a href="https://reactjs.org/docs/hooks-intro.html">Hooks</a>. Hooks are used in functional React components,
+extending their functionality to include state and side effects.</p>
+<p>I recommend reading
+<a href="https://overreacted.io/making-setinterval-declarative-with-react-hooks/">this article</a> by Dan
+Abramov for a deeper understanding of hooks. It shows how the coding style moves away from
+imperative class code to declarative code.</p>
+<p>I realised the beauty of hooks in user interface components when creating a component which shows
+the current time in a recording. We've recently started using Functional Reactive Streams for the
+frontend at Lookback (specifically, we're using the <a href="http://staltz.github.io/xstream/">xstream</a>
+library, but the concepts are similar in other libraries). Explaining the concept with streams is
+out of scope in this post, but the gist is that you manage state as immutable streams of values.
+<a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">This post</a> is a nice intro to streams/reactive
+programming.</p>
+<p>Streams actually play well with React. It's <em>basically</em>, on a conceptual level, all about doing a
+<code>.map</code> on a stream of values and draw the React virtual DOM based on the values. But React
+components must either have a <code>render()</code> function which return JSX, or be a function which returns
+JSX. How do we render our current time from a stream?</p>
 <p>An intuitive approach of mine would be:</p>
 <pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Stream <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">{</span>
-  currentTime$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+	currentTime$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token comment">// This won't work: our component can't return a Stream!</span>
-<span class="token keyword">const</span> <span class="token function-variable function">CurrentTime</span> <span class="token operator">=</span> <span class="token punctuation">(</span>props<span class="token operator">:</span> Props<span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
-  props<span class="token punctuation">.</span>currentTime$<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>time <span class="token operator">=&gt;</span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>time<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">&gt;</span></span>
-  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token function-variable function">CurrentTime</span> <span class="token operator">=</span> <span class="token punctuation">(</span>props<span class="token operator">:</span> Props<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> props<span class="token punctuation">.</span>currentTime$<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>time<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>time<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>We can't return a stream from a React component –&nbsp;it must somehow devour the stream and return JSX.</p>
 <h2>The class(ical) approach</h2>
@@ -141,104 +152,110 @@
 <span class="token keyword">import</span> formatTime <span class="token keyword">from</span> <span class="token string">'./libs/format-time'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">{</span>
-    currentTime$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+	currentTime$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">interface</span> <span class="token class-name">State</span> <span class="token punctuation">{</span>
-    timeInSeconds<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
+	timeInSeconds<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">TimeCounter</span> <span class="token keyword">extends</span> <span class="token class-name">React</span><span class="token punctuation">.</span>PureComponent<span class="token operator">&lt;</span>Props<span class="token punctuation">,</span> State<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
-    sub<span class="token operator">?</span><span class="token operator">:</span> Subscription<span class="token punctuation">;</span>
+	sub<span class="token operator">?</span><span class="token operator">:</span> Subscription<span class="token punctuation">;</span>
 
-    <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token operator">:</span> Props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token operator">:</span> Props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
-            timeInSeconds<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-        <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+			timeInSeconds<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
 
-    <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>sub <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>currentTime$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            <span class="token function-variable function">next</span><span class="token operator">:</span> <span class="token punctuation">(</span>time<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-                <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> timeInSeconds<span class="token operator">:</span> time <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span><span class="token punctuation">,</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+	<span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>sub <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>currentTime$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+			<span class="token function-variable function">next</span><span class="token operator">:</span> <span class="token punctuation">(</span>time<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+				<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> timeInSeconds<span class="token operator">:</span> time <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
 
-    <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>sub <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+	<span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>sub <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
 
-    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> React<span class="token punctuation">.</span>ReactNode <span class="token punctuation">{</span>
-        <span class="token keyword">const</span> <span class="token punctuation">{</span> timeInSeconds <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">;</span>
+	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> React<span class="token punctuation">.</span>ReactNode <span class="token punctuation">{</span>
+		<span class="token keyword">const</span> <span class="token punctuation">{</span> timeInSeconds <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">;</span>
 
-        <span class="token comment">// Renders something like: "00:10"</span>
-        <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span><span class="token function">formatTime</span><span class="token punctuation">(</span>timeInSeconds<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+		<span class="token comment">// Renders something like: "00:10"</span>
+		<span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span><span class="token function">formatTime</span><span class="token punctuation">(</span>timeInSeconds<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>This totally works, but yeah... Very verbose and imperative. Hooks to the rescue!</p>
 <h2>The Hook approach</h2>
 <p>Let's follow the intro to Hooks from the React website, and convert our class to a function:</p>
-<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useState<span class="token punctuation">,</span> useEffect <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+<pre class="language-tsx"><code class="language-tsx"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useEffect<span class="token punctuation">,</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Stream <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> formatTime <span class="token keyword">from</span> <span class="token string">'./libs/format-time'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">{</span>
-  currentTime$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+	currentTime$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">const</span> <span class="token function-variable function">TimeCounter</span> <span class="token operator">=</span> <span class="token punctuation">(</span>props<span class="token operator">:</span> Props<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-  <span class="token comment">// Create a state hook for our time state, with initial state of zero:</span>
-  <span class="token keyword">const</span> <span class="token punctuation">[</span>current<span class="token punctuation">,</span> setCurrent<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token generic-function"><span class="token function">useState</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">// Create a state hook for our time state, with initial state of zero:</span>
+	<span class="token keyword">const</span> <span class="token punctuation">[</span>current<span class="token punctuation">,</span> setCurrent<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token generic-function"><span class="token function">useState</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-      <span class="token comment">// On component mount, set up a side effect that subscribes to</span>
-      <span class="token comment">// the stream, and let `setCurrent` be called for new values:</span>
-      <span class="token keyword">const</span> sub <span class="token operator">=</span> props<span class="token punctuation">.</span>currentTime$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-          next<span class="token operator">:</span> setCurrent<span class="token punctuation">,</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+		<span class="token comment">// On component mount, set up a side effect that subscribes to</span>
+		<span class="token comment">// the stream, and let `setCurrent` be called for new values:</span>
+		<span class="token keyword">const</span> sub <span class="token operator">=</span> props<span class="token punctuation">.</span>currentTime$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+			next<span class="token operator">:</span> setCurrent<span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-      <span class="token comment">// Unsubscribe on component tear down:</span>
-      <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> sub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token comment">// Unsubscribe on component tear down:</span>
+		<span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> sub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  <span class="token comment">// Render our current time state as the returned JSX!</span>
-  <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span><span class="token function">formatDuration</span><span class="token punctuation">(</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+	<span class="token comment">// Render our current time state as the returned JSX!</span>
+	<span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span><span class="token function">formatDuration</span><span class="token punctuation">(</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token comment">// Elsewhere, render as usual:</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">TimeCounter</span></span> <span class="token attr-name">currentTime$</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>myStreamOfNumbers$<span class="token punctuation">}</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">TimeCounter</span></span> <span class="token attr-name">currentTime$</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>myStreamOfNumbers$<span class="token punctuation">}</span></span> <span class="token punctuation">/&gt;</span></span><span class="token punctuation">;</span>
 </code></pre>
 <ul>
-<li>We call <code>useEffect</code> to set up a subscription on the incoming stream. <a href="https://reactjs.org/docs/hooks-effect.html">Read more</a> about the effect hook.</li>
-<li>We call <code>useState</code> with an inital value and receive back a tuple of the current value and a setter. <a href="https://reactjs.org/docs/hooks-state.html">Read more</a> about the state hook.</li>
+<li>We call <code>useEffect</code> to set up a subscription on the incoming stream.
+<a href="https://reactjs.org/docs/hooks-effect.html">Read more</a> about the effect hook.</li>
+<li>We call <code>useState</code> with an inital value and receive back a tuple of the current value and a
+setter. <a href="https://reactjs.org/docs/hooks-state.html">Read more</a> about the state hook.</li>
 </ul>
 <p>So minimal, still readable. Even <em>more</em> readable than the class version, I think.</p>
 <h2>Extracting our hook</h2>
-<p>Since Hooks are <em>just functions</em>, we can extract common functional patterns into our own hooks and use them in other components. I found myself writing another component which also subscribed to an incoming stream and rendered its values. What a candidate for extraction into a hook!</p>
-<p>If we analyse the component above, we see that <code>useState</code> and <code>useEffect</code> are going to work roughly, if not exactly, the same for any other component. Only the types in the incoming stream differ. Here we use the type <code>number</code>, but we can make our new Hook generic thanks to TypeScript's generics.</p>
+<p>Since Hooks are <em>just functions</em>, we can extract common functional patterns into our own hooks and
+use them in other components. I found myself writing another component which also subscribed to an
+incoming stream and rendered its values. What a candidate for extraction into a hook!</p>
+<p>If we analyse the component above, we see that <code>useState</code> and <code>useEffect</code> are going to work roughly,
+if not exactly, the same for any other component. Only the types in the incoming stream differ. Here
+we use the type <code>number</code>, but we can make our new Hook generic thanks to TypeScript's generics.</p>
 <p>I came up with this:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token comment">// use-stream.ts</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> useEffect<span class="token punctuation">,</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token punctuation">{</span> Stream <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">const</span> useStream <span class="token operator">=</span> <span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>stream$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span><span class="token punctuation">,</span> initialState<span class="token operator">:</span> <span class="token constant">T</span> <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token punctuation">[</span>current<span class="token punctuation">,</span> setCurrent<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token generic-function"><span class="token function">useState</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>initialState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">const</span> <span class="token punctuation">[</span>current<span class="token punctuation">,</span> setCurrent<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token generic-function"><span class="token function">useState</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>initialState<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-        <span class="token keyword">const</span> sub <span class="token operator">=</span> stream$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-            next<span class="token operator">:</span> setCurrent<span class="token punctuation">,</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+		<span class="token keyword">const</span> sub <span class="token operator">=</span> stream$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+			next<span class="token operator">:</span> setCurrent<span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> sub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> sub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token comment">// Just return our current value, since that's the thing we're interested in</span>
-    <span class="token comment">// (to render) when using this hook:</span>
-    <span class="token keyword">return</span> current<span class="token punctuation">;</span>
+	<span class="token comment">// Just return our current value, since that's the thing we're interested in</span>
+	<span class="token comment">// (to render) when using this hook:</span>
+	<span class="token keyword">return</span> current<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
 <span class="token keyword">export</span> <span class="token keyword">default</span> useStream<span class="token punctuation">;</span>
@@ -251,13 +268,13 @@
 <span class="token keyword">import</span> useStream <span class="token keyword">from</span> <span class="token string">'./hooks/use-stream'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">{</span>
-    currentTime$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+	currentTime$<span class="token operator">:</span> Stream<span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">const</span> <span class="token function-variable function">CurrentTimeCounter</span> <span class="token operator">=</span> <span class="token punctuation">(</span>props<span class="token operator">:</span> Props<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> currentTime<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token generic-function"><span class="token function">useStream</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>currentTime$<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">const</span> currentTime<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token generic-function"><span class="token function">useStream</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>currentTime$<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span><span class="token function">formatDuration</span><span class="token punctuation">(</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span><span class="token function">formatDuration</span><span class="token punctuation">(</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>time</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <p>And at last, there is beauty.</p>
@@ -293,7 +310,7 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

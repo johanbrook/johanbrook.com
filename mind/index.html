@@ -81,17 +81,42 @@
 
       
 
-      
-<main role="main" class="notes">
+      <main role="main" class="notes">
 
   <h1 class="title">On my mind.</h1>
 
   <ol class="NotesList list-reset">
     
       <li>
+        <article id="202207161854">
+          <div class="prose">
+            <p>lookie here, haven't posted in a while. this is how it goes when you have a full time job, and not being on parental leave!</p>
+<p>for my own memory, these are things i want to check out at the moment:</p>
+<ul>
+<li>the <a href="https://www.solidjs.com">SolidJS framework</a>.</li>
+<li>building a UI frontend for managing static site generators with <a href="https://tauri.app">tauri</a>.</li>
+<li>my work-in-progress app for reminding me to get in touch with friends, using <a href="https://remix.run">remix</a>.</li>
+</ul>
+<p>overall, things are pretty chill. i'm <a href="/reading">reading</a> the autobiography of keith richards, and i'm actually enjoying it. thought it would be another sleazy rock star bio, but it kind "sounds" like he actually wrote it. also, he's got a great memory. too bad i want to buy a new acoustic guitar now, AND an electric one… 💸</p>
+<p>i'm enjoying watching the women's euro cup in football. there are so much less free kicks overall, due to … they're doing less movie tricks i guess? or are just toucher. the quality is super high (more than a few years ago, they say), and i appreciate it a lot.</p>
+          </div>
+
+          <header class="mt3 tr">
+            <h1 class="f5 fw5 no-rhythm mb0">
+              <a href="#202207161854" title="Permalink">july 16th, 2022 — 18:54 <span class="target">#</span></a>
+            </h1>
+            <p class="muted mb0 f6">from the summer house in the stockholm archipelago</p>
+          </header>
+        </article>
+      </li>
+    
+      <li>
         <article id="202205031937">
           <div class="prose">
-            <p>the musical experience which had most impact on me was one time in gothenburg, at a sleazy karaoke bar. one woman came up to the mic, and it <em>looked</em> like she had been through a lot in her life. i don't know, i just felt it. then she went on and did the most emotional and beautiful version of alanis morissette's "ironic".</p>
+            <p>the musical experience which had most impact on me was one time in gothenburg, at a sleazy karaoke
+bar. one woman came up to the mic, and it <em>looked</em> like she had been through a lot in her life. i
+don't know, i just felt it. then she went on and did the most emotional and beautiful version of
+alanis morissette's "ironic".</p>
 <p>totally blew me away. the song was <em>hers</em>.</p>
           </div>
 
@@ -108,8 +133,15 @@
         <article id="202204061807">
           <div class="prose">
             <p>finished two shows today: Euphoria S02 and Pam &amp; Tommy.</p>
-<p>Euphoria is simply amazing. i loved season one. season two is grittier, and while it uses violence, sex, and drugs to describe the world, it’s always the characters that shine through. i’ve never seen better acting than zendaya’s performance as rue.</p>
-<p>pam &amp; tommy is kinda of a curve ball. i like it! i didn’t think i would. it manages to take a story (pamela anderson &amp; tommy lee’s stolen sex tape in the 90s) and make a whole series about it. i liked the sentimental rendition of their mutual love for each other. also, the issue of men vs. women in terms of leaked nudes is also brought up. “i was in that tape too!”, says tommy. “it’s not the same! i’m.. i’m.. a woman!”, says pamela. and it’s not just hollow talk: the series actually manages to showcase how pamela suffered.</p>
+<p>Euphoria is simply amazing. i loved season one. season two is grittier, and while it uses violence,
+sex, and drugs to describe the world, it’s always the characters that shine through. i’ve never seen
+better acting than zendaya’s performance as rue.</p>
+<p>pam &amp; tommy is kinda of a curve ball. i like it! i didn’t think i would. it manages to take a story
+(pamela anderson &amp; tommy lee’s stolen sex tape in the 90s) and make a whole series about it. i liked
+the sentimental rendition of their mutual love for each other. also, the issue of men vs. women in
+terms of leaked nudes is also brought up. “i was in that tape too!”, says tommy. “it’s not the same!
+i’m.. i’m.. a woman!”, says pamela. and it’s not just hollow talk: the series actually manages to
+showcase how pamela suffered.</p>
 <p>i also appreciated the 90s LA vibe ☀️</p>
           </div>
 
@@ -125,8 +157,11 @@
       <li>
         <article id="202203161958">
           <div class="prose">
-            <p>i don't think everyone need heavy test runners and framework for every project. a single file with <code>import assert from 'assert'</code> (node) and a bunch of assertions can suffice for a tiny prototype project.</p>
-<p>if you want more structure, where do you go? the npm libraries <code>tape</code> and <code>tap</code> have ~20 dependencies each. <code>ava</code> has ~40. i don't even want to think about <code>jest</code>…</p>
+            <p>i don't think everyone need heavy test runners and framework for every project. a single file with
+<code>import assert from 'assert'</code> (node) and a bunch of assertions can suffice for a tiny prototype
+project.</p>
+<p>if you want more structure, where do you go? the npm libraries <code>tape</code> and <code>tap</code> have ~20
+dependencies each. <code>ava</code> has ~40. i don't even want to think about <code>jest</code>…</p>
 <p>i'm sure these packages are great for certain things. but here's a minimal test runner i've written:</p>
 <p><strong><a href="https://gist.github.com/johanbrook/598d07fa89357f8577d6d0d6e88747a5">Johan's Test Runner →</a></strong></p>
 <p>it works as you'd expect:</p>
@@ -134,18 +169,20 @@
 <li>create a test file.</li>
 <li>import <code>test</code> and write test cases.</li>
 </ol>
-<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> test <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"./_test-helper"</span><span class="token punctuation">;</span>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> test <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./_test-helper'</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> assert <span class="token keyword">from</span> <span class="token string">'assert/strict'</span><span class="token punctuation">;</span>
 
 <span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'it works'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
-    assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>i use node's <code>assert</code> for assertions. want typescript support? add <code>esbuild</code> and <code>esbuild-register</code> as dev dependencies and run tests with:</p>
+<p>i use node's <code>assert</code> for assertions. want typescript support? add <code>esbuild</code> and <code>esbuild-register</code>
+as dev dependencies and run tests with:</p>
 <pre class="language-bash"><code class="language-bash">node -r esbuild-register run-tests.ts
 </code></pre>
 <p>the runner supports returning promises, as well as printing fancy file names for each test case.</p>
-<p>i appreciate taking this approach before jumping to <code>npm install &lt;dep&gt;</code>. it gives me very much peace of mind, as long as you don't spend too much time maintaining your own tooling.</p>
+<p>i appreciate taking this approach before jumping to <code>npm install &lt;dep&gt;</code>. it gives me very much peace
+of mind, as long as you don't spend too much time maintaining your own tooling.</p>
           </div>
 
           <header class="mt3 tr">
@@ -160,8 +197,13 @@
       <li>
         <article id="202203151012">
           <div class="prose">
-            <p>my latest favourite cocktail is this gin sour with bergamot and black tea. you've probably felt the scent of bergamot in earl grey tea or in perfumes. it's a highly aromatic citrus fruit: it looks like a large, more spherical, lemon. it's also surprisingly hard to find here in stockholm – even when it's in season.</p>
-<p>i found <a href="https://feeders.se/2022/01/20/earl-greyish-bergamott/">this recipe (in swedish...)</a> and got hold of a batch of bergamots through a restaurant friend. i've translated the recipe to english below:</p>
+            <p>my latest favourite cocktail is this gin sour with bergamot and black tea. you've probably felt the
+scent of bergamot in earl grey tea or in perfumes. it's a highly aromatic citrus fruit: it looks
+like a large, more spherical, lemon. it's also surprisingly hard to find here in stockholm – even
+when it's in season.</p>
+<p>i found <a href="https://feeders.se/2022/01/20/earl-greyish-bergamott/">this recipe (in swedish...)</a> and got
+hold of a batch of bergamots through a restaurant friend. i've translated the recipe to english
+below:</p>
 <p><img src="/assets/posts/gin-tea-sour.jpg" alt="Gin tea sour"></p>
 <p><strong>Ingredients</strong></p>
 <ul>
@@ -190,14 +232,17 @@
 <p><em>Procedure</em></p>
 <ol>
 <li>combine water and sugar in a pot.</li>
-<li>add the zest of the bergamot (the outer layer of the peel, save the fruit with its juice for the drink). avoid the white layer beneath.</li>
+<li>add the zest of the bergamot (the outer layer of the peel, save the fruit with its juice for the
+drink). avoid the white layer beneath.</li>
 <li>put everything to a boil for a couple of minutes.</li>
 <li>remove from the heat, add the tea strainers with black tea.</li>
 <li>let it sit for at least 5 minutes. it should gain a strong flavour.</li>
 <li>remove the strainers and let the syrup cool.</li>
-<li>strain (to remove the bergamot zest) and pour the syrup into a small bottle and store in the fridge.</li>
+<li>strain (to remove the bergamot zest) and pour the syrup into a small bottle and store in the
+fridge.</li>
 </ol>
-<p>i think the simple syrup is as best the first few days, but mine has lasted over a week now. just don't forget it in there…</p>
+<p>i think the simple syrup is as best the first few days, but mine has lasted over a week now. just
+don't forget it in there…</p>
           </div>
 
           <header class="mt3 tr">
@@ -229,14 +274,20 @@
           <div class="prose">
             <h2>The best fruits</h2>
 <ol>
-<li><strong>Banana.</strong> they're full of vitamins, fibers, and natural sugars. they provide the best energy, and are easy to a) carry around, b) peel. they're perfect.</li>
-<li><strong>Mango.</strong> whenever i get to pick flavours for (let's say) ice cream, i always pick mango (or a combo of mango + something else). they <em>are</em> the best tropical fruits when it comes to flavour. they're less easy to peel and deal with than a banana</li>
-<li><strong>Clementine/Satsuma/Tangerine.</strong> easy to handle and somewhat easy to peel. the best of juices, and full of vitamins. makes the day brigher.</li>
-<li><strong>Pear.</strong> sweeter than apples, with a soft, moist flesh full of fibres. they can be watery though, so not as rich as mangoes and bananas.</li>
+<li><strong>Banana.</strong> they're full of vitamins, fibers, and natural sugars. they provide the best energy,
+and are easy to a) carry around, b) peel. they're perfect.</li>
+<li><strong>Mango.</strong> whenever i get to pick flavours for (let's say) ice cream, i always pick mango (or a
+combo of mango + something else). they <em>are</em> the best tropical fruits when it comes to flavour.
+they're less easy to peel and deal with than a banana</li>
+<li><strong>Clementine/Satsuma/Tangerine.</strong> easy to handle and somewhat easy to peel. the best of juices,
+and full of vitamins. makes the day brigher.</li>
+<li><strong>Pear.</strong> sweeter than apples, with a soft, moist flesh full of fibres. they can be watery
+though, so not as rich as mangoes and bananas.</li>
 </ol>
 <p>…</p>
 <ol start="1000">
-<li><strong>Pineapple.</strong> i really hate these. ugly, hard shell, weird flavour. i would never carry these on a trip, nor try to peel them as an ingredient.</li>
+<li><strong>Pineapple.</strong> i really hate these. ugly, hard shell, weird flavour. i would never carry these
+on a trip, nor try to peel them as an ingredient.</li>
 </ol>
           </div>
 
@@ -254,13 +305,23 @@
           <div class="prose">
             <p>i love this quote from Nils van der Poel (emphasis mine):</p>
 <blockquote>
-<p>I think it's important to understand that you're not doing it for a gold medal. <strong>Regardless of which life you chose to live, you will sacrifice something, that's the way it is.</strong></p>
-<p>As soon as you go in one direction, you also choose to not go in all other directions at the same time. It's the basic precondition for going anywhere at all.</p>
-<p>But on the path you take, you will experience fantastic things, even though it's uphill there will be a great view when you're at the top, and that's what makes it worth it, to be on this journey with people you love. It doesn't matter that much where the journey ends. A movie with a sad ending is also a good movie - and a movie with a nice ending makes you happy.</p>
-<p>I'm very happy for this medal around my neck, and for getting all the way here. But why do you do it? I don't think you get to pick your dreams, they pick us. It's up to us to realize them or not, and it seems like people who try to realize their dreams are happier.</p>
+<p>I think it's important to understand that you're not doing it for a gold medal. <strong>Regardless of
+which life you chose to live, you will sacrifice something, that's the way it is.</strong></p>
+<p>As soon as you go in one direction, you also choose to not go in all other directions at the same
+time. It's the basic precondition for going anywhere at all.</p>
+<p>But on the path you take, you will experience fantastic things, even though it's uphill there will
+be a great view when you're at the top, and that's what makes it worth it, to be on this journey
+with people you love. It doesn't matter that much where the journey ends. A movie with a sad
+ending is also a good movie - and a movie with a nice ending makes you happy.</p>
+<p>I'm very happy for this medal around my neck, and for getting all the way here. But why do you do
+it? I don't think you get to pick your dreams, they pick us. It's up to us to realize them or not,
+and it seems like people who try to realize their dreams are happier.</p>
 </blockquote>
-<p>Nils van der Poel is a swedish olympic speed skater who just won two gold medals in the beijing 2022 olympics.</p>
-<p>source: <a href="https://twitter.com/Radiosporten/status/1491090244652969984">Radiosporten's Twitter (swedish)</a>. translated to english by <a href="https://news.ycombinator.com/item?id=30329660">jacobr</a>.</p>
+<p>Nils van der Poel is a swedish olympic speed skater who just won two gold medals in the beijing 2022
+olympics.</p>
+<p>source:
+<a href="https://twitter.com/Radiosporten/status/1491090244652969984">Radiosporten's Twitter (swedish)</a>.
+translated to english by <a href="https://news.ycombinator.com/item?id=30329660">jacobr</a>.</p>
           </div>
 
           <header class="mt3 tr">
@@ -275,47 +336,71 @@
       <li>
         <article id="202202080850">
           <div class="prose">
-            <p>i'm switching to sublime text from vs code as main code editor, and man – it's much more config to do before it's usable to me. vs code follows more of a "batteries included" and "sensible defaults" approach.</p>
+            <p>i'm switching to sublime text from vs code as main code editor, and man – it's much more config to
+do before it's usable to me. vs code follows more of a "batteries included" and "sensible defaults"
+approach.</p>
 <p>this is my behavioural config (typography stuff removed):</p>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-    <span class="token property">"create_window_at_startup"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-    <span class="token property">"draw_indent_guides"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token property">"enable_tab_scrolling"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-    <span class="token property">"ensure_newline_at_eof_on_save"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token property">"highlight_modified_tabs"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token property">"highlight_line"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token property">"remember_open_files"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
-    <span class="token property">"translate_tabs_to_spaces"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token property">"shift_tab_unindent"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token property">"hide_new_tab_button"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token property">"caret_style"</span><span class="token operator">:</span> <span class="token string">"blink"</span><span class="token punctuation">,</span>
-    <span class="token property">"caret_extra_top"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-    <span class="token property">"caret_extra_bottom"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
-    <span class="token property">"trim_trailing_white_space_on_save"</span><span class="token operator">:</span> <span class="token string">"all"</span><span class="token punctuation">,</span>
-    <span class="token property">"scroll_past_end"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token property">"mini_diff"</span><span class="token operator">:</span> <span class="token string">"auto"</span><span class="token punctuation">,</span>
-    <span class="token property">"folder_exclude_patterns"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-        <span class="token string">".svn"</span><span class="token punctuation">,</span>
-        <span class="token string">".git"</span><span class="token punctuation">,</span>
-        <span class="token string">".hg"</span><span class="token punctuation">,</span>
-        <span class="token string">"CVS"</span><span class="token punctuation">,</span>
-        <span class="token string">".Trash"</span><span class="token punctuation">,</span>
-        <span class="token string">".Trash-*"</span><span class="token punctuation">,</span>
-        <span class="token string">"node_modules"</span><span class="token punctuation">,</span>
-        <span class="token string">"build"</span>
-    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token property">"create_window_at_startup"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+	<span class="token property">"draw_indent_guides"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token property">"enable_tab_scrolling"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+	<span class="token property">"ensure_newline_at_eof_on_save"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token property">"highlight_modified_tabs"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token property">"highlight_line"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token property">"remember_open_files"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+	<span class="token property">"translate_tabs_to_spaces"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token property">"shift_tab_unindent"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token property">"hide_new_tab_button"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token property">"caret_style"</span><span class="token operator">:</span> <span class="token string">"blink"</span><span class="token punctuation">,</span>
+	<span class="token property">"caret_extra_top"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+	<span class="token property">"caret_extra_bottom"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+	<span class="token property">"trim_trailing_white_space_on_save"</span><span class="token operator">:</span> <span class="token string">"all"</span><span class="token punctuation">,</span>
+	<span class="token property">"scroll_past_end"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token property">"mini_diff"</span><span class="token operator">:</span> <span class="token string">"auto"</span><span class="token punctuation">,</span>
+	<span class="token property">"folder_exclude_patterns"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+		<span class="token string">".svn"</span><span class="token punctuation">,</span>
+		<span class="token string">".git"</span><span class="token punctuation">,</span>
+		<span class="token string">".hg"</span><span class="token punctuation">,</span>
+		<span class="token string">"CVS"</span><span class="token punctuation">,</span>
+		<span class="token string">".Trash"</span><span class="token punctuation">,</span>
+		<span class="token string">".Trash-*"</span><span class="token punctuation">,</span>
+		<span class="token string">"node_modules"</span><span class="token punctuation">,</span>
+		<span class="token string">"build"</span>
+	<span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>the last one is especially interesting. as of january 2022, there's <strong>still no way to tell sublime to ignore files in <code>.gitignore</code></strong>. sublime should hide/gray out the files/folders in the sidebar, and <em>not</em> make them appear in the quick open dialog. so i have to add folders such as <code>node_modules</code> and <code>build</code> to the global config. people tell me to use some plugin (<code>sublime-gitignorer</code>), but meh... <a href="https://github.com/sublimehq/sublime_text/issues/2787">this issue</a> from 2019 is still open.</p>
-<p>then i couldn't get the <code>editorconfig</code> plugin to work. i tried changing <code>indent_size</code> in my <code>.editorconfig</code> file, but the change wasn't reflected in the editor. joy.</p>
-<p>then i realised that the typescript in sublime 4 isn't really "support": it's more "the syntax highlighting" is working. one has to install a typescript package for the Language Server Plugin for intellisense (completions, etc) to work. <a href="https://forum.sublimetext.com/t/typescript-is-not-there-yet-to-be-called-supported/58768">people don't like this</a>.</p>
-<p>then i installed prettier along with the sublime plugin, but formatting on every save isn't viable since it's <em>very</em> slow. somebody online said that vs code's prettier extension is keeping long running node processes instead of spawning a single one for each save. sublime's plugin is evidently not doing that. may have to check out <a href="https://github.com/dprint/dprint-sublime">dprint</a>, but that plugin isn't even out in package control yet. hehe.</p>
-<p>then there are these small annoyances like i can't do <code>backspace</code> to delete a file when it's focused in the sidebar. or hit <code>enter</code> to rename it. but no can do. like, what?! this is standard file explorer shortcuts? i timeboxed 5 min to find a keybinding but couldn't. i guess my mental model from atom and vs code differs from sublime's.</p>
-<p>i'd really like more visual cues in the sidebar file tree about modified or added files, like vs codes does. makes it a lot easier to navigate.</p>
+<p>the last one is especially interesting. as of january 2022, there's <strong>still no way to tell sublime
+to ignore files in <code>.gitignore</code></strong>. sublime should hide/gray out the files/folders in the sidebar,
+and <em>not</em> make them appear in the quick open dialog. so i have to add folders such as <code>node_modules</code>
+and <code>build</code> to the global config. people tell me to use some plugin (<code>sublime-gitignorer</code>), but
+meh... <a href="https://github.com/sublimehq/sublime_text/issues/2787">this issue</a> from 2019 is still open.</p>
+<p>then i couldn't get the <code>editorconfig</code> plugin to work. i tried changing <code>indent_size</code> in my
+<code>.editorconfig</code> file, but the change wasn't reflected in the editor. joy.</p>
+<p>then i realised that the typescript in sublime 4 isn't really "support": it's more "the syntax
+highlighting" is working. one has to install a typescript package for the Language Server Plugin for
+intellisense (completions, etc) to work.
+<a href="https://forum.sublimetext.com/t/typescript-is-not-there-yet-to-be-called-supported/58768">people don't like this</a>.</p>
+<p>then i installed prettier along with the sublime plugin, but formatting on every save isn't viable
+since it's <em>very</em> slow. somebody online said that vs code's prettier extension is keeping long
+running node processes instead of spawning a single one for each save. sublime's plugin is evidently
+not doing that. may have to check out <a href="https://github.com/dprint/dprint-sublime">dprint</a>, but that
+plugin isn't even out in package control yet. hehe.</p>
+<p>then there are these small annoyances like i can't do <code>backspace</code> to delete a file when it's focused
+in the sidebar. or hit <code>enter</code> to rename it. but no can do. like, what?! this is standard file
+explorer shortcuts? i timeboxed 5 min to find a keybinding but couldn't. i guess my mental model
+from atom and vs code differs from sublime's.</p>
+<p>i'd really like more visual cues in the sidebar file tree about modified or added files, like vs
+codes does. makes it a lot easier to navigate.</p>
 <hr>
-<p>so is switching worth it? sublime is <em>so</em> much faster than the electron based editors it's ridiculous. when i'm comparing opening this repo's folder with <code>code .</code> and <code>subl .</code> from the command line, i understand how gaslighted i've been with the electron editors. sublime just flashes and it's open while vs code is busy booting another chromium app or whatever it's doing.</p>
-<p>but i dislike having to carry around a set of plugins and settings when i switch computers. vs code has this nice settings sync feature built in, but i'm 100% sure i need to sort that out myself for sublime with some esoretic github gist based thing…</p>
-<p>maybe <a href="https://www.jetbrains.com/fleet/">Jetbrains Fleet</a> will be The One editor: native, without bloat, and configurable?</p>
+<p>so is switching worth it? sublime is <em>so</em> much faster than the electron based editors it's
+ridiculous. when i'm comparing opening this repo's folder with <code>code .</code> and <code>subl .</code> from the
+command line, i understand how gaslighted i've been with the electron editors. sublime just flashes
+and it's open while vs code is busy booting another chromium app or whatever it's doing.</p>
+<p>but i dislike having to carry around a set of plugins and settings when i switch computers. vs code
+has this nice settings sync feature built in, but i'm 100% sure i need to sort that out myself for
+sublime with some esoretic github gist based thing…</p>
+<p>maybe <a href="https://www.jetbrains.com/fleet/">Jetbrains Fleet</a> will be The One editor: native, without
+bloat, and configurable?</p>
 <p>if anybody uses any life saving plugins for sublime, please <a href="/contact">give me a shout</a>.</p>
           </div>
 
@@ -331,29 +416,65 @@
       <li>
         <article id="202202021751">
           <div class="prose">
-            <p>i love creating playlists. it's like the lost art of making mixtapes for yourself of somebody else. even though Spotify (and other services surely) have invested <em>a ton</em> content curation, i still love my own hand made playlists. spotify, for instance, have a lot of both automated and handmade playlists for a myriad of occasions. they're kinda niche and cool, but… i still think they're a bit bland.</p>
-<p>what i appreciate is that it's a constant, living project. this categorisation builds up over time as i discover new material, and i'm now wired to place it in a playlist if i like the track. good for future johan and others.</p>
+            <p>i love creating playlists. it's like the lost art of making mixtapes for yourself of somebody else.
+even though Spotify (and other services surely) have invested <em>a ton</em> content curation, i still love
+my own hand made playlists. spotify, for instance, have a lot of both automated and handmade
+playlists for a myriad of occasions. they're kinda niche and cool, but… i still think they're a bit
+bland.</p>
+<p>what i appreciate is that it's a constant, living project. this categorisation builds up over time
+as i discover new material, and i'm now wired to place it in a playlist if i like the track. good
+for future johan and others.</p>
 <p>here are some of them:</p>
 <ul>
-<li><a href="https://open.spotify.com/playlist/1Ldhvei26A52VXc1ErGFE3?si=7784bde2b4864c83">Johan Recommends 👌</a>. this one has been around since i got a beta invite to Spotify. i dunno, perhaps 2008? the listing doesn't tell the date of the two earliest tracks added (just a blank column). this playlist is just a dump of what i'm listening to at the moment. it forms a nice history of what i liked over the years.</li>
-<li><a href="https://open.spotify.com/playlist/2mtlhuFVOFMn6Ho3JmrLc2?si=01e2e74df939457c">☕ Programming</a>. music i code to. mostly techno and instrumental.</li>
-<li><a href="https://open.spotify.com/playlist/6sQMuWwPINJiLZUJK4Z3uD?si=c1900108fe7946fa">👌 Feels Good Man</a>. reggae and dub. i've been listening to this constantly over the past year, haha. i just can't get over how good, deep, and rich this genre is.</li>
-<li><a href="https://open.spotify.com/playlist/5nh0YK8EONkjzOnbA3BhUY?si=bb2ee94098424d68">💑 Music for Eating</a> started as a playlist for a dinner in 2012, now it's my general "turn something on 5 min before guests arrive" kind of playlist. it's mostly "safe", as in "nobody and their partner will get annoyed by the songs in here".</li>
-<li><a href="https://open.spotify.com/playlist/7q5ibEnI11LGt6OfPdUiYF?si=71eee722055a42e7">🎶 Music from the Old World</a>. i curate this one like a mad man. <strong>only</strong> good, timeless songs in here! think "if mankind would go under tomorrow, what would you save in a box and shoot out in outer space". this is music that i think are masterpieces and that has affected my interest in music somehow.</li>
-<li><a href="https://open.spotify.com/playlist/1gogip1RT6OUnbvdnTi6Pl?si=ac2453416add46c0">🍝 Cooking</a>. music i cook to! fun! creative!</li>
-<li><a href="https://open.spotify.com/playlist/59nplETeaMx3BmSJ0HmueD?si=40dfed3c765943a3">🌧 Moody</a>. you know all these corny spotify playlists "Upbeat Summer" and that? this is the reverse. downbeat.</li>
-<li><a href="https://open.spotify.com/playlist/7iN8d1FOc4MPI1kdviSaKz?si=7fd232edf03940f4">🔫 Rhythm And Poetry</a>. 90/00s hiphop – when it was good.</li>
-<li><a href="https://open.spotify.com/playlist/078GhmeGcbKJgRZD8dy6Rk?si=d2e15235ff4e45cf">🌞 Music I've Grown Up To</a>. songs i've listened through from teen to adolescence. music that somehow has affected me during emo periods, travels, and just everyday life.</li>
-<li><a href="https://open.spotify.com/playlist/3BNTm0AP9uiM0KIXc8iHEr?si=170da54d9da443c1">🇧🇷 Bom día, Rio de Janeeeeiroo!</a>. my brazilian playlist, which i created when i was in Rio. classic bossanova and samba mixed with brazilian funk.</li>
-<li><a href="https://open.spotify.com/playlist/5oJPfALfNLPFrq5gxWuude?si=982a8f0ae3e44338">🇸🇪 Absolute Swedish</a>. only swedish songs. makes me kind of proud over how much good music the little nation of sweden has produced.</li>
-<li><a href="https://open.spotify.com/playlist/6iXHobR6yJaPqgBaaL64xX?si=dd229408c5bf4121">🛣 On the Highway</a>. road trip songs without songs that mention "road trip".</li>
-<li><a href="https://open.spotify.com/playlist/3nuTeGLROOyh5t4VMKTp13?si=2262e0a243c74c16">💦 Rain</a>. for rainy weather.</li>
-<li><a href="https://open.spotify.com/playlist/5zFLAiAjNowbHSSgMOC4RE?si=0cf90c6f01d44928">🇫🇷 The French Affair</a>. french music. for when you wanna … listen to … french music?</li>
-<li><a href="https://open.spotify.com/playlist/4M9CK0W1O4Kcdqz5Yy2Qzh?si=6343cd67b7c94935">🎸 Soul/Jazz/Blues</a>. a big ol' bucket with these three genres. bam!</li>
-<li><a href="https://open.spotify.com/playlist/0C0bD6e5aOZqPwPgVl9Ail?si=5ca31048878e4ec1">🍂 Autumn</a>. moody music which somehow feels more autumn-y.</li>
-<li><a href="https://open.spotify.com/playlist/5eItx1PWuOqZ6wKjcq6MFv?si=69f8937279744315">🌻 Summer!</a>. the mandatory, upbeat summer playlist. i'm sorry.</li>
-<li><a href="https://open.spotify.com/playlist/1F3AXwgZIi90ArZb9Vwykb?si=1efe867ebf114bce">🌅 What's the story morning glory</a>. the morning playlist that gets you UP.</li>
-<li><a href="https://open.spotify.com/playlist/4vX0My1z66vnhiequGGdYM?si=7a538d36e04147e7">📽 Hipster Internazionale</a>. hipster and indie songs you haven't heard of.</li>
+<li><a href="https://open.spotify.com/playlist/1Ldhvei26A52VXc1ErGFE3?si=7784bde2b4864c83">Johan Recommends 👌</a>.
+this one has been around since i got a beta invite to Spotify. i dunno, perhaps 2008? the listing
+doesn't tell the date of the two earliest tracks added (just a blank column). this playlist is
+just a dump of what i'm listening to at the moment. it forms a nice history of what i liked over
+the years.</li>
+<li><a href="https://open.spotify.com/playlist/2mtlhuFVOFMn6Ho3JmrLc2?si=01e2e74df939457c">☕ Programming</a>.
+music i code to. mostly techno and instrumental.</li>
+<li><a href="https://open.spotify.com/playlist/6sQMuWwPINJiLZUJK4Z3uD?si=c1900108fe7946fa">👌 Feels Good Man</a>.
+reggae and dub. i've been listening to this constantly over the past year, haha. i just can't get
+over how good, deep, and rich this genre is.</li>
+<li><a href="https://open.spotify.com/playlist/5nh0YK8EONkjzOnbA3BhUY?si=bb2ee94098424d68">💑 Music for Eating</a>
+started as a playlist for a dinner in 2012, now it's my general "turn something on 5 min before
+guests arrive" kind of playlist. it's mostly "safe", as in "nobody and their partner will get
+annoyed by the songs in here".</li>
+<li><a href="https://open.spotify.com/playlist/7q5ibEnI11LGt6OfPdUiYF?si=71eee722055a42e7">🎶 Music from the Old World</a>.
+i curate this one like a mad man. <strong>only</strong> good, timeless songs in here! think "if mankind would
+go under tomorrow, what would you save in a box and shoot out in outer space". this is music that
+i think are masterpieces and that has affected my interest in music somehow.</li>
+<li><a href="https://open.spotify.com/playlist/1gogip1RT6OUnbvdnTi6Pl?si=ac2453416add46c0">🍝 Cooking</a>. music i
+cook to! fun! creative!</li>
+<li><a href="https://open.spotify.com/playlist/59nplETeaMx3BmSJ0HmueD?si=40dfed3c765943a3">🌧 Moody</a>. you know
+all these corny spotify playlists "Upbeat Summer" and that? this is the reverse. downbeat.</li>
+<li><a href="https://open.spotify.com/playlist/7iN8d1FOc4MPI1kdviSaKz?si=7fd232edf03940f4">🔫 Rhythm And Poetry</a>.
+90/00s hiphop – when it was good.</li>
+<li><a href="https://open.spotify.com/playlist/078GhmeGcbKJgRZD8dy6Rk?si=d2e15235ff4e45cf">🌞 Music I've Grown Up To</a>.
+songs i've listened through from teen to adolescence. music that somehow has affected me during
+emo periods, travels, and just everyday life.</li>
+<li><a href="https://open.spotify.com/playlist/3BNTm0AP9uiM0KIXc8iHEr?si=170da54d9da443c1">🇧🇷 Bom día, Rio de Janeeeeiroo!</a>.
+my brazilian playlist, which i created when i was in Rio. classic bossanova and samba mixed with
+brazilian funk.</li>
+<li><a href="https://open.spotify.com/playlist/5oJPfALfNLPFrq5gxWuude?si=982a8f0ae3e44338">🇸🇪 Absolute Swedish</a>.
+only swedish songs. makes me kind of proud over how much good music the little nation of sweden
+has produced.</li>
+<li><a href="https://open.spotify.com/playlist/6iXHobR6yJaPqgBaaL64xX?si=dd229408c5bf4121">🛣 On the Highway</a>.
+road trip songs without songs that mention "road trip".</li>
+<li><a href="https://open.spotify.com/playlist/3nuTeGLROOyh5t4VMKTp13?si=2262e0a243c74c16">💦 Rain</a>. for rainy
+weather.</li>
+<li><a href="https://open.spotify.com/playlist/5zFLAiAjNowbHSSgMOC4RE?si=0cf90c6f01d44928">🇫🇷 The French Affair</a>.
+french music. for when you wanna … listen to … french music?</li>
+<li><a href="https://open.spotify.com/playlist/4M9CK0W1O4Kcdqz5Yy2Qzh?si=6343cd67b7c94935">🎸 Soul/Jazz/Blues</a>.
+a big ol' bucket with these three genres. bam!</li>
+<li><a href="https://open.spotify.com/playlist/0C0bD6e5aOZqPwPgVl9Ail?si=5ca31048878e4ec1">🍂 Autumn</a>. moody
+music which somehow feels more autumn-y.</li>
+<li><a href="https://open.spotify.com/playlist/5eItx1PWuOqZ6wKjcq6MFv?si=69f8937279744315">🌻 Summer!</a>. the
+mandatory, upbeat summer playlist. i'm sorry.</li>
+<li><a href="https://open.spotify.com/playlist/1F3AXwgZIi90ArZb9Vwykb?si=1efe867ebf114bce">🌅 What's the story morning glory</a>.
+the morning playlist that gets you UP.</li>
+<li><a href="https://open.spotify.com/playlist/4vX0My1z66vnhiequGGdYM?si=7a538d36e04147e7">📽 Hipster Internazionale</a>.
+hipster and indie songs you haven't heard of.</li>
 </ul>
           </div>
 
@@ -369,7 +490,12 @@
       <li>
         <article id="202201301715">
           <div class="prose">
-            <p>i've bought a new <a href="https://de.braun-clocks.com/collections/analogue-clocks/products/bc22-braun-classic-analogue-alarm-clock-white">bedside alarm clock from Braun</a>, and it's so pretty. when activating the back light, it glows in a cool amber light, and then fades away. drool. i have no idea about the timeline of things, but the green details feels very Apple-esque. i'd guess Apple borrowed this from Braun when the former designed the iPods, which had similar green details around the physical knobs and switches.</p>
+            <p>i've bought a new
+<a href="https://de.braun-clocks.com/collections/analogue-clocks/products/bc22-braun-classic-analogue-alarm-clock-white">bedside alarm clock from Braun</a>,
+and it's so pretty. when activating the back light, it glows in a cool amber light, and then fades
+away. drool. i have no idea about the timeline of things, but the green details feels very
+Apple-esque. i'd guess Apple borrowed this from Braun when the former designed the iPods, which had
+similar green details around the physical knobs and switches.</p>
 <p><img src="https://cdn.shopify.com/s/files/1/0265/4388/2263/products/90fc68eb-f4b1-4b28-be66-3b9082e20428@2x.jpg?v=1631627468" alt="BC22 Braun analogue clock"></p>
           </div>
 
@@ -385,7 +511,9 @@
       <li>
         <article id="202201301402">
           <div class="prose">
-            <p>Kyla La Grange has <a href="https://open.spotify.com/track/4vFF42BbvdSPksmBxOdMu1?si=LKNVDDREQOCc7NfJ_jb4Kw">released new music</a> and it’s really really good.</p>
+            <p>Kyla La Grange has
+<a href="https://open.spotify.com/track/4vFF42BbvdSPksmBxOdMu1?si=LKNVDDREQOCc7NfJ_jb4Kw">released new music</a>
+and it’s really really good.</p>
           </div>
 
           <header class="mt3 tr">
@@ -400,14 +528,24 @@
       <li>
         <article id="202201242301">
           <div class="prose">
-            <p>i've bought a new domain for this site! from now on, it's <a href="https://johan.im">johan.im</a>. short and sweet. johanbrook.com redirects to johan.im.</p>
+            <p>i've bought a new domain for this site! from now on, it's <a href="https://johan.im">johan.im</a>. short and
+sweet. johanbrook.com redirects to johan.im.</p>
 <p>i appreciate these services/tools soooo much right now:</p>
 <ul>
 <li>Cloudflare</li>
 <li>Fastmail</li>
 </ul>
-<p>Cloudflare's dashboard is easy to understand and efficient enough to be dangerous — even though i'm not a DNS/networking/cache elite ninja. Cloudflare might look simplistic compared to beasts like AWS, but if you look under the hood, they support more than what they show off (perhaps they should show off more?). example: like the noob i am, i just redirected <code>johanbrook.com/* → johan.im/*</code>. but the paths after that slash of course weren't kept. so a URL <code>johanbrook.com/writings</code> would just end up at <code>johan.im</code> (the root). uh-oh. i read in a <a href="https://support.cloudflare.com/hc/en-us/articles/218411427#h_6N5SySNYCjYUUnCKnC1Ea6">help article</a> that Cloudflare's Page Rules feature supports <em>wildcard referencing</em>. tears of joy! so i could just do <code>johanbrook.com/* → johan.im/$1</code> to keep those nice paths.</p>
-<p>Fastmail's wizard for adding a new custom domain is so lovely. i could even pick Cloudflare as my DNS manager, and they'd customise the wizard for Cloudflare's dashboard UI.</p>
+<p>Cloudflare's dashboard is easy to understand and efficient enough to be dangerous — even though i'm
+not a DNS/networking/cache elite ninja. Cloudflare might look simplistic compared to beasts like
+AWS, but if you look under the hood, they support more than what they show off (perhaps they should
+show off more?). example: like the noob i am, i just redirected <code>johanbrook.com/* → johan.im/*</code>. but
+the paths after that slash of course weren't kept. so a URL <code>johanbrook.com/writings</code> would just end
+up at <code>johan.im</code> (the root). uh-oh. i read in a
+<a href="https://support.cloudflare.com/hc/en-us/articles/218411427#h_6N5SySNYCjYUUnCKnC1Ea6">help article</a>
+that Cloudflare's Page Rules feature supports <em>wildcard referencing</em>. tears of joy! so i could just
+do <code>johanbrook.com/* → johan.im/$1</code> to keep those nice paths.</p>
+<p>Fastmail's wizard for adding a new custom domain is so lovely. i could even pick Cloudflare as my
+DNS manager, and they'd customise the wizard for Cloudflare's dashboard UI.</p>
           </div>
 
           <header class="mt3 tr">
@@ -422,8 +560,13 @@
       <li>
         <article id="202201231150">
           <div class="prose">
-            <p>the artist Meat Loaf died a few days ago. his album "Bat Out Of Hell" was the first album I recall playing on CD on my brand new music player when I was ~10 years old. that album – and especially the title track –&nbsp;was absolutely the thing that got me listening to classic rock as a kid, and then went on to widen my interest in music overall. i have such a strong memory of playing that album in my old room.</p>
-<p>"Bat Out Of Hell" was so "grand and majestic", and the songs were sooo long. a stark contrast to the pop songs that was around in the 90s. and the guitar solos sure impressed me as a young child!</p>
+            <p>the artist Meat Loaf died a few days ago. his album "Bat Out Of Hell" was the first album I recall
+playing on CD on my brand new music player when I was ~10 years old. that album – and especially the
+title track –&nbsp;was absolutely the thing that got me listening to classic rock as a kid, and then went
+on to widen my interest in music overall. i have such a strong memory of playing that album in my
+old room.</p>
+<p>"Bat Out Of Hell" was so "grand and majestic", and the songs were sooo long. a stark contrast to the
+pop songs that was around in the 90s. and the guitar solos sure impressed me as a young child!</p>
 <p>bye, Meat Loaf 💖</p>
           </div>
 
@@ -439,7 +582,8 @@
       <li>
         <article id="202201170932">
           <div class="prose">
-            <p><a href="http://blog.stephenwyattbush.com/2012/04/07/dad-and-the-ten-commandments-of-egoless-programming">“Dad and the Ten Commandments of Egoless Programming”</a> are all very nice.</p>
+            <p><a href="http://blog.stephenwyattbush.com/2012/04/07/dad-and-the-ten-commandments-of-egoless-programming">“Dad and the Ten Commandments of Egoless Programming”</a>
+are all very nice.</p>
           </div>
 
           <header class="mt3 tr">
@@ -454,8 +598,11 @@
       <li>
         <article id="202201112216">
           <div class="prose">
-            <p>hello world. this is me testing my new GUI for posting these small notes. i'll probably write a longer post about it later.</p>
-<p>in a nutshell, i've written a <em>barebones</em> JS client to talk with GitHub's API to post a new file in this repo. no dependencies used. it was a fun challenge writing old school DOM JS manipulations again.</p>
+            <p>hello world. this is me testing my new GUI for posting these small notes. i'll probably write a
+longer post about it later.</p>
+<p>in a nutshell, i've written a <em>barebones</em> JS client to talk with GitHub's API to post a new file in
+this repo. no dependencies used. it was a fun challenge writing old school DOM JS manipulations
+again.</p>
           </div>
 
           <header class="mt3 tr">
@@ -470,8 +617,12 @@
       <li>
         <article id="202201061155">
           <div class="prose">
-            <p>i'm coding together something that will let me write post and notes in my static site from anywhere, and it's super fun. need to deal with github auth and their api, learning about Cloudflare Workers, and extending lume as i go.</p>
-<p>the idea is to create a new post or note file with a request from an authed github session. not sure how generic i want to make this code – it could be of use for others. the existing "CMSes" i've seen for static pages are just <em>too</em> much.</p>
+            <p>i'm coding together something that will let me write post and notes in my static site from anywhere,
+and it's super fun. need to deal with github auth and their api, learning about Cloudflare Workers,
+and extending lume as i go.</p>
+<p>the idea is to create a new post or note file with a request from an authed github session. not sure
+how generic i want to make this code – it could be of use for others. the existing "CMSes" i've seen
+for static pages are just <em>too</em> much.</p>
           </div>
 
           <header class="mt3 tr">
@@ -486,7 +637,11 @@
       <li>
         <article id="202201040937">
           <div class="prose">
-            <p>i've rewrote my site (using <a href="https://lumeland.github.io">lume</a> 💛) and made a ton of tweaks. classic neverending parental leave chores. it's built with <a href="https://deno.land">deno</a>, which I love even more. i'm finally free from the node/npm APIs and build systems! everything is much simpler now, and i should probably write about it in the even more classic post of "i've rewritten my blog" which usually shows up in January every year.</p>
+            <p>i've rewrote my site (using <a href="https://lumeland.github.io">lume</a> 💛) and made a ton of tweaks. classic
+neverending parental leave chores. it's built with <a href="https://deno.land">deno</a>, which I love even
+more. i'm finally free from the node/npm APIs and build systems! everything is much simpler now, and
+i should probably write about it in the even more classic post of "i've rewritten my blog" which
+usually shows up in January every year.</p>
           </div>
 
           <header class="mt3 tr">
@@ -501,10 +656,18 @@
       <li>
         <article id="202109300000">
           <div class="prose">
-            <p>Summer is over, after vacation in August down on the Swedish west and south coasts. Weather was so-so, but it was nice with a change of scenery. We also spent the month of September in Florence, Italy, which was such a blast. We travelled abroad with our 10 months old daughter for the first time, and everything went quite well actually (I had expected the worst). I was so inspired by the stay in Italy, and hope I can bring some of that energy into the day-to-day life back in Sweden.</p>
-<p>On Monday I'll officially start my parental leave until April 2022. Scary but exciting. I'm actually looking forward to just <em>not work</em> for the first time in 7 years. Who knows what kind of person I'll be after this leave?</p>
-<p>I was inspired by the book "What I Talk About When I Talk About Running" by Haruki Murakami, so I want to start running this Autumn.</p>
-<p>Also, I'd like to start making my own pasta. I took a pasta making course in Florence, and it was super fun. So simple! So fresh!</p>
+            <p>Summer is over, after vacation in August down on the Swedish west and south coasts. Weather was
+so-so, but it was nice with a change of scenery. We also spent the month of September in Florence,
+Italy, which was such a blast. We travelled abroad with our 10 months old daughter for the first
+time, and everything went quite well actually (I had expected the worst). I was so inspired by the
+stay in Italy, and hope I can bring some of that energy into the day-to-day life back in Sweden.</p>
+<p>On Monday I'll officially start my parental leave until April 2022. Scary but exciting. I'm actually
+looking forward to just <em>not work</em> for the first time in 7 years. Who knows what kind of person I'll
+be after this leave?</p>
+<p>I was inspired by the book "What I Talk About When I Talk About Running" by Haruki Murakami, so I
+want to start running this Autumn.</p>
+<p>Also, I'd like to start making my own pasta. I took a pasta making course in Florence, and it was
+super fun. So simple! So fresh!</p>
           </div>
 
           <header class="mt3 tr">
@@ -519,9 +682,21 @@
       <li>
         <article id="202107090000">
           <div class="prose">
-            <p>Last day in the Swedish mountains, after a week of chilling and hiking. I wonder if I'd like living here for longer periods of time, or if I'd get cabin fever. I think I'd adjust, but friends and family are far away.</p>
-<p>Still learning programming in Rust. Still not 100% sure of what I'm doing when it comes to memory management, but the <a href="https://doc.rust-lang.org/book/">official guide</a> and <a href="https://www.possiblerust.com/">"Possible Rust"</a> have been of huge help. Rust feels like a very "intellectual" language (sooo much language theory has gone into it!), but I'm struck every day of how friendly the documentation and 3rd party writings on the language are. I think a super good way of learning Rust would be to actually pair program with some existing Rust programmer you know, in a non-trivial project. So that you can ask about all the small things you run into, and can be unblocked and learn forever.</p>
-<p>I'm going to be on parental leave from October until ~April 2022. Am nervous, but looking forward. Will be a bit weird to be off work for 6 months since I started. But I have zero doubts in that I'll be able to chill in the new role of being a parent 100% of the time. I'll miss coding for work though, BUT I guess I'll need to find myself a sIdE PrOjEct like everybody else?!</p>
+            <p>Last day in the Swedish mountains, after a week of chilling and hiking. I wonder if I'd like living
+here for longer periods of time, or if I'd get cabin fever. I think I'd adjust, but friends and
+family are far away.</p>
+<p>Still learning programming in Rust. Still not 100% sure of what I'm doing when it comes to memory
+management, but the <a href="https://doc.rust-lang.org/book/">official guide</a> and
+<a href="https://www.possiblerust.com/">"Possible Rust"</a> have been of huge help. Rust feels like a very
+"intellectual" language (sooo much language theory has gone into it!), but I'm struck every day of
+how friendly the documentation and 3rd party writings on the language are. I think a super good way
+of learning Rust would be to actually pair program with some existing Rust programmer you know, in a
+non-trivial project. So that you can ask about all the small things you run into, and can be
+unblocked and learn forever.</p>
+<p>I'm going to be on parental leave from October until ~April 2022. Am nervous, but looking forward.
+Will be a bit weird to be off work for 6 months since I started. But I have zero doubts in that I'll
+be able to chill in the new role of being a parent 100% of the time. I'll miss coding for work
+though, BUT I guess I'll need to find myself a sIdE PrOjEct like everybody else?!</p>
           </div>
 
           <header class="mt3 tr">
@@ -552,7 +727,7 @@
   </nav>
 
   <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d0e5639126c5c5e75b1ff10b2f9ef837237a8476">d0e5639</a> — built at <time>2022-06-11T17:54:15.683Z</time> — web 1.0 and 2.0 compatible.
+    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/3e259fd2f0a358e4b509f57dc36e21644a8ecdff">3e259fd</a> — built at <time>2022-07-16T19:17:45.624Z</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>
 

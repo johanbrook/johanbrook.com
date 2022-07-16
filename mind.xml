@@ -5,18 +5,37 @@
   <link href="https://johan.im/mind"/>
   <id>https://johan.im/mind</id>
   
-  <updated>2022-05-03T19:37:08Z</updated>
+  <updated>2022-07-16T18:54:33Z</updated>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johan.im</email>
   </author>
   
   <entry>
+    <title>July 16th, 2022 at 6:54:33 PM GMT+0</title>
+    <link href="https://johan.im/mind#202207161854" />
+    <updated>2022-07-16T18:54:33Z</updated>
+    <id>https://johan.im/mind#202207161854</id>
+    <content type="html">&lt;p&gt;lookie here, haven&#39;t posted in a while. this is how it goes when you have a full time job, and not being on parental leave!&lt;/p&gt;
+&lt;p&gt;for my own memory, these are things i want to check out at the moment:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the &lt;a href=&quot;https://www.solidjs.com/&quot;&gt;SolidJS framework&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;building a UI frontend for managing static site generators with &lt;a href=&quot;https://tauri.app/&quot;&gt;tauri&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;my work-in-progress app for reminding me to get in touch with friends, using &lt;a href=&quot;https://remix.run/&quot;&gt;remix&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;overall, things are pretty chill. i&#39;m &lt;a href=&quot;https://johan.im/reading&quot;&gt;reading&lt;/a&gt; the autobiography of keith richards, and i&#39;m actually enjoying it. thought it would be another sleazy rock star bio, but it kind &amp;quot;sounds&amp;quot; like he actually wrote it. also, he&#39;s got a great memory. too bad i want to buy a new acoustic guitar now, AND an electric one… 💸&lt;/p&gt;
+&lt;p&gt;i&#39;m enjoying watching the women&#39;s euro cup in football. there are so much less free kicks overall, due to … they&#39;re doing less movie tricks i guess? or are just toucher. the quality is super high (more than a few years ago, they say), and i appreciate it a lot.&lt;/p&gt;</content>
+  </entry>
+  
+  <entry>
     <title>May 3rd, 2022 at 7:37:08 PM GMT+0</title>
     <link href="https://johan.im/mind#202205031937" />
     <updated>2022-05-03T19:37:08Z</updated>
     <id>https://johan.im/mind#202205031937</id>
-    <content type="html">&lt;p&gt;the musical experience which had most impact on me was one time in gothenburg, at a sleazy karaoke bar. one woman came up to the mic, and it &lt;em&gt;looked&lt;/em&gt; like she had been through a lot in her life. i don&#39;t know, i just felt it. then she went on and did the most emotional and beautiful version of alanis morissette&#39;s &amp;quot;ironic&amp;quot;.&lt;/p&gt;
+    <content type="html">&lt;p&gt;the musical experience which had most impact on me was one time in gothenburg, at a sleazy karaoke
+bar. one woman came up to the mic, and it &lt;em&gt;looked&lt;/em&gt; like she had been through a lot in her life. i
+don&#39;t know, i just felt it. then she went on and did the most emotional and beautiful version of
+alanis morissette&#39;s &amp;quot;ironic&amp;quot;.&lt;/p&gt;
 &lt;p&gt;totally blew me away. the song was &lt;em&gt;hers&lt;/em&gt;.&lt;/p&gt;</content>
   </entry>
   
@@ -26,8 +45,15 @@
     <updated>2022-04-06T18:07:55Z</updated>
     <id>https://johan.im/mind#202204061807</id>
     <content type="html">&lt;p&gt;finished two shows today: Euphoria S02 and Pam &amp;amp; Tommy.&lt;/p&gt;
-&lt;p&gt;Euphoria is simply amazing. i loved season one. season two is grittier, and while it uses violence, sex, and drugs to describe the world, it’s always the characters that shine through. i’ve never seen better acting than zendaya’s performance as rue.&lt;/p&gt;
-&lt;p&gt;pam &amp;amp; tommy is kinda of a curve ball. i like it! i didn’t think i would. it manages to take a story (pamela anderson &amp;amp; tommy lee’s stolen sex tape in the 90s) and make a whole series about it. i liked the sentimental rendition of their mutual love for each other. also, the issue of men vs. women in terms of leaked nudes is also brought up. “i was in that tape too!”, says tommy. “it’s not the same! i’m.. i’m.. a woman!”, says pamela. and it’s not just hollow talk: the series actually manages to showcase how pamela suffered.&lt;/p&gt;
+&lt;p&gt;Euphoria is simply amazing. i loved season one. season two is grittier, and while it uses violence,
+sex, and drugs to describe the world, it’s always the characters that shine through. i’ve never seen
+better acting than zendaya’s performance as rue.&lt;/p&gt;
+&lt;p&gt;pam &amp;amp; tommy is kinda of a curve ball. i like it! i didn’t think i would. it manages to take a story
+(pamela anderson &amp;amp; tommy lee’s stolen sex tape in the 90s) and make a whole series about it. i liked
+the sentimental rendition of their mutual love for each other. also, the issue of men vs. women in
+terms of leaked nudes is also brought up. “i was in that tape too!”, says tommy. “it’s not the same!
+i’m.. i’m.. a woman!”, says pamela. and it’s not just hollow talk: the series actually manages to
+showcase how pamela suffered.&lt;/p&gt;
 &lt;p&gt;i also appreciated the 90s LA vibe ☀️&lt;/p&gt;</content>
   </entry>
   
@@ -36,8 +62,11 @@
     <link href="https://johan.im/mind#202203161958" />
     <updated>2022-03-16T19:58:41Z</updated>
     <id>https://johan.im/mind#202203161958</id>
-    <content type="html">&lt;p&gt;i don&#39;t think everyone need heavy test runners and framework for every project. a single file with &lt;code&gt;import assert from &#39;assert&#39;&lt;/code&gt; (node) and a bunch of assertions can suffice for a tiny prototype project.&lt;/p&gt;
-&lt;p&gt;if you want more structure, where do you go? the npm libraries &lt;code&gt;tape&lt;/code&gt; and &lt;code&gt;tap&lt;/code&gt; have ~20 dependencies each. &lt;code&gt;ava&lt;/code&gt; has ~40. i don&#39;t even want to think about &lt;code&gt;jest&lt;/code&gt;…&lt;/p&gt;
+    <content type="html">&lt;p&gt;i don&#39;t think everyone need heavy test runners and framework for every project. a single file with
+&lt;code&gt;import assert from &#39;assert&#39;&lt;/code&gt; (node) and a bunch of assertions can suffice for a tiny prototype
+project.&lt;/p&gt;
+&lt;p&gt;if you want more structure, where do you go? the npm libraries &lt;code&gt;tape&lt;/code&gt; and &lt;code&gt;tap&lt;/code&gt; have ~20
+dependencies each. &lt;code&gt;ava&lt;/code&gt; has ~40. i don&#39;t even want to think about &lt;code&gt;jest&lt;/code&gt;…&lt;/p&gt;
 &lt;p&gt;i&#39;m sure these packages are great for certain things. but here&#39;s a minimal test runner i&#39;ve written:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://gist.github.com/johanbrook/598d07fa89357f8577d6d0d6e88747a5&quot;&gt;Johan&#39;s Test Runner →&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;it works as you&#39;d expect:&lt;/p&gt;
@@ -45,18 +74,20 @@
 &lt;li&gt;create a test file.&lt;/li&gt;
 &lt;li&gt;import &lt;code&gt;test&lt;/code&gt; and write test cases.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; test &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./_test-helper&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; test &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;./_test-helper&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; assert &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;assert/strict&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;token function&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;it works&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+	assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;i use node&#39;s &lt;code&gt;assert&lt;/code&gt; for assertions. want typescript support? add &lt;code&gt;esbuild&lt;/code&gt; and &lt;code&gt;esbuild-register&lt;/code&gt; as dev dependencies and run tests with:&lt;/p&gt;
+&lt;p&gt;i use node&#39;s &lt;code&gt;assert&lt;/code&gt; for assertions. want typescript support? add &lt;code&gt;esbuild&lt;/code&gt; and &lt;code&gt;esbuild-register&lt;/code&gt;
+as dev dependencies and run tests with:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;node -r esbuild-register run-tests.ts
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;the runner supports returning promises, as well as printing fancy file names for each test case.&lt;/p&gt;
-&lt;p&gt;i appreciate taking this approach before jumping to &lt;code&gt;npm install &amp;lt;dep&amp;gt;&lt;/code&gt;. it gives me very much peace of mind, as long as you don&#39;t spend too much time maintaining your own tooling.&lt;/p&gt;</content>
+&lt;p&gt;i appreciate taking this approach before jumping to &lt;code&gt;npm install &amp;lt;dep&amp;gt;&lt;/code&gt;. it gives me very much peace
+of mind, as long as you don&#39;t spend too much time maintaining your own tooling.&lt;/p&gt;</content>
   </entry>
   
   <entry>
@@ -64,8 +95,13 @@
     <link href="https://johan.im/mind#202203151012" />
     <updated>2022-03-15T10:12:02Z</updated>
     <id>https://johan.im/mind#202203151012</id>
-    <content type="html">&lt;p&gt;my latest favourite cocktail is this gin sour with bergamot and black tea. you&#39;ve probably felt the scent of bergamot in earl grey tea or in perfumes. it&#39;s a highly aromatic citrus fruit: it looks like a large, more spherical, lemon. it&#39;s also surprisingly hard to find here in stockholm – even when it&#39;s in season.&lt;/p&gt;
-&lt;p&gt;i found &lt;a href=&quot;https://feeders.se/2022/01/20/earl-greyish-bergamott/&quot;&gt;this recipe (in swedish...)&lt;/a&gt; and got hold of a batch of bergamots through a restaurant friend. i&#39;ve translated the recipe to english below:&lt;/p&gt;
+    <content type="html">&lt;p&gt;my latest favourite cocktail is this gin sour with bergamot and black tea. you&#39;ve probably felt the
+scent of bergamot in earl grey tea or in perfumes. it&#39;s a highly aromatic citrus fruit: it looks
+like a large, more spherical, lemon. it&#39;s also surprisingly hard to find here in stockholm – even
+when it&#39;s in season.&lt;/p&gt;
+&lt;p&gt;i found &lt;a href=&quot;https://feeders.se/2022/01/20/earl-greyish-bergamott/&quot;&gt;this recipe (in swedish...)&lt;/a&gt; and got
+hold of a batch of bergamots through a restaurant friend. i&#39;ve translated the recipe to english
+below:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://johan.im/assets/posts/gin-tea-sour.jpg&quot; alt=&quot;Gin tea sour&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Ingredients&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -94,14 +130,17 @@
 &lt;p&gt;&lt;em&gt;Procedure&lt;/em&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;combine water and sugar in a pot.&lt;/li&gt;
-&lt;li&gt;add the zest of the bergamot (the outer layer of the peel, save the fruit with its juice for the drink). avoid the white layer beneath.&lt;/li&gt;
+&lt;li&gt;add the zest of the bergamot (the outer layer of the peel, save the fruit with its juice for the
+drink). avoid the white layer beneath.&lt;/li&gt;
 &lt;li&gt;put everything to a boil for a couple of minutes.&lt;/li&gt;
 &lt;li&gt;remove from the heat, add the tea strainers with black tea.&lt;/li&gt;
 &lt;li&gt;let it sit for at least 5 minutes. it should gain a strong flavour.&lt;/li&gt;
 &lt;li&gt;remove the strainers and let the syrup cool.&lt;/li&gt;
-&lt;li&gt;strain (to remove the bergamot zest) and pour the syrup into a small bottle and store in the fridge.&lt;/li&gt;
+&lt;li&gt;strain (to remove the bergamot zest) and pour the syrup into a small bottle and store in the
+fridge.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;i think the simple syrup is as best the first few days, but mine has lasted over a week now. just don&#39;t forget it in there…&lt;/p&gt;</content>
+&lt;p&gt;i think the simple syrup is as best the first few days, but mine has lasted over a week now. just
+don&#39;t forget it in there…&lt;/p&gt;</content>
   </entry>
   
   <entry>
@@ -119,14 +158,20 @@
     <id>https://johan.im/mind#202202171248</id>
     <content type="html">&lt;h2&gt;The best fruits&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Banana.&lt;/strong&gt; they&#39;re full of vitamins, fibers, and natural sugars. they provide the best energy, and are easy to a) carry around, b) peel. they&#39;re perfect.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Mango.&lt;/strong&gt; whenever i get to pick flavours for (let&#39;s say) ice cream, i always pick mango (or a combo of mango + something else). they &lt;em&gt;are&lt;/em&gt; the best tropical fruits when it comes to flavour. they&#39;re less easy to peel and deal with than a banana&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Clementine/Satsuma/Tangerine.&lt;/strong&gt; easy to handle and somewhat easy to peel. the best of juices, and full of vitamins. makes the day brigher.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Pear.&lt;/strong&gt; sweeter than apples, with a soft, moist flesh full of fibres. they can be watery though, so not as rich as mangoes and bananas.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Banana.&lt;/strong&gt; they&#39;re full of vitamins, fibers, and natural sugars. they provide the best energy,
+and are easy to a) carry around, b) peel. they&#39;re perfect.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mango.&lt;/strong&gt; whenever i get to pick flavours for (let&#39;s say) ice cream, i always pick mango (or a
+combo of mango + something else). they &lt;em&gt;are&lt;/em&gt; the best tropical fruits when it comes to flavour.
+they&#39;re less easy to peel and deal with than a banana&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clementine/Satsuma/Tangerine.&lt;/strong&gt; easy to handle and somewhat easy to peel. the best of juices,
+and full of vitamins. makes the day brigher.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pear.&lt;/strong&gt; sweeter than apples, with a soft, moist flesh full of fibres. they can be watery
+though, so not as rich as mangoes and bananas.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;…&lt;/p&gt;
 &lt;ol start=&quot;1000&quot;&gt;
-&lt;li&gt;&lt;strong&gt;Pineapple.&lt;/strong&gt; i really hate these. ugly, hard shell, weird flavour. i would never carry these on a trip, nor try to peel them as an ingredient.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pineapple.&lt;/strong&gt; i really hate these. ugly, hard shell, weird flavour. i would never carry these
+on a trip, nor try to peel them as an ingredient.&lt;/li&gt;
 &lt;/ol&gt;</content>
   </entry>
   
@@ -137,13 +182,23 @@
     <id>https://johan.im/mind#202202141020</id>
     <content type="html">&lt;p&gt;i love this quote from Nils van der Poel (emphasis mine):&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;I think it&#39;s important to understand that you&#39;re not doing it for a gold medal. &lt;strong&gt;Regardless of which life you chose to live, you will sacrifice something, that&#39;s the way it is.&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;As soon as you go in one direction, you also choose to not go in all other directions at the same time. It&#39;s the basic precondition for going anywhere at all.&lt;/p&gt;
-&lt;p&gt;But on the path you take, you will experience fantastic things, even though it&#39;s uphill there will be a great view when you&#39;re at the top, and that&#39;s what makes it worth it, to be on this journey with people you love. It doesn&#39;t matter that much where the journey ends. A movie with a sad ending is also a good movie - and a movie with a nice ending makes you happy.&lt;/p&gt;
-&lt;p&gt;I&#39;m very happy for this medal around my neck, and for getting all the way here. But why do you do it? I don&#39;t think you get to pick your dreams, they pick us. It&#39;s up to us to realize them or not, and it seems like people who try to realize their dreams are happier.&lt;/p&gt;
+&lt;p&gt;I think it&#39;s important to understand that you&#39;re not doing it for a gold medal. &lt;strong&gt;Regardless of
+which life you chose to live, you will sacrifice something, that&#39;s the way it is.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;As soon as you go in one direction, you also choose to not go in all other directions at the same
+time. It&#39;s the basic precondition for going anywhere at all.&lt;/p&gt;
+&lt;p&gt;But on the path you take, you will experience fantastic things, even though it&#39;s uphill there will
+be a great view when you&#39;re at the top, and that&#39;s what makes it worth it, to be on this journey
+with people you love. It doesn&#39;t matter that much where the journey ends. A movie with a sad
+ending is also a good movie - and a movie with a nice ending makes you happy.&lt;/p&gt;
+&lt;p&gt;I&#39;m very happy for this medal around my neck, and for getting all the way here. But why do you do
+it? I don&#39;t think you get to pick your dreams, they pick us. It&#39;s up to us to realize them or not,
+and it seems like people who try to realize their dreams are happier.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Nils van der Poel is a swedish olympic speed skater who just won two gold medals in the beijing 2022 olympics.&lt;/p&gt;
-&lt;p&gt;source: &lt;a href=&quot;https://twitter.com/Radiosporten/status/1491090244652969984&quot;&gt;Radiosporten&#39;s Twitter (swedish)&lt;/a&gt;. translated to english by &lt;a href=&quot;https://news.ycombinator.com/item?id=30329660&quot;&gt;jacobr&lt;/a&gt;.&lt;/p&gt;</content>
+&lt;p&gt;Nils van der Poel is a swedish olympic speed skater who just won two gold medals in the beijing 2022
+olympics.&lt;/p&gt;
+&lt;p&gt;source:
+&lt;a href=&quot;https://twitter.com/Radiosporten/status/1491090244652969984&quot;&gt;Radiosporten&#39;s Twitter (swedish)&lt;/a&gt;.
+translated to english by &lt;a href=&quot;https://news.ycombinator.com/item?id=30329660&quot;&gt;jacobr&lt;/a&gt;.&lt;/p&gt;</content>
   </entry>
   
   <entry>
@@ -151,47 +206,71 @@
     <link href="https://johan.im/mind#202202080850" />
     <updated>2022-02-08T08:50:00Z</updated>
     <id>https://johan.im/mind#202202080850</id>
-    <content type="html">&lt;p&gt;i&#39;m switching to sublime text from vs code as main code editor, and man – it&#39;s much more config to do before it&#39;s usable to me. vs code follows more of a &amp;quot;batteries included&amp;quot; and &amp;quot;sensible defaults&amp;quot; approach.&lt;/p&gt;
+    <content type="html">&lt;p&gt;i&#39;m switching to sublime text from vs code as main code editor, and man – it&#39;s much more config to
+do before it&#39;s usable to me. vs code follows more of a &amp;quot;batteries included&amp;quot; and &amp;quot;sensible defaults&amp;quot;
+approach.&lt;/p&gt;
 &lt;p&gt;this is my behavioural config (typography stuff removed):&lt;/p&gt;
 &lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;create_window_at_startup&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;draw_indent_guides&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;enable_tab_scrolling&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;ensure_newline_at_eof_on_save&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;highlight_modified_tabs&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;highlight_line&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;remember_open_files&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;translate_tabs_to_spaces&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;shift_tab_unindent&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;hide_new_tab_button&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;caret_style&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;blink&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;caret_extra_top&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;caret_extra_bottom&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;trim_trailing_white_space_on_save&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;all&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;scroll_past_end&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;mini_diff&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;auto&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;token property&quot;&gt;&quot;folder_exclude_patterns&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
-        &lt;span class=&quot;token string&quot;&gt;&quot;.svn&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;token string&quot;&gt;&quot;.git&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;token string&quot;&gt;&quot;.hg&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;token string&quot;&gt;&quot;CVS&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;token string&quot;&gt;&quot;.Trash&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;token string&quot;&gt;&quot;.Trash-*&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;token string&quot;&gt;&quot;node_modules&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;token string&quot;&gt;&quot;build&quot;&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;create_window_at_startup&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;draw_indent_guides&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;enable_tab_scrolling&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;ensure_newline_at_eof_on_save&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;highlight_modified_tabs&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;highlight_line&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;remember_open_files&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;translate_tabs_to_spaces&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;shift_tab_unindent&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;hide_new_tab_button&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;caret_style&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;blink&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;caret_extra_top&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;caret_extra_bottom&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;trim_trailing_white_space_on_save&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;all&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;scroll_past_end&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;mini_diff&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;auto&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+	&lt;span class=&quot;token property&quot;&gt;&quot;folder_exclude_patterns&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+		&lt;span class=&quot;token string&quot;&gt;&quot;.svn&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;token string&quot;&gt;&quot;.git&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;token string&quot;&gt;&quot;.hg&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;token string&quot;&gt;&quot;CVS&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;token string&quot;&gt;&quot;.Trash&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;token string&quot;&gt;&quot;.Trash-*&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;token string&quot;&gt;&quot;node_modules&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+		&lt;span class=&quot;token string&quot;&gt;&quot;build&quot;&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;the last one is especially interesting. as of january 2022, there&#39;s &lt;strong&gt;still no way to tell sublime to ignore files in &lt;code&gt;.gitignore&lt;/code&gt;&lt;/strong&gt;. sublime should hide/gray out the files/folders in the sidebar, and &lt;em&gt;not&lt;/em&gt; make them appear in the quick open dialog. so i have to add folders such as &lt;code&gt;node_modules&lt;/code&gt; and &lt;code&gt;build&lt;/code&gt; to the global config. people tell me to use some plugin (&lt;code&gt;sublime-gitignorer&lt;/code&gt;), but meh... &lt;a href=&quot;https://github.com/sublimehq/sublime_text/issues/2787&quot;&gt;this issue&lt;/a&gt; from 2019 is still open.&lt;/p&gt;
-&lt;p&gt;then i couldn&#39;t get the &lt;code&gt;editorconfig&lt;/code&gt; plugin to work. i tried changing &lt;code&gt;indent_size&lt;/code&gt; in my &lt;code&gt;.editorconfig&lt;/code&gt; file, but the change wasn&#39;t reflected in the editor. joy.&lt;/p&gt;
-&lt;p&gt;then i realised that the typescript in sublime 4 isn&#39;t really &amp;quot;support&amp;quot;: it&#39;s more &amp;quot;the syntax highlighting&amp;quot; is working. one has to install a typescript package for the Language Server Plugin for intellisense (completions, etc) to work. &lt;a href=&quot;https://forum.sublimetext.com/t/typescript-is-not-there-yet-to-be-called-supported/58768&quot;&gt;people don&#39;t like this&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;then i installed prettier along with the sublime plugin, but formatting on every save isn&#39;t viable since it&#39;s &lt;em&gt;very&lt;/em&gt; slow. somebody online said that vs code&#39;s prettier extension is keeping long running node processes instead of spawning a single one for each save. sublime&#39;s plugin is evidently not doing that. may have to check out &lt;a href=&quot;https://github.com/dprint/dprint-sublime&quot;&gt;dprint&lt;/a&gt;, but that plugin isn&#39;t even out in package control yet. hehe.&lt;/p&gt;
-&lt;p&gt;then there are these small annoyances like i can&#39;t do &lt;code&gt;backspace&lt;/code&gt; to delete a file when it&#39;s focused in the sidebar. or hit &lt;code&gt;enter&lt;/code&gt; to rename it. but no can do. like, what?! this is standard file explorer shortcuts? i timeboxed 5 min to find a keybinding but couldn&#39;t. i guess my mental model from atom and vs code differs from sublime&#39;s.&lt;/p&gt;
-&lt;p&gt;i&#39;d really like more visual cues in the sidebar file tree about modified or added files, like vs codes does. makes it a lot easier to navigate.&lt;/p&gt;
+&lt;p&gt;the last one is especially interesting. as of january 2022, there&#39;s &lt;strong&gt;still no way to tell sublime
+to ignore files in &lt;code&gt;.gitignore&lt;/code&gt;&lt;/strong&gt;. sublime should hide/gray out the files/folders in the sidebar,
+and &lt;em&gt;not&lt;/em&gt; make them appear in the quick open dialog. so i have to add folders such as &lt;code&gt;node_modules&lt;/code&gt;
+and &lt;code&gt;build&lt;/code&gt; to the global config. people tell me to use some plugin (&lt;code&gt;sublime-gitignorer&lt;/code&gt;), but
+meh... &lt;a href=&quot;https://github.com/sublimehq/sublime_text/issues/2787&quot;&gt;this issue&lt;/a&gt; from 2019 is still open.&lt;/p&gt;
+&lt;p&gt;then i couldn&#39;t get the &lt;code&gt;editorconfig&lt;/code&gt; plugin to work. i tried changing &lt;code&gt;indent_size&lt;/code&gt; in my
+&lt;code&gt;.editorconfig&lt;/code&gt; file, but the change wasn&#39;t reflected in the editor. joy.&lt;/p&gt;
+&lt;p&gt;then i realised that the typescript in sublime 4 isn&#39;t really &amp;quot;support&amp;quot;: it&#39;s more &amp;quot;the syntax
+highlighting&amp;quot; is working. one has to install a typescript package for the Language Server Plugin for
+intellisense (completions, etc) to work.
+&lt;a href=&quot;https://forum.sublimetext.com/t/typescript-is-not-there-yet-to-be-called-supported/58768&quot;&gt;people don&#39;t like this&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;then i installed prettier along with the sublime plugin, but formatting on every save isn&#39;t viable
+since it&#39;s &lt;em&gt;very&lt;/em&gt; slow. somebody online said that vs code&#39;s prettier extension is keeping long
+running node processes instead of spawning a single one for each save. sublime&#39;s plugin is evidently
+not doing that. may have to check out &lt;a href=&quot;https://github.com/dprint/dprint-sublime&quot;&gt;dprint&lt;/a&gt;, but that
+plugin isn&#39;t even out in package control yet. hehe.&lt;/p&gt;
+&lt;p&gt;then there are these small annoyances like i can&#39;t do &lt;code&gt;backspace&lt;/code&gt; to delete a file when it&#39;s focused
+in the sidebar. or hit &lt;code&gt;enter&lt;/code&gt; to rename it. but no can do. like, what?! this is standard file
+explorer shortcuts? i timeboxed 5 min to find a keybinding but couldn&#39;t. i guess my mental model
+from atom and vs code differs from sublime&#39;s.&lt;/p&gt;
+&lt;p&gt;i&#39;d really like more visual cues in the sidebar file tree about modified or added files, like vs
+codes does. makes it a lot easier to navigate.&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;so is switching worth it? sublime is &lt;em&gt;so&lt;/em&gt; much faster than the electron based editors it&#39;s ridiculous. when i&#39;m comparing opening this repo&#39;s folder with &lt;code&gt;code .&lt;/code&gt; and &lt;code&gt;subl .&lt;/code&gt; from the command line, i understand how gaslighted i&#39;ve been with the electron editors. sublime just flashes and it&#39;s open while vs code is busy booting another chromium app or whatever it&#39;s doing.&lt;/p&gt;
-&lt;p&gt;but i dislike having to carry around a set of plugins and settings when i switch computers. vs code has this nice settings sync feature built in, but i&#39;m 100% sure i need to sort that out myself for sublime with some esoretic github gist based thing…&lt;/p&gt;
-&lt;p&gt;maybe &lt;a href=&quot;https://www.jetbrains.com/fleet/&quot;&gt;Jetbrains Fleet&lt;/a&gt; will be The One editor: native, without bloat, and configurable?&lt;/p&gt;
+&lt;p&gt;so is switching worth it? sublime is &lt;em&gt;so&lt;/em&gt; much faster than the electron based editors it&#39;s
+ridiculous. when i&#39;m comparing opening this repo&#39;s folder with &lt;code&gt;code .&lt;/code&gt; and &lt;code&gt;subl .&lt;/code&gt; from the
+command line, i understand how gaslighted i&#39;ve been with the electron editors. sublime just flashes
+and it&#39;s open while vs code is busy booting another chromium app or whatever it&#39;s doing.&lt;/p&gt;
+&lt;p&gt;but i dislike having to carry around a set of plugins and settings when i switch computers. vs code
+has this nice settings sync feature built in, but i&#39;m 100% sure i need to sort that out myself for
+sublime with some esoretic github gist based thing…&lt;/p&gt;
+&lt;p&gt;maybe &lt;a href=&quot;https://www.jetbrains.com/fleet/&quot;&gt;Jetbrains Fleet&lt;/a&gt; will be The One editor: native, without
+bloat, and configurable?&lt;/p&gt;
 &lt;p&gt;if anybody uses any life saving plugins for sublime, please &lt;a href=&quot;https://johan.im/contact&quot;&gt;give me a shout&lt;/a&gt;.&lt;/p&gt;</content>
   </entry>
   
@@ -200,39 +279,66 @@
     <link href="https://johan.im/mind#202202021751" />
     <updated>2022-02-02T17:51:48Z</updated>
     <id>https://johan.im/mind#202202021751</id>
-    <content type="html">&lt;p&gt;i love creating playlists. it&#39;s like the lost art of making mixtapes for yourself of somebody else. even though Spotify (and other services surely) have invested &lt;em&gt;a ton&lt;/em&gt; content curation, i still love my own hand made playlists. spotify, for instance, have a lot of both automated and handmade playlists for a myriad of occasions. they&#39;re kinda niche and cool, but… i still think they&#39;re a bit bland.&lt;/p&gt;
-&lt;p&gt;what i appreciate is that it&#39;s a constant, living project. this categorisation builds up over time as i discover new material, and i&#39;m now wired to place it in a playlist if i like the track. good for future johan and others.&lt;/p&gt;
+    <content type="html">&lt;p&gt;i love creating playlists. it&#39;s like the lost art of making mixtapes for yourself of somebody else.
+even though Spotify (and other services surely) have invested &lt;em&gt;a ton&lt;/em&gt; content curation, i still love
+my own hand made playlists. spotify, for instance, have a lot of both automated and handmade
+playlists for a myriad of occasions. they&#39;re kinda niche and cool, but… i still think they&#39;re a bit
+bland.&lt;/p&gt;
+&lt;p&gt;what i appreciate is that it&#39;s a constant, living project. this categorisation builds up over time
+as i discover new material, and i&#39;m now wired to place it in a playlist if i like the track. good
+for future johan and others.&lt;/p&gt;
 &lt;p&gt;here are some of them:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/1Ldhvei26A52VXc1ErGFE3?si=7784bde2b4864c83&quot;&gt;Johan Recommends 👌&lt;/a&gt;. this one has been around since i got a beta invite to Spotify. i dunno, perhaps 2008? the listing doesn&#39;t tell the date of the two earliest tracks added (just a blank column). this playlist is just a dump of what i&#39;m listening to at the moment. it forms a nice history of what i liked over the years.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/2mtlhuFVOFMn6Ho3JmrLc2?si=01e2e74df939457c&quot;&gt;☕ Programming&lt;/a&gt;. music i code to. mostly techno and instrumental.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/6sQMuWwPINJiLZUJK4Z3uD?si=c1900108fe7946fa&quot;&gt;👌 Feels Good Man&lt;/a&gt;. reggae and dub. i&#39;ve been listening to this constantly over the past year, haha. i just can&#39;t get over how good, deep, and rich this genre is.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/5nh0YK8EONkjzOnbA3BhUY?si=bb2ee94098424d68&quot;&gt;💑 Music for Eating&lt;/a&gt; started as a playlist for a dinner in 2012, now it&#39;s my general &amp;quot;turn something on 5 min before guests arrive&amp;quot; kind of playlist. it&#39;s mostly &amp;quot;safe&amp;quot;, as in &amp;quot;nobody and their partner will get annoyed by the songs in here&amp;quot;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/7q5ibEnI11LGt6OfPdUiYF?si=71eee722055a42e7&quot;&gt;🎶 Music from the Old World&lt;/a&gt;. i curate this one like a mad man. &lt;strong&gt;only&lt;/strong&gt; good, timeless songs in here! think &amp;quot;if mankind would go under tomorrow, what would you save in a box and shoot out in outer space&amp;quot;. this is music that i think are masterpieces and that has affected my interest in music somehow.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/1gogip1RT6OUnbvdnTi6Pl?si=ac2453416add46c0&quot;&gt;🍝 Cooking&lt;/a&gt;. music i cook to! fun! creative!&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/59nplETeaMx3BmSJ0HmueD?si=40dfed3c765943a3&quot;&gt;🌧 Moody&lt;/a&gt;. you know all these corny spotify playlists &amp;quot;Upbeat Summer&amp;quot; and that? this is the reverse. downbeat.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/7iN8d1FOc4MPI1kdviSaKz?si=7fd232edf03940f4&quot;&gt;🔫 Rhythm And Poetry&lt;/a&gt;. 90/00s hiphop – when it was good.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/078GhmeGcbKJgRZD8dy6Rk?si=d2e15235ff4e45cf&quot;&gt;🌞 Music I&#39;ve Grown Up To&lt;/a&gt;. songs i&#39;ve listened through from teen to adolescence. music that somehow has affected me during emo periods, travels, and just everyday life.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/3BNTm0AP9uiM0KIXc8iHEr?si=170da54d9da443c1&quot;&gt;🇧🇷 Bom día, Rio de Janeeeeiroo!&lt;/a&gt;. my brazilian playlist, which i created when i was in Rio. classic bossanova and samba mixed with brazilian funk.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/5oJPfALfNLPFrq5gxWuude?si=982a8f0ae3e44338&quot;&gt;🇸🇪 Absolute Swedish&lt;/a&gt;. only swedish songs. makes me kind of proud over how much good music the little nation of sweden has produced.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/6iXHobR6yJaPqgBaaL64xX?si=dd229408c5bf4121&quot;&gt;🛣 On the Highway&lt;/a&gt;. road trip songs without songs that mention &amp;quot;road trip&amp;quot;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/3nuTeGLROOyh5t4VMKTp13?si=2262e0a243c74c16&quot;&gt;💦 Rain&lt;/a&gt;. for rainy weather.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/5zFLAiAjNowbHSSgMOC4RE?si=0cf90c6f01d44928&quot;&gt;🇫🇷 The French Affair&lt;/a&gt;. french music. for when you wanna … listen to … french music?&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/4M9CK0W1O4Kcdqz5Yy2Qzh?si=6343cd67b7c94935&quot;&gt;🎸 Soul/Jazz/Blues&lt;/a&gt;. a big ol&#39; bucket with these three genres. bam!&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/0C0bD6e5aOZqPwPgVl9Ail?si=5ca31048878e4ec1&quot;&gt;🍂 Autumn&lt;/a&gt;. moody music which somehow feels more autumn-y.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/5eItx1PWuOqZ6wKjcq6MFv?si=69f8937279744315&quot;&gt;🌻 Summer!&lt;/a&gt;. the mandatory, upbeat summer playlist. i&#39;m sorry.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/1F3AXwgZIi90ArZb9Vwykb?si=1efe867ebf114bce&quot;&gt;🌅 What&#39;s the story morning glory&lt;/a&gt;. the morning playlist that gets you UP.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/4vX0My1z66vnhiequGGdYM?si=7a538d36e04147e7&quot;&gt;📽 Hipster Internazionale&lt;/a&gt;. hipster and indie songs you haven&#39;t heard of.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/1Ldhvei26A52VXc1ErGFE3?si=7784bde2b4864c83&quot;&gt;Johan Recommends 👌&lt;/a&gt;.
+this one has been around since i got a beta invite to Spotify. i dunno, perhaps 2008? the listing
+doesn&#39;t tell the date of the two earliest tracks added (just a blank column). this playlist is
+just a dump of what i&#39;m listening to at the moment. it forms a nice history of what i liked over
+the years.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/2mtlhuFVOFMn6Ho3JmrLc2?si=01e2e74df939457c&quot;&gt;☕ Programming&lt;/a&gt;.
+music i code to. mostly techno and instrumental.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/6sQMuWwPINJiLZUJK4Z3uD?si=c1900108fe7946fa&quot;&gt;👌 Feels Good Man&lt;/a&gt;.
+reggae and dub. i&#39;ve been listening to this constantly over the past year, haha. i just can&#39;t get
+over how good, deep, and rich this genre is.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/5nh0YK8EONkjzOnbA3BhUY?si=bb2ee94098424d68&quot;&gt;💑 Music for Eating&lt;/a&gt;
+started as a playlist for a dinner in 2012, now it&#39;s my general &amp;quot;turn something on 5 min before
+guests arrive&amp;quot; kind of playlist. it&#39;s mostly &amp;quot;safe&amp;quot;, as in &amp;quot;nobody and their partner will get
+annoyed by the songs in here&amp;quot;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/7q5ibEnI11LGt6OfPdUiYF?si=71eee722055a42e7&quot;&gt;🎶 Music from the Old World&lt;/a&gt;.
+i curate this one like a mad man. &lt;strong&gt;only&lt;/strong&gt; good, timeless songs in here! think &amp;quot;if mankind would
+go under tomorrow, what would you save in a box and shoot out in outer space&amp;quot;. this is music that
+i think are masterpieces and that has affected my interest in music somehow.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/1gogip1RT6OUnbvdnTi6Pl?si=ac2453416add46c0&quot;&gt;🍝 Cooking&lt;/a&gt;. music i
+cook to! fun! creative!&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/59nplETeaMx3BmSJ0HmueD?si=40dfed3c765943a3&quot;&gt;🌧 Moody&lt;/a&gt;. you know
+all these corny spotify playlists &amp;quot;Upbeat Summer&amp;quot; and that? this is the reverse. downbeat.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/7iN8d1FOc4MPI1kdviSaKz?si=7fd232edf03940f4&quot;&gt;🔫 Rhythm And Poetry&lt;/a&gt;.
+90/00s hiphop – when it was good.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/078GhmeGcbKJgRZD8dy6Rk?si=d2e15235ff4e45cf&quot;&gt;🌞 Music I&#39;ve Grown Up To&lt;/a&gt;.
+songs i&#39;ve listened through from teen to adolescence. music that somehow has affected me during
+emo periods, travels, and just everyday life.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/3BNTm0AP9uiM0KIXc8iHEr?si=170da54d9da443c1&quot;&gt;🇧🇷 Bom día, Rio de Janeeeeiroo!&lt;/a&gt;.
+my brazilian playlist, which i created when i was in Rio. classic bossanova and samba mixed with
+brazilian funk.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/5oJPfALfNLPFrq5gxWuude?si=982a8f0ae3e44338&quot;&gt;🇸🇪 Absolute Swedish&lt;/a&gt;.
+only swedish songs. makes me kind of proud over how much good music the little nation of sweden
+has produced.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/6iXHobR6yJaPqgBaaL64xX?si=dd229408c5bf4121&quot;&gt;🛣 On the Highway&lt;/a&gt;.
+road trip songs without songs that mention &amp;quot;road trip&amp;quot;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/3nuTeGLROOyh5t4VMKTp13?si=2262e0a243c74c16&quot;&gt;💦 Rain&lt;/a&gt;. for rainy
+weather.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/5zFLAiAjNowbHSSgMOC4RE?si=0cf90c6f01d44928&quot;&gt;🇫🇷 The French Affair&lt;/a&gt;.
+french music. for when you wanna … listen to … french music?&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/4M9CK0W1O4Kcdqz5Yy2Qzh?si=6343cd67b7c94935&quot;&gt;🎸 Soul/Jazz/Blues&lt;/a&gt;.
+a big ol&#39; bucket with these three genres. bam!&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/0C0bD6e5aOZqPwPgVl9Ail?si=5ca31048878e4ec1&quot;&gt;🍂 Autumn&lt;/a&gt;. moody
+music which somehow feels more autumn-y.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/5eItx1PWuOqZ6wKjcq6MFv?si=69f8937279744315&quot;&gt;🌻 Summer!&lt;/a&gt;. the
+mandatory, upbeat summer playlist. i&#39;m sorry.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/1F3AXwgZIi90ArZb9Vwykb?si=1efe867ebf114bce&quot;&gt;🌅 What&#39;s the story morning glory&lt;/a&gt;.
+the morning playlist that gets you UP.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://open.spotify.com/playlist/4vX0My1z66vnhiequGGdYM?si=7a538d36e04147e7&quot;&gt;📽 Hipster Internazionale&lt;/a&gt;.
+hipster and indie songs you haven&#39;t heard of.&lt;/li&gt;
 &lt;/ul&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>January 30th, 2022 at 5:15:43 PM GMT+0</title>
-    <link href="https://johan.im/mind#202201301715" />
-    <updated>2022-01-30T17:15:43Z</updated>
-    <id>https://johan.im/mind#202201301715</id>
-    <content type="html">&lt;p&gt;i&#39;ve bought a new &lt;a href=&quot;https://de.braun-clocks.com/collections/analogue-clocks/products/bc22-braun-classic-analogue-alarm-clock-white&quot;&gt;bedside alarm clock from Braun&lt;/a&gt;, and it&#39;s so pretty. when activating the back light, it glows in a cool amber light, and then fades away. drool. i have no idea about the timeline of things, but the green details feels very Apple-esque. i&#39;d guess Apple borrowed this from Braun when the former designed the iPods, which had similar green details around the physical knobs and switches.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.shopify.com/s/files/1/0265/4388/2263/products/90fc68eb-f4b1-4b28-be66-3b9082e20428@2x.jpg?v=1631627468&quot; alt=&quot;BC22 Braun analogue clock&quot;&gt;&lt;/p&gt;</content>
   </entry>
   
 </feed>
