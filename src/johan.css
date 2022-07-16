@@ -14,8 +14,8 @@ Just kidding.
 @import 'css/vendor/prism-matrix.css';
 @import 'css/vendor/typeset.css';
 
-@import 'css/partials';
+@import 'css/partials/index.css';
 
-@import 'css/views';
+@import 'css/views/index.css';
 
 @import 'css/helpers.css';
