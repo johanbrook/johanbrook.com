@@ -4,7 +4,7 @@
         {
             "request": "launch",
             "type": "pwa-node",
-            "program": "https:/deno.land/x/lume@v1.5.1/cli.ts",
+            "program": "https:/deno.land/x/lume@v1.10.1/cli.ts",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "deno",
             "runtimeArgs": [
@@ -20,7 +20,7 @@
         {
             "request": "launch",
             "type": "pwa-node",
-            "program": "https:/deno.land/x/lume@v1.5.1/cli.ts",
+            "program": "https:/deno.land/x/lume@v1.10.1/cli.ts",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "deno",
             "runtimeArgs": [

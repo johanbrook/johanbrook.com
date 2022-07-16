@@ -23,14 +23,14 @@ jobs:
             - name: Setup deno and lume
               uses: denoland/setup-deno@v1
               with:
-                  deno-version: v1.18.x
+                  deno-version: v1.23.x
 
             - name: Install and build site
               env:
                   CI: true
                   NODE_ENV: production
                   ENV: production
-              run: deno run -A https://deno.land/x/lume@v1.5.1/ci.ts --location=https://johan.im --quiet
+              run: deno run -A https://deno.land/x/lume@v1.10.1/ci.ts --location=https://johan.im --quiet
 
             - name: Deploy to GitHub Pages
               if: github.ref_name == 'main'
