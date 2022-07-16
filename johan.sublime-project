@@ -16,7 +16,7 @@
             "Deno": {
                 "enabled": true,
                 "settings": {
-                    "deno.config": "./deno.jsonc",
+                    "deno.config": "./deno.json",
                     "deno.unstable": true,
                     "deno.importMap": "./import_map.json"
                 }

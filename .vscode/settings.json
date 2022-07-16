@@ -1,13 +1,13 @@
 {
-  "css.validate": false,
-  "editor.formatOnSave": true,
-  "deno.enable": true,
-  "deno.config": "deno.jsonc",
-  "deno.lint": true,
-  "deno.unstable": true,
-  "deno.suggest.imports.hosts": {
-    "https://deno.land": true,
-    "https://cdn.skypack.dev": true
-  },
-  "deno.importMap": "../import_map.json"
+    "css.validate": false,
+    "editor.formatOnSave": true,
+    "deno.enable": true,
+    "deno.config": "deno.json",
+    "deno.lint": true,
+    "deno.unstable": true,
+    "deno.suggest.imports.hosts": {
+        "https://deno.land": true,
+        "https://cdn.skypack.dev": true
+    },
+    "deno.importMap": "../import_map.json"
 }
