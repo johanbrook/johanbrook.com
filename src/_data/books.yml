@@ -80,7 +80,7 @@
   author: Cormac McCarthy
   finished: true
   finishedAt: 2011-07-01T00:00:00Z
-  notes: 'The minimal language is perfect.'
+  notes: "The minimal language is perfect."
 
 - title: Black Sabbath
   author: Mick Wall
@@ -98,7 +98,7 @@
   finished: true
   finishedAt: 2014-07-10T00:00:00Z
   location: Gothenburg, Sweden
-  notes: 'Raw and honest.'
+  notes: "Raw and honest."
 
 - title: Shantaram
   author: Gregory David Roberts
@@ -135,7 +135,7 @@
   finished: true
   finishedAt: 2015-11-10T00:00:00Z
   location: San Francisco, USA
-  notes: 'Very touching, and beautifully written.'
+  notes: "Very touching, and beautifully written."
 
 - title: Dancing with the Devil in the City of God
   author: Juliana Barbassa
@@ -166,7 +166,7 @@
   finished: true
   finishedAt: 2017-07-10T00:00:00Z
   location: Gothenburg, Sweden
-  notes: 'Sequel to Shantaram. Not as good, but nevertheless a good sequel.'
+  notes: "Sequel to Shantaram. Not as good, but nevertheless a good sequel."
 
 - title: Sapiens
   author: Yuval Noah Harari
@@ -224,21 +224,21 @@
   finished: true
   finishedAt: 2020-01-10T00:00:00Z
   location: Sri Lanka
-  notes: 'Like The Alchemist, this one was boring. Poorly written, boring plot, and not believable at all.'
+  notes: "Like The Alchemist, this one was boring. Poorly written, boring plot, and not believable at all."
 
 - title: The Alchemist
   author: Paolo Coelho
   finished: true
   finishedAt: 2020-01-10T00:00:00Z
   location: Sri Lanka
-  notes: 'I loved it in the beginning, but then it turned out to be boring New Age-y stuff.'
+  notes: "I loved it in the beginning, but then it turned out to be boring New Age-y stuff."
 
 - title: The Godfather
   author: Mario Puzo
   finished: true
   finishedAt: 2020-03-01T00:00:00Z
   location: Stockholm, Sweden
-  notes: 'Even better than the movie. More details (of course), and deeper descriptions of characters.'
+  notes: "Even better than the movie. More details (of course), and deeper descriptions of characters."
 
 - title: Jag Kan Ha Fel
   author: Björn Natthiko Lindeblad
@@ -259,21 +259,21 @@
   finished: true
   finishedAt: 2020-07-01T00:00:00Z
   location: Stockholm, Sweden
-  notes: 'A non-fiction history about the Sicilian mafia. Entertaining.'
+  notes: "A non-fiction history about the Sicilian mafia. Entertaining."
 
 - title: Normal People
   author: Sally Rooney
   finished: true
   finishedAt: 2020-08-01T00:00:00Z
   location: Stockholm, Sweden
-  notes: 'I saw the series before reading the book, and both formats have their charm. The author has a great language, and manages to capture the atmosphere that surrounds that age from high school to university.'
+  notes: "I saw the series before reading the book, and both formats have their charm. The author has a great language, and manages to capture the atmosphere that surrounds that age from high school to university."
 
 - title: Herakles
   author: Theodor Kallifatides
   finished: true
   finishedAt: 2020-08-01T00:00:00Z
   location: Stockholm, Sweden
-  notes: 'I like mythology, especially like Greek mythology. This book is a novel – I guess a bit dramatised – about the life of the hero Hercules. It was good, very vivid and nuanced.'
+  notes: "I like mythology, especially like Greek mythology. This book is a novel – I guess a bit dramatised – about the life of the hero Hercules. It was good, very vivid and nuanced."
 
 - title: Ishmael
   author: Daniel Quinn
@@ -308,7 +308,7 @@
   finished: true
   finishedAt: 2021-09-14T00:00:00Z
   location: Florence, Italy
-  notes: 'The book is a lot more psycho than the movie. More explicit than I thought. The unreliable monologues of the narrator are amazingly written, and there are more layers to the book than just the obvious one.'
+  notes: "The book is a lot more psycho than the movie. More explicit than I thought. The unreliable monologues of the narrator are amazingly written, and there are more layers to the book than just the obvious one."
 
 - title: Fight Club
   author: Chuck Palahniuk
@@ -326,36 +326,28 @@
   location: Stockholm, Sweden
   finished: true
   finishedAt: 2021-11-01T00:00:00Z
-  notes: 'An okay account of the history of the band, told by themselves in interview format.'
+  notes: "An okay account of the history of the band, told by themselves in interview format."
 
 - title: Once Upon A Time… In Hollywood
   author: Quentin Tarantino
   location: Stockholm, Sweden
   finished: true
   finishedAt: 2022-04-11T17:40:00Z
-  notes: "It's quite rare that a book is written after a film, and by the film's creator too. I loved this one:
-  it's 100% Quentin Tarantino-ness all way through. He has space to go deeper in the conversations between the
-  characters, whose stories he can give justice too. Like the film, it somehow entertains me without having
-  a real plot."
+  notes: "It's quite rare that a book is written after a film, and by the film's creator too. I loved this one: it's 100% Quentin Tarantino-ness all way through. He has space to go deeper in the conversations between the characters, whose stories he can give justice too. Like the film, it somehow entertains me without having a real plot."
 
 - title: Morgonstjärnan
   author: Karl Ove Knausgård
   location: Fjällnäs, Sweden
   finished: true
   finishedAt: 2022-04-24T20:00:00Z
-  notes: 'I thought Knausgård would be a hard read, but it was not. "Morgonstjärnan" is so lovely. The author
-  has this superb power of making seemingly mundane everyday people and tasks become interesting. His description
-  are rich, and the pace is perfect. I was really captivated and inspired.'
+  notes: 'I thought Knausgård would be a hard read, but it was not. "Morgonstjärnan" is so lovely. The author has this superb power of making seemingly mundane everyday people and tasks become interesting. His description are rich, and the pace is perfect. I was really captivated and inspired.'
 
 - title: Mastering the Art of French Cooking
   author: Julia Child, Simone Beck, Louisette Bertholle
   location: Stockholm, Sweden
   finished: true
   finishedAt: 2022-06-04T21:00:00Z
-  notes: "I bought the Swedish translation as paperback, and read it all in once – back to back. Quite special for
-  a cooking book. The book includes tips and tricks around techniques, equipment, and ingredients. All the traditional
-  French recipies are in here. What I loved about the recipies was that they were both mechanic but yet very much alive.
-  Meaning, the authors' obsession with details, experimentation, and iteration really shined through."
+  notes: "I bought the Swedish translation as paperback, and read it all in once – back to back. Quite special for a cooking book. The book includes tips and tricks around techniques, equipment, and ingredients. All the traditional French recipies are in here. What I loved about the recipies was that they were both mechanic but yet very much alive. Meaning, the authors' obsession with details, experimentation, and iteration really shined through."
 
 - title: Life
   author: Keith Richards
