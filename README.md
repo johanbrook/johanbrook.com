@@ -22,13 +22,13 @@ deno run -A https://deno.land/x/lume/install.ts
 ## Build
 
 ```bash
-lume
+deno task build
 ```
 
 ## Serve
 
 ```bash
-lume --serve
+deno task serve
 ```
 
 ## Scripts
