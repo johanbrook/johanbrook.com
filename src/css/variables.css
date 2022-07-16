@@ -57,7 +57,7 @@
 
 	/* Typography */
 
-	--sans: 'Inter',
+	--sans: 'Inter var',
 	-apple-system,
 	BlinkMacSystemFont,
 	Helvetica,
@@ -73,11 +73,6 @@
 	'Courier New',
 	monospace,
 	serif;
-
-	@supports (font-variation-settings: normal) {
-		--sans: 'Inter var', -apple-system, BlinkMacSystemFont, Helvetica,
-			sans-serif;
-	}
 
 	--font-size-base: 16;
 	--leading: 1.5;
