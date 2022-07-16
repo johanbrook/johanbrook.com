@@ -1,4 +1,4 @@
-import type { Err, Result } from './util';
+import type { Err, Result } from './util.ts';
 
 /** An access token used for authenticating API requests. */
 export interface Token {

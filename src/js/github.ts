@@ -1,7 +1,7 @@
-import { Endpoints } from '../../deps';
-import { config, isLocal } from './config';
-import type { Service } from './service';
-import { type Err, isErr } from './util';
+import { Endpoints } from '../../deps.ts';
+import { config, isLocal } from './config.ts';
+import type { Service } from './service.ts';
+import { type Err, isErr } from './util.ts';
 
 const STORAGE_KEY = 'jb_tok';
 

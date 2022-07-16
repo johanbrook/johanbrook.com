@@ -1,7 +1,7 @@
-import { config, isLocal } from './config';
-import { Args as GitHubArgs, mkGitHub } from './github';
-import type { CreateNoteResult, Service } from './service';
-import { Err, isErr } from './util';
+import { config, isLocal } from './config.ts';
+import { Args as GitHubArgs, mkGitHub } from './github.ts';
+import type { CreateNoteResult, Service } from './service.ts';
+import { Err, isErr } from './util.ts';
 
 const WORKER_URL = isLocal() ? 'http://localhost:3001' : 'https://github-oauth.brookie.workers.dev';
 
