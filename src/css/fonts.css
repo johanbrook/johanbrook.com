@@ -1,15 +1,15 @@
 @import url('https://rsms.me/inter/inter.css');
 
 @font-face {
-	font-family: 'Comic Mono';
+	font-family: 'JetBrains Mono';
 	font-weight: normal;
 	font-display: swap;
-	src: url('/assets/ComicMono.ttf');
+	src: url('/assets/fonts/JetBrainsMono-Regular.woff2');
 }
 
 @font-face {
-	font-family: 'Comic Mono';
+	font-family: 'JetBrains Mono';
 	font-weight: bold;
 	font-display: swap;
-	src: url('/assets/ComicMono-Bold.ttf');
+	src: url('/assets/JetBrainsMono-Bold.woff2');
 }
