@@ -353,8 +353,16 @@
   author: Keith Richards
   location: Stockholm, Sweden
   notes: "The autobiography of Keith Richards (guitarist in Rolling Stones)."
+  finished: true
 
 - title: Vargarna från evighetens skog
   author: Karl Ove Knausgård
   location: Stockholm, Sweden
   notes: 'Prequel to "Morgonstjärnan" below.'
+
+- title: Jack
+  author: Ulf Lundell
+  notes: _The_ generational novel of the Swedish 1970s.
+
+- title: Häng City
+  author: Mikael Yvesand
