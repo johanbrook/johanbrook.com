@@ -76,8 +76,12 @@ body {
 
 main {
 	flex: 1 0 auto;
-	max-width: var(--main-width);
+	max-width: var(--measure);
 	margin-bottom: calc(var(--lineheight) * 3);
+
+	&.wide {
+		max-width: var(--measure-wide);
+	}
 }
 
 .Content {
@@ -272,20 +276,44 @@ figcaption {
 }
 
 table {
+	--spacing: 0.25em;
+
 	text-align: left;
 	width: 100%;
 	border-collapse: collapse;
 	border-spacing: 0;
+
+	&.textual {
+		--spacing: .6em;
+
+		& td {
+			vertical-align: top;
+			border-bottom: 1px solid var(--grey-lightest);
+		}
+
+		& tr>td:first-of-type {
+			font-weight: 500;
+			width: 25%;
+		}
+	}
 }
 
 th {
-	border-bottom: 1px solid var(--grey-light);
-	padding: 0.25em 0;
-	font-weight: 600;
+	border-bottom: 2px solid var(--grey-light);
+	padding: var(--spacing);
+	font-weight: 700;
+	font-size: var(--f5);
 }
 
 td {
-	padding: 0.25em 0;
+	padding: var(--spacing);
+}
+
+th,
+td {
+	&:first-child {
+		padding-left: 0;
+	}
 }
 
 pre {

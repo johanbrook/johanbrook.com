@@ -7,37 +7,42 @@ menu:
   order: 4
 ---
 
-<main role="main">
+<main role="main" class="wide">
   <article class="page">
     <h1 class="title">{{ title }}.</h1>
 
     <p class="mb4">Non-exhaustive list of books I've read and am reading, in reverse chronological order.</p>
 
-    <ol class="list-reset">
+    <table class="textual">
+    	<tr>
+    		<th>Title</th>
+    		<th>Author</th>
+    		<th>Notes</th>
+    		<th title="Status"></th>
+    	</tr>
       {% for book in books | reverse %}
-        <li class="mb4">
-          <h2 class="mb0 no-rhythm f3">{{ book.title }}</h2>
-          <p class="f5 mb0 fw5">{{book.author}}</p>
-
-         {% if book.notes %}
-            <p class="f5 mt1 mb1">{{ book.notes | md(true) | safe }}</p>
-          {% endif %}
- 
-          <p class="f6 mb1 fw6">
-            {% if book.finishedAt %}
-              <span title="Finished in">{{ book.finishedAt | date("MMMM yyyy") }}</span>
-              {% if book.location %} — {% endif %}
-            {% endif %}
-            {% if book.location %}
-              {{ book.location }}
-            {% endif %}
-          </p>
-          {% if not book.finished %}
-              <p class="f6"><span class="bg-comp-neon text-bg b mb0 uppercase tracking rounded-small" style="padding: 3px">In progress</span></p>
-            {% endif %}
-        </li>
+        <tr>
+        	<td>
+				{{ book.title }}
+        	</td>
+        	<td class="f5">
+        		{{ book.author }}
+        	</td>
+        	<td class="f5">
+				{{ book.notes | md(true) | safe }}
+        	</td>
+        	<td class="plain-font-features no-wrap f5 fw6 {% if book.dropped %}muted{% else %}{% if not book.finished%}comp-neon{% endif %}{% endif %}">
+            	{% if book.dropped %}
+              		Dropped
+              	{% else %}
+              		{% if not book.finished %}
+		              	Reading
+	            	{% endif %}
+            	{% endif %}
+        	</td>
+        </tr>
       {% endfor %}
-    </ol>
+    </table>
 
     <p class="mt4">{{ books.length }} books</p>
   </article>

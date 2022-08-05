@@ -106,11 +106,10 @@
 	/* Measures */
 
 	--inset: calc(var(--lineheight) / 2);
-	--main-width: var(--measure);
 
 	--measure: 56ch;
 	--measure-narrow: 45ch;
-	--measure-wide: 65ch;
+	--measure-wide: 100ch;
 
 	--spacing-base: var(--lineheight);
 

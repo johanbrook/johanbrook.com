@@ -121,6 +121,23 @@ PROSE
 }
 
 /*
+OPEN TYPE
+----------------------------------------------------------------*/
+
+.plain-font-features {
+	font-feature-settings:
+		/* Contextual alternates */
+		'calt' 1, 'kern' 1,
+		'liga' 1,
+		/* Open digis */
+		'ss01' 1,
+		/* Curved 'r' */
+		'ss03' 1,
+		/* Disambiguation */
+		'ss04' 0, 'frac' 1;
+}
+
+/*
 FONT STYLES
 ----------------------------------------------------------------*/
 
@@ -887,6 +904,10 @@ COLOURS
 	background-color: var(--neon);
 }
 
+.bg-yellow {
+	background-color: var(--yellow);
+}
+
 .muted {
 	color: var(--color-text-detail);
 }
@@ -964,6 +985,10 @@ TYPOGRAPHY
 	color: var(--color-text-detail);
 	display: inline-block;
 	margin: 0 0.5em;
+}
+
+.no-wrap {
+	white-space: nowrap;
 }
 
 .checkbox-fix {
