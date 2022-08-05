@@ -20,7 +20,7 @@ menu:
           <p class="f5 mb0 fw5">{{book.author}}</p>
 
          {% if book.notes %}
-            <p class="f5 mt1 mb1">{{ book.notes }}</p>
+            <p class="f5 mt1 mb1">{{ book.notes | md(true) | safe }}</p>
           {% endif %}
  
           <p class="f6 mb1 fw6">
