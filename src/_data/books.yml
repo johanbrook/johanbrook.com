@@ -392,15 +392,6 @@
   notes: "The autobiography of Keith Richards (guitarist in Rolling Stones)."
   finished: true
 
-- title: Vargarna från evighetens skog
-  author: Karl Ove Knausgård
-  location: Stockholm, Sweden
-  notes: 'Prequel to "Morgonstjärnan" below.'
-
-- title: Jack
-  author: Ulf Lundell
-  notes: _The_ generational novel of the Swedish 1970s.
-
 - title: Häng City
   author: Mikael Yvesand
   finished: true
@@ -410,3 +401,12 @@
       is so very relatable, and so are the pop culture references. Even though "nothing" really happens, the book does
       describe (quite accurately) feelings, energies, places, activities, and personal traits of people from the eyes
       of a teenage boy.
+
+- title: Jack
+  author: Ulf Lundell
+  notes: _The_ generational novel of the Swedish 1970s.
+
+- title: Vargarna från evighetens skog
+  author: Karl Ove Knausgård
+  location: Stockholm, Sweden
+  notes: 'Prequel to "Morgonstjärnan" below.'
