@@ -405,9 +405,24 @@
 
 - title: Jack
   author: Ulf Lundell
-  notes: _The_ generational novel of the Swedish 1970s.
+  notes: >-
+    _The_ generational novel of the Swedish 1970s. Dropped it because it didn't really speak to me. I understand
+    it must've been cool in the 70s, but not so now.
+  dropped: true
 
 - title: Vargarna från evighetens skog
   author: Karl Ove Knausgård
   location: Stockholm, Sweden
   notes: 'Prequel to "Morgonstjärnan" below.'
+
+- title: Att Uppfinna Världen ("Inventing the World")
+  author: Katrine Marçal
+  location: Stockholm, Sweden
+  notes: >-
+    Historical account about how women have been pushed aside over the years when it comes to inventions and
+    innovation.
+
+- title: Four Thousand Weeks
+  author: Oliver Burkeman
+  location: Stockholm, Sweden
+

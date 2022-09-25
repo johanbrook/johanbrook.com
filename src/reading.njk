@@ -2,6 +2,7 @@
 title: Reading
 layout: layouts/main.njk
 description: Books I've read.
+updated: 2022-09-25
 menu:
   visible: true
   order: 4
@@ -11,7 +12,9 @@ menu:
   <article class="page">
     <h1 class="title">{{ title }}.</h1>
 
-    <p class="mb4">Non-exhaustive list of books I've read and am reading, in reverse chronological order.</p>
+    <p class="mb4 measure">
+    	Non-exhaustive list of books I've read and am reading, in reverse chronological order. Updated on {{ updated | date("EEEE, LLLL do yyyy") }}.
+	</p>
 
     <table class="textual">
     	<tr>
