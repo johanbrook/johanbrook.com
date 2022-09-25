@@ -56,14 +56,14 @@ body {
 	font-kerning: normal;
 	font-feature-settings:
 		/* Contextual alternates */
-		'calt' 1, 'kern' 1,
+		'calt' 1,
+		'kern' 1,
 		'liga' 1,
 		/* Open digis */
 		'ss01' 1,
 		/* Curved 'r' */
 		'ss03' 1,
-		/* Disambiguation */
-		'ss04' 1, 'frac' 1;
+		'frac' 1;
 	font-variant-ligatures: contextual common-ligatures;
 	scroll-behavior: smooth;
 	-webkit-font-smoothing: antialiased;
