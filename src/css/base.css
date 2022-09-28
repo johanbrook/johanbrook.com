@@ -74,6 +74,12 @@ body {
 	}
 }
 
+@media screen and (min-width: 55rem) {
+	html:not(.home) body {
+		padding-top: calc(var(--lineheight) * 2);
+	}
+}
+
 main {
 	flex: 1 0 auto;
 	max-width: var(--measure);
