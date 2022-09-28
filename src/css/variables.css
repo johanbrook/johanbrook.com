@@ -92,7 +92,7 @@
 	--font-size-subheadline: 5rem;
 
 	--f0: calc((68 / var(--font-size-base)) * 1rem);
-	--f1: calc((28 / var(--font-size-base)) * 1rem);
+	--f1: calc((26 / var(--font-size-base)) * 1rem);
 	--f2: calc((24 / var(--font-size-base)) * 1rem);
 	--f3: calc((20 / var(--font-size-base)) * 1rem);
 	--f4: calc((16 / var(--font-size-base)) * 1rem);

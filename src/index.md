@@ -4,8 +4,6 @@ layout: layouts/home.njk
 templateEngine: njk,md
 ---
 
-### Greetings
-
 I’m coding & designering and I like working with product, user experience, and interface design and
 other things too. Like everybody else here.
 
