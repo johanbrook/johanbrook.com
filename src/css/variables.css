@@ -15,7 +15,6 @@
 	--link-color: hsl(213 100% 40.75%);
 	--link-color-hover: hsl(213 100% 37%);
 	--link-color-visited: hsl(266 100% 44%);
-	--link-shadow: hsl(213 100% 40.75% / 0.2);
 	--border-color: hsl(0 0% 91%);
 
 	--btn-color: hsl(213 100% 50%);
@@ -33,7 +32,6 @@
 		--link-color: color(display-p3 0 0.374 0.82);
 		--link-color-hover: color(display-p3 0 0.252 0.55);
 		--link-color-visited: color(display-p3 0.431 0.053 0.965);
-		--link-shadow: color(display-p3 0.43 0.688 1 / 0.2);
 	}
 
 	@media screen and (prefers-color-scheme: dark) {
