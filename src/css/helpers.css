@@ -12,6 +12,7 @@ BUTTONS
 	appearance: none;
 	border: 0;
 	background: none;
+	text-decoration: none;
 	color: var(--link-color);
 	text-align: center;
 	text-transform: lowercase;
@@ -953,6 +954,14 @@ TYPOGRAPHY
 
 .rounded-small {
 	border-radius: .25em;
+}
+
+.no-underline {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 .badge {

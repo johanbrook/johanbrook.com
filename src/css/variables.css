@@ -12,9 +12,10 @@
 	--color-text: hsl(0 0% 13%);
 	--color-text-detail: var(--grey);
 
-	--link-color: hsl(213 100% 40.75%);
-	--link-color-hover: hsl(213 100% 37%);
+	--link-color: hsl(201.43, 100%, 37.25%);
+	--link-color-hover: hsl(201.43, 100%, 25.25%);
 	--link-color-visited: hsl(266 100% 44%);
+	--link-underline-color: hsl(201.43 43.1% 56.06% / 0.47);
 	--border-color: hsl(0 0% 91%);
 
 	--btn-color: hsl(213 100% 50%);
@@ -29,8 +30,8 @@
 	--hr-color: var(--grey-lightest);
 
 	@supports (color: color(display-p3 1 1 1 / 1)) {
-		--link-color: color(display-p3 0 0.374 0.82);
-		--link-color-hover: color(display-p3 0 0.252 0.55);
+		--link-color: color(display-p3 0 0.425 0.73);
+		--link-color-hover: color(display-p3 0.01 0.295 0.495);
 		--link-color-visited: color(display-p3 0.431 0.053 0.965);
 	}
 
@@ -41,15 +42,16 @@
 		--color-bg: #1a1a1a;
 		--color-bg-secondary: hsl(240 3.36% 14.51%);
 		--color-text: #e1e1e1;
-		--link-color: #6cafff;
-		--link-color-hover: #aed4ff;
+		--link-color: hsl(201.43 94.7% 62.23%);
+		--link-color-hover: hsl(201.43, 93.43%, 69.58%);
+		--link-underline-color: hsl(201.43 57.86% 50.17% / 0.47);
 		--link-color-visited: #7a8be5;
 		--border-color: #444;
 		--code-color: hsl(112 80% 80%);
 
 		@supports (color: color(display-p3 1 1 1 / 1)) {
-			--link-color: color(display-p3 0.43 0.688 1);
-			--link-color-hover: color(display-p3 0.6824 0.8314 1 / 1);
+			--link-color: color(display-p3 0.38 0.742 1);
+			--link-color-hover: color(display-p3 0.577 0.82 0.995);
 		}
 	}
 

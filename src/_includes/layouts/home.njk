@@ -27,7 +27,7 @@ bare: true
         {% for note in search.pages("type=note", "date=desc", 1) %}
           <li>
             <h2 class="f6 fw4 no-rhythm">
-              <a href="{{ note.data.permalink() | url }}" class="muted">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
+              <a href="{{ note.data.permalink() | url }}" class="muted no-underline">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
             </h2>
             <div class="prose">
               {{ note.data.content | excerpt | md | safe }}

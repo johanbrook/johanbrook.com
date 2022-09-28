@@ -233,12 +233,14 @@ ul {
 
 a {
 	color: var(--link-color);
-	text-decoration: none;
 	position: relative;
+	font-weight: 460;
+	text-decoration-color: var(--link-underline-color);
+	text-decoration: underline;
 
 	&:hover {
 		color: var(--link-color-hover);
-		text-decoration: underline;
+		text-decoration-color: currentColor;
 	}
 
 	&:active {

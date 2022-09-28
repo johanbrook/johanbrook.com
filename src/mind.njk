@@ -21,7 +21,7 @@ menu:
 
           <header class="mt3 tr">
             <h1 class="f5 fw5 no-rhythm mb0">
-              <a href="#{{ post.data.date | date("NUMERIC") }}" title="Permalink">{{ post.data.date | date("PPP — HH:mm") | lower }} <span class="target">#</span></a>
+              <a href="#{{ post.data.date | date("NUMERIC") }}" title="Permalink" class="no-underline">{{ post.data.date | date("PPP — HH:mm") | lower }} <span class="target">#</span></a>
             </h1>
             {% if post.data.location %}<p class="muted mb0 f6">from {{ post.data.location | lower }}</p>{% endif %}
           </header>
