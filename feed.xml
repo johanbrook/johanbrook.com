@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Writings of Johan Brook</title>
   <subtitle>I&#39;m a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I&#39;m coding &amp; designering and I like working with product, user experience, interface design, and other things too.</subtitle>
-  <link href="https://johan.im/feed.xml" rel="self"/>
-  <link href="https://johan.im/writings"/>
+  <link href="http://localhost/feed.xml" rel="self"/>
+  <link href="http://localhost/writings"/>
   
   <updated>2022-02-23T00:00:00Z</updated>
-  <id>https://johan.im/writings</id>
+  <id>http://localhost/writings</id>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johan.im</email>
@@ -14,9 +14,9 @@
   
   <entry>
     <title>My favourite software</title>
-    <link href="https://johan.im/writings/my-favourite-software/" />
+    <link href="http://localhost/writings/my-favourite-software/" />
     <updated>2022-02-23T00:00:00Z</updated>
-    <id>https://johan.im/writings/my-favourite-software/</id>
+    <id>http://localhost/writings/my-favourite-software/</id>
     <content type="html">&lt;h2&gt;1. Typescript&lt;/h2&gt;
 &lt;p&gt;I started programming in Java and PHP. Those two worlds were vastly different. PHP stood for
 freedom, fun, and anything-is-possible. Java was rigid, hard, and verbose – much because of the need
@@ -89,11 +89,11 @@ literally how Twitter used to be.&lt;/p&gt;</content>
   
   <entry>
     <title>Setting up Sublime Text for Deno</title>
-    <link href="https://johan.im/writings/sublime-text-deno/" />
+    <link href="http://localhost/writings/sublime-text-deno/" />
     <updated>2022-02-16T00:00:00Z</updated>
-    <id>https://johan.im/writings/sublime-text-deno/</id>
+    <id>http://localhost/writings/sublime-text-deno/</id>
     <content type="html">&lt;p&gt;I&#39;ve recently switched back to Sublime Text as main editor, as described in a recent
-&lt;a href=&quot;https://johan.im/mind/#202202080950&quot;&gt;/mind post&lt;/a&gt;. As a test to get a feel for the ecosystem, I&#39;ve set out on a
+&lt;a href=&quot;http://localhost/mind/#202202080950&quot;&gt;/mind post&lt;/a&gt;. As a test to get a feel for the ecosystem, I&#39;ve set out on a
 journey to make it more ergonomic to develop &lt;a href=&quot;https://deno.land/&quot;&gt;Deno&lt;/a&gt; code. &amp;quot;Ergonomic&amp;quot; as in
 &amp;quot;actually use Typescript features and not show any red compile errors for Deno specific code&amp;quot;. Also,
 I want to try to have Sublime support
@@ -289,14 +289,14 @@ linked from Deno&#39;s
 redirects:
 &lt;a href=&quot;https://deno.land/x/deno/cli/schemas/config-file.v1.json&quot;&gt;https://deno.land/x/deno/cli/schemas/config-file.v1.json&lt;/a&gt;.&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;That&#39;s it! &lt;a href=&quot;https://johan.im/contact&quot;&gt;Let me know&lt;/a&gt; if you&#39;ve got more tricks for working with Deno in Sublime.&lt;/p&gt;</content>
+&lt;p&gt;That&#39;s it! &lt;a href=&quot;http://localhost/contact&quot;&gt;Let me know&lt;/a&gt; if you&#39;ve got more tricks for working with Deno in Sublime.&lt;/p&gt;</content>
   </entry>
   
   <entry>
     <title>A whole new world with Deno</title>
-    <link href="https://johan.im/writings/deno/" />
+    <link href="http://localhost/writings/deno/" />
     <updated>2022-01-19T00:00:00Z</updated>
-    <id>https://johan.im/writings/deno/</id>
+    <id>http://localhost/writings/deno/</id>
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://deno.land/&quot;&gt;Deno&lt;/a&gt; is a new &lt;em&gt;runtime&lt;/em&gt; for Javascript. Before, NodeJS used to be the most
 popular way to run Javascript on the server. But no more! Deno has reached stable state (it&#39;s on
 version 1.17 at the time of writing). It runs Typescript natively, supports ES imports (why did I
@@ -468,9 +468,9 @@ properties to read.&lt;/p&gt;
   
   <entry>
     <title>Customising an iOS home screen web app in 2021</title>
-    <link href="https://johan.im/writings/ios-homescreen-web-app/" />
+    <link href="http://localhost/writings/ios-homescreen-web-app/" />
     <updated>2021-12-14T00:00:00Z</updated>
-    <id>https://johan.im/writings/ios-homescreen-web-app/</id>
+    <id>http://localhost/writings/ios-homescreen-web-app/</id>
     <content type="html">&lt;h2&gt;Background&lt;/h2&gt;
 &lt;p&gt;During parental leave, I&#39;ve started to run. Not away from the baby, for heaven&#39;s sakes, but regular
 exercise running. I really prioritised keeping it super straight-forward: I refuse wear any kind of
@@ -842,11 +842,11 @@ place. Argh.&lt;/p&gt;
   
   <entry>
     <title>An Even Better Spaghetti Bolognese</title>
-    <link href="https://johan.im/writings/better-spaghetti-bolognese/" />
+    <link href="http://localhost/writings/better-spaghetti-bolognese/" />
     <updated>2021-11-02T00:00:00Z</updated>
-    <id>https://johan.im/writings/better-spaghetti-bolognese/</id>
+    <id>http://localhost/writings/better-spaghetti-bolognese/</id>
     <content type="html">&lt;p&gt;This is a continuation (sequel? remix?) on the post
-&lt;a href=&quot;https://johan.im/writings/my-spaghetti-bolognese&quot;&gt;&amp;quot;My Spaghetti Bolognese&amp;quot;&lt;/a&gt;. In that one, I wrote about a spaghetti
+&lt;a href=&quot;http://localhost/writings/my-spaghetti-bolognese&quot;&gt;&amp;quot;My Spaghetti Bolognese&amp;quot;&lt;/a&gt;. In that one, I wrote about a spaghetti
 bolognese recipe which I thought I&#39;d, pretentious as I am, perfected over the years.&lt;/p&gt;
 &lt;p&gt;We recently spent a month in Florence, Italy, where we stayed with a host family. For one birthday
 party for their grandchild, the family father had made a ragú sauce served with penne pasta. The
@@ -906,11 +906,11 @@ other recipe has ten steps, this one only has six steps.&lt;/p&gt;</content>
   
   <entry>
     <title>Recently in books II</title>
-    <link href="https://johan.im/writings/recently-in-books-ii/" />
+    <link href="http://localhost/writings/recently-in-books-ii/" />
     <updated>2020-12-31T00:00:00Z</updated>
-    <id>https://johan.im/writings/recently-in-books-ii/</id>
+    <id>http://localhost/writings/recently-in-books-ii/</id>
     <content type="html">&lt;p&gt;This is a long overdue post on some books I&#39;ve read since the
-&lt;a href=&quot;https://johan.im/writings/recently-in-books&quot;&gt;last update&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&quot;http://localhost/writings/recently-in-books&quot;&gt;last update&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;&amp;quot;Ishmael&amp;quot; by Daniel Quinn&lt;/h2&gt;
 &lt;p&gt;My father in law borrowed me this one, not without a glimpse in his eye. It&#39;s hard to describe this
 novel. It&#39;s not what it seems to be in the first few pages, which is about a man who starts talking
@@ -1031,9 +1031,9 @@ from June, 2020.)&lt;/p&gt;</content>
   
   <entry>
     <title>Building a small, functional reactive app architecture</title>
-    <link href="https://johan.im/writings/frp-app-arch/" />
+    <link href="http://localhost/writings/frp-app-arch/" />
     <updated>2020-05-01T00:00:00Z</updated>
-    <id>https://johan.im/writings/frp-app-arch/</id>
+    <id>http://localhost/writings/frp-app-arch/</id>
     <content type="html">&lt;p&gt;At &lt;a href=&quot;https://lookback.io/&quot;&gt;Lookback&lt;/a&gt;, we&#39;ve fallen in love with functional reactive programming (FRP)
 with streams in our frontend apps. Together with the use of Typescript for compile time type safety,
 we&#39;ve seen a tremendous bump in overall stability and fewer runtime bugs. Actually, I dare to say
@@ -1420,7 +1420,7 @@ element the user interacted with. We need two things in these messages:&lt;/p&gt
 which is a stream of &lt;em&gt;all&lt;/em&gt; different kinds of messages – user input – coming from the view.&lt;/p&gt;
 &lt;p&gt;I imagine this flow being something like this:&lt;/p&gt;
 &lt;figure id=&quot;view-model&quot;&gt;
-  &lt;img width=&quot;413&quot; alt=&quot;Messages flow&quot; src=&quot;https://johan.im/{{ &#39;frap-messages.png&#39; | postAssetUrl }}&quot; /&gt;
+  &lt;img width=&quot;413&quot; alt=&quot;Messages flow&quot; src=&quot;http://localhost/{{ &#39;frap-messages.png&#39; | postAssetUrl }}&quot; /&gt;
   &lt;figcaption&gt;Simplified flow diagram.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;How does a message look like then? Perhaps like this:&lt;/p&gt;
@@ -1689,7 +1689,7 @@ since we stole the concept of Drivers from there. There are many good examples t
 &lt;em&gt;Sinks&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;The flow diagram thus becomes:&lt;/p&gt;
 &lt;figure id=&quot;view-model&quot;&gt;
-  &lt;img width=&quot;624&quot; alt=&quot;Driver flow&quot; src=&quot;https://johan.im/{{ &#39;frap-driver-flow.png&#39; | postAssetUrl }}&quot; /&gt;
+  &lt;img width=&quot;624&quot; alt=&quot;Driver flow&quot; src=&quot;http://localhost/{{ &#39;frap-driver-flow.png&#39; | postAssetUrl }}&quot; /&gt;
   &lt;figcaption&gt;App architecture with drivers and view.&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Let&#39;s nail down our Sources and Sinks here.&lt;/p&gt;
@@ -1879,9 +1879,9 @@ Thanks for popularising the ideas of cyclical data flows!&lt;/p&gt;
   
   <entry>
     <title>Recent improvements in our git discipline</title>
-    <link href="https://johan.im/writings/git-guidelines/" />
+    <link href="http://localhost/writings/git-guidelines/" />
     <updated>2020-02-23T00:00:00Z</updated>
-    <id>https://johan.im/writings/git-guidelines/</id>
+    <id>http://localhost/writings/git-guidelines/</id>
     <content type="html">&lt;p&gt;The git history of a repository a few years in or with more than one collaborator will look like
 thick weed unless you take care of it. During last Autumn in &lt;a href=&quot;http://lookback.io/&quot;&gt;Lookback&lt;/a&gt;, the
 engineering team noticed that we needed to take care of some weeds.&lt;/p&gt;
@@ -2062,9 +2062,9 @@ colleagues&#39; minds, and also in their personal development to become better p
   
   <entry>
     <title>Recently in books</title>
-    <link href="https://johan.im/writings/recently-in-books/" />
+    <link href="http://localhost/writings/recently-in-books/" />
     <updated>2020-02-01T00:00:00Z</updated>
-    <id>https://johan.im/writings/recently-in-books/</id>
+    <id>http://localhost/writings/recently-in-books/</id>
     <content type="html">&lt;p&gt;The year started off with three weeks in Sri Lanka, where I naturally didn&#39;t bring my laptop. I also
 only had phone internet while on wi-fi (didn&#39;t buy a data plan), which was lovely. This, combined
 with early evenings, led me to read much more than during whole 2019.&lt;/p&gt;
@@ -2153,9 +2153,9 @@ For me, I felt once more that human beings are so damned interesting.&lt;/p&gt;<
   
   <entry>
     <title>Like Knitting</title>
-    <link href="https://johan.im/writings/coding-like-knitting/" />
+    <link href="http://localhost/writings/coding-like-knitting/" />
     <updated>2019-12-08T00:00:00Z</updated>
-    <id>https://johan.im/writings/coding-like-knitting/</id>
+    <id>http://localhost/writings/coding-like-knitting/</id>
     <content type="html">&lt;p&gt;A colleague mentioned this the other day in the company chat:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;I like coding. It&#39;s like knitting.&lt;/p&gt;

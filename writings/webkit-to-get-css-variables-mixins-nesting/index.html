@@ -1,155 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" class=" writingswebkit-to-get-css-variables-mixins-nesting"><head itemtype="http://schema.org/Blog" itemscope="">
-    <title>webkit to get css variables, mixins, nesting? – johan brook</title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter/Inter-italic.var.woff2">
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter/Inter-roman.var.woff2">
-    
-    <link rel="preconnect" href="https://gc.zgo.at">
-    <link rel="preconnect" href="https://johanbrook.goatcounter.com">
-
-    
-    <meta name="description" content="I'm a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
-    
-    
-    <meta name="keywords" content="CSS,Less,mixins,nested rules,Sass,variables,Webkit">
-    
-    <meta name="author" content="Johan Brook">
-
-    <!-- Styles-->
-    <link rel="stylesheet" href="/johan.css">
-
-    <!-- RSS -->
-    <link rel="alternate" type="application/rss+xml" title="Posts feed" href="/feed.xml">
-    <link rel="alternate" type="application/rss+xml" title="Mind feed" href="/mind.xml">
-
-    <link rel="shortcut icon" href="/favicon.png" type="image/png">
-    <link rel="canonical" itemprop="url" href="https://johan.im/writings/webkit-to-get-css-variables-mixins-nesting/">
-    <link rel="author" href="https://johan.im">
-
-    <meta property="og:title" content="Webkit to get CSS variables, mixins, nesting?">
-    <meta property="og:url" content="https://johan.im/writings/webkit-to-get-css-variables-mixins-nesting/">
-    <meta property="og:site_name" itemprop="name" content="Johan Brook">
-    <meta property="og:type" content="blog">
-    <meta property="og:image" content="https://johan.im/assets/images/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="1200">
-    
-
-    
-    <meta property="article:tag" content="CSS,Less,mixins,nested rules,Sass,variables,Webkit">
-    <meta property="article:published_time" content="2011-01-17T00:00:00Z">
-    
-  </head>
-
-  <body>
-
-    <div class="Content">
-      
-        <nav role="navigation" class="SideNav">
-  <div class="SideNav__inner">
-    <h1 class="f3 no-rhythm">
-      <a href="/">Johan Brook</a>
-    </h1>
-
-    <div>
-      <label class="SideNav__toggle btn" for="mobile-nav-trigger">
-        Menu
-      </label>
-    </div>
-  </div>
-
-  <input type="checkbox" id="mobile-nav-trigger">
-
-  <ul>
-      <li>
-        <a href="/writings/">Writings</a>
-      </li>
-      <li>
-        <a href="/now/">Now</a>
-      </li>
-      <li>
-        <a href="/mind/">On my mind</a>
-      </li>
-      <li>
-        <a href="/reading/">Reading</a>
-      </li>
-      <li>
-        <a href="/about/">About me</a>
-      </li>
-      <li>
-        <a href="/contact/">Contact</a>
-      </li>
-  </ul>
-</nav>
-
-      
-
-      <main role="main">
-  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-    <header> 
-      <h1 itemprop="name" class="fw6 pt3">Webkit to get CSS variables, mixins, nesting?</h1>
-
-      <p class="mb0 fw5 mt3">
-          <time datetime="2011-01-17T00:00:00Z" itemprop="datePublished" pubdate="">
-            January 17th, 2011
-          </time>
-          
-          
-      </p>
-
-      <p class="muted mb4">
-          About 3 min reading time
-      </p>
-    </header>
-
-    <div class="prose measure" itemprop="articleBody">
-      
-        <p class="f3 mb4 no-rhythm">
-          <a class="btn" title="http://www.xanthir.com/talks/2011-01-12/slides.html" href="http://www.xanthir.com/talks/2011-01-12/slides.html">Follow link to xanthir.com →</a>
-        </p>
-      
-      <p><a href="http://twitter.com/tabatkins">Tab Atkins</a> of Google has made a couple of slides (navigate with the
-arrow keys) explaining a couple of possible upcoming features to Webkit: CSS variables, mixin blocks
-and selector nesting. That's pretty huge, given that people have been screaming for those features
-for years and years. Hell, a couple of smart guys even wrote scripts to compile (yeah, <em>compile</em>)
-their own form of CSS syntax to regular CSS ( <a href="http://sass-lang.com">Sass</a> and
-<a href="http://lesscss.org/">Less</a>).</p>
-<p>According to Atkins' slides the features are very experimental, and we probably won't see them until
-the end of the year. I'm gonna talk about the three most sought after features: variables, mixins
-and nesting.</p>
-<p><em>This article is also translated to <a href="http://science.webhostinggeeks.com/desing-css">Serbo-Croatian</a>
-language by Anja Skrba from <a href="http://webhostinggeeks.com/">Webhostinggeeks.com</a></em></p>
-<h2>Variables</h2>
-<p>The syntax of CSS variables brought up in the presentation is as follows:</p>
-<pre><code>@var header-color color #006;
+<!doctype html><html class=writingswebkit-to-get-css-variables-mixins-nesting lang=en><head itemscope itemtype=http://schema.org/Blog><title>webkit to get css variables, mixins, nesting? – johan brook</title><meta charset=utf-8><meta content="width=device-width,initial-scale=1"name=viewport><link as=font crossorigin=anonymous href=/assets/fonts/inter/Inter-italic.var.woff2 rel=preload type=font/woff2><link as=font crossorigin=anonymous href=/assets/fonts/inter/Inter-roman.var.woff2 rel=preload type=font/woff2><link href=https://gc.zgo.at rel=preconnect><link href=https://johanbrook.goatcounter.com rel=preconnect><meta content="I'm a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding & designering and I like working with product, user experience, interface design, and other things too."name=description><meta content="CSS,Less,mixins,nested rules,Sass,variables,Webkit"name=keywords><meta content="Johan Brook"name=author><link href=/johan.css rel=stylesheet><link title="Posts feed"href=/feed.xml rel=alternate type=application/rss+xml><link title="Mind feed"href=/mind.xml rel=alternate type=application/rss+xml><link rel="shortcut icon"href=/favicon.png type=image/png><link href=http://localhost/writings/webkit-to-get-css-variables-mixins-nesting/ itemprop=url rel=canonical><link href=https://johan.im rel=author><meta content="Webkit to get CSS variables, mixins, nesting?"property=og:title><meta content=http://localhost/writings/webkit-to-get-css-variables-mixins-nesting/ property=og:url><meta content="Johan Brook"itemprop=name property=og:site_name><meta content=blog property=og:type><meta content=http://localhost/assets/images/og-image.png property=og:image><meta content=1200 property=og:image:width><meta content=1200 property=og:image:height><meta content="CSS,Less,mixins,nested rules,Sass,variables,Webkit"property=article:tag><meta content=2011-01-17T00:00:00Z property=article:published_time><body><div class=Content><nav class=SideNav role=navigation><div class=SideNav__inner><h1 class="f3 no-rhythm"><a href=/>Johan Brook</a></h1><div><label class="SideNav__toggle btn"for=mobile-nav-trigger>Menu</label></div></div><input id=mobile-nav-trigger type=checkbox><ul><li><a href=/writings/>Writings</a><li><a href=/mind/>On my mind</a><li><a href=/now/>Now</a><li><a href=/reading/>Reading</a><li><a href=/about/>About me</a><li><a href=/contact/>Contact</a></ul></nav><main role=main><article class=Post itemscope itemtype=http://schema.org/BlogPosting role=article><header><h1 class="fw6 pt3"itemprop=name>Webkit to get CSS variables, mixins, nesting?</h1><p class="mb0 fw5 mt3"><time datetime=2011-01-17T00:00:00Z itemprop=datePublished pubdate> January 17th, 2011 </time><p class="muted mb4">About 3 min reading time</header><div class="prose measure"itemprop=articleBody><p class="f3 mb4 no-rhythm"><a class=btn href=http://www.xanthir.com/talks/2011-01-12/slides.html title=http://www.xanthir.com/talks/2011-01-12/slides.html>Follow link to xanthir.com →</a><p><a href=http://twitter.com/tabatkins>Tab Atkins</a> of Google has made a couple of slides (navigate with the arrow keys) explaining a couple of possible upcoming features to Webkit: CSS variables, mixin blocks and selector nesting. That's pretty huge, given that people have been screaming for those features for years and years. Hell, a couple of smart guys even wrote scripts to compile (yeah, <em>compile</em>) their own form of CSS syntax to regular CSS ( <a href=http://sass-lang.com>Sass</a> and <a href=http://lesscss.org/>Less</a>).<p>According to Atkins' slides the features are very experimental, and we probably won't see them until the end of the year. I'm gonna talk about the three most sought after features: variables, mixins and nesting.<p><em>This article is also translated to <a href=http://science.webhostinggeeks.com/desing-css>Serbo-Croatian</a> language by Anja Skrba from <a href=http://webhostinggeeks.com/>Webhostinggeeks.com</a></em><h2>Variables</h2><p>The syntax of CSS variables brought up in the presentation is as follows:<pre><code>@var header-color color #006;
 @var main-color color #06c;
 @var secondary-color color #c06;
 
 a { color: var(main-color); }
-</code></pre>
-<p>The corresponding Sass syntax would be:</p>
-<pre><code>$header-color: #006;
+</code></pre><p>The corresponding Sass syntax would be:<pre><code>$header-color: #006;
 $main-color: #06c;
 $secondary-color: #c06;
 
 a { color: $main-color; }
-</code></pre>
-<p>You declare with the keyword <code>@var</code> , then the name and last the value. You insert the variable by
-writing <code>var(var-name)</code> . Pretty straight-forward, but personally I find the syntax a bit awkward.
-Why the need for the <code>@var</code> keyword? Why not just <code>@var-name</code> ? Why no colon between the variable
-name and the value? And why the tedious <code>var(variable-name)</code> construction?</p>
-<p>Variables are great. I use them every day in Sass, but I'd be happy to see a less clunky syntax.</p>
-<h2>Mixins</h2>
-<p>Mixins are blocks of code you may include anywhere in the document. It's great for code reuse, and
-to get away from non-semantic classes in your HTML code. A prime example is the clearfix method:
-instead of applying a <code>clearfix</code> class to an HTML element, just write (in Sass) <code>@include clearfix;</code>
-in the stylesheet for that element. Nice and clean.</p>
-<p>In the proposed CSS syntax you declare mixins by writing:</p>
-<pre><code>@mixin error {
+</code></pre><p>You declare with the keyword <code>@var</code> , then the name and last the value. You insert the variable by writing <code>var(var-name)</code> . Pretty straight-forward, but personally I find the syntax a bit awkward. Why the need for the <code>@var</code> keyword? Why not just <code>@var-name</code> ? Why no colon between the variable name and the value? And why the tedious <code>var(variable-name)</code> construction?<p>Variables are great. I use them every day in Sass, but I'd be happy to see a less clunky syntax.<h2>Mixins</h2><p>Mixins are blocks of code you may include anywhere in the document. It's great for code reuse, and to get away from non-semantic classes in your HTML code. A prime example is the clearfix method: instead of applying a <code>clearfix</code> class to an HTML element, just write (in Sass) <code>@include clearfix;</code> in the stylesheet for that element. Nice and clean.<p>In the proposed CSS syntax you declare mixins by writing:<pre><code>@mixin error {
    background: #fdd;
    color: red;
    font-weight: bold;
@@ -160,34 +19,23 @@ div.error {
    padding: .5em;
    @mixin error;
 }
-</code></pre>
-<p>It's a really slick way to reuse code. Growing sick of writing
-<a href="http://jnbrk.se/fp7c68">long, messy CSS3 gradient code?</a> Just define a mixin with some parameters
-and include it where appropriate. This syntax is alright, though I find the parameter declaration a
-bit weird.</p>
-<h2>Nesting</h2>
-<p>When writing regular CSS you can't nest selectors. That is, you can't step down in the DOM hierarchy
-without having to write all the parent selectors again, like this:</p>
-<pre><code>#main &gt; header &gt; h1{
+</code></pre><p>It's a really slick way to reuse code. Growing sick of writing <a href=http://jnbrk.se/fp7c68>long, messy CSS3 gradient code?</a> Just define a mixin with some parameters and include it where appropriate. This syntax is alright, though I find the parameter declaration a bit weird.<h2>Nesting</h2><p>When writing regular CSS you can't nest selectors. That is, you can't step down in the DOM hierarchy without having to write all the parent selectors again, like this:<pre><code>#main > header > h1{
    font-size: 2em;
    background: blue;
    color: white;
 }
-#main &gt; header &gt; h1 &gt; a{
+#main > header > h1 > a{
    color: #ddf;
 }
-#main &gt; header &gt; h1 &gt; a:visited{
+#main > header > h1 > a:visited{
    color: #fdf;
 }
-</code></pre>
-<p>I hate this kind of writing. It feels so unnecessary and unintuitive. Atkins has proposed this
-syntax:</p>
-<pre><code>#main &gt; header &gt; h1 {
+</code></pre><p>I hate this kind of writing. It feels so unnecessary and unintuitive. Atkins has proposed this syntax:<pre><code>#main > header > h1 {
   font-size: 2em;
   background: blue;
   color: white;
 
-  @this &gt; a {
+  @this > a {
     color: #ddf;
 
     @this:visited {
@@ -195,72 +43,4 @@ syntax:</p>
     }
   }
 }
-</code></pre>
-<p>This feels more natural and flexible. Changing the id attribute of the header? No problem, just
-change at one place in the code. The syntax in Sass and Less isn't too far away from this one
-either.</p>
-<h2>Outro</h2>
-<p>I've been using Sass since last summer, and I always make use of it for every project by now. Since
-you compile to regular CSS, there are no compability issues whatsoever. The question is: if these
-fancy features would make into Safari and Chrome sometime in the future, how would we handle the
-stylesheets for Firefox, Internet Explorer and Opera? Separate ones? Nope, I wouldn't think so. It
-has to be a standard to work out, and we all know that the working groups are slooow to decide
-things.</p>
-<p>For now Sass works great for me, but I think it's time to make a serious attempt to push the
-features "into the broad mass". To see some cleaner stylesheets out on the interwebz would be a
-godsend gift.</p>
-
-    </div>
-
-    <footer>
-      
-        <p class="f5 comp-grey mt5">
-          <b class="mr1">Keywords</b> <span class="Post-Keyword">CSS</span><span class="Post-Keyword">Less</span><span class="Post-Keyword">mixins</span><span class="Post-Keyword">nested rules</span><span class="Post-Keyword">Sass</span><span class="Post-Keyword">variables</span><span class="Post-Keyword">Webkit</span>
-        </p>
-      
-
-      <p class="mt3">
-        <a href="/writings" class="btn">&lt;- More writings</a>
-      </p>
-    </footer>
-  </article>
-</main>
-
-    </div>
-
-    <footer role="contentinfo" class="mb3">
-  <nav>
-    <ul class="f6 list-reset mb3">
-        <li><a href="/">Home</a></li>
-        <li><a href="/feed.xml" title="Atom">Post feed</a></li>
-        <li><a href="/mind.xml" title="Atom">Mind feed</a></li>
-        <li><a href="/credits">Credits</a></li>
-        <li><a href="/changelog">Changelog</a></li>
-        <li><a href="/api.json">api.json</a></li>
-    </ul>
-  </nav>
-
-  <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/1e22fcdea4e9840f650c99c7e57ec8420d2ac4d0">1e22fcd</a> — built at <time>2022-09-28T20:59:26.522Z</time> — web 1.0 and 2.0 compatible.
-  </p>
-</footer>
-
-
-    <script>
-  // Only load on production environment.
-  if (window.location.host !== new URL('https://johan.im').host) {
-    window.goatcounter = {no_onload: true};
-  }
-
-  // Skip own views
-  if (window.location.hash === '#skipgc')
-    localStorage.setItem('skipgc', 't');
-  if (localStorage.getItem('skipgc') === 't')
-    window.goatcounter = {no_onload: true};
-</script>
-<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
-
-  
-
-
-</body></html>
+</code></pre><p>This feels more natural and flexible. Changing the id attribute of the header? No problem, just change at one place in the code. The syntax in Sass and Less isn't too far away from this one either.<h2>Outro</h2><p>I've been using Sass since last summer, and I always make use of it for every project by now. Since you compile to regular CSS, there are no compability issues whatsoever. The question is: if these fancy features would make into Safari and Chrome sometime in the future, how would we handle the stylesheets for Firefox, Internet Explorer and Opera? Separate ones? Nope, I wouldn't think so. It has to be a standard to work out, and we all know that the working groups are slooow to decide things.<p>For now Sass works great for me, but I think it's time to make a serious attempt to push the features "into the broad mass". To see some cleaner stylesheets out on the interwebz would be a godsend gift.</div><footer><p class="f5 comp-grey mt5"><b class=mr1>Keywords</b> <span class=Post-Keyword>CSS</span><span class=Post-Keyword>Less</span><span class=Post-Keyword>mixins</span><span class=Post-Keyword>nested rules</span><span class=Post-Keyword>Sass</span><span class=Post-Keyword>variables</span><span class=Post-Keyword>Webkit</span><p class=mt3><a class=btn href=/writings>&LT- More writings</a></footer></article></main></div><footer class=mb3 role=contentinfo><nav><ul class="f6 list-reset mb3"><li><a href=/>Home</a><li><a href=/feed.xml title=Atom>Post feed</a><li><a href=/mind.xml title=Atom>Mind feed</a><li><a href=/credits>Credits</a><li><a href=/changelog>Changelog</a><li><a href=/api.json>api.json</a></ul></nav><p class="muted f6 tc mb0">Using <a class=font-mono href=https://github.com/johanbrook/johanbrook.com/commit/8575d6c600a9cbb2fa4ec83e8ef04a8a4ea74336>8575d6c</a> — built at <time>2022-10-27T21:03:27.748Z</time> — web 1.0 and 2.0 compatible.</footer><script>if(window.location.host!==new URL('https://johan.im').host){window.goatcounter={no_onload:true}};if(window.location.hash==='#skipgc')localStorage.setItem('skipgc','t');if(localStorage.getItem('skipgc')==='t')window.goatcounter={no_onload:true}</script><script async data-goatcounter=https://johanbrook.goatcounter.com/count src=//gc.zgo.at/count.js></script>

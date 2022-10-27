@@ -1,129 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" class=" writingsquick-internal-linking-tag-in-wordpress"><head itemtype="http://schema.org/Blog" itemscope="">
-    <title>quick internal linking tag in wordpress – johan brook</title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter/Inter-italic.var.woff2">
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter/Inter-roman.var.woff2">
-    
-    <link rel="preconnect" href="https://gc.zgo.at">
-    <link rel="preconnect" href="https://johanbrook.goatcounter.com">
-
-    
-    <meta name="description" content="I'm a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
-    
-    
-    <meta name="keywords" content="Functions.php,Link,Template tag">
-    
-    <meta name="author" content="Johan Brook">
-
-    <!-- Styles-->
-    <link rel="stylesheet" href="/johan.css">
-
-    <!-- RSS -->
-    <link rel="alternate" type="application/rss+xml" title="Posts feed" href="/feed.xml">
-    <link rel="alternate" type="application/rss+xml" title="Mind feed" href="/mind.xml">
-
-    <link rel="shortcut icon" href="/favicon.png" type="image/png">
-    <link rel="canonical" itemprop="url" href="https://johan.im/writings/quick-internal-linking-tag-in-wordpress/">
-    <link rel="author" href="https://johan.im">
-
-    <meta property="og:title" content="Quick internal linking tag in Wordpress">
-    <meta property="og:url" content="https://johan.im/writings/quick-internal-linking-tag-in-wordpress/">
-    <meta property="og:site_name" itemprop="name" content="Johan Brook">
-    <meta property="og:type" content="blog">
-    <meta property="og:image" content="https://johan.im/assets/images/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="1200">
-    
-
-    
-    <meta property="article:tag" content="Functions.php,Link,Template tag">
-    <meta property="article:published_time" content="2011-02-24T00:00:00Z">
-    
-  </head>
-
-  <body>
-
-    <div class="Content">
-      
-        <nav role="navigation" class="SideNav">
-  <div class="SideNav__inner">
-    <h1 class="f3 no-rhythm">
-      <a href="/">Johan Brook</a>
-    </h1>
-
-    <div>
-      <label class="SideNav__toggle btn" for="mobile-nav-trigger">
-        Menu
-      </label>
-    </div>
-  </div>
-
-  <input type="checkbox" id="mobile-nav-trigger">
-
-  <ul>
-      <li>
-        <a href="/writings/">Writings</a>
-      </li>
-      <li>
-        <a href="/now/">Now</a>
-      </li>
-      <li>
-        <a href="/mind/">On my mind</a>
-      </li>
-      <li>
-        <a href="/reading/">Reading</a>
-      </li>
-      <li>
-        <a href="/about/">About me</a>
-      </li>
-      <li>
-        <a href="/contact/">Contact</a>
-      </li>
-  </ul>
-</nav>
-
-      
-
-      <main role="main">
-  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
-    <header> 
-      <h1 itemprop="name" class="title">Quick internal linking tag in Wordpress</h1>
-
-      <p class="mb0 fw5 mt3">
-          <time datetime="2011-02-24T00:00:00Z" itemprop="datePublished" pubdate="">
-            February 24th, 2011
-          </time>
-          
-          
-      </p>
-
-      <p class="muted mb4">
-          About 1 min reading time
-      </p>
-    </header>
-
-    <div class="prose measure" itemprop="articleBody">
-      
-      <p>Wordpress has quite many nifty features, the vast library of template tags is one of them. One thing
-I've missed for a long time is a quick function to link to internal pages. Since the root URL will
-change if you switch domains you could absolutely not code the absolute URL by hand. You can't rely
-on the permalink structure you've set up on your local installation either (which means creating
-root relative links like <code>&lt;a href="/some-page"&gt;Some page&lt;/a&gt;</code> is a bad idea).</p>
-<p>I wrote this lazy function in <code>functions.php</code> in order to quicklink to internal pages:</p>
-<pre><code>function link_to($slug) {
+<!doctype html><html class=writingsquick-internal-linking-tag-in-wordpress lang=en><head itemscope itemtype=http://schema.org/Blog><title>quick internal linking tag in wordpress – johan brook</title><meta charset=utf-8><meta content="width=device-width,initial-scale=1"name=viewport><link as=font crossorigin=anonymous href=/assets/fonts/inter/Inter-italic.var.woff2 rel=preload type=font/woff2><link as=font crossorigin=anonymous href=/assets/fonts/inter/Inter-roman.var.woff2 rel=preload type=font/woff2><link href=https://gc.zgo.at rel=preconnect><link href=https://johanbrook.goatcounter.com rel=preconnect><meta content="I'm a twenty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding & designering and I like working with product, user experience, interface design, and other things too."name=description><meta content="Functions.php,Link,Template tag"name=keywords><meta content="Johan Brook"name=author><link href=/johan.css rel=stylesheet><link title="Posts feed"href=/feed.xml rel=alternate type=application/rss+xml><link title="Mind feed"href=/mind.xml rel=alternate type=application/rss+xml><link rel="shortcut icon"href=/favicon.png type=image/png><link href=http://localhost/writings/quick-internal-linking-tag-in-wordpress/ itemprop=url rel=canonical><link href=https://johan.im rel=author><meta content="Quick internal linking tag in Wordpress"property=og:title><meta content=http://localhost/writings/quick-internal-linking-tag-in-wordpress/ property=og:url><meta content="Johan Brook"itemprop=name property=og:site_name><meta content=blog property=og:type><meta content=http://localhost/assets/images/og-image.png property=og:image><meta content=1200 property=og:image:width><meta content=1200 property=og:image:height><meta content="Functions.php,Link,Template tag"property=article:tag><meta content=2011-02-24T00:00:00Z property=article:published_time><body><div class=Content><nav class=SideNav role=navigation><div class=SideNav__inner><h1 class="f3 no-rhythm"><a href=/>Johan Brook</a></h1><div><label class="SideNav__toggle btn"for=mobile-nav-trigger>Menu</label></div></div><input id=mobile-nav-trigger type=checkbox><ul><li><a href=/writings/>Writings</a><li><a href=/mind/>On my mind</a><li><a href=/now/>Now</a><li><a href=/reading/>Reading</a><li><a href=/about/>About me</a><li><a href=/contact/>Contact</a></ul></nav><main role=main><article class=Post itemscope itemtype=http://schema.org/BlogPosting role=article><header><h1 class=title itemprop=name>Quick internal linking tag in Wordpress</h1><p class="mb0 fw5 mt3"><time datetime=2011-02-24T00:00:00Z itemprop=datePublished pubdate> February 24th, 2011 </time><p class="muted mb4">About 1 min reading time</header><div class="prose measure"itemprop=articleBody><p>Wordpress has quite many nifty features, the vast library of template tags is one of them. One thing I've missed for a long time is a quick function to link to internal pages. Since the root URL will change if you switch domains you could absolutely not code the absolute URL by hand. You can't rely on the permalink structure you've set up on your local installation either (which means creating root relative links like <code>&LTa href="/some-page">Some page&LT/a></code> is a bad idea).<p>I wrote this lazy function in <code>functions.php</code> in order to quicklink to internal pages:<pre><code>function link_to($slug) {
    echo get_bloginfo("url")."/".$slug";
 }
 
 // Usage:
-&lt;a href="&lt;?php link_to("about");?&gt;"&gt;About me&lt;/a&gt;
-</code></pre>
-<p>This is a really terrible idea since it relies on having a short permalink structure set up.</p>
-<p>To make it more dynamic, try this one out:</p>
-<pre><code>function link_to($slug){
+&LTa href="&LT?php link_to("about");?>">About me&LT/a>
+</code></pre><p>This is a really terrible idea since it relies on having a short permalink structure set up.<p>To make it more dynamic, try this one out:<pre><code>function link_to($slug){
    echo get_permalink(get_id_by_slug($slug));
 }
 
@@ -133,18 +14,12 @@ root relative links like <code>&lt;a href="/some-page"&gt;Some page&lt;/a&gt;</c
 function get_id_by_slug($page_slug) {
     $page = get_page_by_path($page_slug);
     if ($page) {
-        return $page-&gt;ID;
+        return $page->ID;
     } else {
         return null;
     }
 }
-</code></pre>
-<p>Now, the function will look the real permalink to the page, whatever that could be.</p>
-<p>I'm actually quite surprised that there's no native template tag or other built in feature for for
-linking to pages (or posts) in Wordpress, now when everybody says it's a CMS and all.</p>
-<h2>Update, 2012-03-31</h2>
-<p>I've found the version below more reliable and flexible. Try it out instead.</p>
-<pre><code>function link_to_page($page_slug, $echo = true){
+</code></pre><p>Now, the function will look the real permalink to the page, whatever that could be.<p>I'm actually quite surprised that there's no native template tag or other built in feature for for linking to pages (or posts) in Wordpress, now when everybody says it's a CMS and all.<h2>Update, 2012-03-31</h2><p>I've found the version below more reliable and flexible. Try it out instead.<pre><code>function link_to_page($page_slug, $echo = true){
 	if(is_string($page_slug))
 		$page = get_ID_by_slug($page_slug);
 	
@@ -155,64 +30,9 @@ linking to pages (or posts) in Wordpress, now when everybody says it's a CMS and
 		$link = get_permalink($page);
 	}
 
-	if($echo &amp;&amp; $link)
+	if($echo && $link)
 		echo $link;
 	else
 		return $link;
 }
-</code></pre>
-
-    </div>
-
-    <footer>
-      
-        <p class="f5 comp-grey mt5">
-          <b class="mr1">Keywords</b> <span class="Post-Keyword">Functions.php</span><span class="Post-Keyword">Link</span><span class="Post-Keyword">Template tag</span>
-        </p>
-      
-
-      <p class="mt3">
-        <a href="/writings" class="btn">&lt;- More writings</a>
-      </p>
-    </footer>
-  </article>
-</main>
-
-    </div>
-
-    <footer role="contentinfo" class="mb3">
-  <nav>
-    <ul class="f6 list-reset mb3">
-        <li><a href="/">Home</a></li>
-        <li><a href="/feed.xml" title="Atom">Post feed</a></li>
-        <li><a href="/mind.xml" title="Atom">Mind feed</a></li>
-        <li><a href="/credits">Credits</a></li>
-        <li><a href="/changelog">Changelog</a></li>
-        <li><a href="/api.json">api.json</a></li>
-    </ul>
-  </nav>
-
-  <p class="muted f6 tc mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/1e22fcdea4e9840f650c99c7e57ec8420d2ac4d0">1e22fcd</a> — built at <time>2022-09-28T20:59:26.522Z</time> — web 1.0 and 2.0 compatible.
-  </p>
-</footer>
-
-
-    <script>
-  // Only load on production environment.
-  if (window.location.host !== new URL('https://johan.im').host) {
-    window.goatcounter = {no_onload: true};
-  }
-
-  // Skip own views
-  if (window.location.hash === '#skipgc')
-    localStorage.setItem('skipgc', 't');
-  if (localStorage.getItem('skipgc') === 't')
-    window.goatcounter = {no_onload: true};
-</script>
-<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
-
-  
-
-
-</body></html>
+</code></pre></div><footer><p class="f5 comp-grey mt5"><b class=mr1>Keywords</b> <span class=Post-Keyword>Functions.php</span><span class=Post-Keyword>Link</span><span class=Post-Keyword>Template tag</span><p class=mt3><a class=btn href=/writings>&LT- More writings</a></footer></article></main></div><footer class=mb3 role=contentinfo><nav><ul class="f6 list-reset mb3"><li><a href=/>Home</a><li><a href=/feed.xml title=Atom>Post feed</a><li><a href=/mind.xml title=Atom>Mind feed</a><li><a href=/credits>Credits</a><li><a href=/changelog>Changelog</a><li><a href=/api.json>api.json</a></ul></nav><p class="muted f6 tc mb0">Using <a class=font-mono href=https://github.com/johanbrook/johanbrook.com/commit/8575d6c600a9cbb2fa4ec83e8ef04a8a4ea74336>8575d6c</a> — built at <time>2022-10-27T21:03:27.748Z</time> — web 1.0 and 2.0 compatible.</footer><script>if(window.location.host!==new URL('https://johan.im').host){window.goatcounter={no_onload:true}};if(window.location.hash==='#skipgc')localStorage.setItem('skipgc','t');if(localStorage.getItem('skipgc')==='t')window.goatcounter={no_onload:true}</script><script async data-goatcounter=https://johanbrook.goatcounter.com/count src=//gc.zgo.at/count.js></script>

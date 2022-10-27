@@ -57,3 +57,5 @@ ${n}
         ${t.cause?`<pre>${t.cause.message}</pre>`:""}
     </section>
 `,"Error"),j=r((t,e)=>{let o=t instanceof HTMLInputElement?t.value:t.innerText,s=r((i,m)=>{t instanceof HTMLInputElement?(t.value=i,t.disabled=m):t.innerText=i},"set");s(e,!0),setTimeout(()=>{s(o,!1)},3e3)},"flash");var M=r(()=>{let t=(()=>{try{let e=localStorage.getItem("jb_state")??"{}";return JSON.parse(e)}catch{return{}}})();return{}},"initialState");N().catch(console.error);
+
+/*# sourceMappingURL=./admin.js.map */
