@@ -901,6 +901,10 @@ COLOURS
 	color: var(--neon);
 }
 
+.comp-yellow {
+	color: var(--yellow);
+}
+
 .bg-comp-neon {
 	background-color: var(--neon);
 }

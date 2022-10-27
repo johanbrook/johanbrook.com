@@ -34,12 +34,16 @@ menu:
         	<td class="f5">
 				{{ book.notes | md(true) | safe }}
         	</td>
-        	<td class="plain-font-features no-wrap f5 fw6 {% if book.dropped %}muted{% else %}{% if not book.finished%}comp-neon{% endif %}{% endif %}">
+        	<td class="plain-font-features no-wrap f5 fw6 {% if book.dropped %}muted{% else %}{% if book.paused %}comp-yellow{% else %}{% if not book.finished%}comp-neon{% endif %}{% endif %}{% endif %}">
             	{% if book.dropped %}
               		Dropped
               	{% else %}
-              		{% if not book.finished %}
-		              	Reading
+              		{% if book.paused %}
+	            		Paused
+		            {% else %}
+	              		{% if not book.finished %}
+			              	Reading
+		            	{% endif %}
 	            	{% endif %}
             	{% endif %}
         	</td>

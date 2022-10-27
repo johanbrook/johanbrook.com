@@ -414,6 +414,7 @@
   author: Karl Ove Knausgård
   location: Stockholm, Sweden
   notes: 'Prequel to "Morgonstjärnan" below.'
+  paused: true
 
 - title: Att Uppfinna Världen ("Inventing the World")
   author: Katrine Marçal
@@ -421,6 +422,7 @@
   notes: >-
     Historical account about how women have been pushed aside over the years when it comes to inventions and
     innovation.
+  paused: true
 
 - title: Four Thousand Weeks
   author: Oliver Burkeman
