@@ -3,6 +3,7 @@ import postcss from 'lume/plugins/postcss.ts';
 import esbuild from 'lume/plugins/esbuild.ts';
 import date from 'lume/plugins/date.ts';
 import inline from 'lume/plugins/inline.ts';
+import minifyHTML from 'lume/plugins/minify_html.ts';
 import { minifier } from './deps.ts';
 import { readingTime } from './src/_lume-plugins/reading-time.ts';
 import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
@@ -24,7 +25,7 @@ const site = lume(
 				highlight: prismMarkdown,
 			},
 		},
-	},
+	}
 );
 
 const NUMERIC = 'yyyyMMddHHmm';
@@ -40,21 +41,21 @@ site
 	.use(
 		postcss({
 			sourceMap: true,
-		}),
+		})
 	)
 	.use(
 		date({
 			formats: {
 				NUMERIC,
 			},
-		}),
+		})
 	)
 	// Helpers
 	.filter('substr', (str: string, len: number) => str.substring(0, len))
 	.filter('readingTime', (pageOrContent) => {
 		if (!pageOrContent) {
 			throw new Error(
-				`Passed falsy value to readingTime filter: ${pageOrContent}`,
+				`Passed falsy value to readingTime filter: ${pageOrContent}`
 			);
 		}
 
@@ -75,6 +76,8 @@ if (MINIFY) {
 		console.log('Minifying CSS…');
 		minifyCss();
 	});
+
+	site.use(minifyHTML());
 }
 
 const minifyCss = () => {
