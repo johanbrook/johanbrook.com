@@ -30,7 +30,7 @@ jobs:
                   CI: true
                   NODE_ENV: production
                   ENV: production
-              run: deno run -A https://deno.land/x/lume@v1.10.1/ci.ts --location=https://johan.im --quiet
+              run: deno task lume --quiet
 
             - name: Deploy to GitHub Pages
               if: github.ref_name == 'main'
