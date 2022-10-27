@@ -41,7 +41,7 @@ site
 	.use(inline())
 	.use(
 		postcss({
-			sourceMap: true,
+			sourceMap: 'external',
 		})
 	)
 	.use(
