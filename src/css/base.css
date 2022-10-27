@@ -114,31 +114,6 @@ h6 {
 	margin-bottom: calc(var(--lineheight) / 2);
 }
 
-h1:not(.no-rhythm),
-.f1:not(.no-rhythm),
-h2:not(.no-rhythm),
-.f2:not(.no-rhythm),
-.f3:not(.no-rhythm) {
-	margin-bottom: var(--lineheight);
-	line-height: 1.5;
-	vertical-align: top;
-
-	&:first-line {
-		vertical-align: bottom;
-	}
-
-	/* Magic from https://gist.github.com/jonathanhefner/3173850 */
-	&::before,
-	&::after {
-		content: '\feff';
-		/* zero-width nbsp */
-		display: inline-block;
-		width: 1px;
-		margin-left: -1px;
-		height: calc(var(--lineheight) * 2);
-	}
-}
-
 .f0,
 .title {
 	font-size: var(--f0);
@@ -162,7 +137,7 @@ h2,
 }
 
 h2 {
-	font-weight: 550;
+	font-weight: 650;
 }
 
 h3,
@@ -235,8 +210,8 @@ a {
 	color: var(--link-color);
 	position: relative;
 	font-weight: 460;
-	text-decoration-color: var(--link-underline-color);
 	text-decoration: underline;
+	text-decoration-color: var(--link-underline-color);
 
 	&:hover {
 		color: var(--link-color-hover);
