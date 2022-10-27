@@ -8,6 +8,7 @@ import { minifier } from './deps.ts';
 import { readingTime } from './src/_lume-plugins/reading-time.ts';
 import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
 import { loadLanguages, prismMarkdown } from './src/_lume-plugins/prism.ts';
+import sourceMaps from 'lume/plugins/source_maps.ts';
 
 const DEST = 'build';
 const MINIFY = Deno.env.get('ENV') == 'production';
@@ -50,6 +51,7 @@ site
 			},
 		})
 	)
+	.use(sourceMaps())
 	// Helpers
 	.filter('substr', (str: string, len: number) => str.substring(0, len))
 	.filter('readingTime', (pageOrContent) => {
