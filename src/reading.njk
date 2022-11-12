@@ -2,7 +2,7 @@
 title: Reading
 layout: layouts/main.njk
 description: Books I've read.
-updated: 2022-09-25
+updated: 2022-11-12
 menu:
   visible: true
   order: 4
@@ -41,8 +41,15 @@ menu:
               		{% if book.paused %}
 	            		Paused
 		            {% else %}
-	              		{% if not book.finished %}
-			              	Reading
+	              		{% if book.finished %}
+	              			{% if book.finishedAt %}
+	              				<time title="Finished at" datetime="{{ book.finishedAt }}">{{ book.finishedAt | date }}</time><br>
+	              			{% endif %}
+	              			{% if book.location %}
+	              				<small title="Finished in">{{ book.location }}</small>
+	              			{% endif %}
+	              		{% else %}
+		              		Reading
 		            	{% endif %}
 	            	{% endif %}
             	{% endif %}
