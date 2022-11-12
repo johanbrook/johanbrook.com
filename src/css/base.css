@@ -282,6 +282,9 @@ th {
 	padding: var(--spacing);
 	font-weight: 700;
 	font-size: var(--f5);
+	position: sticky;
+	top: 0;
+	background-color: var(--color-bg);
 }
 
 td {
