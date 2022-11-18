@@ -12,4 +12,4 @@ menu:
 | Email    | [{{ meta.email }}](mailto:{{ meta.email }})               |
 | Twitter  | [{{ meta.twitter }}](http://twitter.com/{{meta.twitter}}) |
 | GitHub   | [{{ meta.github }}](http://github.com/{{meta.github}})    |
-| Mastodon | [{{ meta.mastodon.username }}@{{meta.mastodon.instance}}](http://{{meta.mastodon.instance}}/{{meta.mastodon.username}})    |
+| Mastodon | [@{{ meta.mastodon.username }}@{{meta.mastodon.domain}}](http://{{meta.mastodon.instance}}/@{{meta.mastodon.username}})    |
