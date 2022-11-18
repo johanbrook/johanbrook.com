@@ -10,6 +10,9 @@ site: https://johan.im
 github: johanbrook
 repo: johanbrook/johanbrook.com
 twitter: '@johanbrook'
+mastodon:
+    username: '@brookie'
+    instance: hachyderm.io
 email: webmaster@johan.im
 cv: https://johan.im/johanbrook-cv.pdf
 currentVersionOfJohan: 4.0.0
