@@ -20,11 +20,11 @@ POSTS LIST
 	& .PostItem__Link {
 		display: block;
 		padding: calc(var(--lineheight) / 3) 0;
-		font-size: var(--f4);
 		flex: 1;
 
 		&:visited {
 			color: var(--link-color-visited);
+			text-decoration-color: var(--link-color-visited);
 		}
 	}
 

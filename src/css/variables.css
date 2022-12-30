@@ -74,8 +74,8 @@
 	monospace,
 	serif;
 
-	--font-size-base: 16;
-	--leading: 1.5;
+	--font-size-base: 17;
+	--leading: 1.618;
 	/* Rhythm unit */
 	--lineheight: calc(var(--leading) * 1rem);
 
@@ -107,7 +107,7 @@
 
 	--inset: calc(var(--lineheight) / 2);
 
-	--measure: 56ch;
+	--measure: 62ch;
 	--measure-narrow: 45ch;
 	--measure-wide: 100ch;
 
