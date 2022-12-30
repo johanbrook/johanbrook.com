@@ -3,20 +3,20 @@ name: Build and deploy website
 on:
     push:
         paths:
-            - 'src/**/*'
-            - '_config.ts'
-            - 'CNAME'
-            - 'deps.ts'
-            - 'README.md' # Just to be able to trigger rebuilds from dummy commits
-            - '.rebuild' # same ^^
-            - '.github/workflows/deploy.yml'
+            - "src/**/*"
+            - "_config.ts"
+            - "CNAME"
+            - "deps.ts"
+            - "README.md" # Just to be able to trigger rebuilds from dummy commits
+            - ".rebuild" # same ^^
+            - ".github/workflows/deploy.yml"
 
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
               with:
                   persist-credentials: false
 
