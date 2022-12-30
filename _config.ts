@@ -26,7 +26,7 @@ const site = lume(
 				highlight: prismMarkdown,
 			},
 		},
-	}
+	},
 );
 
 const NUMERIC = 'yyyyMMddHHmm';
@@ -39,17 +39,13 @@ site
 	.copy('public', '.')
 	// Plugins
 	.use(inline())
-	.use(
-		postcss({
-			sourceMap: 'external',
-		})
-	)
+	.use(postcss())
 	.use(
 		date({
 			formats: {
 				NUMERIC,
 			},
-		})
+		}),
 	)
 	.use(sourceMaps())
 	// Helpers
@@ -57,7 +53,7 @@ site
 	.filter('readingTime', (pageOrContent) => {
 		if (!pageOrContent) {
 			throw new Error(
-				`Passed falsy value to readingTime filter: ${pageOrContent}`
+				`Passed falsy value to readingTime filter: ${pageOrContent}`,
 			);
 		}
 
