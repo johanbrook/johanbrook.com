@@ -33,17 +33,5 @@ layout: layouts/main.njk
       {% endif %}
       {{ content | safe }}
     </div>
-
-    <footer>
-      {% if keywords %}
-        <p class="f5 comp-grey mt5">
-          <b class="mr1">Keywords</b> {% for keyword in keywords %}<span class="Post-Keyword">{{ keyword }}</span>{% endfor %}
-        </p>
-      {% endif %}
-
-      <p class="mt3">
-        <a href="/writings" class="btn">&lt;- More writings</a>
-      </p>
-    </footer>
   </article>
 </main>
