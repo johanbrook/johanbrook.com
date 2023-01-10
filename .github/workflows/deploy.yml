@@ -30,7 +30,7 @@ jobs:
                   CI: true
                   NODE_ENV: production
                   ENV: production
-              run: deno task lume --quiet
+              run: deno task build --quiet
 
             - name: Deploy to GitHub Pages
               if: github.ref_name == 'main'

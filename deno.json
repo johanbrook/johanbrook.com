@@ -1,9 +1,8 @@
 {
 	"importMap": "import_map.json",
 	"tasks": {
-		"lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable -A -",
-		"build": "deno task lume",
-		"serve": "deno task lume -s"
+		"build": "echo \"import 'lume/cli.ts'\" | deno run --unstable -A -",
+		"serve": "deno task build -s"
 	},
 	"compilerOptions": {
 		"lib": [
