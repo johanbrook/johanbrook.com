@@ -10,6 +10,9 @@
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter/Inter-italic.var.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter/Inter-roman.var.woff2" crossorigin="anonymous">
     
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2" crossorigin="anonymous">
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/jetbrains-mono/JetBrainsMono-Bold.woff2" crossorigin="anonymous">
+    
     <link rel="preconnect" href="https://gc.zgo.at">
     <link rel="preconnect" href="https://johanbrook.goatcounter.com">
 
@@ -63,13 +66,15 @@
 
     <div class="Content">
       {% if not bare %}
-        {% include "side-navigation.njk" %}
+        {% include "nav-main.njk" %}
       {% endif %}
 
-      {{ content | safe }}
-    </div>
+      <div>
+      	{{ content | safe }}
 
-    {% include "footer.njk" %}
+      	{% include "footer.njk" %}
+      </div>
+    </div>
 
     {% include "analytics.njk" %}
   </body>

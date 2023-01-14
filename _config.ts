@@ -19,7 +19,7 @@ const site = lume(
 	{
 		src: 'src',
 		dest: DEST,
-		location: new URL("https://johan.im"), // Ignored in dev
+		location: new URL('https://johan.im'), // Ignored in dev
 	},
 	{
 		markdown: {
@@ -63,6 +63,13 @@ site
 	.filter('postAssetUrl', (filename) => `/assets/posts/${filename}`)
 	.filter('excerpt', (content: string) => extractExcerpt(content))
 	.filter('hostname', (url: string) => new URL(url).host.replace('www.', ''))
+	.filter('mastodonUrl', function (this: any) {
+		const { meta } = this.ctx.page.data;
+		return `https://${meta.mastodon.instance}/@${meta.mastodon.username}`;
+	})
+	.filter('isCurrentPage', function (this: any, url: string) {
+		return !!(this.ctx.page.data.url as string)?.includes(url);
+	})
 	// Data
 	.data('pageSlug', function (this: { ctx: { url: string } }) {
 		return this.ctx.url.replaceAll('/', '');

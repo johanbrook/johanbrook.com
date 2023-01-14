@@ -74,7 +74,7 @@ body {
 	}
 }
 
-@media screen and (min-width: 55rem) {
+@media screen and (min-width: 58rem) {
 	html:not(.home) body {
 		padding-top: calc(var(--lineheight) * 2);
 	}
@@ -96,7 +96,7 @@ main {
 	flex: 1;
 	/* Take up vertical space */
 
-	@media screen and (max-width: 55rem) {
+	@media screen and (max-width: 58rem) {
 		flex-direction: column;
 	}
 }
@@ -206,7 +206,8 @@ ul {
 	list-style-type: square;
 }
 
-a {
+a,
+.link {
 	color: var(--link-color);
 	position: relative;
 	font-weight: 460;
@@ -214,13 +215,27 @@ a {
 	text-decoration-color: var(--link-underline-color);
 	text-underline-offset: 3px;
 
-	&:hover {
+	&.block {
+		text-decoration: none;
+		font-weight: unset;
+	}
+
+	&:hover,
+	&:hover .link {
 		color: var(--link-color-hover);
 		text-decoration-color: currentColor;
 	}
 
 	&:active {
 		top: 1px;
+	}
+
+	&.muted {
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 }
 
@@ -358,6 +373,12 @@ blockquote {
 	margin: calc(var(--lineheight) * 2) 2rem calc(var(--lineheight) * 2) 0;
 	padding-left: 2rem;
 	padding-right: 2rem;
+	font-weight: 520;
+	font-size: var(--f3);
+
+	&>p {
+		margin-bottom: calc(var(--lineheight) / 2);
+	}
 
 	& footer {
 		color: var(--grey);
@@ -366,13 +387,10 @@ blockquote {
 }
 
 hr {
-	display: block;
-	height: 2px;
 	border: 0;
-	margin: calc(var(--lineheight) * 1.5) 0;
-	max-width: 10rem;
-	width: 100%;
-	background-color: var(--hr-color);
+	border-left: .7rem solid var(--hr-color);
+	height: .7rem;
+	margin: calc(var(--lineheight) * 2) 0;
 }
 
 textarea {

@@ -3,45 +3,39 @@ layout: layouts/main.njk
 home: true
 bare: true
 ---
-<main role="main">
-
-  <header class="tc">
-
-    {% include "header-title.svg" %}
-
-  </header>
-
+<main role="main" class="mt3">
   <div class="measure mx-auto">
-    <section class="mb4 mt4">
-    	<h1 class="f2 no-rhythm mb3">Greeetings</h1>
+    <section class="mb4">
+    	<h1 class="title no-rhythm mb3">Welcome.</h1>
+
       	{{ content | safe }}
 
-      	<p>
-      		You can reach me on <a rel="me" href="mailto:{{ meta.email }})">email</a> or on <a rel="me" href="https://{{ meta.mastodon.instance }}/@{{ meta.mastodon.username }}">Mastodon</a>.
-
-      	</p>
+      	<nav role="navigation" class="mt4 border border-t border-b pv2">
+      		{% include "nav-common.njk" %}
+      	</nav>
     </section>
 
     <section class="mb4">
-      <header class="flex items-center mb0">
+      <header class="flex items-center mb1">
         <h1 class="f2 no-rhythm mb0">On my mind</h1>
         
-        <a href="/mind" class="btn f7 ml2" title="Read more">/mind ⇢</a>
+        <a href="/mind" class="ml3 f6" title="Read more">All notes</a>
+        <a href="/mind.xml" class="ml2 ml-1 f6" title="Atom feed">Feed</a>
       </header>
 
       <ol class="list-reset">
         {% for note in search.pages("type=note", "date=desc", 1) %}
           <li>
-            <h2 class="f6 fw4 no-rhythm">
-              <a href="{{ note.data.permalink() | url }}" class="muted no-underline">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
+            <h2 class="f5 fw4 no-rhythm">
+              <a href="{{ note.data.permalink() | url }}" class="muted">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
             </h2>
-            <div class="prose">
+            <div class="prose font-mono f5">
               {{ note.data.content | excerpt | md | safe }}
             </div>
 
             {% if (note.data.content | excerpt | length) < (note.data.content | trim | length)  %}
-                <p class="mt1">
-                  <a href="{{ note.data.permalink() | url }}" class="muted f6">continued ⇢</a>
+                <p class="mt2">
+                  <a href="{{ note.data.permalink() | url }}" class="muted f5">continued ⇢</a>
                 </p>
             {% endif %}
           </li>
@@ -53,16 +47,17 @@ bare: true
       <header class="flex items-center mb3">
         <h1 class="f2 no-rhythm mb0">Writings</h1>
         
-        <a href="/writings" class="btn f7 ml2" title="Read more">/writings ⇢</a>
+        <a href="/writings" class="ml3 f6" title="Read more">All writings</a>
+        <a href="/feed.xml" class="ml2 ml-1 f6" title="Atom feed">Feed</a>
       </header>
 
       <ol class="list-reset">
         {% for post in search.pages("type=post", "date=desc", 3) %}
-          <li class="{% if not loop.last %}mb1{% endif %}">
-            <h2 class="f4 no-rhythm fw4 mb0">
-              <a href="{{ post.data.url | url }}">{{ post.data.title }}</a>
-            </h2>
-            <p class="f5 muted mb0">{{ post.data.date | date("HUMAN_DATE") }}</p>
+          <li class="mb3 {% if not loop.last %}mb1{% endif %}">
+          	<a class="f4 block fw4" href="{{ post.data.url | url }}">
+          		<span class="link">{{ post.data.title }}</span><br />
+            	<p class="f5 muted mb0">{{ post.data.date | date("HUMAN_DATE") }}</p>
+            </a>
           </li>
         {% endfor %}
       </ol>

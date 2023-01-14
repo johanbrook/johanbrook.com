@@ -17,10 +17,12 @@
 		}
 	}
 
-	&>li:not(:last-child) {
-		margin-bottom: calc(var(--lineheight) * 2);
-		padding-bottom: calc(var(--lineheight) * 2 - 2px);
-		border-bottom: 2px solid var(--border-color);
+	&>li:not(:last-child)::after {
+		content: '';
+		display: block;
+		border-left: .7rem solid var(--hr-color);
+		height: .7rem;
+		margin: calc(var(--lineheight) * 2) 0;
 	}
 
 	& .prose> :last-child {

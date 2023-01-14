@@ -218,6 +218,10 @@ TEXT ALIGNMENT
 	width: 100%;
 }
 
+.block {
+	display: block;
+}
+
 /*
 FLEXBOX
 ----------------------------------------------------------------*/
@@ -891,11 +895,15 @@ BORDERS
 }
 
 .border-b {
-	border-width: 0 0 1px;
+	border-left-width: 0;
+	border-right-width: 0;
+	border-bottom-width: 1px;
 }
 
 .border-t {
-	border-width: 1px 0 0;
+	border-left-width: 0;
+	border-right-width: 0;
+	border-top-width: 1px;
 }
 
 /*

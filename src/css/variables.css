@@ -27,7 +27,7 @@
 	--code-background: var(--color-bg-secondary);
 	--code-color: hsl(112 30% 30%);
 
-	--hr-color: var(--grey-lightest);
+	--hr-color: var(--color-text);
 
 	@supports (color: color(display-p3 1 1 1 / 1)) {
 		--link-color: color(display-p3 0 0.425 0.73);
@@ -46,7 +46,7 @@
 		--link-color-hover: hsl(201.43, 93.43%, 69.58%);
 		--link-underline-color: hsl(201.43 57.86% 50.17% / 0.47);
 		--link-color-visited: #7a8be5;
-		--border-color: #444;
+		--border-color: var(--color-text-detail);
 		--code-color: hsl(112 80% 80%);
 
 		@supports (color: color(display-p3 1 1 1 / 1)) {
@@ -62,6 +62,7 @@
 	BlinkMacSystemFont,
 	Helvetica,
 	sans-serif;
+
 	--mono: 'JetBrains Mono',
 	'Fira Code',
 	Menlo,
@@ -72,6 +73,9 @@
 	'Bitstream Vera Sans Mono',
 	'Courier New',
 	monospace,
+	serif;
+
+	--serif: Georgia,
 	serif;
 
 	--font-size-base: 17;
@@ -95,9 +99,9 @@
 	--f1: calc((26 / var(--font-size-base)) * 1rem);
 	--f2: calc((24 / var(--font-size-base)) * 1rem);
 	--f3: calc((20 / var(--font-size-base)) * 1rem);
-	--f4: calc((16 / var(--font-size-base)) * 1rem);
-	--f5: calc((14 / var(--font-size-base)) * 1rem);
-	--f6: calc((12 / var(--font-size-base)) * 1rem);
+	--f4: calc((17 / var(--font-size-base)) * 1rem);
+	--f5: calc((15 / var(--font-size-base)) * 1rem);
+	--f6: calc((13 / var(--font-size-base)) * 1rem);
 	--f7: calc((11 / var(--font-size-base)) * 1rem);
 
 	/* See https://developers.google.com/web/updates/2016/02/font-display */
@@ -110,6 +114,8 @@
 	--measure: 62ch;
 	--measure-narrow: 45ch;
 	--measure-wide: 100ch;
+
+	--sidenav-width: 9rem;
 
 	--spacing-base: var(--lineheight);
 

@@ -1,0 +1,7 @@
+<ul class="NavCommon">
+	{%- for entry in search.pages("menu.visible=true", "menu.order") %}
+		<li {% if entry.data.url | isCurrentPage %} aria-current="page"{% endif %}>
+			<a href="{{ entry.data.url }}">{{ entry.data.menu.title or entry.data.title }}</a>
+		</li>
+	{%- endfor %}
+</ul>

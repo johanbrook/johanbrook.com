@@ -1,18 +1,18 @@
 <footer role="contentinfo" class="mb3">
   <nav>
-    <ul class="f5 list-reset mb3">
-        <li><a href="/">Home</a></li>
+    <ul class="mb3">
+        {% if not home %}<li><a href="/">Home</a></li>{% endif %}
+        <li><a rel="me" href="mailto:{{ meta.email }}">Email</a></li>
+		<li><a rel="me" href="{{ '' | mastodonUrl }}">Mastodon</a></li>
         <li><a href="/feed.xml" title="Atom">Post feed</a></li>
         <li><a href="/mind.xml" title="Atom">Mind feed</a></li>
-        <li><a href="/credits">Credits</a></li>
-        <li><a href="/changelog">Changelog</a></li>
-        <li><a href="/api.json">api.json</a></li>
-        <li><a rel="me" title="Email" href="mailto:{{ meta.email }}">{{ meta.email }}</a></li>
-        <li><a rel="me" title="Mastodon" href="https://{{ meta.mastodon.instance }}/@{{ meta.mastodon.username }}">@{{ meta.mastodon.username }}@{{ meta.mastodon.domain }}</a></li>
+        <li><a href="/reading.xml" title="Atom">Reading feed</a></li>
+        <li {% if "/credits" | isCurrentPage %} aria-current="page"{% endif %}><a href="/credits">Credits</a></li>
+        <li {% if "/changelog" | isCurrentPage %} aria-current="page"{% endif %}><a href="/changelog">Changelog</a></li>
     </ul>
   </nav>
 
-  <p class="muted f6 tc mb0">
+  <p class="muted mb0">
     Using <a class="font-mono" href="https://github.com/{{ meta.repo }}/commit/{{ build.hash }}">{{ build.hash | substr(7) }}</a> — built at <time>{{ build.date }}</time> — web 1.0 and 2.0 compatible.
   </p>
 </footer>

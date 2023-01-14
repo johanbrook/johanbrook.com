@@ -13,16 +13,4 @@
 			font-size: var(--f1);
 		}
 	}
-
-	& .Post-Keyword {
-		display: inline-block;
-		border-radius: 4px;
-		padding: 0 0.5em;
-		background-color: var(--grey-lightest);
-		font-weight: 500;
-
-		&:not(:last-child) {
-			margin-right: 3px;
-		}
-	}
 }

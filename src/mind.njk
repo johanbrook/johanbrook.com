@@ -14,16 +14,16 @@ menu:
   <ol class="NotesList list-reset">
     {% for post in search.pages("type=note", "date=desc") %}
       <li>
-        <article id="{{ post.data.date | date("NUMERIC") }}">
-          <div class="prose">
+        <article id="{{ post.data.date | date("NUMERIC") }}" class="font-mono">
+          <div class="prose f5">
             {{ post.data.content | md | safe }}
           </div>
 
           <header class="mt3 tr">
             <h1 class="f5 fw5 no-rhythm mb0">
-              <a href="#{{ post.data.date | date("NUMERIC") }}" title="Permalink" class="no-underline">{{ post.data.date | date("PPP — HH:mm") | lower }} <span class="target">#</span></a>
+              <a href="#{{ post.data.date | date("NUMERIC") }}" title="Permalink" class="no-underline">{{ post.data.date | date("PPP — HH:mm") }} <span class="target">#</span></a>
             </h1>
-            {% if post.data.location %}<p class="muted mb0 f6">from {{ post.data.location | lower }}</p>{% endif %}
+            {% if post.data.location %}<p class="muted mb0 f6">From {{ post.data.location }}</p>{% endif %}
           </header>
         </article>
       </li>

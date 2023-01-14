@@ -11,11 +11,12 @@ templateEngine: njk,md
 - The only font used is [Inter](https://rsms.me/inter). It is made by
   [@rsms](https://twitter.com/rsms) ([source](https://github.com/rsms/inter)). Inter is licensed
   under the [SIL Open Font License 1.1](https://choosealicense.com/licenses/ofl-1.1/).
+- I was inspired by [muan.co](https://muan.co) in the latest design of this site.
 
 This site's simple license:
 
 ```
-Copyright Johan Brook, {{ "now" | date("yyyy") }}
+Copyright Johan Brook, {{ build.date | date("yyyy") }}
 
 You may steal the code of this site, and be inspired by its structure.
 

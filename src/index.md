@@ -4,9 +4,8 @@ layout: layouts/home.njk
 templateEngine: njk,md
 ---
 
-I’m coding & designering and I like working with product, user experience, and interface design and
-other things too. Like everybody else here.
+My name is Johan. I’m coding & designing, and I like working with product, user experience, and interface design. And other things too.
 
-For me in eight minutes (or more), read more [/about](/about) me. You can also check out what I’m
-doing [/now](/now), short notes on what’s on my [/mind](/mind), and what I'm currently
-[/reading](/reading).
+I'd like to write more (don't we all), and I consume a (un)healthy amount of music.
+
+You can reach me via [email](mailto:{{ meta.email }}) or [Mastodon]({{ '' | mastodonUrl }}).
