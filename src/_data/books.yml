@@ -80,7 +80,7 @@
   author: Cormac McCarthy
   finished: true
   finishedAt: 2011-07-01T00:00:00Z
-  notes: 'The minimal language is perfect.'
+  notes: "The minimal language is perfect."
 
 - title: Black Sabbath
   author: Mick Wall
@@ -98,7 +98,7 @@
   finished: true
   finishedAt: 2014-07-10T00:00:00Z
   location: Gothenburg, Sweden
-  notes: 'Raw and honest.'
+  notes: "Raw and honest."
 
 - title: Shantaram
   author: Gregory David Roberts
@@ -135,7 +135,7 @@
   finished: true
   finishedAt: 2015-11-10T00:00:00Z
   location: San Francisco, USA
-  notes: 'Very touching, and beautifully written.'
+  notes: "Very touching, and beautifully written."
 
 - title: Dancing with the Devil in the City of God
   author: Juliana Barbassa
@@ -166,7 +166,7 @@
   finished: true
   finishedAt: 2017-07-10T00:00:00Z
   location: Gothenburg, Sweden
-  notes: 'Sequel to Shantaram. Not as good, but nevertheless a good sequel.'
+  notes: "Sequel to Shantaram. Not as good, but nevertheless a good sequel."
 
 - title: Sapiens
   author: Yuval Noah Harari
@@ -227,21 +227,21 @@
   finished: true
   finishedAt: 2020-01-10T00:00:00Z
   location: Sri Lanka
-  notes: 'Like The Alchemist, this one was boring. Poorly written, boring plot, and not believable at all.'
+  notes: "Like The Alchemist, this one was boring. Poorly written, boring plot, and not believable at all."
 
 - title: The Alchemist
   author: Paolo Coelho
   finished: true
   finishedAt: 2020-01-10T00:00:00Z
   location: Sri Lanka
-  notes: 'I loved it in the beginning, but then it turned out to be boring New Age-y stuff.'
+  notes: "I loved it in the beginning, but then it turned out to be boring New Age-y stuff."
 
 - title: The Godfather
   author: Mario Puzo
   finished: true
   finishedAt: 2020-03-01T00:00:00Z
   location: Stockholm, Sweden
-  notes: 'Even better than the movie. More details (of course), and deeper descriptions of characters.'
+  notes: "Even better than the movie. More details (of course), and deeper descriptions of characters."
 
 - title: Jag Kan Ha Fel
   author: Björn Natthiko Lindeblad
@@ -267,7 +267,7 @@
   finished: true
   finishedAt: 2020-07-01T00:00:00Z
   location: Stockholm, Sweden
-  notes: 'A non-fiction history about the Sicilian mafia. Entertaining.'
+  notes: "A non-fiction history about the Sicilian mafia. Entertaining."
 
 - title: Normal People
   author: Sally Rooney
@@ -354,7 +354,7 @@
   location: Stockholm, Sweden
   finished: true
   finishedAt: 2021-11-01T00:00:00Z
-  notes: 'An okay account of the history of the band, told by themselves in interview format.'
+  notes: "An okay account of the history of the band, told by themselves in interview format."
 
 - title: Once Upon A Time… In Hollywood
   author: Quentin Tarantino
@@ -390,7 +390,7 @@
 - title: Life
   author: Keith Richards
   location: Stockholm, Sweden
-  notes: 'The autobiography of Keith Richards (guitarist in Rolling Stones).'
+  notes: "The autobiography of Keith Richards (guitarist in Rolling Stones)."
   finished: true
 
 - title: Häng City
@@ -444,4 +444,13 @@
 
 - title: David Bowie — A Life
   author: Dylan Jones
-  notes: A non-traditional biography of David Bowie.
+  notes: >-
+      A non-traditional biography of David Bowie. Being a Bowie fan, I loved it. It was constructed as interview format rather
+      than common phrose. It was different than other biographies I've read on Bowie, thanks to the various (well known) voices
+      the author used in the interviews. It felt personal and real.
+  location: Fjällnäs, Sweden
+  finished: true
+  finishedAt: 2023-01-12T20:00:00
+
+- title: Detaljerna
+  author: Ia Genberg
