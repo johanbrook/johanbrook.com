@@ -519,3 +519,15 @@
 - title: Detaljerna
   slug: detaljerna
   author: Ia Genberg
+  finished: true
+  location: Fjällnäs, Sweden
+  finishedAt: 2023-01-22T20:00:00
+  notes: >-
+      Best book I've read for a long while. So intimate and delicate. Beautiful prose. Good build-ups. The format of
+      describing the interactions with four people during an unspecified (but guessable) timeline from the perspective
+      of the narrator is so cool.
+
+- title: What We Owe the Future
+  slug: what-we-owe-the-future
+  author: William MacAskill
+  notes: Philosopher philosophising about the future.
