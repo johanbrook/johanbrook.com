@@ -2,7 +2,7 @@
 <html lang="en" class="{{'home' if home}} {{ pageSlug() }}">
 
   <head itemtype="http://schema.org/Blog" itemscope>
-    <title>{% if title %}{{ title | lower }} – {{ meta.title | lower }}{% else %}{{ meta.title | lower }}{% endif %}</title>
+    <title>{% if title %}{{ title | lower }} / {{ meta.title | lower }}{% else %}{{ meta.title | lower }}{% endif %}</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
