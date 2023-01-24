@@ -248,6 +248,10 @@ FLEXBOX
 	/* 1 */
 }
 
+.flex-1 {
+	flex: 1;
+}
+
 .flex-none {
 	flex: none;
 }
@@ -679,6 +683,11 @@ SPACING
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.mx1 {
+	margin-right: var(--spacing-extra-small);
+	margin-left: var(--spacing-extra-small);
 }
 
 .mr0 {
