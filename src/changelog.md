@@ -3,7 +3,7 @@ title: Changelog
 layout: layouts/page.njk
 description: Log over semi major life events so far.
 ogImage: /assets/images/og-image-changelog.png
-date: Git Last Modified
+date: 2021-02-20
 ---
 
 <p class="measure">

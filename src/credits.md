@@ -1,6 +1,7 @@
 ---
 title: Licenses & Credits
 layout: layouts/page.njk
+date: 2021-12-27
 templateEngine: njk,md
 ---
 
@@ -15,7 +16,7 @@ templateEngine: njk,md
 This site's simple license:
 
 ```
-Copyright Johan Brook, {{ "now" | date("yyyy") }}
+Copyright Johan Brook, {{ date | date("yyyy") }}
 
 You may steal the code of this site, and be inspired by its structure.
 
