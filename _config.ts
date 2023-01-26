@@ -19,6 +19,7 @@ const site = lume(
 	{
 		src: 'src',
 		dest: DEST,
+		location: new URL("https://johan.im"), // Ignored in dev
 	},
 	{
 		markdown: {
