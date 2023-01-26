@@ -6,7 +6,7 @@
   "twitter": "{{ meta.twitter }}",
   "mastodon": "@{{ meta.mastodon.username }}@{{ meta.mastodon.domain }}",
   "email": "{{ meta.email }}",
-  "cv": "{{ meta.cv }}",
+  "cv": "{{ meta.cv | url(true) }}",
   "versions": {
     "johan": "{{ meta.currentVersionOfJohan }}",
     "build": "{{ build.hash }}",

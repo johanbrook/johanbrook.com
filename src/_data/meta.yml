@@ -15,5 +15,5 @@ mastodon:
     instance: hachyderm.io
     domain: johan.im
 email: webmaster@johan.im
-cv: https://johan.im/johanbrook-cv.pdf
+cv: /johanbrook-cv.pdf
 currentVersionOfJohan: 4.0.0
