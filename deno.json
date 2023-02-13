@@ -6,12 +6,19 @@
 		"serve": "deno task lume -s"
 	},
 	"compilerOptions": {
-		"lib": ["deno.ns", "deno.unstable", "dom", "dom.iterable"],
+		"lib": [
+			"deno.ns",
+			"deno.unstable",
+			"dom",
+			"dom.iterable"
+		],
 		"strict": true
 	},
 	"lint": {
 		"rules": {
-			"exclude": ["no-explicit-any"]
+			"exclude": [
+				"no-explicit-any"
+			]
 		}
 	},
 	"fmt": {
