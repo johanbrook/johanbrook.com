@@ -78,6 +78,7 @@
 		inset: 0;
 		overflow-x: auto;
 		background-color: var(--color-bg);
+		font-size: var(--f5);
 
 		& h1 {
 			position: absolute;
