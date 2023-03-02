@@ -2,7 +2,7 @@
 title: Reading
 layout: layouts/main.njk
 description: Books I've read.
-updated: 2023-02-13
+updated: 2023-03-02
 menu:
   visible: true
   order: 4
@@ -10,19 +10,14 @@ menu:
 
 <main role="main" class="wide">
   <article class="page">
-    <h1 class="title">{{ title }}.</h1>
+    <header class="flex justify-between items-center">
+    	<h1 class="title flex-1">{{ title }}.</h1>
+    	<p class="mb0"><a class="f6" href="/reading.xml">Feed{{ comp.icon({ class: "ml1" }) | safe }}</a></p>
+    </header>
 
-    <div class="flex mb4">
-	    <div class="flex-1">
-	    	<p class="measure">
-	    	Non-exhaustive list of books I've read and am reading, in reverse chronological order. Updated on {{ updated | date("EEEE, LLLL do yyyy") }}.
-		</p>
-	    </div>
-
-		<p>
-			<a class="btn" href="/reading.xml">Feed</a>
-		</p>
-	</div>
+    <p class="measure mb5">
+    	Non-exhaustive list of books I've read and am reading, in reverse chronological order. Updated on <time datetime="{{ updated | date("DATETIME") }}">{{ updated | date("EEEE, LLLL do yyyy") }}</time>.
+	</p>
 
     <table class="textual">
     	<tr>
@@ -66,6 +61,6 @@ menu:
       {% endfor %}
     </table>
 
-    <p class="mt4">{{ books.length }} books <span class="mx1">|</span> <a href="/reading.xml">Feed</a></p>
+    <p class="mt4">{{ books.length }} books <span class="mx1">|</span> <a href="/reading.xml">Feed{{ comp.icon({ class: "ml2" }) | safe }}</a></p>
   </article>
 </main>

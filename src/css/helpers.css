@@ -1033,3 +1033,17 @@ TYPOGRAPHY
 	overflow: hidden;
 	max-width: 100%;
 }
+
+.icon {
+	fill: currentColor;
+	width: 1em;
+	height: auto;
+	aspect-ratio: 1 / 1;
+	vertical-align: middle;
+	display: inline-block;
+	font-size: .9em;
+}
+
+a:hover .icon-feed {
+	color: var(--yellow);
+}
