@@ -18,10 +18,9 @@
 	z-index: 2;
 
 	& ul {
-		display: flex;
-		flex-direction: column;
 		top: var(--lineheight);
 		position: sticky;
+		margin-left: 2.2rem; /* Align with back btn arrow */
 	}
 
 	& a:not(h1 > a) {
@@ -86,6 +85,8 @@
 		}
 
 		& ul {
+			display: flex;
+			margin: 0;
 			flex-direction: row;
 			gap: .75em;
 		}
@@ -140,7 +141,7 @@
 				display: inline-block;
 				margin: 0 .5em;
 				color: var(--color-text-detail);
-				transform: scaleY(1.2);
+				transform: scaleY(1.4);
 			}
 		}
 	}

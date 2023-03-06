@@ -10,13 +10,13 @@ bare: true
 
       	{{ content | safe }}
 
-      	<nav role="navigation" class="mt4 border border-t border-b pv2">
+      	<nav role="navigation" class="mt4 border border-t border-b border-dashed pv2">
       		{% include "nav-common.njk" %}
       	</nav>
     </section>
 
     <section class="mb4">
-      <header class="flex items-center mb1">
+      <header class="flex items-center">
         <h1 class="f2 no-rhythm mb0">On my mind</h1>
         
         <a href="/mind" class="ml3 f6" title="Read more">All notes</a>
@@ -26,7 +26,7 @@ bare: true
       <ol class="list-reset">
         {% for note in search.pages("type=note", "date=desc", 1) %}
           <li>
-            <h2 class="f5 fw4 no-rhythm">
+            <h2 class="f5 fw4 no-rhythm mb3">
               <a href="{{ note.data.permalink() | url }}" class="muted">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
             </h2>
             <div class="prose font-mono f5">
