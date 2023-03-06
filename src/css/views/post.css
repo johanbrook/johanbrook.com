@@ -6,11 +6,3 @@
 		margin-bottom: calc(var(--lineheight) * 0.5);
 	}
 }
-
-.Post {
-	& .title {
-		@media screen and (max-width: 480px) {
-			font-size: var(--f1);
-		}
-	}
-}

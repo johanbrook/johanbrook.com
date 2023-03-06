@@ -44,13 +44,7 @@ html {
 
 body {
 	margin: var(--inset) auto;
-	min-height: calc(100vh - (var(--inset) * 2));
 	width: calc(100% - (var(--inset) * 2));
-
-	/* Push the footer down */
-	display: flex;
-	flex-direction: column;
-
 	line-height: var(--leading);
 	letter-spacing: var(--tracking);
 	font-kerning: normal;
@@ -74,30 +68,27 @@ body {
 	}
 }
 
-@media screen and (min-width: 58rem) {
-	html:not(.home) body {
-		padding-top: calc(var(--lineheight) * 2);
-	}
-}
-
 main {
-	flex: 1 0 auto;
-	max-width: var(--measure);
+	max-width: var(--content-width);
 	margin-bottom: calc(var(--lineheight) * 3);
-
-	&.wide {
-		max-width: var(--measure-wide);
-	}
 }
 
 .Content {
-	display: flex;
-	justify-content: center;
-	flex: 1;
-	/* Take up vertical space */
+	max-width: var(--content-width);
+	margin: 0 auto;
 
-	@media screen and (max-width: 58rem) {
-		flex-direction: column;
+	&.wide {
+		--content-width: var(--measure-wide);
+	}
+
+	html:not(.home) & {
+		@media screen and (min-width: 981px) {
+			max-width: none;
+			display: grid;
+			place-content: center;
+			grid-template-columns: var(--sidenav-width) var(--content-width);
+			gap: var(--spacing-large);
+		}
 	}
 }
 
@@ -178,11 +169,10 @@ h6,
 
 h1.title {
 	font-weight: 750;
-	line-height: calc(var(--lineheight) * 3);
+	line-height: calc(var(--leading) * 0.75);
 
-	@media screen and (max-width: 480px) {
+	@media screen and (max-width: 680px) {
 		font-size: 10vw;
-		line-height: 1.4;
 	}
 }
 

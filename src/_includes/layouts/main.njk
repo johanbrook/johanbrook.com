@@ -63,20 +63,19 @@
   </head>
 
   <body>
+	  <div class="Content{% if wide %} wide{% endif %}">
+  		{% if not bare %}
+	    	{% include "nav-main.njk" %}
+	  	{% endif %}
 
-    <div class="Content">
-      {% if not bare %}
-        {% include "nav-main.njk" %}
-      {% endif %}
+	  	<div>
+			{{ content | safe }}
 
-      <div>
-      	{{ content | safe }}
+			{% include "footer.njk" %}
+		</div>
+	  </div>
 
-      	{% include "footer.njk" %}
-      </div>
-    </div>
-
-    {% include "analytics.njk" %}
+      {% include "analytics.njk" %}
   </body>
 
 </html>

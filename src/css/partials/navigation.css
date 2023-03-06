@@ -69,7 +69,7 @@
 		padding-top: var(--offset-top);
 	}
 
-	@media screen and (max-width: 58rem) {
+	@media screen and (max-width: 980px) {
 		width: calc(100% + var(--inset) * 2);
 		margin: calc(var(--inset) * -1);
 		padding: calc(var(--inset) * 1);
@@ -128,4 +128,26 @@
 	aspect-ratio: 1/1;
 	display: inline-block;
 	border-radius: 4em;
+}
+
+.home [role="navigation"] {
+	@media screen and (min-width: 500px) {
+		& li {
+			display: inline;
+
+			&:not(:last-child)::after {
+				content: ' / ';
+				display: inline-block;
+				margin: 0 .5em;
+				color: var(--color-text-detail);
+				transform: scaleY(1.2);
+			}
+		}
+	}
+
+	@media screen and (max-width: 499px) {
+		columns: 2;
+		text-align: center;
+		line-height: 2;
+	}
 }

@@ -115,6 +115,7 @@
 	--measure-narrow: 45ch;
 	--measure-wide: 100ch;
 
+	--content-width: var(--measure);
 	--sidenav-width: 9rem;
 
 	--spacing-base: var(--lineheight);
@@ -127,15 +128,4 @@
 	--spacing-extra-large: calc(var(--spacing-base) * 3);
 	--spacing-extra-extra-large: calc(var(--spacing-base) * 4);
 	--spacing-extra-extra-extra-large: calc(var(--spacing-base) * 6);
-
-	/* Breakpoints */
-
-	--desktop: 1700px;
-	--laptop: 1281px;
-	--tablet: 768px;
-	--handheld: 481px;
-
-	--breakpoint-not-small: screen and (min-width: var(--handheld));
-	--breakpoint-medium: screen and (min-width: 30em) and (max-width: 60em);
-	--breakpoint-large: screen and (min-width: 60em);
 }
