@@ -10,11 +10,7 @@
 	}
 
 	& header h1 a {
-		color: var(--color-text);
-
-		&:hover .target {
-			color: var(--neon);
-		}
+		color: var(--color-text-high-contrast);
 	}
 
 	&>li:not(:last-child)::after {

@@ -957,6 +957,10 @@ COLOURS
 	background-color: var(--yellow);
 }
 
+.text-color {
+	color: var(--color-text);
+}
+
 .muted {
 	color: var(--color-text-detail);
 }

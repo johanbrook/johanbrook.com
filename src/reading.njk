@@ -11,14 +11,15 @@ menu:
 
 <main role="main">
   <article class="page">
-    <header class="flex justify-between items-center">
-    	<h1 class="title flex-1">{{ title }}.</h1>
-    	<p class="mb0"><a class="f6" href="/reading.xml">Feed{{ comp.icon({ class: "ml1" }) | safe }}</a></p>
-    </header>
+	<h1 class="title">{{ title }}.</h1>
 
-    <p class="measure mb5">
-    	Non-exhaustive list of books I've read and am reading, in reverse chronological order. Updated on <time datetime="{{ updated | date("DATETIME") }}">{{ updated | date("EEEE, LLLL do yyyy") }}</time>.
-	</p>
+	<div class="flex mb5 items-end justify-between">
+    	<p class="measure mb0 flex-1 muted">
+    		Non-exhaustive list of books I've read and am reading, in reverse chronological order. Updated on <time class="text-color fw5" datetime="{{ updated | date("DATETIME") }}">{{ updated | date("EEEE, LLLL do yyyy") }}</time>.
+		</p>
+
+		<p class="mb0"><a href="/reading.xml">Feed{{ comp.icon({ class: "ml2" }) | safe }}</a></p>
+	</div>
 
     <table class="textual">
     	<tr>

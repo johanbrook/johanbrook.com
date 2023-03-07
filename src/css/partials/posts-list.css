@@ -15,6 +15,10 @@ POSTS LIST
 		font-size: var(--f5);
 		font-variant-numeric: tabular-nums;
 		letter-spacing: var(--tracking-f0);
+		
+		&:not(.PostItem:hover &) {
+			color: var(--color-text-detail);
+		}
 	}
 
 	& .PostItem__Link {

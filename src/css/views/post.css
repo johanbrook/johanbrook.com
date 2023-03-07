@@ -1,8 +1,0 @@
-/* =POST VIEW
---------------------------------------------- */
-
-.posts {
-	.title {
-		margin-bottom: calc(var(--lineheight) * 0.5);
-	}
-}

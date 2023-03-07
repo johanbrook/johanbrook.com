@@ -22,7 +22,7 @@ I want to try to have Sublime support
 [the Deno config file](https://deno.land/manual/getting_started/configuration_file), and format on
 save.
 
-## Install necessary packages
+# Install necessary packages
 
 (I assume you have [Package Control up and running](https://packagecontrol.io/installation).)
 

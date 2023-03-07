@@ -16,7 +16,7 @@ menu:
 templateEngine: njk,md
 ---
 
-Updated on **{{ date | date("HUMAN_DATE") }}** from {{ location }}.
+<p class="muted">Updated on <time class="text-color fw5">{{ date | date("HUMAN_DATE") }}</time> from {{ location }}.</p>
 
 # Since the last update…
 

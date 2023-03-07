@@ -2,7 +2,7 @@
 --------------------------------------------- */
 
 .changelog {
-	& .page__text {
+	& .prose {
 		&>ul {
 			padding-left: 0;
 			margin-bottom: var(--lineheight);

@@ -26,6 +26,10 @@
 	& a:not(h1 > a) {
 		font-weight: normal;
 		position: relative;
+
+		&:not([aria-current='page'] > &):not(:hover) {
+			opacity: .8;
+		}
 	}
 
 	& h1>a {
@@ -34,14 +38,15 @@
 		white-space: nowrap;
 		text-decoration: none;
 
-		&:hover {
+		&:hover, &:focus {
+			outline: 0;
 			color: var(--link-color-hover);
 			text-decoration: underline;
 		}
 	}
 
 	& [aria-current='page'] a,
-	& a:focus {
+	& a:not(h1 > a):focus {
 		outline: 0;
 
 		&::before {
@@ -54,7 +59,7 @@
 	}
 
 	& [aria-current='page'] a {
-		font-weight: 600;
+		font-weight: 700;
 	}
 
 	& a:focus {
@@ -98,25 +103,6 @@
 			}
 		}
 	}
-
-	& #mobile-nav-trigger {
-		display: none;
-
-		&:checked+ul {
-			animation: nav 200ms ease-out both;
-		}
-	}
-}
-
-@keyframes nav {
-	from {
-		opacity: 1;
-	}
-
-	to {
-		opacity: 1;
-		transform: translate3d(0, 0, 0);
-	}
 }
 
 .BackLink {
@@ -129,6 +115,11 @@
 	aspect-ratio: 1/1;
 	display: inline-block;
 	border-radius: 4em;
+	opacity: .8;
+
+	a:is(:hover, :focus) > & {
+		opacity: 1;
+	}
 }
 
 .home [role="navigation"] {
