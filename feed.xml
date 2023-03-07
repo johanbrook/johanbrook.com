@@ -131,7 +131,7 @@ I want to try to have Sublime support
 &lt;a href=&quot;https://deno.land/manual/linking_to_external_code/import_maps&quot;&gt;import maps&lt;/a&gt;,
 &lt;a href=&quot;https://deno.land/manual/getting_started/configuration_file&quot;&gt;the Deno config file&lt;/a&gt;, and format on
 save.&lt;/p&gt;
-&lt;h2&gt;Install necessary packages&lt;/h2&gt;
+&lt;h1&gt;Install necessary packages&lt;/h1&gt;
 &lt;p&gt;(I assume you have &lt;a href=&quot;https://packagecontrol.io/installation&quot;&gt;Package Control up and running&lt;/a&gt;.)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Required:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
