@@ -123,23 +123,30 @@
 }
 
 .home [role="navigation"] {
-	@media screen and (min-width: 500px) {
+	@media screen and (min-width: 530px) {
+		& ul {
+			display: flex;
+		}
+
 		& li {
-			display: inline;
 
 			&:not(:last-child)::after {
 				content: ' / ';
 				display: inline-block;
-				margin: 0 .5em;
+				margin: 0 .75em;
 				color: var(--color-text-detail);
 				transform: scaleY(1.4);
 			}
 		}
 	}
 
-	@media screen and (max-width: 499px) {
+	@media screen and (max-width: 529px) {
 		columns: 2;
 		text-align: center;
 		line-height: 2;
+	}
+
+	@media screen and (max-width: 240px) {
+		columns: 1;
 	}
 }
