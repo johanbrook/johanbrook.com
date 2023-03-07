@@ -910,6 +910,29 @@ BORDERS
 	border-style: dashed;
 }
 
+.border-dashed-anim {
+	--dash: 6px 1px;
+	background:
+    linear-gradient(90deg, var(--border-color) 50%, transparent 50%),
+    linear-gradient(90deg, var(--border-color) 50%, transparent 50%);
+  background-repeat: repeat-x;
+  background-size: var(--dash), var(--dash);
+  background-position: left top, left bottom;
+  
+  @media (prefers-reduced-motion: no-preference) {
+  	animation: border-dance 20s infinite linear;
+  }
+}
+
+@keyframes border-dance {
+  0% {
+    background-position: left top, right 100%;
+  }
+  100% {
+    background-position: right top, left 100%;
+  }
+}
+
 /*
 COLOURS
 ----------------------------------------------------------------*/
