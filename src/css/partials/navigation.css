@@ -17,53 +17,51 @@
 	position: relative;
 	z-index: 2;
 
-	& ul {
-		top: var(--lineheight);
-		position: sticky;
-		margin-left: 2.2rem; /* Align with back btn arrow */
-	}
-
-	& a:not(h1 > a) {
-		font-weight: normal;
-		position: relative;
-
-		&:not([aria-current='page'] > &):not(:hover) {
-			opacity: .8;
-		}
-	}
-
 	& h1>a {
 		font-weight: 500;
 		color: var(--color-text);
 		white-space: nowrap;
 		text-decoration: none;
+	}
 
-		&:hover, &:focus {
+	& a {
+		&:is(:hover, :focus-visible) {
 			outline: 0;
 			color: var(--link-color-hover);
 			text-decoration: underline;
 		}
 	}
 
-	& [aria-current='page'] a,
-	& a:not(h1 > a):focus {
-		outline: 0;
+	& ul {
+		top: var(--lineheight);
+		position: sticky;
+		/* Align with back btn arrow */
+		margin-left: 2.2rem;
 
-		&::before {
-			content: '⇢';
-			display: block;
-			position: absolute;
-			right: calc(100% + 0.5em);
-			white-space: nowrap;
+		& a {
+			font-weight: normal;
+			position: relative;
+
+			&:not([aria-current='page'] > &):not(&:hover):not(&:focus-visible) {
+				opacity: .8;
+			}
+
+			:where([aria-current='page'] &, &:focus) {
+				outline: 0;
+
+				&::before {
+					content: '⇢';
+					display: block;
+					position: absolute;
+					right: calc(100% + 0.5em);
+					white-space: nowrap;
+				}
+			}
 		}
-	}
 
-	& [aria-current='page'] a {
-		font-weight: 700;
-	}
-
-	& a:focus {
-		color: var(--link-color-hover);
+		& [aria-current='page'] a {
+			font-weight: 700;
+		}
 	}
 
 	& h1 {
