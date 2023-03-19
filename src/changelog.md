@@ -3,12 +3,16 @@ title: Changelog
 layout: layouts/page.njk
 description: Log over semi major life events so far.
 ogImage: /assets/images/og-image-changelog.png
-date: 2021-02-20
+date: 2023-03-19
 ---
 
 <p class="measure">
 My life so far – versioned. Also check out experimental development: <a href="/now">what I'm doing now</a>.
 </p>
+
+## 4.1
+
+- Became a father again.
 
 # 4.0
 
