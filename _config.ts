@@ -8,6 +8,7 @@ import { minifier } from './deps.ts';
 import { readingTime } from './src/_lume-plugins/reading-time.ts';
 import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
 import { loadLanguages, prismMarkdown } from './src/_lume-plugins/prism.ts';
+import { typeset } from './src/_lume-plugins/typeset.ts';
 import sourceMaps from 'lume/plugins/source_maps.ts';
 
 const DEST = 'build';
@@ -36,6 +37,7 @@ site
 	//
 	.includes(['.ts', '.js'], 'js')
 	.includes(['.css'], 'css')
+	.use(typeset({ scope: '.prose' }))
 	.use(esbuild())
 	.copy('public', '.')
 	// Plugins

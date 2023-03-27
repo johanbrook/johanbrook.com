@@ -1,24 +1,32 @@
 /* Small caps */
 .small-caps {
 	font-family: 'Charter SC', serif;
+	font-variant: small-caps;
 }
 
-/* Double quote (") marks */
+/* Double quotation marks (") */
 .pull-double {
-	margin-left: -0.38em;
+	margin-left: -.46em
 }
 
 .push-double {
-	margin-right: 0.38em;
+	margin-right: .46em
 }
 
-/* Single quote (') marks */
+/* Single quotation marks (') */
 .pull-single {
-	margin-left: -0.15em;
+	margin-left: -.27em
 }
 
 .push-single {
-	margin-right: 0.15em;
+	margin-right: .27em
+}
+
+.pull-double,
+.push-double,
+.pull-single,
+.push-single {
+	display: inline-block
 }
 
 /* Optical margin alignment for particular letters */
