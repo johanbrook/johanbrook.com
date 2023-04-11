@@ -30,9 +30,6 @@
 
 :where(html, body) {
 	font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--sans);
-}
-
-html {
 	background-color: var(--color-bg);
 	color: var(--color-text);
 }
@@ -100,7 +97,7 @@ h6 {
 
 .f0,
 .title {
-	font-size: var(--f0);
+	font-size: clamp(var(--f1), 12vw, var(--f0));
 	letter-spacing: var(--tracking-f0);
 }
 
@@ -164,9 +161,9 @@ h1.title {
 	font-weight: 750;
 	line-height: calc(var(--leading) * 0.75);
 
-	@media screen and (max-width: 680px) {
+	/*@media screen and (max-width: 680px) {
 		font-size: 10vw;
-	}
+	}*/
 }
 
 strong,
