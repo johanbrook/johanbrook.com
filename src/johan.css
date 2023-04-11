@@ -5,17 +5,29 @@ Built for IE6, made in Dreamweaver.
 Just kidding.
 --------------------------------------------- */
 
-@import 'css/fonts.css';
+@layer setup,
+base,
+views,
+components,
+utils;
 
-@import 'css/reset.css';
-@import 'css/variables.css';
-@import 'css/base.css';
+@import 'css/reset.css' layer(setup);
+@import 'css/fonts.css' layer(setup);
+@import 'css/variables.css' layer(setup);
 
-@import 'css/vendor/prism-matrix.css';
-@import 'css/vendor/typeset.css';
+@import 'css/base.css' layer(base);
+@import 'css/utils.css' layer(utils);
+@import 'css/footer.css' layer(base);
 
-@import 'css/partials/index.css';
+@import 'css/admin.css' layer(views);
+@import 'css/changelog.css' layer(views);
 
-@import 'css/views/index.css';
+@import 'css/notes.css' layer(components);
+@import 'css/navigation.css' layer(components);
+@import 'css/notes.css' layer(components);
+@import 'css/page-nav.css' layer(components);
+@import 'css/posts-list.css' layer(components);
+@import 'css/autogrow.css' layer(utils);
 
-@import 'css/helpers.css';
+@import 'css/prism-matrix.css' layer(base);
+@import 'css/typeset.css' layer(utils);
