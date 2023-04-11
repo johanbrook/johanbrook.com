@@ -5,11 +5,19 @@
   <link href="https://johan.im/mind"/>
   <id>https://johan.im/mind</id>
   
-  <updated>2023-03-20T20:29:45Z</updated>
+  <updated>2023-04-11T19:58:39Z</updated>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johan.im</email>
   </author>
+  
+  <entry>
+    <title>April 11th, 2023 at 7:58:39 PM GMT+0</title>
+    <link href="https://johan.im/mind#202304111958" />
+    <updated>2023-04-11T19:58:39Z</updated>
+    <id>https://johan.im/mind#202304111958</id>
+    <content type="html">&lt;p&gt;The minimalism of &lt;a href=&quot;https://open.spotify.com/track/6rQWcomd5gHKdALTXcGw66&quot;&gt;&amp;quot;Open House&amp;quot;&lt;/a&gt; by Lou Reed and John Cale is superb. So eerie and perfect. Nobody can do Lou Reed&#39;s voice better than Lou Reed himself.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>March 20th, 2023 at 8:29:45 PM GMT+0</title>
@@ -147,59 +155,6 @@ as dev dependencies and run tests with:&lt;/p&gt;
 &lt;p&gt;the runner supports returning promises, as well as printing fancy file names for each test case.&lt;/p&gt;
 &lt;p&gt;i appreciate taking this approach before jumping to &lt;code&gt;npm install &amp;lt;dep&amp;gt;&lt;/code&gt;. it gives me very much peace
 of mind, as long as you don&#39;t spend too much time maintaining your own tooling.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>March 15th, 2022 at 10:12:02 AM GMT+0</title>
-    <link href="https://johan.im/mind#202203151012" />
-    <updated>2022-03-15T10:12:02Z</updated>
-    <id>https://johan.im/mind#202203151012</id>
-    <content type="html">&lt;p&gt;my latest favourite cocktail is this gin sour with bergamot and black tea. you&#39;ve probably felt the
-scent of bergamot in earl grey tea or in perfumes. it&#39;s a highly aromatic citrus fruit: it looks
-like a large, more spherical, lemon. it&#39;s also surprisingly hard to find here in stockholm – even
-when it&#39;s in season.&lt;/p&gt;
-&lt;p&gt;i found &lt;a href=&quot;https://feeders.se/2022/01/20/earl-greyish-bergamott/&quot;&gt;this recipe (in swedish...)&lt;/a&gt; and got
-hold of a batch of bergamots through a restaurant friend. i&#39;ve translated the recipe to english
-below:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://johan.im/assets/posts/gin-tea-sour.jpg&quot; alt=&quot;Gin tea sour&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Ingredients&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;5 cl gin&lt;/li&gt;
-&lt;li&gt;3 cl freshly squeezed juice from bergamot&lt;/li&gt;
-&lt;li&gt;2 cl earl grey simple syrup (see below)&lt;/li&gt;
-&lt;li&gt;1 egg white&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;em&gt;Procedure&lt;/em&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Pour gin, bergamot juice, simple syrup, and egg white in a shaker.&lt;/li&gt;
-&lt;li&gt;shake like hell for a minute. it should create a lot of foam.&lt;/li&gt;
-&lt;li&gt;add ice cubes to the shaker and shake until the shaker gets cold.&lt;/li&gt;
-&lt;li&gt;strain into a coupe glass and decorate with something green or tea related.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;the cocktail will get a lovely orange tea-like colour too!&lt;/p&gt;
-&lt;h3&gt;Earl Grey simple syrup&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Ingredients&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;2 dl water&lt;/li&gt;
-&lt;li&gt;2 dl cane sugar&lt;/li&gt;
-&lt;li&gt;1 bergamot&lt;/li&gt;
-&lt;li&gt;2 strainers of black, neutral tea&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;(this will make more syrup than you need for one drink.)&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Procedure&lt;/em&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;combine water and sugar in a pot.&lt;/li&gt;
-&lt;li&gt;add the zest of the bergamot (the outer layer of the peel, save the fruit with its juice for the
-drink). avoid the white layer beneath.&lt;/li&gt;
-&lt;li&gt;put everything to a boil for a couple of minutes.&lt;/li&gt;
-&lt;li&gt;remove from the heat, add the tea strainers with black tea.&lt;/li&gt;
-&lt;li&gt;let it sit for at least 5 minutes. it should gain a strong flavour.&lt;/li&gt;
-&lt;li&gt;remove the strainers and let the syrup cool.&lt;/li&gt;
-&lt;li&gt;strain (to remove the bergamot zest) and pour the syrup into a small bottle and store in the
-fridge.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;i think the simple syrup is as best the first few days, but mine has lasted over a week now. just
-don&#39;t forget it in there…&lt;/p&gt;</content>
   </entry>
   
 </feed>
