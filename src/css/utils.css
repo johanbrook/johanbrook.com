@@ -1,3 +1,9 @@
+.skip-link {
+	position: fixed;
+	top: var(--inset);
+	left: var(--inset);
+}
+
 .list-reset {
 	list-style: none;
 	margin: 0;
