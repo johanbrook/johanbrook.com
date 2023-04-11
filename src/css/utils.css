@@ -50,78 +50,6 @@ BUTTONS
 }
 
 /*
-PROSE
-----------------------------------------------------------------*/
-
-.prose {
-	&> :last-child {
-		margin-bottom: 0;
-	}
-
-	& img,
-	& iframe,
-	& figure,
-	& svg {
-		--side-margin: calc(var(--lineheight) * 2);
-		margin: var(--side-margin) auto;
-		display: block;
-
-		@media screen and (max-width: 480px) {
-			--side-margin: var(--lineheight);
-		}
-	}
-
-	@media screen and (prefers-color-scheme: dark) {
-		& img {
-			opacity: 0.9;
-			box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
-		}
-	}
-
-	& ul,
-	& ol {
-		padding-left: 1em;
-		margin-left: 1rem;
-
-		& li>ul,
-		& li>ol {
-			padding-left: 1.5rem;
-			margin-bottom: 0;
-		}
-	}
-
-	& figcaption {
-		padding: 1rem 0;
-		text-align: center;
-		font-family: var(--sans);
-		font-size: 0.9em;
-	}
-
-	/* Break links and code */
-	& code:not(pre > code),
-	& a {
-		word-break: break-word;
-		word-wrap: break-word;
-		overflow-wrap: break-word;
-	}
-}
-
-& figure.image--full {
-	margin: calc(var(--lineheight) * 2) -14vw;
-
-	& img {
-		display: block;
-		margin: 0 auto;
-	}
-
-	@media screen and (max-width: 960px) {
-		/* Edge-to-edge pixelfucking. */
-		margin-left: auto;
-		margin-right: auto;
-	}
-}
-
-/*
 OPEN TYPE
 ----------------------------------------------------------------*/
 
@@ -913,24 +841,25 @@ BORDERS
 .border-dashed-anim {
 	--dash: 6px 1px;
 	background:
-    linear-gradient(90deg, var(--border-color) 50%, transparent 50%),
-    linear-gradient(90deg, var(--border-color) 50%, transparent 50%);
-  background-repeat: repeat-x;
-  background-size: var(--dash), var(--dash);
-  background-position: left top, left bottom;
-  
-  @media (prefers-reduced-motion: no-preference) {
-  	animation: border-dance 20s infinite linear;
-  }
+		linear-gradient(90deg, var(--border-color) 50%, transparent 50%),
+		linear-gradient(90deg, var(--border-color) 50%, transparent 50%);
+	background-repeat: repeat-x;
+	background-size: var(--dash), var(--dash);
+	background-position: left top, left bottom;
+
+	@media (prefers-reduced-motion: no-preference) {
+		animation: border-dance 20s infinite linear;
+	}
 }
 
 @keyframes border-dance {
-  0% {
-    background-position: left top, right 100%;
-  }
-  100% {
-    background-position: right top, left 100%;
-  }
+	0% {
+		background-position: left top, right 100%;
+	}
+
+	100% {
+		background-position: right top, left 100%;
+	}
 }
 
 /*

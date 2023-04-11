@@ -28,6 +28,7 @@ utils;
 @import 'css/page-nav.css' layer(components);
 @import 'css/posts-list.css' layer(components);
 @import 'css/autogrow.css' layer(utils);
+@import 'css/prose.css' layer(components);
 
 @import 'css/prism-matrix.css' layer(base);
 @import 'css/typeset.css' layer(utils);
