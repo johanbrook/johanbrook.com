@@ -3,7 +3,9 @@ import { Args as GitHubArgs, mkGitHub } from './github.ts';
 import type { CreateNoteResult, Service } from './service.ts';
 import { Err, isErr } from './util.ts';
 
-const WORKER_URL = isLocal() ? 'http://localhost:3001' : 'https://github-oauth.brookie.workers.dev';
+const WORKER_URL = isLocal()
+	? 'http://localhost:8788/github-oauth'
+	: 'https://brookie.pages.dev/github-oauth';
 
 interface Services {
 	github: GitHubArgs;
@@ -60,7 +62,7 @@ export const runApp = async () => {
 
 			case 'submit_note': {
 				evt.preventDefault();
-				const form = (evt.target as HTMLFormElement);
+				const form = evt.target as HTMLFormElement;
 
 				const text = form
 					.querySelector('textarea')!

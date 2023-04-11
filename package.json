@@ -1,7 +1,5 @@
 {
-	"name": "github-oauth",
-	"version": "1.0.0",
-	"private": true,
-	"description": "Cloudflare Worker for GitHub OAuth",
-	"main": "functions/github-oauth.js"
+	"devDependencies": {
+		"wrangler": "^2"
+	}
 }

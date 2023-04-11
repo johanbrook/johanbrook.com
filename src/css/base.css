@@ -70,7 +70,7 @@ main {
 		--content-width: var(--measure-wide);
 	}
 
-	html:not(.home) & {
+	html:not(.home, .admin) & {
 		@media screen and (min-width: 981px) {
 			max-width: none;
 			display: grid;

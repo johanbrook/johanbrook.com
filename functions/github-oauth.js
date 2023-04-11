@@ -1,25 +1,21 @@
-addEventListener('fetch', (event) => {
+export function onRequest(context) {
 	try {
-		event.respondWith(handle(event.request));
+		return handle(context);
 	} catch (ex) {
 		console.error(ex);
-		event.respondWith(
-			new Response(ex.message, {
-				status: 500,
-			}),
-		);
+		return new Response(ex.message, {
+			status: 500,
+		});
 	}
-});
-
-// inserted by Cloudflare
-const client_id = CLIENT_ID;
-const client_secret = CLIENT_SECRET;
-
-if (!client_id || !client_secret) {
-	throw new Error('Missing some required env var(s)');
 }
 
-async function handle(request) {
+async function handle({ request, env }) {
+	const { ADMIN_CLIENT_SECRET: client_secret, ADMIN_CLIENT_ID: client_id } = env;
+
+	if (!client_id || !client_secret) {
+		throw new Error('Missing some required env var(s)');
+	}
+
 	// handle CORS pre-flight request
 	if (request.method == 'OPTIONS') {
 		return new Response(null, {
