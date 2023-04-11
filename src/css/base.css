@@ -28,16 +28,11 @@
 	}
 }
 
-:root {
-	color-scheme: light dark;
-}
-
-* {
-	box-sizing: border-box;
+:where(html, body) {
+	font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--sans);
 }
 
 html {
-	font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--sans);
 	background-color: var(--color-bg);
 	color: var(--color-text);
 }
@@ -59,9 +54,6 @@ body {
 		'ss03' 1,
 		'frac' 1;
 	font-variant-ligatures: contextual common-ligatures;
-	scroll-behavior: smooth;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 
 	@media screen and (prefers-color-scheme: dark) {
 		word-spacing: 0.05em;

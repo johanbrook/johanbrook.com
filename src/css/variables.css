@@ -24,6 +24,8 @@
 	--btn-color-active: hsl(213 100% 33%);
 	--btn-color-disabled: var(--grey);
 
+	--focus-color: var(--link-color);
+
 	--pre-background: var(--color-bg-secondary);
 	--code-background: var(--color-bg-secondary);
 	--code-color: hsl(112 30% 30%);
