@@ -8,3 +8,5 @@ compatibility_date = "2023-04-11"
 # github-oauth
 #   ADMIN_CLIENT_SECRET
 #   ADMIN_CLIENT_ID
+# post-note:
+#   SHORTCUT_TOKEN

@@ -126,7 +126,7 @@ export const mkGitHub = ({ url }: Args): Service => {
 
 		let content = `---
 date: ${date}
-location: On the run
+location: The web
 `;
 
 		if (draft) {
@@ -144,7 +144,7 @@ location: On the run
 		>(`/repos/${owner}/${repo}/contents/${path}`, {
 			method: 'PUT',
 			body: {
-				message: 'Add note from GUI app',
+				message: 'Add note from web app',
 				content: base64(content),
 				branch,
 			},

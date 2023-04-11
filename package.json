@@ -1,4 +1,7 @@
 {
+	"scripts": {
+		"functions": "wrangler pages dev functions"
+	},
 	"devDependencies": {
 		"wrangler": "^2"
 	}
