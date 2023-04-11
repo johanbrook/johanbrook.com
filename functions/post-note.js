@@ -77,10 +77,7 @@ ${body}\n
 
 	const { name: file, html_url: fileUrl } = res.content;
 
-	const allNotes = new URL('/mind', url.origin);
-	allNotes.port = 3000;
-
-	return new Response(JSON.stringify({ file, fileUrl, allNotes }), {
+	return new Response(JSON.stringify({ file, fileUrl, allNotes: 'https://johan.im/mind' }), {
 		headers: {
 			'content-type': 'application/json',
 		},
