@@ -117,7 +117,7 @@ const githubRequest = async (method, resource, body, token) => {
 			accept: 'application/vnd.github.v3+json',
 			authorization: `Bearer ${token}`,
 			'X-GitHub-Api-Version': '2022-11-28',
-			'user-agent': 'Johan/1.0',
+			'user-agent': 'Johan.im-Notes/1.0',
 		},
 		body: JSON.stringify(body),
 	});

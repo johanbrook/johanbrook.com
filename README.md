@@ -52,3 +52,11 @@ If something's messed up, this is new without having to do a content change.
 ```bash
 ./script/deploy
 ```
+
+**Run a function locally**
+
+```bash
+npm install
+npm run functions
+```
+Access functions in `functions/` as paths on `http://127.0.0.1:8788/:function`.

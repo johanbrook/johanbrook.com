@@ -6,7 +6,7 @@ bare: true
 <main role="main" class="mt3">
   <div class="measure mx-auto">
     <section class="mb4">
-    	<h1 class="title no-rhythm mb3">Welcome.</h1>
+    	<h1 class="title mb3">Welcome.</h1>
 
       	{{ content | safe }}
 
@@ -17,7 +17,7 @@ bare: true
 
     <section class="mb4">
       <header class="flex items-center">
-        <h1 class="f2 no-rhythm mb0">On my mind</h1>
+        <h1 class="f2 mb0">On my mind</h1>
         
         <a href="/mind" class="ml3 f6" title="Read more">All notes</a>
         <a href="/mind.xml" class="ml2 ml-1 f6" title="Atom feed">Feed {{ comp.icon({ class: "ml1" }) | safe }}</a>
@@ -26,7 +26,7 @@ bare: true
       <ol class="list-reset">
         {% for note in search.pages("type=note", "date=desc", 1) %}
           <li>
-            <h2 class="f5 fw4 no-rhythm mb3">
+            <h2 class="f5 fw4 mb3">
               <a href="{{ note.data.permalink() | url }}" class="muted">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
             </h2>
             <div class="prose font-mono f5">
@@ -43,9 +43,17 @@ bare: true
       </ol>
     </section>
 
+    <section class="mb4">
+    	<h1 class="f2 mb0">Music</h1>
+    	<p class="f5 fw4 mb3 muted" id="music-loading">Tracks I've listened to recently.</p>
+    	<ol id="music-target" class="TracksList">
+
+    	</ol>
+    </section>
+
     <section>
       <header class="flex items-center mb3">
-        <h1 class="f2 no-rhythm mb0">Writings</h1>
+        <h1 class="f2 mb0">Writings</h1>
         
         <a href="/writings" class="ml3 f6" title="Read more">All writings</a>
         <a href="/feed.xml" class="ml2 ml-1 f6" title="Atom feed">Feed {{ comp.icon({ class: "ml1" }) | safe }}</a>
@@ -64,3 +72,74 @@ bare: true
     </section>
   </div>
 </main>
+
+<template id="music-tmpl">
+	<li class="mb1">
+		<span class="music-title block"></span>
+		<small>
+			<span class="music-subtitle muted"></span>
+			<time class="music-datetime ml1"></time>
+		</small>
+	</li>
+</template>
+
+<script type="module">
+	const ENDPOINT = location.hostname == 'localhost'
+		? 'http://localhost:8788'
+		: 'https://brookie.pages.dev';
+
+	const render = (target, tracks) => {
+		console.log(tracks);
+
+		const tmpl = document.getElementById('music-tmpl');
+		const fmt = new Intl.DateTimeFormat(undefined, {day: "numeric", month: "short", hour: "numeric", minute: "numeric"});
+
+		for (const track of tracks) {
+			const clone = tmpl.content.cloneNode(true);
+			const container = clone.querySelector('li')
+			const title = clone.querySelector('.music-title')
+			const subtitle = clone.querySelector('.music-subtitle');
+
+			title.textContent = track.name;
+			subtitle.textContent = `${track.artist['#text']} — ${track.album['#text']}`;
+			
+			const dateTime = clone.querySelector('.music-datetime');
+
+			if (track.date) {
+				const date = new Date(parseInt(track.date['uts'], 10) * 1000);
+				dateTime.textContent = fmt.format(date);
+				dateTime.setAttribute('title', date.toUTCString());
+			}
+
+			if (track['@attr']?.nowplaying == 'true') {
+				title.classList.add('fw7');
+				container.classList.add('border', 'border-b', 'mb2', 'pb2');
+				dateTime.textContent = 'Now';
+				dateTime.classList.add('fw7');
+			}
+			target.appendChild(clone);
+		}
+	}
+
+	if ('content' in document.createElement('template')) {
+		const target = document.getElementById('music-target');
+		const loading = document.getElementById('music-loading');
+		const original = loading.textContent;
+		loading.textContent = 'Loading…';
+
+		try {
+			const res = await fetch(ENDPOINT + '/music').then(r => r.json());
+
+			if (res.kind == 'ok') {
+				render(target, res.tracks);
+			} else {
+				target.innerHTML = 'Oops, something went wrong. This is embarrassing…';
+				console.warn(res.message);
+			}
+		} catch (err) {
+			console.error(err);
+		} finally {
+			loading.textContent = original;
+		}
+	}
+</script>

@@ -11,3 +11,5 @@ compatibility_date = "2023-04-11"
 # post-note:
 #   SHORTCUT_TOKEN
 #   SHORTCUT_PASSWORD
+# music:
+#   LASTFM_API_KEY
