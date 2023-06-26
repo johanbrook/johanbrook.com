@@ -558,6 +558,7 @@
 - title: The Shards
   slug: the-shards
   author: Bret Easton Ellis
+  paused: true
 
 - title: The Legacy of Spies
   slug: the-legacy-of-spies
@@ -580,3 +581,7 @@
     Soviet Union with Stalin's purges, and into the architecture and bombings of Berlin and Nagasaki in World War II.
     The author's prose is very raw and truth-saying, but yet beautiful and carries a lot of weight. A very chilling
     account of the evil of man.
+
+- title: The Spy Who Came In from the Cold
+  slug: the-spy-who-came-in-from-the-cold
+  author: John le Carré
