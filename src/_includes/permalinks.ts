@@ -6,5 +6,3 @@ import type { Page } from 'lume/core.ts';
 
 // For a singular post, we do: /writings/:slug
 export const urlForPost = (page: Page) => `/writings/${page.data.slug}/`;
-
-export const urlForNote = (page: Page) => `${page.src.path}`;
