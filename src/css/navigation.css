@@ -40,7 +40,7 @@
 
 		& a {
 			font-weight: normal;
-			position: relative;
+			position: revert;
 
 			&:not([aria-current='page'] > &):not(&:hover):not(&:focus-visible) {
 				opacity: .8;
@@ -54,13 +54,18 @@
 					display: block;
 					position: absolute;
 					right: calc(100% + 0.5em);
+					top: 0;
 					white-space: nowrap;
 				}
 			}
 		}
 
-		& [aria-current='page'] a {
-			font-weight: 700;
+		& [aria-current='page'] {
+			position: relative;
+
+			& a {
+				font-weight: 700;
+			}
 		}
 	}
 
@@ -115,7 +120,7 @@
 	border-radius: 4em;
 	opacity: .8;
 
-	a:is(:hover, :focus) > & {
+	a:is(:hover, :focus)>& {
 		opacity: 1;
 	}
 }
