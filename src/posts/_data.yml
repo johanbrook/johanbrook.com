@@ -1,3 +1,0 @@
-type: post
-layout: layouts/post.njk
-templateEngine: njk,md

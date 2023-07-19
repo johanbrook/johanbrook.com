@@ -76,6 +76,12 @@ site
 	.data('pageSlug', function (this: { ctx: { url: string } }) {
 		return this.ctx.url.replaceAll('/', '');
 	})
+	.data('type', 'post', '/posts')
+	.data('layout', 'layouts/post.njk', '/posts')
+	.data('templateEngine', 'njk,md', '/posts')
+	.data('type', 'note', '/notes')
+	.data('layout', 'layouts/post.njk', '/notes')
+	.data('templateEngine', 'njk,md', '/notes')
 	// Don't the entire site rebuild when --watching or --serving if .css files change
 	.scopedUpdates((path) => path.endsWith('.css'));
 
