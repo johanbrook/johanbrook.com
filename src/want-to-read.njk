@@ -1,0 +1,30 @@
+---
+title: Want to read
+layout: layouts/page.njk
+description: Books which are on my reading list.
+---
+
+<table class="textual">
+	<tr>
+		<th>Title</th>
+		<th>Author</th>
+		<th>Notes</th>
+	</tr>
+  {% for book in toread | reverse %}
+    <tr id="{{ book.slug }}">
+    	<td>
+			{{ book.title }}
+    	</td>
+    	<td class="f5">
+    		{{ book.author }}
+    	</td>
+    	<td class="f5">
+			{{ book.notes | md(true) | safe }}
+    	</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<p class="measure muted">
+	You can also check out <a href="/reading">what I've read so far.</a>
+</p>

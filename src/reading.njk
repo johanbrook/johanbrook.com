@@ -13,10 +13,16 @@ menu:
   <article class="page">
 	<h1 class="title">{{ title }}.</h1>
 
-	<div class="flex mb5 items-end justify-between">
-    	<p class="measure mb0 flex-1 muted">
-    		Non-exhaustive list of books I've read and am reading, in reverse chronological order. Updated on <time class="text-color fw5" datetime="{{ updated | date("DATETIME") }}">{{ updated | date("EEEE, LLLL do yyyy") }}</time>.
-		</p>
+	<div class="flex mb5 justify-between">
+    	<div class="measure flex-1 muted">
+    		<p>
+	    		Non-exhaustive list of books I've read and am reading, in reverse chronological order. Updated on <time class="text-color fw5" datetime="{{ updated | date("DATETIME") }}">{{ updated | date("EEEE, LLLL do yyyy") }}</time>.
+			</p>
+
+			<p class="mb0">
+				You can also check out what I <a href="/want-to-read">want to read next.</a>
+			</p>
+    	</div>
 
 		<p class="mb0"><a href="/reading.xml">Feed{{ comp.icon({ class: "ml2" }) | safe }}</a></p>
 	</div>
