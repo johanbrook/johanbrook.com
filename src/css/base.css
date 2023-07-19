@@ -35,7 +35,8 @@
 }
 
 body {
-	margin: var(--inset) auto;
+	padding: var(--inset);
+	padding-top: calc(var(--inset) * 2);
 	width: calc(100% - (var(--inset) * 2));
 	line-height: var(--leading);
 	letter-spacing: var(--tracking);
