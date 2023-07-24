@@ -923,6 +923,10 @@ TYPOGRAPHY
 	font-family: var(--mono);
 }
 
+.text-balance {
+	text-wrap: balance;
+}
+
 /* Measure is limited to ~78 characters */
 .measure {
 	max-width: var(--measure);
