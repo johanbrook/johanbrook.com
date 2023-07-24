@@ -76,6 +76,7 @@ site
 	.data('pageSlug', function (this: { ctx: { url: string } }) {
 		return this.ctx.url.replaceAll('/', '');
 	})
+	.data('layout', 'layouts/main.njk')
 	.data('type', 'post', '/posts')
 	.data('layout', 'layouts/post.njk', '/posts')
 	.data('templateEngine', 'njk,md', '/posts')
