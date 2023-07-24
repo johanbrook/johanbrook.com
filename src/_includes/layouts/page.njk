@@ -5,7 +5,9 @@ layout: layouts/main.njk
 <main role="main">
   <article class="Page">
     <h1 class="title {{ "comp-" + color if color }}">{{ title }}.</h1>
-
+	{% if subtitle %}
+		<p class="muted">{{ subtitle }}</p>
+	{% endif %}
     <div class="prose measure">
       {{ content | safe }}
     </div>
