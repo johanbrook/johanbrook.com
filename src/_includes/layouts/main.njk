@@ -2,17 +2,17 @@
 <html lang="en" class="{{'home' if home}} {{ pageSlug() }}">
 
   <head itemtype="http://schema.org/Blog" itemscope>
-    <title>{% if title %}{{ title | lower }} / {{ meta.title | lower }}{% else %}{{ meta.title | lower }}{% endif %}</title>
+    <title>{% if title %}{{ title }} / {{ meta.title }}{% else %}{{ meta.title }}{% endif %}</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter/Inter-italic.var.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter/Inter-roman.var.woff2" crossorigin="anonymous">
-    
+
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2" crossorigin="anonymous">
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/jetbrains-mono/JetBrainsMono-Bold.woff2" crossorigin="anonymous">
-    
+
     <link rel="preconnect" href="https://gc.zgo.at">
     <link rel="preconnect" href="https://johanbrook.goatcounter.com">
 
@@ -51,7 +51,7 @@
     {% if excerpt or description or meta.description %}
     <meta property="og:description" content="{{ excerpt or description or meta.description }}">
     {% endif %}
-    
+
     {% if updated %}
     <meta property="article:modified_time" content="{{ updated | date("ATOM") }}" itemprop="dateModified">
     {% endif %}
