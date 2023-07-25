@@ -15,6 +15,11 @@
 	position: relative;
 	z-index: 2;
 
+	& .sticky {
+		position: sticky;
+		top: 0;
+	}
+
 	& h1>a {
 		font-weight: 500;
 		color: var(--color-text);
@@ -31,8 +36,6 @@
 	}
 
 	& ul {
-		top: var(--lineheight);
-		position: sticky;
 
 		& a {
 			font-weight: normal;
