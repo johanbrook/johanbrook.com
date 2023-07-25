@@ -68,15 +68,15 @@
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
 	  <div class="Content{% if wide %} wide{% endif %}">
-  		{% if not bare %}
-	    	{% include "nav-main.njk" %}
-	  	{% endif %}
-
 	  	<div id="main">
 			{{ content | safe }}
 
 			{% include "footer.njk" %}
 		</div>
+
+		{% if not bare %}
+	   		{% include "nav-main.njk" %}
+	 	{% endif %}
 	  </div>
 
       {% include "analytics.njk" %}

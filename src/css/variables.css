@@ -115,12 +115,11 @@
 
 	--inset: calc(var(--lineheight) / 2);
 
-	--measure: 62ch;
+	--measure: 56ch;
 	--measure-narrow: 45ch;
 	--measure-wide: 100ch;
 
 	--content-width: var(--measure);
-	--sidenav-width: 9rem;
 
 	--spacing-base: var(--lineheight);
 

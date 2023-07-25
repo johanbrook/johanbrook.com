@@ -12,8 +12,6 @@
 }
 
 .MainNav {
-	margin-right: 3rem;
-	width: var(--sidenav-width);
 	position: relative;
 	z-index: 2;
 
@@ -35,8 +33,6 @@
 	& ul {
 		top: var(--lineheight);
 		position: sticky;
-		/* Align with back btn arrow */
-		margin-left: 2.2rem;
 
 		& a {
 			font-weight: normal;
@@ -49,12 +45,10 @@
 			:where([aria-current='page'] &, &:focus) {
 				outline: 0;
 
-				&::before {
-					content: '⇢';
-					display: block;
-					position: absolute;
-					right: calc(100% + 0.5em);
-					top: 0;
+				&::after {
+					content: '⇠';
+					display: inline;
+					margin-left: .5em;
 					white-space: nowrap;
 				}
 			}
@@ -101,7 +95,7 @@
 
 		& [aria-current='page'] a,
 		& a:focus {
-			&::before {
+			&::after {
 				display: none;
 			}
 		}
@@ -122,34 +116,5 @@
 
 	a:is(:hover, :focus)>& {
 		opacity: 1;
-	}
-}
-
-.home [role="navigation"] {
-	@media screen and (min-width: 530px) {
-		& ul {
-			display: flex;
-		}
-
-		& li {
-
-			&:not(:last-child)::after {
-				content: ' / ';
-				display: inline-block;
-				margin: 0 .75em;
-				color: var(--color-text-detail);
-				transform: scaleY(1.4);
-			}
-		}
-	}
-
-	@media screen and (max-width: 529px) {
-		columns: 2;
-		text-align: center;
-		line-height: 2;
-	}
-
-	@media screen and (max-width: 240px) {
-		columns: 1;
 	}
 }

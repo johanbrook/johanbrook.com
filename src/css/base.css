@@ -4,7 +4,7 @@
 /* System color tricks from https://blog.jim-nielsen.com/2021/css-system-colors/ */
 
 /* For browsers that don’t support `color-scheme` and therefore
-   don't handle system dark mode for you automatically 
+   don't handle system dark mode for you automatically
    (Firefox), handle it for them. */
 @supports not (color-scheme: light dark) {
 	html {
@@ -66,18 +66,20 @@ main {
 .Content {
 	max-width: var(--content-width);
 	margin: 0 auto;
+	display: flex;
+	flex-direction: column-reverse;
 
 	&.wide {
 		--content-width: var(--measure-wide);
 	}
 
-	html:not(.home, .admin) & {
-		@media screen and (min-width: 981px) {
+	@media screen and (min-width: 981px) {
+		html:not(.admin) & {
 			max-width: none;
 			display: grid;
 			place-content: center;
-			grid-template-columns: var(--sidenav-width) var(--content-width);
-			gap: var(--spacing-large);
+			grid-template-columns: var(--content-width) auto;
+			gap: var(--spacing-extra-large);
 		}
 	}
 }
@@ -188,8 +190,7 @@ a,
 	color: var(--link-color);
 	position: relative;
 	font-weight: 460;
-	text-decoration: underline;
-	text-decoration-color: var(--link-underline-color);
+	text-decoration: none;
 	text-underline-offset: 3px;
 
 	&.block {
@@ -201,6 +202,10 @@ a,
 	&:hover .link {
 		color: var(--link-color-hover);
 		text-decoration-color: currentColor;
+	}
+
+	&:not(.block):hover, &:hover .link {
+		text-decoration: underline;
 	}
 
 	&:active {
