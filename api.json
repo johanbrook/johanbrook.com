@@ -56,11 +56,43 @@
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
 	  <div class="Content">
-  		
-	    	<nav role="navigation" class="MainNav">
+	  	<div id="main">
+			{
+  "description": "I'm a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding & designering and I like working with product, user experience, interface design, and other things too.",
+  "shortbio": "I'm coding & designering, and I like working with product.",
+  "site": "https://johan.im",
+  "github": "johanbrook",
+  "mastodon": "@brookie@johan.im",
+  "email": "webmaster@johan.im",
+  "cv": "https://johan.im/johanbrook-cv.pdf",
+  "versions": {
+    "johan": "4.0.0",
+    "build": "6eb4b01bba93e9a4ecb01837a1dde8c9d8435a7f",
+    "builtAt": "2023-07-25T19:25:59.921Z"
+  }
+}
+
+
+			<footer role="contentinfo" class="mb3">
+  <nav>
+    <ul class="mb3">
+        <li><a href="/">Home</a></li>
+        <li><a rel="me" href="mailto:webmaster@johan.im">Email</a></li>
+		<li><a rel="me" href="https://hachyderm.io/@brookie">Mastodon</a></li>
+        <li><a href="/feed.xml" title="Atom">Post feed</a></li>
+        <li><a href="/mind.xml" title="Atom">Mind feed</a></li>
+        <li><a href="/reading.xml" title="Atom">Reading feed</a></li>
+    </ul>
+  </nav>
+</footer>
+
+		</div>
+
+		
+	   		<nav role="navigation" class="MainNav">
 	<h1 class="f4">
 		<a href="/" aria-label="Home">
-			<span aria-hidden="true" class="BackLink mr2">←</span><span>Johan Brook</span>
+			<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
 		</a>
 	</h1>
 
@@ -78,51 +110,25 @@
 			<a href="/reading/">Reading</a>
 		</li>
 		<li >
+			<a href="/to-read/">To read</a>
+		</li>
+		<li >
 			<a href="/about/">About me</a>
+		</li>
+		<li >
+			<a href="/quotes/">Quotes</a>
+		</li>
+		<li >
+			<a href="/changelog/">Changelog</a>
+		</li>
+		<li >
+			<a href="/credits/">Credits</a>
 		</li>
 </ul>
 
 </nav>
 
-	  	
-
-	  	<div id="main">
-			{
-  "description": "I'm a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding & designering and I like working with product, user experience, interface design, and other things too.",
-  "shortbio": "I'm coding & designering, and I like working with product.",
-  "site": "https://johan.im",
-  "github": "johanbrook",
-  "mastodon": "@brookie@johan.im",
-  "email": "webmaster@johan.im",
-  "cv": "https://johan.im/johanbrook-cv.pdf",
-  "versions": {
-    "johan": "4.0.0",
-    "build": "d8e47b95b4ac8b96602bf0b2cfd59e0d5ef97031",
-    "builtAt": "2023-07-24T18:25:11.967Z"
-  }
-}
-
-
-			<footer role="contentinfo" class="mb3">
-  <nav>
-    <ul class="mb3">
-        <li><a href="/">Home</a></li>
-        <li><a rel="me" href="mailto:webmaster@johan.im">Email</a></li>
-		<li><a rel="me" href="https://hachyderm.io/@brookie">Mastodon</a></li>
-        <li><a href="/feed.xml" title="Atom">Post feed</a></li>
-        <li><a href="/mind.xml" title="Atom">Mind feed</a></li>
-        <li><a href="/reading.xml" title="Atom">Reading feed</a></li>
-        <li ><a href="/credits">Credits</a></li>
-        <li ><a href="/changelog">Changelog</a></li>
-    </ul>
-  </nav>
-
-  <p class="muted mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d8e47b95b4ac8b96602bf0b2cfd59e0d5ef97031">d8e47b9</a> — built at <time>2023-07-24T18:25:11.967Z</time> — web 1.0 and 2.0 compatible.
-  </p>
-</footer>
-
-		</div>
+	 	
 	  </div>
 
       <script>

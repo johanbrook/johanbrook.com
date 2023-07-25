@@ -1,93 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" class=" reading.xml">
-
-  <head itemtype="http://schema.org/Blog" itemscope>
-    <title>Johan Brook</title>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter/Inter-italic.var.woff2" crossorigin="anonymous">
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter/Inter-roman.var.woff2" crossorigin="anonymous">
-
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2" crossorigin="anonymous">
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/jetbrains-mono/JetBrainsMono-Bold.woff2" crossorigin="anonymous">
-
-    <link rel="preconnect" href="https://gc.zgo.at">
-    <link rel="preconnect" href="https://johanbrook.goatcounter.com">
-
-    <meta name="theme-color" content="hsl(173 7% 94%)" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="hsl(173 7% 13%)" media="(prefers-color-scheme: dark)">
-
-    
-    <meta name="description" content="I&#39;m a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I&#39;m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
-    
-    
-    <meta name="author" content="Johan Brook">
-
-    <!-- Styles-->
-    <link rel="stylesheet" href="/johan.css">
-
-    <!-- RSS -->
-    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Posts feed" href="/feed.xml">
-    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Mind feed" href="/mind.xml">
-    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Book feed" href="/reading.xml">
-
-    <link rel="shortcut icon" href="/favicon.png" type="image/png">
-    <link rel="canonical" itemprop="url" href="https://johan.im/reading.xml">
-    <link rel="author" href="https://johan.im">
-
-    <meta property="og:title" content="">
-    <meta property="og:url" content="https://johan.im/reading.xml">
-    <meta property="og:site_name" itemprop="name" content="Johan Brook">
-    
-    <meta property="og:locale" content="en_GB">
-    
-    <meta property="og:description" content="I&#39;m a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I&#39;m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
-    
-
-    
-
-    
-   	<meta property="og:type" content="blog">
-    
-  </head>
-
-  <body>
-  	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
-	  <div class="Content">
-  		
-	    	<nav role="navigation" class="MainNav">
-	<h1 class="f4">
-		<a href="/" aria-label="Home">
-			<span aria-hidden="true" class="BackLink mr2">←</span><span>Johan Brook</span>
-		</a>
-	</h1>
-
-	<ul class="NavCommon">
-		<li >
-			<a href="/writings/">Writings</a>
-		</li>
-		<li >
-			<a href="/mind/">On my mind</a>
-		</li>
-		<li >
-			<a href="/now/">Now</a>
-		</li>
-		<li >
-			<a href="/reading/">Reading</a>
-		</li>
-		<li >
-			<a href="/about/">About me</a>
-		</li>
-</ul>
-
-</nav>
-
-	  	
-
-	  	<div id="main">
-			<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<title>Books read by Johan Brook</title>
 	<subtitle>Non-exhaustive list of books I've read and am reading, in reverse chronological order.</subtitle>
@@ -104,7 +15,7 @@
 	<entry>
 		<title>The Honourable Schoolboy</title>
 		<link href="https://johan.im/reading#the-honourable-schoolboy" />
-		<updated>2023-07-24T18:24:07Z</updated>
+		<updated>2023-07-25T19:24:55Z</updated>
 		<id>https://johan.im/reading#the-honourable-schoolboy</id>
 		
 			
@@ -156,7 +67,7 @@
 	<entry>
 		<title>The Shards</title>
 		<link href="https://johan.im/reading#the-shards" />
-		<updated>2023-07-24T18:24:07Z</updated>
+		<updated>2023-07-25T19:24:55Z</updated>
 		<id>https://johan.im/reading#the-shards</id>
 		
 			
@@ -188,7 +99,7 @@
 	<entry>
 		<title>What We Owe the Future</title>
 		<link href="https://johan.im/reading#what-we-owe-the-future" />
-		<updated>2023-07-24T18:24:07Z</updated>
+		<updated>2023-07-25T19:24:55Z</updated>
 		<id>https://johan.im/reading#what-we-owe-the-future</id>
 		
 			<content type="html">&lt;p&gt;Philosopher philosophising about the future.&lt;/p&gt;</content>
@@ -218,7 +129,7 @@
 	<entry>
 		<title>Grand Union</title>
 		<link href="https://johan.im/reading#grand-union" />
-		<updated>2023-07-24T18:24:07Z</updated>
+		<updated>2023-07-25T19:24:55Z</updated>
 		<id>https://johan.im/reading#grand-union</id>
 		
 			<content type="html">&lt;p&gt;Just didn&#39;t like it. The short stories weren&#39;t captivating enough, and the prose was elegant but unnecessarily complex.&lt;/p&gt;</content>
@@ -228,7 +139,7 @@
 	<entry>
 		<title>Four Thousand Weeks</title>
 		<link href="https://johan.im/reading#four-thousand-weeks" />
-		<updated>2023-07-24T18:24:07Z</updated>
+		<updated>2023-07-25T19:24:55Z</updated>
 		<id>https://johan.im/reading#four-thousand-weeks</id>
 		
 			<content type="html">&lt;p&gt;Too much &amp;quot;self help book&amp;quot; so far. I constantly feel: &amp;quot;this could&#39;ve been a blog post&amp;quot; and &amp;quot;why did I buy this&amp;quot;.&lt;/p&gt;</content>
@@ -238,7 +149,7 @@
 	<entry>
 		<title>Att Uppfinna Världen (&quot;Inventing the World&quot;)</title>
 		<link href="https://johan.im/reading#inventing-the-world" />
-		<updated>2023-07-24T18:24:07Z</updated>
+		<updated>2023-07-25T19:24:55Z</updated>
 		<id>https://johan.im/reading#inventing-the-world</id>
 		
 			<content type="html">&lt;p&gt;Historical account about how women have been pushed aside over the years when it comes to inventions and innovation.&lt;/p&gt;</content>
@@ -258,7 +169,7 @@
 	<entry>
 		<title>Jack</title>
 		<link href="https://johan.im/reading#jack" />
-		<updated>2023-07-24T18:24:07Z</updated>
+		<updated>2023-07-25T19:24:55Z</updated>
 		<id>https://johan.im/reading#jack</id>
 		
 			<content type="html">&lt;p&gt;&lt;em&gt;The&lt;/em&gt; generational novel of the Swedish 1970s. Dropped it because it didn&#39;t really speak to me. I understand it must&#39;ve been cool in the 70s, but not so now.&lt;/p&gt;</content>
@@ -278,7 +189,7 @@
 	<entry>
 		<title>Life</title>
 		<link href="https://johan.im/reading#life" />
-		<updated>2023-07-24T18:24:07Z</updated>
+		<updated>2023-07-25T19:24:55Z</updated>
 		<id>https://johan.im/reading#life</id>
 		
 			<content type="html">&lt;p&gt;The autobiography of Keith Richards (guitarist in Rolling Stones).&lt;/p&gt;</content>
@@ -328,7 +239,7 @@
 	<entry>
 		<title>Ålevangeliet</title>
 		<link href="https://johan.im/reading#alevangeliet" />
-		<updated>2023-07-24T18:24:07Z</updated>
+		<updated>2023-07-25T19:24:55Z</updated>
 		<id>https://johan.im/reading#alevangeliet</id>
 		
 			
@@ -908,44 +819,3 @@
 	</entry>
 	
 </feed>
-
-
-			<footer role="contentinfo" class="mb3">
-  <nav>
-    <ul class="mb3">
-        <li><a href="/">Home</a></li>
-        <li><a rel="me" href="mailto:webmaster@johan.im">Email</a></li>
-		<li><a rel="me" href="https://hachyderm.io/@brookie">Mastodon</a></li>
-        <li><a href="/feed.xml" title="Atom">Post feed</a></li>
-        <li><a href="/mind.xml" title="Atom">Mind feed</a></li>
-        <li><a href="/reading.xml" title="Atom">Reading feed</a></li>
-        <li ><a href="/credits">Credits</a></li>
-        <li ><a href="/changelog">Changelog</a></li>
-    </ul>
-  </nav>
-
-  <p class="muted mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d8e47b95b4ac8b96602bf0b2cfd59e0d5ef97031">d8e47b9</a> — built at <time>2023-07-24T18:25:11.967Z</time> — web 1.0 and 2.0 compatible.
-  </p>
-</footer>
-
-		</div>
-	  </div>
-
-      <script>
-  // Only load on production environment.
-  if (window.location.host !== new URL('https://johan.im').host) {
-    window.goatcounter = {no_onload: true};
-  }
-
-  // Skip own views
-  if (window.location.hash === '#skipgc')
-    localStorage.setItem('skipgc', 't');
-  if (localStorage.getItem('skipgc') === 't')
-    window.goatcounter = {no_onload: true};
-</script>
-<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
-  </body>
-
-</html>

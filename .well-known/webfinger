@@ -56,36 +56,6 @@
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
 	  <div class="Content">
-  		
-	    	<nav role="navigation" class="MainNav">
-	<h1 class="f4">
-		<a href="/" aria-label="Home">
-			<span aria-hidden="true" class="BackLink mr2">←</span><span>Johan Brook</span>
-		</a>
-	</h1>
-
-	<ul class="NavCommon">
-		<li >
-			<a href="/writings/">Writings</a>
-		</li>
-		<li >
-			<a href="/mind/">On my mind</a>
-		</li>
-		<li >
-			<a href="/now/">Now</a>
-		</li>
-		<li >
-			<a href="/reading/">Reading</a>
-		</li>
-		<li >
-			<a href="/about/">About me</a>
-		</li>
-</ul>
-
-</nav>
-
-	  	
-
 	  	<div id="main">
 			{
 	"subject": "acct:brookie@hachyderm.io",
@@ -121,17 +91,53 @@
         <li><a href="/feed.xml" title="Atom">Post feed</a></li>
         <li><a href="/mind.xml" title="Atom">Mind feed</a></li>
         <li><a href="/reading.xml" title="Atom">Reading feed</a></li>
-        <li ><a href="/credits">Credits</a></li>
-        <li ><a href="/changelog">Changelog</a></li>
     </ul>
   </nav>
-
-  <p class="muted mb0">
-    Using <a class="font-mono" href="https://github.com/johanbrook/johanbrook.com/commit/d8e47b95b4ac8b96602bf0b2cfd59e0d5ef97031">d8e47b9</a> — built at <time>2023-07-24T18:25:11.967Z</time> — web 1.0 and 2.0 compatible.
-  </p>
 </footer>
 
 		</div>
+
+		
+	   		<nav role="navigation" class="MainNav">
+	<h1 class="f4">
+		<a href="/" aria-label="Home">
+			<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+		</a>
+	</h1>
+
+	<ul class="NavCommon">
+		<li >
+			<a href="/writings/">Writings</a>
+		</li>
+		<li >
+			<a href="/mind/">On my mind</a>
+		</li>
+		<li >
+			<a href="/now/">Now</a>
+		</li>
+		<li >
+			<a href="/reading/">Reading</a>
+		</li>
+		<li >
+			<a href="/to-read/">To read</a>
+		</li>
+		<li >
+			<a href="/about/">About me</a>
+		</li>
+		<li >
+			<a href="/quotes/">Quotes</a>
+		</li>
+		<li >
+			<a href="/changelog/">Changelog</a>
+		</li>
+		<li >
+			<a href="/credits/">Credits</a>
+		</li>
+</ul>
+
+</nav>
+
+	 	
 	  </div>
 
       <script>
