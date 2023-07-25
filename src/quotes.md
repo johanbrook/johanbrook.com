@@ -2,6 +2,10 @@
 title: Quotes, sayings, and other wisdoms
 layout: layouts/page.njk
 subtitle: Wise things I've collected through my internet travels. Every quote is totally made by other people than me.
+menu:
+  visible: true
+  title: Quotes
+  order: 6
 ---
 
 > when you don’t create things, you become defined by your tastes rather than ability. your tastes only narrow & exclude people. so create.

@@ -4,6 +4,9 @@ layout: layouts/page.njk
 description: Log over semi major life events so far.
 ogImage: /assets/images/og-image-changelog.png
 date: 2023-03-19
+menu:
+  visible: true
+  order: 7
 ---
 
 <p class="measure">
@@ -119,4 +122,4 @@ My life so far – versioned. Also check out experimental development: <a href=
 # Version 1.0
 
 - Born. <small class="muted"><em>Note:</em> At this stage, my external APIs was conceived, but they
-  were not regarded as "stable" until 2.0.
+  were not regarded as "stable" until 2.0.</small>
