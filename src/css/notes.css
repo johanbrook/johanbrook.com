@@ -2,6 +2,10 @@
 	& article {
 		scroll-margin: var(--lineheight);
 
+		header .target:hover span {
+			color: var(--neon);
+		}
+
 		&:target {
 			& .target {
 				color: var(--neon);
