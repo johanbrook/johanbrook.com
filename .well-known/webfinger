@@ -16,9 +16,6 @@
     <link rel="preconnect" href="https://gc.zgo.at">
     <link rel="preconnect" href="https://johanbrook.goatcounter.com">
 
-    <meta name="theme-color" content="hsl(173 7% 94%)" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="hsl(173 7% 13%)" media="(prefers-color-scheme: dark)">
-
     
     <meta name="description" content="I&#39;m a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I&#39;m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
     
@@ -100,13 +97,16 @@
 		
 	   		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f4">
+		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
 				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
 		</h1>
 
 		<ul class="NavCommon">
+	<li class="only-mobile" >
+		<a href="/">Home</a>
+	</li>
 		<li >
 			<a href="/writings/">Writings</a>
 		</li>
