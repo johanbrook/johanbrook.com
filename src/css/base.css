@@ -67,6 +67,7 @@ h6 {
 	margin: 0;
 	margin-bottom: calc(var(--lineheight) / 2);
 	color: var(--color-text-high-contrast);
+	text-wrap: balance;
 }
 
 .f0,
