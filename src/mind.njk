@@ -14,7 +14,7 @@ menu:
     {% for post in search.pages("type=note", "date=desc") %}
       <li>
         <article id="{{ post.data.date | date("NUMERIC") }}" class="font-mono">
-        	<header class="mb3">
+        	<header class="mb2">
 	            <h1 class="f5 fw5 no-rhythm mb0">
 	              <a href="#{{ post.data.date | date("NUMERIC") }}" title="Permalink" class="no-underline target">{{ post.data.date | date("PPP — HH:mm") }} <span>#</span></a>
 	            </h1>
