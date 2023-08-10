@@ -1,33 +1,6 @@
 /* =ELEMENTS
 --------------------------------------------- */
 
-/* System color tricks from https://blog.jim-nielsen.com/2021/css-system-colors/ */
-
-/* For browsers that don’t support `color-scheme` and therefore
-   don't handle system dark mode for you automatically
-   (Firefox), handle it for them. */
-@supports not (color-scheme: light dark) {
-	html {
-		background: var(--color-bg);
-		color: var(--color-text);
-	}
-}
-
-/* For browsers that support automatic dark/light mode
-     As well as system colors, set those */
-@supports (color-scheme: light dark) and (background-color: Canvas) {
-	:root {
-		--color-bg: Canvas;
-	}
-}
-
-/* For Safari on iOS. Hacky, but it works. */
-@supports (background-color: -apple-system-control-background) {
-	:root {
-		--color-bg: -apple-system-control-background;
-	}
-}
-
 :where(html, body) {
 	font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--sans);
 	background-color: var(--color-bg);
@@ -36,8 +9,6 @@
 
 body {
 	padding: var(--inset);
-	padding-top: calc(var(--inset) * 2);
-	width: calc(100% - (var(--inset) * 2));
 	line-height: var(--leading);
 	letter-spacing: var(--tracking);
 	font-kerning: normal;
