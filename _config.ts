@@ -70,7 +70,10 @@ site
 		return `https://${meta.mastodon.instance}/@${meta.mastodon.username}`;
 	})
 	.filter('isCurrentPage', function (this: any, url: string) {
-		return !!(this.ctx.page.data.url as string)?.includes(url);
+		const curr = (this.ctx.page.data.url as string).replace(/\/$/, '');
+		const test = url.replace(/\/$/, '');
+
+		return curr == test;
 	})
 	// Data
 	.data('pageSlug', function (this: { ctx: { url: string } }) {
