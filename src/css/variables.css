@@ -131,4 +131,9 @@
 	--spacing-extra-large: calc(var(--spacing-base) * 3);
 	--spacing-extra-extra-large: calc(var(--spacing-base) * 4);
 	--spacing-extra-extra-extra-large: calc(var(--spacing-base) * 6);
+
+	@media screen and (max-width: 980px) {
+		--inset: var(--lineheight);
+		--font-size-base: 16;
+	}
 }

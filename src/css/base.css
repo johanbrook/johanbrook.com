@@ -27,6 +27,10 @@ body {
 	@media screen and (prefers-color-scheme: dark) {
 		word-spacing: 0.05em;
 	}
+
+	@media screen and (min-width: 980px) {
+		padding-top: calc(var(--inset) * 2);
+	}
 }
 
 main {
@@ -325,10 +329,8 @@ code[class*='language-'] {
 blockquote {
 	border-left: 2px solid var(--grey-light);
 	margin: calc(var(--lineheight) * 2) 2rem calc(var(--lineheight) * 2) 0;
-	padding-left: 2rem;
-	padding-right: 2rem;
-	font-weight: 520;
-	font-size: var(--f3);
+	padding-left: 1rem;
+	padding-right: 1rem;
 	color: var(--color-text-high-contrast);
 
 	&>p {
