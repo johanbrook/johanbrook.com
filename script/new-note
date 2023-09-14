@@ -33,7 +33,7 @@ await Deno.writeTextFile(fullPath, TEMPLATE, {
 console.log(`Created ${fullPath}`);
 
 const editor = Deno.run({
-    cmd: ['subl', fullPath],
+    cmd: ['zed', fullPath],
     stdout: 'piped',
     stderr: 'piped',
 });
