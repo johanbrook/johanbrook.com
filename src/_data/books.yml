@@ -608,3 +608,9 @@
 - title: The Honourable Schoolboy
   slug: the-honourable-schoolboy
   author: John le Carré
+  dropped: true
+
+- title: Berlin
+  slug: berlin
+  author: Antony Beevor
+  notes: Continuing my journey towards being a fully fledged dad.
