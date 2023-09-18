@@ -58,8 +58,8 @@
   "cv": "https://johan.im/johanbrook-cv.pdf",
   "versions": {
     "johan": "4.0.0",
-    "build": "7e538c1fb41e80ff7cdf996011528234e2aea01f",
-    "builtAt": "2023-09-18T21:26:24.316Z"
+    "build": "7a080df6bb31604643c1645da83f7b093a8cef75",
+    "builtAt": "2023-09-18T21:37:02.476Z"
   }
 }
 
@@ -82,7 +82,7 @@
 		
 	   		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f3 sr-only-mobile">
+		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
 				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
@@ -105,10 +105,10 @@
 			<a href="/reading/">Reading</a>
 		</li>
 		<li >
-			<a href="/to-read/">To read</a>
+			<a href="/about/">About me</a>
 		</li>
 		<li >
-			<a href="/about/">About me</a>
+			<a href="/to-read/">To read</a>
 		</li>
 		<li >
 			<a href="/quotes/">Quotes</a>

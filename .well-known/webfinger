@@ -91,7 +91,7 @@
 		
 	   		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f3 sr-only-mobile">
+		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
 				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
@@ -114,10 +114,10 @@
 			<a href="/reading/">Reading</a>
 		</li>
 		<li >
-			<a href="/to-read/">To read</a>
+			<a href="/about/">About me</a>
 		</li>
 		<li >
-			<a href="/about/">About me</a>
+			<a href="/to-read/">To read</a>
 		</li>
 		<li >
 			<a href="/quotes/">Quotes</a>
