@@ -24,8 +24,4 @@
 	&>li:has(:target)::after {
 		border-color: var(--neon);
 	}
-
-	& .prose> :last-child {
-		margin-bottom: 0;
-	}
 }

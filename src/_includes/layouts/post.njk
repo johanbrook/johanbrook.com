@@ -3,7 +3,7 @@ layout: layouts/main.njk
 ---
 <main role="main">
   <article class="Post" role="article" itemscope itemtype="http://schema.org/BlogPosting">
-    <header> 
+    <header>
       <h1 itemprop="name" class="{% if link %}fw6 pt3{% else %}title{% endif %}">{{ title }}</h1>
 
       <p class="mb0 fw5 mt3">
@@ -20,12 +20,12 @@ layout: layouts/main.njk
           {% endif %}
       </p>
 
-      <p class="muted f5 mb4">
+      <p class="f5 mb4">
           About {{ content | default("No content", true) | readingTime }} reading time
       </p>
     </header>
 
-    <div class="prose" itemprop="articleBody">
+    <div class="prose drop-cap" itemprop="articleBody">
       {% if link %}
         <p class="f3 mb4 no-rhythm">
           <a class="btn" title="{{ link }}" href="{{ link }}">Follow link to {{ link | hostname }} →</a>

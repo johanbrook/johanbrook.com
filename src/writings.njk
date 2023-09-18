@@ -11,7 +11,7 @@ menu:
 
 <main role="main" class="posts">
 
-  <h1 class="title">{{ title }}.</h1>
+  <h1 class="title pull-W">{{ title }}.</h1>
 
   <p class="muted">
     {{posts | length }} posts, from <time datetime="{{ firstEverPost.data.date | date("DATETIME") }}">{{ firstEverPost.data.date | date("MMMM yyyy") }}</time> to <time datetime="{{ latestPost.data.date | date("DATETIME") }}">{{ latestPost.data.date | date("MMMM yyyy") }}</time>.

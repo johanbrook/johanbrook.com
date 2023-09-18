@@ -5,7 +5,7 @@ home: true
 <main role="main">
   <div class="measure mx-auto">
     <section class="mb4">
-    	<h1 class="title mb3">Welcome.</h1>
+    	<h1 class="title mb2 pull-W">Welcome.</h1>
 
       	{{ content | safe }}
 
@@ -15,14 +15,14 @@ home: true
       <header class="flex items-center">
         <h1 class="f2 mb0">On my mind</h1>
 
-        <a href="/mind" class="ml3 f6" title="Read more">All notes</a>
-        <a href="/mind.xml" class="ml2 ml-1 f6" title="Atom feed">Feed {{ comp.icon({ class: "ml1" }) | safe }}</a>
+        <a href="/mind" class="ml3 f5" title="Read more">All notes</a>
+        <a href="/mind.xml" class="ml2 ml-1 f5" title="Atom feed">Feed {{ comp.icon({ class: "ml1" }) | safe }}</a>
       </header>
 
-      <ol class="list-reset">
+      <ol>
         {% for note in search.pages("type=note", "date=desc", 1) %}
           <li>
-            <h2 class="f5 fw4 mb3">
+            <h2 class="font-sans f5 fw4 mb3">
               <a href="{{ note.data.permalink() | url }}" class="muted">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
             </h2>
             <div class="prose font-mono f5">
@@ -30,7 +30,7 @@ home: true
             </div>
 
             {% if (note.data.content | excerpt | length) < (note.data.content | trim | length)  %}
-                <p class="mt2">
+                <p class="mt2 font-sans">
                   <a href="{{ note.data.permalink() | url }}" class="muted f5">continued ⇢</a>
                 </p>
             {% endif %}
@@ -41,7 +41,7 @@ home: true
 
     <section class="mb4">
     	<h1 class="f2 mb0">Listening</h1>
-    	<p class="f5 fw4 mb3 muted" id="music-loading">Tracks I've listened to recently.</p>
+    	<p class="font-sans f5 fw4 mb3 muted" id="music-loading">Tracks I've listened to recently.</p>
     	<ol id="music-target" class="TracksList">
 
     	</ol>
@@ -51,16 +51,16 @@ home: true
       <header class="flex items-center mb3">
         <h1 class="f2 mb0">Writings</h1>
 
-        <a href="/writings" class="ml3 f6" title="Read more">All writings</a>
-        <a href="/feed.xml" class="ml2 ml-1 f6" title="Atom feed">Feed {{ comp.icon({ class: "ml1" }) | safe }}</a>
+        <a href="/writings" class="ml3 f5" title="Read more">All writings</a>
+        <a href="/feed.xml" class="ml2 ml-1 f5" title="Atom feed">Feed {{ comp.icon({ class: "ml1" }) | safe }}</a>
       </header>
 
-      <ol class="list-reset">
+      <ol>
         {% for post in search.pages("type=post", "date=desc", 3) %}
-          <li class="mb3 {% if not loop.last %}mb1{% endif %}">
+          <li class="mb2 {% if not loop.last %}mb1{% endif %}">
           	<a class="f4 block fw4" href="{{ post.data.url | url }}">
           		<span class="link">{{ post.data.title }}</span><br />
-            	<p class="f5 muted mb0">{{ post.data.date | date("HUMAN_DATE") }}</p>
+            	<p class="font-sans f5 muted mb0">{{ post.data.date | date("HUMAN_DATE") }}</p>
             </a>
           </li>
         {% endfor %}

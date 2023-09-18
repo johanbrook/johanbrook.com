@@ -19,6 +19,8 @@ utils;
 @import 'css/utils.css' layer(utils);
 @import 'css/footer.css' layer(base);
 
+@import 'css/layout.css' layer(base);
+
 @import 'css/admin.css' layer(views);
 @import 'css/changelog.css' layer(views);
 

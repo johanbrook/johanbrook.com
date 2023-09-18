@@ -5,7 +5,7 @@
 	--yellow: hsl(50 93% 56%);
 	--grey: hsl(214.51 7.24% 47.56%);
 	--grey-light: hsl(173 7% 36% / 0.5);
-	--grey-lightest: hsl(173 7% 76% / 0.2);
+	--grey-lightest: hsl(173 7% 93%);
 
 	--color-bg: #fff;
 	--color-bg-secondary: hsl(112 29.98% 97%);
@@ -41,6 +41,7 @@
 	@media screen and (prefers-color-scheme: dark) {
 		--yellow: #c3a507;
 		--grey: hsl(214.51, 6.64%, 61.44%);
+		--grey-lightest: hsl(173 7% 17%);
 
 		--color-bg: #1a1a1a;
 		--color-bg-secondary: hsl(240 3.36% 14.51%);
@@ -61,28 +62,11 @@
 
 	/* Typography */
 
-	--sans: 'Inter var',
-	-apple-system,
-	BlinkMacSystemFont,
-	Helvetica,
-	sans-serif;
+	--sans: system-ui, sans-serif;
+	--mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+	--serif: 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif;
 
-	--mono: 'JetBrains Mono',
-	'Fira Code',
-	Menlo,
-	Monaco,
-	'Lucida Console',
-	'Liberation Mono',
-	'DejaVu Sans Mono',
-	'Bitstream Vera Sans Mono',
-	'Courier New',
-	monospace,
-	serif;
-
-	--serif: Georgia,
-	serif;
-
-	--font-size-base: 17;
+	--font-size-base: 18;
 	--leading: 1.618;
 	/* Rhythm unit */
 	--lineheight: calc(var(--leading) * 1rem);
@@ -99,7 +83,7 @@
 	--font-size-headline: 6rem;
 	--font-size-subheadline: 5rem;
 
-	--f0: calc((68 / var(--font-size-base)) * 1rem);
+	--f0: calc((82 / var(--font-size-base)) * 1rem);
 	--f1: calc((30 / var(--font-size-base)) * 1rem);
 	--f2: calc((26 / var(--font-size-base)) * 1rem);
 	--f3: calc((20 / var(--font-size-base)) * 1rem);
@@ -115,7 +99,7 @@
 
 	--inset: calc(var(--lineheight) / 2);
 
-	--measure: 56ch;
+	--measure: 65ch;
 	--measure-narrow: 45ch;
 	--measure-wide: 100ch;
 

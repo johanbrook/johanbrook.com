@@ -3,8 +3,15 @@ PROSE
 ----------------------------------------------------------------*/
 
 .prose {
+	--link-color: var(--color-text);
+
 	&> :last-child {
 		margin-bottom: 0;
+	}
+
+	a:not([class]) {
+		text-decoration: underline;
+		text-decoration-skip-ink: auto;
 	}
 
 	& img,

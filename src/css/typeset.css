@@ -34,14 +34,14 @@
 .pull-V,
 .pull-W,
 .pull-Y {
-	margin-left: -0.07em;
+	margin-left: -0.1em;
 }
 
 .push-T,
 .push-V,
 .push-W,
 .push-Y {
-	margin-right: 0.07em;
+	margin-right: 0.1em;
 }
 
 .pull-O,

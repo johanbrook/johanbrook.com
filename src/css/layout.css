@@ -1,0 +1,20 @@
+.Content {
+	max-width: var(--content-width);
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column-reverse;
+
+	&.wide {
+		--content-width: var(--measure-wide);
+	}
+
+	@media screen and (min-width: 981px) {
+		html:not(.admin) & {
+			max-width: none;
+			display: grid;
+			place-content: center;
+			grid-template-columns: var(--content-width) auto;
+			gap: var(--spacing-extra-large);
+		}
+	}
+}

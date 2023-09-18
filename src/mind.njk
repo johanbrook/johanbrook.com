@@ -10,18 +10,18 @@ menu:
 
   <h1 class="title mb3">{{ title }}.</h1>
 
-  <ol class="NotesList list-reset">
+  <ol class="NotesList">
     {% for post in search.pages("type=note", "date=desc") %}
       <li>
-        <article id="{{ post.data.date | date("NUMERIC") }}" class="font-mono">
+        <article id="{{ post.data.date | date("NUMERIC") }}">
         	<header class="mb2">
-	            <h1 class="f5 fw5 no-rhythm mb0">
-	              <a href="#{{ post.data.date | date("NUMERIC") }}" title="Permalink" class="no-underline target">{{ post.data.date | date("PPP — HH:mm") }} <span>#</span></a>
+	            <h1 class="f3 no-rhythm mb0">
+	              <a href="#{{ post.data.date | date("NUMERIC") }}" title="Permalink" class="font-serif no-underline target">{{ post.data.date | date("PPP — HH:mm") }} <span>#</span></a>
 	            </h1>
-            {% if post.data.location %}<p class="muted mb0 f6 target">{{ post.data.location }}</p>{% endif %}
+            {% if post.data.location %}<p title="Posted from" class="muted font-sans mb0 f4 target">{{ post.data.location }}</p>{% endif %}
           </header>
 
-          <div class="prose f5">
+          <div class="prose">
             {{ post.data.content | md | safe }}
           </div>
         </article>

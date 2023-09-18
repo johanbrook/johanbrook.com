@@ -12,10 +12,8 @@ menu:
   initially built by [Oscar Otero](https://github.com/oscarotero).
 - The source code of this site is
   [available on GitHub](https://github.com/johanbrook/johanbrook.com).
-- The only font used is [Inter](https://rsms.me/inter). It is made by
-  [@rsms](https://twitter.com/rsms) ([source](https://github.com/rsms/inter)). Inter is licensed
-  under the [SIL Open Font License 1.1](https://choosealicense.com/licenses/ofl-1.1/).
 - I was inspired by [muan.co](https://muan.co) in the latest design of this site.
+- I use font stacks from [Modern Font Stacks](https://modernfontstacks.com).
 
 This site's simple license:
 

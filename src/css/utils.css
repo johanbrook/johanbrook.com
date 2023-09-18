@@ -847,34 +847,6 @@ BORDERS
 	border-bottom-width: 1px;
 }
 
-.border-dashed {
-	border-style: dashed;
-}
-
-.border-dashed-anim {
-	--dash: 6px 1px;
-	background:
-		linear-gradient(90deg, var(--border-color) 50%, transparent 50%),
-		linear-gradient(90deg, var(--border-color) 50%, transparent 50%);
-	background-repeat: repeat-x;
-	background-size: var(--dash), var(--dash);
-	background-position: left top, left bottom;
-
-	@media (prefers-reduced-motion: no-preference) {
-		animation: border-dance 20s infinite linear;
-	}
-}
-
-@keyframes border-dance {
-	0% {
-		background-position: left top, right 100%;
-	}
-
-	100% {
-		background-position: right top, left 100%;
-	}
-}
-
 /*
 COLOURS
 ----------------------------------------------------------------*/
@@ -921,6 +893,14 @@ TYPOGRAPHY
 
 .font-mono {
 	font-family: var(--mono);
+}
+
+.font-sans {
+	font-family: var(--sans);
+}
+
+.font-serif {
+	font-family: var(--serif);
 }
 
 .text-balance {
@@ -1044,4 +1024,12 @@ TYPOGRAPHY
 
 a:hover .icon-feed {
 	color: var(--yellow);
+}
+
+.drop-cap::first-letter {
+	font-size: 3.5rem;
+	font-weight: bold;
+	float: left;
+	margin-right: 0.1em;
+	line-height: 1;
 }
