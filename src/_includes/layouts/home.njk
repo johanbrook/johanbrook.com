@@ -70,9 +70,9 @@ home: true
 </main>
 
 <template id="music-tmpl">
-	<li class="mb1">
-		<span class="music-title block"></span>
-		<small>
+	<li class="mb2">
+		<span class="music-title block fw7"></span>
+		<small class="font-sans f5">
 			<span class="music-subtitle muted"></span>
 			<time class="music-datetime ml1"></time>
 		</small>
@@ -108,7 +108,7 @@ home: true
 			if (track['@attr']?.nowplaying == 'true') {
 				title.classList.add('fw7');
 				container.classList.add('border', 'border-b', 'mb2', 'pb2');
-				dateTime.textContent = 'Now';
+				dateTime.textContent = 'Listening now';
 				dateTime.classList.add('fw7');
 			}
 			target.appendChild(clone);

@@ -4,12 +4,6 @@
 	left: var(--inset);
 }
 
-.list-reset {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
 /*
 BUTTONS
 ----------------------------------------------------------------*/
@@ -890,6 +884,10 @@ OPACITY
 /*
 TYPOGRAPHY
 ----------------------------------------------------------------*/
+
+.leading-tight {
+	line-height: 1.2;
+}
 
 .font-mono {
 	font-family: var(--mono);
