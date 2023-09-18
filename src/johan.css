@@ -12,7 +12,6 @@ components,
 utils;
 
 @import 'css/reset.css' layer(setup);
-@import 'css/fonts.css' layer(setup);
 @import 'css/variables.css' layer(setup);
 
 @import 'css/base.css' layer(base);

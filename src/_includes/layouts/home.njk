@@ -25,7 +25,7 @@ home: true
             <h2 class="font-sans f5 fw4 mb3">
               <a href="{{ note.data.permalink() | url }}" class="muted">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
             </h2>
-            <div class="prose font-mono f5">
+            <div class="prose font-mono f6">
               {{ note.data.content | excerpt | md | safe }}
             </div>
 

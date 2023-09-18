@@ -80,20 +80,14 @@
 	--tracking-f5: -0.009em;
 	--tracking-f6: -0.0025em;
 
-	--font-size-headline: 6rem;
-	--font-size-subheadline: 5rem;
-
-	--f0: calc((82 / var(--font-size-base)) * 1rem);
-	--f1: calc((30 / var(--font-size-base)) * 1rem);
-	--f2: calc((26 / var(--font-size-base)) * 1rem);
-	--f3: calc((20 / var(--font-size-base)) * 1rem);
-	--f4: calc((17 / var(--font-size-base)) * 1rem);
+	--f0: calc((72 / var(--font-size-base)) * 1rem);
+	--f1: calc((36 / var(--font-size-base)) * 1rem);
+	--f2: calc((30 / var(--font-size-base)) * 1rem);
+	--f3: calc((26 / var(--font-size-base)) * 1rem);
+	--f4: 1rem;
 	--f5: calc((15 / var(--font-size-base)) * 1rem);
 	--f6: calc((13 / var(--font-size-base)) * 1rem);
 	--f7: calc((11 / var(--font-size-base)) * 1rem);
-
-	/* See https://developers.google.com/web/updates/2016/02/font-display */
-	--font-strategy: fallback;
 
 	/* Measures */
 

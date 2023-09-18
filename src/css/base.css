@@ -8,7 +8,7 @@ html {
 	text-size-adjust: none;
 }
 
-body {
+:where(body, html) {
 	font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--serif);
 	background-color: var(--color-bg);
 	color: var(--color-text);
