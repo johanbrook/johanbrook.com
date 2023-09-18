@@ -7,12 +7,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter/Inter-italic.var.woff2" crossorigin="anonymous">
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/inter/Inter-roman.var.woff2" crossorigin="anonymous">
-
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2" crossorigin="anonymous">
-    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/jetbrains-mono/JetBrainsMono-Bold.woff2" crossorigin="anonymous">
-
     <link rel="preconnect" href="https://gc.zgo.at">
     <link rel="preconnect" href="https://johanbrook.goatcounter.com">
 
@@ -64,8 +58,8 @@
   "cv": "https://johan.im/johanbrook-cv.pdf",
   "versions": {
     "johan": "4.0.0",
-    "build": "bfe306034c156614c0f1c528f375c16ab778288e",
-    "builtAt": "2023-09-16T10:40:39.490Z"
+    "build": "2d8ca45e0e1624a8e018cdfd6dacaa2312407e1f",
+    "builtAt": "2023-09-18T20:52:31.573Z"
   }
 }
 
@@ -88,7 +82,7 @@
 		
 	   		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f4 sr-only-mobile">
+		<h1 class="f3 sr-only-mobile">
 			<a href="/" aria-label="Home">
 				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
