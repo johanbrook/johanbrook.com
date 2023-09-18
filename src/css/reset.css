@@ -1,4 +1,4 @@
-/* https://github.com/mayank99/reset.css/blob/main/package/index.css  */
+/* https://github.com/mayank99/reset.css/blob/main/package/index.css@0.7.0  */
 *,
 *::before,
 *::after {
@@ -16,12 +16,6 @@
 	color-scheme: dark light;
 }
 
-@supports not (min-block-size: 100dvb) {
-	:where(html) {
-		block-size: 100%;
-	}
-}
-
 @media (prefers-reduced-motion: no-preference) {
 	:where(html:focus-within) {
 		scroll-behavior: smooth;
@@ -29,8 +23,6 @@
 }
 
 :where(body) {
-	min-block-size: 100%;
-	min-block-size: 100dvb;
 	line-height: 1.5;
 	font-family: system-ui, sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -63,6 +55,7 @@
 }
 
 :where(a) {
+	color: inherit;
 	text-underline-offset: 0.2ex;
 }
 
@@ -74,7 +67,7 @@
 	display: block;
 }
 
-:where(img, picture, svg) {
+:where(img, picture, svg, video) {
 	max-inline-size: 100%;
 	block-size: auto;
 }
@@ -85,6 +78,7 @@
 
 :where(h1, h2, h3) {
 	line-height: calc(1em + 0.5rem);
+	text-wrap: balance;
 }
 
 :where(hr) {
@@ -96,11 +90,12 @@
 }
 
 :where(:focus-visible) {
-	outline: 2px solid var(--focus-color, Highlight);
+	outline: 3px solid Highlight;
 	outline-offset: 2px;
+	scroll-margin-block: 10vh;
 }
 
-:where(.visually-hidden:not(:focus, :active, :focus-within, .not-visually-hidden)) {
+:where(.visually-hidden:not(:focus-within, :active)) {
 	clip-path: inset(50%) !important;
 	height: 1px !important;
 	width: 1px !important;
