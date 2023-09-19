@@ -126,7 +126,7 @@ export const mkGitHub = ({ url }: Args): Service => {
 
 		let content = `---
 date: ${date}
-location: The web
+location: My web interface
 `;
 
 		if (draft) {

@@ -55,7 +55,7 @@ const handle = async ({ request, env }) => {
 
 	const content = `---
 date: ${date}
-location: On the run
+location: My iOS shortcut
 ---
 ${body}\n
 `;
