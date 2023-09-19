@@ -12,11 +12,13 @@ home: true
     </section>
 
     <section class="mb4">
-      <header class="flex items-center">
+      <header class="flex items-center justify-between">
         <h1 class="f2 mb0">On my mind</h1>
 
-        <a href="/mind" class="ml3 f5" title="Read more">All notes</a>
-        <a href="/mind.xml" class="ml2 ml-1 f5" title="Atom feed">Feed {{ comp.icon({ class: "ml1" }) | safe }}</a>
+        <p class="mb0 flex items-center gap f5">
+        	<a href="/mind" title="Read more">All notes</a>
+        	<a href="/mind.xml" title="Atom feed">Feed {{ comp.icon({ class: "ml1" }) | safe }}</a>
+        </p>
       </header>
 
       <ol>
@@ -48,11 +50,13 @@ home: true
     </section>
 
     <section>
-      <header class="flex items-center mb3">
+      <header class="flex items-center justify-between mb3">
         <h1 class="f2 mb0">Writings</h1>
 
-        <a href="/writings" class="ml3 f5" title="Read more">All writings</a>
-        <a href="/feed.xml" class="ml2 ml-1 f5" title="Atom feed">Feed {{ comp.icon({ class: "ml1" }) | safe }}</a>
+        <p class="mb0 flex items-center gap f5">
+	        <a href="/writings" title="Read more">All writings</a>
+	        <a href="/feed.xml" title="Atom feed">Feed {{ comp.icon({ class: "ml1" }) | safe }}</a>
+        </p>
       </header>
 
       <ol>
