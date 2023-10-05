@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class=" api.json">
+<html lang="en-gb" class=" api.json">
 
   <head itemtype="http://schema.org/Blog" itemscope>
     <title>Johan Brook</title>
@@ -58,8 +58,8 @@
   "cv": "https://johan.im/johanbrook-cv.pdf",
   "versions": {
     "johan": "4.0.0",
-    "build": "874b5e69b2d38fd26d0cf26e81225fc0fe7b0fe0",
-    "builtAt": "2023-10-04T17:48:35.479Z"
+    "build": "91100b7a9da7d44c2f1e41d6279e0f494aa45e84",
+    "builtAt": "2023-10-05T07:58:28.494Z"
   }
 }
 
@@ -105,10 +105,10 @@
 			<a href="/reading/">Reading</a>
 		</li>
 		<li >
-			<a href="/about/">About me</a>
+			<a href="/to-read/">To read</a>
 		</li>
 		<li >
-			<a href="/to-read/">To read</a>
+			<a href="/about/">About me</a>
 		</li>
 		<li >
 			<a href="/quotes/">Quotes</a>

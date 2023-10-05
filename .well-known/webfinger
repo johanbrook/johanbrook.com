@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class=" .well-knownwebfinger">
+<html lang="en-gb" class=" .well-knownwebfinger">
 
   <head itemtype="http://schema.org/Blog" itemscope>
     <title>Johan Brook</title>
@@ -114,10 +114,10 @@
 			<a href="/reading/">Reading</a>
 		</li>
 		<li >
-			<a href="/about/">About me</a>
+			<a href="/to-read/">To read</a>
 		</li>
 		<li >
-			<a href="/to-read/">To read</a>
+			<a href="/about/">About me</a>
 		</li>
 		<li >
 			<a href="/quotes/">Quotes</a>
