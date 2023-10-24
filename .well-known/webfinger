@@ -20,13 +20,14 @@
     <link rel="stylesheet" href="/johan.css">
 
     <!-- RSS -->
-    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Posts feed" href="/feed.xml">
-    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Mind feed" href="/mind.xml">
-    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Book feed" href="/reading.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Posts feed" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Mind feed" href="/mind.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Book feed" href="/reading.xml">
 
     <link rel="shortcut icon" href="/favicon.png" type="image/png">
     <link rel="canonical" itemprop="url" href="https://johan.im/.well-known/webfinger">
     <link rel="author" href="https://johan.im">
+    <link rel="me" href="https://hachyderm.io/@brookie">
 
     <meta property="og:title" content="">
     <meta property="og:url" content="https://johan.im/.well-known/webfinger">
@@ -114,10 +115,10 @@
 			<a href="/reading/">Reading</a>
 		</li>
 		<li >
-			<a href="/about/">About me</a>
+			<a href="/to-read/">To read</a>
 		</li>
 		<li >
-			<a href="/to-read/">To read</a>
+			<a href="/about/">About me</a>
 		</li>
 		<li >
 			<a href="/quotes/">Quotes</a>

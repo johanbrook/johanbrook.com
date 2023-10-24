@@ -20,13 +20,14 @@
     <link rel="stylesheet" href="/johan.css">
 
     <!-- RSS -->
-    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Posts feed" href="/feed.xml">
-    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Mind feed" href="/mind.xml">
-    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Book feed" href="/reading.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Posts feed" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Mind feed" href="/mind.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Book feed" href="/reading.xml">
 
     <link rel="shortcut icon" href="/favicon.png" type="image/png">
     <link rel="canonical" itemprop="url" href="https://johan.im/api.json">
     <link rel="author" href="https://johan.im">
+    <link rel="me" href="https://hachyderm.io/@brookie">
 
     <meta property="og:title" content="">
     <meta property="og:url" content="https://johan.im/api.json">
@@ -58,8 +59,8 @@
   "cv": "https://johan.im/johanbrook-cv.pdf",
   "versions": {
     "johan": "4.0.0",
-    "build": "e2826bf44485904dce34bffd91d3fe967e27ff9d",
-    "builtAt": "2023-10-17T07:23:50.095Z"
+    "build": "3dab65cb6cf64b3a5c64503cea91d3a9b220bae8",
+    "builtAt": "2023-10-24T14:08:42.597Z"
   }
 }
 
@@ -105,10 +106,10 @@
 			<a href="/reading/">Reading</a>
 		</li>
 		<li >
-			<a href="/about/">About me</a>
+			<a href="/to-read/">To read</a>
 		</li>
 		<li >
-			<a href="/to-read/">To read</a>
+			<a href="/about/">About me</a>
 		</li>
 		<li >
 			<a href="/quotes/">Quotes</a>
