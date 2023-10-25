@@ -184,7 +184,7 @@ code {
 	background-color: var(--code-background);
 	padding: 2px 4px;
 	border-radius: 4px;
-	color: var(--code-color);
+	font-size: .9rem;
 }
 
 figcaption {
