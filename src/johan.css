@@ -22,6 +22,7 @@ utils;
 
 @import 'css/admin.css' layer(views);
 @import 'css/changelog.css' layer(views);
+@import 'css/oblique-strategies.css' layer(views);
 
 @import 'css/notes.css' layer(components);
 @import 'css/navigation.css' layer(components);

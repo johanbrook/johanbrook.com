@@ -1,0 +1,22 @@
+.oblique-strategies .Page .prose {
+    margin-top: var(--spacing-large);
+
+    ul {
+        font-family: var(--sans);
+        font-size: var(--f1);
+        font-weight: 700;
+        line-height: 1.4;
+    }
+
+    li:not(ul ul li) {
+        margin-bottom: var(--spacing-large);
+    }
+
+    ul li:not(ul ul li) {
+        list-style-type: none;
+    }
+
+    ul ul {
+        font-size: var(--f2);
+    }
+}
