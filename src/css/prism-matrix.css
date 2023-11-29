@@ -1,16 +1,5 @@
 /* Matrix theme in light and dark versions by Johan. */
 
-code[class*='language-'],
-pre[class*='language-'] {
-	color: hsl(112 30% 30%);
-	background-color: hsl(112 29.98% 97%);
-
-	@media (prefers-color-scheme: dark) {
-		color: hsl(112, 70%, 80%);
-		background-color: hsl(112, 1.27%, 13.33%);
-	}
-}
-
 .token {
 	--hue: 112;
 	--sat: 40%;

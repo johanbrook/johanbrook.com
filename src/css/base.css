@@ -248,30 +248,19 @@ td {
 }
 
 pre {
-	--tab-size: 2;
-	--top-inset: calc(var(--lineheight) / 2);
-
-	direction: ltr;
 	text-align: left;
 	line-height: var(--leading);
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
 	hyphens: none;
-	tab-size: var(--tab-size);
-	background: var(--pre-background);
+	tab-size: 2;
 	color: var(--code-color);
-	border-radius: 8px;
-	padding: var(--top-inset) calc(var(--lineheight));
 	-webkit-font-smoothing: subpixel-antialiased;
 	-moz-osx-font-smoothing: none;
 	font-size: var(--f5);
 	overflow: auto;
 	position: relative;
-
-	@media screen and (max-width: 480px) {
-		padding-left: 0.25em;
-	}
 
 	& .line-highlight {
 		--cycle: 27px;
