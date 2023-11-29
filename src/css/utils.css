@@ -873,6 +873,11 @@ COLOURS
 	color: var(--color-text-detail);
 }
 
+.subhead {
+    color: var(--color-text-detail);
+    font-family: var(--sans);
+}
+
 /*
 OPACITY
 ----------------------------------------------------------------*/
@@ -1030,4 +1035,8 @@ a:hover .icon-feed {
 	float: left;
 	margin-right: 0.1em;
 	line-height: 1;
+}
+
+.align-middle {
+    vertical-align: middle;
 }

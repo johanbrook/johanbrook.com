@@ -204,9 +204,10 @@ table {
 
 		& th {
 			text-transform: lowercase;
-			font-weight: normal;
+			font-weight: bold;
 			font-size: var(--f4);
 			font-variant: small-caps;
+			letter-spacing: 0.05em;
 		}
 
 		& td {

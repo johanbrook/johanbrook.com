@@ -8,19 +8,8 @@ menu:
   order: 8
 ---
 
-- This site is generated with the [Lume](https://github.com/lumeland/lume) static site generator
-  initially built by [Oscar Otero](https://github.com/oscarotero).
-- The source code of this site is
-  [available on GitHub](https://github.com/johanbrook/johanbrook.com).
-- I was inspired by [muan.co](https://muan.co) in the latest design of this site.
-- I use font stacks from [Modern Font Stacks](https://modernfontstacks.com).
+This site is generated with the [Lume](https://github.com/lumeland/lume) static site generator initially built by [Oscar Otero](https://github.com/oscarotero). The source code of this site is [available on GitHub](https://github.com/johanbrook/johanbrook.com).
 
-This site's simple license:
+I use font stacks from [Modern Font Stacks](https://modernfontstacks.com). It'll use whatever sans-serifs and serifs you've got installed on your device.
 
-```
-Copyright Johan Brook, {{ build.date | date("yyyy") }}
-
-You may steal the code of this site, and be inspired by its structure.
-
-You may not steal any writings of mine and claim them as your own.
-```
+Johan Brook 2010-{{ build.date | date("yyyy") }}.

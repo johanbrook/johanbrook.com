@@ -45,7 +45,7 @@
 
 		--color-bg: #1a1a1a;
 		--color-bg-secondary: hsl(240 3.36% 14.51%);
-		--color-text: hsl(0, 0%, 86%);
+		--color-text: hsl(0, 0%, 78%);
 		--color-text-high-contrast: white;
 		--link-color: hsl(201.43 94.7% 62.23%);
 		--link-color-hover: hsl(201.43, 93.43%, 69.58%);
@@ -64,9 +64,9 @@
 
 	--sans: system-ui, sans-serif;
 	--mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-	--serif: 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif;
+	--serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
 
-	--font-size-base: 18;
+	--font-size-base: 20;
 	--leading: 1.618;
 	/* Rhythm unit */
 	--lineheight: calc(var(--leading) * 1rem);
@@ -93,7 +93,7 @@
 
 	--inset: calc(var(--lineheight) / 2);
 
-	--measure: 65ch;
+	--measure: 60ch;
 	--measure-narrow: 45ch;
 	--measure-wide: 100ch;
 

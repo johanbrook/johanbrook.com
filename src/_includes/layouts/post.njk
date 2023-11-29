@@ -12,7 +12,7 @@ layout: layouts/main.njk
           </time>
           {% if updated %}
             <time title="Updated at" class="muted normal ml-1" datetime="{{ updated | date("ATOM") }}" itemprop="dateModified">
-                ({{ updated | date("HUMAN_DATE") }})
+                (updated {{ updated | date("HUMAN_DATE") }})
             </time>
           {% endif %}
           {% if draft %}
@@ -20,12 +20,12 @@ layout: layouts/main.njk
           {% endif %}
       </p>
 
-      <p class="f5 mb4">
+      <p class="f5 mb4 font-sans muted">
           About {{ content | default("No content", true) | readingTime }} reading time
       </p>
     </header>
 
-    <div class="prose drop-cap" itemprop="articleBody">
+    <div class="prose" itemprop="articleBody">
       {% if link %}
         <p class="f3 mb4 no-rhythm">
           <a class="btn" title="{{ link }}" href="{{ link }}">Follow link to {{ link | hostname }} →</a>

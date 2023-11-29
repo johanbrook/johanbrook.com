@@ -1,7 +1,6 @@
 ---
 title: Quotes, sayings, and other wisdoms
 layout: layouts/page.njk
-subtitle: Wise things I've collected through my internet travels. Every quote is totally made by other people than me.
 menu:
   visible: true
   title: Quotes
