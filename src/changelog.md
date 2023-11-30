@@ -3,7 +3,7 @@ title: Changelog
 layout: layouts/page.njk
 description: Log over semi major life events so far.
 ogImage: /assets/images/og-image-changelog.png
-subtitle: My life so far – versioned. Also check out experimental development: [what I'm doing now](/now)</a>.
+subtitle: "My life so far – versioned. Also check out experimental development: [what I'm doing now](/now)</a>."
 date: 2023-03-19
 menu:
   visible: true
