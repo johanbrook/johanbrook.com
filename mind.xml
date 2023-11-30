@@ -5,11 +5,37 @@
   <link href="https://johan.im/mind"/>
   <id>https://johan.im/mind</id>
   
-  <updated>2023-11-18T09:09:38Z</updated>
+  <updated>2023-11-29T20:10:49Z</updated>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johan.im</email>
   </author>
+  
+  <entry>
+    <title>November 29th, 2023 at 8:10:49 PM GMT+0</title>
+    <link href="https://johan.im/mind#202311292010" />
+    <updated>2023-11-29T20:10:49Z</updated>
+    <id>https://johan.im/mind#202311292010</id>
+    <content type="html">&lt;p&gt;Messing around with the styling and structure here on the website again. I&#39;m so inspired by all the personal sites I stumble on in my feed. But not inspired enough to actually produce as much content here as I would love to 😄&lt;/p&gt;
+&lt;p&gt;Been reading a lot about &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Web_components&quot;&gt;Web Components&lt;/a&gt; recently. They&#39;re having a sort of renaissance at the moment — not sure why this timing actually — much thanks to them being a tool in the box when building with progressive enhancement. All PE thought leaders are going on about the beauty of Web Components and &amp;quot;how you don&#39;t need any big JS or Virtual DOM libraries at all!!&amp;quot;. I get that for small, self-contained UI components, but for anything non-trivial, you&#39;re kind of bound to reinvent something inhouse for your app anyway, no? I guess Web Components fill the hole where you just want to drop a custom element in a piece of markup and have a Web Component use the element with contained JS and perhaps CSS.&lt;/p&gt;
+&lt;p&gt;But the idea of &amp;quot;HTML Web Components&amp;quot; is really neat, in the way it enhances existing markup. Like this:&lt;/p&gt;
+&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;convert-currency&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;USD&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;10&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;convert-currency&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;script&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;convert-currency.js&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;module&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token script&quot;&gt;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;script&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// convert-currency.js&lt;/span&gt;
+customElements&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;define&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;convert-currency&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;extends&lt;/span&gt; HTMLElement &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;connectedCallback&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;// use this.querySelector() and other DOM API methods to convert&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;// the text content to the currency from this.getAttribute(&quot;to&quot;).&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;For server rendered markup, &lt;code&gt;&amp;lt;convert-currency&amp;gt;&lt;/code&gt; will render just fine, and &lt;code&gt;10&lt;/code&gt; with it. Browsers will just ignore it when parsing the HTML.&lt;/li&gt;
+&lt;li&gt;When parsing is done and JS kicks in, we&#39;ll &amp;quot;enrich&amp;quot; our custom element with logic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My takeaway is that custom elements and Web Components give us a declarative way to encapsulate logic (duh, &amp;quot;components&amp;quot; it&#39;s in the name), which creates whole new patterns in how to approach component style architecture but &lt;em&gt;without&lt;/em&gt; any 3rd party JS component library.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>November 18th, 2023 at 9:09:38 AM GMT+0</title>
@@ -89,16 +115,6 @@
     <id>https://johan.im/mind#202303202029</id>
     <content type="html">&lt;p&gt;On the night to Friday, March 17th, I became a father for the second time. Insane! A little girl was born to us.&lt;/p&gt;
 &lt;p&gt;Thanks to me now being deep into the kids thing, this time around didn&#39;t feel as scary as with our first. I am now able to embrace this moment to 150%, which feels a-mazing.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>February 19th, 2023 at 7:34:11 PM GMT+0</title>
-    <link href="https://johan.im/mind#202302191934" />
-    <updated>2023-02-19T19:34:11Z</updated>
-    <id>https://johan.im/mind#202302191934</id>
-    <content type="html">&lt;p&gt;Did a small re-align of my site. Nothing too big. Just some spring cleaning, visually. Feels good.&lt;/p&gt;
-&lt;p&gt;I&#39;ve landed in a nice rhythm of doing exercise now. Combining running and weight lifting. My constant gripe with the latter is to have to eat so goddamned much all the time to get any growth effect out of the gym sessions, but whatever.&lt;/p&gt;
-&lt;p&gt;Watched &lt;em&gt;&amp;quot;All Quiet On The Western Front&amp;quot;&lt;/em&gt; yesterday. It&#39;s a Netflix produced film (but it was super good!) about a solider in the German army during World War I. It&#39;s based on the book with the famous title, a source of many dad phrasings over the years (dads throwing in the reference &amp;quot;all quiet on the Western front&amp;quot; in conversations when receiving the question &amp;quot;how do you do&amp;quot;). The film was amazing in the sense of production, but also (I guess) authenticity (the dialogue is German 💞). The sheer horror of war was pictured in a deeply touching and soul draining way.&lt;/p&gt;</content>
   </entry>
   
 </feed>
