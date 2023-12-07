@@ -5,11 +5,24 @@
   <link href="https://johan.im/mind"/>
   <id>https://johan.im/mind</id>
   
-  <updated>2023-11-29T20:10:49Z</updated>
+  <updated>2023-12-07T19:45:11Z</updated>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johan.im</email>
   </author>
+  
+  <entry>
+    <title>December 7th, 2023 at 7:45:11 PM GMT+0</title>
+    <link href="https://johan.im/mind#202312071945" />
+    <updated>2023-12-07T19:45:11Z</updated>
+    <id>https://johan.im/mind#202312071945</id>
+    <content type="html">&lt;p&gt;&lt;a href=&quot;https://www.arrow-js.com/&quot;&gt;ArrowJS&lt;/a&gt; is my spirit animal JS library at the moment.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;If&lt;/em&gt; you need a library on the frontend, I’d use this one.&lt;/p&gt;
+&lt;p&gt;✅ tiny (2kB). can read the source code in 10 min.
+✅ reactive, with observable signals/atoms.
+✅ no build, no JSX, no dependencies.&lt;/p&gt;
+&lt;p&gt;It abstracts away sharp edges with the DOM, and does the reactive boilerplate for you. I could easily just copy-paste the source into a vendor/ directory and call it a day.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>November 29th, 2023 at 8:10:49 PM GMT+0</title>
@@ -106,15 +119,6 @@ customElements&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;
     <updated>2023-04-11T19:58:39Z</updated>
     <id>https://johan.im/mind#202304111958</id>
     <content type="html">&lt;p&gt;The minimalism of &lt;a href=&quot;https://open.spotify.com/track/6rQWcomd5gHKdALTXcGw66&quot;&gt;&amp;quot;Open House&amp;quot;&lt;/a&gt; by Lou Reed and John Cale is superb. So eerie and perfect. Nobody can do Lou Reed&#39;s voice better than Lou Reed himself.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>March 20th, 2023 at 8:29:45 PM GMT+0</title>
-    <link href="https://johan.im/mind#202303202029" />
-    <updated>2023-03-20T20:29:45Z</updated>
-    <id>https://johan.im/mind#202303202029</id>
-    <content type="html">&lt;p&gt;On the night to Friday, March 17th, I became a father for the second time. Insane! A little girl was born to us.&lt;/p&gt;
-&lt;p&gt;Thanks to me now being deep into the kids thing, this time around didn&#39;t feel as scary as with our first. I am now able to embrace this moment to 150%, which feels a-mazing.&lt;/p&gt;</content>
   </entry>
   
 </feed>
