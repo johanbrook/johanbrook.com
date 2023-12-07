@@ -52,14 +52,14 @@ const handle = async ({ request, env }) => {
 	const branch = isLocal(url) ? 'dev' : 'main';
 	const date = formatDate(d);
 	const fileDate = formatDate(d, true);
-	const client = request.headers.get('x-client');
+	const client = request.headers.get('x-client') || 'Unknown client';
 
 	const location = (() => {
 	   switch (client) {
 			case 'macos-shortcut': return 'My Mac shortcut';
 			case 'ios-shortcut': return 'My iOS shortcut';
 			default:
-		      console.warn(`Unknown client posting: ${client}`);
+		      console.warn(`Not recognised client: ${client}`);
 			  return 'My script';
 		}
 	})();
@@ -75,7 +75,7 @@ ${body}\n
 	const path = notesDir + '/' + fileName;
 
 	const res = await githubRequest('PUT', `/repos/${owner}/${repo}/contents/${path}`, {
-		message: 'Add note from iOS Shortcut',
+		message: `Add note from ${client}`,
 		content: base64(content),
 		branch,
 	}, SHORTCUT_TOKEN);
