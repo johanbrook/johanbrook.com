@@ -52,10 +52,21 @@ const handle = async ({ request, env }) => {
 	const branch = isLocal(url) ? 'dev' : 'main';
 	const date = formatDate(d);
 	const fileDate = formatDate(d, true);
+	const client = request.headers.get('x-client');
+
+	const location = (() => {
+	   switch (client) {
+			case 'macos-shortcut': return 'My Mac shortcut';
+			case 'ios-shortcut': return 'My iOS shortcut';
+			default:
+		      console.warn(`Unknown client posting: ${client}`);
+			  return 'My script';
+		}
+	})();
 
 	const content = `---
 date: ${date}
-location: My iOS shortcut
+location: ${location}
 ---
 ${body}\n
 `;
