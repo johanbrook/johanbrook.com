@@ -26,9 +26,11 @@
     <id>https://johan.im/mind#202312071945</id>
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://www.arrow-js.com/&quot;&gt;ArrowJS&lt;/a&gt; is my spirit animal JS library at the moment.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;If&lt;/em&gt; you need a library on the frontend, I’d use this one.&lt;/p&gt;
-&lt;p&gt;✅ tiny (2kB). can read the source code in 10 min.
-✅ reactive, with observable signals/atoms.
-✅ no build, no JSX, no dependencies.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;✅ tiny (2kB). can read the source code in 10 min.&lt;/li&gt;
+&lt;li&gt;✅ reactive, with observable signals/atoms.&lt;/li&gt;
+&lt;li&gt;✅ no build, no JSX, no dependencies.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;It abstracts away sharp edges with the DOM, and does the reactive boilerplate for you. I could easily just copy-paste the source into a vendor/ directory and call it a day.&lt;/p&gt;</content>
   </entry>
   
