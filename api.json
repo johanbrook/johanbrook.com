@@ -59,8 +59,8 @@
   "cv": "https://johan.im/johanbrook-cv.pdf",
   "versions": {
     "johan": "4.0.0",
-    "build": "80d094a198ca453188de03996187428fb4f581a9",
-    "builtAt": "2023-12-13T20:16:02.164Z"
+    "build": "90bb1a1186e50b93069874b3e575742b867ead44",
+    "builtAt": "2023-12-15T14:05:56.334Z"
   }
 }
 
@@ -106,10 +106,10 @@
 			<a href="/reading/">Reading</a>
 		</li>
 		<li >
-			<a href="/to-read/">To read</a>
+			<a href="/about/">About me</a>
 		</li>
 		<li >
-			<a href="/about/">About me</a>
+			<a href="/to-read/">To read</a>
 		</li>
 		<li >
 			<a href="/quotes/">Quotes</a>
