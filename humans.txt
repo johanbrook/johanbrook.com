@@ -1,0 +1,4 @@
+This site's source code is written by Johan.
+
+Blog posts have moved from Wordpress to Jekyll to Metalsmith to Eleventy
+to Lume.
