@@ -9,7 +9,7 @@
 	}
 
 	@media screen and (min-width: 981px) {
-		html:not(.admin) & {
+		html & {
 			max-width: none;
 			display: grid;
 			place-content: center;
