@@ -1,16 +1,3 @@
-.NavCommon {
-	& a {
-		color: var(--color-text);
-		white-space: nowrap;
-		text-decoration: none;
-
-		&:hover {
-			color: var(--link-color-hover);
-			text-decoration: underline;
-		}
-	}
-}
-
 .MainNav {
 	position: relative;
 	z-index: 2;
@@ -28,6 +15,15 @@
 	}
 
 	& a {
+    	color: var(--color-text);
+    	white-space: nowrap;
+    	text-decoration: none;
+
+    	&:hover {
+    		color: var(--link-color-hover);
+    		text-decoration: underline;
+    	}
+
 		&:is(:hover, :focus-visible) {
 			outline: 0;
 			color: var(--link-color-hover);

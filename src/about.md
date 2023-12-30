@@ -10,8 +10,10 @@ keywords:
   - typescript
 templateEngine: njk,md
 menu:
+  title: About
   visible: true
-  order: 5
+  order: 4
+  top: true
 ---
 
 <p class="f3 no-rhythm">

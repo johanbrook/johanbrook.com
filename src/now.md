@@ -13,6 +13,7 @@ keywords:
 menu:
     visible: true
     order: 2
+    top: true
 templateEngine: njk,md
 ---
 

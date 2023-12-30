@@ -6,6 +6,25 @@
 			</a>
 		</h1>
 
-		{% include "nav-common.njk" %}
+		<ul>
+           	<li class="only-mobile" {% if "/" | isCurrentPage %} aria-current="page"{% endif %}>
+          		<a href="/">Home</a>
+           	</li>
+           	{%- for entry in search.pages("menu.visible=true menu.top=true", "menu.order") %}
+          		<li {% if entry.data.url | isCurrentPage %} aria-current="page"{% endif %}>
+         			<a href="{{ entry.data.url }}">{{ entry.data.menu.title or entry.data.title }}</a>
+          		</li>
+           	{%- endfor %}
+        </ul>
+        <details>
+            <summary class="mv1 font-sans f5 muted link fw5">View more</summary>
+            <ul>
+                {%- for entry in search.pages("menu.visible=true menu.top!=true", "menu.order") %}
+              		<li {% if entry.data.url | isCurrentPage %} aria-current="page"{% endif %}>
+             			<a href="{{ entry.data.url }}">{{ entry.data.menu.title or entry.data.title }}</a>
+              		</li>
+               	{%- endfor %}
+            </ul>
+        </details>
 	</div>
 </nav>

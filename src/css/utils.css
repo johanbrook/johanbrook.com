@@ -871,6 +871,10 @@ COLOURS
 
 .muted {
 	color: var(--color-text-detail);
+
+	&.link:hover {
+	   color: var(--color-text-high-contrast);
+	}
 }
 
 .subhead {
