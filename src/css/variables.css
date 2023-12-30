@@ -85,8 +85,8 @@
 	--f2: calc((30 / var(--font-size-base)) * 1rem);
 	--f3: calc((26 / var(--font-size-base)) * 1rem);
 	--f4: 1rem;
-	--f5: calc((15 / var(--font-size-base)) * 1rem);
-	--f6: calc((13 / var(--font-size-base)) * 1rem);
+	--f5: calc((17 / var(--font-size-base)) * 1rem);
+	--f6: calc((14 / var(--font-size-base)) * 1rem);
 	--f7: calc((11 / var(--font-size-base)) * 1rem);
 
 	/* Measures */

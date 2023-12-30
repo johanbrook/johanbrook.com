@@ -2,10 +2,10 @@
   slug: gomorra
   author: Roberto Saviano
 
-- title: Smiley's People
-  slug: smileys-people
-  author: John le Carré
-
 - title: Det Tredje Riket
   slug: tredje-riket
   author: Karl Ove Knausgård
+
+- title: The Looking Glass War
+  author: John le Carré
+  slug: the-looking-glass-war

@@ -15,7 +15,7 @@ menu:
   		Non-exhaustive list of books I've read and am reading, in reverse chronological order. You can also check out what I <a href="/to-read">want to read next.</a>
 	</p>
 
-    <table class="textual">
+    <table class="textual f5">
     	<tr>
     		<th>Title</th>
     		<th>Author</th>
@@ -27,13 +27,13 @@ menu:
         	<td>
 				{{ book.title }}
         	</td>
-        	<td class="f4">
+        	<td>
         		{{ book.author }}
         	</td>
-        	<td class="f5">
+        	<td>
 				{{ book.notes | md(true) | safe }}
         	</td>
-        	<td class="no-wrap f5 fw6 {% if book.dropped %}align-middle font-sans muted{% else %}{% if book.paused %}align-middle font-sans comp-yellow{% else %}{% if not book.finished%}align-middle font-sans comp-neon{% endif %}{% endif %}{% endif %}">
+        	<td class="no-wrap font-sans f6 fw6 {% if book.dropped %}align-middle font-sans muted{% else %}{% if book.paused %}align-middle comp-yellow{% else %}{% if not book.finished%}align-middle font-sans comp-neon{% endif %}{% endif %}{% endif %}">
             	{% if book.dropped %}
               		Dropped
               	{% else %}
