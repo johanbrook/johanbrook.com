@@ -75,6 +75,29 @@ site
 
 		return curr == test;
 	})
+	.filter('groupBooksByYear', <T>(arr: Array<T>) => {
+	    const current = new Date().getUTCFullYear();
+		const groups: Record<string | number, T[]> = {
+			[current]: []
+		};
+
+		for (const a of arr) {
+		    const date = a.finishedAt;
+
+			if (!date) {
+			    if (!a.finished) groups[current].push(a);
+			    continue;
+			}
+			if (date instanceof Date == false) throw new Error(`"finishedAt" is not a date: ${date} on ${JSON.stringify(a)}`);
+
+			const group = (date as Date).getFullYear();
+
+			if (groups[group]) groups[group].push(a);
+			else groups[group] = [a];
+		}
+
+		return groups;
+	})
 	// Data
 	.data('pageSlug', function (this: { ctx: { url: string } }) {
 		return this.ctx.url.replaceAll('/', '');

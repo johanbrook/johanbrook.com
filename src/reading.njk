@@ -12,51 +12,59 @@ menu:
   <article class="page">
 	<h1 class="title">{{ title }}.</h1>
 
-	<p class="mb2 subhead measure mb4">
+	<p class="subhead measure mb4">
   		Non-exhaustive list of books I've read and am reading, in reverse chronological order. You can also check out what I <a href="/to-read">want to read next.</a>
 	</p>
 
-    <table class="textual f5">
-    	<tr>
-    		<th>Title</th>
-    		<th>Author</th>
-    		<th>Notes</th>
-    		<th title="Status"></th>
-    	</tr>
-      {% for book in books | reverse %}
-        <tr id="{{ book.slug }}">
-        	<td>
-				{{ book.title }}
-        	</td>
-        	<td>
-        		{{ book.author }}
-        	</td>
-        	<td>
-				{{ book.notes | md(true) | safe }}
-        	</td>
-        	<td class="no-wrap font-sans f6 fw6 {% if book.dropped %}align-middle font-sans muted{% else %}{% if book.paused %}align-middle comp-yellow{% else %}{% if not book.finished%}align-middle font-sans comp-neon{% endif %}{% endif %}{% endif %}">
-            	{% if book.dropped %}
-              		Dropped
-              	{% else %}
-              		{% if book.paused %}
-	            		Paused
-		            {% else %}
-	              		{% if book.finished %}
-	              			{% if book.finishedAt %}
-	              				<time title="Finished at" datetime="{{ book.finishedAt }}">{{ book.finishedAt | date }}</time><br>
-	              			{% endif %}
-	              			{% if book.location %}
-	              				<small class="font-sans fw4" title="Finished in">{{ book.location }}</small>
-	              			{% endif %}
-	              		{% else %}
-		              		Reading
-		            	{% endif %}
-	            	{% endif %}
-            	{% endif %}
-        	</td>
-        </tr>
-      {% endfor %}
-    </table>
+	{% for year, bookz in books | groupBooksByYear | dictsort | reverse %}
+	   <section>
+    	    <header class="mt4 mb2 flex justify-between items-center">
+                <h1 class="mv0">{{ year }}</h1>
+                <p class="muted mb0 font-sans f5">{{ bookz.length }} books</p>
+            </header>
+    		<table class="textual f5">
+               	<tr>
+              		<th>Title</th>
+              		<th>Author</th>
+              		<th>Notes</th>
+              		<th title="Status"></th>
+               	</tr>
+                {% for book in bookz | reverse %}
+                    <tr id="{{ book.slug }}">
+                   	<td>
+           					{{ book.title }}
+                   	</td>
+                   	<td>
+                  		{{ book.author }}
+                   	</td>
+                   	<td>
+           					{{ book.notes | md(true) | safe }}
+                   	</td>
+                   	<td class="no-wrap font-sans f6 fw6 {% if book.dropped %}align-middle font-sans muted{% else %}{% if book.paused %}align-middle comp-yellow{% else %}{% if not book.finished%}align-middle font-sans comp-neon{% endif %}{% endif %}{% endif %}">
+                       	{% if book.dropped %}
+                          		Dropped
+                       	{% else %}
+                          		{% if book.paused %}
+            		            		Paused
+         			            {% else %}
+          		              		{% if book.finished %}
+         		              			{% if book.finishedAt %}
+            		              				<time title="Finished at" datetime="{{ book.finishedAt }}">{{ book.finishedAt | date }}</time><br>
+         		              			{% endif %}
+         		              			{% if book.location %}
+            		              				<small class="font-sans fw4" title="Finished in">{{ book.location }}</small>
+         		              			{% endif %}
+          		              		{% else %}
+         			              		Reading
+            			            	{% endif %}
+         		            	{% endif %}
+                       	{% endif %}
+                   	</td>
+                    </tr>
+                {% endfor %}
+            </table>
+	   </section>
+	{% endfor %}
 
     <p class="mt4">{{ books.length }} books <span class="mx1">|</span> <a href="/reading.xml">Feed{{ comp.icon({ class: "ml2" }) | safe }}</a></p>
   </article>
