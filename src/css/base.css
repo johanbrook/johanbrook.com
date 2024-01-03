@@ -181,10 +181,9 @@ code {
 }
 
 :not(pre)>code {
-	background-color: var(--code-background);
-	padding: 2px 4px;
-	border-radius: 4px;
-	font-size: .9rem;
+	color: var(--color-text-high-contrast);
+	font-weight: bold;
+	font-size: .85em;
 }
 
 figcaption {
