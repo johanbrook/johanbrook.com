@@ -159,7 +159,7 @@ const formatDate = (date, fileName = false) => {
 	const timePart = [
 		date.getUTCHours(),
 		date.getUTCMinutes(),
-		fileName ? null : date.getUTCSeconds(),
+		date.getUTCSeconds(),
 	]
 		.filter(Boolean)
 		.map((n) => String(n).padStart(2, '0'))

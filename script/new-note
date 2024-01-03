@@ -6,7 +6,7 @@
         ./script/new-note
 
     Will create the file with a template and open it in VS Code. The filename
-    will follow the template: [yyyy-MM-dd-HH-mm].md.
+    will follow the template: [yyyy-MM-dd-HH-mm-ss].md.
 */
 
 import { formatDate } from './util.js';
@@ -14,7 +14,7 @@ import { formatDate } from './util.js';
 const DEST = Deno.cwd() + '/src/notes';
 
 const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss');
-const fileDate = formatDate(new Date(), 'yyyy-MM-dd-HH-mm');
+const fileDate = formatDate(new Date(), 'yyyy-MM-dd-HH-mm-ss');
 
 const TEMPLATE = `---
 date: ${date}
