@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>What's on Johan's mind</title>
-  <link href="https://johan.im/mind.xml" rel="self"/>
+  <link href="https://johan.im/micro.xml" rel="self"/>
   <link href="https://johan.im/mind"/>
   <id>https://johan.im/mind</id>
   
