@@ -9,12 +9,15 @@
     will follow the template: [yyyy-MM-dd-HH-mm-ss].md.
 */
 
-import { formatDate } from './util.js';
+import * as datetime from 'datetime';
 
 const DEST = Deno.cwd() + '/src/notes';
 
-const date = formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss');
-const fileDate = formatDate(new Date(), 'yyyy-MM-dd-HH-mm-ss');
+const d = new Date();
+const offset = Math.abs(d.getTimezoneOffset()) / 60;
+
+const date = datetime.format(d, `yyyy-MM-dd HH:mm:ss '+${offset}'`);
+const fileDate = datetime.format(d, 'yyyy-MM-dd-HH-mm-ss');
 
 const TEMPLATE = `---
 date: ${date}

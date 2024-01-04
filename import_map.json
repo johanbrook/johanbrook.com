@@ -1,6 +1,9 @@
 {
 	"imports": {
 		"lume/": "https://deno.land/x/lume@v1.15.2/",
-		"html_entities": "https://deno.land/x/html_entities@v1.0/mod.js"
+		"html_entities": "https://deno.land/x/html_entities@v1.0/mod.js",
+		"yaml": "https://deno.land/std@0.210.0/yaml/mod.ts",
+		"front_matter/": "https://deno.land/std@0.210.0/front_matter/",
+		"datetime": "https://deno.land/std@0.210.0/datetime/mod.ts"
 	}
 }

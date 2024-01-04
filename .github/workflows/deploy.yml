@@ -13,6 +13,7 @@ on:
 
 jobs:
     build-and-deploy:
+        name: Build and deploy
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -47,3 +48,10 @@ jobs:
               env:
                   CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
                   CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+
+    maybe-post-mastodon:
+        name: Maybe post micro to Mastodon
+        runs-on: ubuntu-latest
+        steps:
+            - name: Post to Mastodon
+              run: deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts

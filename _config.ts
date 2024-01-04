@@ -31,7 +31,7 @@ const site = lume(
 	},
 );
 
-const NUMERIC = 'yyyyMMddHHmm';
+const NUMERIC = 'yyyyMMddHHmmss';
 
 site
 	//
