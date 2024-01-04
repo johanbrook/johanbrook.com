@@ -400,6 +400,7 @@
   author: Patrik Svensson
   location: Stockholm, Sweden
   dropped: true
+  finishedAt: 2021-10-01T00:00:00Z
 
 - title: The Clash
   slug: the-clash
@@ -490,7 +491,8 @@
   notes: >-
     Historical account about how women have been pushed aside over the years when it comes to inventions and
     innovation.
-  paused: true
+  dropped: true
+  finishedAt: 2022-11-30T09:00:00
 
 - title: Four Thousand Weeks
   slug: four-thousand-weeks
@@ -635,3 +637,9 @@
 - title: Tunnel 29 — The True Story of an Extraordinary Escape Beneath the Berlin Wall
   author: Helena Merriman
   slug: tunnel-29
+  finished: true
+  finishedAt: 2024-01-04T19:00:00+01:00
+  notes: >-
+    This is kind of a "dramatised" documentary of actual events. Tons of historical metadata along the way. It's
+    a bit cheesy sometimes, but I totally admit it was a page turner. And most importantly, it taught me a lot
+    about the real life behind the Wall, in East Berlin (hint: Stasi were the biggest assholes ever).
