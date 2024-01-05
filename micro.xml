@@ -13,9 +13,9 @@
   
   <entry>
     <title>December 15th, 2023 at 2:05:31 PM GMT+0</title>
-    <link href="https://johan.im/mind#202312151405" />
+    <link href="https://johan.im/mind/20231215140531/" />
     <updated>2023-12-15T14:05:31Z</updated>
-    <id>https://johan.im/mind#202312151405</id>
+    <id>https://johan.im/mind/20231215140531/</id>
     <content type="html">&lt;p&gt;I was in a bookstore to get a Christmas gift today over lunch. It was an independent, small store — not one of the big book chains’ shops. Many books had small paper notes with the staff’s personal thoughts, and many were signed by the authors, who frequently visited the shop on signing events and book talks.&lt;/p&gt;
 &lt;p&gt;I just got a really fuzzy feeling entering the small venue, and even more so after chatting with the sole clerk.&lt;/p&gt;
 &lt;p&gt;Entering a bookstore is like entering a whole separate universe where time stands still. When I was travelling around in the world, I would always get to a bookstore when in a new city just to feel “rooted” — kind of like finding a safe house.&lt;/p&gt;</content>
@@ -23,26 +23,26 @@
   
   <entry>
     <title>December 13th, 2023 at 8:15:35 PM GMT+0</title>
-    <link href="https://johan.im/mind#202312132015" />
+    <link href="https://johan.im/mind/20231213201535/" />
     <updated>2023-12-13T20:15:35Z</updated>
-    <id>https://johan.im/mind#202312132015</id>
+    <id>https://johan.im/mind/20231213201535/</id>
     <content type="html">&lt;p&gt;Finished watching the David Beckham documentary. I &lt;em&gt;know&lt;/em&gt; it’s super produced and sanctioned by the Beckhams and all that. But. I liked it. Especially the ending, where the family hang out in present day England at their countryside estate. It felt real, in a way (even though again: I &lt;em&gt;know&lt;/em&gt; it’s staged 😄).&lt;/p&gt;
 &lt;p&gt;It was a cool story arch, even though I guess I appreciated it because of the nostalgia. The &lt;em&gt;feels&lt;/em&gt; when images appeared of Luis Figo, Zidane, Ronaldo, Rio Ferdinand, and Ryan Giggs and the others. I used to play Fifa 2003 on PC with those players, and they were all around when we were talking football in school.&lt;/p&gt;</content>
   </entry>
   
   <entry>
     <title>December 10th, 2023 at 10:58:33 AM GMT+0</title>
-    <link href="https://johan.im/mind#202312101058" />
+    <link href="https://johan.im/mind/20231210105833/" />
     <updated>2023-12-10T10:58:33Z</updated>
-    <id>https://johan.im/mind#202312101058</id>
+    <id>https://johan.im/mind/20231210105833/</id>
     <content type="html">&lt;p&gt;Today is a Red Hot Chili Peppers day. &lt;a href=&quot;https://open.spotify.com/playlist/6l2elAUv3W4sCfPxN3my8g?si=MbrzW2QsTyS4VCiolOE4BQ&amp;amp;pi=e-3oMu2Wv1S5Sx&quot;&gt;Here’s my playlist&lt;/a&gt;.&lt;/p&gt;</content>
   </entry>
   
   <entry>
     <title>December 7th, 2023 at 7:45:11 PM GMT+0</title>
-    <link href="https://johan.im/mind#202312071945" />
+    <link href="https://johan.im/mind/20231207194511/" />
     <updated>2023-12-07T19:45:11Z</updated>
-    <id>https://johan.im/mind#202312071945</id>
+    <id>https://johan.im/mind/20231207194511/</id>
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://www.arrow-js.com/&quot;&gt;ArrowJS&lt;/a&gt; is my spirit animal JS library at the moment.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;If&lt;/em&gt; you need a library on the frontend, I’d use this one.&lt;/p&gt;
 &lt;ul&gt;
@@ -55,9 +55,9 @@
   
   <entry>
     <title>November 29th, 2023 at 8:10:49 PM GMT+0</title>
-    <link href="https://johan.im/mind#202311292010" />
+    <link href="https://johan.im/mind/20231129201049/" />
     <updated>2023-11-29T20:10:49Z</updated>
-    <id>https://johan.im/mind#202311292010</id>
+    <id>https://johan.im/mind/20231129201049/</id>
     <content type="html">&lt;p&gt;Messing around with the styling and structure here on the website again. I&#39;m so inspired by all the personal sites I stumble on in my feed. But not inspired enough to actually produce as much content here as I would love to 😄&lt;/p&gt;
 &lt;p&gt;Been reading a lot about &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Web_components&quot;&gt;Web Components&lt;/a&gt; recently. They&#39;re having a sort of renaissance at the moment — not sure why this timing actually — much thanks to them being a tool in the box when building with progressive enhancement. All PE thought leaders are going on about the beauty of Web Components and &amp;quot;how you don&#39;t need any big JS or Virtual DOM libraries at all!!&amp;quot;. I get that for small, self-contained UI components, but for anything non-trivial, you&#39;re kind of bound to reinvent something inhouse for your app anyway, no? I guess Web Components fill the hole where you just want to drop a custom element in a piece of markup and have a Web Component use the element with contained JS and perhaps CSS.&lt;/p&gt;
 &lt;p&gt;But the idea of &amp;quot;HTML Web Components&amp;quot; is really neat, in the way it enhances existing markup. Like this:&lt;/p&gt;
@@ -81,42 +81,42 @@ customElements&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;
   
   <entry>
     <title>November 18th, 2023 at 9:09:38 AM GMT+0</title>
-    <link href="https://johan.im/mind#202311180909" />
+    <link href="https://johan.im/mind/20231118090938/" />
     <updated>2023-11-18T09:09:38Z</updated>
-    <id>https://johan.im/mind#202311180909</id>
+    <id>https://johan.im/mind/20231118090938/</id>
     <content type="html">&lt;p&gt;The &lt;a href=&quot;https://open.spotify.com/album/34ZmHgTZ7OcRCsrTqbHpSQ?si=8f6JTkP9RjSHBRZIL8Ioog&quot;&gt;latest Kurt Vile album&lt;/a&gt; is so very good and Kurt Vile-y. I love how consistent he is and how he&#39;s stuck to his style for so long, but still finds new variations to it.&lt;/p&gt;</content>
   </entry>
   
   <entry>
     <title>September 14th, 2023 at 2:29:14 PM GMT+0</title>
-    <link href="https://johan.im/mind#202309141429" />
+    <link href="https://johan.im/mind/20230914142914/" />
     <updated>2023-09-14T14:29:14Z</updated>
-    <id>https://johan.im/mind#202309141429</id>
+    <id>https://johan.im/mind/20230914142914/</id>
     <content type="html">&lt;p&gt;The album &lt;a href=&quot;https://open.spotify.com/album/1S7rBJNPNrCvtdF38sp0Gs?si=3mBWnZBcRPqnmLb7QkXDPA&quot;&gt;&amp;quot;Right Time&amp;quot;&lt;/a&gt; (1976) by Mighty Diamonds might be the best reggae album I&#39;ve heard. Even better than the epic &lt;a href=&quot;https://open.spotify.com/album/0FqUTYrs4FtPbav2Ry2I1M?si=D4cDCKcURb21lxSvoqeZSA&quot;&gt;&amp;quot;Heart of the Congos&amp;quot;&lt;/a&gt; (1977) by The Congos.&lt;/p&gt;</content>
   </entry>
   
   <entry>
     <title>August 24th, 2023 at 7:59:39 AM GMT+0</title>
-    <link href="https://johan.im/mind#202308240759" />
+    <link href="https://johan.im/mind/20230824075939/" />
     <updated>2023-08-24T07:59:39Z</updated>
-    <id>https://johan.im/mind#202308240759</id>
+    <id>https://johan.im/mind/20230824075939/</id>
     <content type="html">&lt;p&gt;Today is a “A Tribe Called Quest” day.&lt;/p&gt;</content>
   </entry>
   
   <entry>
     <title>August 23rd, 2023 at 9:06:04 AM GMT+0</title>
-    <link href="https://johan.im/mind#202308230906" />
+    <link href="https://johan.im/mind/20230823090604/" />
     <updated>2023-08-23T09:06:04Z</updated>
-    <id>https://johan.im/mind#202308230906</id>
+    <id>https://johan.im/mind/20230823090604/</id>
     <content type="html">&lt;p&gt;Today is a “The Smiths” day.&lt;/p&gt;
 &lt;p&gt;“Louder Than Bombs” is one of the best compilation albums ever made.&lt;/p&gt;</content>
   </entry>
   
   <entry>
     <title>August 11th, 2023 at 8:01:00 AM GMT+0</title>
-    <link href="https://johan.im/mind#202308110801" />
+    <link href="https://johan.im/mind/20230811080100/" />
     <updated>2023-08-11T08:01:00Z</updated>
-    <id>https://johan.im/mind#202308110801</id>
+    <id>https://johan.im/mind/20230811080100/</id>
     <content type="html">&lt;p&gt;The show &amp;quot;Full Circle&amp;quot; on HBO is good. Made by Steven Soderbergh. It uses unconventional camera — a raw lens from lower angles — which makes the city lights of New York appear &amp;quot;as they really are&amp;quot;.&lt;/p&gt;
 &lt;p&gt;Yesterday, I watched the series finale of &amp;quot;Little Drummer Girl&amp;quot; (also on HBO). It was so good. Park Chan-Wook directed it. The late 70s costumes, interior designs, and locations were spot on. And the characters were nuanced and non-cliché. Gotta continue my John le Carré run now by reading the novel.&lt;/p&gt;</content>
   </entry>

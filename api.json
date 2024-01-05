@@ -5,10 +5,5 @@
   "github": "johanbrook",
   "mastodon": "@brookie@johan.im",
   "email": "webmaster@johan.im",
-  "cv": "https://johan.im/johanbrook-cv.pdf",
-  "versions": {
-    "johan": "4.0.0",
-    "build": "a0cf9d47d5b07da303a9fac4250f667c35238492",
-    "builtAt": "2024-01-04T20:16:10.480Z"
-  }
+  "cv": "https://johan.im/johanbrook-cv.pdf"
 }
