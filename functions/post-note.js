@@ -47,7 +47,7 @@ const handle = async ({ request, env }) => {
 	}
 
 	const url = new URL(request.url);
-	const d = new Date();
+	const d = new Date(); // TODO Get date from client instead
 	const { repo, owner, notesDir } = config;
 	const branch = isLocal(url) ? 'dev' : 'main';
 	const date = formatDate(d);
@@ -75,7 +75,7 @@ ${body}\n
 	const path = notesDir + '/' + fileName;
 
 	const res = await githubRequest('PUT', `/repos/${owner}/${repo}/contents/${path}`, {
-		message: `Add note from ${client}`,
+		message: `Add note from ${client}: ${date}`,
 		content: base64(content),
 		branch,
 	}, SHORTCUT_TOKEN);
@@ -146,7 +146,7 @@ const githubRequest = async (method, resource, body, token) => {
 };
 
 // => 'yyyy-MM-dd HH:mm:ss'
-// fileName: true => 'yyyy-MM-dd-HH-mm'
+// fileName: true => 'yyyy-MM-dd-HH-mm-ss'
 const formatDate = (date, fileName = false) => {
 	const datePart = [
 		date.getUTCFullYear(),

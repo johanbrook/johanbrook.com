@@ -1,5 +1,10 @@
-import { format } from 'lume/deps/date.ts';
+import type { Page } from 'lume/core.ts';
+import { idOf } from '../../_config.ts';
 
-export const permalink = function (this: { date: Date }) {
-	return `/mind#${format(this.date, 'yyyyMMddHHmmss', {})}`;
-};
+// Helpers
+
+export const notePermalinkOf = (date: Date) => `/mind/${idOf(date)}/`;
+
+// Public, for template use
+
+export const url = (page: Page) => notePermalinkOf(page.data.date);

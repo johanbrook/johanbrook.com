@@ -25,7 +25,7 @@ home: true
         {% for note in search.pages("type=note", "date=desc", 1) %}
           <li>
             <h2 class="font-sans f5 fw4 mb3">
-              <a href="{{ note.data.permalink() | url }}" class="muted">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
+              <a href="{{ note.data.url }}" class="muted">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
             </h2>
             <div class="prose font-mono f6">
               {{ note.data.content | excerpt | md | safe }}
@@ -33,7 +33,7 @@ home: true
 
             {% if (note.data.content | excerpt | length) < (note.data.content | trim | length)  %}
                 <p class="mt2 font-sans">
-                  <a href="{{ note.data.permalink() | url }}" class="muted f5">continued ⇢</a>
+                  <a href="{{ note.data.url }}" class="muted f5">continued ⇢</a>
                 </p>
             {% endif %}
           </li>
@@ -62,7 +62,7 @@ home: true
       <ol>
         {% for post in search.pages("type=post", "date=desc", 3) %}
           <li class="mb2 {% if not loop.last %}mb1{% endif %}">
-          	<a class="f4 block fw4" href="{{ post.data.url | url }}">
+          	<a class="f4 block fw4" href="{{ post.data.url }}">
           		<span class="link">{{ post.data.title }}</span><br />
             	<p class="font-sans f5 muted mb0">{{ post.data.date | date("HUMAN_DATE") }}</p>
             </a>

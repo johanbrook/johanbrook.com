@@ -9,22 +9,22 @@ menu:
 
 <main role="main" class="notes">
 
-  <h1 class="title mb3">{{ title }}</h1>
-
   <ol class="NotesList">
     {% for post in search.pages("type=note", "date=desc") %}
       <li>
-        <article id="{{ post.data.date | date("NUMERIC") }}">
-        	<header class="mb2">
-	            <h1 class="f4 no-rhythm mb0">
-	              <a href="#{{ post.data.date | date("NUMERIC") }}" title="Permalink" class="font-serif no-underline target">{{ post.data.date | date("PPP — HH:mm") }} <span>#</span></a>
-	            </h1>
-            {% if post.data.location %}<p title="Posted from" class="muted font-sans mb0 f5 target">{{ post.data.location }}</p>{% endif %}
-          </header>
+        <article class="Note">
+           	<header class="mb2">
+                <h1 class="f4 no-rhythm mb0">
+                    <a href="{{ post.data.url }}" title="Permalink" class="font-serif no-underline target">{{ post.data.date | date("PPP — HH:mm") }} <span>#</span></a>
+                </h1>
+                {% if post.data.location %}
+                    <p title="Posted from" class="muted font-sans mb0 f5 target">{{ post.data.location }}</p>
+                {% endif %}
+            </header>
 
-          <div class="prose">
-            {{ post.data.content | md | safe }}
-          </div>
+            <div class="prose">
+                {{ post.data.content | md | safe }}
+            </div>
         </article>
       </li>
     {% endfor %}

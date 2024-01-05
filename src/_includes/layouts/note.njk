@@ -1,0 +1,25 @@
+---
+layout: layouts/main.njk
+---
+<main role="main">
+    <article class="Note">
+       	<header class="mb2">
+            <h1 class="f4 no-rhythm mb0">
+                <a href="{{ url }}" title="Permalink" class="font-serif no-underline target">{{ date | date("PPP — HH:mm") }} <span>#</span></a>
+            </h1>
+            {% if location %}
+                <p title="Posted from" class="muted font-sans mb0 f5 target">{{ location }}</p>
+            {% endif %}
+        </header>
+
+        <div class="prose">
+            {{ content | md | safe }}
+        </div>
+
+        <footer class="mt3">
+            <a href="/mind" class="f5">
+				<span aria-hidden="true" class="BackLink mr1">←</span> All micro notes
+			</a>
+        </footer>
+    </article>
+</main>

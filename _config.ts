@@ -1,4 +1,5 @@
 import lume from 'lume/mod.ts';
+import type { Page } from 'lume/core.ts';
 import postcss from 'lume/plugins/postcss.ts';
 import esbuild from 'lume/plugins/esbuild.ts';
 import date from 'lume/plugins/date.ts';
@@ -10,11 +11,14 @@ import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
 import { loadLanguages, prismMarkdown } from './src/_lume-plugins/prism.ts';
 import { typeset } from './src/_lume-plugins/typeset.ts';
 import sourceMaps from 'lume/plugins/source_maps.ts';
+import { format } from 'lume/deps/date.ts';
 
 const DEST = 'build';
 const MINIFY = Deno.env.get('ENV') == 'production';
 
 loadLanguages();
+
+export const idOf = (date: Date) => format(date, 'yyyyMMddHHmmss', {});
 
 const site = lume(
 	{
@@ -31,8 +35,6 @@ const site = lume(
 	},
 );
 
-const NUMERIC = 'yyyyMMddHHmmss';
-
 site
 	//
 	.includes(['.ts', '.js'], 'js')
@@ -43,13 +45,7 @@ site
 	// Plugins
 	.use(inline())
 	.use(postcss())
-	.use(
-		date({
-			formats: {
-				NUMERIC,
-			},
-		}),
-	)
+	.use(date())
 	.use(sourceMaps())
 	// Helpers
 	.filter('substr', (str: string, len: number) => str.substring(0, len))
@@ -98,6 +94,7 @@ site
 
 		return groups;
 	})
+	.filter('id', (page: Page) => idOf(page.data.date))
 	// Data
 	.data('pageSlug', function (this: { ctx: { url: string } }) {
 		return this.ctx.url.replaceAll('/', '');
@@ -107,7 +104,7 @@ site
 	.data('layout', 'layouts/post.njk', '/posts')
 	.data('templateEngine', 'njk,md', '/posts')
 	.data('type', 'note', '/notes')
-	.data('layout', 'layouts/post.njk', '/notes')
+	.data('layout', 'layouts/note.njk', '/notes')
 	.data('templateEngine', 'njk,md', '/notes')
 	// Don't the entire site rebuild when --watching or --serving if .css files change
 	.scopedUpdates((path) => path.endsWith('.css'));

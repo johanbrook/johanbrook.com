@@ -16,9 +16,9 @@ layout: null
   {% for post in search.pages("type=note", "date=desc", 10) %}
   <entry>
     <title>{{ post.data.date | date("HUMAN_DATETIME") }}</title>
-    <link href="{{ post.data.permalink() | url(true) }}" />
+    <link href="{{ post.data.url | url(true) }}" />
     <updated>{{ post.data.date | date("ATOM") }}</updated>
-    <id>{{ post.data.permalink() | url(true) }}</id>
+    <id>{{ post.data.url | url(true) }}</id>
     <content type="html">{{ post.data.content | md | htmlUrl(true) }}</content>
   </entry>
   {% endfor %}

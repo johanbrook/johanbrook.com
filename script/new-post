@@ -9,13 +9,15 @@
     will follow the template: [yyyy-MM-dd]-[slugified-title].md.
 */
 
-import { formatDate } from './util.js';
+import * as datetime from 'datetime';
 
 const DEST = Deno.cwd() + '/src/posts';
 
+const d = new Date();
+
 const title = Deno.args[0] ?? 'New post';
 const slug = title.toLowerCase().replace(/\s+/g, '-').trim();
-const date = formatDate(new Date(), 'yyyy-MM-dd');
+const date = datetime.format(d, `yyyy-MM-dd HH:mm:ss '+${offset}'`);
 
 const TEMPLATE = `---
 title: ${title}
@@ -29,7 +31,7 @@ draft: true
 ---\n
 `;
 
-const fileName = `${date}-${slug}.md`;
+const fileName = `${datetime.format(d, 'yyyy-MM-dd')}-${slug}.md`;
 const fullPath = DEST + '/' + fileName;
 
 await Deno.writeTextFile(fullPath, TEMPLATE, {

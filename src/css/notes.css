@@ -1,27 +1,19 @@
+.Note {
+    header h1 a {
+        color: var(--color-text-high-contrast);
+
+        &:hover span {
+            color: var(--neon);
+        }
+    }
+}
+
 .NotesList {
-	& article {
-		scroll-margin: var(--lineheight);
+    & > li:not(:last-child) {
+        margin-bottom: calc(var(--lineheight) * 4);
+    }
 
-		header .target:hover span {
-			color: var(--neon);
-		}
-
-		&:target {
-			& .target {
-				color: var(--neon);
-			}
-		}
-	}
-
-	& header h1 a {
-		color: var(--color-text-high-contrast);
-	}
-
-	&>li:not(:last-child) {
-		margin-bottom: calc(var(--lineheight) * 4);
-	}
-
-	&>li:has(:target)::after {
-		border-color: var(--neon);
-	}
+    & > li:has(:target)::after {
+        border-color: var(--neon);
+    }
 }
