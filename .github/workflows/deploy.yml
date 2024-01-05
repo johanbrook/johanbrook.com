@@ -96,5 +96,5 @@ jobs:
                 git config user.email "actions@users.noreply.github.com"
                 git add .mastodon-notes
                 timestamp=$(date -u)
-                git commit -m "Latest post to Mastodon: ${timestamp}" || exit 0
+                git commit -m "Latest post to Mastodon: ${timestamp} [skip-ci]" || exit 0
                 git push
