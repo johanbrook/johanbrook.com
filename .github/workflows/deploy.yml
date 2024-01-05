@@ -1,4 +1,4 @@
-name: Build and deploy website
+name: Build and deploy
 
 on:
     push:
@@ -7,31 +7,50 @@ on:
             - "_config.ts"
             - "CNAME"
             - "deps.ts"
-            - "README.md" # Just to be able to trigger rebuilds from dummy commits
             - ".rebuild" # same ^^
             - ".github/workflows/deploy.yml"
 
+env:
+    DENO_VERSION: v1.39.1
+    BUILD_ARTIFACT: johan.im-build
+    BUILD_FOLDER: build
+
 jobs:
-    build-and-deploy:
-        name: Build and deploy
+    build:
+        name: Build
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
-              with:
-                  persist-credentials: false
 
-            - name: Setup deno and lume
+            - name: Setup Deno
               uses: denoland/setup-deno@v1
               with:
-                  deno-version: v1.39.1
+                  deno-version: ${{ env.DENO_VERSION }}
 
-            - name: Install and build site
-              env:
-                  CI: true
-                  NODE_ENV: production
-                  ENV: production
+            - name: Build site
               run: deno task build --quiet
+              env:
+                NODE_ENV: production
+                ENV: production
+
+            - name: Upload build
+              uses: actions/upload-artifact@v4
+              with:
+                  name: ${{ env.BUILD_ARTIFACT }}
+                  path: ${{ env.BUILD_FOLDER }}
+                  retention-days: 1
+
+    deploy:
+        name: Deploy
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Download build
+              uses: actions/download-artifact@v4
+              with:
+                  name: ${{ env.BUILD_ARTIFACT }}
+                  path: ${{ env.BUILD_FOLDER }}
 
             - name: Deploy to GitHub Pages
               if: github.ref_name == 'main'
@@ -40,7 +59,7 @@ jobs:
                   # The branch the action should deploy to.
                   branch: gh-pages
                   # The folder the action should deploy.
-                  folder: build
+                  folder: ${{ env.BUILD_FOLDER }}
 
             - name: Purge Cloudflare cache
               if: github.ref_name == 'main'
@@ -49,9 +68,33 @@ jobs:
                   CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
                   CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
 
-    maybe-post-mastodon:
-        name: Maybe post micro to Mastodon
+    maybe-micro-mastodon:
+        name: Maybe send latest micro post to Mastodon
+        needs: deploy # can't send post with permalink until site is deployed
         runs-on: ubuntu-latest
         steps:
+            - name: Download build
+              uses: actions/download-artifact@v4
+              with:
+                  name: ${{ env.BUILD_ARTIFACT }}
+                  path: ${{ env.BUILD_FOLDER }}
+
+            - name: Setup Deno
+              uses: denoland/setup-deno@v1
+              with:
+                  deno-version: ${{ env.DENO_VERSION }}
+
+            # TODO Wait with posting until site is up?
             - name: Post to Mastodon
               run: deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts
+              env:
+                  MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+
+            - name: Commit and push posted notes
+              run: |-
+                git config user.name "Automated"
+                git config user.email "actions@users.noreply.github.com"
+                git add .mastodon-notes
+                timestamp=$(date -u)
+                git commit -m "Latest post to Mastodon: ${timestamp}" || exit 0
+                git push
