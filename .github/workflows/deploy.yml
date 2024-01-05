@@ -86,7 +86,7 @@ jobs:
 
             # TODO Wait with posting until site is up?
             - name: Post to Mastodon
-              run: deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts
+              run: deno run --allow-net --allow-read --allow-write --allow-env --no-lock script/mastodon.ts
               env:
                   MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
 
