@@ -1,10 +1,9 @@
 
 
-
 {
     "johan": "4.0.0",
-    "version": "19597831f0fc96f16cb3dba78ecb3e5a14934577",
-    "builtAt": "2024-01-05T22:04:25.318Z",
+    "version": "24da0a04c99e7c7412ddf1fa8c524fedea5a90a4",
+    "builtAt": "2024-01-06T11:15:37.091Z",
     "env": "production",
     "micro": "20231215140531"
 }
