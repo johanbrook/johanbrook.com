@@ -11,14 +11,12 @@ import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
 import { loadLanguages, prismMarkdown } from './src/_lume-plugins/prism.ts';
 import { typeset } from './src/_lume-plugins/typeset.ts';
 import sourceMaps from 'lume/plugins/source_maps.ts';
-import { format } from 'lume/deps/date.ts';
+import { idOf } from './src/_includes/permalinks.ts';
 
 const DEST = 'build';
 const MINIFY = Deno.env.get('ENV') == 'production';
 
 loadLanguages();
-
-export const idOf = (date: Date) => format(date, 'yyyyMMddHHmmss', {});
 
 const site = lume(
 	{
@@ -94,7 +92,7 @@ site
 
 		return groups;
 	})
-	.filter('id', (page: Page) => idOf(page.data.date))
+	.filter('id', (page: Page) => idOf(page.src.slug))
 	// Data
 	.data('pageSlug', function (this: { ctx: { url: string } }) {
 		return this.ctx.url.replaceAll('/', '');

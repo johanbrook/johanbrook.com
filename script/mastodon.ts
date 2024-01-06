@@ -1,11 +1,13 @@
 // deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts
 import { parse } from 'yaml';
 import { extract } from 'front_matter/any.ts';
-import { notePermalinkOf } from '../src/notes/_data.ts';
+import { latestNote } from './util-latest-note.ts';
+import { notePermalinkOf } from '../src/_includes/permalinks.ts';
 
 const accessToken = Deno.env.get('MASTODON_ACCESS_TOKEN');
 
 const DRY_RUN = !!Deno.env.get('DRY');
+const CI = !!Deno.env.get('CI');
 const PERSISTED_PATH = new URL('../.mastodon-notes', import.meta.url);
 
 if (!accessToken) {
@@ -20,34 +22,6 @@ if (!meta?.mastodon?.instance) {
     console.error(`No mastodon.instance key in ${metaFile.toString()}`);
     process.exit(1);
 }
-
-const latestNote = async () => {
-    const NOTES_DIR = 'src/notes';
-
-    const latest: string = await Array.fromAsync(Deno.readDir(new URL('../' + NOTES_DIR, import.meta.url))).then((fs) =>
-        fs
-            .filter((f) => f.isFile && f.name.slice(-2) == 'md')
-            .map((f) => f.name)
-            .sort()
-            .at(-1)
-    );
-
-    const alreadyDone = await Deno.readTextFile(PERSISTED_PATH).then((lines) =>
-        lines.split('\n').filter((x) => !!x && x[0] != '#')
-    );
-
-    // 2023-01-01-04-30-30.md -> 202301010430
-    const latestId = latest.replaceAll('-', '').split('.').at(0);
-
-    // Nothing to do
-    if (alreadyDone.includes(latestId)) {
-        return null;
-    }
-
-    const file = await Deno.readTextFile(new URL(`../${NOTES_DIR}/` + latest, import.meta.url));
-
-    return [latestId, extract(file)];
-};
 
 const truncateToStatus = (str: string, permalink: string) => {
     const maxLimit = 500;
@@ -67,16 +41,23 @@ const postStatus = async () => {
     const url = new URL('/api/v1/statuses', API_ROOT);
     const form = new FormData();
 
-    const n = await latestNote();
+    const [latestId, filePath] = await latestNote();
+    const note = extract(await Deno.readTextFile(new URL(`../${filePath}`, import.meta.url)));
 
-    if (!n) {
-        console.log('Nothing to do');
+    const alreadyDone = await Deno.readTextFile(PERSISTED_PATH).then((lines) =>
+        lines.split('\n').filter((x) => !!x && x[0] != '#')
+    );
+
+    // Nothing to do
+    if (alreadyDone.includes(latestId)) {
+        console.log(`Nothing to do: ${PERSISTED_PATH} already includes note "${latestId}"`);
+        if (CI) {
+            console.log('::set-output name=bail::true');
+        }
         return;
     }
 
-    const [latestId, note] = n;
-
-    const permalink = meta.site + notePermalinkOf(note.attrs.date);
+    const permalink = meta.site + notePermalinkOf(latestId);
 
     const statusBody = truncateToStatus(note.body.trim(), permalink);
 

@@ -84,13 +84,18 @@ jobs:
               with:
                   deno-version: ${{ env.DENO_VERSION }}
 
-            # TODO Wait with posting until site is up?
+            - name: Wait for site to deploy
+              timeout-minutes: 5
+              run: deno run --allow-net --allow-read --allow-env script/wait-for-status.ts
+
             - name: Post to Mastodon
+              id: mastodon
               run: deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts
               env:
                   MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
 
             - name: Commit and push posted notes
+              if: ${{ ! steps.mastodon.outputs.bail }}
               run: |-
                 git config user.name "Automated"
                 git config user.email "actions@users.noreply.github.com"

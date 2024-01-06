@@ -3,7 +3,6 @@ layout: null
 ---
 {% set notes = search.pages("type=note", "date=desc") %}
 {% set latestNote = notes | first %}
-
 {
     "johan": "{{ meta.currentVersionOfJohan }}",
     "version": "{{ build.hash }}",

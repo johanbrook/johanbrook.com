@@ -1,10 +1,6 @@
 import type { Page } from 'lume/core.ts';
-import { idOf } from '../../_config.ts';
-
-// Helpers
-
-export const notePermalinkOf = (date: Date) => `/mind/${idOf(date)}/`;
+import { notePermalinkOf } from '../_includes/permalinks.ts';
 
 // Public, for template use
 
-export const url = (page: Page) => notePermalinkOf(page.data.date);
+export const url = (page: Page) => notePermalinkOf(page.src.slug);
