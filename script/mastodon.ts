@@ -42,6 +42,9 @@ const postStatus = async () => {
     const form = new FormData();
 
     const [latestId, filePath] = await latestNote();
+
+    console.log(`Latest note ID is: ${latestId}`);
+
     const note = extract(await Deno.readTextFile(new URL(`../${filePath}`, import.meta.url)));
 
     const alreadyDone = await Deno.readTextFile(PERSISTED_PATH).then((lines) =>
@@ -50,9 +53,13 @@ const postStatus = async () => {
 
     // Nothing to do
     if (alreadyDone.includes(latestId)) {
-        console.log(`Nothing to do: ${PERSISTED_PATH} already includes note "${latestId}"`);
+        console.log(`Nothing to do: ${PERSISTED_PATH} already includes note ID: ${latestId}`);
         if (CI) {
-            console.log('::set-output name=bail::true');
+            const output = Deno.env.get('GITHUB_OUTPUT');
+            if (!output) {
+                throw new Error('GITHUB_OUTPUT env var does not exist!');
+            }
+            await Deno.writeTextFile(output, 'bail=true');
         }
         return;
     }
