@@ -1,26 +1,335 @@
-<!doctype html><html class=writingsdeno lang=en-gb><head itemscope itemtype=http://schema.org/Blog><title>A whole new world with Deno / Johan Brook</title><meta charset=utf-8><meta content="width=device-width,initial-scale=1"name=viewport><link href=https://gc.zgo.at rel=preconnect><link href=https://johanbrook.goatcounter.com rel=preconnect><meta content="How I started to like programming in Javascript again thanks to Deno – a Rust based Javascript runtime which also runs Typescript."name=description><meta content=deno,node,typescript,javascript name=keywords><meta content="Johan Brook"name=author><link href=/johan.css rel=stylesheet><link title="Johan Brook: Posts feed"href=/feed.xml rel=alternate type=application/atom+xml><link title="Johan Brook: Mind feed"href=/mind.xml rel=alternate type=application/atom+xml><link title="Johan Brook: Book feed"href=/reading.xml rel=alternate type=application/atom+xml><link rel="shortcut icon"href=/favicon.png type=image/png><link href=https://johan.im/writings/deno/ itemprop=url rel=canonical><link href=https://johan.im rel=author><link href=https://hachyderm.io/@brookie rel=me><meta content="A whole new world with Deno"property=og:title><meta content=https://johan.im/writings/deno/ property=og:url><meta content="Johan Brook"itemprop=name property=og:site_name><meta content=en_GB property=og:locale><meta content="How I started to like programming in Javascript again thanks to Deno – a Rust based Javascript runtime which also runs Typescript."property=og:description><meta content=2022-02-08T00:00:00Z itemprop=dateModified property=article:modified_time><meta content=article property=og:type><meta content=deno,node,typescript,javascript property=article:tag><meta content=2022-01-19T00:00:00Z property=article:published_time><body><a class="visually-hidden skip-link"href=#main>Skip to content</a><div class=Content><div id=main><main role=main><article class=Post itemscope itemtype=http://schema.org/BlogPosting role=article><header><h1 class=title itemprop=name>A whole new world with Deno</h1><p class="mb0 fw5 mt3"><time datetime=2022-01-19T00:00:00Z itemprop=datePublished pubdate> January 19th, 2022 </time> <time class="muted normal ml-1"title="Updated at"datetime=2022-02-08T00:00:00Z itemprop=dateModified> (updated February 8th, 2022) </time><p class="f5 mb4 font-sans muted">About 6 min reading time</header><div class=prose itemprop=articleBody><p><a href=https://deno.land>Deno</a> is a new <em>runtime</em> for Javascript. Before, NodeJS used to be the most popular way to run Javascript on the server. But no more! Deno has reached stable state (it’s on version 1.17 at the time of writing). It runs Typescript natively, supports ES imports (why did I feel I had to specify that as a feature?), and is built with Rust (again! This isn’t a feature, but it feels good that it’s Rust somehow, doesn’t it?).<p>Until now, I’ve just read the <a href=https://deno.land/manual>Deno manual</a> and lurked in their <a href=https://deno.land/std>standard library</a>. Then I played around with a server + client app for a couple of days, and after that I converted this site to use <a href=https://lumeland.github.io>lume</a>, which is a static site generator based on Deno.<p>Here are some of my personal favourites in Deno, with some love for lume as an appendix.<h1>Web APIs we know and love</h1><p>Deno includes a ton of niceties that just sparks joy for the hardest of the hardcore NodeJS developers out there. <code>fetch</code> <em>just works</em> (we’ve internalised that one needs to <code>npm install</code> some external library for HTTP requests in NodeJS). Hell, even doing the very browser-y <code>alert</code> and <code>confirm</code> in your Deno based CLI script will work on the command line to show a message and prompt for yes/no, respectively. Opinions might differ whether this is good or bad, but personally I appreciate not having to pull in a lib or visit StackOverflow each time I need user input.<blockquote><p>For APIs where a web standard already exists, like fetch for HTTP requests, Deno uses these rather than inventing a new proprietary API.</blockquote><p>The above line from <a href=https://deno.land/manual/runtime>“The Runtime”</a> section of the Manual is the red line throughout the Deno API.<p>That means, instead of doing<pre class=language-ts><code class=language-ts><span class="token comment">// Node</span>
-<span class="token keyword">import</span> request <span class="token keyword">from</span> <span class="token string">'some-random-npm-request-lib'</span><span class="token punctuation">;</span>
+<!DOCTYPE html>
+<html lang="en-gb" class=" writingsdeno"><head itemtype="http://schema.org/Blog" itemscope="">
+    <title>A whole new world with Deno / Johan Brook</title>
 
-<span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> request<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'https://deno.land'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>you’d do<pre class=language-ts><code class=language-ts><span class="token comment">// Deno/browsers</span>
-<span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'https://deno.land'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>In Deno, you can use a ton of browser-y APIs, such as <code>location</code>, <code>local/sessionStorage</code>, <a href=https://deno.land/manual@v1.17.3/runtime/web_platform_apis#other-apis>and more</a>.<p>Another example: you can use the same CSS based styling for <code>console</code> calls as you’d do in the browser:<pre class=language-ts><code class=language-ts><span class="token comment">// Deno/browsers</span>
-<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>
-	<span class="token string">'%cHi there. %cSome background?'</span><span class="token punctuation">,</span>
-	<span class="token string">'color: red'</span><span class="token punctuation">,</span>
-	<span class="token string">'background-color: gray'</span><span class="token punctuation">,</span>
-<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>No need for terminal escape codes or pulling in yet another library.<p>I hope it’s clear where I’m getting at: there are things included in Deno that you <em>just know already</em> because you’ve been writing web code for years. It lowers the iteration speed when writing code, as well as lowers the overhead when reading it, when you don’t have to refer to third party dependencies or in-house modules all the time. To me, this feels much better when writing code in Deno.<p>The use of third party dependencies have been a debate in Javascript land during the past couple of months, due to … incidents around security and feelings of the module authors themselves. Surely the best dependency is no dependency, right? Surely a ton of npm modules can be deprecated if only NodeJS (or Javascript itself) had a better standard library?<p>I hope that we in the future look at “old” code and say: “Oh, did you pull in a dependency for <em>that</em>?”.<p><strong><em>Update, 2022-02-08:</em></strong> the Deno authors have written a neat <a href=https://deno.com/blog/every-web-api-in-deno>blog post</a> detailing all web platform APIs implemented in Deno, with examples. You’ll get a very fuzzy feeling when reading the list.<h1>Typescript as a first class citizen</h1><p>I was in tears (tears of joy, I assure you) when I first read about Typescript support in Deno when the latter was introduced years ago. No need for a build step for <code>.ts</code> and <code>.tsx</code> files, just <code>deno run</code> and off you go. I just works.<p>One neat API is <a href=https://deno.land/manual/typescript/runtime><code>Deno.emit</code></a>. With it, you can programmatically compile and bundle Typescript code to Javascript.<p>I’ve got not much more to say about this than <em>“Finally”</em>.<h1>Testing</h1><p>Let’s play a game. How many test runners for Javascript code can you think of?<p>…<p>Okay, tough question, as the correct answer probably is: “The number is approaching <code>Infinity</code>″.<p>How many test runners do you <em>need</em>? One. There’s one built-in in Deno:<pre class=language-ts><code class=language-ts>Deno<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'My test'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-	<span class="token comment">// test things</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>Name the file <code>something.test.ts</code> and run it with:<pre class=language-bash><code class=language-bash>deno test something.test.ts
-</code></pre><p>I love this. Standardised, one way of doing things, minimal. No arguing in the team about which is the best test runner this month.<p>The <a href=https://deno.land/std/testing><code>testing</code></a> module from the Deno std lib includes a couple of assertions — you probably don’t need more than those. (I also see it exports tools for benchmarking your code as well, iihhh!)<h1>Distributed dependency management</h1><p>…with no <code>package.json</code>! In Deno, you import external, remote, dependencies with URLs. Again, just like we’ve done in the browser since the 90s (<code>&LTscript src="http://cdn.example.com/script.js></code> amirite). When Deno first runs your code, it’ll fetch the remote script and cache it locally for the next runs. Don’t be scared: Deno do support reading and writing a lockfile with options to <code>deno run</code>.<p>This is how it looks like:<pre class=language-ts><code class=language-ts><span class="token keyword">import</span> dependency <span class="token keyword">from</span> <span class="token string">'https://somesite.com/mod.ts'</span><span class="token punctuation">;</span>
-</code></pre><p>(By convention, modules should have a <code>mod.ts</code> which is the entrypoint for consumers. Note that there’s no concept of some silly <code>index.js</code> file in Deno land: that’s one thing the Node creator Ryan wanted to get rid of when he created Deno.)<p>This is actually fairly liberating once you’ve sweated out the feelings of chaos in your codebase. Remember, this is all source code! You can centralise all these third party imports to a single file and re-export them. In fact, that’s what <a href=https://deno.land/manual@v1.18.0/linking_to_external_code#it-seems-unwieldy-to-import-urls-everywhere>they recommend in the Deno Manual</a>:<pre class=language-ts><code class=language-ts><span class="token comment">// deps.ts (naming convention!)</span>
-<span class="token keyword">export</span> <span class="token operator">*</span> <span class="token keyword">as</span> assert <span class="token keyword">from</span> <span class="token string">'https://deno.land/std@0.122.0/testing/asserts.ts'</span><span class="token punctuation">;</span>
-</code></pre><p>“Sooo how do I get my fav npm hosted lib into my Deno code then?”, you ask.<ol><li>Check <a href=https://deno.land/x>deno.land/x</a> if the module is hosted there. There are a lot of Deno specific modules.<li>Import from any of the services below.</ol><p>Services reading from npm:<ul><li><a href=https://www.skypack.dev>Skypack</a><li><a href=https://esm.sh>esm.sh</a><li><a href=https://unpkg.com>unpkg.com</a><li><a href=https://cdnjs.com>cdnjs.com</a></ul><p>Skypack and esm.sh will actually bundle code from npm into modern ES module syntax. Both of them are Deno friendly.<p>The beauty with these is that if one of them is failing, or if you’re unhappy with the service, you can just switch out the URL imports in your <code>deps.ts</code>.<p>Tip: with Skypack and esm.sh (from what I know) you get Typescript types too. esm.sh will do this automatically, and with Skypack you can append a <code>?dts</code> query parameter to the imported URL. See their respective config query parameters: it’s super cool what they can do these days.<p>One thing that tripped me up was that it’s not always easy to find a suitable entrypoint file when importing via URLs. Deno friendly modules has a <code>mod.ts</code> in the repo somewhere, but often you have to hunt down a file yourself.<h2>Import maps</h2><p>I’ve glossed over the technology that is <a href=https://github.com/WICG/import-maps>Import Maps</a>. In my own words, I’d say it’s a file where you specify from where the source code’s <code>import</code> statements should look for the code to be imported. In a way, it’s emulating npm’s way of looking in <code>node_modules</code>, but this is even more powerful.<p>If you were annoyed over importing “raw” URLs in the section above, this will save you!<p><strong>Import map</strong><pre class=language-json><code class=language-json><span class="token punctuation">{</span>
-	<span class="token property">"imports"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
-		<span class="token property">"react"</span><span class="token operator">:</span> <span class="token string">"https://esm.sh/react@17.0.2"</span>
-	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre><p><strong>Source code</strong><pre class=language-ts><code class=language-ts><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
-</code></pre><p>Remember to specify <code>--import-map</code> for <code>deno run</code>! Nothing in Deno is implicit: it won’t pick up the import map by itself.<h1>Summary</h1><p>My overall impression of Deno that while it’s new technology, it’s quite mature and well documented. And if you’ve got a hairy question, you can pop into their Discord server and ask there. The <code>std</code> modules are very modern in the way they’re written (compared to Node, which <em>just</em> got Promise based APIs…). It’s actually fun to write Javascript code again. I’d attribute that to the decrease of “Javascript fatigue” in Deno, since there are so many built-in modules you’d previously assume you’d need to get from a third party.<p><strong>When</strong> (hehe) you install Deno, be sure to do <code>deno help</code> in a terminal to see the range of nice sub commands. <code>deno types</code> and <code>deno doc</code> are favourites of mine. <code>deno compile</code> is also cool if you’re writing a script which should be run as a self contained executable, suitable for distribution.<h1>Appendix: lume</h1><p><a href=https://lumeland.github.io>lume</a> is a static site generator, built with Deno. I read through the documentation and jumped around in the source code for a while before I fell in love and ported johanbrook.com to it.<p>Lume is a joy to work with. The built-in functionality and plugins fill 95% of my use cases — very little custom code needed. And <em>if</em> I don’t understand the documentation, reading the source code is no problem.<p>It <em>feels</em> easier to use than other generators I’ve tried (Jekyll, Middleman, Metalsmith, Eleventy) but yet very powerful. During the porting my code I was not too annoyed during the process: something that you easily get when trying a brand new site generator. The fact that its written in Typescript is <em>so</em> nice, as you get static typing and don’t have to guess what objects and properties to read.<p>Try it out!</div></article></main><footer role=contentinfo><nav><ul><li><a href=/>Home</a><li><a href=/feed.xml title=Atom>Post feed</a><li><a href=/micro.xml title=Atom>Micro feed</a><li><a href=/reading.xml title=Atom>Reading feed</a></ul></nav></footer></div><nav class=MainNav role=navigation><div class=sticky><h1 class="f4 sr-only-mobile"><a aria-label=Home href=/> <span>Johan Brook</span><span class="BackLink ml2"aria-hidden=true>←</span> </a></h1><ul><li class=only-mobile><a href=/>Home</a><li><a href=/now/>Now</a><li><a href=/mind/>Micro</a><li><a href=/about/>About</a><li><a href=/reading/>Reading</a><li><a href=/writings/>Writings</a></ul><details><summary class="mv1 font-sans f5 muted link fw5">View more</summary> <ul><li><a href=/to-read/>To read</a><li><a href=/quotes/>Quotes</a><li><a href=/changelog/>Changelog</a><li><a href=/credits/>Credits</a></ul></details></div></nav></div><script>if(window.location.host!==new URL('https://johan.im').host){window.goatcounter={no_onload:true}};if(window.location.hash==='#skipgc')localStorage.setItem('skipgc','t');if(localStorage.getItem('skipgc')==='t')window.goatcounter={no_onload:true}</script><script async data-goatcounter=https://johanbrook.goatcounter.com/count src=//gc.zgo.at/count.js></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://gc.zgo.at">
+    <link rel="preconnect" href="https://johanbrook.goatcounter.com">
+
+    
+    <meta name="description" content="How I started to like programming in Javascript again thanks to Deno – a Rust based Javascript runtime which also runs Typescript.">
+    
+    
+    <meta name="keywords" content="deno,node,typescript,javascript">
+    
+    <meta name="author" content="Johan Brook">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/johan.css">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Posts feed" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Mind feed" href="/mind.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Book feed" href="/reading.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johan.im/writings/deno/">
+    <link rel="author" href="https://johan.im">
+    <link rel="me" href="https://hachyderm.io/@brookie">
+
+    <meta property="og:title" content="A whole new world with Deno">
+    <meta property="og:url" content="https://johan.im/writings/deno/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    
+    <meta property="og:locale" content="en_GB">
+    
+    <meta property="og:description" content="How I started to like programming in Javascript again thanks to Deno – a Rust based Javascript runtime which also runs Typescript.">
+    
+
+    
+    <meta property="article:modified_time" content="2022-02-08T00:00:00Z" itemprop="dateModified">
+    
+
+    
+	<meta property="og:type" content="article">
+    <meta property="article:tag" content="deno,node,typescript,javascript">
+    <meta property="article:published_time" content="2022-01-19T00:00:00Z">
+   	
+  </head>
+
+  <body>
+  	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+	  <div class="Content">
+	  	<div id="main">
+			<main role="main">
+  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 itemprop="name" class="title">A whole new world with Deno</h1>
+
+      <p class="mb0 fw5 mt3">
+          <time datetime="2022-01-19T00:00:00Z" itemprop="datePublished" pubdate="">
+            January 19th, 2022
+          </time>
+          
+            <time title="Updated at" class="muted normal ml-1" datetime="2022-02-08T00:00:00Z" itemprop="dateModified">
+                (updated February 8th, 2022)
+            </time>
+          
+          
+      </p>
+
+      <p class="f5 mb4 font-sans muted">
+          About 6 min reading time
+      </p>
+    </header>
+
+    <div class="prose" itemprop="articleBody">
+      
+      <p><a href="https://deno.land">Deno</a> is a new <em>runtime</em> for Javascript. Before, NodeJS used to be the most
+popular way to run Javascript on the server. But no more! Deno has reached stable state (it’s on
+version 1.17 at the time of writing). It runs Typescript natively, supports ES imports (why did I
+feel I had to specify that as a feature?), and is built with Rust (again! This isn’t a feature, but
+it feels good that it’s Rust somehow, doesn’t it?).</p>
+<p>Until now, I’ve just read the <a href="https://deno.land/manual">Deno manual</a> and lurked in their
+<a href="https://deno.land/std">standard library</a>. Then I played around with a server + client app for a
+couple of days, and after that I converted this site to use <a href="https://lumeland.github.io">lume</a>,
+which is a static site generator based on Deno.</p>
+<p>Here are some of my personal favourites in Deno, with some love for lume as an appendix.</p>
+<h1>Web APIs we know and love</h1>
+<p>Deno includes a ton of niceties that just sparks joy for the hardest of the hardcore NodeJS
+developers out there. <code>fetch</code> <em>just works</em> (we’ve internalised that one needs to <code>npm install</code> some
+external library for HTTP requests in NodeJS). Hell, even doing the very browser-y <code>alert</code> and
+<code>confirm</code> in your Deno based CLI script will work on the command line to show a message and prompt
+for yes/no, respectively. Opinions might differ whether this is good or bad, but personally I
+appreciate not having to pull in a lib or visit StackOverflow each time I need user input.</p>
+<blockquote>
+<p>For APIs where a web standard already exists, like fetch for HTTP requests, Deno uses these rather
+than inventing a new proprietary API.</p>
+</blockquote>
+<p>The above line from <a href="https://deno.land/manual/runtime">“The Runtime”</a> section of the Manual is the
+red line throughout the Deno API.</p>
+<p>That means, instead of doing</p>
+<pre><code class="language-ts">// Node
+import request from 'some-random-npm-request-lib';
+
+const response = await request.get('https://deno.land');
+</code></pre>
+<p>you’d do</p>
+<pre><code class="language-ts">// Deno/browsers
+const response = await fetch('https://deno.land');
+</code></pre>
+<p>In Deno, you can use a ton of browser-y APIs, such as <code>location</code>, <code>local/sessionStorage</code>,
+<a href="https://deno.land/manual@v1.17.3/runtime/web_platform_apis#other-apis">and more</a>.</p>
+<p>Another example: you can use the same CSS based styling for <code>console</code> calls as you’d do in the
+browser:</p>
+<pre><code class="language-ts">// Deno/browsers
+console.log(
+	'%cHi there. %cSome background?',
+	'color: red',
+	'background-color: gray',
+);
+</code></pre>
+<p>No need for terminal escape codes or pulling in yet another library.</p>
+<p>I hope it’s clear where I’m getting at: there are things included in Deno that you <em>just know
+already</em> because you’ve been writing web code for years. It lowers the iteration speed when writing
+code, as well as lowers the overhead when reading it, when you don’t have to refer to third party
+dependencies or in-house modules all the time. To me, this feels much better when writing code in
+Deno.</p>
+<p>The use of third party dependencies have been a debate in Javascript land during the past couple of
+months, due to … incidents around security and feelings of the module authors themselves. Surely the
+best dependency is no dependency, right? Surely a ton of npm modules can be deprecated if only
+NodeJS (or Javascript itself) had a better standard library?</p>
+<p>I hope that we in the future look at “old” code and say: “Oh, did you pull in a dependency for
+<em>that</em>?”.</p>
+<p><strong><em>Update, 2022-02-08:</em></strong> the Deno authors have written a neat
+<a href="https://deno.com/blog/every-web-api-in-deno">blog post</a> detailing all web platform APIs implemented
+in Deno, with examples. You’ll get a very fuzzy feeling when reading the list.</p>
+<h1>Typescript as a first class citizen</h1>
+<p>I was in tears (tears of joy, I assure you) when I first read about Typescript support in Deno when
+the latter was introduced years ago. No need for a build step for <code>.ts</code> and <code>.tsx</code> files, just
+<code>deno run</code> and off you go. I just works.</p>
+<p>One neat API is <a href="https://deno.land/manual/typescript/runtime"><code>Deno.emit</code></a>. With it, you can
+programmatically compile and bundle Typescript code to Javascript.</p>
+<p>I’ve got not much more to say about this than <em>“Finally”</em>.</p>
+<h1>Testing</h1>
+<p>Let’s play a game. How many test runners for Javascript code can you think of?</p>
+<p>…</p>
+<p>Okay, tough question, as the correct answer probably is: “The number is approaching <code>Infinity</code>″.</p>
+<p>How many test runners do you <em>need</em>? One. There’s one built-in in Deno:</p>
+<pre><code class="language-ts">Deno.test('My test', () =&gt; {
+	// test things
+});
+</code></pre>
+<p>Name the file <code>something.test.ts</code> and run it with:</p>
+<pre><code class="language-bash">deno test something.test.ts
+</code></pre>
+<p>I love this. Standardised, one way of doing things, minimal. No arguing in the team about which is
+the best test runner this month.</p>
+<p>The <a href="https://deno.land/std/testing"><code>testing</code></a> module from the Deno std lib includes a couple of
+assertions — you probably don’t need more than those. (I also see it exports tools for benchmarking
+your code as well, iihhh!)</p>
+<h1>Distributed dependency management</h1>
+<p>…with no <code>package.json</code>! In Deno, you import external, remote, dependencies with URLs. Again, just
+like we’ve done in the browser since the 90s (<code>&lt;script src="http://cdn.example.com/script.js&gt;</code>
+amirite). When Deno first runs your code, it’ll fetch the remote script and cache it locally for the
+next runs. Don’t be scared: Deno do support reading and writing a lockfile with options to
+<code>deno run</code>.</p>
+<p>This is how it looks like:</p>
+<pre><code class="language-ts">import dependency from 'https://somesite.com/mod.ts';
+</code></pre>
+<p>(By convention, modules should have a <code>mod.ts</code> which is the entrypoint for consumers. Note that
+there’s no concept of some silly <code>index.js</code> file in Deno land: that’s one thing the Node creator
+Ryan wanted to get rid of when he created Deno.)</p>
+<p>This is actually fairly liberating once you’ve sweated out the feelings of chaos in your codebase.
+Remember, this is all source code! You can centralise all these third party imports to a single file
+and re-export them. In fact, that’s what
+<a href="https://deno.land/manual@v1.18.0/linking_to_external_code#it-seems-unwieldy-to-import-urls-everywhere">they recommend in the Deno Manual</a>:</p>
+<pre><code class="language-ts">// deps.ts (naming convention!)
+export * as assert from 'https://deno.land/std@0.122.0/testing/asserts.ts';
+</code></pre>
+<p>“Sooo how do I get my fav npm hosted lib into my Deno code then?”, you ask.</p>
+<ol>
+<li>Check <a href="https://deno.land/x">deno.land/x</a> if the module is hosted there. There are a lot of Deno
+specific modules.</li>
+<li>Import from any of the services below.</li>
+</ol>
+<p>Services reading from npm:</p>
+<ul>
+<li><a href="https://www.skypack.dev">Skypack</a></li>
+<li><a href="https://esm.sh">esm.sh</a></li>
+<li><a href="https://unpkg.com">unpkg.com</a></li>
+<li><a href="https://cdnjs.com">cdnjs.com</a></li>
+</ul>
+<p>Skypack and esm.sh will actually bundle code from npm into modern ES module syntax. Both of them are
+Deno friendly.</p>
+<p>The beauty with these is that if one of them is failing, or if you’re unhappy with the service, you
+can just switch out the URL imports in your <code>deps.ts</code>.</p>
+<p>Tip: with Skypack and esm.sh (from what I know) you get Typescript types too. esm.sh will do this
+automatically, and with Skypack you can append a <code>?dts</code> query parameter to the imported URL. See
+their respective config query parameters: it’s super cool what they can do these days.</p>
+<p>One thing that tripped me up was that it’s not always easy to find a suitable entrypoint file when
+importing via URLs. Deno friendly modules has a <code>mod.ts</code> in the repo somewhere, but often you have
+to hunt down a file yourself.</p>
+<h2>Import maps</h2>
+<p>I’ve glossed over the technology that is <a href="https://github.com/WICG/import-maps">Import Maps</a>. In my
+own words, I’d say it’s a file where you specify from where the source code’s <code>import</code> statements
+should look for the code to be imported. In a way, it’s emulating npm’s way of looking in
+<code>node_modules</code>, but this is even more powerful.</p>
+<p>If you were annoyed over importing “raw” URLs in the section above, this will save you!</p>
+<p><strong>Import map</strong></p>
+<pre><code class="language-json">{
+	"imports": {
+		"react": "https://esm.sh/react@17.0.2"
+	}
+}
+</code></pre>
+<p><strong>Source code</strong></p>
+<pre><code class="language-ts">import React from 'react';
+</code></pre>
+<p>Remember to specify <code>--import-map</code> for <code>deno run</code>! Nothing in Deno is implicit: it won’t pick up the
+import map by itself.</p>
+<h1>Summary</h1>
+<p>My overall impression of Deno that while it’s new technology, it’s quite mature and well documented.
+And if you’ve got a hairy question, you can pop into their Discord server and ask there. The <code>std</code>
+modules are very modern in the way they’re written (compared to Node, which <em>just</em> got Promise based
+APIs…). It’s actually fun to write Javascript code again. I’d attribute that to the decrease of
+“Javascript fatigue” in Deno, since there are so many built-in modules you’d previously assume you’d
+need to get from a third party.</p>
+<p><strong>When</strong> (hehe) you install Deno, be sure to do <code>deno help</code> in a terminal to see the range of nice
+sub commands. <code>deno types</code> and <code>deno doc</code> are favourites of mine. <code>deno compile</code> is also cool if
+you’re writing a script which should be run as a self contained executable, suitable for
+distribution.</p>
+<h1>Appendix: lume</h1>
+<p><a href="https://lumeland.github.io">lume</a> is a static site generator, built with Deno. I read through the
+documentation and jumped around in the source code for a while before I fell in love and ported
+johanbrook.com to it.</p>
+<p>Lume is a joy to work with. The built-in functionality and plugins fill 95% of my use cases — very
+little custom code needed. And <em>if</em> I don’t understand the documentation, reading the source code is
+no problem.</p>
+<p>It <em>feels</em> easier to use than other generators I’ve tried (Jekyll, Middleman, Metalsmith, Eleventy)
+but yet very powerful. During the porting my code I was not too annoyed during the process:
+something that you easily get when trying a brand new site generator. The fact that its written in
+Typescript is <em>so</em> nice, as you get static typing and don’t have to guess what objects and
+properties to read.</p>
+<p>Try it out!</p>
+
+    </div>
+  </article>
+</main>
+
+
+			<footer role="contentinfo">
+  <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/feed.xml" title="Atom">Post feed</a></li>
+        <li><a href="/micro.xml" title="Atom">Micro feed</a></li>
+        <li><a href="/reading.xml" title="Atom">Reading feed</a></li>
+    </ul>
+  </nav>
+</footer>
+
+		</div>
+
+		
+	   		<nav role="navigation" class="MainNav">
+	<div class="sticky">
+		<h1 class="f4 sr-only-mobile">
+			<a href="/" aria-label="Home">
+				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+			</a>
+		</h1>
+
+		<ul>
+           	<li class="only-mobile">
+          		<a href="/">Home</a>
+           	</li>
+          		<li>
+         			<a href="/now/">Now</a>
+          		</li>
+          		<li>
+         			<a href="/mind/">Micro</a>
+          		</li>
+          		<li>
+         			<a href="/about/">About</a>
+          		</li>
+          		<li>
+         			<a href="/reading/">Reading</a>
+          		</li>
+          		<li>
+         			<a href="/writings/">Writings</a>
+          		</li>
+        </ul>
+        <details>
+            <summary class="mv1 font-sans f5 muted link fw5">View more</summary>
+            <ul>
+              		<li>
+             			<a href="/to-read/">To read</a>
+              		</li>
+              		<li>
+             			<a href="/quotes/">Quotes</a>
+              		</li>
+              		<li>
+             			<a href="/changelog/">Changelog</a>
+              		</li>
+              		<li>
+             			<a href="/credits/">Credits</a>
+              		</li>
+            </ul>
+        </details>
+	</div>
+</nav>
+
+	 	
+	  </div>
+
+      <script>
+  // Only load on production environment.
+  if (window.location.host !== new URL('https://johan.im').host) {
+    window.goatcounter = {no_onload: true};
+  }
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+
+  
+
+
+</body></html>

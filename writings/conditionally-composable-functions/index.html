@@ -1,70 +1,286 @@
-<!doctype html><html class=writingsconditionally-composable-functions lang=en-gb><head itemscope itemtype=http://schema.org/Blog><title>Conditionally Composable Functions / Johan Brook</title><meta charset=utf-8><meta content="width=device-width,initial-scale=1"name=viewport><link href=https://gc.zgo.at rel=preconnect><link href=https://johanbrook.goatcounter.com rel=preconnect><meta content="I'm a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding & designering and I like working with product, user experience, interface design, and other things too."name=description><meta content="code,functional programming,javascript"name=keywords><meta content="Johan Brook"name=author><link href=/johan.css rel=stylesheet><link title="Johan Brook: Posts feed"href=/feed.xml rel=alternate type=application/atom+xml><link title="Johan Brook: Mind feed"href=/mind.xml rel=alternate type=application/atom+xml><link title="Johan Brook: Book feed"href=/reading.xml rel=alternate type=application/atom+xml><link rel="shortcut icon"href=/favicon.png type=image/png><link href=https://johan.im/writings/conditionally-composable-functions/ itemprop=url rel=canonical><link href=https://johan.im rel=author><link href=https://hachyderm.io/@brookie rel=me><meta content="Conditionally Composable Functions"property=og:title><meta content=https://johan.im/writings/conditionally-composable-functions/ property=og:url><meta content="Johan Brook"itemprop=name property=og:site_name><meta content=en_GB property=og:locale><meta content="I'm a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding & designering and I like working with product, user experience, interface design, and other things too."property=og:description><meta content=article property=og:type><meta content="code,functional programming,javascript"property=article:tag><meta content=2016-05-21T00:00:00Z property=article:published_time><body><a class="visually-hidden skip-link"href=#main>Skip to content</a><div class=Content><div id=main><main role=main><article class=Post itemscope itemtype=http://schema.org/BlogPosting role=article><header><h1 class=title itemprop=name>Conditionally Composable Functions</h1><p class="mb0 fw5 mt3"><time datetime=2016-05-21T00:00:00Z itemprop=datePublished pubdate> May 21st, 2016 </time><p class="f5 mb4 font-sans muted">About 3 min reading time</header><div class=prose itemprop=articleBody><p>I write a lot of Javascript at <a href=http://lookback.io>work</a>, mostly in the Meteor framework. Our web app use a client side router, and we had this helper function for fetching a team from a slug in the route URL.<p>It looked something like this:<pre class=language-js><code class=language-js><span class="token keyword">function</span> <span class="token function">getTeam</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token keyword">let</span> team<span class="token punctuation">;</span>
+<!DOCTYPE html>
+<html lang="en-gb" class=" writingsconditionally-composable-functions"><head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Conditionally Composable Functions / Johan Brook</title>
 
-	team <span class="token operator">=</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">slug</span><span class="token operator">:</span> FlowRouter<span class="token punctuation">.</span><span class="token function">getParam</span><span class="token punctuation">(</span><span class="token string">'slug'</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>team<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> rec <span class="token operator">=</span> RouterHelpers<span class="token punctuation">.</span><span class="token function">getRecording</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		team <span class="token operator">=</span> rec <span class="token operator">&&</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>rec<span class="token punctuation">.</span>teamId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+    <link rel="preconnect" href="https://gc.zgo.at">
+    <link rel="preconnect" href="https://johanbrook.goatcounter.com">
 
-	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>team<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> test <span class="token operator">=</span> RouterHelpers<span class="token punctuation">.</span><span class="token function">getTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		team <span class="token operator">=</span> test <span class="token operator">&&</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span>teamId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+    
+    <meta name="description" content="I'm a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    
+    <meta name="keywords" content="code,functional programming,javascript">
+    
+    <meta name="author" content="Johan Brook">
 
-	<span class="token keyword">return</span> team<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><p>So we have a concept of Teams, Recordings, and Tests here. And in these three contexts, this function should be able to return a team, if all the details are alright.<p>You see it looks kind of messy: repetitive, dependent on order, not that maintainable if this one would grow, so I set out to refactor it with some functional thinking in mind.<p>I identified the obvious need for null checks and the <em>flow of order</em>. What if we could abstract out the guard parts? I.e. <code>if (!team) { doThis() }</code>. The flow of order can use the help of <code>compose</code> — a common function for composing several functions into one (<a href=http://underscorejs.org/#compose>link to Underscore’s docs</a>). In plain code:<pre class=language-js><code class=language-js><span class="token keyword">const</span> <span class="token function-variable function">f</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span> <span class="token operator">=></span> val <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token keyword">const</span> <span class="token function-variable function">g</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span> <span class="token operator">=></span> val <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <!-- Styles-->
+    <link rel="stylesheet" href="/johan.css">
 
-<span class="token keyword">const</span> h <span class="token operator">=</span> <span class="token function">compose</span><span class="token punctuation">(</span>g<span class="token punctuation">,</span> f<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Same as g(f())</span>
-<span class="token function">h</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// => 4</span>
-</code></pre><p>You basically get a single function which is kickstarted with a parameter, and will pass each function’s return value on to the next one. Great for sequences. It corresponds to the mathematical:<pre><code>h(x) = (g ∘ f)(x) = g(f(x))
-</code></pre><p>So from that, I identified three functions I wanted to be in this chain:<ol><li><code>getTeamFromRoute</code><li><code>getTeamFromRecording</code><li><code>getTeamFromTest</code></ol><p>in that order.<p>Now we <em>could</em> wire it up like the old <code>if</code> riddled example above, but then we’ve just replaced some statements with functions — that isn’t functional programming!<p>So we could come up with this below, where each function checks the parameter (result from previous function invocation):<pre class=language-js><code class=language-js><span class="token keyword">function</span> <span class="token function">getTeam</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> <span class="token function-variable function">getTeamFromRoute</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span>
-    Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">slug</span><span class="token operator">:</span> FlowRouter<span class="token punctuation">.</span><span class="token function">getParam</span><span class="token punctuation">(</span><span class="token string">'slug'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
-  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Posts feed" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Mind feed" href="/mind.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Book feed" href="/reading.xml">
 
-  <span class="token keyword">const</span> <span class="token function-variable function">getTeamFromRecording</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">team</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>team<span class="token punctuation">)</span> <span class="token keyword">return</span> team<span class="token punctuation">;</span>
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johan.im/writings/conditionally-composable-functions/">
+    <link rel="author" href="https://johan.im">
+    <link rel="me" href="https://hachyderm.io/@brookie">
 
-    <span class="token keyword">const</span> rec <span class="token operator">=</span> RouterHelpers<span class="token punctuation">.</span><span class="token function">getRecording</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> rec <span class="token operator">&&</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>rec<span class="token punctuation">.</span>teamId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <meta property="og:title" content="Conditionally Composable Functions">
+    <meta property="og:url" content="https://johan.im/writings/conditionally-composable-functions/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    
+    <meta property="og:locale" content="en_GB">
+    
+    <meta property="og:description" content="I'm a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
 
-  <span class="token keyword">const</span> <span class="token function-variable function">getTeamFromTest</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">team</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>team<span class="token punctuation">)</span> <span class="token keyword">return</span> team<span class="token punctuation">;</span>
+    
 
-    <span class="token keyword">const</span> test <span class="token operator">=</span> RouterHelpers<span class="token punctuation">.</span><span class="token function">getTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> test <span class="token operator">&&</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span>teamId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    
+	<meta property="og:type" content="article">
+    <meta property="article:tag" content="code,functional programming,javascript">
+    <meta property="article:published_time" content="2016-05-21T00:00:00Z">
+   	
+  </head>
 
-  <span class="token keyword">return</span> _<span class="token punctuation">.</span><span class="token function">compose</span><span class="token punctuation">(</span>getTeamFromTest<span class="token punctuation">,</span> getTeamFromRecording<span class="token punctuation">,</span> getTeamFromRoute<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token comment">// Like: getTeamFromTest(getTeamFromRecording(getTeamFromRoute()));</span>
-<span class="token punctuation">}</span>
-</code></pre><p>This is <em>alright</em> but not great, I think. We still repeat ourselves in checking the team in the two last functions, and the functions themselves thus aren’t behaving in the same way — they have different <em>arity</em> (number of arguments taken in the signature).<p><strong>What if</strong> we can extract the null check and thus the decision making into its own function, and invoke it outside of our getter functions? Let’s try.<p>What we need is a single check to see if the result from last invocation is truthy or not. If it is, we should stop and return. If not, pass on to the next function in the chain. So we will need some kind of interceptor between our function calls in <code>compose</code>, which sniffs the return value.<p>I came up with this:<pre class=language-js><code class=language-js><span class="token keyword">function</span> <span class="token function">getTeam</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token keyword">const</span> <span class="token function-variable function">maybeReturnTeam</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">team</span><span class="token punctuation">)</span> <span class="token operator">=></span> team <span class="token operator">||</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <body>
+  	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+	  <div class="Content">
+	  	<div id="main">
+			<main role="main">
+  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 itemprop="name" class="title">Conditionally Composable Functions</h1>
 
-	<span class="token keyword">const</span> getTeamFromRoute <span class="token operator">=</span> <span class="token function">maybeReturnTeam</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span>
-		Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token literal-property property">slug</span><span class="token operator">:</span> FlowRouter<span class="token punctuation">.</span><span class="token function">getParam</span><span class="token punctuation">(</span><span class="token string">'slug'</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
-	<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <p class="mb0 fw5 mt3">
+          <time datetime="2016-05-21T00:00:00Z" itemprop="datePublished" pubdate="">
+            May 21st, 2016
+          </time>
+          
+          
+      </p>
 
-	<span class="token keyword">const</span> getTeamFromRecording <span class="token operator">=</span> <span class="token function">maybeReturnTeam</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> rec <span class="token operator">=</span> RouterHelpers<span class="token punctuation">.</span><span class="token function">getRecording</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">return</span> rec <span class="token operator">&&</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>rec<span class="token punctuation">.</span>teamId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <p class="f5 mb4 font-sans muted">
+          About 3 min reading time
+      </p>
+    </header>
 
-	<span class="token keyword">const</span> getTeamFromTest <span class="token operator">=</span> <span class="token function">maybeReturnTeam</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> test <span class="token operator">=</span> RouterHelpers<span class="token punctuation">.</span><span class="token function">getTest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-		<span class="token keyword">return</span> test <span class="token operator">&&</span> Teams<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span>teamId<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <div class="prose" itemprop="articleBody">
+      
+      <p>I write a lot of Javascript at <a href="http://lookback.io">work</a>, mostly in the Meteor framework. Our web
+app use a client side router, and we had this helper function for fetching a team from a slug in the
+route URL.</p>
+<p>It looked something like this:</p>
+<pre><code class="language-js">function getTeam() {
+	let team;
 
-	<span class="token keyword">return</span> _<span class="token punctuation">.</span><span class="token function">compose</span><span class="token punctuation">(</span>getTeamFromTest<span class="token punctuation">,</span> getTeamFromRecording<span class="token punctuation">,</span> getTeamFromRoute<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><p>Does it look weird? Perhaps, yeah. The new thing is <code>maybeReturnTeam</code>. In plain, old style Javascript, it would be:<pre class=language-js><code class=language-js><span class="token keyword">function</span> <span class="token function">maybeReturnTeam</span><span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-	<span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">team</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">return</span> team <span class="token operator">||</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><p>A <em>function which returns a function which perhaps invokes a callback</em>. So each <code>callback</code> in there will be one of our getter functions. And since <code>maybeReturnTeam</code> returns a function, it’ll play well with <code>compose</code>, since it’s actually only the function returned that will be directly invoked by the composition chain.<p>The <code>maybeReturnTeam</code> will also effectively prevent other getter functions to be called if it encounters a truthy value in the first function. Great!<hr><p>So we got rid of all the if’s and created a nice, flowing chain of functions doing there thing. Sometimes it’s not worth it to go into crazy functional programming techniques in everyday code, since in a large code base and with a team, you need to keep readability (and <em>understandability</em>!) high. And one might argue that the original code I had there at the top is evidentally less code. But as a whole, FP makes total sense to me once you learn how to rethink how you actually do program flows today.</div></article></main><footer role=contentinfo><nav><ul><li><a href=/>Home</a><li><a href=/feed.xml title=Atom>Post feed</a><li><a href=/micro.xml title=Atom>Micro feed</a><li><a href=/reading.xml title=Atom>Reading feed</a></ul></nav></footer></div><nav class=MainNav role=navigation><div class=sticky><h1 class="f4 sr-only-mobile"><a aria-label=Home href=/> <span>Johan Brook</span><span class="BackLink ml2"aria-hidden=true>←</span> </a></h1><ul><li class=only-mobile><a href=/>Home</a><li><a href=/now/>Now</a><li><a href=/mind/>Micro</a><li><a href=/about/>About</a><li><a href=/reading/>Reading</a><li><a href=/writings/>Writings</a></ul><details><summary class="mv1 font-sans f5 muted link fw5">View more</summary> <ul><li><a href=/to-read/>To read</a><li><a href=/quotes/>Quotes</a><li><a href=/changelog/>Changelog</a><li><a href=/credits/>Credits</a></ul></details></div></nav></div><script>if(window.location.host!==new URL('https://johan.im').host){window.goatcounter={no_onload:true}};if(window.location.hash==='#skipgc')localStorage.setItem('skipgc','t');if(localStorage.getItem('skipgc')==='t')window.goatcounter={no_onload:true}</script><script async data-goatcounter=https://johanbrook.goatcounter.com/count src=//gc.zgo.at/count.js></script>
+	team = Teams.findOne({ slug: FlowRouter.getParam('slug') });
+
+	if (!team) {
+		const rec = RouterHelpers.getRecording();
+		team = rec &amp;&amp; Teams.findOne(rec.teamId);
+	}
+
+	if (!team) {
+		const test = RouterHelpers.getTest();
+		team = test &amp;&amp; Teams.findOne(test.teamId);
+	}
+
+	return team;
+}
+</code></pre>
+<p>So we have a concept of Teams, Recordings, and Tests here. And in these three contexts, this
+function should be able to return a team, if all the details are alright.</p>
+<p>You see it looks kind of messy: repetitive, dependent on order, not that maintainable if this one
+would grow, so I set out to refactor it with some functional thinking in mind.</p>
+<p>I identified the obvious need for null checks and the <em>flow of order</em>. What if we could abstract out
+the guard parts? I.e. <code>if (!team) { doThis() }</code>. The flow of order can use the help of <code>compose</code> — a
+common function for composing several functions into one
+(<a href="http://underscorejs.org/#compose">link to Underscore’s docs</a>). In plain code:</p>
+<pre><code class="language-js">const f = (val) =&gt; val + 1;
+const g = (val) =&gt; val + 2;
+
+const h = compose(g, f); // Same as g(f())
+h(1); // =&gt; 4
+</code></pre>
+<p>You basically get a single function which is kickstarted with a parameter, and will pass each
+function’s return value on to the next one. Great for sequences. It corresponds to the mathematical:</p>
+<pre><code>h(x) = (g ∘ f)(x) = g(f(x))
+</code></pre>
+<p>So from that, I identified three functions I wanted to be in this chain:</p>
+<ol>
+<li><code>getTeamFromRoute</code></li>
+<li><code>getTeamFromRecording</code></li>
+<li><code>getTeamFromTest</code></li>
+</ol>
+<p>in that order.</p>
+<p>Now we <em>could</em> wire it up like the old <code>if</code> riddled example above, but then we’ve just replaced some
+statements with functions — that isn’t functional programming!</p>
+<p>So we could come up with this below, where each function checks the parameter (result from previous
+function invocation):</p>
+<pre><code class="language-js">function getTeam() {
+  const getTeamFromRoute = () =&gt;
+    Teams.findOne({slug: FlowRouter.getParam('slug')})
+  );
+
+  const getTeamFromRecording = (team) =&gt; {
+    if (team) return team;
+
+    const rec = RouterHelpers.getRecording();
+    return rec &amp;&amp; Teams.findOne(rec.teamId);
+  };
+
+  const getTeamFromTest = (team) =&gt; {
+    if (team) return team;
+
+    const test = RouterHelpers.getTest();
+    return test &amp;&amp; Teams.findOne(test.teamId);
+  };
+
+  return _.compose(getTeamFromTest, getTeamFromRecording, getTeamFromRoute)();
+  // Like: getTeamFromTest(getTeamFromRecording(getTeamFromRoute()));
+}
+</code></pre>
+<p>This is <em>alright</em> but not great, I think. We still repeat ourselves in checking the team in the two
+last functions, and the functions themselves thus aren’t behaving in the same way — they have
+different <em>arity</em> (number of arguments taken in the signature).</p>
+<p><strong>What if</strong> we can extract the null check and thus the decision making into its own function, and
+invoke it outside of our getter functions? Let’s try.</p>
+<p>What we need is a single check to see if the result from last invocation is truthy or not. If it is,
+we should stop and return. If not, pass on to the next function in the chain. So we will need some
+kind of interceptor between our function calls in <code>compose</code>, which sniffs the return value.</p>
+<p>I came up with this:</p>
+<pre><code class="language-js">function getTeam() {
+	const maybeReturnTeam = (callback) =&gt; (team) =&gt; team || callback();
+
+	const getTeamFromRoute = maybeReturnTeam(() =&gt;
+		Teams.findOne({ slug: FlowRouter.getParam('slug') })
+	);
+
+	const getTeamFromRecording = maybeReturnTeam(() =&gt; {
+		const rec = RouterHelpers.getRecording();
+		return rec &amp;&amp; Teams.findOne(rec.teamId);
+	});
+
+	const getTeamFromTest = maybeReturnTeam(() =&gt; {
+		const test = RouterHelpers.getTest();
+		return test &amp;&amp; Teams.findOne(test.teamId);
+	});
+
+	return _.compose(getTeamFromTest, getTeamFromRecording, getTeamFromRoute)();
+}
+</code></pre>
+<p>Does it look weird? Perhaps, yeah. The new thing is <code>maybeReturnTeam</code>. In plain, old style
+Javascript, it would be:</p>
+<pre><code class="language-js">function maybeReturnTeam(callback) {
+	return function (team) {
+		return team || callback();
+	};
+}
+</code></pre>
+<p>A <em>function which returns a function which perhaps invokes a callback</em>. So each <code>callback</code> in there
+will be one of our getter functions. And since <code>maybeReturnTeam</code> returns a function, it’ll play well
+with <code>compose</code>, since it’s actually only the function returned that will be directly invoked by the
+composition chain.</p>
+<p>The <code>maybeReturnTeam</code> will also effectively prevent other getter functions to be called if it
+encounters a truthy value in the first function. Great!</p>
+<hr>
+<p>So we got rid of all the if’s and created a nice, flowing chain of functions doing there thing.
+Sometimes it’s not worth it to go into crazy functional programming techniques in everyday code,
+since in a large code base and with a team, you need to keep readability (and <em>understandability</em>!)
+high. And one might argue that the original code I had there at the top is evidentally less code.
+But as a whole, FP makes total sense to me once you learn how to rethink how you actually do program
+flows today.</p>
+
+    </div>
+  </article>
+</main>
+
+
+			<footer role="contentinfo">
+  <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/feed.xml" title="Atom">Post feed</a></li>
+        <li><a href="/micro.xml" title="Atom">Micro feed</a></li>
+        <li><a href="/reading.xml" title="Atom">Reading feed</a></li>
+    </ul>
+  </nav>
+</footer>
+
+		</div>
+
+		
+	   		<nav role="navigation" class="MainNav">
+	<div class="sticky">
+		<h1 class="f4 sr-only-mobile">
+			<a href="/" aria-label="Home">
+				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+			</a>
+		</h1>
+
+		<ul>
+           	<li class="only-mobile">
+          		<a href="/">Home</a>
+           	</li>
+          		<li>
+         			<a href="/now/">Now</a>
+          		</li>
+          		<li>
+         			<a href="/mind/">Micro</a>
+          		</li>
+          		<li>
+         			<a href="/about/">About</a>
+          		</li>
+          		<li>
+         			<a href="/reading/">Reading</a>
+          		</li>
+          		<li>
+         			<a href="/writings/">Writings</a>
+          		</li>
+        </ul>
+        <details>
+            <summary class="mv1 font-sans f5 muted link fw5">View more</summary>
+            <ul>
+              		<li>
+             			<a href="/to-read/">To read</a>
+              		</li>
+              		<li>
+             			<a href="/quotes/">Quotes</a>
+              		</li>
+              		<li>
+             			<a href="/changelog/">Changelog</a>
+              		</li>
+              		<li>
+             			<a href="/credits/">Credits</a>
+              		</li>
+            </ul>
+        </details>
+	</div>
+</nav>
+
+	 	
+	  </div>
+
+      <script>
+  // Only load on production environment.
+  if (window.location.host !== new URL('https://johan.im').host) {
+    window.goatcounter = {no_onload: true};
+  }
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+
+  
+
+
+</body></html>

@@ -1,116 +1,332 @@
-<!doctype html><html class=writingsreact-hooks-streams lang=en-gb><head itemscope itemtype=http://schema.org/Blog><title>Using streams in React with Hooks / Johan Brook</title><meta charset=utf-8><meta content="width=device-width,initial-scale=1"name=viewport><link href=https://gc.zgo.at rel=preconnect><link href=https://johanbrook.goatcounter.com rel=preconnect><meta content="Pairing React Hooks with Streams works beautifully, and leads to components with less verbosity and boilerplate. In this post, I convert a class component to a function component using hooks."name=description><meta content=react,hooks,xstream,javascript,typescript name=keywords><meta content="Johan Brook"name=author><link href=/johan.css rel=stylesheet><link title="Johan Brook: Posts feed"href=/feed.xml rel=alternate type=application/atom+xml><link title="Johan Brook: Mind feed"href=/mind.xml rel=alternate type=application/atom+xml><link title="Johan Brook: Book feed"href=/reading.xml rel=alternate type=application/atom+xml><link rel="shortcut icon"href=/favicon.png type=image/png><link href=https://johan.im/writings/react-hooks-streams/ itemprop=url rel=canonical><link href=https://johan.im rel=author><link href=https://hachyderm.io/@brookie rel=me><meta content="Using streams in React with Hooks"property=og:title><meta content=https://johan.im/writings/react-hooks-streams/ property=og:url><meta content="Johan Brook"itemprop=name property=og:site_name><meta content=en_GB property=og:locale><meta content="Pairing React Hooks with Streams works beautifully, and leads to components with less verbosity and boilerplate. In this post, I convert a class component to a function component using hooks."property=og:description><meta content=article property=og:type><meta content=react,hooks,xstream,javascript,typescript property=article:tag><meta content=2019-03-03T00:00:00Z property=article:published_time><body><a class="visually-hidden skip-link"href=#main>Skip to content</a><div class=Content><div id=main><main role=main><article class=Post itemscope itemtype=http://schema.org/BlogPosting role=article><header><h1 class=title itemprop=name>Using streams in React with Hooks</h1><p class="mb0 fw5 mt3"><time datetime=2019-03-03T00:00:00Z itemprop=datePublished pubdate> March 3rd, 2019 </time><p class="f5 mb4 font-sans muted">About 3 min reading time</header><div class=prose itemprop=articleBody><p><strong>As of React 16.8,</strong> there’s a new tool in the toolbox: <a href=https://reactjs.org/docs/hooks-intro.html>Hooks</a>. Hooks are used in functional React components, extending their functionality to include state and side effects.<p>I recommend reading <a href=https://overreacted.io/making-setinterval-declarative-with-react-hooks/>this article</a> by Dan Abramov for a deeper understanding of hooks. It shows how the coding style moves away from imperative class code to declarative code.<p>I realised the beauty of hooks in user interface components when creating a component which shows the current time in a recording. We’ve recently started using Functional Reactive Streams for the frontend at Lookback (specifically, we’re using the <a href=http://staltz.github.io/xstream/>xstream</a> library, but the concepts are similar in other libraries). Explaining the concept with streams is out of scope in this post, but the gist is that you manage state as immutable streams of values. <a href=https://gist.github.com/staltz/868e7e9bc2a7b8c1f754>This post</a> is a nice intro to streams/reactive programming.<p>Streams actually play well with React. It’s <em>basically</em>, on a conceptual level, all about doing a <code>.map</code> on a stream of values and draw the React virtual DOM based on the values. But React components must either have a <code>render()</code> function which return JSX, or be a function which returns JSX. How do we render our current time from a stream?<p>An intuitive approach of mine would be:<pre class=language-tsx><code class=language-tsx><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> Stream <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
+<!DOCTYPE html>
+<html lang="en-gb" class=" writingsreact-hooks-streams"><head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Using streams in React with Hooks / Johan Brook</title>
 
-<span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">{</span>
-	currentTime$<span class="token operator">:</span> Stream<span class="token operator"><</span><span class="token builtin">number</span><span class="token operator">></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<span class="token comment">// This won't work: our component can't return a Stream!</span>
-<span class="token keyword">const</span> <span class="token function-variable function">CurrentTime</span> <span class="token operator">=</span> <span class="token punctuation">(</span>props<span class="token operator">:</span> Props<span class="token punctuation">)</span> <span class="token operator">=></span> props<span class="token punctuation">.</span>currentTime$<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>time<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>time</span><span class="token punctuation">></span></span><span class="token punctuation">{</span>time<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&LT/</span>time</span><span class="token punctuation">></span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre><p>We can’t return a stream from a React component – it must somehow devour the stream and return JSX.<h2>The class(ical) approach</h2><p>So we need to take a more verbose approach:<ol><li>Subscribe to the stream in a class component.<li>For each new value, set the local state to the value.<li>Render based on local state.<li>Tear down the subscription on unmount.</ol><p>Very well then:<pre class=language-tsx><code class=language-tsx><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> Stream<span class="token punctuation">,</span> Subscription <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> formatTime <span class="token keyword">from</span> <span class="token string">'./libs/format-time'</span><span class="token punctuation">;</span>
+    <link rel="preconnect" href="https://gc.zgo.at">
+    <link rel="preconnect" href="https://johanbrook.goatcounter.com">
 
-<span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">{</span>
-	currentTime$<span class="token operator">:</span> Stream<span class="token operator"><</span><span class="token builtin">number</span><span class="token operator">></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+    
+    <meta name="description" content="Pairing React Hooks with Streams works beautifully, and leads to components with less verbosity and boilerplate. In this post, I convert a class component to a function component using hooks.">
+    
+    
+    <meta name="keywords" content="react,hooks,xstream,javascript,typescript">
+    
+    <meta name="author" content="Johan Brook">
 
-<span class="token keyword">interface</span> <span class="token class-name">State</span> <span class="token punctuation">{</span>
-	timeInSeconds<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+    <!-- Styles-->
+    <link rel="stylesheet" href="/johan.css">
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">TimeCounter</span> <span class="token keyword">extends</span> <span class="token class-name">React</span><span class="token punctuation">.</span>PureComponent<span class="token operator"><</span>Props<span class="token punctuation">,</span> State<span class="token operator">></span> <span class="token punctuation">{</span>
-	sub<span class="token operator">?</span><span class="token operator">:</span> Subscription<span class="token punctuation">;</span>
+    <!-- RSS -->
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Posts feed" href="/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Mind feed" href="/mind.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Book feed" href="/reading.xml">
 
-	<span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token operator">:</span> Props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-		<span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johan.im/writings/react-hooks-streams/">
+    <link rel="author" href="https://johan.im">
+    <link rel="me" href="https://hachyderm.io/@brookie">
 
-		<span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
-			timeInSeconds<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-		<span class="token punctuation">}</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+    <meta property="og:title" content="Using streams in React with Hooks">
+    <meta property="og:url" content="https://johan.im/writings/react-hooks-streams/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    
+    <meta property="og:locale" content="en_GB">
+    
+    <meta property="og:description" content="Pairing React Hooks with Streams works beautifully, and leads to components with less verbosity and boilerplate. In this post, I convert a class component to a function component using hooks.">
+    
 
-	<span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>sub <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>currentTime$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-			<span class="token function-variable function">next</span><span class="token operator">:</span> <span class="token punctuation">(</span>time<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-				<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> timeInSeconds<span class="token operator">:</span> time <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-			<span class="token punctuation">}</span><span class="token punctuation">,</span>
-		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+    
 
-	<span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token keyword">void</span> <span class="token punctuation">{</span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>sub <span class="token operator">&&</span> <span class="token keyword">this</span><span class="token punctuation">.</span>sub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
+    
+	<meta property="og:type" content="article">
+    <meta property="article:tag" content="react,hooks,xstream,javascript,typescript">
+    <meta property="article:published_time" content="2019-03-03T00:00:00Z">
+   	
+  </head>
 
-	<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">:</span> React<span class="token punctuation">.</span>ReactNode <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> <span class="token punctuation">{</span> timeInSeconds <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">;</span>
+  <body>
+  	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+	  <div class="Content">
+	  	<div id="main">
+			<main role="main">
+  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 itemprop="name" class="title">Using streams in React with Hooks</h1>
 
-		<span class="token comment">// Renders something like: "00:10"</span>
-		<span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>time</span><span class="token punctuation">></span></span><span class="token punctuation">{</span><span class="token function">formatTime</span><span class="token punctuation">(</span>timeInSeconds<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&LT/</span>time</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre><p>This totally works, but yeah… Very verbose and imperative. Hooks to the rescue!<h2>The Hook approach</h2><p>Let’s follow the intro to Hooks from the React website, and convert our class to a function:<pre class=language-tsx><code class=language-tsx><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> useEffect<span class="token punctuation">,</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> Stream <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> formatTime <span class="token keyword">from</span> <span class="token string">'./libs/format-time'</span><span class="token punctuation">;</span>
+      <p class="mb0 fw5 mt3">
+          <time datetime="2019-03-03T00:00:00Z" itemprop="datePublished" pubdate="">
+            March 3rd, 2019
+          </time>
+          
+          
+      </p>
 
-<span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">{</span>
-	currentTime$<span class="token operator">:</span> Stream<span class="token operator"><</span><span class="token builtin">number</span><span class="token operator">></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+      <p class="f5 mb4 font-sans muted">
+          About 3 min reading time
+      </p>
+    </header>
 
-<span class="token keyword">const</span> <span class="token function-variable function">TimeCounter</span> <span class="token operator">=</span> <span class="token punctuation">(</span>props<span class="token operator">:</span> Props<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-	<span class="token comment">// Create a state hook for our time state, with initial state of zero:</span>
-	<span class="token keyword">const</span> <span class="token punctuation">[</span>current<span class="token punctuation">,</span> setCurrent<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token generic-function"><span class="token function">useState</span><span class="token generic class-name"><span class="token operator"><</span><span class="token builtin">number</span><span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <div class="prose" itemprop="articleBody">
+      
+      <p><strong>As of React 16.8,</strong> there’s a new tool in the toolbox:
+<a href="https://reactjs.org/docs/hooks-intro.html">Hooks</a>. Hooks are used in functional React components,
+extending their functionality to include state and side effects.</p>
+<p>I recommend reading
+<a href="https://overreacted.io/making-setinterval-declarative-with-react-hooks/">this article</a> by Dan
+Abramov for a deeper understanding of hooks. It shows how the coding style moves away from
+imperative class code to declarative code.</p>
+<p>I realised the beauty of hooks in user interface components when creating a component which shows
+the current time in a recording. We’ve recently started using Functional Reactive Streams for the
+frontend at Lookback (specifically, we’re using the <a href="http://staltz.github.io/xstream/">xstream</a>
+library, but the concepts are similar in other libraries). Explaining the concept with streams is
+out of scope in this post, but the gist is that you manage state as immutable streams of values.
+<a href="https://gist.github.com/staltz/868e7e9bc2a7b8c1f754">This post</a> is a nice intro to streams/reactive
+programming.</p>
+<p>Streams actually play well with React. It’s <em>basically</em>, on a conceptual level, all about doing a
+<code>.map</code> on a stream of values and draw the React virtual DOM based on the values. But React
+components must either have a <code>render()</code> function which return JSX, or be a function which returns
+JSX. How do we render our current time from a stream?</p>
+<p>An intuitive approach of mine would be:</p>
+<pre><code class="language-tsx">import React from 'react';
+import { Stream } from 'xstream';
 
-	<span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-		<span class="token comment">// On component mount, set up a side effect that subscribes to</span>
-		<span class="token comment">// the stream, and let `setCurrent` be called for new values:</span>
-		<span class="token keyword">const</span> sub <span class="token operator">=</span> props<span class="token punctuation">.</span>currentTime$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-			next<span class="token operator">:</span> setCurrent<span class="token punctuation">,</span>
-		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+interface Props {
+	currentTime$: Stream&lt;number&gt;;
+}
 
-		<span class="token comment">// Unsubscribe on component tear down:</span>
-		<span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> sub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+// This won't work: our component can't return a Stream!
+const CurrentTime = (props: Props) =&gt; props.currentTime$.map((time) =&gt; &lt;time&gt;{time}&lt;/time&gt;);
+</code></pre>
+<p>We can’t return a stream from a React component –&nbsp;it must somehow devour the stream and return JSX.</p>
+<h2>The class(ical) approach</h2>
+<p>So we need to take a more verbose approach:</p>
+<ol>
+<li>Subscribe to the stream in a class component.</li>
+<li>For each new value, set the local state to the value.</li>
+<li>Render based on local state.</li>
+<li>Tear down the subscription on unmount.</li>
+</ol>
+<p>Very well then:</p>
+<pre><code class="language-tsx">import React from 'react';
+import { Stream, Subscription } from 'xstream';
+import formatTime from './libs/format-time';
 
-	<span class="token comment">// Render our current time state as the returned JSX!</span>
-	<span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>time</span><span class="token punctuation">></span></span><span class="token punctuation">{</span><span class="token function">formatDuration</span><span class="token punctuation">(</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&LT/</span>time</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
+interface Props {
+	currentTime$: Stream&lt;number&gt;;
+}
 
-<span class="token comment">// Elsewhere, render as usual:</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation"><</span><span class="token class-name">TimeCounter</span></span> <span class="token attr-name">currentTime$</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>myStreamOfNumbers$<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">;</span>
-</code></pre><ul><li>We call <code>useEffect</code> to set up a subscription on the incoming stream. <a href=https://reactjs.org/docs/hooks-effect.html>Read more</a> about the effect hook.<li>We call <code>useState</code> with an inital value and receive back a tuple of the current value and a setter. <a href=https://reactjs.org/docs/hooks-state.html>Read more</a> about the state hook.</ul><p>So minimal, still readable. Even <em>more</em> readable than the class version, I think.<h2>Extracting our hook</h2><p>Since Hooks are <em>just functions</em>, we can extract common functional patterns into our own hooks and use them in other components. I found myself writing another component which also subscribed to an incoming stream and rendered its values. What a candidate for extraction into a hook!<p>If we analyse the component above, we see that <code>useState</code> and <code>useEffect</code> are going to work roughly, if not exactly, the same for any other component. Only the types in the incoming stream differ. Here we use the type <code>number</code>, but we can make our new Hook generic thanks to TypeScript’s generics.<p>I came up with this:<pre class=language-ts><code class=language-ts><span class="token comment">// use-stream.ts</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> useEffect<span class="token punctuation">,</span> useState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> Stream <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
+interface State {
+	timeInSeconds: number;
+}
 
-<span class="token keyword">const</span> useStream <span class="token operator">=</span> <span class="token operator"><</span><span class="token constant">T</span><span class="token operator">></span><span class="token punctuation">(</span>stream$<span class="token operator">:</span> Stream<span class="token operator"><</span><span class="token constant">T</span><span class="token operator">></span><span class="token punctuation">,</span> initialState<span class="token operator">:</span> <span class="token constant">T</span> <span class="token operator">|</span> <span class="token keyword">null</span> <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-	<span class="token keyword">const</span> <span class="token punctuation">[</span>current<span class="token punctuation">,</span> setCurrent<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token generic-function"><span class="token function">useState</span><span class="token generic class-name"><span class="token operator"><</span><span class="token constant">T</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>initialState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+export default class TimeCounter extends React.PureComponent&lt;Props, State&gt; {
+	sub?: Subscription;
 
-	<span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-		<span class="token keyword">const</span> sub <span class="token operator">=</span> stream$<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-			next<span class="token operator">:</span> setCurrent<span class="token punctuation">,</span>
-		<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	constructor(props: Props) {
+		super(props);
 
-		<span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> sub<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-	<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		this.state = {
+			timeInSeconds: 0,
+		};
+	}
 
-	<span class="token comment">// Just return our current value, since that's the thing we're interested in</span>
-	<span class="token comment">// (to render) when using this hook:</span>
-	<span class="token keyword">return</span> current<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
+	componentDidMount(): void {
+		this.sub = this.props.currentTime$.subscribe({
+			next: (time) =&gt; {
+				this.setState({ timeInSeconds: time });
+			},
+		});
+	}
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> useStream<span class="token punctuation">;</span>
-</code></pre><p>We’ve just made our own <code>useStream</code> hook by composing <code>useEffect</code> and <code>useState</code>!<p>The hook can be used like this:<pre class=language-tsx><code class=language-tsx><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> Stream <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'xstream'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> <span class="token punctuation">{</span> formatDuration <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./libs/format-time'</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> useStream <span class="token keyword">from</span> <span class="token string">'./hooks/use-stream'</span><span class="token punctuation">;</span>
+	componentWillUnmount(): void {
+		this.sub &amp;&amp; this.sub.unsubscribe();
+	}
 
-<span class="token keyword">interface</span> <span class="token class-name">Props</span> <span class="token punctuation">{</span>
-	currentTime$<span class="token operator">:</span> Stream<span class="token operator"><</span><span class="token builtin">number</span><span class="token operator">></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+	render(): React.ReactNode {
+		const { timeInSeconds } = this.state;
 
-<span class="token keyword">const</span> <span class="token function-variable function">CurrentTimeCounter</span> <span class="token operator">=</span> <span class="token punctuation">(</span>props<span class="token operator">:</span> Props<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-	<span class="token keyword">const</span> currentTime<span class="token operator">:</span> <span class="token builtin">number</span> <span class="token operator">=</span> <span class="token generic-function"><span class="token function">useStream</span><span class="token generic class-name"><span class="token operator"><</span><span class="token builtin">number</span><span class="token operator">></span></span></span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>currentTime$<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		// Renders something like: "00:10"
+		return &lt;time&gt;{formatTime(timeInSeconds)}&lt;/time&gt;;
+	}
+}
+</code></pre>
+<p>This totally works, but yeah… Very verbose and imperative. Hooks to the rescue!</p>
+<h2>The Hook approach</h2>
+<p>Let’s follow the intro to Hooks from the React website, and convert our class to a function:</p>
+<pre><code class="language-tsx">import React, { useEffect, useState } from 'react';
+import { Stream } from 'xstream';
+import formatTime from './libs/format-time';
 
-	<span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation"><</span>time</span><span class="token punctuation">></span></span><span class="token punctuation">{</span><span class="token function">formatDuration</span><span class="token punctuation">(</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&LT/</span>time</span><span class="token punctuation">></span></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre><p>And at last, there is beauty.</div></article></main><footer role=contentinfo><nav><ul><li><a href=/>Home</a><li><a href=/feed.xml title=Atom>Post feed</a><li><a href=/micro.xml title=Atom>Micro feed</a><li><a href=/reading.xml title=Atom>Reading feed</a></ul></nav></footer></div><nav class=MainNav role=navigation><div class=sticky><h1 class="f4 sr-only-mobile"><a aria-label=Home href=/> <span>Johan Brook</span><span class="BackLink ml2"aria-hidden=true>←</span> </a></h1><ul><li class=only-mobile><a href=/>Home</a><li><a href=/now/>Now</a><li><a href=/mind/>Micro</a><li><a href=/about/>About</a><li><a href=/reading/>Reading</a><li><a href=/writings/>Writings</a></ul><details><summary class="mv1 font-sans f5 muted link fw5">View more</summary> <ul><li><a href=/to-read/>To read</a><li><a href=/quotes/>Quotes</a><li><a href=/changelog/>Changelog</a><li><a href=/credits/>Credits</a></ul></details></div></nav></div><script>if(window.location.host!==new URL('https://johan.im').host){window.goatcounter={no_onload:true}};if(window.location.hash==='#skipgc')localStorage.setItem('skipgc','t');if(localStorage.getItem('skipgc')==='t')window.goatcounter={no_onload:true}</script><script async data-goatcounter=https://johanbrook.goatcounter.com/count src=//gc.zgo.at/count.js></script>
+interface Props {
+	currentTime$: Stream&lt;number&gt;;
+}
+
+const TimeCounter = (props: Props) =&gt; {
+	// Create a state hook for our time state, with initial state of zero:
+	const [current, setCurrent] = useState&lt;number&gt;(0);
+
+	useEffect(() =&gt; {
+		// On component mount, set up a side effect that subscribes to
+		// the stream, and let `setCurrent` be called for new values:
+		const sub = props.currentTime$.subscribe({
+			next: setCurrent,
+		});
+
+		// Unsubscribe on component tear down:
+		return () =&gt; sub.unsubscribe();
+	});
+
+	// Render our current time state as the returned JSX!
+	return &lt;time&gt;{formatDuration(currentTime)}&lt;/time&gt;;
+};
+
+// Elsewhere, render as usual:
+&lt;TimeCounter currentTime$={myStreamOfNumbers$} /&gt;;
+</code></pre>
+<ul>
+<li>We call <code>useEffect</code> to set up a subscription on the incoming stream.
+<a href="https://reactjs.org/docs/hooks-effect.html">Read more</a> about the effect hook.</li>
+<li>We call <code>useState</code> with an inital value and receive back a tuple of the current value and a
+setter. <a href="https://reactjs.org/docs/hooks-state.html">Read more</a> about the state hook.</li>
+</ul>
+<p>So minimal, still readable. Even <em>more</em> readable than the class version, I think.</p>
+<h2>Extracting our hook</h2>
+<p>Since Hooks are <em>just functions</em>, we can extract common functional patterns into our own hooks and
+use them in other components. I found myself writing another component which also subscribed to an
+incoming stream and rendered its values. What a candidate for extraction into a hook!</p>
+<p>If we analyse the component above, we see that <code>useState</code> and <code>useEffect</code> are going to work roughly,
+if not exactly, the same for any other component. Only the types in the incoming stream differ. Here
+we use the type <code>number</code>, but we can make our new Hook generic thanks to TypeScript’s generics.</p>
+<p>I came up with this:</p>
+<pre><code class="language-ts">// use-stream.ts
+import { useEffect, useState } from 'react';
+import { Stream } from 'xstream';
+
+const useStream = &lt;T&gt;(stream$: Stream&lt;T&gt;, initialState: T | null = null) =&gt; {
+	const [current, setCurrent] = useState&lt;T&gt;(initialState);
+
+	useEffect(() =&gt; {
+		const sub = stream$.subscribe({
+			next: setCurrent,
+		});
+
+		return () =&gt; sub.unsubscribe();
+	});
+
+	// Just return our current value, since that's the thing we're interested in
+	// (to render) when using this hook:
+	return current;
+};
+
+export default useStream;
+</code></pre>
+<p>We’ve just made our own <code>useStream</code> hook by composing <code>useEffect</code> and <code>useState</code>!</p>
+<p>The hook can be used like this:</p>
+<pre><code class="language-tsx">import React from 'react';
+import { Stream } from 'xstream';
+import { formatDuration } from './libs/format-time';
+import useStream from './hooks/use-stream';
+
+interface Props {
+	currentTime$: Stream&lt;number&gt;;
+}
+
+const CurrentTimeCounter = (props: Props) =&gt; {
+	const currentTime: number = useStream&lt;number&gt;(props.currentTime$, 0);
+
+	return &lt;time&gt;{formatDuration(currentTime)}&lt;/time&gt;;
+};
+</code></pre>
+<p>And at last, there is beauty.</p>
+
+    </div>
+  </article>
+</main>
+
+
+			<footer role="contentinfo">
+  <nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/feed.xml" title="Atom">Post feed</a></li>
+        <li><a href="/micro.xml" title="Atom">Micro feed</a></li>
+        <li><a href="/reading.xml" title="Atom">Reading feed</a></li>
+    </ul>
+  </nav>
+</footer>
+
+		</div>
+
+		
+	   		<nav role="navigation" class="MainNav">
+	<div class="sticky">
+		<h1 class="f4 sr-only-mobile">
+			<a href="/" aria-label="Home">
+				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+			</a>
+		</h1>
+
+		<ul>
+           	<li class="only-mobile">
+          		<a href="/">Home</a>
+           	</li>
+          		<li>
+         			<a href="/now/">Now</a>
+          		</li>
+          		<li>
+         			<a href="/mind/">Micro</a>
+          		</li>
+          		<li>
+         			<a href="/about/">About</a>
+          		</li>
+          		<li>
+         			<a href="/reading/">Reading</a>
+          		</li>
+          		<li>
+         			<a href="/writings/">Writings</a>
+          		</li>
+        </ul>
+        <details>
+            <summary class="mv1 font-sans f5 muted link fw5">View more</summary>
+            <ul>
+              		<li>
+             			<a href="/to-read/">To read</a>
+              		</li>
+              		<li>
+             			<a href="/quotes/">Quotes</a>
+              		</li>
+              		<li>
+             			<a href="/changelog/">Changelog</a>
+              		</li>
+              		<li>
+             			<a href="/credits/">Credits</a>
+              		</li>
+            </ul>
+        </details>
+	</div>
+</nav>
+
+	 	
+	  </div>
+
+      <script>
+  // Only load on production environment.
+  if (window.location.host !== new URL('https://johan.im').host) {
+    window.goatcounter = {no_onload: true};
+  }
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+
+  
+
+
+</body></html>
