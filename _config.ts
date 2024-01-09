@@ -10,13 +10,10 @@ import { typeset } from './src/_lume-plugins/typeset.ts';
 import sourceMaps from 'lume/plugins/source_maps.ts';
 import { idOf } from './src/_includes/permalinks.ts';
 
-const DEST = 'build';
-const MINIFY = Deno.env.get('ENV') == 'production';
-
 const site = lume(
 	{
 		src: 'src',
-		dest: DEST,
+		dest: 'build',
 		location: new URL('https://johan.im'), // Ignored in dev
 	}
 );
