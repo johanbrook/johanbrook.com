@@ -27,8 +27,8 @@
 	--focus-color: var(--link-color);
 
 	--pre-background: var(--color-bg-secondary);
-	--code-background: var(--color-bg-secondary);
-	--code-color: hsl(112 30% 30%);
+	--code-background: rgb(0 0 0 / 2%);
+	--code-color: rgb(120 94 0);
 
 	--hr-color: var(--color-text);
 
@@ -52,7 +52,8 @@
 		--link-underline-color: hsl(201.43 57.86% 50.17% / 0.47);
 		--link-color-visited: #7a8be5;
 		--border-color: var(--color-text-detail);
-		--code-color: hsl(112 80% 80%);
+		--code-color: rgb(236 216 142);
+		--code-background: rgb(255 255 255 / 2%);
 
 		@supports (color: color(display-p3 1 1 1 / 1)) {
 			--link-color: color(display-p3 0.38 0.742 1);
@@ -63,7 +64,7 @@
 	/* Typography */
 
 	--sans: system-ui, sans-serif;
-	--mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+	--mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
 	--serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
 
 	--font-size-base: 20;

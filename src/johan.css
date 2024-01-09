@@ -31,5 +31,4 @@ utils;
 @import 'css/autogrow.css' layer(utils);
 @import 'css/prose.css' layer(components);
 
-@import 'css/prism-matrix.css' layer(base);
 @import 'css/typeset.css' layer(utils);

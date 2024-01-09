@@ -180,8 +180,11 @@ code {
 }
 
 :not(pre)>code {
-	color: var(--color-text-high-contrast);
-	font-weight: bold;
+	color: var(--code-color);
+	background-color: var(--code-background);
+	padding: .125rem .25rem;
+	border-radius: .125em;
+	font-weight: 500;
 	font-size: .85em;
 }
 
@@ -254,6 +257,9 @@ pre {
 	hyphens: none;
 	tab-size: 2;
 	color: var(--code-color);
+	background-color: var(--code-background);
+	padding: .125rem .25rem;
+	border-radius: .25em;
 	-webkit-font-smoothing: subpixel-antialiased;
 	-moz-osx-font-smoothing: none;
 	font-size: var(--f5);
