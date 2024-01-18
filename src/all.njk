@@ -1,0 +1,13 @@
+---
+title: All pages
+layout: layouts/page.njk
+menu:
+  visible: true
+  order: 6
+---
+
+<ol>
+    {% for page in search.pages("type!=post type!=note url!='/all/' url!='/'", "title") %}
+    <li><a title="{{ page.data.description }}" href="{{ page.data.url }}">{{ page.data.title }}</a></li>
+    {% endfor %}
+</ol>

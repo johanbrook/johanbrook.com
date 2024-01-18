@@ -1,10 +1,6 @@
 ---
-title: Quotes, sayings, and other wisdoms
+title: Quotes & sayings
 layout: layouts/page.njk
-menu:
-  visible: true
-  title: Quotes
-  order: 6
 ---
 
 > when you don’t create things, you become defined by your tastes rather than ability. your tastes only narrow & exclude people. so create.
