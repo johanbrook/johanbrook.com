@@ -18,7 +18,7 @@ menu:
 
 	{% for year, bookz in books | groupBooksByYear | dictsort | reverse %}
 	   <section>
-    	    <header class="mt4 mb2 flex justify-between items-center">
+    	    <header class="mt4 mb3 flex justify-between items-center">
                 <h1 class="mv0">{{ year }}</h1>
                 <p class="muted mb0 font-sans f5">{{ bookz.length }} books</p>
             </header>
@@ -32,31 +32,31 @@ menu:
                 {% for book in bookz | reverse %}
                     <tr id="{{ book.slug }}">
                    	<td>
-           					{{ book.title }}
+       					{{ book.title }}
                    	</td>
                    	<td>
                   		{{ book.author }}
                    	</td>
                    	<td>
-           					{{ book.notes | md(true) | safe }}
+       					{{ book.notes | md(true) | safe }}
                    	</td>
-                   	<td class="no-wrap font-sans f6 fw6 {% if book.dropped %}align-middle font-sans muted{% else %}{% if book.paused %}align-middle comp-yellow{% else %}{% if not book.finished%}align-middle font-sans comp-neon{% endif %}{% endif %}{% endif %}">
+                   	<td class="f6 no-wrap {% if not book.finished %}align-middle{% endif %}" width="10%">
                        	{% if book.dropped %}
-                          		Dropped
+                      		<span class="Badge Badge--muted">Dropped</span>
                        	{% else %}
                           		{% if book.paused %}
-            		            		Paused
+        		            		<span class="Badge Badge--warn">Paused</span>
          			            {% else %}
           		              		{% if book.finished %}
          		              			{% if book.finishedAt %}
-            		              				<time title="Finished at" datetime="{{ book.finishedAt }}">{{ book.finishedAt | date }}</time><br>
+        		              				<time title="Finished at" datetime="{{ book.finishedAt }}">{{ book.finishedAt | date }}</time><br>
          		              			{% endif %}
          		              			{% if book.location %}
-            		              				<small class="font-sans fw4" title="Finished in">{{ book.location }}</small>
+        		              				<small class="font-sans fw4" title="Finished in">{{ book.location }}</small>
          		              			{% endif %}
           		              		{% else %}
-         			              		Reading
-            			            	{% endif %}
+         			              		<span class="Badge Badge--positive">Reading</span>
+        			            	{% endif %}
          		            	{% endif %}
                        	{% endif %}
                    	</td>

@@ -24,7 +24,7 @@ menu:
         <a class="PostItem__Link" href="{{ post.data.url | url }}" title="About {{ post | readingTime }} reading time">{{ post.data.title }}</a>
 
         <div>
-            {% if post.data.draft %}<span class="badge mr1">Draft</span>{% endif %}
+            {% if post.data.draft %}<span class="Badge mr1">Draft</span>{% endif %}
             <time class="font-sans" datetime="{{ post.data.date | date("ATOM") }}" pubdate>{{ post.data.date | date }}</time>
         </div>
       </li>

@@ -949,17 +949,25 @@ TYPOGRAPHY
 	}
 }
 
-.badge {
-	font-size: var(--f7);
-	text-transform: lowercase;
+.Badge {
+	font-family: var(--sans);
 	border-radius: 4px;
-	font-weight: 500;
+	font-weight: 600;
 	background-color: var(--neon);
 	color: var(--color-bg);
-	padding: 0.4em 0.8em;
+	padding: 0.3em 0.4em;
+	white-space: nowrap;
 
 	&:hover {
 		text-decoration: none;
+	}
+
+	&.Badge--muted {
+	   background-color: var(--grey);
+	}
+
+	&.Badge--warn {
+	   background-color: var(--yellow);
 	}
 }
 

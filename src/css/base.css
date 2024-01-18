@@ -204,11 +204,11 @@ table {
 		--spacing: .6em;
 
 		& th {
-			text-transform: lowercase;
+			text-transform: uppercase;
 			font-weight: bold;
-			font-size: var(--f4);
-			font-variant: small-caps;
+			font-size: var(--f6);
 			letter-spacing: 0.05em;
+			font-family: var(--sans);
 		}
 
 		& td {
@@ -228,7 +228,7 @@ table {
 }
 
 th {
-	border-bottom: 2px solid var(--grey-light);
+	border-bottom: 3px double var(--grey);
 	padding: var(--spacing);
 	font-weight: bold;
 	font-size: var(--f5);
