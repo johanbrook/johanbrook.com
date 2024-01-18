@@ -19,9 +19,19 @@ layout: layouts/main.njk
         </div>
 
         <footer class="mt3">
-            <a href="/mind" class="f5">
-				<span aria-hidden="true" class="BackLink mr1">←</span> All micro notes
-			</a>
+            {% if tags %}
+                <ul>
+                    {% for tag in tags %}
+                    <li class="muted font-sans f6 inline">#{{ tag }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <p>
+                <a href="/mind" class="f5">
+    				<span aria-hidden="true" class="BackLink mr1">←</span> All micro notes
+    			</a>
+            </p>
         </footer>
     </article>
 </main>

@@ -150,6 +150,10 @@ TEXT ALIGNMENT
 	display: block;
 }
 
+.inline {
+    display: inline;
+}
+
 /*
 FLEXBOX
 ----------------------------------------------------------------*/
