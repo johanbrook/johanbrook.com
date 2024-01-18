@@ -474,11 +474,11 @@ table {
 	}
 
 		table.textual th {
-			text-transform: lowercase;
+			text-transform: uppercase;
 			font-weight: bold;
-			font-size: var(--f4);
-			font-variant: small-caps;
+			font-size: var(--f6);
 			letter-spacing: 0.05em;
+			font-family: var(--sans);
 		}
 
 		table.textual td {
@@ -496,7 +496,7 @@ table {
 		}
 
 th {
-	border-bottom: 2px solid var(--grey-light);
+	border-bottom: 3px double var(--grey);
 	padding: var(--spacing);
 	font-weight: bold;
 	font-size: var(--f5);
@@ -754,6 +754,10 @@ TEXT ALIGNMENT
 
 .block {
 	display: block;
+}
+
+.inline {
+    display: inline;
 }
 
 /*
@@ -1555,18 +1559,26 @@ TYPOGRAPHY
 		text-decoration: underline;
 	}
 
-.badge {
-	font-size: var(--f7);
-	text-transform: lowercase;
+.Badge {
+	font-family: var(--sans);
 	border-radius: 4px;
-	font-weight: 500;
+	font-weight: 600;
 	background-color: var(--neon);
 	color: var(--color-bg);
-	padding: 0.4em 0.8em;
+	padding: 0.3em 0.4em;
+	white-space: nowrap;
 }
 
-	.badge:hover {
+	.Badge:hover {
 		text-decoration: none;
+	}
+
+	.Badge.Badge--muted {
+	   background-color: var(--grey);
+	}
+
+	.Badge.Badge--warn {
+	   background-color: var(--yellow);
 	}
 
 .sr-only {
