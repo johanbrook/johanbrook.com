@@ -139,7 +139,7 @@ utils;
 	--grey-lightest: hsl(173 7% 93%);
 
 	--color-bg: #fff;
-	--color-bg-secondary: hsl(112 29.98% 97%);
+	--color-bg-secondary: hsl(240 59.76% 96.52%);
 	--color-text: hsl(0 0% 13%);
 	--color-text-high-contrast: black;
 	--color-text-detail: var(--grey);
@@ -148,20 +148,17 @@ utils;
 	--link-color-hover: hsl(201.43, 100%, 25.25%);
 	--link-color-visited: hsl(266 100% 44%);
 	--link-underline-color: hsl(201.43 43.1% 56.06% / 0.47);
-	--border-color: var(--grey);
+	--border-color: var(--grey-lightest);
 
-	--btn-color: hsl(213 100% 50%);
-	--btn-color-hover: hsl(213 100% 41%);
-	--btn-color-active: hsl(213 100% 33%);
-	--btn-color-disabled: var(--grey);
+	--btn-color: var(--color-text);
+	--btn-bg: var(--color-bg-secondary);
+	--btn-bg-hover: hsl(240 59.76% 95.52%);
 
 	--focus-color: var(--link-color);
 
 	--pre-background: var(--color-bg-secondary);
 	--code-background: rgb(0 0 0 / 2%);
 	--code-color: rgb(120 94 0);
-
-	--hr-color: var(--color-text);
 
 	/* Typography */
 
@@ -236,9 +233,10 @@ utils;
 		--link-color-hover: hsl(201.43, 93.43%, 69.58%);
 		--link-underline-color: hsl(201.43 57.86% 50.17% / 0.47);
 		--link-color-visited: #7a8be5;
-		--border-color: var(--color-text-detail);
 		--code-color: rgb(236 216 142);
 		--code-background: rgb(255 255 255 / 2%);
+
+		--btn-bg-hover: hsl(240 3.36% 15.51%);
 }
 
 		@supports (color: color(display-p3 1 1 1 / 1)) {
@@ -310,7 +308,7 @@ main {
 }
 
 :focus-visible {
-    outline: 2px solid black;
+    outline: 2px solid var(--link-color);
     box-shadow: 0 0 0 4px white;
     border-radius: .25em;
 }
@@ -426,6 +424,11 @@ a,
 		.muted:is(a,.link):hover {
 			color: var(--link-color-hover);
 		}
+
+	:is(a,.link):is([aria-current="page"] > *):is(:focus-visible, :hover) {
+	   cursor: default;
+	   text-decoration: none;
+	}
 
 p,
 ul,
@@ -580,11 +583,9 @@ blockquote {
 
 hr {
 	border: 0;
-	background-color: var(--hr-color);
-	height: .7rem;
-	aspect-ratio: 1 / 1;
-	margin: calc(var(--lineheight) * 2) 0;
-	border-radius: 100%;
+	background-color: var(--border-color);
+	height: 1px;
+	margin: var(--lineheight) 0;
 }
 
 textarea {
@@ -608,6 +609,10 @@ textarea {
 	left: var(--inset);
 }
 
+.relative {
+    position: relative;
+}
+
 /*
 BUTTONS
 ----------------------------------------------------------------*/
@@ -617,15 +622,13 @@ BUTTONS
 	   -moz-appearance: none;
 	        appearance: none;
 	border: 0;
-	background: none;
+	font-family: var(--sans);
+	background-color: var(--btn-bg);
+	color: var(--btn-color);
 	text-decoration: none;
-	color: var(--link-color);
 	text-align: center;
-	text-transform: lowercase;
 	border-radius: 6px;
-	font-weight: 500;
-	box-shadow: currentColor 0 0 0 1px;
-	padding: 0.3em 0.6em;
+	padding: 0.2em .60em;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	display: inline-block;
@@ -637,22 +640,14 @@ BUTTONS
 		cursor: pointer;
 	}
 
-	.btn:hover {
-		text-decoration: none;
-	}
-
-	.btn:hover {
+	.btn:where(:hover, [open] *) {
 		text-decoration: none;
 		color: var(--link-color-hover);
-	}
-
-	.btn:active,
-	.btn:active {
-		color: var(--link-color-active);
+		background-color: var(--btn-bg-hover);
 	}
 
 	.btn[disabled] {
-		color: var(--btn-color-disabled);
+		color: var(--color-text-detail);
 	}
 
 /*
@@ -1433,22 +1428,11 @@ BORDERS
 }
 
 .border-b {
-	border-left-width: 0;
-	border-right-width: 0;
-	border-bottom-width: 1px;
+	border-width: 0 0 1px;
 }
 
 .border-t {
-	border-left-width: 0;
-	border-right-width: 0;
-	border-top-width: 1px;
-}
-
-.border-b {
-	border-left-width: 0;
-	border-right-width: 0;
-	border-top-width: 0;
-	border-bottom-width: 1px;
+    border-width: 1px 0 0;
 }
 
 /*
@@ -1477,6 +1461,10 @@ COLOURS
 
 .text-color {
 	color: var(--color-text);
+}
+
+.text-color-contrast {
+    color: var(--color-text-high-contrast);
 }
 
 .muted {
@@ -1562,7 +1550,7 @@ TYPOGRAPHY
 .Badge {
 	font-family: var(--sans);
 	border-radius: 4px;
-	font-weight: 600;
+	font-weight: 550;
 	background-color: var(--neon);
 	color: var(--color-bg);
 	padding: 0.3em 0.4em;
@@ -1580,22 +1568,9 @@ TYPOGRAPHY
 	.Badge.Badge--warn {
 	   background-color: var(--yellow);
 	}
-
-.sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border-width: 0;
-}
 }
 
 @layer utils{
-
 
 @media screen and (max-width: 980px) {
 	.sr-only-mobile {
@@ -1687,8 +1662,6 @@ FOOTER
 		}
 				[role='contentinfo'] nav li[aria-current="page"] a {
 					color: var(--grey);
-					cursor: default;
-					text-decoration: none;
 				}
 
 	@media screen and (min-width: 58rem) {
@@ -1815,15 +1788,17 @@ FOOTER
     	text-decoration: none;
 	}
 
-    	.MainNav a:hover {
-    		color: var(--link-color-hover);
-    		text-decoration: underline;
-    	}
-
-		.MainNav a:is(:hover, :focus-visible) {
-			outline: 0;
+		.MainNav a:is(:hover, :focus-visible):not(:is([aria-current="page"] > *)) {
 			color: var(--link-color-hover);
 			text-decoration: underline;
+		}
+
+	   .MainNav ul li:where([aria-current='page'])::after {
+			content: '⇠';
+			display: inline;
+			margin-left: .25em;
+			white-space: nowrap;
+			color: var(--color-text-detail);
 		}
 
 		.MainNav ul a {
@@ -1835,23 +1810,12 @@ FOOTER
 				opacity: .8;
 			}
 
-			:where([aria-current='page'] :is(.MainNav ul a),.MainNav ul a:focus) {
-				outline: 0;
-			}
-
-				:where([aria-current='page'] :is(.MainNav ul a),.MainNav ul a:focus)::after {
-					content: '⇠';
-					display: inline;
-					margin-left: .5em;
-					white-space: nowrap;
-				}
-
 		.MainNav ul [aria-current='page'] {
 			position: relative;
 		}
 
 			.MainNav ul [aria-current='page'] a {
-				font-weight: 700;
+				font-weight: 600;
 			}
 
 	.MainNav h1 {
@@ -2093,10 +2057,6 @@ PROSE
 		padding-left: 1em;
 		margin-left: 1rem;
 	}
-
-		.prose ul li, .prose ol li {
-		  margin-bottom: var(--spacing-small);
-		}
 
 		.prose ul:where(ul), .prose ol:where(ul) {
 			list-style-type: disc;
