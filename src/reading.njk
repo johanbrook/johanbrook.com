@@ -27,11 +27,11 @@ menu:
               		<th>Title</th>
               		<th>Author</th>
               		<th>Notes</th>
-              		<th title="Status"></th>
+              		<th><span class="visually-hidden">Status</span></th>
                	</tr>
                 {% for book in bookz | reverse %}
                     <tr id="{{ book.slug }}">
-                   	<td>
+                   	<td class="text-color-contrast">
        					{{ book.title }}
                    	</td>
                    	<td>
