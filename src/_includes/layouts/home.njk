@@ -24,7 +24,7 @@ home: true
       <ol>
         {% for note in search.pages("type=note", "date=desc", 1) %}
           <li>
-            <h2 class="font-sans f5 fw4 mb3">
+            <h2 class="font-sans f5 fw4 mb2">
               <a href="{{ note.data.url }}" class="muted">Latest: {{ note.data.date | date("PPP — HH:mm")}}</a>
             </h2>
             <div class="prose font-mono f6">

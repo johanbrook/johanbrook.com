@@ -15,6 +15,9 @@
          			<a href="{{ entry.data.url }}">{{ entry.data.menu.title or entry.data.title }}</a>
           		</li>
            	{%- endfor %}
+            <li {% if '/all' | isCurrentPage %} aria-current="page"{% endif %} class="border border-t mt1 pt1">
+     			<a href="/all">All pages</a>
+      		</li>
         </ul>
 	</div>
 </nav>

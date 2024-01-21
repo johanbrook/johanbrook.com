@@ -827,22 +827,11 @@ BORDERS
 }
 
 .border-b {
-	border-left-width: 0;
-	border-right-width: 0;
-	border-bottom-width: 1px;
+	border-width: 0 0 1px;
 }
 
 .border-t {
-	border-left-width: 0;
-	border-right-width: 0;
-	border-top-width: 1px;
-}
-
-.border-b {
-	border-left-width: 0;
-	border-right-width: 0;
-	border-top-width: 0;
-	border-bottom-width: 1px;
+    border-width: 1px 0 0;
 }
 
 /*
@@ -871,6 +860,10 @@ COLOURS
 
 .text-color {
 	color: var(--color-text);
+}
+
+.text-color-contrast {
+    color: var(--color-text-high-contrast);
 }
 
 .muted {
@@ -956,7 +949,7 @@ TYPOGRAPHY
 .Badge {
 	font-family: var(--sans);
 	border-radius: 4px;
-	font-weight: 600;
+	font-weight: 550;
 	background-color: var(--neon);
 	color: var(--color-bg);
 	padding: 0.3em 0.4em;
@@ -974,19 +967,6 @@ TYPOGRAPHY
 	   background-color: var(--yellow);
 	}
 }
-
-.sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border-width: 0;
-}
-
 
 @media screen and (max-width: 980px) {
 	.sr-only-mobile {

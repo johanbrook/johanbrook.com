@@ -33,6 +33,14 @@
 
 	& ul {
 
+	   & li:where([aria-current='page'])::after {
+			content: '⇠';
+			display: inline;
+			margin-left: .25em;
+			white-space: nowrap;
+			color: var(--color-text-detail);
+		}
+
 		& a {
 			font-weight: normal;
 			position: revert;
@@ -40,24 +48,13 @@
 			&:not([aria-current='page'] > &):not(&:hover):not(&:focus-visible) {
 				opacity: .8;
 			}
-
-			:where([aria-current='page'] &, &:focus) {
-				outline: 0;
-
-				&::after {
-					content: '⇠';
-					display: inline;
-					margin-left: .5em;
-					white-space: nowrap;
-				}
-			}
 		}
 
 		& [aria-current='page'] {
 			position: relative;
 
 			& a {
-				font-weight: 700;
+				font-weight: 600;
 			}
 		}
 	}
