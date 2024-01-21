@@ -16,8 +16,6 @@ FOOTER
 			&[aria-current="page"] {
 				& a {
 					color: var(--grey);
-					cursor: default;
-					text-decoration: none;
 				}
 			}
 		}

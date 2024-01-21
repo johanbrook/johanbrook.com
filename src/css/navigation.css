@@ -19,13 +19,7 @@
     	white-space: nowrap;
     	text-decoration: none;
 
-    	&:hover {
-    		color: var(--link-color-hover);
-    		text-decoration: underline;
-    	}
-
-		&:is(:hover, :focus-visible) {
-			outline: 0;
+		&:is(:hover, :focus-visible):not(:is([aria-current="page"] > *)) {
 			color: var(--link-color-hover);
 			text-decoration: underline;
 		}

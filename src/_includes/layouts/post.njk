@@ -6,8 +6,8 @@ layout: layouts/main.njk
     <header>
       <h1 itemprop="name" class="{% if link %}fw6 pt3{% else %}title{% endif %}">{{ title }}</h1>
 
-      <p class="mb0 fw5 mt3">
-          <time datetime="{{ date | date("ATOM") }}" itemprop="datePublished" pubdate>
+      <p class="mb0 fw5">
+          <time class="text-color-contrast" datetime="{{ date | date("ATOM") }}" itemprop="datePublished" pubdate>
             {{ date | date("HUMAN_DATE") }}
           </time>
           {% if updated %}

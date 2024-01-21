@@ -11,12 +11,12 @@ menu:
 
   <ol class="NotesList">
     {% for post in search.pages("type=note", "date=desc") %}
-      <li>
+      <li class="h-entry" id="{{ post.data.url | url(true) }}">
         <article class="Note">
            	<header class="mb2">
                 <h1 class="f4 no-rhythm mb0">
-                    <a href="{{ post.data.url }}" title="{{ post.data.date | date('HUMAN_DATETIME') }} (permalink)" class="font-serif no-underline">
-                        <time datetime="{{ post.data.date | date('ATOM') }}" pubdate>{{ post.data.date | date("PPP — HH:mm") }}</time> <span>#</span>
+                    <a href="{{ post.data.url }}" title="{{ post.data.date | date('HUMAN_DATETIME') }} (permalink)" class="font-serif no-underline u-url">
+                        <time class="dt-published" datetime="{{ post.data.date | date('ATOM') }}" pubdate>{{ post.data.date | date("PPP — HH:mm") }}</time> <span>#</span>
                     </a>
                 </h1>
                 {% if post.data.location %}
@@ -24,7 +24,7 @@ menu:
                 {% endif %}
             </header>
 
-            <div class="prose">
+            <div class="prose e-content">
                 {{ post.data.content | md | safe }}
             </div>
         </article>

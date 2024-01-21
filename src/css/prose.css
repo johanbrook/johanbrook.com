@@ -39,10 +39,6 @@ PROSE
 		padding-left: 1em;
 		margin-left: 1rem;
 
-		li {
-		  margin-bottom: var(--spacing-small);
-		}
-
 		&:where(ul) {
 			list-style-type: disc;
 

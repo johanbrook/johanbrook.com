@@ -2,9 +2,7 @@
   <nav>
     <ul>
         {% if not home %}<li><a href="/">Home</a></li>{% endif %}
-        <li><a href="/feed.xml" title="Atom">Post feed</a></li>
-        <li><a href="/micro.xml" title="Atom">Micro feed</a></li>
-        <li><a href="/reading.xml" title="Atom">Reading feed</a></li>
+        <li {% if '/feeds' | isCurrentPage %} aria-current="page"{% endif %}><a href="/feeds">Feeds</a></li>
     </ul>
   </nav>
 </footer>

@@ -8,7 +8,7 @@
 	--grey-lightest: hsl(173 7% 93%);
 
 	--color-bg: #fff;
-	--color-bg-secondary: hsl(112 29.98% 97%);
+	--color-bg-secondary: hsl(240 59.76% 96.52%);
 	--color-text: hsl(0 0% 13%);
 	--color-text-high-contrast: black;
 	--color-text-detail: var(--grey);
@@ -19,18 +19,15 @@
 	--link-underline-color: hsl(201.43 43.1% 56.06% / 0.47);
 	--border-color: var(--grey-lightest);
 
-	--btn-color: hsl(213 100% 50%);
-	--btn-color-hover: hsl(213 100% 41%);
-	--btn-color-active: hsl(213 100% 33%);
-	--btn-color-disabled: var(--grey);
+	--btn-color: var(--color-text);
+	--btn-bg: var(--color-bg-secondary);
+	--btn-bg-hover: hsl(240 59.76% 95.52%);
 
 	--focus-color: var(--link-color);
 
 	--pre-background: var(--color-bg-secondary);
 	--code-background: rgb(0 0 0 / 2%);
 	--code-color: rgb(120 94 0);
-
-	--hr-color: var(--color-text);
 
 	@supports (color: color(display-p3 1 1 1 / 1)) {
 		--link-color: color(display-p3 0 0.425 0.73);
@@ -53,6 +50,8 @@
 		--link-color-visited: #7a8be5;
 		--code-color: rgb(236 216 142);
 		--code-background: rgb(255 255 255 / 2%);
+
+		--btn-bg-hover: hsl(240 3.36% 15.51%);
 
 		@supports (color: color(display-p3 1 1 1 / 1)) {
 			--link-color: color(display-p3 0.38 0.742 1);

@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="/johan.css">
 
     <!-- RSS -->
-    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Posts feed" href="/feed.xml">
-    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Mind feed" href="/mind.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Posts feed" href="/writings.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Micro feed" href="/mind.xml">
     <link rel="alternate" type="application/atom+xml" title="Johan Brook: Book feed" href="/reading.xml">
 
     <link rel="shortcut icon" href="/favicon.png" type="image/png">
@@ -62,8 +62,6 @@
 	  <div class="Content{% if wide %} wide{% endif %}">
 	  	<div id="main">
 			{{ content | safe }}
-
-			{% include "footer.njk" %}
 		</div>
 
 		{% if not bare %}

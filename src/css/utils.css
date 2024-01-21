@@ -4,6 +4,10 @@
 	left: var(--inset);
 }
 
+.relative {
+    position: relative;
+}
+
 /*
 BUTTONS
 ----------------------------------------------------------------*/
@@ -11,15 +15,13 @@ BUTTONS
 .btn {
 	appearance: none;
 	border: 0;
-	background: none;
+	font-family: var(--sans);
+	background-color: var(--btn-bg);
+	color: var(--btn-color);
 	text-decoration: none;
-	color: var(--link-color);
 	text-align: center;
-	text-transform: lowercase;
 	border-radius: 6px;
-	font-weight: 500;
-	box-shadow: currentColor 0 0 0 1px;
-	padding: 0.3em 0.6em;
+	padding: 0.2em .60em;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	display: inline-block;
@@ -30,22 +32,14 @@ BUTTONS
 		cursor: pointer;
 	}
 
-	&:hover {
-		text-decoration: none;
-	}
-
-	&:hover {
+	&:where(:hover, [open] *) {
 		text-decoration: none;
 		color: var(--link-color-hover);
-	}
-
-	&:active,
-	&:active {
-		color: var(--link-color-active);
+		background-color: var(--btn-bg-hover);
 	}
 
 	&[disabled] {
-		color: var(--btn-color-disabled);
+		color: var(--color-text-detail);
 	}
 }
 
