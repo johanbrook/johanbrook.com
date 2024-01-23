@@ -12,7 +12,10 @@
 			"dom",
 			"dom.iterable"
 		],
-		"strict": true
+		"strict": true,
+		"types": [
+            "lume/types.ts"
+        ]
 	},
 	"lint": {
 		"rules": {
