@@ -124,7 +124,7 @@ literally how Twitter used to be.&lt;/p&gt;</content>
     <updated>2022-02-16T00:00:00Z</updated>
     <id>https://johan.im/writings/sublime-text-deno/</id>
     <content type="html">&lt;p&gt;I&#39;ve recently switched back to Sublime Text as main editor, as described in a recent
-&lt;a href=&quot;https://johan.im/mind/#202202080950&quot;&gt;/mind post&lt;/a&gt;. As a test to get a feel for the ecosystem, I&#39;ve set out on a
+&lt;a href=&quot;https://johan.im/micro/202202080950&quot;&gt;/micro post&lt;/a&gt;. As a test to get a feel for the ecosystem, I&#39;ve set out on a
 journey to make it more ergonomic to develop &lt;a href=&quot;https://deno.land/&quot;&gt;Deno&lt;/a&gt; code. &amp;quot;Ergonomic&amp;quot; as in
 &amp;quot;actually use Typescript features and not show any red compile errors for Deno specific code&amp;quot;. Also,
 I want to try to have Sublime support

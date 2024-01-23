@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-gb" class=" micro202311292010"><head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Johan Brook</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://gc.zgo.at">
+    <link rel="preconnect" href="https://johanbrook.goatcounter.com">
+
+    
+    <meta name="description" content="I'm a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    
+    <meta name="author" content="Johan Brook">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/johan.css">
+
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Posts feed (Atom)" href="/writings.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Micro feed (Atom)" href="/micro.xml">
+    <link rel="alternate" type="application/feed+json" title="Johan Brook: Micro feed (JSON)" href="/micro.json">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Book feed (Atom)" href="/reading.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johan.im/micro/202311292010/">
+    <link rel="author" href="https://johan.im">
+    <link rel="me" href="https://hachyderm.io/@brookie">
+
+    <meta property="og:title" content="">
+    <meta property="og:url" content="https://johan.im/micro/202311292010/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    
+    <meta property="og:locale" content="en_GB">
+    
+    <meta property="og:description" content="I'm a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+
+    
+
+    
+   	<meta property="og:type" content="blog">
+    
+  </head>
+
+  <body>
+  	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+	  <div class="Content">
+	  	<div id="main">
+			<main role="main">
+    <article class="Note">
+       	<header class="mb2">
+            <h1 class="f4 no-rhythm mb0">
+                <a href="/micro/202311292010/" title="November 29th, 2023 at 8:10:49 PM GMT+0 (permalink)" class="font-serif no-underline target">
+                   <time datetime="2023-11-29T20:10:49Z" pubdate="">November 29th, 2023 — 20:10</time> <span>#</span>
+                </a>
+            </h1>
+            
+                <p title="Posted from" class="muted font-sans mb0 f5 target">My couch in Stockholm</p>
+            
+        </header>
+
+        <div class="prose">
+            <p>Messing around with the styling and structure here on the website again. I’m so inspired by all the personal sites I stumble on in my feed. But not inspired enough to actually produce as much content here as I would love to 😄</p>
+<p>Been reading a lot about <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">Web Components</a> recently. They’re having a sort of renaissance at the moment — not sure why this timing actually — much thanks to them being a tool in the box when building with progressive enhancement. All PE thought leaders are going on about the beauty of Web Components and “how you don’t need any big JS or Virtual DOM libraries at all!!”. I get that for small, self-contained UI components, but for anything non-trivial, you’re kind of bound to reinvent something inhouse for your app anyway, no? I guess Web Components fill the hole where you just want to drop a custom element in a piece of markup and have a Web Component use the element with contained JS and perhaps CSS.</p>
+<p>But the idea of “HTML Web Components” is really neat, in the way it enhances existing markup. Like this:</p>
+<pre><code class="language-html">&lt;convert-currency to="USD"&gt;10&lt;/convert-currency&gt;
+&lt;script src="convert-currency.js" type="module"&gt;&lt;/script&gt;
+</code></pre>
+<pre><code class="language-js">// convert-currency.js
+customElements.define('convert-currency', class extends HTMLElement {
+    connectedCallback() {
+        // use this.querySelector() and other DOM API methods to convert
+        // the text content to the currency from this.getAttribute("to").
+    }
+})
+</code></pre>
+<ul>
+<li>For server rendered markup, <code>&lt;convert-currency&gt;</code> will render just fine, and <code>10</code> with it. Browsers will just ignore it when parsing the HTML.</li>
+<li>When parsing is done and JS kicks in, we’ll “enrich” our custom element with logic.</li>
+</ul>
+<p>My takeaway is that custom elements and Web Components give us a declarative way to encapsulate logic (duh, “components” it’s in the name), which creates whole new patterns in how to approach component style architecture but <em>without</em> any 3rd party JS component library.</p>
+        </div>
+
+        <footer class="mt3">
+            
+                <ul>
+                    
+                </ul>
+            
+
+            <p>
+                <a href="/micro" class="f5">
+    				<span aria-hidden="true" class="BackLink mr1">←</span> All micro notes
+    			</a>
+            </p>
+        </footer>
+    </article>
+</main>
+
+		</div>
+
+		
+	   		<nav role="navigation" class="MainNav">
+	<div class="sticky">
+		<h1 class="f4 sr-only-mobile">
+			<a href="/" aria-label="Home">
+				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+			</a>
+		</h1>
+
+		<ul>
+           	<li class="only-mobile">
+          		<a href="/">Home</a>
+           	</li>
+          		<li>
+         			<a href="/now/">Now</a>
+          		</li>
+          		<li>
+         			<a href="/micro/">Micro</a>
+          		</li>
+          		<li>
+         			<a href="/about/">About</a>
+          		</li>
+          		<li>
+         			<a href="/reading/">Reading</a>
+          		</li>
+          		<li>
+         			<a href="/feeds/">Feeds</a>
+          		</li>
+          		<li>
+         			<a href="/writings/">Writings</a>
+          		</li>
+            <li class="border border-t mt1 pt1">
+     			<a href="/all">All pages</a>
+      		</li>
+        </ul>
+	</div>
+</nav>
+
+	 	
+	  </div>
+
+      <script>
+  // Only load on production environment.
+  if (window.location.host !== new URL('https://johan.im').host) {
+    window.goatcounter = {no_onload: true};
+  }
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+
+  
+
+
+</body></html>
