@@ -14,7 +14,7 @@ keywords:
 ---
 
 I've recently switched back to Sublime Text as main editor, as described in a recent
-[/mind post](/mind/#202202080950). As a test to get a feel for the ecosystem, I've set out on a
+[/micro post](/micro/202202080950). As a test to get a feel for the ecosystem, I've set out on a
 journey to make it more ergonomic to develop [Deno](https://deno.land) code. "Ergonomic" as in
 "actually use Typescript features and not show any red compile errors for Deno specific code". Also,
 I want to try to have Sublime support

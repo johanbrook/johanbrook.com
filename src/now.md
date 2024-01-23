@@ -76,6 +76,6 @@ See ["Reading"](/reading).
 - Do our best to get back to South Africa during some Swedish Winter months.
 - Eat more spicy food.
 
-If my life changes, I'll update this page. Also see [what's on my mind](/mind).
+If my life changes, I'll update this page. Also see [what's on my mind](/micro).
 
 Inspired by [Derek Sivers](https://sivers.org/now).

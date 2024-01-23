@@ -88,7 +88,7 @@ ${body}\n
 
 	const { name: file, html_url: fileUrl } = res.content;
 
-	return new Response(JSON.stringify({ file, fileUrl, allNotes: 'https://johan.im/mind' }), {
+	return new Response(JSON.stringify({ file, fileUrl, allNotes: 'https://johan.im/micro' }), {
 		headers: {
 			'content-type': 'application/json',
 		},

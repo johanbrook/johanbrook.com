@@ -10,3 +10,9 @@ url: /404.html
         <a href="/">⇠ Back to home</a>
     </p>
 </section>
+
+<script>
+if (window.location.pathname.includes("/mind")) {
+    window.location.href = window.location.href.replace('mind', 'micro');
+}
+</script>
