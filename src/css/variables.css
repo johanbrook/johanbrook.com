@@ -65,7 +65,7 @@
 	--mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
 	--serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
 
-	--font-size-base: 20;
+	--font-size-base: 18;
 	--leading: 1.618;
 	/* Rhythm unit */
 	--lineheight: calc(var(--leading) * 1rem);

@@ -9,7 +9,7 @@ html {
 }
 
 :where(body, html) {
-	font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--serif);
+	font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--sans);
 	background-color: var(--color-bg);
 	color: var(--color-text);
 }
@@ -60,6 +60,7 @@ h6 {
 	margin-block-end: 0;
 	margin-bottom: calc(var(--lineheight) / 2);
 	color: var(--color-text-high-contrast);
+	font-family: var(--serif);
 }
 
 .f0,
