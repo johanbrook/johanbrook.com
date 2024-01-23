@@ -8,6 +8,11 @@
     position: relative;
 }
 
+.avatar {
+    border-radius: 100%;
+    aspect-ratio: 1 / 1;
+}
+
 /*
 BUTTONS
 ----------------------------------------------------------------*/
@@ -885,6 +890,10 @@ OPACITY
 TYPOGRAPHY
 ----------------------------------------------------------------*/
 
+.leading-none {
+    line-height: 1;
+}
+
 .leading-tight {
 	line-height: 1.2;
 }
@@ -1029,4 +1038,5 @@ a:hover .icon-feed {
 
 .align-middle {
     vertical-align: middle;
+    margin-block-start: calc(1ex - 1cap);
 }
