@@ -1,0 +1,38 @@
+---
+layout: null
+---
+{
+    "version": "https://www.jsonfeed.org/version/1.1/",
+    "title": "{{ meta.microtitle }}",
+    "home_page_url": "{{ meta.site }}",
+    "feed_url": "{{ url | url(true) }}",
+    "favicon": "{{ 'favicon.png' | url(true) }}",
+    "authors": [{
+        "name": "{{ meta.author }}",
+        "url": "{{ meta.site }}",
+        "avatar": "{{ meta.avatar | url(true) }}"
+    }],
+    "language": "en-GB",
+    "items": [
+        {% for post in search.pages("type=note", "date=desc", 10) %}
+        {
+            "id": "{{ post.data.url | url(true) }}",
+            "url": "{{ post.data.url | url(true) }}",
+            {% if (post.data.content | excerpt | length) < (post.data.content | trim | length)  %}
+            "summary": {{ post.data.content | excerpt | jsonHtml | safe }},
+            {% endif %}
+            {% if post.data.tags.length %}
+            "tags": {{ post.data.tags | dump | safe }},
+            {% endif %}
+            {% if post.data.location %}
+            "_location": "{{ post.data.location }}",
+            {% endif %}
+            {% if post.data.updated %}
+            "date_modified": "{{ post.data.updated | date('ATOM') }}",
+            {% endif %}
+            "content_html": {{ post.data.content | md | htmlUrl(true) | jsonHtml | safe }},
+            "date_published": "{{ post.data.date | date('ATOM') }}"
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}

@@ -1,5 +1,12 @@
-title: Johan Brook
+titles:
+    site: Johan Brook
+    micro: Johan's Micro Blog
+    writings: Johan's Writings
+    reading: What Johan Is Reading
+
 author: Johan Brook
+avatar: /.well-known/avatar.jpg
+
 description: I'm a thirty-something designer and developer based in Sweden. I work
     with the best people in a company called Lookback, where I help interfaces come
     to life. I'm coding & designering and I like working with product, user experience,

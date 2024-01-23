@@ -19,12 +19,12 @@ const site = lume(
 );
 
 site
-	//
 	.includes(['.ts', '.js'], 'js')
 	.includes(['.css'], 'css')
 	.use(typeset({ scope: '.prose' }))
 	.use(esbuild())
 	.copy('public', '.')
+	.copy('public/.well-known', './.well-known') // lume ignores . dirs, must copy explicitly
 	// Plugins
 	.use(inline())
 	.use(postcss())
@@ -78,6 +78,8 @@ site
 		return groups;
 	})
 	.filter('id', (page: Page) => idOf(page.src.slug))
+	// Fixes `str` to be suitable for JSON output
+	.filter('jsonHtml', (str: string) => JSON.stringify(str.replace('"', '\"')))
 	// Data
 	.data('pageSlug', function (this: { ctx: { url: string } }) {
 		return this.ctx.url.replaceAll('/', '');
