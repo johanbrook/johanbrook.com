@@ -30,7 +30,7 @@ menu:
               		<th><span class="visually-hidden">Status</span></th>
                	</tr>
                 {% for book in bookz | reverse %}
-                    <tr id="{{ book.slug }}">
+                    <tr id="{{ book.slug }}" class="h-entry">
                    	<td class="text-color-contrast">
        					{{ book.title }}
                    	</td>

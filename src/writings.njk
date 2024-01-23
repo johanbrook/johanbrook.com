@@ -10,9 +10,9 @@ menu:
 {% set firstEverPost = posts | last %}
 {% set latestPost = posts | first %}
 
-<main role="main" class="posts">
+<main role="main" class="posts h-feed">
 
-  <h1 class="title pull-W">{{ title }}.</h1>
+  <h1 class="title pull-W p-name">{{ title }}.</h1>
 
   <p class="subhead">
     {{posts | length }} posts, from <time datetime="{{ firstEverPost.data.date | date("DATETIME") }}">{{ firstEverPost.data.date | date("MMMM yyyy") }}</time> to <time datetime="{{ latestPost.data.date | date("DATETIME") }}">{{ latestPost.data.date | date("MMMM yyyy") }}</time>.
@@ -20,12 +20,12 @@ menu:
 
   <ol class="PostsList">
     {% for post in posts %}
-      <li class="PostItem">
-        <a class="PostItem__Link" href="{{ post.data.url | url }}" title="About {{ post | readingTime }} reading time">{{ post.data.title }}</a>
+      <li class="PostItem h-entry" id="{{ post.data.url | url(true) }}">
+        <a class="PostItem__Link u-url" href="{{ post.data.url | url }}" title="About {{ post | readingTime }} reading time">{{ post.data.title }}</a>
 
         <div>
             {% if post.data.draft %}<span class="Badge mr1">Draft</span>{% endif %}
-            <time class="font-sans" datetime="{{ post.data.date | date("ATOM") }}" pubdate>{{ post.data.date | date }}</time>
+            <time class="font-sans dt-published" datetime="{{ post.data.date | date('ATOM') }}" pubdate>{{ post.data.date | date }}</time>
         </div>
       </li>
     {% endfor %}

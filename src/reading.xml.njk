@@ -4,7 +4,7 @@ layout: null
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-	<title>Books read by {{ meta.author }}</title>
+	<title>{{ meta.titles.reading }}</title>
 	<subtitle>Non-exhaustive list of books I've read and am reading, in reverse chronological order.</subtitle>
 	<link href="{{ url | url(true) }}" rel="self"/>
 	<link href="{{ "/reading" | url(true) }}"/>
