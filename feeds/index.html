@@ -17,10 +17,11 @@
     <!-- Styles-->
     <link rel="stylesheet" href="/johan.css">
 
-    <!-- RSS -->
-    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Posts feed" href="/writings.xml">
-    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Micro feed" href="/mind.xml">
-    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Book feed" href="/reading.xml">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Posts feed (Atom)" href="/writings.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Micro feed (Atom)" href="/micro.xml">
+    <link rel="alternate" type="application/feed+json" title="Johan Brook: Micro feed (JSON)" href="/micro.json">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Book feed (Atom)" href="/reading.xml">
 
     <link rel="shortcut icon" href="/favicon.png" type="image/png">
     <link rel="canonical" itemprop="url" href="https://johan.im/feeds/">
@@ -47,17 +48,29 @@
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
 	  <div class="Content">
 	  	<div id="main">
-			<main role="main" class="posts">
+			<main role="main">
+  <article class="Page">
+    <h1 class="title ">Feeds.</h1>
+	
+		<p class="subhead">Bring the feeds, here are the feeds!</p>
+	
+    <div class="prose measure">
+      <h2>Micro</h2>
+<ul>
+<li><a href="/micro.xml">Atom</a></li>
+<li><a href="/micro.json">JSON</a></li>
+</ul>
+<h2>Reading</h2>
+<ul>
+<li><a href="/reading.xml">Atom</a></li>
+</ul>
+<h2>Writings</h2>
+<ul>
+<li><a href="/writings.xml">Atom</a></li>
+</ul>
 
-    <h1 class="f0 mb0">Feeds</h1>
-
-    <p class="subhead">Bring the feeds, here are the feeds!</p>
-
-    <ul class="flex items-center gap">
-        <li><a class="btn" href="/micro.xml" title="/micro.xml">Micro blog feed</a></li>
-        <li><a class="btn" href="/writings.xml" title="/writings.xml">Writings feed</a></li>
-        <li><a class="btn" href="/reading.xml" title="/reading.xml">Reading feed</a></li>
-    </ul>
+    </div>
+  </article>
 </main>
 
 		</div>
