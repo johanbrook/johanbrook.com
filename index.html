@@ -177,18 +177,15 @@
 
 <template id="music-tmpl">
 	<li class="mb2 leading-tight">
-		<span class="music-title block fw7"></span>
-		<small class="font-sans f5">
+		<span class="music-title block fw6"></span>
+		<small class="font-sans f6">
 			<span class="music-subtitle muted"></span>
-			<time class="music-datetime ml1"></time>
 		</small>
 	</li>
 </template>
 
 <script type="module">
-	const ENDPOINT = location.hostname == 'localhost'
-		? 'http://localhost:8788'
-		: 'https://brookie.pages.dev';
+	const ENDPOINT = 'https://brookie.pages.dev';
 
 	const render = (target, tracks) => {
 		const tmpl = document.getElementById('music-tmpl');
@@ -202,14 +199,6 @@
 
 			title.textContent = track.name;
 			subtitle.textContent = `${track.artist['#text']} — ${track.album['#text']}`;
-
-			const dateTime = clone.querySelector('.music-datetime');
-
-			if (track.date) {
-				const date = new Date(parseInt(track.date['uts'], 10) * 1000);
-				dateTime.textContent = fmt.format(date);
-				dateTime.setAttribute('title', date.toUTCString());
-			}
 
 			if (track['@attr']?.nowplaying == 'true') {
 				title.classList.add('fw7');

@@ -431,6 +431,10 @@ a,
 	   text-decoration: none;
 	}
 
+a.no-link {
+    color: inherit;
+}
+
 p,
 ul,
 ol,
@@ -472,6 +476,10 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+	table tr:target {
+	   background-color: var(--color-bg-secondary);
+    }
 
 	table.textual {
 		--spacing: .6em;
