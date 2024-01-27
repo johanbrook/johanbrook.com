@@ -9,8 +9,8 @@ menu:
 ---
 
 <main role="main">
-  <article class="page">
-	<h1 class="title">{{ title }}.</h1>
+  <article class="page h-feed">
+	<h1 class="title p-name">{{ title }}.</h1>
 
 	<p class="subhead measure mb4">
   		Non-exhaustive list of books I've read and am reading, in reverse chronological order. You can also check out what I <a href="/to-read">want to read next.</a>
@@ -30,9 +30,9 @@ menu:
               		<th><span class="visually-hidden">Status</span></th>
                	</tr>
                 {% for book in bookz | reverse %}
-                    <tr id="{{ book.slug }}" class="h-entry">
+                    <tr id="{{ book.slug }}">
                    	<td class="text-color-contrast">
-       					{{ book.title }}
+       					<a href="{{ url | url(true) }}#{{book.slug}}" class="no-link">{{ book.title }}</a>
                    	</td>
                    	<td>
                   		{{ book.author }}
@@ -49,7 +49,7 @@ menu:
          			            {% else %}
           		              		{% if book.finished %}
          		              			{% if book.finishedAt %}
-        		              				<time title="Finished at" datetime="{{ book.finishedAt }}">{{ book.finishedAt | date }}</time><br>
+        		              				<time title="Finished at {{ book.finishedAt }}" datetime="{{ book.finishedAt }}">{{ book.finishedAt | date }}</time><br>
          		              			{% endif %}
          		              			{% if book.location %}
         		              				<small class="font-sans fw4" title="Finished in">{{ book.location }}</small>

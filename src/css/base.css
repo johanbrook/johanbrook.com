@@ -165,6 +165,10 @@ a,
 	}
 }
 
+a.no-link {
+    color: inherit;
+}
+
 p,
 ul,
 ol,
@@ -205,6 +209,10 @@ table {
 	width: 100%;
 	border-collapse: collapse;
 	border-spacing: 0;
+
+	tr:target {
+	   background-color: var(--color-bg-secondary);
+    }
 
 	&.textual {
 		--spacing: .6em;
