@@ -15,7 +15,6 @@ env:
     BUILD_ARTIFACT: johan.im-build
     BUILD_FOLDER: build
     MASTODON_LOG_FILE: ../.mastodon-notes
-    NOTES_DIR: ../src/notes
 
 jobs:
     build:
@@ -83,9 +82,10 @@ jobs:
             - name: Check if latest note is already posted
               id: mastodon_note_check
               run: |
-                ./script/check-mastodon-note.sh
-                status=$(echo $?)
-                [ "$status" == "0" ] && echo "do_post=true" >> "$GITHUB_OUTPUT"
+                latest=$(./script/check-mastodon-note.sh)
+                echo "Latest note is $latest"
+                [ ! -z "$latest" ] && echo "do_post=true" >> "$GITHUB_OUTPUT"
+                echo "latest_unposted=$latest" >> "$GITHUB_OUTPUT"
 
     post_mastodon:
         name: Send latest micro post to Mastodon
@@ -112,13 +112,11 @@ jobs:
 
             - name: Write to log
               run: |
-                  # 2022-01-04-09-37.md -> 202201040937
-                  latest=$(ls -r1 "$DIR" | grep -v "_" | head -n 1 | sed -e "s/-//g" | cut -f 1 -d ".")
-                  echo "$latest" >> $MASTODON_LOG_FILE
+                  echo "$LATEST_UNPOSTED" >> $MASTODON_LOG_FILE
                   cat "$MASTODON_LOG_FILE"
               env:
                   MASTODON_LOG_FILE: ${{ env.MASTODON_LOG_FILE }}
-                  DIR: ${{ env.NOTES_DIR }}
+                  LATEST_UNPOSTED: ${{ needs.check_latest_note.outputs.latest_unposted }}
 
             - name: Commit and push posted notes
               run: |

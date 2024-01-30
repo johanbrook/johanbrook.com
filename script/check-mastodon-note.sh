@@ -8,17 +8,14 @@ MASTODON_LIST=".mastodon-notes"
 # 2022-01-04-09-37.md -> 202201040937
 LATEST=$(ls -r1 "$DIR" | grep -v "_" | head -n 1 | sed -e "s/-//g" | cut -f 1 -d ".")
 
-echo "Latest note is $LATEST"
-
 case `cat "$MASTODON_LIST" | grep -Fxq "$LATEST" >/dev/null; echo $?` in
   0)
     # found
-    echo "Found note $LATEST in $MASTODON_LIST. Do nothing."
-    exit 2
+    exit 0
     ;;
   1)
     # not found, continue
-    echo "Note $LATEST not in $MASTODON_LIST"
+    echo "$LATEST"
     exit 0
     ;;
   *)
