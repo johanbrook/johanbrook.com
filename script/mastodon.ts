@@ -46,6 +46,11 @@ const postStatus = async () => {
 
     const note = extract(await Deno.readTextFile(import.meta.dirname + `/../${filePath}`));
 
+    if (note.attrs.draft || note.attrs.skip_mastodon) {
+        console.log(`Skipping posting because one of "draft" or "skip_mastodon" are true for note ${filePath}`);
+        return;
+    }
+
     const permalink = meta.site + notePermalinkOf(latestId);
 
     const statusBody = truncateToStatus(note.body.trim(), permalink);
