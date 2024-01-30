@@ -8,14 +8,13 @@ const accessToken = Deno.env.get('MASTODON_ACCESS_TOKEN');
 
 const DRY_RUN = !!Deno.env.get('DRY');
 const CI = !!Deno.env.get('CI');
-const PERSISTED_PATH = new URL('../.mastodon-notes', import.meta.url);
 
 if (!accessToken) {
     console.error('No ACCESS_TOKEN');
     process.exit(1);
 }
 
-const metaFile = new URL('../src/_data/meta.yml', import.meta.url);
+const metaFile = import.meta.dirname + '/../src/_data/meta.yml';
 const meta = await Deno.readTextFile(metaFile).then(parse);
 
 if (!meta?.mastodon?.instance) {
@@ -45,24 +44,7 @@ const postStatus = async () => {
 
     console.log(`Latest note ID is: ${latestId}`);
 
-    const note = extract(await Deno.readTextFile(new URL(`../${filePath}`, import.meta.url)));
-
-    const alreadyDone = await Deno.readTextFile(PERSISTED_PATH).then((lines) =>
-        lines.split('\n').filter((x) => !!x && x[0] != '#')
-    );
-
-    // Nothing to do
-    if (alreadyDone.includes(latestId)) {
-        console.log(`Nothing to do: ${PERSISTED_PATH} already includes note ID: ${latestId}`);
-        if (CI) {
-            const output = Deno.env.get('GITHUB_OUTPUT');
-            if (!output) {
-                throw new Error('GITHUB_OUTPUT env var does not exist!');
-            }
-            await Deno.writeTextFile(output, 'bail=true');
-        }
-        return;
-    }
+    const note = extract(await Deno.readTextFile(import.meta.dirname + `/../${filePath}`));
 
     const permalink = meta.site + notePermalinkOf(latestId);
 
@@ -72,7 +54,6 @@ const postStatus = async () => {
 
     if (DRY_RUN) {
         console.log(`> Status posted to <DRY RUN>`);
-        console.log(`> Wrote ${latestId} to .mastodon-notes`);
         return;
     }
 
@@ -94,13 +75,6 @@ const postStatus = async () => {
     }
 
     console.log(`> Status posted to ${json.url}`);
-
-    await writeNoteToLog(latestId);
-};
-
-const writeNoteToLog = async (id: string) => {
-    await Deno.writeTextFile(PERSISTED_PATH, id + '\n', { append: true });
-    console.log(`> Wrote ${id} to .mastodon-notes`);
 };
 
 // Main

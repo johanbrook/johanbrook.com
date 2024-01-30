@@ -14,6 +14,8 @@ env:
     DENO_VERSION: v1.40.2
     BUILD_ARTIFACT: johan.im-build
     BUILD_FOLDER: build
+    MASTODON_LOG_FILE: ../.mastodon-notes
+    NOTES_DIR: ../src/notes
 
 jobs:
     build:
@@ -71,10 +73,25 @@ jobs:
                   CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
                   CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
 
-    maybe-micro-mastodon:
-        name: Maybe send latest micro post to Mastodon
-        needs: deploy # can't send post with permalink until site is deployed
+    check_latest_note:
+        name: Check if we should to post to Mastodon
         runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+
+            - name: Check if latest note is already posted
+              id: mastodon_note_check
+              run: |
+                ./script/check-mastodon-note.sh
+                status=$(echo $?)
+                [ "$status" == "0" ] && echo "do_post=true" >> "$GITHUB_OUTPUT"
+
+    post_mastodon:
+        name: Send latest micro post to Mastodon
+        needs: [deploy, check_latest_note] # can't send post with permalink until site is deployed
+        runs-on: ubuntu-latest
+        if: ${{ needs.check_latest_note.outputs.do_post }}
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
@@ -89,17 +106,27 @@ jobs:
               run: deno run --allow-net --allow-read --allow-env script/wait-for-status.ts
 
             - name: Post to Mastodon
-              id: mastodon
               run: deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts
               env:
                   MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
 
+            - name: Write to log
+              run: |
+                  # 2022-01-04-09-37.md -> 202201040937
+                  latest=$(ls -r1 "$DIR" | grep -v "_" | head -n 1 | sed -e "s/-//g" | cut -f 1 -d ".")
+                  echo "$latest" >> $MASTODON_LOG_FILE
+                  cat "$MASTODON_LOG_FILE"
+              env:
+                  MASTODON_LOG_FILE: ${{ env.MASTODON_LOG_FILE }}
+                  DIR: ${{ env.NOTES_DIR }}
+
             - name: Commit and push posted notes
-              if: ${{ ! steps.mastodon.outputs.bail }}
-              run: |-
+              run: |
                 git config user.name "Automated"
                 git config user.email "actions@users.noreply.github.com"
-                git add .mastodon-notes
+                git add $MASTODON_LOG_FILE
                 timestamp=$(date -u)
                 git commit -m "Latest post to Mastodon: ${timestamp} [skip-ci]" || exit 0
                 git push
+              env:
+                  MASTODON_LOG_FILE: ${{ env.MASTODON_LOG_FILE }}

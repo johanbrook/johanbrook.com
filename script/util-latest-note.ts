@@ -3,7 +3,7 @@ import * as path from 'path';
 const NOTES_DIR = 'src/notes';
 
 export const latestNote = async (): Promise<[string, string]> => {
-    const latest: string = await Array.fromAsync(Deno.readDir(new URL('../' + NOTES_DIR, import.meta.url))).then((fs) =>
+    const latest: string = await Array.fromAsync(Deno.readDir(import.meta.dirname + '/../' + NOTES_DIR)).then((fs) =>
         fs
             .filter((f) => f.isFile && path.extname(f.name) == '.md')
             .map((f) => f.name)
