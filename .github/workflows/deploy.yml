@@ -83,7 +83,7 @@ jobs:
               id: mastodon_note_check
               run: |
                 latest=$(./script/check-mastodon-note.sh)
-                echo "Latest note is $latest"
+                [ -z "$latest" ] && echo "Latest note is posted. Bail." || echo "Latest note is $latest. Do post."
                 [ ! -z "$latest" ] && echo "do_post=true" >> "$GITHUB_OUTPUT"
                 echo "latest_unposted=$latest" >> "$GITHUB_OUTPUT"
 
