@@ -2,10 +2,44 @@
   slug: gomorra
   author: Roberto Saviano
 
-- title: Det Tredje Riket
-  slug: tredje-riket
-  author: Karl Ove Knausgård
-
 - title: The Looking Glass War
   author: John le Carré
   slug: the-looking-glass-war
+
+- title: The Odyssey
+  author: Emily Watson
+  notes: New English translation.
+  slug: the-odyssey
+
+- title: The Iliad
+  author: Emily Watson
+  notes: New English translation.
+  slug: the-iliad
+
+- title: Eden
+  author: Isabelle Ståhl
+  slug: eden
+
+- title: Saudade
+  author: Henrik Brandão Jönsson
+  slug: saudade
+
+- title: The Age of Interconnection
+  author: Jonathan Sperber
+  slug: age-of-interconnection
+
+- title: The Essentials of Classic Italian Cooking
+  author: Marcella Hazan
+  slug: italian-cooking
+
+- title: Checkmate Berlin
+  author: Giles Milton
+  slug: checkmate-berlin
+
+- title: Makten och Heligheten
+  author: Dan Jones
+  slug: makten-och-heligheten
+
+- title: Steering the Craft
+  author: Ursula K. Le Guin
+  slug: steering-the-craft

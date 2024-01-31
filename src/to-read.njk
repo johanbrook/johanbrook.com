@@ -2,11 +2,11 @@
 title: Want to read
 layout: layouts/page.njk
 description: Books which are on my reading list.
-date: Git Last Modified
+date: 2024-01-31
 ---
 
 <p class="measure subhead">
-	Updated on <time class="text-color fw5" datetime="{{ date | date("DATETIME") }}">{{ date | date("EEEE, LLLL do yyyy") }}</time>.
+	Updated in <time class="text-color fw5" datetime="{{ date | date("DATETIME") }}">{{ date | date("LLLL yyyy") }}</time>. Unordered list.
 </p>
 
 <table class="textual">
@@ -30,6 +30,6 @@ date: Git Last Modified
   {% endfor %}
 </table>
 
-<p class="measure muted">
-	You can also check out <a href="/reading">what I've read so far.</a>
+<p class="measure">
+	{{ toread.length }} books. <span class="muted">You can also check out <a href="/reading">what I've read so far.</a></span>
 </p>
