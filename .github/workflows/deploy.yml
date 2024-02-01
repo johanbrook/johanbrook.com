@@ -97,7 +97,7 @@ jobs:
         name: Send latest micro post to Mastodon
         needs: [deploy, check_latest_note] # can't send post with permalink until site is deployed
         runs-on: ubuntu-latest
-        if: ${{ needs.check_latest_note.outputs.do_post }}
+        if: needs.check_latest_note.outputs.do_post == 'true'
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
