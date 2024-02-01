@@ -87,9 +87,9 @@ jobs:
                 note_id=$(./script/check-mastodon-note.sh "$latest")
                 [ -z "$note_id" ] && echo "Latest note $latest is posted. Bail." || echo "Latest note $latest is not posted. Do post."
                 [ ! -z "$note_id" ] && echo "do_post=true" >> "$GITHUB_OUTPUT"
-                cat "$GITHUB_OUTPUT"
                 echo "latest_note_id=$note_id" >> "$GITHUB_OUTPUT"
                 echo "latest_note_path=$latest" >> "$GITHUB_OUTPUT"
+                cat "$GITHUB_OUTPUT"
               env:
                   NOTES_DIR: ${{ env.NOTES_DIR }}
 
