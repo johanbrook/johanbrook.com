@@ -117,10 +117,11 @@ jobs:
               with:
                   deno-version: ${{ env.DENO_VERSION }}
 
-            - name: Post to Mastodon
-              run: deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts
+            - name: Post to Mastodon API
+              run: deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts "$LATEST_NOTE_PATH"
               env:
                   MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+                  LATEST_NOTE_PATH: ${{ needs.check_latest_note.outputs.latest_note_path }}
 
             - name: Write to log
               run: |
