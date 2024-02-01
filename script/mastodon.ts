@@ -47,8 +47,7 @@ const truncateToStatus = (str: string, permalink: string) => {
 const API_ROOT = `https://${meta.mastodon.instance}`;
 
 const postStatus = async (filePath: string) => {
-    const url = new URL('/api/v1/statuses', API_ROOT);
-    const form = new FormData();
+    console.log(`Posting contents of ${filePath}`);
 
     const latestId = path.basename(filePath).replaceAll('-', '').split('.').at(0)!;
 
@@ -71,6 +70,9 @@ const postStatus = async (filePath: string) => {
         console.log(`> Status posted to <DRY RUN>`);
         return;
     }
+
+    const url = new URL('/api/v1/statuses', API_ROOT);
+    const form = new FormData();
 
     form.append('status', statusBody);
 

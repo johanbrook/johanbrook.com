@@ -87,7 +87,7 @@ jobs:
             - name: Check if latest note is already posted
               id: mastodon_note_check
               run: |
-                latest=$(ls -r1 "$NOTES_DIR" | grep -v "_" | head -n 1)
+                latest="$NOTES_DIR/$(ls -r1 "$NOTES_DIR" | grep -v "_" | head -n 1)"
                 note_id=$(./script/check-mastodon-note.sh "$latest")
                 [ -z "$note_id" ] && echo "Latest note $latest is posted. Bail." || echo "Latest note $latest is not posted. Do post."
                 [ ! -z "$note_id" ] && echo "do_post=true" >> "$GITHUB_OUTPUT"
