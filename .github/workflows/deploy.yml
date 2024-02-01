@@ -74,7 +74,7 @@ jobs:
                   CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
 
     check_latest_note:
-        name: Check if we should to post to Mastodon
+        name: Check latest note
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -94,7 +94,7 @@ jobs:
                   NOTES_DIR: ${{ env.NOTES_DIR }}
 
     post_mastodon:
-        name: Send latest micro post to Mastodon
+        name: Post to Mastodon
         needs: [deploy, check_latest_note] # can't send post with permalink until site is deployed
         runs-on: ubuntu-latest
         if: needs.check_latest_note.outputs.do_post == 'true'
