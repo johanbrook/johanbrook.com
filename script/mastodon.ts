@@ -1,25 +1,35 @@
-// deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts
+// deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts <path>
+// Env vars:
+// - MASTODON_ACCESS_TOKEN
+// - DRY (optional)
+
 import { parse } from 'yaml';
 import { extract } from 'front_matter/any.ts';
-import { latestNote } from './util-latest-note.ts';
 import { notePermalinkOf } from '../src/_includes/permalinks.ts';
+import * as path from 'path';
+
+const DRY_RUN = !!Deno.env.get('DRY');
 
 const accessToken = Deno.env.get('MASTODON_ACCESS_TOKEN');
 
-const DRY_RUN = !!Deno.env.get('DRY');
-const CI = !!Deno.env.get('CI');
-
 if (!accessToken) {
     console.error('No ACCESS_TOKEN');
-    process.exit(1);
+    Deno.exit(1);
 }
 
 const metaFile = import.meta.dirname + '/../src/_data/meta.yml';
-const meta = await Deno.readTextFile(metaFile).then(parse);
+
+interface Meta {
+    site: string;
+    mastodon: {
+        instance?: string;
+    };
+}
+const meta = (await Deno.readTextFile(metaFile).then(parse)) as Partial<Meta>;
 
 if (!meta?.mastodon?.instance) {
     console.error(`No mastodon.instance key in ${metaFile.toString()}`);
-    process.exit(1);
+    Deno.exit(1);
 }
 
 const truncateToStatus = (str: string, permalink: string) => {
@@ -36,11 +46,11 @@ const truncateToStatus = (str: string, permalink: string) => {
 
 const API_ROOT = `https://${meta.mastodon.instance}`;
 
-const postStatus = async () => {
+const postStatus = async (filePath: string) => {
     const url = new URL('/api/v1/statuses', API_ROOT);
     const form = new FormData();
 
-    const [latestId, filePath] = await latestNote();
+    const latestId = path.basename(filePath).replaceAll('-', '').split('.').at(0)!;
 
     console.log(`Latest note ID is: ${latestId}`);
 
@@ -84,7 +94,12 @@ const postStatus = async () => {
 
 // Main
 
-await postStatus().catch((err) => {
+if (!Deno.args[0]) {
+    console.error('Run with mastodon.ts <path to note>');
+    Deno.exit(1);
+}
+
+await postStatus(Deno.args[0]).catch((err) => {
     console.error(err);
     Deno.exit(1);
 });
