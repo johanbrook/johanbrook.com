@@ -106,7 +106,7 @@ jobs:
                   echo "$OUTPUT"
                   exit 1
               env:
-                  OUTPUT: ${{ needs.check_latest_note.outputs.do_post }}
+                  OUTPUT: ${{ needs.check_latest_note.outputs }}
 
             - name: Wait for site to deploy
               timeout-minutes: 5
