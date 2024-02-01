@@ -1205,5 +1205,12 @@
     "https://deno.land/x/nunjucks@3.2.3-2/src/transformer.js": "401e3b1588ea2933883cc43cc329077f5b1a3a5da391f9dfc0a2a63a1a89660c",
     "https://deno.land/x/nunjucks@3.2.3-2/src/waterfall.js": "4d8878b3ebcf0a1b4bf9e7575e2f30bc6467cb8ee3717b80754c945cde661b9e",
     "https://wilsonl.in/minify-html/deno/0.10.3/index.js": "c8124516a6369ef9293473143d462b1592cf19aa25b110abd27d3cbb40124030"
+  },
+  "workspace": {
+    "packageJson": {
+      "dependencies": [
+        "npm:wrangler@^2"
+      ]
+    }
   }
 }
