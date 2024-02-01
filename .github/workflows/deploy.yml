@@ -85,7 +85,7 @@ jobs:
               run: |
                 latest=$(ls -r1 "$NOTES_DIR" | grep -v "_" | head -n 1)
                 note_id=$(./script/check-mastodon-note.sh "$latest")
-                [ -z "$note_id" ] && echo "Latest note is posted. Bail." || echo "Latest note is $latest. Do post."
+                [ -z "$note_id" ] && echo "Latest note $latest is posted. Bail." || echo "Latest note $latest is not posted. Do post."
                 [ ! -z "$note_id" ] && echo "do_post=true" >> "$GITHUB_OUTPUT"
                 echo "latest_note_id=$note_id" >> "$GITHUB_OUTPUT"
                 echo "latest_note_path=$latest" >> "$GITHUB_OUTPUT"
