@@ -76,6 +76,10 @@ jobs:
     check_latest_note:
         name: Check latest note
         runs-on: ubuntu-latest
+        outputs:
+            do_post: ${{ steps.mastodon_note_check.outputs.do_post }}
+            latest_note_id: ${{ steps.mastodon_note_check.outputs.latest_note_id }}
+            latest_note_path: ${{ steps.mastodon_note_check.outputs.latest_note_path }}
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
@@ -106,7 +110,7 @@ jobs:
                   echo "$OUTPUT"
                   exit 1
               env:
-                  OUTPUT: ${{ needs.check_latest_note.outputs }}
+                  OUTPUT: ${{ needs.check_latest_note.outputs.do_post }}
 
             - name: Wait for site to deploy
               timeout-minutes: 5
