@@ -101,16 +101,10 @@ jobs:
         name: Post to Mastodon
         needs: [deploy, check_latest_note] # can't send post with permalink until site is deployed
         runs-on: ubuntu-latest
+        if: needs.check_latest_note.outputs.do_post == 'true'
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
-
-            - name: Debug
-              run: |
-                  echo "$OUTPUT"
-                  exit 1
-              env:
-                  OUTPUT: ${{ needs.check_latest_note.outputs.do_post }}
 
             - name: Wait for site to deploy
               timeout-minutes: 5
