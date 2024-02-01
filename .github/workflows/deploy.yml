@@ -14,8 +14,8 @@ env:
     DENO_VERSION: v1.40.2
     BUILD_ARTIFACT: johan.im-build
     BUILD_FOLDER: build
-    MASTODON_LOG_FILE: ../.mastodon-notes
-    NOTES_DIR: ../src/notes
+    MASTODON_LOG_FILE: .mastodon-notes
+    NOTES_DIR: src/notes
 
 jobs:
     build:
