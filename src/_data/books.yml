@@ -670,3 +670,10 @@
 - title: Min Kamp 2
   author: Karl Ove Knausgård
   slug: min-kamp-2
+  finished: true
+  finishedAt: 2024-02-03T20:30:00+07:00
+  location: Koh Lanta, Thailand
+
+- title: Min Kamp 3
+  author: Karl Ove Knausgård
+  slug: min-kamp-3
