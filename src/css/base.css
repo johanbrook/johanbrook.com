@@ -182,41 +182,26 @@ figcaption {
 }
 
 table {
-	--spacing: 0.25em;
+	--spacing: .6em;
 
 	text-align: left;
 	width: 100%;
 	border-collapse: collapse;
 	border-spacing: 0;
+}
 
-	tr:target {
-	   background-color: var(--color-bg-secondary);
+tr {
+    &:target {
+        background-color: var(--color-bg-secondary);
     }
 
-	&.textual {
-		--spacing: .6em;
+    & > td:first-of-type {
+		font-weight: bold;
+		width: 25%;
+	}
 
-		& th {
-			text-transform: uppercase;
-			font-weight: bold;
-			font-size: var(--f6);
-			letter-spacing: 0.05em;
-			font-family: var(--sans);
-		}
-
-		& td {
-			vertical-align: top;
-			border-bottom: 1px solid var(--grey-lightest);
-		}
-
-		& tr>td:first-of-type {
-			font-weight: bold;
-			width: 25%;
-		}
-
-		& tr>td:nth-of-type(2) {
-			width: 15%;
-		}
+	& > td:nth-of-type(2) {
+		width: 15%;
 	}
 }
 
@@ -224,20 +209,23 @@ th {
 	border-bottom: 3px double var(--grey);
 	padding: var(--spacing);
 	font-weight: bold;
-	font-size: var(--f5);
 	position: sticky;
 	top: 0;
 	background-color: var(--color-bg);
+	text-transform: uppercase;
+	font-size: var(--f6);
+	letter-spacing: 0.05em;
+	font-family: var(--sans);
 }
 
 td {
 	padding: var(--spacing);
+	vertical-align: top;
+	border-bottom: 1px solid var(--grey-lightest);
 }
 
-:where(th, td) {
-	&:first-child {
-		padding-left: 0;
-	}
+:where(th, td):first-child {
+	padding-left: 0;
 }
 
 pre {
