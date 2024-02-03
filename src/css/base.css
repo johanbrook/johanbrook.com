@@ -176,7 +176,7 @@ blockquote,
 table,
 figure,
 pre {
-	margin: 0 0 var(--lineheight);
+	margin: 0 0 calc(var(--lineheight) / 2);
 }
 
 img {
