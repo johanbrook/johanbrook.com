@@ -52,7 +52,13 @@ site
 		const curr = (this.ctx.page.data.url as string).replace(/\/$/, '');
 		const test = url.replace(/\/$/, '');
 
-		return curr == test;
+		if (curr == test) return true;
+
+		const parts = curr.split('/').filter(Boolean);
+
+		if (parts.length > 1 && ('/' + parts[0]) == test) return true;
+
+		return false;
 	})
 	.filter('groupBooksByYear', <T>(arr: Array<T>) => {
 	    const current = new Date().getUTCFullYear();
