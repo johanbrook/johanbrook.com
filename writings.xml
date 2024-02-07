@@ -17,7 +17,7 @@
     <link href="https://johan.im/writings/posting-mastodon-deploying-static-site/" />
     <updated>2024-02-07T14:36:58Z</updated>
     <id>https://johan.im/writings/posting-mastodon-deploying-static-site/</id>
-    <content type="html">&lt;p&gt;This is how I made these micro notes auto-post to my Mastodon account. Warning: duct-tape and strings ahead. I wrote
+    <content type="html">&lt;p&gt;This is how I made my &lt;a href=&quot;https://johan.im/micro&quot;&gt;micro notes&lt;/a&gt; auto-post to my Mastodon account. Warning: duct-tape and strings ahead. I wrote
 this system during the nighttime hours in the hospital, where I watched over our 10 month old baby who had contracted
 bronchitis (no worries, everything turned out fine with her).&lt;/p&gt;
 &lt;h2&gt;Preface: my setup&lt;/h2&gt;
