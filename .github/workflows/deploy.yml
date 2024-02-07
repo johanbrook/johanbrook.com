@@ -11,7 +11,7 @@ on:
             - ".github/workflows/deploy.yml"
 
 env:
-    DENO_VERSION: v1.40.2
+    DENO_VERSION: v1.40.3
     BUILD_ARTIFACT: johan.im-build
     BUILD_FOLDER: build
     MASTODON_LOG_FILE: .mastodon-notes
