@@ -14,6 +14,7 @@ import * as datetime from 'datetime';
 const DEST = Deno.cwd() + '/src/posts';
 
 const d = new Date();
+const offset = Math.abs(d.getTimezoneOffset()) / 60;
 
 const title = Deno.args[0] ?? 'New post';
 const slug = title.toLowerCase().replace(/\s+/g, '-').trim();
@@ -25,7 +26,7 @@ slug: ${slug}
 date: ${date}
 location: <where>
 excerpt: <excerpt>
-keywords:
+tags:
   - key
 draft: true
 ---\n
