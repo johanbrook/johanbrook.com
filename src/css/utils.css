@@ -1040,3 +1040,18 @@ a:hover .icon-feed {
     vertical-align: middle;
     margin-block-start: calc(1ex - 1cap);
 }
+
+.Notice {
+    border-radius: .8em;
+    padding: .5em .75em;
+    transition: background-color 300ms ease;
+    background-color: var(--color-bg-secondary);
+
+    summary {
+        font-weight: bold;
+    }
+
+    > :last-child {
+        margin-block-end: 0;
+    }
+}
