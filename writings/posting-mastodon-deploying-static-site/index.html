@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en-gb" class=" writingsposting-mastodon-deploying-static-site"><head itemtype="http://schema.org/Blog" itemscope="">
+    <title>Posting to Mastodon when deploying a static site / Johan Brook</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://gc.zgo.at">
+    <link rel="preconnect" href="https://johanbrook.goatcounter.com">
+
+    
+    <meta name="description" content="I'm a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+    
+    <meta name="author" content="Johan Brook">
+
+    <!-- Styles-->
+    <link rel="stylesheet" href="/johan.css">
+
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Posts feed (Atom)" href="/writings.xml">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Micro feed (Atom)" href="/micro.xml">
+    <link rel="alternate" type="application/feed+json" title="Johan Brook: Micro feed (JSON)" href="/micro.json">
+    <link rel="alternate" type="application/atom+xml" title="Johan Brook: Book feed (Atom)" href="/reading.xml">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="https://johan.im/writings/posting-mastodon-deploying-static-site/">
+    <link rel="author" href="https://johan.im">
+    <link rel="me" href="https://hachyderm.io/@brookie">
+
+    <meta property="og:title" content="Posting to Mastodon when deploying a static site">
+    <meta property="og:url" content="https://johan.im/writings/posting-mastodon-deploying-static-site/">
+    <meta property="og:site_name" itemprop="name" content="Johan Brook">
+    
+    <meta property="og:locale" content="en_GB">
+    
+    <meta property="og:description" content="I'm a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    
+
+    
+
+    
+	<meta property="og:type" content="article">
+    <meta property="article:tag" content="">
+    <meta property="article:published_time" content="2024-02-07T14:36:58Z">
+   	
+  </head>
+
+  <body>
+  	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+	  <div class="Content">
+	  	<div id="main">
+			<main role="main">
+  <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 itemprop="name" class="title">Posting to Mastodon when deploying a static site</h1>
+
+      <p class="mb0 fw5">
+          <time class="text-color-contrast" datetime="2024-02-07T14:36:58Z" title="2024-02-07T14:36:58Z" itemprop="datePublished" pubdate="">
+            February 7th, 2024
+          </time>
+          
+          
+      </p>
+
+      <p class="f5 mb4 font-sans muted">
+          About 6 min reading time
+      </p>
+    </header>
+
+    <div class="prose" itemprop="articleBody">
+      
+      <p>This is how I made these micro notes auto-post to my Mastodon account. Warning: duct-tape and strings ahead. I wrote
+this system during the nighttime hours in the hospital, where I watched over our 10 month old baby who had contracted
+bronchitis (no worries, everything turned out fine with her).</p>
+<h2>Preface: my setup</h2>
+<ul>
+<li>I use a static site generator. I use <a href="http://lume.land">Lume</a>, but that doesn’t really matter.</li>
+<li>I host my site on GitHub Pages. Not likely to matter.</li>
+<li>I use GitHub Actions for actually deploying my site from the repo to GitHub Pages. This probably matters a lot. As
+long as you have <em>something</em> that runs on every push, you should be able to translate the steps below to <code>$YOUR_CI</code>.</li>
+</ul>
+<p>I don’t use any persistent database anywhere (I use Cloudflare functions for other features in this site). Since the
+entrypoint to deploy <em>anything</em> on this site is via pushing commits onto the <code>main</code> branch, that’s the key for doing
+anything “hook-y”, like taking an action when some content is updated.</p>
+<hr>
+<h2>The plan</h2>
+<p>Roughly, it works like below. You should be able to translate it to your host/CI runner:</p>
+<ol>
+<li>Push new micro note/blog post.</li>
+<li>On CI, check out the code base and find the filename of the post file. Make some slug/ID out of it.</li>
+<li>Look for the slug/ID in a checked in file. This is our “database” over already posted files.</li>
+<li>If it’s there, bail.</li>
+<li>If not, we run a script to format the post text and post it to Mastodon over its API.</li>
+<li>Write the file slug/ID to the checked in file. Commit and push (this is still in CI).</li>
+</ol>
+<details class="Notice">
+<summary>Bonus</summary>
+<p>I also do some fanciness before step 5) where I wait before the site is fully deployed before I post to Mastodon. If
+not, people could click the linkback to the post on Mastodon and get to a 404 on my site!</p>
+<p>Here’s the source code. Note the <code>ENDPOINT</code> variable which is <code>https://johan.im/status.json</code>, where I — at build time —
+put all goodies.</p>
+<pre><code class="language-bash">#!/usr/bin/env bash
+#
+# Waits for a give note to be deployed at johan.im
+#
+# Usage:
+# ./script/wait-for-status.sh &lt;path to note&gt;
+# ./script/wait-for-status.sh --latest
+
+ENDPOINT="https://johan.im/status.json"
+DIR="src/notes"
+
+file_path="$1"
+
+if [ -z "$file_path" ]; then
+    echo "Usage: script/wait-for-status.sh &lt;path&gt; | --latest"
+    exit 1
+fi
+
+if [ "$file_path" == "--latest" ]; then
+    file_path=$(ls -r1 "$DIR" | grep -v "_" | head -n 1)
+else
+    file_path=$(basename "$file_path")
+fi
+
+# 2022-01-04-09-37.md -&gt; 202201040937
+file_id=$(echo "$file_path" | sed -e "s/-//g" | cut -f 1 -d ".")
+
+while true; do
+    deployed=$(curl -s "$ENDPOINT" | jq -r ".micro")
+    is_deployed=$([ "$deployed" = "$file_id" ] &amp;&amp; echo true || echo false)
+
+    echo "$([ "$is_deployed" = true ] &amp;&amp; echo "✅" || echo "🕣") [$(date -u)] Deployed: $deployed $([ "$is_deployed" = true ] &amp;&amp; echo "==" || echo "!=") Latest: $file_id"
+
+    if [ "$is_deployed" = true ]; then
+        break
+    fi
+
+    sleep 2
+done
+</code></pre>
+</details>
+<h2>Deciding when to post</h2>
+<p>As mentioned, I use GitHub Actions. YAML seems to be the requirement for all new CI tools these days, and Actions isn’t
+an exception. This is how the first part of my <code>.github/workflows/deploy.yml</code> looks like. The code below includes the
+steps 2-3):</p>
+<details>
+    <summary><code>deploy.yml</code></summary>
+<pre><code class="language-yaml">name: Build and deploy
+
+on:
+    push:
+        paths:
+            - "src/**/*"
+
+env:
+    DENO_VERSION: v1.40.3
+    MASTODON_LOG_FILE: .mastodon-notes
+    NOTES_DIR: src/notes
+
+jobs:
+    build:
+        name: Build
+        # Omitted: builds the static site into .html files
+    deploy:
+        name: Deploy
+        # Omitted: puts the built site onto gh-pages branch
+    check_latest_note:
+        name: Check latest note
+        runs-on: ubuntu-latest
+        outputs:
+            do_post: ${{ steps.mastodon_note_check.outputs.do_post }}
+            latest_note_id: ${{ steps.mastodon_note_check.outputs.latest_note_id }}
+            latest_note_path: ${{ steps.mastodon_note_check.outputs.latest_note_path }}
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Check if latest note is already posted
+              id: mastodon_note_check
+              run: |
+                latest="$NOTES_DIR/$(ls -r1 "$NOTES_DIR" | grep -v "_" | head -n 1)"
+                note_id=$(./script/check-mastodon-note.sh "$latest")
+                [ -z "$note_id" ] &amp;&amp; echo "Latest note $latest is posted. Bail." || echo "Latest note $latest is not posted. Do post."
+                [ ! -z "$note_id" ] &amp;&amp; echo "do_post=true" &gt;&gt; "$GITHUB_OUTPUT"
+                echo "latest_note_id=$note_id" &gt;&gt; "$GITHUB_OUTPUT"
+                echo "latest_note_path=$latest" &gt;&gt; "$GITHUB_OUTPUT"
+                cat "$GITHUB_OUTPUT"
+              env:
+                  NOTES_DIR: ${{ env.NOTES_DIR }}
+</code></pre>
+</details>
+<p>Let’s go over it.</p>
+<pre><code class="language-bash">latest="$NOTES_DIR/$(ls -r1 "$NOTES_DIR" | grep -v "_" | head -n 1)"
+</code></pre>
+<p>This puts the latest file in <code>src/notes</code> into a <code>$latest</code> variable. Like this:</p>
+<pre><code class="language-bash">$ NOTES_DIR="src/notes"
+$ latest="$NOTES_DIR/$(ls -r1 "$NOTES_DIR" | grep -v "_" | head -n 1)"
+$ echo $latest
+src/notes/2024-02-03-21-21-00.md
+</code></pre>
+<p>We feed that into the <code>check-mastodon-note.sh</code> script I have in a separate file, since I’m an inconsistent, chaotic
+programmer. Before reading that code, I’ll show you how my “database” over posted notes look like:</p>
+<pre><code class="language-bash">$ cat .mastodon-notes
+20231215140531
+20240106124758
+20240118204458
+</code></pre>
+<p>It’s an append log with the note date (hyphens removed). Ergo, if the note date is in that list, we’ve posted to
+Mastodon already and can bail early.</p>
+<p>Here’s my script for checking that:</p>
+<details>
+    <summary><code>check-mastodon-note.sh</code></summary>
+<pre><code class="language-bash">#!/usr/bin/env bash
+#
+# Check whether we've posted the input file path to Mastodon (persisted in $MASTODON_LIST)
+#
+# Usage:
+#
+# ./script/check-mastodon-note.sh &lt;path to file&gt;
+# ./script/check-mastodon-note.sh --latest
+# same as:
+# ./script/check-mastodon-note.sh $(ls -r1 "src/notes" | grep -v "_" | head -n 1)
+
+MASTODON_LIST=".mastodon-notes"
+DIR="src/notes"
+
+file_path="$1"
+
+if [ "$file_path" == "--latest" ]; then
+    file_path=$(ls -r1 "$DIR" | grep -v "_" | head -n 1)
+else
+    file_path=$(basename "$file_path")
+fi
+
+# 2022-01-04-09-37.md -&gt; 202201040937
+file_id=$(echo "$file_path" | sed -e "s/-//g" | cut -f 1 -d ".")
+
+case `cat "$MASTODON_LIST" | grep -Fxq "$file_id" &gt;/dev/null; echo $?` in
+  0)
+    # found
+    exit 0
+    ;;
+  1)
+    # not found, continue
+    echo "$file_id"
+    exit 0
+    ;;
+  *)
+    # error
+    echo "An error occurred when checking $MASTODON_LIST for note: $file_id" 1&gt;&amp;2
+    exit 1
+    ;;
+esac
+</code></pre>
+</details>
+<p>We print the resulting note ID (date with hyphens removed) on <code>stdout</code> if we <em>don’t</em> find it in the list. Sweet! Back
+to the deploy YAML:</p>
+<pre><code class="language-yaml">[ ! -z "$note_id" ] &amp;&amp; echo "do_post=true" &gt;&gt; "$GITHUB_OUTPUT"
+echo "latest_note_id=$note_id" &gt;&gt; "$GITHUB_OUTPUT"
+echo "latest_note_path=$latest" &gt;&gt; "$GITHUB_OUTPUT"
+</code></pre>
+<p>Push some metadata into the magic <code>GITHUB_OUTPUT</code> environment variable (which points to a file). This is GitHub’s way
+of persisting data between jobs.</p>
+<h2>Posting to Mastodon’s API</h2>
+<p>This is the API posting part of <code>deploy.yml</code>:</p>
+<details>
+    <summary><code>deploy.yml</code></summary>
+<pre><code class="language-yaml">post_mastodon:
+    name: Post to Mastodon
+    needs: [deploy, check_latest_note] # can't send post with permalink until site is deployed
+    runs-on: ubuntu-latest
+    if: needs.check_latest_note.outputs.do_post == 'true'
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        - name: Setup Deno
+          uses: denoland/setup-deno@v1
+          with:
+              deno-version: ${{ env.DENO_VERSION }}
+
+        - name: Post to Mastodon API
+          run: deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts "$LATEST_NOTE_PATH"
+          env:
+              MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+              LATEST_NOTE_PATH: ${{ needs.check_latest_note.outputs.latest_note_path }}
+</code></pre>
+</details>
+<p><code>if: needs.check_latest_note.outputs.do_post == 'true'</code> will skip this job if we bailed in the previous job. Very handy.</p>
+<details class="Notice">
+    <summary>How to obtain an access token for Mastodon’s API</summary>
+<p>Fear not, Mastodon are one of those services which has a seat in heaven: they give you a plain old access token (bearer)
+which you can use in all API calls 🥹 No messing around with OAuth.</p>
+<p>Read all about it <a href="https://docs.joinmastodon.org/client/token/">in their docs</a>.</p>
+<p>Then put the token as <code>MASTODON_ACCESS_TOKEN</code> in your repo’s secret section in settings.</p>
+</details>
+<p>The <code>mastodon.ts</code> script itself isn’t that interesting. In a nutshell, it reads the contents of the file on the path it
+receives as script argument, parses some front matter, truncates the text, makes a permalink, and do a <code>POST</code> to the
+API.</p>
+<details>
+    <summary><code>mastodon.ts</code></summary>
+<pre><code class="language-ts">// deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts &lt;path&gt;
+// Env vars:
+// - MASTODON_ACCESS_TOKEN
+// - DRY (optional)
+
+import { parse } from 'yaml';
+import { extract } from 'front_matter/any.ts';
+import { notePermalinkOf } from '../src/_includes/permalinks.ts';
+import * as path from 'path';
+
+const DRY_RUN = !!Deno.env.get('DRY');
+
+const accessToken = Deno.env.get('MASTODON_ACCESS_TOKEN');
+
+if (!accessToken) {
+    console.error('No ACCESS_TOKEN');
+    Deno.exit(1);
+}
+
+const metaFile = import.meta.dirname + '/../src/_data/meta.yml';
+
+interface Meta {
+    site: string;
+    mastodon: {
+        instance?: string;
+    };
+}
+const meta = (await Deno.readTextFile(metaFile).then(parse)) as Partial&lt;Meta&gt;;
+
+if (!meta?.mastodon?.instance) {
+    console.error(`No mastodon.instance key in ${metaFile.toString()}`);
+    Deno.exit(1);
+}
+
+const truncateToStatus = (str: string, permalink: string) =&gt; {
+    const maxLimit = 500;
+    const footer = `\n\n↳ ${permalink}`;
+    const statusLimit = maxLimit - footer.length;
+
+    if (str.length &lt;= statusLimit) {
+        return str + footer;
+    }
+
+    return str.slice(0, statusLimit - 1) + '…' + footer;
+};
+
+const API_ROOT = `https://${meta.mastodon.instance}`;
+
+const postStatus = async (filePath: string) =&gt; {
+    console.log(`Posting contents of ${filePath}`);
+
+    const latestId = path.basename(filePath).replaceAll('-', '').split('.').at(0)!;
+
+    console.log(`Latest note ID is: ${latestId}`);
+
+    const note = extract(await Deno.readTextFile(import.meta.dirname + `/../${filePath}`));
+
+    if (note.attrs.draft || note.attrs.skip_mastodon) {
+        console.log(`Skipping posting because one of "draft" or "skip_mastodon" are true for note ${filePath}`);
+        return;
+    }
+
+    const permalink = meta.site + notePermalinkOf(latestId);
+
+    const statusBody = truncateToStatus(note.body.trim(), permalink);
+
+    console.log(`&gt; Posting status (${statusBody.length} chars):\n----------------------------\n${statusBody}`);
+
+    if (DRY_RUN) {
+        console.log(`&gt; Status posted to &lt;DRY RUN&gt;`);
+        return;
+    }
+
+    const url = new URL('/api/v1/statuses', API_ROOT);
+    const form = new FormData();
+
+    form.append('status', statusBody);
+
+    const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Idempotency-Key': crypto.randomUUID(),
+        },
+        body: form,
+    });
+
+    const json = await res.json();
+
+    if (!res.ok) {
+        throw new Error(`Posting failed with ${res.status}: ${json.error}`);
+    }
+
+    console.log(`&gt; Status posted to ${json.url}`);
+};
+
+// Main
+
+if (!Deno.args[0]) {
+    console.error('Run with mastodon.ts &lt;path to note&gt;');
+    Deno.exit(1);
+}
+
+await postStatus(Deno.args[0]).catch((err) =&gt; {
+    console.error(err);
+    Deno.exit(1);
+});
+</code></pre>
+</details>
+<h2>Persisting to the database file</h2>
+<p>Yay, you’ve made it this far! Let’s check out the final stretch of the lovely YAML:</p>
+<details>
+    <summary><code>deploy.yml</code></summary>
+<pre><code class="language-yaml">- name: Write to log
+  run: |
+      echo "$LATEST_UNPOSTED" &gt;&gt; $MASTODON_LOG_FILE
+      cat "$MASTODON_LOG_FILE"
+  env:
+      MASTODON_LOG_FILE: ${{ env.MASTODON_LOG_FILE }}
+      LATEST_UNPOSTED: ${{ needs.check_latest_note.outputs.latest_note_id }}
+
+- name: Commit and push posted notes
+  run: |
+    git config user.name "Automated"
+    git config user.email "actions@users.noreply.github.com"
+    git add $MASTODON_LOG_FILE
+    timestamp=$(date -u)
+    git commit -m "Latest post to Mastodon: $timestamp [skip-ci]" || exit 0
+    git push
+  env:
+      MASTODON_LOG_FILE: ${{ env.MASTODON_LOG_FILE }}
+</code></pre>
+</details>
+<ol>
+<li>Append the date/ID of the latest post into the log/database file.</li>
+<li>Commit this and push to persist.</li>
+</ol>
+<p>Done!</p>
+<hr>
+<p>As you can see, it’s essentially just keeping track of the latest unposted file and shoves that around betwen the steps
+in the GitHub Action 🤷 But I like the approach of thinking in files and thus always keeping the state within the
+repo’s boundaries.</p>
+<p>I love DIY solutions over external services. Mo’ dependencies, mo’ problems.</p>
+
+    </div>
+  </article>
+</main>
+
+		</div>
+
+		
+	   		<nav role="navigation" class="MainNav">
+	<div class="sticky">
+		<h1 class="f4 sr-only-mobile">
+			<a href="/" aria-label="Home">
+				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+			</a>
+		</h1>
+
+		<ul>
+           	<li class="only-mobile">
+          		<a href="/">Home</a>
+           	</li>
+          		<li>
+         			<a href="/now/">Now</a>
+          		</li>
+          		<li>
+         			<a href="/micro/">Micro</a>
+          		</li>
+          		<li>
+         			<a href="/about/">About</a>
+          		</li>
+          		<li>
+         			<a href="/reading/">Reading</a>
+          		</li>
+          		<li aria-current="page">
+         			<a href="/writings/">Writings</a>
+          		</li>
+          		<li>
+         			<a href="/feeds/">Feeds</a>
+          		</li>
+            <li class="border border-t mt1 pt1">
+     			<a href="/all">All pages</a>
+      		</li>
+        </ul>
+	</div>
+</nav>
+
+	 	
+	  </div>
+
+      <script>
+  // Only load on production environment.
+  if (window.location.host !== new URL('https://johan.im').host) {
+    window.goatcounter = {no_onload: true};
+  }
+
+  // Skip own views
+  if (window.location.hash === '#skipgc')
+    localStorage.setItem('skipgc', 't');
+  if (localStorage.getItem('skipgc') === 't')
+    window.goatcounter = {no_onload: true};
+</script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+
+  
+
+
+</body></html>

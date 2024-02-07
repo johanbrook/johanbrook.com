@@ -5,12 +5,399 @@
   <link href="https://johan.im/writings.xml" rel="self"/>
   <link href="https://johan.im/writings"/>
   
-  <updated>2022-12-30T10:20:00Z</updated>
+  <updated>2024-02-07T14:36:58Z</updated>
   <id>https://johan.im/writings</id>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johan.im</email>
   </author>
+  
+  <entry>
+    <title>Posting to Mastodon when deploying a static site</title>
+    <link href="https://johan.im/writings/posting-mastodon-deploying-static-site/" />
+    <updated>2024-02-07T14:36:58Z</updated>
+    <id>https://johan.im/writings/posting-mastodon-deploying-static-site/</id>
+    <content type="html">&lt;p&gt;This is how I made these micro notes auto-post to my Mastodon account. Warning: duct-tape and strings ahead. I wrote
+this system during the nighttime hours in the hospital, where I watched over our 10 month old baby who had contracted
+bronchitis (no worries, everything turned out fine with her).&lt;/p&gt;
+&lt;h2&gt;Preface: my setup&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;I use a static site generator. I use &lt;a href=&quot;http://lume.land/&quot;&gt;Lume&lt;/a&gt;, but that doesn&#39;t really matter.&lt;/li&gt;
+&lt;li&gt;I host my site on GitHub Pages. Not likely to matter.&lt;/li&gt;
+&lt;li&gt;I use GitHub Actions for actually deploying my site from the repo to GitHub Pages. This probably matters a lot. As
+long as you have &lt;em&gt;something&lt;/em&gt; that runs on every push, you should be able to translate the steps below to &lt;code&gt;$YOUR_CI&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I don&#39;t use any persistent database anywhere (I use Cloudflare functions for other features in this site). Since the
+entrypoint to deploy &lt;em&gt;anything&lt;/em&gt; on this site is via pushing commits onto the &lt;code&gt;main&lt;/code&gt; branch, that&#39;s the key for doing
+anything &amp;quot;hook-y&amp;quot;, like taking an action when some content is updated.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;The plan&lt;/h2&gt;
+&lt;p&gt;Roughly, it works like below. You should be able to translate it to your host/CI runner:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Push new micro note/blog post.&lt;/li&gt;
+&lt;li&gt;On CI, check out the code base and find the filename of the post file. Make some slug/ID out of it.&lt;/li&gt;
+&lt;li&gt;Look for the slug/ID in a checked in file. This is our &amp;quot;database&amp;quot; over already posted files.&lt;/li&gt;
+&lt;li&gt;If it&#39;s there, bail.&lt;/li&gt;
+&lt;li&gt;If not, we run a script to format the post text and post it to Mastodon over its API.&lt;/li&gt;
+&lt;li&gt;Write the file slug/ID to the checked in file. Commit and push (this is still in CI).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;details class=&quot;Notice&quot;&gt;
+&lt;summary&gt;Bonus&lt;/summary&gt;
+&lt;p&gt;I also do some fanciness before step 5) where I wait before the site is fully deployed before I post to Mastodon. If
+not, people could click the linkback to the post on Mastodon and get to a 404 on my site!&lt;/p&gt;
+&lt;p&gt;Here&#39;s the source code. Note the &lt;code&gt;ENDPOINT&lt;/code&gt; variable which is &lt;code&gt;https://johan.im/status.json&lt;/code&gt;, where I — at build time —
+put all goodies.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;#!/usr/bin/env bash
+#
+# Waits for a give note to be deployed at johan.im
+#
+# Usage:
+# ./script/wait-for-status.sh &amp;lt;path to note&amp;gt;
+# ./script/wait-for-status.sh --latest
+
+ENDPOINT=&amp;quot;https://johan.im/status.json&amp;quot;
+DIR=&amp;quot;src/notes&amp;quot;
+
+file_path=&amp;quot;$1&amp;quot;
+
+if [ -z &amp;quot;$file_path&amp;quot; ]; then
+    echo &amp;quot;Usage: script/wait-for-status.sh &amp;lt;path&amp;gt; | --latest&amp;quot;
+    exit 1
+fi
+
+if [ &amp;quot;$file_path&amp;quot; == &amp;quot;--latest&amp;quot; ]; then
+    file_path=$(ls -r1 &amp;quot;$DIR&amp;quot; | grep -v &amp;quot;_&amp;quot; | head -n 1)
+else
+    file_path=$(basename &amp;quot;$file_path&amp;quot;)
+fi
+
+# 2022-01-04-09-37.md -&amp;gt; 202201040937
+file_id=$(echo &amp;quot;$file_path&amp;quot; | sed -e &amp;quot;s/-//g&amp;quot; | cut -f 1 -d &amp;quot;.&amp;quot;)
+
+while true; do
+    deployed=$(curl -s &amp;quot;$ENDPOINT&amp;quot; | jq -r &amp;quot;.micro&amp;quot;)
+    is_deployed=$([ &amp;quot;$deployed&amp;quot; = &amp;quot;$file_id&amp;quot; ] &amp;amp;&amp;amp; echo true || echo false)
+
+    echo &amp;quot;$([ &amp;quot;$is_deployed&amp;quot; = true ] &amp;amp;&amp;amp; echo &amp;quot;✅&amp;quot; || echo &amp;quot;🕣&amp;quot;) [$(date -u)] Deployed: $deployed $([ &amp;quot;$is_deployed&amp;quot; = true ] &amp;amp;&amp;amp; echo &amp;quot;==&amp;quot; || echo &amp;quot;!=&amp;quot;) Latest: $file_id&amp;quot;
+
+    if [ &amp;quot;$is_deployed&amp;quot; = true ]; then
+        break
+    fi
+
+    sleep 2
+done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/details&gt;
+&lt;h2&gt;Deciding when to post&lt;/h2&gt;
+&lt;p&gt;As mentioned, I use GitHub Actions. YAML seems to be the requirement for all new CI tools these days, and Actions isn&#39;t
+an exception. This is how the first part of my &lt;code&gt;.github/workflows/deploy.yml&lt;/code&gt; looks like. The code below includes the
+steps 2-3):&lt;/p&gt;
+&lt;details&gt;
+    &lt;summary&gt;&lt;code&gt;deploy.yml&lt;/code&gt;&lt;/summary&gt;
+&lt;p %=&quot;&quot; raw=&quot;&quot; %=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;name: Build and deploy
+
+on:
+    push:
+        paths:
+            - &amp;quot;src/**/*&amp;quot;
+
+env:
+    DENO_VERSION: v1.40.3
+    MASTODON_LOG_FILE: .mastodon-notes
+    NOTES_DIR: src/notes
+
+jobs:
+    build:
+        name: Build
+        # Omitted: builds the static site into .html files
+    deploy:
+        name: Deploy
+        # Omitted: puts the built site onto gh-pages branch
+    check_latest_note:
+        name: Check latest note
+        runs-on: ubuntu-latest
+        outputs:
+            do_post: ${{ steps.mastodon_note_check.outputs.do_post }}
+            latest_note_id: ${{ steps.mastodon_note_check.outputs.latest_note_id }}
+            latest_note_path: ${{ steps.mastodon_note_check.outputs.latest_note_path }}
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Check if latest note is already posted
+              id: mastodon_note_check
+              run: |
+                latest=&amp;quot;$NOTES_DIR/$(ls -r1 &amp;quot;$NOTES_DIR&amp;quot; | grep -v &amp;quot;_&amp;quot; | head -n 1)&amp;quot;
+                note_id=$(./script/check-mastodon-note.sh &amp;quot;$latest&amp;quot;)
+                [ -z &amp;quot;$note_id&amp;quot; ] &amp;amp;&amp;amp; echo &amp;quot;Latest note $latest is posted. Bail.&amp;quot; || echo &amp;quot;Latest note $latest is not posted. Do post.&amp;quot;
+                [ ! -z &amp;quot;$note_id&amp;quot; ] &amp;amp;&amp;amp; echo &amp;quot;do_post=true&amp;quot; &amp;gt;&amp;gt; &amp;quot;$GITHUB_OUTPUT&amp;quot;
+                echo &amp;quot;latest_note_id=$note_id&amp;quot; &amp;gt;&amp;gt; &amp;quot;$GITHUB_OUTPUT&amp;quot;
+                echo &amp;quot;latest_note_path=$latest&amp;quot; &amp;gt;&amp;gt; &amp;quot;$GITHUB_OUTPUT&amp;quot;
+                cat &amp;quot;$GITHUB_OUTPUT&amp;quot;
+              env:
+                  NOTES_DIR: ${{ env.NOTES_DIR }}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p %=&quot;&quot; endraw=&quot;&quot; %=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/details&gt;
+&lt;p&gt;Let&#39;s go over it.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;latest=&amp;quot;$NOTES_DIR/$(ls -r1 &amp;quot;$NOTES_DIR&amp;quot; | grep -v &amp;quot;_&amp;quot; | head -n 1)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This puts the latest file in &lt;code&gt;src/notes&lt;/code&gt; into a &lt;code&gt;$latest&lt;/code&gt; variable. Like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ NOTES_DIR=&amp;quot;src/notes&amp;quot;
+$ latest=&amp;quot;$NOTES_DIR/$(ls -r1 &amp;quot;$NOTES_DIR&amp;quot; | grep -v &amp;quot;_&amp;quot; | head -n 1)&amp;quot;
+$ echo $latest
+src/notes/2024-02-03-21-21-00.md
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We feed that into the &lt;code&gt;check-mastodon-note.sh&lt;/code&gt; script I have in a separate file, since I&#39;m an inconsistent, chaotic
+programmer. Before reading that code, I&#39;ll show you how my &amp;quot;database&amp;quot; over posted notes look like:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ cat .mastodon-notes
+20231215140531
+20240106124758
+20240118204458
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It&#39;s an append log with the note date (hyphens removed). Ergo, if the note date is in that list, we&#39;ve posted to
+Mastodon already and can bail early.&lt;/p&gt;
+&lt;p&gt;Here&#39;s my script for checking that:&lt;/p&gt;
+&lt;details&gt;
+    &lt;summary&gt;&lt;code&gt;check-mastodon-note.sh&lt;/code&gt;&lt;/summary&gt;
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;#!/usr/bin/env bash
+#
+# Check whether we&#39;ve posted the input file path to Mastodon (persisted in $MASTODON_LIST)
+#
+# Usage:
+#
+# ./script/check-mastodon-note.sh &amp;lt;path to file&amp;gt;
+# ./script/check-mastodon-note.sh --latest
+# same as:
+# ./script/check-mastodon-note.sh $(ls -r1 &amp;quot;src/notes&amp;quot; | grep -v &amp;quot;_&amp;quot; | head -n 1)
+
+MASTODON_LIST=&amp;quot;.mastodon-notes&amp;quot;
+DIR=&amp;quot;src/notes&amp;quot;
+
+file_path=&amp;quot;$1&amp;quot;
+
+if [ &amp;quot;$file_path&amp;quot; == &amp;quot;--latest&amp;quot; ]; then
+    file_path=$(ls -r1 &amp;quot;$DIR&amp;quot; | grep -v &amp;quot;_&amp;quot; | head -n 1)
+else
+    file_path=$(basename &amp;quot;$file_path&amp;quot;)
+fi
+
+# 2022-01-04-09-37.md -&amp;gt; 202201040937
+file_id=$(echo &amp;quot;$file_path&amp;quot; | sed -e &amp;quot;s/-//g&amp;quot; | cut -f 1 -d &amp;quot;.&amp;quot;)
+
+case `cat &amp;quot;$MASTODON_LIST&amp;quot; | grep -Fxq &amp;quot;$file_id&amp;quot; &amp;gt;/dev/null; echo $?` in
+  0)
+    # found
+    exit 0
+    ;;
+  1)
+    # not found, continue
+    echo &amp;quot;$file_id&amp;quot;
+    exit 0
+    ;;
+  *)
+    # error
+    echo &amp;quot;An error occurred when checking $MASTODON_LIST for note: $file_id&amp;quot; 1&amp;gt;&amp;amp;2
+    exit 1
+    ;;
+esac
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/details&gt;
+&lt;p&gt;We print the resulting note ID (date with hyphens removed) on &lt;code&gt;stdout&lt;/code&gt; if we &lt;em&gt;don&#39;t&lt;/em&gt; find it in the list. Sweet! Back
+to the deploy YAML:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;[ ! -z &amp;quot;$note_id&amp;quot; ] &amp;amp;&amp;amp; echo &amp;quot;do_post=true&amp;quot; &amp;gt;&amp;gt; &amp;quot;$GITHUB_OUTPUT&amp;quot;
+echo &amp;quot;latest_note_id=$note_id&amp;quot; &amp;gt;&amp;gt; &amp;quot;$GITHUB_OUTPUT&amp;quot;
+echo &amp;quot;latest_note_path=$latest&amp;quot; &amp;gt;&amp;gt; &amp;quot;$GITHUB_OUTPUT&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Push some metadata into the magic &lt;code&gt;GITHUB_OUTPUT&lt;/code&gt; environment variable (which points to a file). This is GitHub&#39;s way
+of persisting data between jobs.&lt;/p&gt;
+&lt;h2&gt;Posting to Mastodon&#39;s API&lt;/h2&gt;
+&lt;p&gt;This is the API posting part of &lt;code&gt;deploy.yml&lt;/code&gt;:&lt;/p&gt;
+&lt;details&gt;
+    &lt;summary&gt;&lt;code&gt;deploy.yml&lt;/code&gt;&lt;/summary&gt;
+&lt;p %=&quot;&quot; raw=&quot;&quot; %=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;post_mastodon:
+    name: Post to Mastodon
+    needs: [deploy, check_latest_note] # can&#39;t send post with permalink until site is deployed
+    runs-on: ubuntu-latest
+    if: needs.check_latest_note.outputs.do_post == &#39;true&#39;
+    steps:
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        - name: Setup Deno
+          uses: denoland/setup-deno@v1
+          with:
+              deno-version: ${{ env.DENO_VERSION }}
+
+        - name: Post to Mastodon API
+          run: deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts &amp;quot;$LATEST_NOTE_PATH&amp;quot;
+          env:
+              MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+              LATEST_NOTE_PATH: ${{ needs.check_latest_note.outputs.latest_note_path }}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p %=&quot;&quot; endraw=&quot;&quot; %=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/details&gt;
+&lt;p&gt;&lt;code&gt;if: needs.check_latest_note.outputs.do_post == &#39;true&#39;&lt;/code&gt; will skip this job if we bailed in the previous job. Very handy.&lt;/p&gt;
+&lt;details class=&quot;Notice&quot;&gt;
+    &lt;summary&gt;How to obtain an access token for Mastodon&#39;s API&lt;/summary&gt;
+&lt;p&gt;Fear not, Mastodon are one of those services which has a seat in heaven: they give you a plain old access token (bearer)
+which you can use in all API calls 🥹 No messing around with OAuth.&lt;/p&gt;
+&lt;p&gt;Read all about it &lt;a href=&quot;https://docs.joinmastodon.org/client/token/&quot;&gt;in their docs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Then put the token as &lt;code&gt;MASTODON_ACCESS_TOKEN&lt;/code&gt; in your repo&#39;s secret section in settings.&lt;/p&gt;
+&lt;/details&gt;
+&lt;p&gt;The &lt;code&gt;mastodon.ts&lt;/code&gt; script itself isn&#39;t that interesting. In a nutshell, it reads the contents of the file on the path it
+receives as script argument, parses some front matter, truncates the text, makes a permalink, and do a &lt;code&gt;POST&lt;/code&gt; to the
+API.&lt;/p&gt;
+&lt;details&gt;
+    &lt;summary&gt;&lt;code&gt;mastodon.ts&lt;/code&gt;&lt;/summary&gt;
+&lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts &amp;lt;path&amp;gt;
+// Env vars:
+// - MASTODON_ACCESS_TOKEN
+// - DRY (optional)
+
+import { parse } from &#39;yaml&#39;;
+import { extract } from &#39;front_matter/any.ts&#39;;
+import { notePermalinkOf } from &#39;../src/_includes/permalinks.ts&#39;;
+import * as path from &#39;path&#39;;
+
+const DRY_RUN = !!Deno.env.get(&#39;DRY&#39;);
+
+const accessToken = Deno.env.get(&#39;MASTODON_ACCESS_TOKEN&#39;);
+
+if (!accessToken) {
+    console.error(&#39;No ACCESS_TOKEN&#39;);
+    Deno.exit(1);
+}
+
+const metaFile = import.meta.dirname + &#39;/../src/_data/meta.yml&#39;;
+
+interface Meta {
+    site: string;
+    mastodon: {
+        instance?: string;
+    };
+}
+const meta = (await Deno.readTextFile(metaFile).then(parse)) as Partial&amp;lt;Meta&amp;gt;;
+
+if (!meta?.mastodon?.instance) {
+    console.error(`No mastodon.instance key in ${metaFile.toString()}`);
+    Deno.exit(1);
+}
+
+const truncateToStatus = (str: string, permalink: string) =&amp;gt; {
+    const maxLimit = 500;
+    const footer = `\n\n↳ ${permalink}`;
+    const statusLimit = maxLimit - footer.length;
+
+    if (str.length &amp;lt;= statusLimit) {
+        return str + footer;
+    }
+
+    return str.slice(0, statusLimit - 1) + &#39;…&#39; + footer;
+};
+
+const API_ROOT = `https://${meta.mastodon.instance}`;
+
+const postStatus = async (filePath: string) =&amp;gt; {
+    console.log(`Posting contents of ${filePath}`);
+
+    const latestId = path.basename(filePath).replaceAll(&#39;-&#39;, &#39;&#39;).split(&#39;.&#39;).at(0)!;
+
+    console.log(`Latest note ID is: ${latestId}`);
+
+    const note = extract(await Deno.readTextFile(import.meta.dirname + `/../${filePath}`));
+
+    if (note.attrs.draft || note.attrs.skip_mastodon) {
+        console.log(`Skipping posting because one of &amp;quot;draft&amp;quot; or &amp;quot;skip_mastodon&amp;quot; are true for note ${filePath}`);
+        return;
+    }
+
+    const permalink = meta.site + notePermalinkOf(latestId);
+
+    const statusBody = truncateToStatus(note.body.trim(), permalink);
+
+    console.log(`&amp;gt; Posting status (${statusBody.length} chars):\n----------------------------\n${statusBody}`);
+
+    if (DRY_RUN) {
+        console.log(`&amp;gt; Status posted to &amp;lt;DRY RUN&amp;gt;`);
+        return;
+    }
+
+    const url = new URL(&#39;/api/v1/statuses&#39;, API_ROOT);
+    const form = new FormData();
+
+    form.append(&#39;status&#39;, statusBody);
+
+    const res = await fetch(url, {
+        method: &#39;POST&#39;,
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+            &#39;Idempotency-Key&#39;: crypto.randomUUID(),
+        },
+        body: form,
+    });
+
+    const json = await res.json();
+
+    if (!res.ok) {
+        throw new Error(`Posting failed with ${res.status}: ${json.error}`);
+    }
+
+    console.log(`&amp;gt; Status posted to ${json.url}`);
+};
+
+// Main
+
+if (!Deno.args[0]) {
+    console.error(&#39;Run with mastodon.ts &amp;lt;path to note&amp;gt;&#39;);
+    Deno.exit(1);
+}
+
+await postStatus(Deno.args[0]).catch((err) =&amp;gt; {
+    console.error(err);
+    Deno.exit(1);
+});
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/details&gt;
+&lt;h2&gt;Persisting to the database file&lt;/h2&gt;
+&lt;p&gt;Yay, you&#39;ve made it this far! Let&#39;s check out the final stretch of the lovely YAML:&lt;/p&gt;
+&lt;details&gt;
+    &lt;summary&gt;&lt;code&gt;deploy.yml&lt;/code&gt;&lt;/summary&gt;
+&lt;p %=&quot;&quot; raw=&quot;&quot; %=&quot;&quot;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;- name: Write to log
+  run: |
+      echo &amp;quot;$LATEST_UNPOSTED&amp;quot; &amp;gt;&amp;gt; $MASTODON_LOG_FILE
+      cat &amp;quot;$MASTODON_LOG_FILE&amp;quot;
+  env:
+      MASTODON_LOG_FILE: ${{ env.MASTODON_LOG_FILE }}
+      LATEST_UNPOSTED: ${{ needs.check_latest_note.outputs.latest_note_id }}
+
+- name: Commit and push posted notes
+  run: |
+    git config user.name &amp;quot;Automated&amp;quot;
+    git config user.email &amp;quot;actions@users.noreply.github.com&amp;quot;
+    git add $MASTODON_LOG_FILE
+    timestamp=$(date -u)
+    git commit -m &amp;quot;Latest post to Mastodon: $timestamp [skip-ci]&amp;quot; || exit 0
+    git push
+  env:
+      MASTODON_LOG_FILE: ${{ env.MASTODON_LOG_FILE }}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p %=&quot;&quot; endraw=&quot;&quot; %=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/details&gt;
+&lt;ol&gt;
+&lt;li&gt;Append the date/ID of the latest post into the log/database file.&lt;/li&gt;
+&lt;li&gt;Commit this and push to persist.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Done!&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;As you can see, it&#39;s essentially just keeping track of the latest unposted file and shoves that around betwen the steps
+in the GitHub Action 🤷 But I like the approach of thinking in files and thus always keeping the state within the
+repo&#39;s boundaries.&lt;/p&gt;
+&lt;p&gt;I love DIY solutions over external services. Mo&#39; dependencies, mo&#39; problems.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>Mastodon</title>
@@ -2088,97 +2475,6 @@ message would be – a funny inverse proportional property!&lt;/p&gt;
 &lt;p&gt;It also touches me every time I go back and see somebody had put in some effort in the commit
 message, and documented the process, the Why, and the outcome. It&#39;s like a time machine in your
 colleagues&#39; minds, and also in their personal development to become better programmers.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>Recently in books</title>
-    <link href="https://johan.im/writings/recently-in-books/" />
-    <updated>2020-02-01T00:00:00Z</updated>
-    <id>https://johan.im/writings/recently-in-books/</id>
-    <content type="html">&lt;p&gt;The year started off with three weeks in Sri Lanka, where I naturally didn&#39;t bring my laptop. I also
-only had phone internet while on wi-fi (didn&#39;t buy a data plan), which was lovely. This, combined
-with early evenings, led me to read much more than during whole 2019.&lt;/p&gt;
-&lt;p&gt;Here are the ones I worked through:&lt;/p&gt;
-&lt;h2&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/The_Alchemist_(novel)&quot;&gt;&amp;quot;The Alchemist&amp;quot;&lt;/a&gt; – Paolo Coelho&lt;/h2&gt;
-&lt;p&gt;★★★☆☆&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt; It&#39;s nice to have read it, but once is enough.&lt;/p&gt;
-&lt;p&gt;The modern classic. The one &amp;quot;everybody&amp;quot; have read. The book is very short and succinct. Coelho uses
-the story arc of a fable about a young herd boy, who sets out to find a treasure and follow his
-dreams, while being challenged with delays, hinders, and personal developments.&lt;/p&gt;
-&lt;p&gt;I liked it a lot as a travel book. It suited me well while I stepped away from my everyday life in
-Stockholm. However, once I realised the meaning and aim with the book (which is pretty obvious), it
-became less interesting. It has a lot of &amp;quot;lessons&amp;quot; which the protagonist learns along the way, but
-after a while, it just felt &lt;em&gt;very&lt;/em&gt; repetitive and flat. Everything is an allegory. Everything is a
-symbol for something else. I didn&#39;t see how some global Force, which is mentioned throughout the
-book, could help me in everyday life.&lt;/p&gt;
-&lt;h2&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/The_Zahir_(novel)&quot;&gt;&amp;quot;The Zahir&amp;quot;&lt;/a&gt; — Paolo Coelho&lt;/h2&gt;
-&lt;p&gt;★★☆☆☆&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt; Alright in the beginning, but becomes repetitive and flat.&lt;/p&gt;
-&lt;p&gt;Another one by mr. Coelho. This one, I found in a &amp;quot;Free Books&amp;quot; box a long time ago, and decided to
-bring on the Sri Lanka trip. After &lt;em&gt;The Alchemist&lt;/em&gt; above, it felt nice to continue with the same
-author in the same writing style. Again, this is an okay book to have while travelling. It&#39;s about
-how a man deals with the sudden disappearance of his wife; about finding clues and explanations of
-her behaviour. Then it becomes, like &lt;em&gt;The Alchemist&lt;/em&gt;, a pilgrimage.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;The Zahir&lt;/em&gt; in the beginning started out alright. Then it escalated in the same New Age style Coelho
-had in his other books, about &amp;quot;the power of love&amp;quot; which I thought never had any substance and
-backing by the author. On top of that, it became obvious that the books is &lt;em&gt;very&lt;/em&gt; autobiographical.
-The main protagonist&#39;s story strongly resembles the career of the author, which makes the whole book
-seem egoistical and self centered. The text isn&#39;t that shy with sharing details about the finances,
-luxury life, and sexual conquests of the protagonist/Coelho. It just shines through very much, which
-makes the book less likable.&lt;/p&gt;
-&lt;h2&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/The_Snow_Leopard&quot;&gt;&amp;quot;The Snow Leopard&amp;quot;&lt;/a&gt; – Peter Matthiessen&lt;/h2&gt;
-&lt;p&gt;★★★★☆&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt; Long sentences aside, I thought &lt;em&gt;The Snow Leopard&lt;/em&gt; is a beautiful book about nature –
-both human and the one surrounding us.&lt;/p&gt;
-&lt;p&gt;The subjects this book has in common with the two previous ones are &lt;em&gt;spirituality&lt;/em&gt; and &lt;em&gt;pilgrimage&lt;/em&gt;
-(a funny coincidence, actually). Whereas Coelho&#39;s writing is based in an &amp;quot;idea world&amp;quot;, Matthiessen&#39;s
-style is more tangible – more based in our physical world.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;The Snow Leopard&lt;/em&gt; is a non-fiction account of a 1973 expedition the author and naturalist George
-Schaller made to Nepal, with the objective of studying the Himalayan &amp;quot;blue sheep&amp;quot; in their natural
-habitat. For Matthiessen, the journey was a spiritual one, driven by the deep interest Buddhism and
-Zen, in the aftermaths of his wife&#39;s death in cancer some year before. As the title prescribes, a
-&amp;quot;side quest&amp;quot; of the expidition is to get a glimpse of the mythical Snow Leopard, which becomes a
-symbol of the inner journey of the author.&lt;/p&gt;
-&lt;p&gt;We get to follow the hardships of the two month long trip through the Himalayan mountains in western
-Nepal. The language is old fashioned but elegant, and the author describes the mountains with great
-skill (I say, without having been there!). The two Americans travel with porters, carrying the
-equipment, and Sherpas: the local people of the mountains, often hired as guides. The myriad of
-villages they pass through is described in detail by Matthiessen, as well as the surrounding
-landscapes. Once in a while, he goes off in a flashback to the last months of his wife&#39;s suffering.
-More often, he describes Buddhist history of the country, and his Zen practices of meditation and
-quest for tranquility.&lt;/p&gt;
-&lt;p&gt;For me, many topics in the book landed on the subject of &lt;em&gt;acceptance&lt;/em&gt;. Total acceptance of the state
-of things and all beings. Total acceptance of the various mishaps during their trip, as well as
-keeping zero expectations around seeing the shy Snow Leopard. I feel this &amp;quot;expectation management&amp;quot;
-can be applied to modern life by anybody.&lt;/p&gt;
-&lt;p&gt;Peter Matthiessen is not afraid to describe himself in bad manner: the frustration, the pettiness,
-the eagerness, the anxiety over his wife&#39;s death. He&#39;s open about all these things. I appreciate
-honesty and writing about things that are true. It&#39;s not hard to note the Zen undertones everywhere
-(Matthiessen went off becoming a Zen priest himself), which creates a larger-than-life feel to the
-text. After finishing the book, it really felt like having been on an adventure.&lt;/p&gt;
-&lt;p&gt;It could be a slow read though. It&#39;s not a &amp;quot;page turner&amp;quot;, but doesn&#39;t try to be either. There are
-long sentences and descriptions which might scare people off. Don&#39;t be in a hurry. Hopefully, it&#39;ll
-open one&#39;s eyes more to Zen literature (it did for me).&lt;/p&gt;
-&lt;h2&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Men_Without_Women_(Haruki_Murakami_short_story_collection)&quot;&gt;Men Without Women&lt;/a&gt; – Haruki Murakami&lt;/h2&gt;
-&lt;p&gt;★★★★★&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Summary:&lt;/strong&gt; A beautiful short story collection with a shared theme. It&#39;s full of great story
-telling, repressed emotions, and ultimately void.&lt;/p&gt;
-&lt;p&gt;Haruki Murakami has written this short story collection which shares its name with Hemingway&#39;s
-second collection of stories around a similar theme. I picked it out in the pocket shop before the
-trip by two reasons:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;I had a faint memory of reading good reviews about this Murakami.&lt;/li&gt;
-&lt;li&gt;I like short stories – nicer to invest time in a few pages rather than a full novel. Short
-stories are often succinct and to the point. Great short stories often are incredibly sharp but
-still subtle.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;The last sentence is so very true in &lt;em&gt;Men Without Women&lt;/em&gt;. Murakami&#39;s writing is full of wit,
-build-ups, and intense story telling. It&#39;s obviously hard to describe the plot in a collection like
-this, but as mentioned, they all share a common theme around male protagonists. They all have lost,
-are on the look for, or have rejected women in their lives.&lt;/p&gt;
-&lt;p&gt;The main thing is Murakami&#39;s great skill in describing these fates, as well as his great source of
-fantasy. There are some weird twists and turns of the stories, and all in all it&#39;s great writing.
-For me, I felt once more that human beings are so damned interesting.&lt;/p&gt;</content>
   </entry>
   
 </feed>
