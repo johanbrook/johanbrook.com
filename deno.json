@@ -1,6 +1,6 @@
 {
     "imports": {
-        "lume/": "https://deno.land/x/lume@v1.15.2/",
+        "lume/": "https://deno.land/x/lume@v2.0.3/",
         "html_entities": "https://deno.land/x/html_entities@v1.0/mod.js",
         "yaml": "https://deno.land/std@0.210.0/yaml/mod.ts",
         "front_matter/": "https://deno.land/std@0.210.0/front_matter/",
@@ -8,7 +8,7 @@
         "path": "https://deno.land/std@0.211.0/path/mod.ts"
     },
     "tasks": {
-        "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable-temporal -A -",
+        "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable -A -",
         "build": "deno task lume",
         "serve": "deno task build -s --quiet"
     },
