@@ -13,5 +13,9 @@ layout: layouts/main.njk
     <div class="prose">
       {{ content | safe }}
     </div>
+
+    <footer class="mt4 pt3 border border-t">
+        <p class="muted">Updated <time datetime="{{ date | date('ATOM') }}">{{ date | date }}</time>.</p>
+    </footer>
   </article>
 </main>

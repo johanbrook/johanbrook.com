@@ -2,6 +2,7 @@
 title: Covers
 subtitle: Exhaustive list of actually good cover songs.
 layout: layouts/page.njk
+date: Git Last Modified
 ---
 ## "Nothing Compares 2 U"
 
