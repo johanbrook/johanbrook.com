@@ -11,21 +11,21 @@ menu:
   <h1 class="visually-hidden p-name">{{ titles.micro }}</h1>
   <ol class="NotesList">
     {% for post in search.pages("type=note", "date=desc") %}
-      <li class="h-entry" id="{{ post.data.url | url(true) }}">
+      <li class="h-entry" id="{{ post.url | url(true) }}">
         <article class="Note">
            	<header class="mb2">
                 <h1 class="f4 no-rhythm mb0">
-                    <a href="{{ post.data.url }}" title="{{ post.data.date | date('HUMAN_DATETIME') }} (permalink)" class="font-serif no-underline u-url">
-                        <time class="dt-published" datetime="{{ post.data.date | date('ATOM') }}" pubdate>{{ post.data.date | date("PPP — HH:mm") }}</time> <span>#</span>
+                    <a href="{{ post.url }}" title="{{ post.date | date('HUMAN_DATETIME') }} (permalink)" class="font-serif no-underline u-url">
+                        <time class="dt-published" datetime="{{ post.date | date('ATOM') }}" pubdate>{{ post.date | date("PPP — HH:mm") }}</time> <span>#</span>
                     </a>
                 </h1>
-                {% if post.data.location %}
-                    <p title="Posted from" class="muted font-sans mb0 f5 target">{{ post.data.location }}</p>
+                {% if post.location %}
+                    <p title="Posted from" class="muted font-sans mb0 f5 target">{{ post.location }}</p>
                 {% endif %}
             </header>
 
             <div class="prose e-content">
-                {{ post.data.content | md | safe }}
+                {{ post.content | md | safe }}
             </div>
         </article>
       </li>

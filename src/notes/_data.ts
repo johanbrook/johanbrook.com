@@ -1,6 +1,10 @@
-import type { Page } from 'lume/core.ts';
 import { notePermalinkOf } from '../_includes/permalinks.ts';
 
 // Public, for template use
 
-export const url = (page: Page) => notePermalinkOf(page.src.slug);
+export const url = (page: Lume.Page) => {
+    if (!page.src.entry) {
+        throw new Error(`No entry for page: ${page.sourcePath}`);
+    }
+    return notePermalinkOf(page.src.entry.name);
+}

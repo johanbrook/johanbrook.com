@@ -1,5 +1,6 @@
 ---
 layout: null
+url: /micro.xml
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
@@ -8,18 +9,18 @@ layout: null
   <link href="{{ url | url(true) }}"/>
   <id>{{ url | url(true) }}</id>
   {% set lastPage = search.pages("type=note", "date=asc") | last %}
-  <updated>{{ lastPage.data.date | date("ATOM") }}</updated>
+  <updated>{{ lastPage.date | date("ATOM") }}</updated>
   <author>
     <name>{{ meta.author }}</name>
     <email>{{ meta.email }}</email>
   </author>
   {% for post in search.pages("type=note", "date=desc", 10) %}
   <entry>
-    <title>{{ post.data.date | date("HUMAN_DATETIME") }}</title>
-    <link href="{{ post.data.url | url(true) }}" />
-    <updated>{{ post.data.date | date("ATOM") }}</updated>
-    <id>{{ post.data.url | url(true) }}</id>
-    <content type="html">{{ post.data.content | md | htmlUrl(true) }}</content>
+    <title>{{ post.date | date("HUMAN_DATETIME") }}</title>
+    <link href="{{ post.url | url(true) }}" />
+    <updated>{{ post.date | date("ATOM") }}</updated>
+    <id>{{ post.url | url(true) }}</id>
+    <content type="html">{{ post.content | md | htmlUrl(true) }}</content>
   </entry>
   {% endfor %}
 </feed>

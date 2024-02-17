@@ -10,7 +10,7 @@
     "tasks": {
         "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable -A -",
         "build": "deno task lume",
-        "serve": "deno task build -s --quiet"
+        "serve": "deno task build -s"
     },
     "compilerOptions": {
         "lib": ["deno.ns", "deno.unstable", "dom", "dom.iterable"],

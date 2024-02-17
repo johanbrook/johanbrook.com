@@ -1,9 +1,9 @@
 import lume from 'lume/mod.ts';
-import type { Page } from 'lume/core.ts';
 import postcss from 'lume/plugins/postcss.ts';
 import esbuild from 'lume/plugins/esbuild.ts';
 import date from 'lume/plugins/date.ts';
 import inline from 'lume/plugins/inline.ts';
+import nunjucks from 'lume/plugins/nunjucks.ts';
 import { readingTime } from './src/_lume-plugins/reading-time.ts';
 import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
 import { typeset } from './src/_lume-plugins/typeset.ts';
@@ -19,9 +19,8 @@ const site = lume(
 );
 
 site
-	.includes(['.ts', '.js'], 'js')
-	.includes(['.css'], 'css')
 	.use(typeset({ scope: '.prose' }))
+	.use(nunjucks())
 	.use(esbuild())
 	.copy('public', '.')
 	.copy('public/.well-known', './.well-known') // lume ignores . dirs, must copy explicitly
@@ -32,7 +31,7 @@ site
 	.use(sourceMaps())
 	// Helpers
 	.filter('substr', (str: string, len: number) => str.substring(0, len))
-	.filter('readingTime', (pageOrContent) => {
+	.filter('readingTime', (pageOrContent: Lume.Page | string) => {
 		if (!pageOrContent) {
 			throw new Error(
 				`Passed falsy value to readingTime filter: ${pageOrContent}`,
@@ -41,7 +40,7 @@ site
 
 		return readingTime(pageOrContent);
 	})
-	.filter('postAssetUrl', (filename) => `/assets/posts/${filename}`)
+	.filter('postAssetUrl', (filename: string) => `/assets/posts/${filename}`)
 	.filter('excerpt', (content: string) => extractExcerpt(content))
 	.filter('hostname', (url: string) => new URL(url).host.replace('www.', ''))
 	.filter('mastodonUrl', function (this: any) {
@@ -83,7 +82,7 @@ site
 
 		return groups;
 	})
-	.filter('id', (page: Page) => idOf(page.src.slug))
+	.filter('id', (d: Lume.Data) => idOf(d.page.sourcePath))
 	// Fixes `str` to be suitable for JSON output
 	.filter('jsonHtml', (str: string) => JSON.stringify(str.replace('"', '\"')))
 	// Data

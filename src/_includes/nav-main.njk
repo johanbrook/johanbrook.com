@@ -11,8 +11,8 @@
           		<a href="/">Home</a>
            	</li>
            	{%- for entry in search.pages("menu.visible=true", "menu.order") %}
-          		<li {% if entry.data.url | isCurrentPage %} aria-current="page"{% endif %}>
-         			<a href="{{ entry.data.url }}">{{ entry.data.menu.title or entry.data.title }}</a>
+          		<li {% if entry.url | isCurrentPage %} aria-current="page"{% endif %}>
+         			<a href="{{ entry.url }}">{{ entry.menu.title or entry.title }}</a>
           		</li>
            	{%- endfor %}
             <li {% if '/all' | isCurrentPage %} aria-current="page"{% endif %} class="border border-t mt1 pt1">

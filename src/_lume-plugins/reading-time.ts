@@ -1,12 +1,14 @@
-import type { Page } from 'lume/core.ts';
-
 export const readingTime = (
-	pageOrContent: Page | string,
+	pageOrContent: Lume.Page | string,
 	{ printSeconds = false, raw = false, speed = 300 } = {},
 ) => {
-	const htmlContent: string = typeof pageOrContent == 'string'
+	const htmlContent = typeof pageOrContent == 'string'
 		? pageOrContent
-		: (pageOrContent as any).data.content;
+		: pageOrContent.content;
+
+	if (htmlContent == null) {
+	   throw new Error(`No content for: ${JSON.stringify(pageOrContent)}`);
+	}
 
 	if (typeof htmlContent != 'string') {
 		return `0 ${printSeconds ? 'seconds' : 'minutes'}`;
