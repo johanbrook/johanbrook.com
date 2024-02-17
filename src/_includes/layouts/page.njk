@@ -4,10 +4,12 @@ layout: layouts/main.njk
 
 <main role="main">
   <article class="Page">
-    <h1 class="title {{ "comp-" + color if color }}">{{ title }}.</h1>
-	{% if subtitle %}
-		<p class="subhead">{{ subtitle | md(true) | safe }}</p>
-	{% endif %}
+    <header class="mb3">
+        <h1 class="title {{ "comp-" + color if color }}">{{ title }}.</h1>
+    	{% if subtitle %}
+    		<p class="subhead mb0">{{ subtitle | md(true) | safe }}</p>
+    	{% endif %}
+    </header>
     <div class="prose">
       {{ content | safe }}
     </div>
