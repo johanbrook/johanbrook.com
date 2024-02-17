@@ -33,11 +33,6 @@ body {
 	}
 }
 
-main {
-	max-width: var(--content-width);
-	margin-bottom: calc(var(--lineheight) * 3);
-}
-
 :target {
 	scroll-margin-block: 5ex;
 }
@@ -197,11 +192,6 @@ tr {
 
     & > td:first-of-type {
 		font-weight: bold;
-		width: 25%;
-	}
-
-	& > td:nth-of-type(2) {
-		width: 15%;
 	}
 }
 

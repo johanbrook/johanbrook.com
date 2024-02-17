@@ -8,7 +8,7 @@ layout: layouts/main.njk
 	{% if subtitle %}
 		<p class="subhead">{{ subtitle | md(true) | safe }}</p>
 	{% endif %}
-    <div class="prose measure">
+    <div class="prose">
       {{ content | safe }}
     </div>
   </article>

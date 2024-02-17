@@ -1,0 +1,55 @@
+---
+layout: layouts/main.njk
+---
+
+<main role="main">
+    <article class="Book">
+        <h1 class="mb5">“{{ title }}”</h1>
+        {% if subtitle %}
+        <p class="subhead">{{ subtitle | md(true) | safe }}</p>
+        {% endif %}
+
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Status</th>
+                {% if finishedAt %}
+                <th></th>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>{{ title }}</td>
+                <td>{{ author }}</td>
+                <td class="f6 no-wrap align-middle">
+                    {% if dropped %}
+                    <span class="Badge Badge--muted">Dropped</span>
+                    {% else %} {% if paused %}
+                    <span class="Badge Badge--warn">Paused</span>
+                    {% else %} {% if finished %}
+                    <span class="Badge Badge--positive">Finished</span>
+                    {% else %}
+                    <span class="Badge Badge--positive">Reading</span>
+                    {% endif %} {% endif %} {% endif %}
+                </td>
+                {% if finishedAt %}
+                <td class="leading-tight">
+                    <time title="Finished at {{ finishedAt }}" datetime="{{ finishedAt }}">{{ finishedAt | date }}</time
+                    ><br />
+                    {% if location %}
+                    <small class="fw4 f6 font-sans" title="Finished in">{{ location }}</small>
+                    {% endif %}
+                </td>
+                {% endif %}
+            </tr>
+        </table>
+
+        <div class="prose">{{ notes | md | safe }}</div>
+
+        <footer class="mt4">
+            <p>
+                <a href="/reading"><span aria-hidden="true" class="BackLink mr2">←</span>More books</a>
+            </p>
+        </footer>
+    </article>
+</main>

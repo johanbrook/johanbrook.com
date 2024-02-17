@@ -31,10 +31,10 @@ menu:
                	</tr>
                 {% for book in bookz | reverse %}
                     <tr id="{{ book.slug }}">
-                   	<td class="text-color-contrast">
-       					<a href="{{ url | url(true) }}#{{book.slug}}" class="no-link">{{ book.title }}</a>
+                   	<td width="25%" class="text-color-contrast">
+       					<a href="{{ '/reading' | url }}/{{book.slug}}" class="no-link">{{ book.title }} <span class="muted">→</span></a>
                    	</td>
-                   	<td>
+                   	<td width="15%">
                   		{{ book.author }}
                    	</td>
                    	<td>

@@ -19,9 +19,9 @@ url: /reading.xml
 	{% for book in books | reverse %}
 	<entry>
 		<title>{{ book.title }}</title>
-		<link href="{{ "/reading" | url(true) }}#{{ book.slug }}" />
+		<link href="{{ '/reading' | url(true) }}/{{book.slug}}" />
 		<updated>{% if book.finishedAt %}{{ book.finishedAt | date("ATOM") }}{% else %}{{ date | date("ATOM")}}{% endif %}</updated>
-		<id>{{ "/reading" | url(true) }}#{{ book.slug }}</id>
+		<id>{{ '/reading' | url(true) }}/{{book.slug}}</id>
 		{% if book.notes %}
 			<content type="html">{{ book.notes | md | htmlUrl(true) }}</content>
 		{% else %}
