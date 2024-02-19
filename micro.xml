@@ -5,11 +5,37 @@
   <link href="https://johan.im/micro.xml"/>
   <id>https://johan.im/micro.xml</id>
   
-  <updated>2024-02-03T14:21:00Z</updated>
+  <updated>2024-02-19T13:39:53Z</updated>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johan.im</email>
   </author>
+  
+  <entry>
+    <title>February 19th, 2024 at 1:39:53 PM GMT+0</title>
+    <link href="https://johan.im/micro/20240219203953/" />
+    <updated>2024-02-19T13:39:53Z</updated>
+    <id>https://johan.im/micro/20240219203953/</id>
+    <content type="html">&lt;p&gt;I had always been an &amp;quot;anti e-book reader person&amp;quot;, or conversely, &amp;quot;pro physical book person&amp;quot;. In hindsight, I&#39;m not sure why: the constant argument had been &amp;quot;I&#39;d like to read &lt;em&gt;real&lt;/em&gt; books, please!&amp;quot;. Hold them, carry them, feel them. Etc. etc. It&#39;s 150% the sentimentality around books as manifestation of a cultural thing that has been around for hundreds of years. The last bastion, where the digital revolution yet hasn&#39;t been able to put its bits-and-bytes hands on.&lt;/p&gt;
+&lt;p&gt;It&#39;s also the vanity thing of collecting physical artefacts (and perhaps showing them off). I&#39;m the first to admit that I like to keep books in my bookshelf! Even though lately, I&#39;ve borrowed more books from the local library when the titles have been quite rando, as in &amp;quot;hm, I&#39;m not sure I&#39;ll ever gonna re-read this or recommend it to somebody&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Anyhow. With e-readers, you lose both the physical sensation and the showing-off of real books. And it&#39;s amazing!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;From now on, this text is about Johan being a decade late in discovering e-readers.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;For a longer trip I&#39;m currently on, I bought myself an e-book reader. It&#39;s a &lt;a href=&quot;https://eu.kobobooks.com/sv/products/kobo-clara-2e&quot;&gt;Kobo Clara 2E&lt;/a&gt;. I refused Amazon&#39;s Kindles due to lock-in and dislike of Amazon. I got myself a magnetic cover, and off I went.&lt;/p&gt;
+&lt;p&gt;Before, I made damn sure this Kobo thing was &lt;em&gt;open&lt;/em&gt; enough to transfer these types of ebooks onto it:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Random, free EPubs books.&lt;/li&gt;
+&lt;li&gt;DRM protected EPub books.&lt;/li&gt;
+&lt;li&gt;Library ebooks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;as well as sampling books out of the Kobo store. It supposedly has millions of books, and after some sampling, I determined that it had the titles I was going to read during my trip. Perfect!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://eu.kobobooks.com/cdn/shop/products/B_UK-ANZ-Device_Angled_1080x1080_17130470-23c2-498c-be24-8e5429a7f784_962x962.jpg?v=1691690100&quot; alt=&quot;Kobo Clara 2E&quot;&gt;&lt;/p&gt;
+&lt;p&gt;The Kobo reader is really good. It has a great display, kind of water proof, has good battery life (I&#39;ve charged it once since I got it in mid January, now is late Feburary), a perfect form factor.&lt;/p&gt;
+&lt;p&gt;The form factor is something I especially appreciate: I can fit it in my back pocket. I don&#39;t think the display is too small at all (6 inches, 300 PPI). Anywhere when I got a minute over, I can just haul it up and get some pages read. You &lt;em&gt;could&lt;/em&gt; do the same with a physical book, but even a paperback of 600+ pages will be a bit of a brick to carry around. The result? I read in a much higher pace, and therefore a lot more books (since January 14th, I&#39;ve read four books for a total duration of 56 hours). I feel genuinely excited for how this has lowered the threshold for reading more books.&lt;/p&gt;
+&lt;p&gt;It&#39;s almost like one of the charms with physical books became its baggage: to physically acquire them and transport them around. The ritual became a gatekeeping activity for me. With the e-book reader, it&#39;s as capitalistic and digital as it can be: I find a book in the Kobo store, buy it with my Apple Pay, and sync it on the device via my account. No more the feels of &amp;quot;opening the first pages of a freshly bought book&amp;quot;.&lt;/p&gt;
+&lt;p&gt;Oh, I&#39;ve almost forgot &lt;em&gt;the&lt;/em&gt; best thing about ebook readers! The ability to read in the evening in the bad shared with a partner who &lt;em&gt;does not&lt;/em&gt; want to have any lights on!&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;I&#39;m &lt;a href=&quot;https://johan.im/reading&quot;&gt;currently reading&lt;/a&gt; the &amp;quot;My Struggle&amp;quot; series by Karl Ove Knausgård.&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>February 3rd, 2024 at 2:21:00 PM GMT+0</title>
@@ -132,14 +158,6 @@ customElements.define(&#39;convert-currency&#39;, class extends HTMLElement {
     <updated>2023-11-18T09:09:38Z</updated>
     <id>https://johan.im/micro/202311180909/</id>
     <content type="html">&lt;p&gt;The &lt;a href=&quot;https://open.spotify.com/album/34ZmHgTZ7OcRCsrTqbHpSQ?si=8f6JTkP9RjSHBRZIL8Ioog&quot;&gt;latest Kurt Vile album&lt;/a&gt; is so very good and Kurt Vile-y. I love how consistent he is and how he&#39;s stuck to his style for so long, but still finds new variations to it.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>September 14th, 2023 at 2:29:14 PM GMT+0</title>
-    <link href="https://johan.im/micro/202309141429/" />
-    <updated>2023-09-14T14:29:14Z</updated>
-    <id>https://johan.im/micro/202309141429/</id>
-    <content type="html">&lt;p&gt;The album &lt;a href=&quot;https://open.spotify.com/album/1S7rBJNPNrCvtdF38sp0Gs?si=3mBWnZBcRPqnmLb7QkXDPA&quot;&gt;&amp;quot;Right Time&amp;quot;&lt;/a&gt; (1976) by Mighty Diamonds might be the best reggae album I&#39;ve heard. Even better than the epic &lt;a href=&quot;https://open.spotify.com/album/0FqUTYrs4FtPbav2Ry2I1M?si=D4cDCKcURb21lxSvoqeZSA&quot;&gt;&amp;quot;Heart of the Congos&amp;quot;&lt;/a&gt; (1977) by The Congos.&lt;/p&gt;</content>
   </entry>
   
 </feed>
