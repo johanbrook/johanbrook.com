@@ -31,7 +31,7 @@ jobs:
                   deno-version: ${{ env.DENO_VERSION }}
 
             - name: Build site
-              run: deno task build --quiet
+              run: deno task build
               env:
                 NODE_ENV: production
                 ENV: production
