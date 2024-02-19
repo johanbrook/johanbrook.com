@@ -89,19 +89,15 @@ and nesting.</p>
 language by Anja Skrba from <a href="http://webhostinggeeks.com/">Webhostinggeeks.com</a></em></p>
 <h2>Variables</h2>
 <p>The syntax of CSS variables brought up in the presentation is as follows:</p>
-<pre><code>@var header-color color #006;
+<p>@var header-color color #006;
 @var main-color color #06c;
-@var secondary-color color #c06;
-
-a { color: var(main-color); }
-</code></pre>
+@var secondary-color color #c06;</p>
+<p color:="" var(main-color);="">a</p>
 <p>The corresponding Sass syntax would be:</p>
-<pre><code>$header-color: #006;
+<p>$header-color: #006;
 $main-color: #06c;
-$secondary-color: #c06;
-
-a { color: $main-color; }
-</code></pre>
+$secondary-color: #c06;</p>
+<p color:="" $main-color;="">a</p>
 <p>You declare with the keyword <code>@var</code>&nbsp;, then the name and last the value. You insert the variable by
 writing <code>var(var-name)</code>&nbsp;. Pretty straight-forward, but personally I find the syntax a bit awkward.
 Why the need for the <code>@var</code> keyword? Why not just <code>@var-name</code>&nbsp;? Why no colon between the variable
@@ -113,18 +109,16 @@ to get away from non-semantic classes in your HTML code. A prime example is the 
 instead of applying a <code>clearfix</code> class to an HTML element, just write (in Sass) <code>@include clearfix;</code>
 in the stylesheet for that element. Nice and clean.</p>
 <p>In the proposed CSS syntax you declare mixins by writing:</p>
-<pre><code>@mixin error {
-   background: #fdd;
-   color: red;
-   font-weight: bold;
-}
-
-div.error {
-   border: thick solid red;
-   padding: .5em;
-   @mixin error;
-}
-</code></pre>
+<p>@mixin error {
+background: #fdd;
+color: red;
+font-weight: bold;
+}</p>
+<p>div.error {
+border: thick solid red;
+padding:&nbsp;.5em;
+@mixin error;
+}</p>
 <p>It’s a really slick way to reuse code. Growing sick of writing
 <a href="http://jnbrk.se/fp7c68">long, messy CSS3 gradient code?</a> Just define a mixin with some parameters
 and include it where appropriate. This syntax is alright, though I find the parameter declaration a
@@ -132,34 +126,30 @@ bit weird.</p>
 <h2>Nesting</h2>
 <p>When writing regular CSS you can’t nest selectors. That is, you can’t step down in the DOM hierarchy
 without having to write all the parent selectors again, like this:</p>
-<pre><code>#main &gt; header &gt; h1{
-   font-size: 2em;
-   background: blue;
-   color: white;
+<p>#main &gt; header &gt; h1{
+font-size: 2em;
+background: blue;
+color: white;
 }
 #main &gt; header &gt; h1 &gt; a{
-   color: #ddf;
+color: #ddf;
 }
 #main &gt; header &gt; h1 &gt; a:visited{
-   color: #fdf;
-}
-</code></pre>
+color: #fdf;
+}</p>
 <p>I hate this kind of writing. It feels so unnecessary and unintuitive. Atkins has proposed this
 syntax:</p>
-<pre><code>#main &gt; header &gt; h1 {
-  font-size: 2em;
-  background: blue;
-  color: white;
-
-  @this &gt; a {
-    color: #ddf;
-
-    @this:visited {
-      color: #fdf;
-    }
-  }
+<p>#main &gt; header &gt; h1 {
+font-size: 2em;
+background: blue;
+color: white;</p>
+<p>@this &gt; a {
+color: #ddf;</p>
+<p>@this:visited {
+color: #fdf;
 }
-</code></pre>
+}
+}</p>
 <p>This feels more natural and flexible. Changing the id attribute of the header? No problem, just
 change at one place in the code. The syntax in Sass and Less isn’t too far away from this one
 either.</p>
@@ -181,7 +171,10 @@ godsend gift.</p>
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -218,10 +211,7 @@ godsend gift.</p>
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

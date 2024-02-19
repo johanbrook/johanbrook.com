@@ -82,14 +82,12 @@ paragraphs <code>color</code> property. How about using your element’s color v
 border-colors? A neat CSS keyword I didn’t know about makes this possible: <code>currentcolor</code>&nbsp;. Treat it
 as any other color keyword (like red, blue, green etc.) and wherever it’s used, the color of the
 <code>color</code> is used.</p>
-<pre><code>p {
-   color: red;
-}
-
-p span{
-   background: currentcolor;
-}
-</code></pre>
+<p>p {
+color: red;
+}</p>
+<p>p span{
+background: currentcolor;
+}</p>
 <p>Firefox, Safari, Chrome and Opera supports the keyword but alas, not IE9 yet.</p>
 
     </div>
@@ -99,7 +97,10 @@ p span{
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -136,10 +137,7 @@ p span{
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

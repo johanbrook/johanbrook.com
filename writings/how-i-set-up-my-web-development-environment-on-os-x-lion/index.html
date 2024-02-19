@@ -101,13 +101,11 @@ installing tools manually, go through Homebrew. You can pull of stuff like <code
 <code>brew install git</code> without having to download tarballs, building, managing binaries on the <code>PATH</code>&nbsp;,
 and … arrgghhh.</p>
 <p>To get Homebrew started:</p>
-<pre><code>$ /usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
-$ brew update
-</code></pre>
+<p>$ /usr/bin/ruby -e “$(curl -fsSL https://raw.github.com/gist/323731)”
+$ brew update</p>
 <p>Get to know the tool with the bin command <code>brew</code>&nbsp;.</p>
 <h2>git</h2>
-<pre><code>$ brew install git
-</code></pre>
+<p>$ brew install git</p>
 <p>That is all. My&nbsp;.gitconfig is included in my dotfiles (linked further down).</p>
 <h2>Ruby</h2>
 <p>Ruby is a must-have, with all its great gems (Sass! Compass! Sinatra! Rake!). Ruby is indeed
@@ -120,44 +118,36 @@ However, Sam Stephenson convinced me to switch to his tool <strong>rbenv</strong
 more lightweight.</p>
 <p>Everything you need to know is explained in the Readme. Note that you’ll need <strong>ruby-build</strong> to
 actually build the Ruby versions ( <a href="https://github.com/sstephenson/ruby-build">GitHub project</a>).</p>
-<pre><code>$ brew install rbenv
-$ brew install ruby-build
-
-# Install Ruby 1.9.3
-$ rbenv install 1.9.3-p0
-
-# Check that everything works
+<p>$ brew install rbenv
+$ brew install ruby-build</p>
+<p># Install Ruby 1.9.3
+$ rbenv install 1.9.3-p0</p>
+<p># Check that everything works
 $ ruby -v
-ruby 1.9.3p0 (2011-10-30 revision 33570) [x86_64-darwin11.2.0]
-</code></pre>
+ruby 1.9.3p0 (2011-10-30 revision 33570) [x86_64-darwin11.2.0]</p>
 <h2>RubyGems</h2>
 <p><a href="http://rubygems.org/">RubyGems</a> manages all Ruby gems, and is included in OS X. But remember to
 update it to the latest version before you do anything.</p>
-<pre><code>$ gem update --system
-</code></pre>
+<p>$ gem update –system</p>
 <p>Then I installed some handy gems.</p>
-<pre><code>$ gem update rake
+<p>$ gem update rake
 $ gem update rails
 $ gem install rack
 $ gem install sass
 $ gem install compass
 $ gem install sinatra
-$ gem install bundler
-</code></pre>
+$ gem install bundler</p>
 <h2>Other</h2>
 <p>If there’s anything else you need, it’s probably in Homebrew:</p>
-<pre><code>$ brew install wget mysql node mongodb
-
-# NPM
-$ curl http://npmjs.org/install.sh | sh
-</code></pre>
+<p>$ brew install wget mysql node mongodb</p>
+<p># NPM
+$ curl http://npmjs.org/install.sh | sh</p>
 <p>And <a href="http://www.mamp.info/en/index.html">MAMP</a> for local PHP/MySQL development in an&nbsp;.app.</p>
 <h2>Dotfiles</h2>
 <p>I’ve forked some neat dotfiles to keep in the home folder. You can find them in
 <a href="https://github.com/johanbrook/dotfiles">my GitHub project</a>. Just do:</p>
-<pre><code>$ git clone git://github.com/johanbrook/dotfiles.git
-$ rake install
-</code></pre>
+<p>$ git clone git://github.com/johanbrook/dotfiles.git
+$ rake install</p>
 <p>The dotfiles include:</p>
 <ul>
 <li>gitignore</li>
@@ -183,7 +173,10 @@ dependencies, which is important to me.</p>
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -220,10 +213,7 @@ dependencies, which is important to me.</p>
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

@@ -56,9 +56,11 @@
 	  	<div id="main">
 			<main role="main">
   <article class="Page">
-    <h1 class="title ">Now.</h1>
-	
-    <div class="prose measure">
+    <header class="mb3">
+        <h1 class="title ">Now.</h1>
+    	
+    </header>
+    <div class="prose">
       <p class="subhead">Updated on <time class="text-color fw5">March 20th, 2023</time> from Stockholm, Sweden.</p>
 <h1>Since the last update…</h1>
 <p>…I’ve had over a year of both regular family life things, and other stuff such as travel.</p>
@@ -103,13 +105,20 @@
 <p>Inspired by <a href="https://sivers.org/now">Derek Sivers</a>.</p>
 
     </div>
+
+    <footer class="mt4 pt3 border border-t">
+        <p class="muted">Updated <time datetime="2023-03-20T00:00:00Z">2023-03-20</time>.</p>
+    </footer>
   </article>
 </main>
 
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -146,10 +155,7 @@
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

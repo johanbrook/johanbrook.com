@@ -74,11 +74,9 @@
       
       <p>In a current Wordpress project, we wanted to have a permalink to a photo gallery filled with images
 (attachments) for a post. Wordpress supports permalinks to single attachments, such as</p>
-<pre><code>site.com/single-post/attachment/flower
-</code></pre>
+<p>site.com/single-post/attachment/flower</p>
 <p>That’s cool. However, we wanted something like this:</p>
-<pre><code>site.com/single-post/photos
-</code></pre>
+<p>site.com/single-post/photos</p>
 <p>… where all attachments would be listed. The <code>/photos</code> part is called an <em>endpoint</em>. So how do you
 add them in Wordpress? And how do you assign this endpoint to render a specific template file?</p>
 <h2>Relevant APIs</h2>
@@ -96,17 +94,15 @@ add them in Wordpress? And how do you assign this endpoint to render a specific 
 <p>After reading through these, I simply implemented the necessary filters and callbacks in the
 <code>functions.php</code> file.</p>
 <p>I began with this:</p>
-<pre><code>add_filter( 'query_vars', 'add_query_vars');
-
-/**
-*   Add the 'photos' query variable so Wordpress
-*   won't mangle it.
+<p>add_filter( ‘query_vars’, ‘add_query_vars’);</p>
+<p>/**
+*   Add the ‘photos’ query variable so Wordpress
+*   won’t mangle it.
 */
 function add_query_vars($vars){
-    $vars[] = "photos";
-    return $vars;
-}
-</code></pre>
+$vars[] = “photos”;
+return $vars;
+}</p>
 <p>As you can see, I’m working with my <code>/photos</code> endpoint. I have to tell Wordpress’ rewrite engine to
 take our special query variable (“photos”) into account when rewriting URLs, so I used the
 <code>query_vars</code> filter for this (see the
@@ -116,43 +112,36 @@ take our special query variable (“photos”) into account when rewriting URLs,
 endpoint) and a <code>place</code>&nbsp;. “Place” is where the endpoint will be active, and the docs only specify a
 couple: “EP_PERMALINK, EP_PAGES, EP_ATTACHMENT, etc”. From other examples I’ve spotted <code>EP_ALL</code>
 as well. I used <code>EP_PERMALINK</code>&nbsp;:</p>
-<pre><code>add_rewrite_endpoint('photos', EP_PERMALINK);
-</code></pre>
+<p>add_rewrite_endpoint(‘photos’, EP_PERMALINK);</p>
 <p>Right. The endpoint is up and running, but as I said at the top, I wanted a specific template to
 render when this URL is visited. It’s doable! Check out the
 <a href="http://codex.wordpress.org/Plugin_API/Filter_Reference/_single_template">single_template filter</a>.</p>
-<pre><code>add_filter( 'single_template', 'project_attachments_template' );
-
-/**
+<p>add_filter( ‘single_template’, ‘project_attachments_template’ );</p>
+<p>/**
 *	From http://codex.wordpress.org/Template_Hierarchy
 *
 *	Adds a custom template to the query queue.
 */
-function project_attachments_template($templates = ""){
-	global $wp_query;
-	
-	// If the 'photos' endpoint isn't appended to the URL,
-	// don't do anything and return
-	if(!isset( $wp_query-&gt;query['photos'] ))
-		return $templates;
-	
-	// .. otherwise, go ahead and add the 'photos.php' template
-	// instead of 'single-{$type}.php'.
-	if(!is_array($templates) &amp;&amp; !empty($templates)) {
-		$templates = locate_template(array("photos.php", $templates),false);
-	} 
-	elseif(empty($templates)) {
-		$templates = locate_template("photos.php",false);
-	}
-	else {
-		$new_template = locate_template(array("photos.php"));
-		if(!empty($new_template)) array_unshift($templates,$new_template);
-	}
-	
-
-	return $templates;
+function project_attachments_template($templates = “”){
+global $wp_query;</p>
+<p>// If the ‘photos’ endpoint isn’t appended to the URL,
+// don’t do anything and return
+if(!isset( $wp_query-&gt;query[‘photos’] ))
+return $templates;</p>
+<p>//&nbsp;.. otherwise, go ahead and add the ‘photos.php’ template
+// instead of ‘single-{$type}.php’.
+if(!is_array($templates) &amp;&amp;&nbsp;!empty($templates)) {
+$templates = locate_template(array(“photos.php”, $templates),false);
 }
-</code></pre>
+elseif(empty($templates)) {
+$templates = locate_template(“photos.php”,false);
+}
+else {
+$new_template = locate_template(array(“photos.php”));
+if(!empty($new_template)) array_unshift($templates,$new_template);
+}</p>
+<p>return $templates;
+}</p>
 <p>I’ve hard coded the file <code>photos.php</code> above. Create this file in the theme folder, and you’re all
 set! In this template you’ve got access to the global <code>$post</code> variable, so you’re able to pull in
 all kinds of post data into it.</p>
@@ -167,7 +156,10 @@ have when doing more advanced things in Wordpress.</p>
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -204,10 +196,7 @@ have when doing more advanced things in Wordpress.</p>
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

@@ -79,25 +79,21 @@
       <p>CSS variables are powerful and almost vital for me nowadays. They are supported in SCSS, LESS and
 Stylus (all preprocessors). But now WebKit now seem to be on its way of implementing a pure CSS
 version:</p>
-<pre><code>-webkit-var-foreground: green;
--webkit-var-background: rgb(255, 255, 255);
-
-color: -webkit-var(foreground);
+<p>-webkit-var-foreground: green;
+-webkit-var-background: rgb(255, 255, 255);</p>
+<p>color: -webkit-var(foreground);
 background-color: red;
-background-color: -webkit-var(background);
-</code></pre>
+background-color: -webkit-var(background);</p>
 <p><a href="http://johanbrook.com/design/css/webkit-css-variables-mixins-nesting/">I’ve written about a CSS variable implementation before</a>,
 and even back then I noted that the proposed syntax is bulky and ugly. In the example above you’ll
 note verbosity and even a vendor prefix (!).</p>
 <p>I certainly hope this will be revised and rethought. The way Sass and other preprocessors do it is
 the way to go:</p>
-<pre><code>$foreground: green;
-$background: rgb(255,255,255);
-
-color: $foreground;
+<p>$foreground: green;
+$background: rgb(255,255,255);</p>
+<p>color: $foreground;
 background-color: red;
-background-color: $background;
-</code></pre>
+background-color: $background;</p>
 
     </div>
   </article>
@@ -106,7 +102,10 @@ background-color: $background;
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -143,10 +142,7 @@ background-color: $background;
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

@@ -78,34 +78,28 @@
       
       <p>The Javascript ninja <a href="http://twitter.com/ded">Dustin Diaz</a> of Twitter has created a very, very
 minimal solution for loading Javascript files asynchronously as well with dependencies.</p>
-<pre><code>$script('analytics.js');
-$script('library.js', function() {
-  // do stuff with library.
-});
-</code></pre>
+<p>$script(‘analytics.js’);
+$script(‘library.js’, function() {
+// do stuff with library.
+});</p>
 <p>Not too hard to grasp. Import <code>library.js</code>&nbsp;, use it in the code. For the jQuery fans:</p>
-<pre><code>$script('jquery.js', 'jquery');
-
-$script.ready('jquery', function() {
-  // do stuff with jQuery
-});
-</code></pre>
+<p>$script(‘jquery.js’, ‘jquery’);</p>
+<p>$script.ready(‘jquery’, function() {
+// do stuff with jQuery
+});</p>
 <p>It seems you’re able to do some pretty neat stuff with it:</p>
-<pre><code>new school - loads as non-blocking, and ALL js files load asynchronously
-$script('jquery.js', 'jquery');
-$script('my-jquery-plugin.js', 'plugin');
-$script('my-app-that-uses-plugin.js');
-
-/*--- in my-jquery-plugin.js ---*/
-$script.ready('jquery', function() {
-  // plugin code...
-});
-
-/*--- in my-app-that-uses-plugin.js ---*/
-$script.ready('plugin', function() {
-  // use your plugin :)
-});
-</code></pre>
+<p>new school - loads as non-blocking, and ALL js files load asynchronously
+$script(‘jquery.js’, ‘jquery’);
+$script(‘my-jquery-plugin.js’, ‘plugin’);
+$script(‘my-app-that-uses-plugin.js’);</p>
+<p>/<em>–- in my-jquery-plugin.js –-</em>/
+$script.ready(‘jquery’, function() {
+// plugin code…
+});</p>
+<p>/<em>–- in my-app-that-uses-plugin.js –-</em>/
+$script.ready(‘plugin’, function() {
+// use your plugin&nbsp;:)
+});</p>
 <p>It adds a little bit more control over the browser loading process, and as a bonus it doesn’t block
 the downloading of images and other documents. Check out the
 <a href="http://www.dustindiaz.com/scriptjs/">blog post</a> or
@@ -118,7 +112,10 @@ the downloading of images and other documents. Check out the
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -155,10 +152,7 @@ the downloading of images and other documents. Check out the
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

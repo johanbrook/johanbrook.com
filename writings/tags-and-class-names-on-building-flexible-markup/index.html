@@ -82,42 +82,34 @@ HTML hasn’t been&nbsp;<strong>flexible</strong> enough. I’ve made my markup 
 one of the factors of that has been my urge to do clean and semantic HTML with few attributes on my
 tags. Changing one thing made me to changes in another place as well. Not DRY.</p>
 <p>An example. Here’s a box for author information in the bottom of a blog post.</p>
-<pre><code>&lt;footer&gt;
-	&lt;h2&gt;Joe Doe&lt;/h2&gt;
-
-	&lt;img src="avatar-joe.jpg" alt="Joe" /&gt;
-
-	&lt;p&gt;
+<p></p><footer>
+<h2>Joe Doe</h2><p></p>
+<p><img src="avatar-joe.jpg" alt="Joe"></p>
+<p></p><p>
 One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.
-	&lt;/p&gt;
-	
-&lt;/footer&gt;
-</code></pre>
+</p><p></p>
+<p></p></footer><p></p>
 <p>Minimal but good example of clean HTML. But a bit naïve. How would you style the image avatar in
 CSS? Piece of cake (assuming the <code>footer</code> element is in an <code>article</code> ):</p>
-<pre><code>article footer img {
-	float: left;
-}
-</code></pre>
+<p>article footer img {
+float: left;
+}</p>
 <p>Okay. But say you wrap the <code>img</code> tag in a <code>figure</code> for example? Then your styling perhaps doesn’t
 behave as expected. If you add more images in the box, weird stuff may happen as well.</p>
 <p>The author description (in the <code>p</code> tag) is interesting too. I’ve made this example minimal, but now
 the text is wrapped in a single paragraph tag. But what if you need more paragraphs? Other elements
 in the description? Then some refactorings has to be made.</p>
-<pre><code>&lt;footer class="post-author"&gt;
-	&lt;h2&gt;Joe Doe&lt;/h2&gt;
-
-	&lt;figure class="author-avatar"&gt;	
-		&lt;img src="avatar-joe.jpg" alt="Joe" /&gt;
-	&lt;/figure&gt;
-
-	&lt;div class="author-bio"&gt;
-		&lt;p&gt;
-			One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.
-		&lt;/p&gt;
-	&lt;/div&gt;
-&lt;/footer&gt;
-</code></pre>
+<p></p><footer class="post-author">
+<h2>Joe Doe</h2><p></p>
+<p></p><figure class="author-avatar">	
+<img src="avatar-joe.jpg" alt="Joe">
+</figure><p></p>
+<p></p><div class="author-bio">
+<p>
+One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.
+</p>
+</div>
+</footer><p></p>
 <p>Above you see the markup I would write. Notice the additional <code>class</code> attributes and the <code>div</code>
 element wrapper.</p>
 <h2>But why, oh why?</h2>
@@ -142,7 +134,10 @@ feels good, it’s probably totally okay to do.</p>
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -179,10 +174,7 @@ feels good, it’s probably totally okay to do.</p>
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

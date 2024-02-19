@@ -99,16 +99,14 @@ question: “Did I get ’em all now?”.</p>
 <p>Automatically fetch the city based on a postal code How to you add delight to a form, without
 writing a whole jQuery plugin for it? Let’s say you have a sign up form which includes a postal code
 and city.</p>
-<pre><code>&lt;form method="POST" action=""&gt;
-	&lt;label&gt;Postal code 
-		&lt;input type="text" placeholder="810 20" id="postal-code" /&gt;
-	&lt;/label&gt;
-	
-	&lt;label&gt;City 
-		&lt;input type="text" placeholder="City" id="city" /&gt;
-	&lt;/label&gt;
-&lt;/form&gt;
-</code></pre>
+<p></p><form method="POST" action="">
+<label>Postal code
+<input type="text" placeholder="810 20" id="postal-code">
+</label><p></p>
+<p><label>City
+<input type="text" placeholder="City" id="city">
+</label>
+</p></form><p></p>
 <p>That code would produce this:</p>
 <p>Postal code</p>
 <p>City</p>
@@ -125,18 +123,15 @@ able to fetch data right from the Javascript — working around the cross do
 GET request to <code>http://postnummersok.se/api</code> with the postal code in the <code>q</code> parameter. The response
 will be returned in JSON (yay!). Even JSONP is possible if you use the <code>callback</code> parameter. Follow
 along below.</p>
-<pre><code>$("#postal-code").blur(function(){ 
-	var url = "http://postnummersok.se/api?callback=?",
-		// remove whitespace in postal code 
-		code = encodeURI(this.value.replace(/s+/g, "")); 
-		
-	$.getJSON(url, {q: code}, function(json){ 
-		if(json === null) return; 
-		
-		$("#city").val(json[0]).select(); 
-	}); 
+<p>$(“#postal-code”).blur(function(){
+var url = “http://postnummersok.se/api?callback=?”,
+// remove whitespace in postal code
+code = encodeURI(this.value.replace(/s+/g, “”));</p>
+<p>$.getJSON(url, {q: code}, function(json){
+if(json === null) return;</p>
+<p>$(“#city”).val(json[0]).select();
 });
-</code></pre>
+});</p>
 <p>As you can see I’m using jQuery in this example. A simple <code>blur</code> event is binded to the postal code
 field, and the API URL is defined. Note the <code>?callback=?</code> piece, which tells the jQuery XHR to treat
 the call as JSONP <a href="http://api.jquery.com/jQuery.getJSON/#jsonp">(read more in the API)</a>.</p>
@@ -169,7 +164,10 @@ Form building is truly a form of art, therefore: iterate, iterate, iterate.</p>
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -206,10 +204,7 @@ Form building is truly a form of art, therefore: iterate, iterate, iterate.</p>
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

@@ -87,12 +87,10 @@ more slick way of visually showing when the media queries fired, and I created o
 <p><a href="http://playground.johanbrook.com/css/mediaquerydebug.html">Media Query debugger demo</a></p>
 <h2>Code</h2>
 <p>Here’s a basic media query targeting mainly tablets:</p>
-<pre><code>@media only screen and (min-width: 768px) and (max-width: 979px){ body{ /* code */ } }
-</code></pre>
+<p>@media only screen and (min-width: 768px) and (max-width: 979px){ body{ /* code */ } }</p>
 <p>It’ll kick in when the viewport is in between 768px and 979px. Nothing weird, you write the CSS as
 usual. However, check out the code below:</p>
-<pre><code>@media only screen and (min-width: 768px) and (max-width: 979px){ body{ /* code */ } body::before{ content: "Tablet media query (768 &lt; 979) fired"; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); /* Semi-transparent yellow */ position: absolute; top: 0; left: 0; right: 0; z-index: 99; } }
-</code></pre>
+<p>@media only screen and (min-width: 768px) and (max-width: 979px){ body{ /* code <em>/ } body::before{ content: “Tablet media query (768 &lt; 979) fired”; font-weight: bold; display: block; text-align: center; background: rgba(255,255,0, 0.9); /</em> Semi-transparent yellow */ position: absolute; top: 0; left: 0; right: 0; z-index: 99; } }</p>
 <p>Using the <code>::before</code> pseudo selector, I created a phantom element with some descriptive content and
 styling which lies on top of the web page. That’s it! Here’s a
 <a href="http://playground.johanbrook.com/css/mediaquerydebug.html">demo</a>.</p>
@@ -101,8 +99,7 @@ this in Javascript, of course, and maybe also patch one issue I’ve come across
 queries overlap each other, only one indicator bar will be shown.</p>
 <p>It may also be clever to use this in a “debug mode”, i.e. apply a <code>debug</code> class to the <code>body</code>
 element, and go on and write:</p>
-<pre><code>body.debug::before{ /* .. all the stuff .. */ }
-</code></pre>
+<p *="" css-module=" " all="" the="" stuff="">body.debug::before</p>
 <p>Now you’re able to quickly activate and deactivate the indicator bars. Applying a body class would
 also let use reuse some of the code described above (it would be tedious to write all that stuff
 over and over again).</p>
@@ -115,23 +112,19 @@ project’s website and tutorial).</p>
 <a href="http://sass-lang.com/tutorial.html#mixins">mixin</a>. Mixins are essentially chunks of CSS code you
 can include anywhere in the document (great for reusability), and you call them in a manner not too
 different from function calls.</p>
-<pre><code>@mixin debugmessage($message, $color: rgba(255,255,0, 0.9) ){ &amp;::before{ content: $message; font-weight: bold; display: block; text-align: center; background: #{$color}; position: absolute; right: 0; left: 0; top: 0; z-index: 99; } }
-</code></pre>
+<p>@mixin debugmessage($message, $color: rgba(255,255,0, 0.9) ){ &amp;::before{ content: $message; font-weight: bold; display: block; text-align: center; background: #{$color}; position: absolute; right: 0; left: 0; top: 0; z-index: 99; } }</p>
 <p>It’s exactly the same code as the first pure CSS example, but I’ve replaced the <code>content</code> and
 <code>background</code> values with to arguments. The mixin is later included in the media query:</p>
-<pre><code>@media only screen and (min-width: 768px) and (max-width: 979px){ body{ @include debugmessage("Tablet media query fired"); } }
-</code></pre>
+<p>@media only screen and (min-width: 768px) and (max-width: 979px){ body{ @include debugmessage(“Tablet media query fired”); } }</p>
 <p>Simple right? It’s clean, nice and <strong>reusable</strong>. I’m also able to go ahead and send a different
 colour along with the mixin (right now, semi-transparent yellow is default if no other argument is
 given):</p>
-<pre><code>@include debugmessage("Tablet media query fired", "red");
-</code></pre>
+<p>@include debugmessage(“Tablet media query fired”, “red”);</p>
 <h3>Debug mode</h3>
 <p>Thanks to Sass’ variables, I’m able to declare a global, top-scope variable at the top of my Sass
 sheets called <code>$DEBUG</code> to keep track of thingss. During development I set it to <code>true</code>&nbsp;. This trick
 is handy when writing things you might want to turn off when the site launches:</p>
-<pre><code>@if($DEBUG == true){ @include debugmessage("Mobile media query fired", "orange"); }
-</code></pre>
+<p @include="" debugmessage(mobilemediaqueryfired,="" orange);="">@if($DEBUG == true)</p>
 <p>There. Even better, right?</p>
 <h2>Outro</h2>
 <p>I randomly created this during a project, and it’s a quick and dirty way of detecting different
@@ -145,7 +138,10 @@ if you have any thoughts.</p>
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -182,10 +178,7 @@ if you have any thoughts.</p>
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

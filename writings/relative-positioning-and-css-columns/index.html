@@ -90,15 +90,13 @@ But what about the columns? Safari seemingly refused to accept the <code>-webkit
 declarations. Chrome went along well. Turns out <strong>child elements to a parent where CSS Columns are
 declared cant’t have relative positioning</strong>. It’ll cause troubles in Safari.</p>
 <p>Therefore:</p>
-<pre><code>.columns{
-    -webkit-column-count: 3;
-    -webkit-column-gap: 1.5em;
-}
-
-.columns * {
-    position: static;
-}
-</code></pre>
+<p>.columns{
+-webkit-column-count: 3;
+-webkit-column-gap: 1.5em;
+}</p>
+<p>.columns * {
+position: static;
+}</p>
 <p>.. solves the problems, if you still have <code>position: relative</code> declared globally. I won’t.</p>
 
     </div>
@@ -108,7 +106,10 @@ declared cant’t have relative positioning</strong>. It’ll cause troubles in 
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -145,10 +146,7 @@ declared cant’t have relative positioning</strong>. It’ll cause troubles in 
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

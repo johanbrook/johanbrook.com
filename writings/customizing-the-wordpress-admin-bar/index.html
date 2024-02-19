@@ -87,29 +87,24 @@ page/post. The rendering of the bar itself builds upon a simple API you can hook
 found any documentation in the Wordpress Codex yet though, so I’m gonna show some simple examples
 from what I’ve picked up from the Wordpress core. First we need a hook. The Wordpress developers
 advise us to use <code>admin_bar_menu</code>&nbsp;. Right on. Add this to <code>functions.php</code>&nbsp;:</p>
-<pre><code>add_action("admin_bar_menu", "customize_menu");
-
-function customize_menu(){
-    global $wp_admin_bar;
-
-    // Do stuff
-}
-</code></pre>
+<p>add_action(“admin_bar_menu”, “customize_menu”);</p>
+<p>function customize_menu(){
+global $wp_admin_bar;</p>
+<p>// Do stuff
+}</p>
 <p>The <code>customize_menu()</code> is a handler which will do stuff with the admin bar. We also need to define
 the global <code>$wp_admin_bar</code> variable in order to call the API functions.</p>
 <h2>The API</h2>
 <p>The WP_Admin_Bar class includes the great <code>add_menu()</code> function which we use to add menus:</p>
-<pre><code>$wp_admin_bar-&gt;add_menu($args);
-
-// Defaults:
+<p>$wp_admin_bar-&gt;add_menu($args);</p>
+<p>// Defaults:
 $args = array(
-   "id" =&gt; false,
-   "title" =&gt; false,
-   "href" =&gt; false,
-   "parent" =&gt; false,
-   "meta" =&gt; false
-);
-</code></pre>
+“id” =&gt; false,
+“title” =&gt; false,
+“href” =&gt; false,
+“parent” =&gt; false,
+“meta” =&gt; false
+);</p>
 <p><code>id</code> (String) The id of your menu. Make sure it’s unique — this will identify your menu, and also be
 used in the menu item’s <code>id</code> attribute in the HTML code like this:
 <code>&lt;li id="wp-admin-bar-{$id}"&gt; ... &lt;/li&gt;</code> <code>title</code> (String) The title of your menu. Will be shown on
@@ -118,13 +113,12 @@ parent menu, if you’d want that. <code>meta</code> (Array) Some handy extra st
 “title” and “target”. Ex: <code>"meta" =&gt; array("onclick" =&gt; 'alert("Hi there");')</code>&nbsp;. Note: the value of
 “html” will be added directly after your menu item in the bar. So with these guys you could
 construct something like this:</p>
-<pre><code>$wp_admin_bar-&gt;add_menu(array(
-   "id" =&gt; "mymenu",
-   "title" =&gt; "A custom menu",
-   "href" =&gt; "http://google.com",
-   "meta" =&gt; array("target" =&gt; "blank")
-));
-</code></pre>
+<p>$wp_admin_bar-&gt;add_menu(array(
+“id” =&gt; “mymenu”,
+“title” =&gt; “A custom menu”,
+“href” =&gt; “http://google.com”,
+“meta” =&gt; array(“target” =&gt; “blank”)
+));</p>
 <p>… which will produce this:
 <img src="http://213.185.255.138/core/wp-content/uploads/2011/03/JohanBrook-CustomMenu.png" alt="" title="JohanBrook-CustomMenu">
 Neat. Now you have a custom, top-level menu item. What if you’d like to link to pages in the
@@ -134,12 +128,11 @@ page in wp-admin, like this: <code>admin_url("nav-menus.php")</code>&nbsp;. Incr
 <p>A menu item is cool and all, but it would be awesome to add more items and group them, like in a
 dropdown menu. We’ll go ahead and to that with the <code>parent</code> key in the argument array. Add this
 below the previous code:</p>
-<pre><code>$wp_admin_bar-&gt;add_menu(array(
-	"id" =&gt; "my-child-menu",
-	"title" =&gt; "Child",
-	"parent" =&gt; "mymenu"
-));
-</code></pre>
+<p>$wp_admin_bar-&gt;add_menu(array(
+“id” =&gt; “my-child-menu”,
+“title” =&gt; “Child”,
+“parent” =&gt; “mymenu”
+));</p>
 <p>It behaves just like any other menu, but you’ll have to specify the <code>parent</code> key to the top-level
 menu’s id. The children are automatically attached to the parent menu and shown on hover, as
 expected:
@@ -148,32 +141,26 @@ expected:
 <p>So now it’s completely up to your needs. Just use functions and variables as usual as you du in
 <code>functions.php</code>&nbsp;. For instance, just declare the global <code>$post</code> variable beside <code>$wp_admin_bar</code> and
 you’ll have access to the current post’s data:</p>
-<pre><code>add_action("admin_bar_menu", "customize_menu");
-
-function customize_menu(){
-	global $wp_admin_bar, $post;
-
-	$children = get_children(array("post_parent" =&gt; $post-&gt;ID));
-
-	$wp_admin_bar-&gt;add_menu(array(
-		"id" =&gt; "mymenu",
-		"title" =&gt; "Post: " . $post-&gt;post_title,
-		"href" =&gt; "http://google.com",
-		"meta" =&gt; array("target" =&gt; 'blank')
-	));
-
-	if($children){
-		foreach($children as $c){
-			$wp_admin_bar-&gt;add_menu(array(
-				"parent" =&gt; "mymenu",
-				"title" =&gt; $c-&gt;post_title,
-				"href" =&gt; get_permalink($c-&gt;ID)
-			));
-		}
-	}
-
+<p>add_action(“admin_bar_menu”, “customize_menu”);</p>
+<p>function customize_menu(){
+global $wp_admin_bar, $post;</p>
+<p>$children = get_children(array(“post_parent” =&gt; $post-&gt;ID));</p>
+<p>$wp_admin_bar-&gt;add_menu(array(
+“id” =&gt; “mymenu”,
+“title” =&gt; “Post: ”&nbsp;. $post-&gt;post_title,
+“href” =&gt; “http://google.com”,
+“meta” =&gt; array(“target” =&gt; ‘blank’)
+));</p>
+<p>if($children){
+foreach($children as $c){
+$wp_admin_bar-&gt;add_menu(array(
+“parent” =&gt; “mymenu”,
+“title” =&gt; $c-&gt;post_title,
+“href” =&gt; get_permalink($c-&gt;ID)
+));
 }
-</code></pre>
+}</p>
+<p>}</p>
 <p>Simple enough: <em>get access to <code>$post</code> =&gt; Find eventual child pages =&gt; loop through and add to parent
 item.</em>
 <img src="http://213.185.255.138/core/wp-content/uploads/2011/03/JohanBrook-ChildPosts.png" alt="" title="JohanBrook-ChildPosts"></p>
@@ -189,7 +176,10 @@ screenshots. You’ll just have to put up with that.</p>
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -226,10 +216,7 @@ screenshots. You’ll just have to put up with that.</p>
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

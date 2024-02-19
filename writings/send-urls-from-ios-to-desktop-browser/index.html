@@ -88,16 +88,13 @@ short: connect your Dropbox to the free <a href="http://sendtodropbox.com/">Send
 lets you e-mail stuff to your Dropbox account (in this case the web page URL as a text file), and
 set up a Automator folder action which runs a Ruby script that opens the text file and put the URL
 in your browser window.</p>
-<pre><code>ARGV.each do |f|
-   file = File.new(f, "r")
-   
-   while (line = file.gets)
-      system "open #{line}"
-   end
-
-   file.close
-end
-</code></pre>
+<p>ARGV.each do |f|
+file = File.new(f, “r”)</p>
+<p>while (line = file.gets)
+system “open #{line}”
+end</p>
+<p>file.close
+end</p>
 <p>It’s minimal, hacky and lovely. I’ll never stop being amazed over the power of Dropbox and
 Automator.</p>
 
@@ -108,7 +105,10 @@ Automator.</p>
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -145,10 +145,7 @@ Automator.</p>
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

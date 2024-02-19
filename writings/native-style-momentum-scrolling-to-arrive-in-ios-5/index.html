@@ -74,9 +74,8 @@
       
       <p>One of the biggest gripes of web apps in Mobile Safari comes to an end. In iOS 5 Beta 2, you are
 able to do this on an element with CSS:</p>
-<pre><code>overflow: scroll;
--webkit-overflow-scrolling: touch;
-</code></pre>
+<p>overflow: scroll;
+-webkit-overflow-scrolling: touch;</p>
 <p><a href="http://playground.johanbrook.com/css/touchtest.html">Quick demo</a> requires iOS 5.0</p>
 <p>And the content inside that element should get native style momentum scroll. Just like any other app
 in iOS.</p>
@@ -105,7 +104,10 @@ in the final version of the OS.</p>
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -142,10 +144,7 @@ in the final version of the OS.</p>
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

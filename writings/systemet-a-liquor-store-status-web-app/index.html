@@ -120,9 +120,8 @@ MongoDB database.</li>
 the only way of doing it. Systembolaget’s “API” isn’t that sophisticated. Instead I put it all into
 a Mongo database, which meant I could use all the very useful
 <a href="http://www.mongodb.org/display/DOCS/Geospatial+Indexing">geospatial indexing features</a> of MongoDB:</p>
-<pre><code>collection.ensureIndex loc: "2d"
-collection.find(loc: $near: [50, 50])
-</code></pre>
+<p>collection.ensureIndex loc: “2d”
+collection.find(loc: $near: [50, 50])</p>
 <p>Where <code>[50,50]</code> are the coordinates I would get from the client. Neat.</p>
 <h3>Hosting</h3>
 <p>I began glueing everything together, and it worked quite well locally. Win! The closest liquor store
@@ -148,7 +147,10 @@ feedback.</p>
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -185,10 +187,7 @@ feedback.</p>
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

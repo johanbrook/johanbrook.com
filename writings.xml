@@ -288,7 +288,7 @@ if (!meta?.mastodon?.instance) {
 
 const truncateToStatus = (str: string, permalink: string) =&amp;gt; {
     const maxLimit = 500;
-    const footer = `\n\n↳ ${permalink}`;
+    const footer = `&#92;n&#92;n↳ ${permalink}`;
     const statusLimit = maxLimit - footer.length;
 
     if (str.length &amp;lt;= statusLimit) {
@@ -318,7 +318,7 @@ const postStatus = async (filePath: string) =&amp;gt; {
 
     const statusBody = truncateToStatus(note.body.trim(), permalink);
 
-    console.log(`&amp;gt; Posting status (${statusBody.length} chars):\n----------------------------\n${statusBody}`);
+    console.log(`&amp;gt; Posting status (${statusBody.length} chars):&#92;n----------------------------&#92;n${statusBody}`);
 
     if (DRY_RUN) {
         console.log(`&amp;gt; Status posted to &amp;lt;DRY RUN&amp;gt;`);
@@ -607,7 +607,7 @@ noticed that this setting interfers with the other settings, so I&#39;ve removed
 &lt;p&gt;This is a feature I heavily used in VS Code: use the combo of &lt;code&gt;option+click&lt;/code&gt; (Mac) to go to the
 definition of a variable, function, or type. This uses the LSP, so it&#39;ll be &amp;quot;intelligent&amp;quot;.&lt;/p&gt;
 &lt;p&gt;Mouse bindings live in this file (create it if it doesn&#39;t exist):&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;~/Library/Application\ Support/Sublime\ Text/Packages/User/Default\ (OSX).sublime-mousemap
+&lt;pre&gt;&lt;code&gt;~/Library/Application&#92; Support/Sublime&#92; Text/Packages/User/Default&#92; (OSX).sublime-mousemap
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Then add this:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;[
@@ -627,7 +627,7 @@ definition of a variable, function, or type. This uses the LSP, so it&#39;ll be 
 rename functions and variables and have them be intelligently updated across files.&lt;/p&gt;
 &lt;p&gt;In VS Code, I used the key binding &lt;code&gt;cmd+shift+r&lt;/code&gt; (Mac).&lt;/p&gt;
 &lt;p&gt;Open up Key Bindings (&lt;em&gt;Preferences -&amp;gt; Key Bindings&lt;/em&gt;) or:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;subl ~/Library/Application\ Support/Sublime\ Text/Packages/User/Default\ (OSX).sublime-keymap
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;subl ~/Library/Application&#92; Support/Sublime&#92; Text/Packages/User/Default&#92; (OSX).sublime-keymap
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Then add this:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;[

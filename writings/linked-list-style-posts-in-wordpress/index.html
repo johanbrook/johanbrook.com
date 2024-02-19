@@ -79,18 +79,16 @@ becomes the link. It’s quite good usability and UX, and is not that hard to re
 Wordpress. I’ve got two fields for link: “Link” and “Link Name”. The “Link” field contains the URL
 and is the important one here. In the post template (in my case <code>single-quickie.php</code> you can get the
 custom field with this:</p>
-<pre><code>$meta_link = get_post_meta(get_the_ID(), "Link", true);
-</code></pre>
+<p>$meta_link = get_post_meta(get_the_ID(), “Link”, true);</p>
 <p>Where “Link” is the custom field name. After that, it’s just a matter of inserting it in the post’s
 heading tag:</p>
-<pre><code>&lt;h1&gt;
-   &lt;?php if($meta_link):?&gt;
-      &lt;a title="follow link" href="&lt;?php echo $meta_link;?&gt;"&gt; &lt;?php the_title();?&gt; ›&lt;/a&gt;
-   &lt;?php else: ?&gt;
-      &lt;?php the_title();?&gt;
-   &lt;?php endif;?&gt;
-&lt;/h1&gt;
-</code></pre>
+<p></p><h1>
+<!--?php if($meta_link):?-->
+<a title="follow link" href="<?php echo $meta_link;?>"> <!--?php the_title();?--> ›</a>
+<!--?php else: ?-->
+<!--?php the_title();?-->
+<!--?php endif;?-->
+</h1><p></p>
 <p>There we go. If there’s a link attached to the post, create an <code>&lt;a&gt;</code> element for it inside the
 heading. But how do we work this out for RSS readers? Many people (myself included again) usually
 read posts directly from within the reader, and Wordpress automatically makes the RSS heading link
@@ -99,24 +97,20 @@ Fireball linked post: when you click on the main heading you’re instantly take
 talking about. How to create this in Wordpress? I first tried to hack the RSS file, <code>feed-rss2.php</code>
 but that’s seldom a good thing. You should leave the core files alone. Instead, you can filter the
 template tag for outputting the RSS heading in your <code>functions.php</code>&nbsp;:</p>
-<pre><code>function johan_permalink_rss($content) { 
-   global $wp_query; 
-   $postid = $wp_query-&gt;post-&gt;ID; 
-   $link = get_post_meta($postid, 'Link', true); 
-
-   if(is_feed()) { 
-      if($link !== '') { 
-         $content = $link; 
-      } else { 
-         $content = get_permalink($postid); 
-      } 
-   } 
-   
-   return $content; 
-} 
-
-add_filter('the_permalink_rss', 'johan_permalink_rss');
-</code></pre>
+<p>function johan_permalink_rss($content) {
+global $wp_query;
+$postid = $wp_query-&gt;post-&gt;ID;
+$link = get_post_meta($postid, ‘Link’, true);</p>
+<p>if(is_feed()) {
+if($link&nbsp;!== ‘’) {
+$content = $link;
+} else {
+$content = get_permalink($postid);
+}
+}</p>
+<p>return $content;
+}</p>
+<p>add_filter(‘the_permalink_rss’, ‘johan_permalink_rss’);</p>
 <p>As you can see it creates a function with the original content in the parameter. It finds the
 current post’s id and the attached link. If it’s a feed and if it’s a link attached, go ahead and
 make the RSS permalink ( <code>$content</code> ) the value of the custom link. Return the value and add a
@@ -130,7 +124,10 @@ filter for the <code>the_permalink_rss</code> used in Wordpress’ RSS parsing f
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -167,10 +164,7 @@ filter for the <code>the_permalink_rss</code> used in Wordpress’ RSS parsing f
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};

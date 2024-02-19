@@ -136,28 +136,22 @@ being smart, and think for the future. Don’t be overly precise.</p>
 <p>Our new CSS3 properties is also a nice example of repeating yourself. You all know the dreaded
 Gradient syntax — or should I say — the myriad of browser vendor prefixes that make you write
 several lines of code just to pull off a simple cross-browser gradient:</p>
-<pre><code>/* WebKit */
-background: #b4e1ea -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dcf1f5), color-stop(100%, #b4e1ea));
-
-/* New-ish WebKit: Chrome style */
-background: #b4e1ea -webkit-linear-gradient(#dcf1f5, #b4e1ea);
-
-/* Firefox */
-background: #b4e1ea -moz-linear-gradient(#dcf1f5, #b4e1ea);
-
-/* Opera */
-background: #b4e1ea -o-linear-gradient(#dcf1f5, #b4e1ea);
-
-/* W3C */
-background: #b4e1ea linear-gradient(#dcf1f5, #b4e1ea);
-</code></pre>
+<p>/* WebKit */
+background: #b4e1ea -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dcf1f5), color-stop(100%, #b4e1ea));</p>
+<p>/* New-ish WebKit: Chrome style */
+background: #b4e1ea -webkit-linear-gradient(#dcf1f5, #b4e1ea);</p>
+<p>/* Firefox */
+background: #b4e1ea -moz-linear-gradient(#dcf1f5, #b4e1ea);</p>
+<p>/* Opera */
+background: #b4e1ea -o-linear-gradient(#dcf1f5, #b4e1ea);</p>
+<p>/* W3C */
+background: #b4e1ea linear-gradient(#dcf1f5, #b4e1ea);</p>
 <p>(haven’t included code for generating SVG gradients for IE9)</p>
 <p>Even though this is a necessary evil until things change, you shouldn’t have to write this. It’s
 craziness! Tedious to maintain, bloated, and just plain wrong.</p>
 <p>In Sass or Less, it’s just a matter of creating a mixin returning all the different browser syntaxes
 and including it:</p>
-<pre><code>@include linear-gradient(#dcf1f5, #b4e1ea);
-</code></pre>
+<p>@include linear-gradient(#dcf1f5, #b4e1ea);</p>
 <p>I’m not saying you’re getting rid of all gradient code in the final stylesheet, but you <em>don’t have
 to look and work with it</em> while writing/maintaining. Programmer happiness.</p>
 <h3>Convention Over Configuration</h3>

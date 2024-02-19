@@ -79,37 +79,30 @@
 <h2>Sass</h2>
 <p><a href="http://sass-lang.com">Sass</a> is everything CSS isn’t. CSS3 is great and all, but it’s still a rather dumb language. It’s not dynamic, it’s not encouraging re-use and modularity. Even stylesheets for semi-small sites tend to be huge and bloated — frustrating to work with — since we have to build for many browsers, environments, and devices. I started out with Sass thinking “hey, this is pretty cool. Variables, mixins and stuff. This will be handy”. Actually, it’s been more than handy. I’d have a hard time going back to regular CSS again. I’ve built <a href="https://github.com/johanbrook/Johan-Compass-Kit">some</a> <a href="https://github.com/johanbrook/dyluni">stuff</a> with Sass as well.</p>
 <p>With Sass you’re able to pull off stuff like:</p>
-<pre><code>$color: red;
-
-nav{
-    background: $color;
-
-    li {
-        float: left;
-    }
-
-    a {
-        color: #fff;
-        background: darken($color, 10%);
-    }
+<p>$color: red;</p>
+<p>nav{
+background: $color;</p>
+<p>li {
+float: left;
+}</p>
+<p>a {
+color: #fff;
+background: darken($color, 10%);
 }
-</code></pre>
+}</p>
 <p>Nesting and variables in action. Incredibly useful, but it’s just the tip of the iceberg. When Sass feels right for you, be sure to check out <a href="http://compass-style.org">Compass</a> — a framework which is doing all the boring stuff for you.</p>
 <p>I really, really, really recommend checking out Sass. It’s super easy to get started with and won’t add problems for other people working with your stylesheets.</p>
 <h2>Ruby</h2>
 <p>If we’re talking about Sass, we have to mention Ruby. Ruby is a programming language originally from Japan, actually created around the same time as PHP. The goals with Ruby were to be more powerful than Perl and more object-oriented than Python. I’ve been reading about it on and off during a couple of years, but it’s never really stuck (I blame the regular “lack of time”). I think it’s because I’ve never been forced to use it: I studied Java and PHP in school (uhh … ) and of course HTML/CSS and Javascript.</p>
 <p>I’m attracted to Ruby thanks to its simplicity and non-bloat. Generally it’s amusingly easy and in the same time incredibly hard to write clean, simple and clear code, but I’d say Ruby encourages and helps you more than, say, PHP.</p>
 <p>For me, the “Ruby way” is crystallized in this code:</p>
-<pre><code>5.times do |number|
-    puts "Number is #{number}"
-end
-</code></pre>
+<p>5.times do |number|
+puts “Number is #{number}”
+end</p>
 <p>It’s object-oriented ( <code>5.times</code>&nbsp;? Craziness!). It’s human-readable at first glance.</p>
 <p>Or in this:</p>
-<pre><code>name, other_name = "Johan", "John"
-
-puts "Oops, the name isn't #{other_name}" unless name == other_name
-</code></pre>
+<p>name, other_name = “Johan”, “John”</p>
+<p>puts “Oops, the name isn’t #{other_name}” unless name == other_name</p>
 <p>See that? <em>Readable</em>.</p>
 <h2>Rails and Sinatra</h2>
 <p><a href="http://rubyonrails.org/">Ruby on Rails</a> is a web framework written in Ruby. It’s MVC, got a nice ORM, and lets you stop repeating yourself, and get more stuff done. <a href="http://www.sinatrarb.com">Sinatra</a> is also a Ruby web framework, but more lightweight than Rails — stripped on everything you might not need for micro apps. I haven’t worked too much with any of these (yet) but I like their approach and philosophy. Every file in its place.</p>
@@ -131,57 +124,44 @@ puts "Oops, the name isn't #{other_name}" unless name == other_name
 <h2>Rake</h2>
 <p>Finding yourself doing the same things over and over again during the course of a project? It might be compiling Sass, minifying and concatenating Javascript, or other boring stuff. With <a href="http://rake.rubyforge.org/">Rake</a> (“Ruby Make”) it’s possible to write <em>tasks</em> in Ruby, where lots of stuff can be done.</p>
 <p>For example, this tasks compiles my Compass project in production mode:</p>
-<pre><code>require "rake"
-
-desc "Make sure the master Sass file is compiled for production"
-task :sass do
-    puts `compass compile -e production --force`
-    puts "* Sass compiled to 'style.css'"
-end
-</code></pre>
+<p>require “rake”</p>
+<p>desc “Make sure the master Sass file is compiled for production”
+task&nbsp;:sass do
+puts <code>compass compile -e production --force</code>
+puts “* Sass compiled to ‘style.css’”
+end</p>
 <p>I invoke this task from the command line with</p>
-<pre><code>$ rake sass
-</code></pre>
+<p>$ rake sass</p>
 <p>I can write a couple of boring tasks like this:</p>
-<pre><code>require "rake"
-
-desc "Build site"
-task :build =&gt; [:concat, :minify, :sass] do
-end
-
-desc "Concatenate Javascript"
-task :concat do
-    # Use Sprockets (http://getsprockets.org/) or some other tool for concatenating the files
-
-    puts "* Mashed together all JS files into all.js"
-end
-
-desc "Minify the Javascript"
-task :minify do
-    # Use a minifier such as UglifyJS, Uglifier, or Google Closure Compiler
-    # to compress the Javascript
-
-    puts "* Minified source"
-end
-
-desc "Make sure the master Sass file is compiled for production"
-task :sass do
-    puts `compass compile -e production --force`
-    puts "* Sass compiled to 'style.css'"
-end
-</code></pre>
+<p>require “rake”</p>
+<p>desc “Build site”
+task&nbsp;:build =&gt; [:concat,&nbsp;:minify,&nbsp;:sass] do
+end</p>
+<p>desc “Concatenate Javascript”
+task&nbsp;:concat do
+# Use Sprockets (http://getsprockets.org/) or some other tool for concatenating the files</p>
+<p>puts “* Mashed together all JS files into all.js”
+end</p>
+<p>desc “Minify the Javascript”
+task&nbsp;:minify do
+# Use a minifier such as UglifyJS, Uglifier, or Google Closure Compiler
+# to compress the Javascript</p>
+<p>puts “* Minified source”
+end</p>
+<p>desc “Make sure the master Sass file is compiled for production”
+task&nbsp;:sass do
+puts <code>compass compile -e production --force</code>
+puts “* Sass compiled to ‘style.css’”
+end</p>
 <p>And run the <code>:build</code> task from the command line:</p>
-<pre><code>$ rake build
-</code></pre>
+<p>$ rake build</p>
 <p>… and all of the above are executed. Actually, it’s not even required to have a <code>:build</code> task: instead specify a default task like this:</p>
-<pre><code>task :default =&gt; [:concat, :minify, :sass]
-</code></pre>
+<p>task&nbsp;:default =&gt; [:concat,&nbsp;:minify,&nbsp;:sass]</p>
 <p>Now those three tasks will be executed whenever you run <code>rake</code> (without anything else) in the command prompt.</p>
 <p>I learned the basics of Rake from googling around for tutorials, and I encourage you to do the same. <a href="http://jasonseifer.com/2010/04/06/rake-tutorial">This is an excellent walkthrough</a> of the features you most likely will use on an everyday basis.</p>
 <h2>RubyGems and Node Package Manager</h2>
 <p>Remembered when code libraries where distributed in zip files? Download, unzip, place in a <code>library</code> directory, keep track of new versions. Nah, things could work better. <a href="http://rubygems.org/">RubyGems</a> is a command line utility which makes this a breeze. Each library (or package of code) is a <em>gem</em>. You install gems by typing</p>
-<pre><code>$ gem install &lt;name&gt;
-</code></pre>
+<p>$ gem install <name></name></p>
 <p>Simple, simple, simple. Wanna install the latest Rails? Run <code>gem install rails</code> ( <a href="http://rubygems.org/gems/rails">RubyGem page</a>). The Twitter gem? <code>gem install twitter</code> ( <a href="http://rubygems.org/gems/twitter">RubyGem page</a>). It’s a superb way of distributing code. Those libraries might be used on the command line (like Sass and Compass) or in code (or both).</p>
 <p><a href="http://npmjs.org/">Node Package Manager</a> (or “NPM”) is similar to RubyGems, but for Javascript libraries (built with Node.js). Haven’t dealt a whole lot with NPM so far, but it gets the job done.</p>
 <h2>Outro</h2>
@@ -196,7 +176,10 @@ end
 		</div>
 
 		
-	   		<nav role="navigation" class="MainNav">
+	   		
+	  </div>
+
+      <nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile">
 			<a href="/" aria-label="Home">
@@ -233,10 +216,7 @@ end
 	</div>
 </nav>
 
-	 	
-	  </div>
-
-      <script>
+	 	<script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};
