@@ -11,7 +11,6 @@ PROSE
 
 	a:not([class]) {
 		text-decoration: underline;
-		text-decoration-skip-ink: auto;
 	}
 
 	& img,
@@ -35,7 +34,7 @@ PROSE
 	}
 
 	:where(ul, ol) {
-	   list-style-type: revert;
+		list-style-type: revert;
 		padding-left: 1em;
 		margin-left: 1rem;
 
@@ -46,7 +45,7 @@ PROSE
 		}
 
 		& ::marker {
-			color: var(--color-text-detail);
+			color: var(--grey-light);
 		}
 
 		:wher(li > ul, li > ol) {

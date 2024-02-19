@@ -107,11 +107,7 @@ nav ul {
 	color: var(--link-color);
 	position: relative;
 	text-decoration: none;
-	text-underline-offset: 3px;
-
-	&:not(.prose &) {
-		font-family: var(--sans);
-	}
+	text-underline-offset: 4px;
 
 	&.block {
 		text-decoration: none;
