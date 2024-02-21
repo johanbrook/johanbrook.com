@@ -145,6 +145,10 @@ TEXT ALIGNMENT
 	width: 100%;
 }
 
+.h-full {
+    height: 100%;
+}
+
 .block {
 	display: block;
 }
