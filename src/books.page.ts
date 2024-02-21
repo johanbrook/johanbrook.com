@@ -22,6 +22,7 @@ export default function* (data: BookData) {
     for (const book of data.books) {
         yield {
             ...book,
+            type: 'book',
             url: urlForBook(book),
         };
     }
