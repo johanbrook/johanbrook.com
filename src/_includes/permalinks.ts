@@ -10,4 +10,4 @@ export const idOf = (sourcePath: string) => path.basename(sourcePath).replaceAll
 
 export const notePermalinkOf = (fileName: string) => `/micro/${idOf(fileName)}/`;
 
-export const urlForBook = (book: Book) => `/reading/${book.slug}`;
+export const urlForBook = (book: Book) => `/reading/${book.slug}/`;
