@@ -61,14 +61,24 @@
                 <th>Author</th>
                 <th>Status</th>
                 
+                <th></th>
+                
             </tr>
             <tr>
                 <td>Min Kamp 4</td>
                 <td>Karl Ove Knausgård</td>
                 <td class="f6 no-wrap align-middle">
                       
-                    <span class="Badge Badge--positive">Reading</span>
+                    <span class="Badge Badge--positive">Finished</span>
                       
+                </td>
+                
+                <td class="leading-tight">
+                    <time title="Finished at Tue Feb 20 2024 16:00:00 GMT+0000 (Coordinated Universal Time)" datetime="Tue Feb 20 2024 16:00:00 GMT+0000 (Coordinated Universal Time)">2024-02-20</time
+                    ><br />
+                    
+                    <small class="fw4 f6 font-sans" title="Finished in">Koh Lanta, Thailand</small>
+                    
                 </td>
                 
             </tr>

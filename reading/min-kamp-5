@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en-gb" class=" covers"><head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Covers / Johan Brook</title>
+<html lang="en-gb" class=" readingmin-kamp-5">
+
+  <head itemtype="http://schema.org/Blog" itemscope>
+    <title>Min Kamp 5 / Johan Brook</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +11,7 @@
     <link rel="preconnect" href="https://johanbrook.goatcounter.com">
 
     
-    <meta name="description" content="I'm a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    <meta name="description" content="I&#39;m a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I&#39;m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
     
     
     <meta name="author" content="Johan Brook">
@@ -24,17 +26,17 @@
     <link rel="alternate" type="application/atom+xml" title="Johan Brook: Book feed (Atom)" href="/reading.xml">
 
     <link rel="shortcut icon" href="/favicon.png" type="image/png">
-    <link rel="canonical" itemprop="url" href="https://johan.im/covers/">
+    <link rel="canonical" itemprop="url" href="https://johan.im/reading/min-kamp-5">
     <link rel="author" href="https://johan.im">
     <link rel="me" href="https://hachyderm.io/@brookie">
 
-    <meta property="og:title" content="Covers">
-    <meta property="og:url" content="https://johan.im/covers/">
+    <meta property="og:title" content="Min Kamp 5">
+    <meta property="og:url" content="https://johan.im/reading/min-kamp-5">
     <meta property="og:site_name" itemprop="name" content="Johan Brook">
     
     <meta property="og:locale" content="en_GB">
     
-    <meta property="og:description" content="I'm a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I'm coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
+    <meta property="og:description" content="I&#39;m a thirty-something designer and developer based in Sweden. I work with the best people in a company called Lookback, where I help interfaces come to life. I&#39;m coding &amp; designering and I like working with product, user experience, interface design, and other things too.">
     
 
     
@@ -49,42 +51,43 @@
 	  <div class="Content">
 	  	<div id="main">
 			<main role="main">
-  <article class="Page">
-    <header class="mb3">
-        <h1 class="title ">Covers.</h1>
-    	
-    		<p class="subhead mb0">Exhaustive list of actually good cover songs.</p>
-    	
-    </header>
-    <div class="prose">
-      <h2>“Nothing Compares 2 U”</h2>
-<p>Performed by Sinéad O’Connor, original by Prince.</p>
-<h2>“Hurt”</h2>
-<p>Performed by Johnny Cash, original by Nine Inch Nails.</p>
-<hr>
-<p>Honorary mentions:</p>
-<h2>“All Along the Watchtower”</h2>
-<p>Performed by Jimi Hendrix, original by Bob Dylan.</p>
-<h2>“Knocking On Heaven’s Door”</h2>
-<p>Performed by Guns ’n Roses, original by Bob Dylan.</p>
-<hr>
-<p>That’s it.</p>
+    <article class="Book">
+        <h1 class="mb5">“Min Kamp 5”</h1>
+        
 
-    </div>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Status</th>
+                
+            </tr>
+            <tr>
+                <td>Min Kamp 5</td>
+                <td>Karl Ove Knausgård</td>
+                <td class="f6 no-wrap align-middle">
+                      
+                    <span class="Badge Badge--positive">Reading</span>
+                      
+                </td>
+                
+            </tr>
+        </table>
 
-    <footer class="mt4 pt3 border border-t">
-        <p class="muted">Updated <time datetime="2024-02-21T06:51:54Z">2024-02-21</time>.</p>
-    </footer>
-  </article>
+        <div class="prose"></div>
+
+        <footer class="mt4">
+            <p>
+                <a href="/reading"><span aria-hidden="true" class="BackLink mr2">←</span>More books</a>
+            </p>
+        </footer>
+    </article>
 </main>
 
 		</div>
 
 		
-	   		
-	  </div>
-
-      <nav role="navigation" class="MainNav">
+	   		<nav role="navigation" class="MainNav">
 	<div class="sticky">
 		<h1 class="f4 sr-only-mobile font-sans">
 			<a href="/" aria-label="Home">
@@ -93,35 +96,38 @@
 		</h1>
 
 		<ul>
-           	<li class="only-mobile">
+           	<li class="only-mobile" >
           		<a href="/">Home</a>
            	</li>
-          		<li>
+          		<li >
          			<a href="/now/">Now</a>
           		</li>
-          		<li>
+          		<li >
          			<a href="/micro/">Micro</a>
           		</li>
-          		<li>
+          		<li >
          			<a href="/about/">About</a>
           		</li>
-          		<li>
+          		<li  aria-current="page">
          			<a href="/reading/">Reading</a>
           		</li>
-          		<li>
+          		<li >
          			<a href="/writings/">Writings</a>
           		</li>
-          		<li>
+          		<li >
          			<a href="/feeds/">Feeds</a>
           		</li>
-            <li class="border border-t mt1 pt1">
+            <li  class="border border-t mt1 pt1">
      			<a href="/all">All pages</a>
       		</li>
         </ul>
 	</div>
 </nav>
 
-	 	<script>
+	 	
+	  </div>
+
+      <script>
   // Only load on production environment.
   if (window.location.host !== new URL('https://johan.im').host) {
     window.goatcounter = {no_onload: true};
@@ -133,9 +139,8 @@
   if (localStorage.getItem('skipgc') === 't')
     window.goatcounter = {no_onload: true};
 </script>
-<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
-  
+  </body>
 
-
-</body></html>
+</html>
