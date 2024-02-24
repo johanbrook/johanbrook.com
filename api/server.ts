@@ -1,5 +1,6 @@
 import { Router } from './router.ts';
 import { postNote } from './features/post-note.ts';
+import { checkAuth } from './auth.ts';
 
 const router = new Router();
 
@@ -16,6 +17,13 @@ Deno.serve(
             const color = status < 200 || 400 <= status ? 'color:red' : 'color:green';
             console.log(`%c${status}`, color, `${req.method} ${req.url}`);
         };
+
+        const authRes = checkAuth(req);
+
+        if (authRes) {
+            log(authRes.status);
+            return authRes;
+        }
 
         const match = router.match(req.url, req.method);
         const res = match
