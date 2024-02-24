@@ -18,3 +18,9 @@
 		}
 	}
 }
+
+.Page {
+    header h1:has(+ .subhead) {
+        margin-bottom: 0;
+    }
+}

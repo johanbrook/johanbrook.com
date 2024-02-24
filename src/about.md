@@ -53,10 +53,12 @@ York, Montréal, Asunción, Rio de Janeiro, Copenhagen, and Lisbon. Keep an eye 
 updates. As of January 2018, I've settled in Stockholm, Sweden.
 
 **[Writing](/writings)** is something I try to do more and more (been posting pieces here since
-2010). I've had a blog since my mid teens and I'm currently experimenting with much shorter texts to
-lower the ambition but increase the Time To Publish.
+2010). I've had a blog since my mid teens and I'm currently experimenting with [much shorter texts](/micro) to
+lower the ambition but decrease the Time To Publish.
 
 As always, I love getting emails and talk with people. Reach me at [{{ meta.email }}](mailto:{{
 meta.email }}) about anything.
+
+Read more about what tools I use in [/colophon](/colophon).
 
 👋

@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://gc.zgo.at">
     <link rel="preconnect" href="https://johanbrook.goatcounter.com">
 
-    {% if excerpt or description or meta.description %}
-    <meta name="description" content="{{ excerpt or description or meta.description }}">
+    {% if excerpt or description or subtitle or meta.description %}
+    <meta name="description" content="{{ excerpt or description or subtitle or meta.description }}">
     {% endif %}
     {% if keywords %}
     <meta name="keywords" content="{{ keywords }}">
