@@ -1663,6 +1663,7 @@ FOOTER
 }
 
 @layer base{
+
 .Content {
 	max-width: var(--content-width);
 	margin: 0 auto;
@@ -1683,6 +1684,9 @@ FOOTER
 			gap: var(--spacing-extra-large);
 		}
 	}
+    .Page header h1:has(+ .subhead) {
+        margin-bottom: 0;
+    }
 }
 
 @layer views{
@@ -1829,9 +1833,10 @@ FOOTER
 			flex-direction: row;
 			gap: 1em;
 		}
-			.MainNav [aria-current='page'] a::after, .MainNav a:focus::after {
-				display: none;
-			}
+
+		.MainNav [aria-current='page']::after {
+		    display: none;
+		}
 	}
 
 .BackLink {
@@ -1994,6 +1999,15 @@ PROSE
 .prose {
 	--link-color: var(--color-text);
 }
+
+	.prose h1 {
+	   border-bottom: 1px solid var(--border-color);
+	   padding-bottom: .25lh;
+	}
+
+	.prose * + h1 {
+	   margin-top: 1lh;
+	}
 
 	.prose> :last-child {
 		margin-bottom: 0;
