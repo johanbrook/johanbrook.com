@@ -84,11 +84,8 @@
 			gap: 1em;
 		}
 
-		& [aria-current='page'] a,
-		& a:focus {
-			&::after {
-				display: none;
-			}
+		[aria-current='page']::after {
+		    display: none;
 		}
 	}
 }
