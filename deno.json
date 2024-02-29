@@ -8,7 +8,7 @@
         "path": "https://deno.land/std@0.211.0/path/mod.ts"
     },
     "tasks": {
-        "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable -A -",
+        "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable-temporal -A -",
         "build": "deno task lume",
         "serve": "deno task build -s"
     },

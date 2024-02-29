@@ -27,7 +27,7 @@ home: true
       {% for note in search.pages("type=note", "date=desc", 3) %}
           <li class="mb2 pb2 relative border border-b h-entry" id="{{ note.url | url(true) }}">
               <h2 class="font-sans f5 fw4 mb0">
-                  <a href="{{ note.url }}" class="muted u-url" title="Permalink"><time class="dt-published" datetime="{{ note.date | date('ATOM') }}" pubdate>{{ note.date | date("PPP — HH:mm")}}</time></a>
+                  <a href="{{ note.url }}" class="muted u-url" title="Permalink"><time class="dt-published" datetime="{{ note.date | date('ATOM') }}" pubdate>{{ note.date | tdate('HumanTime', note.timezone) }}</time></a>
               </h2>
 
               <details {% if loop.first %}open{% endif %}>
