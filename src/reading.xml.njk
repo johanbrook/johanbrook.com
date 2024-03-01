@@ -9,8 +9,6 @@ url: /reading.xml
 	<subtitle>Non-exhaustive list of books I've read and am reading, in reverse chronological order.</subtitle>
 	<link href="{{ url | url(true) }}" rel="self"/>
 	<link href="{{ "/reading" | url(true) }}"/>
-	{% set lastPage = search.pages("type=post", "date=asc") | last %}
-	<updated>{{ lastPage.date | date("ATOM") }}</updated>
 	<id>{{ "/reading" | url(true) }}</id>
 	<author>
 		<name>{{ meta.author }}</name>
@@ -20,7 +18,7 @@ url: /reading.xml
 	<entry>
 		<title>{{ book.title }}</title>
 		<link href="{{ '/reading' | url(true) }}/{{book.slug}}" />
-		{% if book.finishedAt %}<updated>{{ book.finishedAt | date("ATOM") }}</updated>{% endif %}
+		{% if book.finishedAt %}<updated>{{ book.finishedAt | tdate("Machine") }}</updated>{% endif %}
 		<id>{{ '/reading' | url(true) }}/{{book.slug}}</id>
 		{% if book.notes %}
 			<content type="html">{{ book.notes | md | htmlUrl(true) }}</content>

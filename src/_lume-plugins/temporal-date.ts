@@ -1,20 +1,20 @@
 // Needs deno run --unstable-temporal at the time of writing.
 interface Options {
     name?: string;
-    fallbackTimeZone: Temporal.TimeZone;
 }
 
-export default function (options: Options): Lume.Plugin {
-    const { name = 'tdate', fallbackTimeZone } = options;
+export default function (options: Options = {}): Lume.Plugin {
+    const { name = 'tdate' } = options;
 
-    const temporalDate: TemporalDate = (dateLike, format, tz) => {
+    // Intentional `function` for use of `this`
+    const temporalDate: TemporalDate = function (dateLike, format, overrideTimezone) {
         if (!dateLike) return;
 
         if (!format) {
             throw new Error(`Needs "format" parameter, got: ${format}`);
         }
 
-        const timezone = tz ? (Temporal.TimeZone.from(tz) as Temporal.TimeZone) : fallbackTimeZone;
+        const timezone = timezoneOf(overrideTimezone, this.ctx.page.data.timezone);
 
         const date = ((): Temporal.ZonedDateTime => {
             if (dateLike == 'now') return Temporal.Now.zonedDateTimeISO(timezone);
@@ -38,16 +38,18 @@ export default function (options: Options): Lume.Plugin {
 }
 
 enum DateTimeFormat {
-    /** 2024-02-19T13:39:53Z */
+    /** 2024-02-19T13:39:53+01:00 (ISO 8601) */
     Machine = 'Machine',
     /** 2024-02-19 */
     Date = 'Date',
-    /** February 19th, 2024 */
+    /** February 19, 2024 */
     HumanDate = 'HumanDate',
-    /** February 19th, 2024 — 13:39 */
+    /** February 19, 2024 — 13:39 */
     HumanTime = 'HumanTime',
-    /** February 19th, 2024 at 1:39:53 PM GMT+0 */
+    /** Friday, 1 March 2024 at 15:13:02 Indochina Time */
     Detailed = 'Detailed',
+    /** October 2010 */
+    MonthYear = 'MonthYear',
 }
 
 const DATE_FORMAT: Intl.DateTimeFormatOptions = {
@@ -62,21 +64,71 @@ const DATE_FORMAT: Intl.DateTimeFormatOptions = {
 
 const formattedOf = (date: Temporal.ZonedDateTime, format: DateTimeFormat, now: Temporal.ZonedDateTime): string => {
     switch (format) {
+        case DateTimeFormat.Machine: {
+            return date.toString({ smallestUnit: 'second', timeZoneName: 'never' });
+        }
         case DateTimeFormat.HumanTime: {
             const includeYear = date.year != now.year;
             // Sigh. Need to explicitly pass on timezone to the formatter:
             // https://github.com/tc39/proposal-temporal/issues/2013
             const formatter = new Intl.DateTimeFormat(undefined, { ...DATE_FORMAT, timeZone: date.timeZone });
-            const parts = commonPartsOf(formatter.formatToParts(date));
+            const { month, day, hour, minute, year } = commonPartsOf(formatter.formatToParts(date));
 
-            return `${parts.month} ${parts.day}%YEAR% — ${parts.hour}:${parts.minute}`.replace(
-                '%YEAR%',
-                includeYear ? `, ${parts.year}` : ''
-            );
+            return `${month} ${day}%YEAR% — ${hour}:${minute}`.replace('%YEAR%', includeYear ? `, ${year}` : '');
+        }
+        case DateTimeFormat.HumanDate: {
+            const includeYear = date.year != now.year;
+            const formatter = new Intl.DateTimeFormat(undefined, { ...DATE_FORMAT, timeZone: date.timeZone });
+            const { month, day, year } = commonPartsOf(formatter.formatToParts(date));
+
+            return `${month} ${day}${includeYear ? `, ${year}` : ''}`;
+        }
+        case DateTimeFormat.Detailed: {
+            return date.toLocaleString('en-GB', {
+                timeZone: date.timeZone, // aaaahhh still need to provide this manually :X
+                timeZoneName: 'longGeneric',
+                weekday: 'long',
+                month: 'long',
+            });
+        }
+        case DateTimeFormat.MonthYear: {
+            const formatter = new Intl.DateTimeFormat(undefined, { ...DATE_FORMAT, timeZone: date.timeZone });
+            const { month, year } = commonPartsOf(formatter.formatToParts(date));
+            return `${month} ${year}`;
+        }
+        case DateTimeFormat.Date: {
+            return date.toString().substring(0, 10);
         }
         default:
-            throw new Error('Not implemented');
+            throw new Error(`${format} not implemented!`);
     }
+};
+
+const timezoneOf = (...strings: Array<string | undefined>) => {
+    const safeParse = (str: string): Temporal.TimeZone | null => {
+        try {
+            return Temporal.TimeZone.from(str) as Temporal.TimeZone;
+        } catch {
+            return null;
+        }
+    };
+
+    for (const str of strings) {
+        if (!str) continue;
+
+        const res = safeParse(str);
+
+        if (!res) {
+            console.warn(`timezoneOf: Couldn't parse timezone: ${str}. Falling back to next`);
+            continue;
+        }
+
+        return res;
+    }
+
+    console.warn(`timezoneOf: Last fallback in timezone to current machine setting! Something is probably wrong`);
+
+    return (Temporal.Now as any).timeZone() as Temporal.TimeZone;
 };
 
 const commonPartsOf = (
@@ -100,7 +152,13 @@ const commonPartsOf = (
     return out;
 };
 
-type TemporalDate = (dateLike: string | Date, format: DateTimeFormat, tz?: string) => string | undefined;
+interface Context {
+    ctx: {
+        page: Lume.Page<Lume.Data & { timezone: string }>;
+    };
+}
+
+type TemporalDate = (this: Context, dateLike: string | Date, format: DateTimeFormat, tz?: string) => string | undefined;
 
 declare global {
     interface Date {

@@ -27,7 +27,7 @@ home: true
       {% for note in search.pages("type=note", "date=desc", 3) %}
           <li class="mb2 pb2 relative border border-b h-entry" id="{{ note.url | url(true) }}">
               <h2 class="font-sans f5 fw4 mb0">
-                  <a href="{{ note.url }}" class="muted u-url" title="Permalink"><time class="dt-published" datetime="{{ note.date | date('ATOM') }}" pubdate>{{ note.date | tdate('HumanTime', note.timezone) }}</time></a>
+                  <a href="{{ note.url }}" class="muted u-url" title="Permalink"><time class="dt-published" datetime="{{ note.date | tdate('Machine', note.timezone) }}" pubdate>{{ note.date | tdate('HumanTime', note.timezone) }}</time></a>
               </h2>
 
               <details {% if loop.first %}open{% endif %}>
@@ -69,7 +69,7 @@ home: true
           <li class="mb2 {% if not loop.last %}mb1{% endif %} h-entry" id="{{ post.url | url(true) }}">
           	<a class="f4 block fw4 u-url" href="{{ post.url }}">
           		<span class="link p-name">{{ post.title }}</span><br />
-            	<p class="font-sans f5 muted mb0"><time class="dt-published" pubdate datetime="{{ post.date | date('ATOM') }}">{{ post.date | date("HUMAN_DATE") }}</time></p>
+            	<p class="font-sans f5 muted mb0"><time class="dt-published" pubdate datetime="{{ post.date | tdate('Machine', post.timezone) }}">{{ post.date | tdate('HumanDate', post.timezone) }}</time></p>
             </a>
           </li>
         {% endfor %}

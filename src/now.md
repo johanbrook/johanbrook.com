@@ -17,7 +17,7 @@ menu:
 templateEngine: njk,md
 ---
 
-<p class="subhead">Updated on <time class="text-color fw5">{{ date | date("HUMAN_DATE") }}</time> from {{ location }}.</p>
+<p class="subhead">Updated on <time class="text-color fw5">{{ date | tdate("HumanDate") }}</time> from {{ location }}.</p>
 
 # Since the last update…
 

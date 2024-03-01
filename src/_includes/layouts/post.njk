@@ -7,12 +7,12 @@ layout: layouts/main.njk
       <h1 itemprop="name" class="{% if link %}fw6 pt3{% else %}title{% endif %}">{{ title }}</h1>
 
       <p class="mb0 fw5">
-          <time class="text-color-contrast" datetime="{{ date | date("ATOM") }}" title="{{ date | date("ATOM") }}" itemprop="datePublished" pubdate>
-            {{ date | date("HUMAN_DATE") }}
+          <time class="text-color-contrast" datetime="{{ date | tdate('Machine') }}" title="{{ date | tdate('Detailed') }}" itemprop="datePublished" pubdate>
+            {{ date | tdate('HumanDate') }}
           </time>
           {% if updated %}
-            <time title="Updated at" class="muted normal ml-1" datetime="{{ updated | date("ATOM") }}" itemprop="dateModified">
-                (updated {{ updated | date("HUMAN_DATE") }})
+            <time title="Updated at {{ updated | tdate('Detailed', updatedTimezone) }}" class="muted normal ml-1" datetime="{{ updated | tdate('Machine', updatedTimezone) }}" itemprop="dateModified">
+                (updated {{ updated | tdate('HumanDate', updatedTimezone) }})
             </time>
           {% endif %}
           {% if draft %}

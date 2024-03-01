@@ -9,16 +9,16 @@ url: /micro.xml
   <link href="{{ url | url(true) }}"/>
   <id>{{ url | url(true) }}</id>
   {% set lastPage = search.pages("type=note", "date=asc") | last %}
-  <updated>{{ lastPage.date | date("ATOM") }}</updated>
+  <updated>{{ lastPage.date | tdate("Machine", lastPage.timezone) }}</updated>
   <author>
     <name>{{ meta.author }}</name>
     <email>{{ meta.email }}</email>
   </author>
   {% for post in search.pages("type=note", "date=desc", 10) %}
   <entry>
-    <title>{{ post.date | date("HUMAN_DATETIME") }}</title>
+    <title>{{ post.date | tdate("HumanTime", post.timezone) }}</title>
     <link href="{{ post.url | url(true) }}" />
-    <updated>{{ post.date | date("ATOM") }}</updated>
+    <updated>{{ post.date | tdate("Machine", post.timezone) }}</updated>
     <id>{{ post.url | url(true) }}</id>
     <content type="html">{{ post.content | md | htmlUrl(true) }}</content>
   </entry>

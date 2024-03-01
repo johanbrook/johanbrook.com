@@ -1,7 +1,6 @@
 import lume from 'lume/mod.ts';
 import postcss from 'lume/plugins/postcss.ts';
 import esbuild from 'lume/plugins/esbuild.ts';
-import date from 'lume/plugins/date.ts';
 import inline from 'lume/plugins/inline.ts';
 import nunjucks from 'lume/plugins/nunjucks.ts';
 import temporalDate from './src/_lume-plugins/temporal-date.ts';
@@ -19,9 +18,6 @@ const site = lume(
 	}
 );
 
-// If a page's data doesn't include a "timezone" field, we'll fallback to this:
-const FALLBACK_TZ = Temporal.TimeZone.from('Europe/Stockholm') as Temporal.TimeZone;
-
 site
 	.use(typeset({ scope: '.prose' }))
 	.use(nunjucks())
@@ -31,8 +27,7 @@ site
 	// Plugins
 	.use(inline())
 	.use(postcss())
-	.use(date())
-	.use(temporalDate({ fallbackTimeZone: FALLBACK_TZ }))
+	.use(temporalDate())
 	.use(sourceMaps())
 	// Helpers
 	.filter('substr', (str: string, len: number) => str.substring(0, len))
@@ -91,6 +86,7 @@ site
 	// Fixes `str` to be suitable for JSON output
 	.filter('jsonHtml', (str: string) => JSON.stringify(str.replace('"', '\"')))
 	// Data
+	.data('timezone', 'Europe/Stockholm') // If a page's data doesn't include a "timezone" field, we'll fall back
 	.data('pageSlug', function (this: { ctx: { url: string } }) {
 		return this.ctx.url.replaceAll('/', '');
 	})

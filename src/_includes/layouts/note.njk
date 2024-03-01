@@ -5,9 +5,7 @@ layout: layouts/main.njk
     <article class="Note">
        	<header class="mb2">
             <h1 class="f4 no-rhythm mb0">
-                <a href="{{ url }}" title="{{ date | date('HUMAN_DATETIME') }} (permalink)" class="font-serif no-underline target">
-                   <time datetime="{{ date | date('ATOM') }}" pubdate>{{ date | tdate('HumanTime', timezone) }}</time> <span>#</span>
-                </a>
+                <time title="{{ date | tdate('Detailed') }}" datetime="{{ date | tdate('Machine') }}" pubdate>{{ date | tdate('HumanTime') }}</time>
             </h1>
             {% if location %}
                 <p title="Posted from" class="muted font-sans mb0 f5 target">{{ location }}</p>

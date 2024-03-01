@@ -6,7 +6,7 @@ date: 2024-01-31
 ---
 
 <p class="measure subhead">
-	Updated in <time class="text-color fw5" datetime="{{ date | date("DATETIME") }}">{{ date | date("LLLL yyyy") }}</time>. Unordered list.
+	Updated in <time class="text-color fw5" datetime="{{ date | tdate("Machine") }}">{{ date | tdate("MonthYear") }}</time>. Unordered list.
 </p>
 
 <table class="textual">

@@ -34,7 +34,7 @@ layout: layouts/main.njk
                 </td>
                 {% if finishedAt %}
                 <td class="leading-tight">
-                    <time title="Finished at {{ finishedAt }}" datetime="{{ finishedAt }}">{{ finishedAt | date }}</time
+                    <time title="Finished at {{ finishedAt }}" datetime="{{ finishedAt }}">{{ finishedAt | tdate('Date') }}</time
                     ><br />
                     {% if location %}
                     <small class="fw4 f6 font-sans" title="Finished in">{{ location }}</small>

@@ -2,6 +2,7 @@
 title: Posting to Mastodon when deploying a static site
 slug: posting-mastodon-deploying-static-site
 date: 2024-02-07 21:36:58 +7
+timezone: Asia/Bangkok
 excerpt: tldr; find the latest note, check if it's not posted already, post, persist to log file.
 location: Koh Lanta, Thailand
 tags:
