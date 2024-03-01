@@ -22,5 +22,4 @@ mastodon:
 email: webmaster@johan.im
 cv: /johanbrook-cv.pdf
 currentVersionOfJohan: 4.0.0
-
-currentTimezone: Asia/Bangkok
+timezone: Asia/Bangkok
