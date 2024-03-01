@@ -27,7 +27,7 @@ export default function (options: Options): Lume.Plugin {
         })();
 
         const now = Temporal.Now.zonedDateTimeISO(timezone);
-        const res = formattedOf(date, format, now, timezone);
+        const res = formattedOf(date, format, now);
 
         return res;
     };
@@ -60,18 +60,13 @@ const DATE_FORMAT: Intl.DateTimeFormatOptions = {
     second: '2-digit',
 };
 
-const formattedOf = (
-    date: Temporal.ZonedDateTime,
-    format: DateTimeFormat,
-    now: Temporal.ZonedDateTime,
-    tz: Temporal.TimeZone
-): string => {
+const formattedOf = (date: Temporal.ZonedDateTime, format: DateTimeFormat, now: Temporal.ZonedDateTime): string => {
     switch (format) {
         case DateTimeFormat.HumanTime: {
             const includeYear = date.year != now.year;
             // Sigh. Need to explicitly pass on timezone to the formatter:
             // https://github.com/tc39/proposal-temporal/issues/2013
-            const formatter = new Intl.DateTimeFormat(undefined, { ...DATE_FORMAT, timeZone: tz.id });
+            const formatter = new Intl.DateTimeFormat(undefined, { ...DATE_FORMAT, timeZone: date.timeZone });
             const parts = commonPartsOf(formatter.formatToParts(date));
 
             return `${parts.month} ${parts.day}%YEAR% — ${parts.hour}:${parts.minute}`.replace(
