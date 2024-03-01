@@ -2,6 +2,7 @@
 layout: layouts/page.njk
 title: Oblique Strategies
 description: A card-based method by Brian Eno and Peter Schmidt first published in 1975. Good for overcoming creative blocks.
+date: Git Last Modified
 ---
 
 - Abandon normal instruments

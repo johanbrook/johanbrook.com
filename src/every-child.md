@@ -1,6 +1,7 @@
 ---
 title: Things every child needs to hear
 layout: layouts/page.njk
+date: Git Last Modified
 ---
 
 1. I love you.

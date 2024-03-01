@@ -6,6 +6,7 @@ menu:
   visible: true
   order: 5
 templateEngine: md,njk
+date: Git Last Modified
 ---
 
 ## Micro
