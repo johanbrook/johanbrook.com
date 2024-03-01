@@ -19,12 +19,14 @@ const offset = Math.abs(d.getTimezoneOffset()) / 60;
 const title = Deno.args[0] ?? 'New post';
 const slug = title.toLowerCase().replace(/\s+/g, '-').trim();
 const date = datetime.format(d, `yyyy-MM-dd HH:mm:ss '+${offset}'`);
+const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const TEMPLATE = `---
 title: ${title}
 slug: ${slug}
 date: ${date}
 location: <where>
+timezone: ${timezone}
 excerpt: <excerpt>
 tags:
   - key

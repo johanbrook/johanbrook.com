@@ -18,10 +18,12 @@ const offset = Math.abs(d.getTimezoneOffset()) / 60;
 
 const date = datetime.format(d, `yyyy-MM-dd HH:mm:ss '+${offset}'`);
 const fileDate = datetime.format(d, 'yyyy-MM-dd-HH-mm-ss');
+const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 const TEMPLATE = `---
 date: ${date}
 location: <where>
+timezone: ${timezone}
 draft: true
 ---\n
 `;
