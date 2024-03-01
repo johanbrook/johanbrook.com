@@ -656,6 +656,7 @@
   finished: true
   location: Bangkok, Thailand
   finishedAt: 2024-01-14T21:00:00+01:00
+  timezone: Asia/Bangkok
   notes: >-
     I loved it just as much as the first one in the series (I loved the second one less). It's something in Knausgård's
     language which is so, so good.
@@ -666,6 +667,7 @@
   finished: true
   finishedAt: 2024-01-24T20:00:00+07:00
   location: Koh Lanta, Thailand
+  timezone: Asia/Bangkok
 
 - title: Min Kamp 2
   author: Karl Ove Knausgård
@@ -673,6 +675,7 @@
   finished: true
   finishedAt: 2024-02-03T20:30:00+07:00
   location: Koh Lanta, Thailand
+  timezone: Asia/Bangkok
 
 - title: Min Kamp 3
   author: Karl Ove Knausgård
@@ -680,6 +683,7 @@
   finished: true
   finishedAt: 2024-02-13T22:45:00+07:00
   location: Koh Lanta, Thailand
+  timezone: Asia/Bangkok
 
 - title: Min Kamp 4
   author: Karl Ove Knausgård
@@ -687,6 +691,7 @@
   finished: true
   finishedAt: 2024-02-20T23:00:00+07:00
   location: Koh Lanta, Thailand
+  timezone: Asia/Bangkok
 
 - title: Min Kamp 5
   author: Karl Ove Knausgård
@@ -694,6 +699,7 @@
   finished: true
   finishedAt: 2024-02-28T22:10:00+07:00
   location: Koh Lanta, Thailand
+  timezone: Asia/Bangkok
 
 - title: Min Kamp 6
   author: Karl Ove Knausgård

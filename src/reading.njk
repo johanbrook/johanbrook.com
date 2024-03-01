@@ -49,7 +49,7 @@ menu:
          			            {% else %}
           		              		{% if book.finished %}
          		              			{% if book.finishedAt %}
-        		              				<time title="Finished at {{ book.finishedAt | tdate('Detailed') }}" datetime="{{ book.finishedAt }}">{{ book.finishedAt | tdate('Date') }}</time><br>
+        		              				<time title="Finished at {{ book.finishedAt | tdate('Detailed', book.timezone) }}" datetime="{{ book.finishedAt }}">{{ book.finishedAt | tdate('Date', book.timezone) }}</time><br>
          		              			{% endif %}
          		              			{% if book.location %}
         		              				<small class="font-sans fw4" title="Finished in">{{ book.location }}</small>
