@@ -14,10 +14,10 @@ export default function (options: Options): Lume.Plugin {
             throw new Error(`Needs "format" parameter, got: ${format}`);
         }
 
-        const timezone = tz ? Temporal.TimeZone.from(tz) : fallbackTimeZone;
+        const timezone = tz ? (Temporal.TimeZone.from(tz) as Temporal.TimeZone) : fallbackTimeZone;
 
         const date = ((): Temporal.ZonedDateTime => {
-            if (dateLike == 'now') return Temporal.Now.instant().toZonedDateTimeISO(timezone);
+            if (dateLike == 'now') return Temporal.Now.zonedDateTimeISO(timezone);
 
             if (dateLike instanceof Date) {
                 return dateLike.toTemporalInstant().toZonedDateTimeISO(timezone);
@@ -27,7 +27,7 @@ export default function (options: Options): Lume.Plugin {
         })();
 
         const now = Temporal.Now.zonedDateTimeISO(timezone);
-        const res = formattedOf(date, format, now);
+        const res = formattedOf(date, format, now, timezone);
 
         return res;
     };
@@ -50,7 +50,7 @@ enum DateTimeFormat {
     Detailed = 'Detailed',
 }
 
-const DATE_FORMAT = new Intl.DateTimeFormat(undefined, {
+const DATE_FORMAT: Intl.DateTimeFormatOptions = {
     month: 'long',
     year: 'numeric',
     day: 'numeric',
@@ -58,13 +58,22 @@ const DATE_FORMAT = new Intl.DateTimeFormat(undefined, {
     hour12: false,
     minute: '2-digit',
     second: '2-digit',
-});
+};
 
-const formattedOf = (date: Temporal.ZonedDateTime, format: DateTimeFormat, now: Temporal.ZonedDateTime): string => {
+const formattedOf = (
+    date: Temporal.ZonedDateTime,
+    format: DateTimeFormat,
+    now: Temporal.ZonedDateTime,
+    tz: Temporal.TimeZone
+): string => {
     switch (format) {
         case DateTimeFormat.HumanTime: {
             const includeYear = date.year != now.year;
-            const parts = commonPartsOf(DATE_FORMAT.formatToParts(date));
+            // Sigh. Need to explicitly pass on timezone to the formatter:
+            // https://github.com/tc39/proposal-temporal/issues/2013
+            const formatter = new Intl.DateTimeFormat(undefined, { ...DATE_FORMAT, timeZone: tz.id });
+            const parts = commonPartsOf(formatter.formatToParts(date));
+
             return `${parts.month} ${parts.day}%YEAR% — ${parts.hour}:${parts.minute}`.replace(
                 '%YEAR%',
                 includeYear ? `, ${parts.year}` : ''
