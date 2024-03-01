@@ -5,7 +5,7 @@
   <link href="https://johan.im/writings.xml" rel="self"/>
   <link href="https://johan.im/writings"/>
   
-  <updated>2024-02-07T14:36:58Z</updated>
+  <updated>2024-02-07T21:36:58+07:00</updated>
   <id>https://johan.im/writings</id>
   <author>
     <name>Johan Brook</name>
@@ -15,7 +15,7 @@
   <entry>
     <title>Posting to Mastodon when deploying a static site</title>
     <link href="https://johan.im/writings/posting-mastodon-deploying-static-site/" />
-    <updated>2024-02-07T14:36:58Z</updated>
+    <updated>2024-02-07T21:36:58+07:00</updated>
     <id>https://johan.im/writings/posting-mastodon-deploying-static-site/</id>
     <content type="html">&lt;p&gt;This is how I made my &lt;a href=&quot;https://johan.im/micro&quot;&gt;micro notes&lt;/a&gt; auto-post to my Mastodon account. Warning: duct-tape and strings ahead. I wrote
 this system during the nighttime hours in the hospital, where I watched over our 10 month old baby who had contracted
@@ -402,7 +402,7 @@ repo&#39;s boundaries.&lt;/p&gt;
   <entry>
     <title>Mastodon</title>
     <link href="https://johan.im/writings/mastodon/" />
-    <updated>2022-12-30T10:20:00Z</updated>
+    <updated>2022-12-30T11:20:00+01:00</updated>
     <id>https://johan.im/writings/mastodon/</id>
     <content type="html">&lt;p&gt;During November this year, Elon Musk took over as acting CEO of Twitter. It was a horrible event: it felt like the end of the world, and ideological users left or set up alternative social media accounts for themselves. It became totally normal to tweet your contact details with &amp;quot;Find me at X&amp;quot; (as I&#39;ve would go through all those tweets and follow people on Instagram/Tumblr/what-have-you) like the service would shut down at any given time.&lt;/p&gt;
 &lt;p&gt;Now, the (Twitter) apocalypse didn&#39;t come. It might still do, because Elon either kicked or caused thousands of employees to leave. But I think a non-trivial blow was caused against the OG social media giant, since people like me actually got off of their asses and created Mastodon accounts. I recommend skimming through the &lt;a href=&quot;https://en.wikipedia.org/wiki/Mastodon_(social_network)&quot;&gt;Wikipedia page for Mastodon&lt;/a&gt; (huh, it was started as recently as 2016, I didn&#39;t know that).&lt;/p&gt;
@@ -433,7 +433,7 @@ repo&#39;s boundaries.&lt;/p&gt;
   <entry>
     <title>My favourite software</title>
     <link href="https://johan.im/writings/my-favourite-software/" />
-    <updated>2022-02-23T00:00:00Z</updated>
+    <updated>2022-02-23T01:00:00+01:00</updated>
     <id>https://johan.im/writings/my-favourite-software/</id>
     <content type="html">&lt;h2&gt;1. Typescript&lt;/h2&gt;
 &lt;p&gt;I started programming in Java and PHP. Those two worlds were vastly different. PHP stood for
@@ -508,7 +508,7 @@ literally how Twitter used to be.&lt;/p&gt;</content>
   <entry>
     <title>Setting up Sublime Text for Deno</title>
     <link href="https://johan.im/writings/sublime-text-deno/" />
-    <updated>2022-02-16T00:00:00Z</updated>
+    <updated>2022-02-16T01:00:00+01:00</updated>
     <id>https://johan.im/writings/sublime-text-deno/</id>
     <content type="html">&lt;p&gt;I&#39;ve recently switched back to Sublime Text as main editor, as described in a recent
 &lt;a href=&quot;https://johan.im/micro/202202080950&quot;&gt;/micro post&lt;/a&gt;. As a test to get a feel for the ecosystem, I&#39;ve set out on a
@@ -713,7 +713,7 @@ redirects:
   <entry>
     <title>A whole new world with Deno</title>
     <link href="https://johan.im/writings/deno/" />
-    <updated>2022-01-19T00:00:00Z</updated>
+    <updated>2022-01-19T01:00:00+01:00</updated>
     <id>https://johan.im/writings/deno/</id>
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://deno.land/&quot;&gt;Deno&lt;/a&gt; is a new &lt;em&gt;runtime&lt;/em&gt; for Javascript. Before, NodeJS used to be the most
 popular way to run Javascript on the server. But no more! Deno has reached stable state (it&#39;s on
@@ -887,7 +887,7 @@ properties to read.&lt;/p&gt;
   <entry>
     <title>Customising an iOS home screen web app in 2021</title>
     <link href="https://johan.im/writings/ios-homescreen-web-app/" />
-    <updated>2021-12-14T00:00:00Z</updated>
+    <updated>2021-12-14T01:00:00+01:00</updated>
     <id>https://johan.im/writings/ios-homescreen-web-app/</id>
     <content type="html">&lt;h2&gt;Background&lt;/h2&gt;
 &lt;p&gt;During parental leave, I&#39;ve started to run. Not away from the baby, for heaven&#39;s sakes, but regular
@@ -1261,7 +1261,7 @@ place. Argh.&lt;/p&gt;
   <entry>
     <title>An Even Better Spaghetti Bolognese</title>
     <link href="https://johan.im/writings/better-spaghetti-bolognese/" />
-    <updated>2021-11-02T00:00:00Z</updated>
+    <updated>2021-11-02T01:00:00+01:00</updated>
     <id>https://johan.im/writings/better-spaghetti-bolognese/</id>
     <content type="html">&lt;p&gt;This is a continuation (sequel? remix?) on the post
 &lt;a href=&quot;https://johan.im/writings/my-spaghetti-bolognese&quot;&gt;&amp;quot;My Spaghetti Bolognese&amp;quot;&lt;/a&gt;. In that one, I wrote about a spaghetti
@@ -1325,7 +1325,7 @@ other recipe has ten steps, this one only has six steps.&lt;/p&gt;</content>
   <entry>
     <title>Recently in books II</title>
     <link href="https://johan.im/writings/recently-in-books-ii/" />
-    <updated>2020-12-31T00:00:00Z</updated>
+    <updated>2020-12-31T01:00:00+01:00</updated>
     <id>https://johan.im/writings/recently-in-books-ii/</id>
     <content type="html">&lt;p&gt;This is a long overdue post on some books I&#39;ve read since the
 &lt;a href=&quot;https://johan.im/writings/recently-in-books&quot;&gt;last update&lt;/a&gt;.&lt;/p&gt;
@@ -1450,7 +1450,7 @@ from June, 2020.)&lt;/p&gt;</content>
   <entry>
     <title>Building a small, functional reactive app architecture</title>
     <link href="https://johan.im/writings/frp-app-arch/" />
-    <updated>2020-05-01T00:00:00Z</updated>
+    <updated>2020-05-01T02:00:00+02:00</updated>
     <id>https://johan.im/writings/frp-app-arch/</id>
     <content type="html">&lt;p&gt;At &lt;a href=&quot;https://lookback.io/&quot;&gt;Lookback&lt;/a&gt;, we&#39;ve fallen in love with functional reactive programming (FRP)
 with streams in our frontend apps. Together with the use of Typescript for compile time type safety,
@@ -2297,7 +2297,7 @@ Thanks for popularising the ideas of cyclical data flows!&lt;/p&gt;
   <entry>
     <title>Recent improvements in our git discipline</title>
     <link href="https://johan.im/writings/git-guidelines/" />
-    <updated>2020-02-23T00:00:00Z</updated>
+    <updated>2020-02-23T01:00:00+01:00</updated>
     <id>https://johan.im/writings/git-guidelines/</id>
     <content type="html">&lt;p&gt;The git history of a repository a few years in or with more than one collaborator will look like
 thick weed unless you take care of it. During last Autumn in &lt;a href=&quot;http://lookback.io/&quot;&gt;Lookback&lt;/a&gt;, the
