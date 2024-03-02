@@ -8,18 +8,17 @@ import { readingTime } from './src/_lume-plugins/reading-time.ts';
 import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
 import { typeset } from './src/_lume-plugins/typeset.ts';
 import sourceMaps from 'lume/plugins/source_maps.ts';
-import { idOf } from './src/_includes/permalinks.ts';
+import { idOf, postsRoot } from './src/_includes/permalinks.ts';
+import { microRoot } from './src/_includes/permalinks.ts';
+import { booksRoot } from './src/_includes/permalinks.ts';
 
-const site = lume(
-    {
-        src: 'src',
-        dest: 'build',
-        location: new URL('https://johan.im'), // Ignored in dev
-    },
-);
+const site = lume({
+    src: 'src',
+    dest: 'build',
+    location: new URL('https://johan.im'), // Ignored in dev
+});
 
-site
-    .use(typeset({ scope: '.prose' }))
+site.use(typeset({ scope: '.prose' }))
     .use(nunjucks())
     .use(esbuild())
     .copy('public', '.')
@@ -33,9 +32,7 @@ site
     .filter('substr', (str: string, len: number) => str.substring(0, len))
     .filter('readingTime', (pageOrContent: Lume.Page | string) => {
         if (!pageOrContent) {
-            throw new Error(
-                `Passed falsy value to readingTime filter: ${pageOrContent}`,
-            );
+            throw new Error(`Passed falsy value to readingTime filter: ${pageOrContent}`);
         }
 
         return readingTime(pageOrContent);
@@ -55,11 +52,11 @@ site
 
         const parts = curr.split('/').filter(Boolean);
 
-        if (parts.length > 1 && ('/' + parts[0]) == test) return true;
+        if (parts.length > 1 && '/' + parts[0] == test) return true;
 
         return false;
     })
-    .filter('groupBooksByYear', <T>(arr: Array<T>) => {
+    .filter('groupBooksByYear', <T,>(arr: Array<T>) => {
         const current = new Date().getUTCFullYear();
         const groups: Record<string | number, T[]> = {
             [current]: [],
@@ -91,6 +88,20 @@ site
     .data('timezone', 'Europe/Stockholm') // If a page's data doesn't include a "timezone" field, we'll fall back
     .data('pageSlug', function (this: { ctx: { url: string } }) {
         return this.ctx.url.replaceAll('/', '');
+    })
+    .data('parent', function (this: { ctx: { page: Lume.Page } }) {
+        const { page } = this.ctx;
+
+        switch (page.data.type) {
+            case 'post':
+                return ['Writings', postsRoot];
+            case 'note':
+                return ['Micro', microRoot];
+            case 'book':
+                return ['Reading', booksRoot];
+            default:
+                return null;
+        }
     })
     .data('layout', 'layouts/main.njk')
     .data('type', 'post', '/posts')

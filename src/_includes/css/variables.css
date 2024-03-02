@@ -1,6 +1,11 @@
 :root {
     /* Colors */
 
+    --mood: oklch(68% 0.155 47.65);
+
+    --light: color-mix(in oklab, var(--mood) 8%, oklch(84% 0 0));
+    --dark: color-mix(in oklab, var(--mood) 4%, oklch(16% 0 0));
+
     --neon: hsl(145 56% 57%);
     --yellow: hsl(50 93% 56%);
     --grey: hsl(214.51 7.24% 47.56%);
@@ -12,8 +17,9 @@
     --color-text: hsl(0 0% 13%);
     --color-text-high-contrast: black;
     --color-text-detail: var(--grey);
+    --color-faint: color-mix(in oklab, var(--mood) 10%, white 20%);
 
-    --link-color: hsl(201.43, 100%, 37.25%);
+    --link-color: var(--color-text-high-contrast);
     --link-color-hover: hsl(201.43, 100%, 25.25%);
     --link-color-visited: hsl(266 100% 44%);
     --link-underline-color: hsl(201.43 43.1% 56.06% / 0.47);
@@ -23,28 +29,22 @@
     --btn-bg: var(--color-bg-secondary);
     --btn-bg-hover: hsl(240 59.76% 95.52%);
 
-    --focus-color: var(--link-color);
+    --focus-color: hsl(201.43, 100%, 37.25%);
 
     --pre-background: var(--color-bg-secondary);
     --code-background: rgb(0 0 0 / 2%);
     --code-color: rgb(120 94 0);
-
-    @supports (color: color(display-p3 1 1 1 / 1)) {
-        --link-color: color(display-p3 0 0.425 0.73);
-        --link-color-hover: color(display-p3 0.01 0.295 0.495);
-        --link-color-visited: color(display-p3 0.431 0.053 0.965);
-    }
 
     @media screen and (prefers-color-scheme: dark) {
         --yellow: #c3a507;
         --grey: hsl(214.51, 6.64%, 61.44%);
         --grey-lightest: hsl(173 7% 17%);
 
-        --color-bg: #1a1a1a;
-        --color-bg-secondary: hsl(240 3.36% 14.51%);
-        --color-text: hsl(0, 0%, 78%);
-        --color-text-high-contrast: white;
-        --link-color: hsl(201.43 94.7% 62.23%);
+        --color-bg: var(--dark);
+        --color-bg-secondary: color-mix(in oklab, var(--mood) 1%, white 4%);
+        --color-text: var(--light);
+        --color-text-high-contrast: color-mix(in oklab, var(--mood) 6%, oklch(95% 0 0));
+        --color-text-detail: color-mix(in oklab, var(--mood) 10%, white 50%);
         --link-color-hover: hsl(201.43, 93.43%, 69.58%);
         --link-underline-color: hsl(201.43 57.86% 50.17% / 0.47);
         --link-color-visited: #7a8be5;
@@ -52,11 +52,6 @@
         --code-background: rgb(255 255 255 / 2%);
 
         --btn-bg-hover: hsl(240 3.36% 15.51%);
-
-        @supports (color: color(display-p3 1 1 1 / 1)) {
-            --link-color: color(display-p3 0.38 0.742 1);
-            --link-color-hover: color(display-p3 0.577 0.82 0.995);
-        }
     }
 
     /* Typography */
@@ -110,7 +105,6 @@
     --spacing-extra-extra-extra-large: calc(var(--spacing-base) * 6);
 
     @media screen and (max-width: 980px) {
-        --inset: var(--lineheight);
         --font-size-base: 16;
     }
 }

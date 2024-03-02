@@ -2,7 +2,7 @@
 <html lang="en-gb" class="{{'home' if home}} {{ pageSlug() }}">
 
   <head itemtype="http://schema.org/Blog" itemscope>
-    <title>{% if title %}{{ title }} / {{ meta.titles.site }}{% else %}{{ meta.titles.site }}{% endif %}</title>
+    <title>{% if title %}{{ title }} / {{ titles.site }}{% else %}{{ titles.site }}{% endif %}</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -60,8 +60,12 @@
 
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+
 	  <div class="Content{% if wide %} wide{% endif %}">
-	  	<div id="main">
+
+		{% include "nav-mobile.njk" %}
+
+		<div id="main">
 			{{ content | safe }}
 		</div>
 

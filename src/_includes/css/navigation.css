@@ -59,40 +59,12 @@
         margin-bottom: -4px;
         padding-top: var(--offset-top);
     }
-
-    @media screen and (max-width: 980px) {
-        width: calc(100% + var(--inset) * 2);
-        margin: calc(var(--inset) * -1);
-        padding: calc(var(--lineheight) / 2) calc(var(--inset) * 1);
-        margin-bottom: calc(var(--lineheight) / 2 - 1px);
-        position: sticky;
-        inset: 0;
-        overflow-x: auto;
-        background-color: var(--color-bg);
-        font-size: var(--f5);
-
-        & h1 {
-            position: absolute;
-            left: -9999em;
-        }
-
-        & ul {
-            display: flex;
-            margin: 0;
-            flex-direction: row;
-            gap: 1em;
-        }
-
-        [aria-current='page']::after {
-            display: none;
-        }
-    }
 }
 
 .BackLink {
     text-decoration: none;
     color: var(--color-text);
-    background-color: var(--grey-lightest);
+    background-color: var(--color-bg-secondary);
     width: 1.6em;
     text-align: center;
     line-height: 1.6em;
@@ -103,5 +75,19 @@
 
     a:is(:hover, :focus) > & {
         opacity: 1;
+    }
+}
+
+.MobileNav {
+    display: none;
+    margin-block-end: 2lh;
+}
+
+@media only screen and (max-width: 1215px) {
+    .MainNav {
+        display: none;
+    }
+    .MobileNav {
+        display: block;
     }
 }

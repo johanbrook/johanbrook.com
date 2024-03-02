@@ -16,6 +16,7 @@ html {
 
 body {
     padding: var(--inset);
+    padding-top: calc(var(--inset) * 2);
     line-height: var(--leading);
     font-feature-settings:
 		/* Contextual alternates */
@@ -26,10 +27,6 @@ body {
 
     @media screen and (prefers-color-scheme: dark) {
         word-spacing: 0.05em;
-    }
-
-    @media screen and (min-width: 980px) {
-        padding-top: calc(var(--inset) * 2);
     }
 }
 
@@ -115,10 +112,9 @@ nav ul {
     }
 }
 
-:where(a, .link) {
+:is(a, .link) {
     color: var(--link-color);
     position: relative;
-    text-decoration: none;
     text-underline-offset: 4px;
 
     &.block {
@@ -126,14 +122,12 @@ nav ul {
         font-weight: unset;
     }
 
-    &:hover,
-    &:hover .link {
+    &:where(:hover, &:hover .link) {
         color: var(--link-color-hover);
         text-decoration-color: currentColor;
     }
 
-    &:not(.block):hover,
-    &:hover .link {
+    &:is(:not(.block):hover, :hover .link) {
         text-decoration: underline;
     }
 
@@ -153,10 +147,14 @@ nav ul {
         cursor: default;
         text-decoration: none;
     }
-}
 
-a.no-link {
-    color: inherit;
+    &.no-link {
+        color: inherit;
+    }
+
+    &.plain {
+        text-decoration: none;
+    }
 }
 
 :where(p, ul, ol, blockquote, table, figure, pre, details) {

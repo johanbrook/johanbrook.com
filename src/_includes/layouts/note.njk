@@ -8,7 +8,7 @@ layout: layouts/main.njk
                 <time title="{{ date | tdate('Detailed') }}" datetime="{{ date | tdate('Machine') }}" pubdate>{{ date | tdate('HumanTime') }}</time>
             </h1>
             {% if location %}
-                <p title="Posted from" class="muted font-sans mb0 f5 target">{{ location }}</p>
+                <p title="Posted from" class="muted font-sans mb0 f6 target">{{ location }}</p>
             {% endif %}
         </header>
 
@@ -18,7 +18,7 @@ layout: layouts/main.njk
 
         <footer class="mt3">
             {% if tags %}
-                <ul role="list">
+                <ul role="list" class="mb3">
                     {% for tag in tags %}
                     <li class="muted font-sans f6 inline">#{{ tag }}</li>
                     {% endfor %}
@@ -26,7 +26,7 @@ layout: layouts/main.njk
             {% endif %}
 
             <p>
-                <a href="/micro" class="f5">
+                <a href="/micro" class="muted">
     				<span aria-hidden="true" class="BackLink mr1">←</span> All micro notes
     			</a>
             </p>

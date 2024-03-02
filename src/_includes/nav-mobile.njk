@@ -1,0 +1,7 @@
+{% set p = parent() %}
+
+<nav role="navigation" class="MobileNav">
+    <p class="mb0">
+        <a aria-label="Home" class="plain" href="/">{{ titles.site }}</a>{% if p %} <span class="faint">/</span> <a href="{{ p[1] }}" class="muted">{{ p[0] }}</a>{% endif %}
+    </p>
+</nav>

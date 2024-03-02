@@ -4,7 +4,7 @@ layout: layouts/home.njk
 templateEngine: njk,md
 ---
 
-My name is Johan. I’m coding & designing, and I like working with product, user experience, and
+I’m coding & designing, and I like working with product, user experience, and
 interface design. And other things too.
 
 I'd like to write more (don't we all), and I consume a (un)healthy amount of music.

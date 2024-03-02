@@ -5,30 +5,22 @@ Built for IE6, made in Dreamweaver.
 Just kidding.
 --------------------------------------------- */
 
-@layer setup,
-base,
-views,
-components,
-utils;
+@layer setup;
 
 @import 'css/reset.css' layer(setup);
 @import 'css/variables.css' layer(setup);
 
-@import 'css/base.css' layer(base);
-@import 'css/utils.css' layer(utils);
-@import 'css/footer.css' layer(base);
+@import 'css/base.css';
+@import 'css/layout.css';
 
-@import 'css/layout.css' layer(base);
+@import 'css/notes.css';
+@import 'css/navigation.css';
+@import 'css/notes.css';
+@import 'css/posts-list.css';
+@import 'css/prose.css';
 
-@import 'css/changelog.css' layer(views);
-@import 'css/oblique-strategies.css' layer(views);
+@import 'css/changelog.css';
+@import 'css/oblique-strategies.css';
 
-@import 'css/notes.css' layer(components);
-@import 'css/navigation.css' layer(components);
-@import 'css/notes.css' layer(components);
-@import 'css/page-nav.css' layer(components);
-@import 'css/posts-list.css' layer(components);
-@import 'css/autogrow.css' layer(utils);
-@import 'css/prose.css' layer(components);
-
-@import 'css/typeset.css' layer(utils);
+@import 'css/typeset.css';
+@import 'css/utils.css';
