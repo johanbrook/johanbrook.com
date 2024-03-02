@@ -2,144 +2,145 @@
 --------------------------------------------- */
 
 html {
-	/* https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/ */
-	-moz-text-size-adjust: none;
-	-webkit-text-size-adjust: none;
-	text-size-adjust: none;
+    /* https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/ */
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
 }
 
 :where(body, html) {
-	font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--sans);
-	background-color: var(--color-bg);
-	color: var(--color-text);
+    font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--sans);
+    background-color: var(--color-bg);
+    color: var(--color-text);
 }
 
 body {
-	padding: var(--inset);
-	line-height: var(--leading);
-	font-feature-settings:
+    padding: var(--inset);
+    line-height: var(--leading);
+    font-feature-settings:
 		/* Contextual alternates */
-		'calt' 1,
-		'kern' 1,
-		'liga' 1;
-	font-variant-ligatures: contextual common-ligatures;
+        'calt' 1,
+        'kern' 1,
+        'liga' 1;
+    font-variant-ligatures: contextual common-ligatures;
 
-	@media screen and (prefers-color-scheme: dark) {
-		word-spacing: 0.05em;
-	}
+    @media screen and (prefers-color-scheme: dark) {
+        word-spacing: 0.05em;
+    }
 
-	@media screen and (min-width: 980px) {
-		padding-top: calc(var(--inset) * 2);
-	}
+    @media screen and (min-width: 980px) {
+        padding-top: calc(var(--inset) * 2);
+    }
 }
 
 :target {
-	scroll-margin-block: 5ex;
+    scroll-margin-block: 5ex;
 }
 
 :focus-visible {
     outline: 2px solid var(--link-color);
     box-shadow: 0 0 0 4px white;
-    border-radius: .25em;
+    border-radius: 0.25em;
 }
 
 /* =HEADINGS
 --------------------------------------------- */
 
 :where(h1, h2, h3, h4, h5, h6) {
-	margin-block-end: 0;
-	margin-bottom: calc(var(--lineheight) / 2);
-	color: var(--color-text-high-contrast);
-	font-family: var(--serif);
+    margin-block-end: 0;
+    margin-bottom: calc(var(--lineheight) / 2);
+    color: var(--color-text-high-contrast);
+    font-family: var(--serif);
 }
 
 :is(.f0, .title) {
-	font-size: clamp(var(--f1), 12vw, var(--f0));
-	letter-spacing: var(--tracking-f0);
-	line-height: calc(var(--leading) * 0.75);
+    font-size: clamp(var(--f1), 12vw, var(--f0));
+    letter-spacing: var(--tracking-f0);
+    line-height: calc(var(--leading) * 0.75);
 }
 
 :where(h1, .f1) {
-	font-size: var(--f1);
-	letter-spacing: var(--tracking-f1);
+    font-size: var(--f1);
+    letter-spacing: var(--tracking-f1);
 }
 
 :where(h2, .f2) {
-	font-size: var(--f2);
-	letter-spacing: var(--tracking-f2);
+    font-size: var(--f2);
+    letter-spacing: var(--tracking-f2);
 }
 
 :where(h3, .f3) {
-	font-size: var(--f3);
-	letter-spacing: var(--tracking-f3);
+    font-size: var(--f3);
+    letter-spacing: var(--tracking-f3);
 }
 
 :where(h4, .f4) {
-	font-size: var(--f4);
-	letter-spacing: var(--tracking-f4);
+    font-size: var(--f4);
+    letter-spacing: var(--tracking-f4);
 }
 
 :where(h5, .f5) {
-	font-size: var(--f5);
-	letter-spacing: var(--tracking-f5);
+    font-size: var(--f5);
+    letter-spacing: var(--tracking-f5);
 }
 
 :where(h6, .f6) {
-	font-size: var(--f6);
-	letter-spacing: var(--tracking-f6);
+    font-size: var(--f6);
+    letter-spacing: var(--tracking-f6);
 }
 
 .f7 {
-	font-size: var(--f7);
+    font-size: var(--f7);
 }
 
 :where(ul, ol) {
-	padding-left: 0;
+    padding-left: 0;
 }
 
 nav ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 :where(a, .link) {
-	color: var(--link-color);
-	position: relative;
-	text-decoration: none;
-	text-underline-offset: 4px;
+    color: var(--link-color);
+    position: relative;
+    text-decoration: none;
+    text-underline-offset: 4px;
 
-	&.block {
-		text-decoration: none;
-		font-weight: unset;
-	}
+    &.block {
+        text-decoration: none;
+        font-weight: unset;
+    }
 
-	&:hover,
-	&:hover .link {
-		color: var(--link-color-hover);
-		text-decoration-color: currentColor;
-	}
+    &:hover,
+    &:hover .link {
+        color: var(--link-color-hover);
+        text-decoration-color: currentColor;
+    }
 
-	&:not(.block):hover, &:hover .link {
-		text-decoration: underline;
-	}
+    &:not(.block):hover,
+    &:hover .link {
+        text-decoration: underline;
+    }
 
-	&:active {
-		top: 1px;
-	}
+    &:active {
+        top: 1px;
+    }
 
-	&.muted {
-		text-decoration: none;
+    &.muted {
+        text-decoration: none;
 
-		&:hover {
-			color: var(--link-color-hover);
-		}
-	}
+        &:hover {
+            color: var(--link-color-hover);
+        }
+    }
 
-	&:is([aria-current="page"] > *):is(:focus-visible, :hover) {
-	   cursor: default;
-	   text-decoration: none;
-	}
+    &:is([aria-current='page'] > *):is(:focus-visible, :hover) {
+        cursor: default;
+        text-decoration: none;
+    }
 }
 
 a.no-link {
@@ -151,34 +152,34 @@ a.no-link {
 }
 
 img {
-	max-width: 100%;
-	height: auto;
+    max-width: 100%;
+    height: auto;
 }
 
 :where(pre, code) {
-	font-family: var(--mono);
+    font-family: var(--mono);
 }
 
-:not(pre)>code {
-	color: var(--code-color);
-	background-color: var(--code-background);
-	padding: .125rem .25rem;
-	border-radius: .125em;
-	font-weight: 500;
-	font-size: .85em;
+:not(pre) > code {
+    color: var(--code-color);
+    background-color: var(--code-background);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.125em;
+    font-weight: 500;
+    font-size: 0.85em;
 }
 
 figcaption {
-	color: var(--grey);
+    color: var(--grey);
 }
 
 table {
-	--spacing: .6em;
+    --spacing: 0.6em;
 
-	text-align: left;
-	width: 100%;
-	border-collapse: collapse;
-	border-spacing: 0;
+    text-align: left;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 tr {
@@ -187,113 +188,113 @@ tr {
     }
 
     & > td:first-of-type {
-		font-weight: bold;
-	}
+        font-weight: bold;
+    }
 }
 
 th {
-	border-bottom: 3px double var(--grey);
-	padding: var(--spacing);
-	font-weight: bold;
-	position: sticky;
-	top: 0;
-	background-color: var(--color-bg);
-	text-transform: uppercase;
-	font-size: var(--f6);
-	letter-spacing: 0.05em;
-	font-family: var(--sans);
+    border-bottom: 3px double var(--grey);
+    padding: var(--spacing);
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-bg);
+    text-transform: uppercase;
+    font-size: var(--f6);
+    letter-spacing: 0.05em;
+    font-family: var(--sans);
 }
 
 td {
-	padding: var(--spacing);
-	vertical-align: top;
-	border-bottom: 1px solid var(--grey-lightest);
+    padding: var(--spacing);
+    vertical-align: top;
+    border-bottom: 1px solid var(--grey-lightest);
 }
 
 :where(th, td):first-child {
-	padding-left: 0;
+    padding-left: 0;
 }
 
 pre {
-	text-align: left;
-	line-height: var(--leading);
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-	hyphens: none;
-	tab-size: 2;
-	color: var(--code-color);
-	background-color: var(--code-background);
-	padding: .125rem .25rem;
-	border-radius: .25em;
-	-webkit-font-smoothing: subpixel-antialiased;
-	-moz-osx-font-smoothing: none;
-	font-size: var(--f5);
-	overflow: auto;
-	position: relative;
+    text-align: left;
+    line-height: var(--leading);
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    hyphens: none;
+    tab-size: 2;
+    color: var(--code-color);
+    background-color: var(--code-background);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25em;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: none;
+    font-size: var(--f5);
+    overflow: auto;
+    position: relative;
 
-	& .line-highlight {
-		--cycle: 27px;
-		--color: 112 20% 50%;
-		text-decoration: none;
-		position: absolute;
-		height: calc(var(--rows) * var(--cycle));
-		top: calc(var(--top-inset) + (var(--start) - 1) * var(--cycle));
-		background-color: hsl(var(--color) / 4%);
-		color: hsl(var(--color) / 80%);
-		left: 0;
-		width: 100%;
-		display: block;
-		pointer-events: none;
-		padding: 0 6px;
-		font-size: var(--f7);
-	}
+    & .line-highlight {
+        --cycle: 27px;
+        --color: 112 20% 50%;
+        text-decoration: none;
+        position: absolute;
+        height: calc(var(--rows) * var(--cycle));
+        top: calc(var(--top-inset) + (var(--start) - 1) * var(--cycle));
+        background-color: hsl(var(--color) / 4%);
+        color: hsl(var(--color) / 80%);
+        left: 0;
+        width: 100%;
+        display: block;
+        pointer-events: none;
+        padding: 0 6px;
+        font-size: var(--f7);
+    }
 }
 
 li > pre {
-	margin-top: calc(var(--lineheight) / 2);
-	margin-bottom: calc(var(--lineheight) / 2);
+    margin-top: calc(var(--lineheight) / 2);
+    margin-bottom: calc(var(--lineheight) / 2);
 }
 
 /* Syntax highlighting */
 code[class*='language-'] {
-	display: block;
+    display: block;
 }
 
 blockquote {
-	border-left: 2px solid var(--grey-light);
-	margin: calc(var(--lineheight) * 2) 2rem calc(var(--lineheight) * 2) 0;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	color: var(--color-text-high-contrast);
+    border-left: 2px solid var(--grey-light);
+    margin: calc(var(--lineheight) * 2) 2rem calc(var(--lineheight) * 2) 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    color: var(--color-text-high-contrast);
 
-	&>p {
-		margin-bottom: calc(var(--lineheight) / 2);
-	}
+    & > p {
+        margin-bottom: calc(var(--lineheight) / 2);
+    }
 
-	& footer {
-		color: var(--grey);
-		margin-top: var(--lineheight);
-	}
+    & footer {
+        color: var(--grey);
+        margin-top: var(--lineheight);
+    }
 }
 
 hr {
-	border: 0;
-	background-color: var(--border-color);
-	height: 1px;
-	margin: var(--lineheight) 0;
+    border: 0;
+    background-color: var(--border-color);
+    height: 1px;
+    margin: var(--lineheight) 0;
 }
 
 textarea {
-	padding: 0.5em;
-	border: 1px solid var(--grey);
-	border-radius: 0.4em;
-	resize: vertical;
+    padding: 0.5em;
+    border: 1px solid var(--grey);
+    border-radius: 0.4em;
+    resize: vertical;
 
-	&:focus {
-		outline: 0;
-		border-color: var(--link-color);
-	}
+    &:focus {
+        outline: 0;
+        border-color: var(--link-color);
+    }
 }
 
 :where(details[open], details summary:hover) {

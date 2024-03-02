@@ -1,23 +1,23 @@
 .PageNav {
-	text-align: center;
+    text-align: center;
 
-	& a {
-		color: var(--grey);
-		display: inline-block;
-		padding: 0.3em 0.5em;
-		text-decoration: none;
+    & a {
+        color: var(--grey);
+        display: inline-block;
+        padding: 0.3em 0.5em;
+        text-decoration: none;
 
-		&:hover {
-			color: var(--link-color);
-			text-decoration: underline;
-		}
-	}
+        &:hover {
+            color: var(--link-color);
+            text-decoration: underline;
+        }
+    }
 
-	& .separator {
-		color: var(--color-text);
-		font-weight: 500;
-		letter-spacing: -1px;
-		font-size: 1.2em;
-		margin: 0 3px;
-	}
+    & .separator {
+        color: var(--color-text);
+        font-weight: 500;
+        letter-spacing: -1px;
+        font-size: 1.2em;
+        margin: 0 3px;
+    }
 }

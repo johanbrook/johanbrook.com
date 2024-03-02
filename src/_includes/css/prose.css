@@ -3,101 +3,101 @@ PROSE
 ----------------------------------------------------------------*/
 
 .prose {
-	--link-color: var(--color-text);
+    --link-color: var(--color-text);
 
-	h1 {
-	   border-bottom: 1px solid var(--border-color);
-	   padding-bottom: .25lh;
-	}
+    h1 {
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.25lh;
+    }
 
-	* + h1 {
-	   margin-top: 1lh;
-	}
+    * + h1 {
+        margin-top: 1lh;
+    }
 
-	&> :last-child {
-		margin-bottom: 0;
-	}
+    & > :last-child {
+        margin-bottom: 0;
+    }
 
-	a:not([class]) {
-		text-decoration: underline;
-	}
+    a:not([class]) {
+        text-decoration: underline;
+    }
 
-	& img,
-	& iframe,
-	& figure,
-	& svg {
-		--side-margin: calc(var(--lineheight) * 2);
-		margin: var(--side-margin) auto;
-		display: block;
+    & img,
+    & iframe,
+    & figure,
+    & svg {
+        --side-margin: calc(var(--lineheight) * 2);
+        margin: var(--side-margin) auto;
+        display: block;
 
-		@media screen and (max-width: 480px) {
-			--side-margin: var(--lineheight);
-		}
-	}
+        @media screen and (max-width: 480px) {
+            --side-margin: var(--lineheight);
+        }
+    }
 
-	@media screen and (prefers-color-scheme: dark) {
-		& img {
-			opacity: 0.9;
-			box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
-		}
-	}
+    @media screen and (prefers-color-scheme: dark) {
+        & img {
+            opacity: 0.9;
+            box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
+        }
+    }
 
-	:where(ul, ol) {
-		list-style-type: revert;
-		padding-left: 1em;
-		margin-left: 1rem;
+    :where(ul, ol) {
+        list-style-type: revert;
+        padding-left: 1em;
+        margin-left: 1rem;
 
-		&:where(ul) {
-			::marker {
-				font-size: 1.2em;
-			}
-		}
+        &:where(ul) {
+            ::marker {
+                font-size: 1.2em;
+            }
+        }
 
-		& ::marker {
-			color: var(--grey-light);
-		}
+        & ::marker {
+            color: var(--grey-light);
+        }
 
-		:wher(li > ul, li > ol) {
-			padding-left: 1.5rem;
-			margin-bottom: 0;
-		}
-	}
+        :wher(li > ul, li > ol) {
+            padding-left: 1.5rem;
+            margin-bottom: 0;
+        }
+    }
 
-	& figcaption {
-		padding: 1rem 0;
-		text-align: center;
-		font-family: var(--sans);
-		font-size: 0.9em;
-	}
+    & figcaption {
+        padding: 1rem 0;
+        text-align: center;
+        font-family: var(--sans);
+        font-size: 0.9em;
+    }
 
-	/* Break links and code */
-	& code:not(pre > code),
-	& a {
-		word-break: break-word;
-		word-wrap: break-word;
-		overflow-wrap: break-word;
-	}
+    /* Break links and code */
+    & code:not(pre > code),
+    & a {
+        word-break: break-word;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
 
-	pre {
-	   font-size: var(--f6);
-	}
+    pre {
+        font-size: var(--f6);
+    }
 
-	& figure.image--full {
-		margin: calc(var(--lineheight) * 2) -14vw;
+    & figure.image--full {
+        margin: calc(var(--lineheight) * 2) -14vw;
 
-		& img {
-			display: block;
-			margin: 0 auto;
-		}
+        & img {
+            display: block;
+            margin: 0 auto;
+        }
 
-		@media screen and (max-width: 960px) {
-			/* Edge-to-edge pixelfucking. */
-			margin-left: auto;
-			margin-right: auto;
-		}
-	}
+        @media screen and (max-width: 960px) {
+            /* Edge-to-edge pixelfucking. */
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
 
-	details summary + pre {
-	   margin-block-start: 0.5lh;
-	}
+    details summary + pre {
+        margin-block-start: 0.5lh;
+    }
 }

@@ -1,32 +1,32 @@
 /* Small caps */
 .small-caps {
-	font-family: 'Charter SC', serif;
-	font-variant: small-caps;
+    font-family: 'Charter SC', serif;
+    font-variant: small-caps;
 }
 
 /* Double quotation marks (") */
 .pull-double {
-	margin-left: -.46em
+    margin-left: -0.46em;
 }
 
 .push-double {
-	margin-right: .46em
+    margin-right: 0.46em;
 }
 
 /* Single quotation marks (') */
 .pull-single {
-	margin-left: -.27em
+    margin-left: -0.27em;
 }
 
 .push-single {
-	margin-right: .27em
+    margin-right: 0.27em;
 }
 
 .pull-double,
 .push-double,
 .pull-single,
 .push-single {
-	display: inline-block
+    display: inline-block;
 }
 
 /* Optical margin alignment for particular letters */
@@ -34,34 +34,34 @@
 .pull-V,
 .pull-W,
 .pull-Y {
-	margin-left: -0.1em;
+    margin-left: -0.1em;
 }
 
 .push-T,
 .push-V,
 .push-W,
 .push-Y {
-	margin-right: 0.1em;
+    margin-right: 0.1em;
 }
 
 .pull-O,
 .pull-C,
 .pull-o,
 .pull-c {
-	margin-left: -0.04em;
+    margin-left: -0.04em;
 }
 
 .push-O,
 .push-C,
 .push-o,
 .push-c {
-	margin-right: 0.04em;
+    margin-right: 0.04em;
 }
 
 .pull-A {
-	margin-left: -0.03em;
+    margin-left: -0.03em;
 }
 
 .push-A {
-	margin-right: 0.03em;
+    margin-right: 0.03em;
 }

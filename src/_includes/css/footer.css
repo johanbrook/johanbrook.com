@@ -3,40 +3,40 @@ FOOTER
 ----------------------------------------------------------------*/
 
 [role='contentinfo'] {
-	& nav {
-		& ul {
-			line-height: 2;
-		}
+    & nav {
+        & ul {
+            line-height: 2;
+        }
 
-		& a {
-			white-space: nowrap;
-		}
+        & a {
+            white-space: nowrap;
+        }
 
-		& li {
-			&[aria-current="page"] {
-				& a {
-					color: var(--grey);
-				}
-			}
-		}
-	}
+        & li {
+            &[aria-current='page'] {
+                & a {
+                    color: var(--grey);
+                }
+            }
+        }
+    }
 
-	@media screen and (min-width: 58rem) {
-		font-size: var(--f5);
+    @media screen and (min-width: 58rem) {
+        font-size: var(--f5);
 
-		& nav ul {
-			display: flex;
+        & nav ul {
+            display: flex;
 
-			& li {
-				&:not(:last-child)::after {
-					content: ' / ';
-					display: inline-block;
-					margin: 0 .75em;
-					color: var(--color-text-detail);
-					transform: scaleY(1.2);
-					opacity: .7;
-				}
-			}
-		}
-	}
+            & li {
+                &:not(:last-child)::after {
+                    content: ' / ';
+                    display: inline-block;
+                    margin: 0 0.75em;
+                    color: var(--color-text-detail);
+                    transform: scaleY(1.2);
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
 }
