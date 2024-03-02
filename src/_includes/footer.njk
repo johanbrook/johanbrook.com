@@ -1,6 +1,6 @@
 <footer role="contentinfo">
   <nav>
-    <ul>
+    <ul role="list">
         {% if not home %}<li><a href="/">Home</a></li>{% endif %}
         <li {% if '/feeds' | isCurrentPage %} aria-current="page"{% endif %}><a href="/feeds">Feeds</a></li>
     </ul>

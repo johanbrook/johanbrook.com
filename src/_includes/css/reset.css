@@ -1,9 +1,11 @@
-/* https://github.com/mayank99/reset.css/blob/main/package/index.css@0.7.0  */
+/*  From:
+    https://github.com/mayank99/reset.css/blob/main/package/index.css
+    https://piccalil.li/blog/a-more-modern-css-reset/
+*/
+
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -14,6 +16,7 @@
 :where(html) {
     -webkit-text-size-adjust: none;
     color-scheme: dark light;
+    tab-size: 2;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -26,6 +29,11 @@
     line-height: 1.5;
     font-family: system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+:where(h1, h2, h3, h4, button, input, label) {
+    line-height: 1.1;
 }
 
 :where(input, button, textarea, select) {
@@ -50,21 +58,18 @@
     cursor: not-allowed;
 }
 
-:where(button) {
-    border-style: solid;
-}
-
 :where(a) {
     color: inherit;
     text-underline-offset: 0.2ex;
 }
 
-:where(ul, ol) {
+:where(ul[role='list'], ol[role='list']) {
     list-style: none;
 }
 
 :where(img, svg, video, canvas, audio, iframe, embed, object) {
     display: block;
+    vertical-align: middle;
 }
 
 :where(img, picture, svg, video) {
@@ -76,8 +81,7 @@
     overflow-wrap: break-word;
 }
 
-:where(h1, h2, h3) {
-    line-height: calc(1em + 0.5rem);
+:where(h1, h2, h3, h4) {
     text-wrap: balance;
 }
 
@@ -90,9 +94,13 @@
 }
 
 :where(:focus-visible) {
-    outline: 3px solid Highlight;
-    outline-offset: 2px;
-    scroll-margin-block: 10vh;
+    outline: 3px solid CanvasText;
+    box-shadow: 0 0 0 5px Canvas;
+    outline-offset: 1px;
+}
+
+:where(:focus-visible, :target) {
+    scroll-margin-block: 8vh;
 }
 
 :where(.visually-hidden:not(:focus-within, :active)) {
@@ -103,4 +111,42 @@
     position: absolute !important;
     white-space: nowrap !important;
     border: 0 !important;
+}
+
+:where(progress) {
+    vertical-align: baseline;
+}
+
+:where(legend) {
+    padding: 0;
+}
+
+::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+:-moz-focusring {
+    outline: auto;
+}
+
+/**
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+:where(button, select) {
+    text-transform: none;
+}
+
+:where(table) {
+    border-collapse: collapse;
+}
+
+:where(body, h1, h2, h3, h4, p, figure, blockquote, dl, dd) {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+:where(textarea:not([rows])) {
+    min-height: 10em;
 }

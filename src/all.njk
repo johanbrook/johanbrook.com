@@ -3,7 +3,7 @@ title: All pages
 layout: layouts/page.njk
 ---
 
-<ol>
+<ol role="list">
     {% for page in search.pages("type!=post type!=note type!=book url!='/all/' url!='/'", "title") %}
     <li><a title="{{ page.description }}" href="{{ page.url }}">{{ page.title }}</a></li>
     {% endfor %}

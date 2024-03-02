@@ -23,7 +23,7 @@ home: true
         </p>
       </header>
 
-      <ol>
+      <ol role="list">
       {% for note in search.pages("type=note", "date=desc", 3) %}
           <li class="mb2 pb2 relative border border-b h-entry" id="{{ note.url | url(true) }}">
               <h2 class="font-sans f5 fw4 mb0">
@@ -50,7 +50,7 @@ home: true
     <section class="mb4">
     	<h1 class="f2 mb0">Listening</h1>
     	<p class="font-sans f5 fw4 mb3 muted" id="music-loading">Tracks I've listened to recently.</p>
-    	<ol id="music-target" class="TracksList">
+    	<ol role="list" id="music-target" class="TracksList">
 
     	</ol>
     </section>
@@ -64,7 +64,7 @@ home: true
         </p>
       </header>
 
-      <ol>
+      <ol role="list">
         {% for post in search.pages("type=post", "date=desc", 3) %}
           <li class="mb2 {% if not loop.last %}mb1{% endif %} h-entry" id="{{ post.url | url(true) }}">
           	<a class="f4 block fw4 u-url" href="{{ post.url }}">

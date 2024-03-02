@@ -103,6 +103,18 @@ nav ul {
     padding: 0;
 }
 
+:is(ul, ol) {
+    ::marker {
+        color: var(--grey-light);
+    }
+
+    &:where(ul) {
+        ::marker {
+            font-size: 1.2em;
+        }
+    }
+}
+
 :where(a, .link) {
     color: var(--link-color);
     position: relative;

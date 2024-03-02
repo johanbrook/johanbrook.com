@@ -18,7 +18,7 @@ menu:
     {{posts | length }} posts, from <time title="{{ firstEverPost.date | tdate('Detailed', firstEverPost.timezone) }}" datetime="{{ firstEverPost.date | tdate('Machine', firstEverPost.timezone) }}">{{ firstEverPost.date | tdate('MonthYear', firstEverPost.timezone) }}</time> to <time title="{{ latestPost.date | tdate('Detailed', latestPost.timezone) }}" datetime="{{ latestPost.date | tdate('Machine', latestPost.timezone) }}">{{ latestPost.date | tdate('MonthYear', latestPost.timezone) }}</time>.
   </p>
 
-  <ol class="PostsList">
+  <ol role="list" class="PostsList">
     {% for post in posts %}
       <li class="PostItem h-entry" id="{{ post.url | url(true) }}">
         <a class="PostItem__Link u-url" href="{{ post.url | url }}" title="About {{ post | readingTime }} reading time">{{ post.title }}</a>
