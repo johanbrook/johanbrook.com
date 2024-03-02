@@ -18,27 +18,27 @@ date: Git Last Modified
 - Be dirty
 - Breathe more deeply
 - Bridges:
-    * build
-    * burn
+  - build
+  - burn
 - Cascades
 - Change instrument roles
 - Change nothing and continue with immaculate consistency
 - Children's voices:
-    * speaking
-    * singing
+  - speaking
+  - singing
 - Cluster analysis
 - Consider different fading systems
 - Consult other sources:
-    * promising
-    * unpromising
+  - promising
+  - unpromising
 - Convert a melodic element into a rhythmic element
 - Courage!
 - Cut a vital connection
 - Decorate, decorate
 - Define an area as `safe' and use it as an anchor
 - Destroy:
-    * nothing
-    * the most important thing
+  - nothing
+  - the most important thing
 - Discard an axiom
 - Disconnect from desire
 - Discover the recipes you are using and abandon them
@@ -71,9 +71,9 @@ date: Git Last Modified
 - Imagine the music as a set of disconnected events
 - Infinitesimal gradations
 - Intentions:
-    * credibility of
-    * nobility of
-    * humility of
+  - credibility of
+  - nobility of
+  - humility of
 - Into the impossible
 - Is it finished?
 - Is there something missing?
@@ -102,7 +102,8 @@ date: Git Last Modified
 - Remove specifics and convert to ambiguities
 - Repetition is a form of change
 - Reverse
-- Short circuit (example: a man eating peas with the idea that they will improve his virility shovels them straight into his lap)
+- Short circuit (example: a man eating peas with the idea that they will improve his virility
+  shovels them straight into his lap)
 - Shut the door and listen from outside
 - Simple subtraction
 - Spectrum analysis

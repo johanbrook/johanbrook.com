@@ -103,22 +103,22 @@ The resulting file, `colors.js`, will look like this:
 /* eslint-disable */
 /* Updated at Thu, 21 Mar 2019 21:06:58 GMT*/
 module.exports = {
-	/** Suitable as background color. */
-	'blue-10': '#f6fbfd',
-	/** Suitable as default border color. */
-	'blue-20': '#d7f3ff',
-	'blue-30': '#a4e3ff',
-	'blue-40': '#60ceff',
-	'blue-50': '#00a0e8',
-	/** Suitable as default button and link color. */
-	'blue-60': '#007db5',
-	/** Suitable as heading color. */
-	'blue-70': '#006693',
-	/** Suitable as body text color. */
-	'blue-80': '#004260',
-	'blue-90': '#002b3e',
-	'blue-100': '#041820',
-	// ...
+    /** Suitable as background color. */
+    'blue-10': '#f6fbfd',
+    /** Suitable as default border color. */
+    'blue-20': '#d7f3ff',
+    'blue-30': '#a4e3ff',
+    'blue-40': '#60ceff',
+    'blue-50': '#00a0e8',
+    /** Suitable as default button and link color. */
+    'blue-60': '#007db5',
+    /** Suitable as heading color. */
+    'blue-70': '#006693',
+    /** Suitable as body text color. */
+    'blue-80': '#004260',
+    'blue-90': '#002b3e',
+    'blue-100': '#041820',
+    // ...
 };
 ```
 
@@ -160,12 +160,12 @@ looks like this:
 // tailwind.config.js
 
 module.exports = {
-	theme: {
-		colors: {
-			white: '#fff',
-			// ...
-		},
-	},
+    theme: {
+        colors: {
+            white: '#fff',
+            // ...
+        },
+    },
 };
 ```
 
@@ -203,9 +203,9 @@ The final thing to do is thus to import our colours into the config, et voíla:
 const colors = require('./colors');
 
 module.exports = {
-	theme: {
-		colors,
-	},
+    theme: {
+        colors,
+    },
 };
 ```
 

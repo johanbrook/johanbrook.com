@@ -17,9 +17,9 @@ bicycle or how to swim: it's not something you expect _everyone_ to just know by
 
 ### Do you really expect to notice any difference on your skinny, skeleton like, Kenyan marathon runner body?
 
-I think so. I've got pretty good genes for building muscle (mum's side are farmers 💪), and I'm still
-young enough to have the potential of rapid muscle growth ("sick gains"). As long as you stick to
-your protein plan (mine's 146 g per day) and don't stop challenging yourself with the weights,
+I think so. I've got pretty good genes for building muscle (mum's side are farmers 💪), and I'm
+still young enough to have the potential of rapid muscle growth ("sick gains"). As long as you stick
+to your protein plan (mine's 146 g per day) and don't stop challenging yourself with the weights,
 you'll notice a minor change after just some two weeks, like I did.
 
 ### You know you need to go all nerdy into protein powder, creatine, eating healthy and a lot, taking pills, buying equipment and that, right?

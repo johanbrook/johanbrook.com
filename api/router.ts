@@ -37,7 +37,11 @@ export class Router {
             const match = pattern.exec(url);
 
             if (match) {
-                return { handler, params: match.pathname.groups, query: new URLSearchParams(match.search.input) };
+                return {
+                    handler,
+                    params: match.pathname.groups,
+                    query: new URLSearchParams(match.search.input),
+                };
             }
         }
 

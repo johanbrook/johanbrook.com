@@ -6,7 +6,8 @@ import type { Book } from '../books.page.ts';
 // For a singular post, we do: /writings/:slug
 export const urlForPost = (slug: string) => `/writings/${slug}/`;
 
-export const idOf = (sourcePath: string) => path.basename(sourcePath).replaceAll('-', '').split('.').at(0);
+export const idOf = (sourcePath: string) =>
+    path.basename(sourcePath).replaceAll('-', '').split('.').at(0);
 
 export const notePermalinkOf = (fileName: string) => `/micro/${idOf(fileName)}/`;
 

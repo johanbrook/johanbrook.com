@@ -62,7 +62,11 @@ const DATE_FORMAT: Intl.DateTimeFormatOptions = {
     second: '2-digit',
 };
 
-const formattedOf = (date: Temporal.ZonedDateTime, format: DateTimeFormat, now: Temporal.ZonedDateTime): string => {
+const formattedOf = (
+    date: Temporal.ZonedDateTime,
+    format: DateTimeFormat,
+    now: Temporal.ZonedDateTime,
+): string => {
     switch (format) {
         case DateTimeFormat.Machine: {
             return date.toString({ smallestUnit: 'second', timeZoneName: 'never' });
@@ -71,14 +75,23 @@ const formattedOf = (date: Temporal.ZonedDateTime, format: DateTimeFormat, now: 
             const includeYear = date.year != now.year;
             // Sigh. Need to explicitly pass on timezone to the formatter:
             // https://github.com/tc39/proposal-temporal/issues/2013
-            const formatter = new Intl.DateTimeFormat(undefined, { ...DATE_FORMAT, timeZone: date.timeZone });
+            const formatter = new Intl.DateTimeFormat(undefined, {
+                ...DATE_FORMAT,
+                timeZone: date.timeZone,
+            });
             const { month, day, hour, minute, year } = commonPartsOf(formatter.formatToParts(date));
 
-            return `${month} ${day}%YEAR% — ${hour}:${minute}`.replace('%YEAR%', includeYear ? `, ${year}` : '');
+            return `${month} ${day}%YEAR% — ${hour}:${minute}`.replace(
+                '%YEAR%',
+                includeYear ? `, ${year}` : '',
+            );
         }
         case DateTimeFormat.HumanDate: {
             const includeYear = date.year != now.year;
-            const formatter = new Intl.DateTimeFormat(undefined, { ...DATE_FORMAT, timeZone: date.timeZone });
+            const formatter = new Intl.DateTimeFormat(undefined, {
+                ...DATE_FORMAT,
+                timeZone: date.timeZone,
+            });
             const { month, day, year } = commonPartsOf(formatter.formatToParts(date));
 
             return `${month} ${day}${includeYear ? `, ${year}` : ''}`;
@@ -92,7 +105,10 @@ const formattedOf = (date: Temporal.ZonedDateTime, format: DateTimeFormat, now: 
             });
         }
         case DateTimeFormat.MonthYear: {
-            const formatter = new Intl.DateTimeFormat(undefined, { ...DATE_FORMAT, timeZone: date.timeZone });
+            const formatter = new Intl.DateTimeFormat(undefined, {
+                ...DATE_FORMAT,
+                timeZone: date.timeZone,
+            });
             const { month, year } = commonPartsOf(formatter.formatToParts(date));
             return `${month} ${year}`;
         }
@@ -126,13 +142,15 @@ const timezoneOf = (...strings: Array<string | undefined>) => {
         return res;
     }
 
-    console.warn(`timezoneOf: Last fallback in timezone to current machine setting! Something is probably wrong`);
+    console.warn(
+        `timezoneOf: Last fallback in timezone to current machine setting! Something is probably wrong`,
+    );
 
     return (Temporal.Now as any).timeZone() as Temporal.TimeZone;
 };
 
 const commonPartsOf = (
-    parts: Intl.DateTimeFormatPart[]
+    parts: Intl.DateTimeFormatPart[],
 ): Record<'year' | 'month' | 'day' | 'hour' | 'minute' | 'second', string> => {
     const out = {} as any;
 
@@ -158,7 +176,12 @@ interface Context {
     };
 }
 
-type TemporalDate = (this: Context, dateLike: string | Date, format: DateTimeFormat, tz?: string) => string | undefined;
+type TemporalDate = (
+    this: Context,
+    dateLike: string | Date,
+    format: DateTimeFormat,
+    tz?: string,
+) => string | undefined;
 
 declare global {
     interface Date {

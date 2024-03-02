@@ -23,7 +23,7 @@
         }
     },
     "fmt": {
-        "useTabs": true,
+        "useTabs": false,
         "lineWidth": 100,
         "singleQuote": true,
         "indentWidth": 4

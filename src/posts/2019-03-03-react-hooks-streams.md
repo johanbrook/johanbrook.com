@@ -41,7 +41,7 @@ import React from 'react';
 import { Stream } from 'xstream';
 
 interface Props {
-	currentTime$: Stream<number>;
+    currentTime$: Stream<number>;
 }
 
 // This won't work: our component can't return a Stream!
@@ -67,42 +67,42 @@ import { Stream, Subscription } from 'xstream';
 import formatTime from './libs/format-time';
 
 interface Props {
-	currentTime$: Stream<number>;
+    currentTime$: Stream<number>;
 }
 
 interface State {
-	timeInSeconds: number;
+    timeInSeconds: number;
 }
 
 export default class TimeCounter extends React.PureComponent<Props, State> {
-	sub?: Subscription;
+    sub?: Subscription;
 
-	constructor(props: Props) {
-		super(props);
+    constructor(props: Props) {
+        super(props);
 
-		this.state = {
-			timeInSeconds: 0,
-		};
-	}
+        this.state = {
+            timeInSeconds: 0,
+        };
+    }
 
-	componentDidMount(): void {
-		this.sub = this.props.currentTime$.subscribe({
-			next: (time) => {
-				this.setState({ timeInSeconds: time });
-			},
-		});
-	}
+    componentDidMount(): void {
+        this.sub = this.props.currentTime$.subscribe({
+            next: (time) => {
+                this.setState({ timeInSeconds: time });
+            },
+        });
+    }
 
-	componentWillUnmount(): void {
-		this.sub && this.sub.unsubscribe();
-	}
+    componentWillUnmount(): void {
+        this.sub && this.sub.unsubscribe();
+    }
 
-	render(): React.ReactNode {
-		const { timeInSeconds } = this.state;
+    render(): React.ReactNode {
+        const { timeInSeconds } = this.state;
 
-		// Renders something like: "00:10"
-		return <time>{formatTime(timeInSeconds)}</time>;
-	}
+        // Renders something like: "00:10"
+        return <time>{formatTime(timeInSeconds)}</time>;
+    }
 }
 ```
 
@@ -118,26 +118,26 @@ import { Stream } from 'xstream';
 import formatTime from './libs/format-time';
 
 interface Props {
-	currentTime$: Stream<number>;
+    currentTime$: Stream<number>;
 }
 
 const TimeCounter = (props: Props) => {
-	// Create a state hook for our time state, with initial state of zero:
-	const [current, setCurrent] = useState<number>(0);
+    // Create a state hook for our time state, with initial state of zero:
+    const [current, setCurrent] = useState<number>(0);
 
-	useEffect(() => {
-		// On component mount, set up a side effect that subscribes to
-		// the stream, and let `setCurrent` be called for new values:
-		const sub = props.currentTime$.subscribe({
-			next: setCurrent,
-		});
+    useEffect(() => {
+        // On component mount, set up a side effect that subscribes to
+        // the stream, and let `setCurrent` be called for new values:
+        const sub = props.currentTime$.subscribe({
+            next: setCurrent,
+        });
 
-		// Unsubscribe on component tear down:
-		return () => sub.unsubscribe();
-	});
+        // Unsubscribe on component tear down:
+        return () => sub.unsubscribe();
+    });
 
-	// Render our current time state as the returned JSX!
-	return <time>{formatDuration(currentTime)}</time>;
+    // Render our current time state as the returned JSX!
+    return <time>{formatDuration(currentTime)}</time>;
 };
 
 // Elsewhere, render as usual:
@@ -169,19 +169,19 @@ import { useEffect, useState } from 'react';
 import { Stream } from 'xstream';
 
 const useStream = <T>(stream$: Stream<T>, initialState: T | null = null) => {
-	const [current, setCurrent] = useState<T>(initialState);
+    const [current, setCurrent] = useState<T>(initialState);
 
-	useEffect(() => {
-		const sub = stream$.subscribe({
-			next: setCurrent,
-		});
+    useEffect(() => {
+        const sub = stream$.subscribe({
+            next: setCurrent,
+        });
 
-		return () => sub.unsubscribe();
-	});
+        return () => sub.unsubscribe();
+    });
 
-	// Just return our current value, since that's the thing we're interested in
-	// (to render) when using this hook:
-	return current;
+    // Just return our current value, since that's the thing we're interested in
+    // (to render) when using this hook:
+    return current;
 };
 
 export default useStream;
@@ -198,13 +198,13 @@ import { formatDuration } from './libs/format-time';
 import useStream from './hooks/use-stream';
 
 interface Props {
-	currentTime$: Stream<number>;
+    currentTime$: Stream<number>;
 }
 
 const CurrentTimeCounter = (props: Props) => {
-	const currentTime: number = useStream<number>(props.currentTime$, 0);
+    const currentTime: number = useStream<number>(props.currentTime$, 0);
 
-	return <time>{formatDuration(currentTime)}</time>;
+    return <time>{formatDuration(currentTime)}</time>;
 };
 ```
 

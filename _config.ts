@@ -11,93 +11,95 @@ import sourceMaps from 'lume/plugins/source_maps.ts';
 import { idOf } from './src/_includes/permalinks.ts';
 
 const site = lume(
-	{
-		src: 'src',
-		dest: 'build',
-		location: new URL('https://johan.im'), // Ignored in dev
-	}
+    {
+        src: 'src',
+        dest: 'build',
+        location: new URL('https://johan.im'), // Ignored in dev
+    },
 );
 
 site
-	.use(typeset({ scope: '.prose' }))
-	.use(nunjucks())
-	.use(esbuild())
-	.copy('public', '.')
-	.copy('public/.well-known', './.well-known') // lume ignores . dirs, must copy explicitly
-	// Plugins
-	.use(inline())
-	.use(postcss())
-	.use(temporalDate())
-	.use(sourceMaps())
-	// Helpers
-	.filter('substr', (str: string, len: number) => str.substring(0, len))
-	.filter('readingTime', (pageOrContent: Lume.Page | string) => {
-		if (!pageOrContent) {
-			throw new Error(
-				`Passed falsy value to readingTime filter: ${pageOrContent}`,
-			);
-		}
+    .use(typeset({ scope: '.prose' }))
+    .use(nunjucks())
+    .use(esbuild())
+    .copy('public', '.')
+    .copy('public/.well-known', './.well-known') // lume ignores . dirs, must copy explicitly
+    // Plugins
+    .use(inline())
+    .use(postcss())
+    .use(temporalDate())
+    .use(sourceMaps())
+    // Helpers
+    .filter('substr', (str: string, len: number) => str.substring(0, len))
+    .filter('readingTime', (pageOrContent: Lume.Page | string) => {
+        if (!pageOrContent) {
+            throw new Error(
+                `Passed falsy value to readingTime filter: ${pageOrContent}`,
+            );
+        }
 
-		return readingTime(pageOrContent);
-	})
-	.filter('postAssetUrl', (filename: string) => `/assets/posts/${filename}`)
-	.filter('excerpt', (content: string) => extractExcerpt(content))
-	.filter('hostname', (url: string) => new URL(url).host.replace('www.', ''))
-	.filter('mastodonUrl', function (this: any) {
-		const { meta } = this.ctx.page.data;
-		return `https://${meta.mastodon.instance}/@${meta.mastodon.username}`;
-	})
-	.filter('isCurrentPage', function (this: any, url: string) {
-		const curr = (this.ctx.page.data.url as string).replace(/\/$/, '');
-		const test = url.replace(/\/$/, '');
+        return readingTime(pageOrContent);
+    })
+    .filter('postAssetUrl', (filename: string) => `/assets/posts/${filename}`)
+    .filter('excerpt', (content: string) => extractExcerpt(content))
+    .filter('hostname', (url: string) => new URL(url).host.replace('www.', ''))
+    .filter('mastodonUrl', function (this: any) {
+        const { meta } = this.ctx.page.data;
+        return `https://${meta.mastodon.instance}/@${meta.mastodon.username}`;
+    })
+    .filter('isCurrentPage', function (this: any, url: string) {
+        const curr = (this.ctx.page.data.url as string).replace(/\/$/, '');
+        const test = url.replace(/\/$/, '');
 
-		if (curr == test) return true;
+        if (curr == test) return true;
 
-		const parts = curr.split('/').filter(Boolean);
+        const parts = curr.split('/').filter(Boolean);
 
-		if (parts.length > 1 && ('/' + parts[0]) == test) return true;
+        if (parts.length > 1 && ('/' + parts[0]) == test) return true;
 
-		return false;
-	})
-	.filter('groupBooksByYear', <T>(arr: Array<T>) => {
-	    const current = new Date().getUTCFullYear();
-		const groups: Record<string | number, T[]> = {
-			[current]: []
-		};
+        return false;
+    })
+    .filter('groupBooksByYear', <T>(arr: Array<T>) => {
+        const current = new Date().getUTCFullYear();
+        const groups: Record<string | number, T[]> = {
+            [current]: [],
+        };
 
-		for (const a of arr) {
-		    const date = a.finishedAt;
+        for (const a of arr) {
+            const date = a.finishedAt;
 
-			if (!date) {
-			    if (!a.finished) groups[current].push(a);
-			    continue;
-			}
-			if (date instanceof Date == false) throw new Error(`"finishedAt" is not a date: ${date} on ${JSON.stringify(a)}`);
+            if (!date) {
+                if (!a.finished) groups[current].push(a);
+                continue;
+            }
+            if (date instanceof Date == false) {
+                throw new Error(`"finishedAt" is not a date: ${date} on ${JSON.stringify(a)}`);
+            }
 
-			const group = (date as Date).getFullYear();
+            const group = (date as Date).getFullYear();
 
-			if (groups[group]) groups[group].push(a);
-			else groups[group] = [a];
-		}
+            if (groups[group]) groups[group].push(a);
+            else groups[group] = [a];
+        }
 
-		return groups;
-	})
-	.filter('id', (d: Lume.Data) => idOf(d.page.sourcePath))
-	// Fixes `str` to be suitable for JSON output
-	.filter('jsonHtml', (str: string) => JSON.stringify(str.replace('"', '\"')))
-	// Data
-	.data('timezone', 'Europe/Stockholm') // If a page's data doesn't include a "timezone" field, we'll fall back
-	.data('pageSlug', function (this: { ctx: { url: string } }) {
-		return this.ctx.url.replaceAll('/', '');
-	})
-	.data('layout', 'layouts/main.njk')
-	.data('type', 'post', '/posts')
-	.data('layout', 'layouts/post.njk', '/posts')
-	.data('templateEngine', 'njk,md', '/posts')
-	.data('type', 'note', '/notes')
-	.data('layout', 'layouts/note.njk', '/notes')
-	.data('templateEngine', 'njk,md', '/notes')
-	// Don't the entire site rebuild when --watching or --serving if .css files change
-	.scopedUpdates((path) => path.endsWith('.css'));
+        return groups;
+    })
+    .filter('id', (d: Lume.Data) => idOf(d.page.sourcePath))
+    // Fixes `str` to be suitable for JSON output
+    .filter('jsonHtml', (str: string) => JSON.stringify(str.replace('"', '"')))
+    // Data
+    .data('timezone', 'Europe/Stockholm') // If a page's data doesn't include a "timezone" field, we'll fall back
+    .data('pageSlug', function (this: { ctx: { url: string } }) {
+        return this.ctx.url.replaceAll('/', '');
+    })
+    .data('layout', 'layouts/main.njk')
+    .data('type', 'post', '/posts')
+    .data('layout', 'layouts/post.njk', '/posts')
+    .data('templateEngine', 'njk,md', '/posts')
+    .data('type', 'note', '/notes')
+    .data('layout', 'layouts/note.njk', '/notes')
+    .data('templateEngine', 'njk,md', '/notes')
+    // Don't the entire site rebuild when --watching or --serving if .css files change
+    .scopedUpdates((path) => path.endsWith('.css'));
 
 export default site;

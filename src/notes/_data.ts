@@ -7,4 +7,4 @@ export const url = (page: Lume.Page) => {
         throw new Error(`No entry for page: ${page.sourcePath}`);
     }
     return notePermalinkOf(page.src.entry.name);
-}
+};

@@ -33,5 +33,5 @@ Deno.serve(
         log(res.status);
 
         return res;
-    }
+    },
 );

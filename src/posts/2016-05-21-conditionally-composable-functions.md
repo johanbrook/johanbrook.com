@@ -16,21 +16,21 @@ It looked something like this:
 
 ```js
 function getTeam() {
-	let team;
+    let team;
 
-	team = Teams.findOne({ slug: FlowRouter.getParam('slug') });
+    team = Teams.findOne({ slug: FlowRouter.getParam('slug') });
 
-	if (!team) {
-		const rec = RouterHelpers.getRecording();
-		team = rec && Teams.findOne(rec.teamId);
-	}
+    if (!team) {
+        const rec = RouterHelpers.getRecording();
+        team = rec && Teams.findOne(rec.teamId);
+    }
 
-	if (!team) {
-		const test = RouterHelpers.getTest();
-		team = test && Teams.findOne(test.teamId);
-	}
+    if (!team) {
+        const test = RouterHelpers.getTest();
+        team = test && Teams.findOne(test.teamId);
+    }
 
-	return team;
+    return team;
 }
 ```
 
@@ -114,23 +114,23 @@ I came up with this:
 
 ```js
 function getTeam() {
-	const maybeReturnTeam = (callback) => (team) => team || callback();
+    const maybeReturnTeam = (callback) => (team) => team || callback();
 
-	const getTeamFromRoute = maybeReturnTeam(() =>
-		Teams.findOne({ slug: FlowRouter.getParam('slug') })
-	);
+    const getTeamFromRoute = maybeReturnTeam(() =>
+        Teams.findOne({ slug: FlowRouter.getParam('slug') })
+    );
 
-	const getTeamFromRecording = maybeReturnTeam(() => {
-		const rec = RouterHelpers.getRecording();
-		return rec && Teams.findOne(rec.teamId);
-	});
+    const getTeamFromRecording = maybeReturnTeam(() => {
+        const rec = RouterHelpers.getRecording();
+        return rec && Teams.findOne(rec.teamId);
+    });
 
-	const getTeamFromTest = maybeReturnTeam(() => {
-		const test = RouterHelpers.getTest();
-		return test && Teams.findOne(test.teamId);
-	});
+    const getTeamFromTest = maybeReturnTeam(() => {
+        const test = RouterHelpers.getTest();
+        return test && Teams.findOne(test.teamId);
+    });
 
-	return _.compose(getTeamFromTest, getTeamFromRecording, getTeamFromRoute)();
+    return _.compose(getTeamFromTest, getTeamFromRecording, getTeamFromRoute)();
 }
 ```
 
@@ -139,9 +139,9 @@ Javascript, it would be:
 
 ```js
 function maybeReturnTeam(callback) {
-	return function (team) {
-		return team || callback();
-	};
+    return function (team) {
+        return team || callback();
+    };
 }
 ```
 

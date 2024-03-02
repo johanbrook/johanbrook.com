@@ -1,12 +1,12 @@
 {
-	"css.validate": false,
-	"editor.formatOnSave": true,
-	"deno.enable": true,
-	"deno.config": "deno.json",
-	"deno.lint": true,
-	"deno.unstable": true,
-	"deno.suggest.imports.hosts": {
-		"https://deno.land": true,
-		"https://cdn.skypack.dev": true
-	}
+    "css.validate": false,
+    "editor.formatOnSave": true,
+    "deno.enable": true,
+    "deno.config": "deno.json",
+    "deno.lint": true,
+    "deno.unstable": true,
+    "deno.suggest.imports.hosts": {
+        "https://deno.land": true,
+        "https://cdn.skypack.dev": true
+    }
 }

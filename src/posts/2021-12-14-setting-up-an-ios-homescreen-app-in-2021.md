@@ -147,9 +147,9 @@ But I was wrong. I stuck a simple `manifest.json` in my root directory and linke
 
 ```json
 {
-	"name": "Runloop",
-	"scope": "/",
-	"display": "standalone"
+    "name": "Runloop",
+    "scope": "/",
+    "display": "standalone"
 }
 ```
 
@@ -237,13 +237,13 @@ this. But until then, I went with a boring Javascript fix:
 let lastHeight: number | null = null;
 
 const setAppHeight = debounce(() => {
-	const doc = document.documentElement;
-	const height = window.innerHeight;
+    const doc = document.documentElement;
+    const height = window.innerHeight;
 
-	if (height != lastHeight) {
-		doc.style.setProperty('--app-height', `${height - MAGIC_NUMBER}px`);
-		lastHeight = height;
-	}
+    if (height != lastHeight) {
+        doc.style.setProperty('--app-height', `${height - MAGIC_NUMBER}px`);
+        lastHeight = height;
+    }
 }, 100);
 
 // This is the magic offset which one can subtract in order to hide scrollbars
@@ -258,26 +258,26 @@ const MAGIC_NUMBER = 3;
  * the window.innerHeight property.
  */
 const fixMobileHeight = () => {
-	window.addEventListener('resize', setAppHeight);
+    window.addEventListener('resize', setAppHeight);
 
-	setAppHeight();
+    setAppHeight();
 
-	return () => window.removeEventListener('resize', setAppHeight);
+    return () => window.removeEventListener('resize', setAppHeight);
 };
 
 // Util
 const debounce = (func: (...args: unknown[]) => unknown, wait: number) => {
-	let timeout: NodeJS.Timeout;
+    let timeout: NodeJS.Timeout;
 
-	return (...args: unknown[]) => {
-		const later = () => {
-			clearTimeout(timeout);
-			func(...args);
-		};
+    return (...args: unknown[]) => {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
 
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-	};
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 };
 
 fixMobileHeight();
@@ -430,22 +430,22 @@ iOS. I built and export and import feature to try this out, and it worked great 
 
 ```ts
 const doImport = async (evt: Event) => {
-	const { files } = evt.target as HTMLInputElement;
+    const { files } = evt.target as HTMLInputElement;
 
-	const file = files[0];
+    const file = files[0];
 
-	if (file.type != 'application/json') {
-		alert('Only JSON files, please.');
-		return;
-	}
+    if (file.type != 'application/json') {
+        alert('Only JSON files, please.');
+        return;
+    }
 
-	try {
-		const json = JSON.parse(await file.text());
-		// do stuff with object
-	} catch (ex) {
-		console.error(ex);
-		alert(`Failed to read "${file.name}". Reason: ${ex}`);
-	}
+    try {
+        const json = JSON.parse(await file.text());
+        // do stuff with object
+    } catch (ex) {
+        console.error(ex);
+        alert(`Failed to read "${file.name}". Reason: ${ex}`);
+    }
 };
 
 document.findElementById('import')!.addEventListener('change', doImport);
@@ -460,23 +460,23 @@ Exporting works good with the
 
 ```ts
 const doExport = async () => {
-	try {
-		// Will show native iOS share pane
-		await navigator.share({
-			title: 'Run data as JSON',
-			files: [fileOf(appConf)],
-		});
-	} catch (ex) {
-		if ((ex as DOMException).name == 'AbortError') return;
-		alert(`Sharing failed. Reason: ${(ex as Error).message || ex}`);
-		console.error(ex);
-	}
+    try {
+        // Will show native iOS share pane
+        await navigator.share({
+            title: 'Run data as JSON',
+            files: [fileOf(appConf)],
+        });
+    } catch (ex) {
+        if ((ex as DOMException).name == 'AbortError') return;
+        alert(`Sharing failed. Reason: ${(ex as Error).message || ex}`);
+        console.error(ex);
+    }
 };
 
 const fileOf = (data: unknown): File =>
-	new File([JSON.stringify(appConf, null, 4)], 'runloop.json', {
-		type: 'application/json',
-	});
+    new File([JSON.stringify(appConf, null, 4)], 'runloop.json', {
+        type: 'application/json',
+    });
 ```
 
 The user now gets the choice of saving the file somewhere, or sending it with the native UI

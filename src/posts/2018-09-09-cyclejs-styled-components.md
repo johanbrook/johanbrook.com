@@ -240,9 +240,9 @@ This became my first iteration:
 
 // Keep shared styles in this dict.
 export const Styles = {
-	SmallFormLabel: '.f7.ttu.comp-blue-f.mb1',
+    SmallFormLabel: '.f7.ttu.comp-blue-f.mb1',
 
-	TopHeading: '.lh-title.mb4',
+    TopHeading: '.lh-title.mb4',
 };
 ```
 
@@ -252,13 +252,13 @@ import { form, h1, input, label } from '@cycle/dom';
 import { Styles } from './styles';
 
 export default function SomeComponent(props) {
-	const vdom = form([
-		h1(Styles.TopHeading, 'My Form'),
-		label(Styles.SmallFormLabel, { for: 'name' }, 'Label'),
-		input({ type: 'text', id: 'name', placeholder: 'Name' }),
-	]);
+    const vdom = form([
+        h1(Styles.TopHeading, 'My Form'),
+        label(Styles.SmallFormLabel, { for: 'name' }, 'Label'),
+        input({ type: 'text', id: 'name', placeholder: 'Name' }),
+    ]);
 
-	return vdom;
+    return vdom;
 }
 ```
 
@@ -295,9 +295,9 @@ Let's enhance!
 import { h1, label } from '@cycle/dom';
 
 const Styles = {
-	SmallFormLabel: '.f7.ttu.comp-blue-f.mb1',
+    SmallFormLabel: '.f7.ttu.comp-blue-f.mb1',
 
-	TopHeading: '.lh-title.mb4',
+    TopHeading: '.lh-title.mb4',
 };
 
 export const SmallFormLabel = enhanceWithStyle(label, Styles.SmallFormLabel);
@@ -311,13 +311,13 @@ import { form, input } from '@cycle/dom';
 import { SmallFormLabel, TopHeading } from './styles';
 
 export default function SomeComponent(props) {
-	const vdom = form([
-		TopHeading('.some-other-class', 'My Form'),
-		SmallFormLabel({ for: 'name' }, 'Label'),
-		input({ type: 'text', id: 'name', placeholder: 'Name' }),
-	]);
+    const vdom = form([
+        TopHeading('.some-other-class', 'My Form'),
+        SmallFormLabel({ for: 'name' }, 'Label'),
+        input({ type: 'text', id: 'name', placeholder: 'Name' }),
+    ]);
 
-	return vdom;
+    return vdom;
 }
 ```
 
@@ -340,9 +340,9 @@ export type Selector = string;
 export type DomTag = (sel?: Selector | any, ...args: any[]) => VNode;
 
 const isSelector = (str?: string): str is Selector =>
-	typeof str === 'string' &&
-	str.length > 1 && // A selector with only a dot doesn't make sense. Require > 1 chars
-	str[0] === '.'; // Starts with a dot, like '.className'
+    typeof str === 'string' &&
+    str.length > 1 && // A selector with only a dot doesn't make sense. Require > 1 chars
+    str[0] === '.'; // Starts with a dot, like '.className'
 
 export const concatSelectors = (...ss: Selector[]): Selector => ss.filter(isSelector).join('');
 
@@ -361,24 +361,24 @@ export const concatSelectors = (...ss: Selector[]): Selector => ss.filter(isSele
  *    SmallLabel('.more-classes', 'My Label');
  */
 export const enhanceWithStyle = (domTag: DomTag, classes: Selector): DomTag =>
-	(
-		sel: any,
-		...args
-	) => {
-		const tagArgsToPass = isSelector(sel)
-			? [
-				// Apply our classes, and append any custom selector passed, if it's a string.
-				concatSelectors(classes, sel),
-				...args,
-			]
-			: [
-				classes,
-				sel, // sel isn't a selector here, treat it as an any argument to the Hyperscript helper
-				...args,
-			];
+(
+    sel: any,
+    ...args
+) => {
+    const tagArgsToPass = isSelector(sel)
+        ? [
+            // Apply our classes, and append any custom selector passed, if it's a string.
+            concatSelectors(classes, sel),
+            ...args,
+        ]
+        : [
+            classes,
+            sel, // sel isn't a selector here, treat it as an any argument to the Hyperscript helper
+            ...args,
+        ];
 
-		return domTag(...tagArgsToPass);
-	};
+    return domTag(...tagArgsToPass);
+};
 ```
 
 ## Conclusion

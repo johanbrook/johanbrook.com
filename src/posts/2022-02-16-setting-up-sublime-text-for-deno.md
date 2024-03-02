@@ -64,25 +64,25 @@ This is a sample `xxx.sublime-project` for Deno:
 
 ```json
 {
-	"settings": {
-		"LSP": {
-			"LSP-typescript": {
-				"enabled": false
-			},
-			"Deno": {
-				"enabled": true,
-				"settings": {
-					"deno.config": "./deno.jsonc",
-					"deno.unstable": true,
-					"deno.importMap": "./import_map.json",
-					"deno.suggest.imports.hosts": {
-						"https://deno.land": true,
-						"https://some-other-cdn.com": true
-					}
-				}
-			}
-		}
-	}
+    "settings": {
+        "LSP": {
+            "LSP-typescript": {
+                "enabled": false
+            },
+            "Deno": {
+                "enabled": true,
+                "settings": {
+                    "deno.config": "./deno.jsonc",
+                    "deno.unstable": true,
+                    "deno.importMap": "./import_map.json",
+                    "deno.suggest.imports.hosts": {
+                        "https://deno.land": true,
+                        "https://some-other-cdn.com": true
+                    }
+                }
+            }
+        }
+    }
 }
 ```
 
@@ -144,14 +144,14 @@ Then add this:
 
 ```json
 [
-	{
-		"button": "button1",
-		"count": 1,
-		"modifiers": [
-			"alt"
-		],
-		"press_command": "lsp_symbol_definition"
-	}
+    {
+        "button": "button1",
+        "count": 1,
+        "modifiers": [
+            "alt"
+        ],
+        "press_command": "lsp_symbol_definition"
+    }
 ]
 ```
 
@@ -174,17 +174,17 @@ Then add this:
 
 ```json
 [
-	{
-		"keys": ["super+shift+r"],
-		"command": "lsp_symbol_rename",
-		"context": [
-			{
-				"key": "lsp.session_with_capability",
-				"operator": "equal",
-				"operand": "renameProvider"
-			}
-		]
-	}
+    {
+        "keys": ["super+shift+r"],
+        "command": "lsp_symbol_rename",
+        "context": [
+            {
+                "key": "lsp.session_with_capability",
+                "operator": "equal",
+                "operand": "renameProvider"
+            }
+        ]
+    }
 ]
 ```
 
@@ -199,14 +199,14 @@ Then add:
 
 ```json
 {
-	// Open the diagnostics panel automatically on save when diagnostics level is
-	// equal to or less than:
-	// none: 0 (never open the panel automatically)
-	// error: 1
-	// warning: 2
-	// info: 3
-	// hint: 4
-	"show_diagnostics_panel_on_save": 0 // default is 2, turn off with 0
+    // Open the diagnostics panel automatically on save when diagnostics level is
+    // equal to or less than:
+    // none: 0 (never open the panel automatically)
+    // error: 1
+    // warning: 2
+    // info: 3
+    // hint: 4
+    "show_diagnostics_panel_on_save": 0 // default is 2, turn off with 0
 }
 ```
 
@@ -223,9 +223,9 @@ This means adding this to your Sublime project file:
 
 ```json
 {
-	"settings": {
-		"lsp_format_on_save": true
-	}
+    "settings": {
+        "lsp_format_on_save": true
+    }
 }
 ```
 
@@ -233,14 +233,14 @@ The exact formatting config lives in your Deno configuration. For me, it's `deno
 
 ```json
 {
-	"fmt": {
-		"options": {
-			"useTabs": false,
-			"lineWidth": 100,
-			"singleQuote": true,
-			"indentWidth": 4
-		}
-	}
+    "fmt": {
+        "options": {
+            "useTabs": false,
+            "lineWidth": 100,
+            "singleQuote": true,
+            "indentWidth": 4
+        }
+    }
 }
 ```
 
@@ -254,14 +254,14 @@ Open `LSP-json.sublime-settings` or run `LSP-json Settings` in the command palet
 
 ```json
 {
-	"settings": {
-		"userSchemas": [
-			{
-				"fileMatch": ["deno.json", "deno.jsonc"],
-				"uri": "https://deno.land/x/deno@v1.18.2/cli/schemas/config-file.v1.json"
-			}
-		]
-	}
+    "settings": {
+        "userSchemas": [
+            {
+                "fileMatch": ["deno.json", "deno.jsonc"],
+                "uri": "https://deno.land/x/deno@v1.18.2/cli/schemas/config-file.v1.json"
+            }
+        ]
+    }
 }
 ```
 

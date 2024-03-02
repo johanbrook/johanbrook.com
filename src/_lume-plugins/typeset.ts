@@ -20,7 +20,7 @@ export const typeset = ({ scope }: Options = {}) => {
                             scope
                                 ? (page.document.querySelector(scope) as HTMLElement | null)
                                 : (page.document.body as unknown as HTMLElement | null),
-                            mod
+                            mod,
                         );
                     }
                 }
@@ -44,7 +44,7 @@ const quotes: Module = (text) => {
         .replace(/(\u2018)([0-9]{2}[^\u2019]*)(\u2018([^0-9]|$)|$|\u2019[a-z])/gi, '\u2019$2$3') // abbrev. years like '93
         .replace(
             /(\B|^)\u2018(?=([^\u2019]*\u2019\b)*([^\u2019\u2018]*\W[\u2019\u2018]\b|[^\u2019\u2018]*$))/gi,
-            '$1\u2019'
+            '$1\u2019',
         ) // backwards apostrophe
         .replace(/'''/g, '\u2034') // triple prime
         .replace(/("|'')/g, '\u2033') // double prime

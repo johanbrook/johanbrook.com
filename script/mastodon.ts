@@ -56,7 +56,9 @@ const postStatus = async (filePath: string) => {
     const note = extract(await Deno.readTextFile(import.meta.dirname + `/../${filePath}`));
 
     if (note.attrs.draft || note.attrs.skip_mastodon) {
-        console.log(`Skipping posting because one of "draft" or "skip_mastodon" are true for note ${filePath}`);
+        console.log(
+            `Skipping posting because one of "draft" or "skip_mastodon" are true for note ${filePath}`,
+        );
         return;
     }
 
@@ -64,7 +66,9 @@ const postStatus = async (filePath: string) => {
 
     const statusBody = truncateToStatus(note.body.trim(), permalink);
 
-    console.log(`> Posting status (${statusBody.length} chars):\n----------------------------\n${statusBody}`);
+    console.log(
+        `> Posting status (${statusBody.length} chars):\n----------------------------\n${statusBody}`,
+    );
 
     if (DRY_RUN) {
         console.log(`> Status posted to <DRY RUN>`);

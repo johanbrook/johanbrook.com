@@ -103,37 +103,37 @@ import xs from 'xstream';
 import { div, input, span } from '@cycle/dom';
 
 function MyComponent(sources) {
-	// Incoming DOM from the outside:
-	const domSource = sources.DOM;
+    // Incoming DOM from the outside:
+    const domSource = sources.DOM;
 
-	// Stream of new text values from our <input> element
-	const newValue$ = domSource
-		.select('.input') // The <input> has class="input"
-		.events('input') // Listen to `input` events
-		.map((ev) => ev.target.value); // For each input, grab the `value`
+    // Stream of new text values from our <input> element
+    const newValue$ = domSource
+        .select('.input') // The <input> has class="input"
+        .events('input') // Listen to `input` events
+        .map((ev) => ev.target.value); // For each input, grab the `value`
 
-	// Build a stream of state, which looks like:
-	//  Stream<{ value: string }>
-	const state$ = newValue$.map((value) => ({ value })).remember(); // Remember last value
+    // Build a stream of state, which looks like:
+    //  Stream<{ value: string }>
+    const state$ = newValue$.map((value) => ({ value })).remember(); // Remember last value
 
-	// Render out the UI from our state using Snabbdom. This is
-	// a virtual DOM implementation, and we build the structure
-	// using Hyperscript.
-	const vdom$ = state$.map((state) =>
-		div([
-			span(state.value),
-			input('.input', {
-				attrs: { type: 'text' },
-			}),
-		])
-	);
+    // Render out the UI from our state using Snabbdom. This is
+    // a virtual DOM implementation, and we build the structure
+    // using Hyperscript.
+    const vdom$ = state$.map((state) =>
+        div([
+            span(state.value),
+            input('.input', {
+                attrs: { type: 'text' },
+            }),
+        ])
+    );
 
-	// Finally, return our DOM to the outside, along with the
-	// values from our <input>
-	return {
-		DOM: vdom$,
-		value: state$.map((state) => state.value),
-	};
+    // Finally, return our DOM to the outside, along with the
+    // values from our <input>
+    return {
+        DOM: vdom$,
+        value: state$.map((state) => state.value),
+    };
 }
 ```
 
@@ -144,18 +144,18 @@ return the virtual DOM as a lump of JSX:
 import React, { useState } from 'react';
 
 function MyComponent() {
-	const [text, setText] = useState<string>('');
+    const [text, setText] = useState<string>('');
 
-	return (
-		<div>
-			<span>{text}</span>
-			<input
-				type='text'
-				defaultValue={text}
-				onInput={(evt) => setText(evt.target.value)}
-			/>
-		</div>
-	);
+    return (
+        <div>
+            <span>{text}</span>
+            <input
+                type='text'
+                defaultValue={text}
+                onInput={(evt) => setText(evt.target.value)}
+            />
+        </div>
+    );
 }
 ```
 
@@ -225,8 +225,8 @@ A state atom might look like this:
 
 ```typescript
 const state: State = {
-	name: 'Johan Brook',
-	showModal: true,
+    name: 'Johan Brook',
+    showModal: true,
 };
 ```
 
@@ -247,8 +247,8 @@ In order to update the `name` in our state, we can design the flow like this:
 
 ```typescript
 const state$ = stateUpdate$.fold(
-	(prev, update) => ({ ...prev, ...update }),
-	startState,
+    (prev, update) => ({ ...prev, ...update }),
+    startState,
 );
 ```
 
@@ -272,9 +272,9 @@ state$ = ---{ name: 'Johan Brook' }--{ name: 'Johnny Doe' }-
 For each new element in the resulting `state$` stream, we'll re-render the whole app (read more
 below about how we'll manage the view).
 
-So what are these state updates? It's ✨**your application** ✨! That's right: all business logic will
-either result in state updates or side effects (read more about that in the section about Drivers
-below).
+So what are these state updates? It's ✨**your application** ✨! That's right: all business logic
+will either result in state updates or side effects (read more about that in the section about
+Drivers below).
 
 This can be expressed roughly like this (with xstream):
 
@@ -282,28 +282,28 @@ This can be expressed roughly like this (with xstream):
 import { Stream } from 'xstream';
 
 interface State {
-	name: string;
-	showModal: boolean;
+    name: string;
+    showModal: boolean;
 }
 
 // Our app just returns a new `name` instantly, but here
 // we would render our entire app as React components or similar.
 const app = (state$: Stream<State>) => {
-	return state$.map((state) => ({
-		name: 'Mary',
-	}));
+    return state$.map((state) => ({
+        name: 'Mary',
+    }));
 };
 
 const run = (main: Main, startState: State) => {
-	// Create an incrementally updated stream of state
-	// XXX Fix stateUpdate$
-	const state$ = stateUpdate$.fold(
-		(prev, update) => ({ ...prev, ...update }),
-		startState,
-	);
+    // Create an incrementally updated stream of state
+    // XXX Fix stateUpdate$
+    const state$ = stateUpdate$.fold(
+        (prev, update) => ({ ...prev, ...update }),
+        startState,
+    );
 
-	// Main app function, renders UI from state$ stream
-	main(state$);
+    // Main app function, renders UI from state$ stream
+    main(state$);
 };
 
 // Kick off! 🚀
@@ -370,11 +370,11 @@ would use it in an app. The `run` function is thus an export of our library:
 import { run } from 'frap';
 
 interface State {
-	name: string;
+    name: string;
 }
 
 const startState: State = {
-	name: 'Johan',
+    name: 'Johan',
 };
 
 // Our app's business logic, packaged in a single function.
@@ -382,9 +382,9 @@ const startState: State = {
 // to the state.
 // app :: (Stream<State>) -> Stream<Partial<State>>
 const app: Main = (state$: Stream<State>) => {
-	const stateUpdate$ = xs.create();
+    const stateUpdate$ = xs.create();
 
-	return stateUpdate$;
+    return stateUpdate$;
 };
 
 // Kick it off! 🚀
@@ -429,11 +429,11 @@ into small functions taking care of "their" domain, and then merging it all toge
 import { nameUpdate, posts } from './lib';
 
 const app: Main = (state$: Stream<State>) => {
-	const nameUpdate$ = nameUpdate(state$);
-	const postsUpdate$ = posts(state$);
+    const nameUpdate$ = nameUpdate(state$);
+    const postsUpdate$ = posts(state$);
 
-	// All derived state updates off of existing state
-	return xs.merge(nameUpdate$, postsUpdate$);
+    // All derived state updates off of existing state
+    return xs.merge(nameUpdate$, postsUpdate$);
 };
 ```
 
@@ -491,17 +491,17 @@ How does a message look like then? Perhaps like this:
 
 ```typescript
 interface ToggleModal {
-	kind: 'toggle_modal';
-	modalName: 'surveyModal' | 'loginModal';
-	open: boolean;
+    kind: 'toggle_modal';
+    modalName: 'surveyModal' | 'loginModal';
+    open: boolean;
 }
 
 interface SetPerson {
-	kind: 'set_person';
-	person: {
-		name: string;
-		age: number;
-	};
+    kind: 'set_person';
+    person: {
+        name: string;
+        age: number;
+    };
 }
 
 type ViewMsg = ToggleModal | SetPerson;
@@ -519,22 +519,22 @@ can be modified to accept a stream of view messages:
 import xs from 'xstream';
 
 const run = <ViewMsg>(
-	main: Main,
-	view$: Stream<ViewMsg>,
-	startState: State,
+    main: Main,
+    view$: Stream<ViewMsg>,
+    startState: State,
 ) => {
-	const fakeUpdates$ = xs.create();
+    const fakeUpdates$ = xs.create();
 
-	const state$ = stateUpdate$.fold(
-		(prev, update) => ({ ...prev, ...update }),
-		startState,
-	);
+    const state$ = stateUpdate$.fold(
+        (prev, update) => ({ ...prev, ...update }),
+        startState,
+    );
 
-	const appUpdate$ = main(state$, view$);
+    const appUpdate$ = main(state$, view$);
 
-	fakeUpdates$.imitate(appUpdate$);
+    fakeUpdates$.imitate(appUpdate$);
 
-	return state$;
+    return state$;
 };
 ```
 
@@ -545,30 +545,30 @@ I've introduced a generic type `ViewMsg` in the `run` function. Let's start our 
 import { run } from 'frap';
 
 export interface State {
-	name: string;
+    name: string;
 }
 
 export const startState: State = {
-	name: 'Johan',
+    name: 'Johan',
 };
 
 interface SetName {
-	kind: 'set_name';
-	name: string;
+    kind: 'set_name';
+    name: string;
 }
 
 export type ViewMsg = SetName;
 
 const app: Main = (state$: Stream<State>, view$: Stream<ViewMsg>) => {
-	const stateUpdate$ = view$
-		// Only filter on the `SetName` type of messages
-		.filter((m): m is SetName => !!m.kind && m.kind === 'set_name')
-		// Set a new name by mapping the payload from the message to a state update
-		.map((m) => ({
-			name: m.name,
-		}));
+    const stateUpdate$ = view$
+        // Only filter on the `SetName` type of messages
+        .filter((m): m is SetName => !!m.kind && m.kind === 'set_name')
+        // Set a new name by mapping the payload from the message to a state update
+        .map((m) => ({
+            name: m.name,
+        }));
 
-	return xs.merge(stateUpdate$);
+    return xs.merge(stateUpdate$);
 };
 
 // TODO Build view and construct messages stream
@@ -666,81 +666,81 @@ import { app, startState, State, ViewMsg } from './main.ts';
 
 /** The state of our React component */
 interface AppState {
-	state$: Stream<State>;
-	/** This holds our "real" app state – ready to render! */
-	appState: State;
+    state$: Stream<State>;
+    /** This holds our "real" app state – ready to render! */
+    appState: State;
 }
 
 type Send = (event: ViewMsg) => void;
 
 class App extends React.Component<any, AppState> {
-	/** Instance variable holding the subscription to the state stream. */
-	sub: Subscription;
+    /** Instance variable holding the subscription to the state stream. */
+    sub: Subscription;
 
-	/** Instance function used to drive messages into the view stream. */
-	send: Send | null = null;
+    /** Instance function used to drive messages into the view stream. */
+    send: Send | null = null;
 
-	constructor(props) {
-		super(props);
+    constructor(props) {
+        super(props);
 
-		// Stream of input from the views.
-		const view$ = xs.create<ViewMsg>();
+        // Stream of input from the views.
+        const view$ = xs.create<ViewMsg>();
 
-		// Create our "send" function which will drive messages on to
-		// the view stream above.
-		this.send = (v: ViewMsg) => {
-			view$.shamefullySendNext(v);
-		};
+        // Create our "send" function which will drive messages on to
+        // the view stream above.
+        this.send = (v: ViewMsg) => {
+            view$.shamefullySendNext(v);
+        };
 
-		// Kick everything off! 🚀
-		const state$ = run(app, view$, startState);
+        // Kick everything off! 🚀
+        const state$ = run(app, view$, startState);
 
-		// Attach on component's local state so we an access it
-		// in life cycle methods
-		this.state = {
-			state$,
-			appState: startState,
-		};
-	}
+        // Attach on component's local state so we an access it
+        // in life cycle methods
+        this.state = {
+            state$,
+            appState: startState,
+        };
+    }
 
-	componentDidMount(): void {
-		// Start subscribing to incoming state and set the local
-		// state of our React component. Will trigger re-render.
-		this.sub = this.state.state$.subscribe({
-			next: (appState) => {
-				this.setState({ appState });
-			},
-			error: (err) => {
-				console.error(err);
-			},
-		});
-	}
+    componentDidMount(): void {
+        // Start subscribing to incoming state and set the local
+        // state of our React component. Will trigger re-render.
+        this.sub = this.state.state$.subscribe({
+            next: (appState) => {
+                this.setState({ appState });
+            },
+            error: (err) => {
+                console.error(err);
+            },
+        });
+    }
 
-	componentWillUnmount(): void {
-		// Unsubscribe from state subscription:
-		this.sub.unsubscribe();
-	}
+    componentWillUnmount(): void {
+        // Unsubscribe from state subscription:
+        this.sub.unsubscribe();
+    }
 
-	render(): React.ReactNode {
-		const { appState } = this.state;
+    render(): React.ReactNode {
+        const { appState } = this.state;
 
-		// Render the 'name' state and a button to change it.
-		return (
-			<div>
-				<h1>Hi {appState.name}!</h1>
+        // Render the 'name' state and a button to change it.
+        return (
+            <div>
+                <h1>Hi {appState.name}!</h1>
 
-				<button
-					onClick={() =>
-						this.send({
-							kind: 'set_name',
-							name: 'Johnny Doe',
-						})}
-				>
-					Set another name
-				</button>
-			</div>
-		);
-	}
+                <button
+                    onClick={() =>
+                        this.send({
+                            kind: 'set_name',
+                            name: 'Johnny Doe',
+                        })}
+                >
+                    Set another name
+                </button>
+            </div>
+        );
+    }
 }
 ```
 
@@ -821,9 +821,9 @@ like:
 import { Stream } from 'xstream';
 
 interface DoLog {
-	kind: 'do_log';
-	label: string;
-	args?: any[];
+    kind: 'do_log';
+    label: string;
+    args?: any[];
 }
 
 export type ConsoleOut = DoLog;
@@ -832,9 +832,9 @@ export type ConsoleOut = DoLog;
  * only performs writes to the console.
  */
 const ConsoleLogDriver = (out$: Stream<ConsoleOut>) => {
-	out$.filter((m): m is DoLog => !!m.kind && m.kind === 'do_log').addListener(
-		(m) => console.log(m.label, ...m.args),
-	);
+    out$.filter((m): m is DoLog => !!m.kind && m.kind === 'do_log').addListener(
+        (m) => console.log(m.label, ...m.args),
+    );
 };
 
 export default ConsoleLogDriver;
@@ -964,15 +964,15 @@ import ConsoleLogDriver from './ConsoleLogDriver.ts';
 
 // In the react view, run our app:
 run(
-	app,
-	{
-		view$,
-		drivers: {
-			// ... with the console log driver function
-			console: ConsoleLogDriver,
-		},
-	},
-	startState,
+    app,
+    {
+        view$,
+        drivers: {
+            // ... with the console log driver function
+            console: ConsoleLogDriver,
+        },
+    },
+    startState,
 );
 ```
 
@@ -986,8 +986,8 @@ to our app.
 
 What I love about this architecture we've just built are these things:
 
-- Reasoning in reactive streams! 😍 Forget about mutability and writing imperative code. Say hello to
-  declarative code and "tight" business logic.
+- Reasoning in reactive streams! 😍 Forget about mutability and writing imperative code. Say hello
+  to declarative code and "tight" business logic.
 - How well it goes along with React's virtual DOM nature.
 - How the architecture is flexible enough to allow for all varieties of organising your app, still
   being strict with what types you pass around.

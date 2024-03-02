@@ -1,8 +1,8 @@
 {
-	"scripts": {
-		"functions": "wrangler pages dev functions"
-	},
-	"devDependencies": {
-		"wrangler": "^2"
-	}
+    "scripts": {
+        "functions": "wrangler pages dev functions"
+    },
+    "devDependencies": {
+        "wrangler": "^2"
+    }
 }

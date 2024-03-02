@@ -4,6 +4,7 @@ subtitle: Exhaustive list of actually good cover songs.
 layout: layouts/page.njk
 date: Git Last Modified
 ---
+
 ## "Nothing Compares 2 U"
 
 Performed by Sinéad O'Connor, original by Prince.
@@ -12,7 +13,7 @@ Performed by Sinéad O'Connor, original by Prince.
 
 Performed by Johnny Cash, original by Nine Inch Nails.
 
-***
+---
 
 Honorary mentions:
 
@@ -24,6 +25,6 @@ Performed by Jimi Hendrix, original by Bob Dylan.
 
 Performed by Guns 'n Roses, original by Bob Dylan.
 
-***
+---
 
 That's it.
