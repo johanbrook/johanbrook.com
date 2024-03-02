@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-gb" class=" writingsreact-hooks-streams"><head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Using streams in React with Hooks / Johan Brook</title>
+    <title>Using streams in React with Hooks / Johan</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,8 +50,19 @@
 
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+
 	  <div class="Content">
-	  	<div id="main">
+
+		
+
+<nav role="navigation" class="MobileNav">
+    <p class="mb0">
+        <a aria-label="Home" class="plain" href="/">Johan</a> <span class="faint">/</span> <a href="/writings" class="muted">Writings</a>
+    </p>
+</nav>
+
+
+		<div id="main">
 			<main role="main">
   <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
     <header>
@@ -95,7 +106,7 @@ JSX. How do we render our current time from a stream?</p>
 import { Stream } from 'xstream';
 
 interface Props {
-	currentTime$: Stream&lt;number&gt;;
+    currentTime$: Stream&lt;number&gt;;
 }
 
 // This won't work: our component can't return a Stream!
@@ -116,42 +127,42 @@ import { Stream, Subscription } from 'xstream';
 import formatTime from './libs/format-time';
 
 interface Props {
-	currentTime$: Stream&lt;number&gt;;
+    currentTime$: Stream&lt;number&gt;;
 }
 
 interface State {
-	timeInSeconds: number;
+    timeInSeconds: number;
 }
 
 export default class TimeCounter extends React.PureComponent&lt;Props, State&gt; {
-	sub?: Subscription;
+    sub?: Subscription;
 
-	constructor(props: Props) {
-		super(props);
+    constructor(props: Props) {
+        super(props);
 
-		this.state = {
-			timeInSeconds: 0,
-		};
-	}
+        this.state = {
+            timeInSeconds: 0,
+        };
+    }
 
-	componentDidMount(): void {
-		this.sub = this.props.currentTime$.subscribe({
-			next: (time) =&gt; {
-				this.setState({ timeInSeconds: time });
-			},
-		});
-	}
+    componentDidMount(): void {
+        this.sub = this.props.currentTime$.subscribe({
+            next: (time) =&gt; {
+                this.setState({ timeInSeconds: time });
+            },
+        });
+    }
 
-	componentWillUnmount(): void {
-		this.sub &amp;&amp; this.sub.unsubscribe();
-	}
+    componentWillUnmount(): void {
+        this.sub &amp;&amp; this.sub.unsubscribe();
+    }
 
-	render(): React.ReactNode {
-		const { timeInSeconds } = this.state;
+    render(): React.ReactNode {
+        const { timeInSeconds } = this.state;
 
-		// Renders something like: "00:10"
-		return &lt;time&gt;{formatTime(timeInSeconds)}&lt;/time&gt;;
-	}
+        // Renders something like: "00:10"
+        return &lt;time&gt;{formatTime(timeInSeconds)}&lt;/time&gt;;
+    }
 }
 </code></pre>
 <p>This totally works, but yeah… Very verbose and imperative. Hooks to the rescue!</p>
@@ -162,26 +173,26 @@ import { Stream } from 'xstream';
 import formatTime from './libs/format-time';
 
 interface Props {
-	currentTime$: Stream&lt;number&gt;;
+    currentTime$: Stream&lt;number&gt;;
 }
 
 const TimeCounter = (props: Props) =&gt; {
-	// Create a state hook for our time state, with initial state of zero:
-	const [current, setCurrent] = useState&lt;number&gt;(0);
+    // Create a state hook for our time state, with initial state of zero:
+    const [current, setCurrent] = useState&lt;number&gt;(0);
 
-	useEffect(() =&gt; {
-		// On component mount, set up a side effect that subscribes to
-		// the stream, and let `setCurrent` be called for new values:
-		const sub = props.currentTime$.subscribe({
-			next: setCurrent,
-		});
+    useEffect(() =&gt; {
+        // On component mount, set up a side effect that subscribes to
+        // the stream, and let `setCurrent` be called for new values:
+        const sub = props.currentTime$.subscribe({
+            next: setCurrent,
+        });
 
-		// Unsubscribe on component tear down:
-		return () =&gt; sub.unsubscribe();
-	});
+        // Unsubscribe on component tear down:
+        return () =&gt; sub.unsubscribe();
+    });
 
-	// Render our current time state as the returned JSX!
-	return &lt;time&gt;{formatDuration(currentTime)}&lt;/time&gt;;
+    // Render our current time state as the returned JSX!
+    return &lt;time&gt;{formatDuration(currentTime)}&lt;/time&gt;;
 };
 
 // Elsewhere, render as usual:
@@ -207,19 +218,19 @@ import { useEffect, useState } from 'react';
 import { Stream } from 'xstream';
 
 const useStream = &lt;T&gt;(stream$: Stream&lt;T&gt;, initialState: T | null = null) =&gt; {
-	const [current, setCurrent] = useState&lt;T&gt;(initialState);
+    const [current, setCurrent] = useState&lt;T&gt;(initialState);
 
-	useEffect(() =&gt; {
-		const sub = stream$.subscribe({
-			next: setCurrent,
-		});
+    useEffect(() =&gt; {
+        const sub = stream$.subscribe({
+            next: setCurrent,
+        });
 
-		return () =&gt; sub.unsubscribe();
-	});
+        return () =&gt; sub.unsubscribe();
+    });
 
-	// Just return our current value, since that's the thing we're interested in
-	// (to render) when using this hook:
-	return current;
+    // Just return our current value, since that's the thing we're interested in
+    // (to render) when using this hook:
+    return current;
 };
 
 export default useStream;
@@ -232,13 +243,13 @@ import { formatDuration } from './libs/format-time';
 import useStream from './hooks/use-stream';
 
 interface Props {
-	currentTime$: Stream&lt;number&gt;;
+    currentTime$: Stream&lt;number&gt;;
 }
 
 const CurrentTimeCounter = (props: Props) =&gt; {
-	const currentTime: number = useStream&lt;number&gt;(props.currentTime$, 0);
+    const currentTime: number = useStream&lt;number&gt;(props.currentTime$, 0);
 
-	return &lt;time&gt;{formatDuration(currentTime)}&lt;/time&gt;;
+    return &lt;time&gt;{formatDuration(currentTime)}&lt;/time&gt;;
 };
 </code></pre>
 <p>And at last, there is beauty.</p>
@@ -251,16 +262,13 @@ const CurrentTimeCounter = (props: Props) =&gt; {
 
    		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f4 sr-only-mobile font-sans">
+		<h1 class="f4 font-sans">
 			<a href="/" aria-label="Home">
-				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+				<span>Johan</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
 		</h1>
 
-		<ul>
-           	<li class="only-mobile">
-          		<a href="/">Home</a>
-           	</li>
+		<ul role="list">
           		<li>
          			<a href="/now/">Now</a>
           		</li>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-gb" class=" writingsstyled-components-vdom"><head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Styled components in a virtual DOM / Johan Brook</title>
+    <title>Styled components in a virtual DOM / Johan</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,8 +50,19 @@
 
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+
 	  <div class="Content">
-	  	<div id="main">
+
+		
+
+<nav role="navigation" class="MobileNav">
+    <p class="mb0">
+        <a aria-label="Home" class="plain" href="/">Johan</a> <span class="faint">/</span> <a href="/writings" class="muted">Writings</a>
+    </p>
+</nav>
+
+
+		<div id="main">
 			<main role="main">
   <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
     <header>
@@ -257,9 +268,9 @@ just import them and use them in the VDOM”</em>.</p>
 
 // Keep shared styles in this dict.
 export const Styles = {
-	SmallFormLabel: '.f7.ttu.comp-blue-f.mb1',
+    SmallFormLabel: '.f7.ttu.comp-blue-f.mb1',
 
-	TopHeading: '.lh-title.mb4',
+    TopHeading: '.lh-title.mb4',
 };
 </code></pre>
 <pre><code class="language-typescript">// SomeComponent.ts
@@ -267,13 +278,13 @@ import { form, h1, input, label } from '@cycle/dom';
 import { Styles } from './styles';
 
 export default function SomeComponent(props) {
-	const vdom = form([
-		h1(Styles.TopHeading, 'My Form'),
-		label(Styles.SmallFormLabel, { for: 'name' }, 'Label'),
-		input({ type: 'text', id: 'name', placeholder: 'Name' }),
-	]);
+    const vdom = form([
+        h1(Styles.TopHeading, 'My Form'),
+        label(Styles.SmallFormLabel, { for: 'name' }, 'Label'),
+        input({ type: 'text', id: 'name', placeholder: 'Name' }),
+    ]);
 
-	return vdom;
+    return vdom;
 }
 </code></pre>
 <p>This makes it possible to control the exact appearance of a <code>SmallFormLabel</code> from within the
@@ -297,9 +308,9 @@ type DomTag = (sel?: Selector | any, ...args: any[]) =&gt; VNode;
 import { h1, label } from '@cycle/dom';
 
 const Styles = {
-	SmallFormLabel: '.f7.ttu.comp-blue-f.mb1',
+    SmallFormLabel: '.f7.ttu.comp-blue-f.mb1',
 
-	TopHeading: '.lh-title.mb4',
+    TopHeading: '.lh-title.mb4',
 };
 
 export const SmallFormLabel = enhanceWithStyle(label, Styles.SmallFormLabel);
@@ -311,13 +322,13 @@ import { form, input } from '@cycle/dom';
 import { SmallFormLabel, TopHeading } from './styles';
 
 export default function SomeComponent(props) {
-	const vdom = form([
-		TopHeading('.some-other-class', 'My Form'),
-		SmallFormLabel({ for: 'name' }, 'Label'),
-		input({ type: 'text', id: 'name', placeholder: 'Name' }),
-	]);
+    const vdom = form([
+        TopHeading('.some-other-class', 'My Form'),
+        SmallFormLabel({ for: 'name' }, 'Label'),
+        input({ type: 'text', id: 'name', placeholder: 'Name' }),
+    ]);
 
-	return vdom;
+    return vdom;
 }
 </code></pre>
 <p>Voíla! We can use our custom components just like any other, since it uses the signature
@@ -335,9 +346,9 @@ export type Selector = string;
 export type DomTag = (sel?: Selector | any, ...args: any[]) =&gt; VNode;
 
 const isSelector = (str?: string): str is Selector =&gt;
-	typeof str === 'string' &amp;&amp;
-	str.length &gt; 1 &amp;&amp; // A selector with only a dot doesn't make sense. Require &gt; 1 chars
-	str[0] === '.'; // Starts with a dot, like '.className'
+    typeof str === 'string' &amp;&amp;
+    str.length &gt; 1 &amp;&amp; // A selector with only a dot doesn't make sense. Require &gt; 1 chars
+    str[0] === '.'; // Starts with a dot, like '.className'
 
 export const concatSelectors = (...ss: Selector[]): Selector =&gt; ss.filter(isSelector).join('');
 
@@ -356,24 +367,24 @@ export const concatSelectors = (...ss: Selector[]): Selector =&gt; ss.filter(isS
  *    SmallLabel('.more-classes', 'My Label');
  */
 export const enhanceWithStyle = (domTag: DomTag, classes: Selector): DomTag =&gt;
-	(
-		sel: any,
-		...args
-	) =&gt; {
-		const tagArgsToPass = isSelector(sel)
-			? [
-				// Apply our classes, and append any custom selector passed, if it's a string.
-				concatSelectors(classes, sel),
-				...args,
-			]
-			: [
-				classes,
-				sel, // sel isn't a selector here, treat it as an any argument to the Hyperscript helper
-				...args,
-			];
+(
+    sel: any,
+    ...args
+) =&gt; {
+    const tagArgsToPass = isSelector(sel)
+        ? [
+            // Apply our classes, and append any custom selector passed, if it's a string.
+            concatSelectors(classes, sel),
+            ...args,
+        ]
+        : [
+            classes,
+            sel, // sel isn't a selector here, treat it as an any argument to the Hyperscript helper
+            ...args,
+        ];
 
-		return domTag(...tagArgsToPass);
-	};
+    return domTag(...tagArgsToPass);
+};
 </code></pre>
 <h2>Conclusion</h2>
 <p>What I like with this approach is the simplicity: many people understand the concept of composition.
@@ -395,16 +406,13 @@ is something you can hack together on your own, since it’s “just” function
 
    		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f4 sr-only-mobile font-sans">
+		<h1 class="f4 font-sans">
 			<a href="/" aria-label="Home">
-				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+				<span>Johan</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
 		</h1>
 
-		<ul>
-           	<li class="only-mobile">
-          		<a href="/">Home</a>
-           	</li>
+		<ul role="list">
           		<li>
          			<a href="/now/">Now</a>
           		</li>

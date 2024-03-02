@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-gb" class=" writingsconditionally-composable-functions"><head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Conditionally Composable Functions / Johan Brook</title>
+    <title>Conditionally Composable Functions / Johan</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,8 +50,19 @@
 
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+
 	  <div class="Content">
-	  	<div id="main">
+
+		
+
+<nav role="navigation" class="MobileNav">
+    <p class="mb0">
+        <a aria-label="Home" class="plain" href="/">Johan</a> <span class="faint">/</span> <a href="/writings" class="muted">Writings</a>
+    </p>
+</nav>
+
+
+		<div id="main">
 			<main role="main">
   <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
     <header>
@@ -77,21 +88,21 @@ app use a client side router, and we had this helper function for fetching a tea
 route URL.</p>
 <p>It looked something like this:</p>
 <pre><code class="language-js">function getTeam() {
-	let team;
+    let team;
 
-	team = Teams.findOne({ slug: FlowRouter.getParam('slug') });
+    team = Teams.findOne({ slug: FlowRouter.getParam('slug') });
 
-	if (!team) {
-		const rec = RouterHelpers.getRecording();
-		team = rec &amp;&amp; Teams.findOne(rec.teamId);
-	}
+    if (!team) {
+        const rec = RouterHelpers.getRecording();
+        team = rec &amp;&amp; Teams.findOne(rec.teamId);
+    }
 
-	if (!team) {
-		const test = RouterHelpers.getTest();
-		team = test &amp;&amp; Teams.findOne(test.teamId);
-	}
+    if (!team) {
+        const test = RouterHelpers.getTest();
+        team = test &amp;&amp; Teams.findOne(test.teamId);
+    }
 
-	return team;
+    return team;
 }
 </code></pre>
 <p>So we have a concept of Teams, Recordings, and Tests here. And in these three contexts, this
@@ -156,31 +167,31 @@ we should stop and return. If not, pass on to the next function in the chain. So
 kind of interceptor between our function calls in <code>compose</code>, which sniffs the return value.</p>
 <p>I came up with this:</p>
 <pre><code class="language-js">function getTeam() {
-	const maybeReturnTeam = (callback) =&gt; (team) =&gt; team || callback();
+    const maybeReturnTeam = (callback) =&gt; (team) =&gt; team || callback();
 
-	const getTeamFromRoute = maybeReturnTeam(() =&gt;
-		Teams.findOne({ slug: FlowRouter.getParam('slug') })
-	);
+    const getTeamFromRoute = maybeReturnTeam(() =&gt;
+        Teams.findOne({ slug: FlowRouter.getParam('slug') })
+    );
 
-	const getTeamFromRecording = maybeReturnTeam(() =&gt; {
-		const rec = RouterHelpers.getRecording();
-		return rec &amp;&amp; Teams.findOne(rec.teamId);
-	});
+    const getTeamFromRecording = maybeReturnTeam(() =&gt; {
+        const rec = RouterHelpers.getRecording();
+        return rec &amp;&amp; Teams.findOne(rec.teamId);
+    });
 
-	const getTeamFromTest = maybeReturnTeam(() =&gt; {
-		const test = RouterHelpers.getTest();
-		return test &amp;&amp; Teams.findOne(test.teamId);
-	});
+    const getTeamFromTest = maybeReturnTeam(() =&gt; {
+        const test = RouterHelpers.getTest();
+        return test &amp;&amp; Teams.findOne(test.teamId);
+    });
 
-	return _.compose(getTeamFromTest, getTeamFromRecording, getTeamFromRoute)();
+    return _.compose(getTeamFromTest, getTeamFromRecording, getTeamFromRoute)();
 }
 </code></pre>
 <p>Does it look weird? Perhaps, yeah. The new thing is <code>maybeReturnTeam</code>. In plain, old style
 Javascript, it would be:</p>
 <pre><code class="language-js">function maybeReturnTeam(callback) {
-	return function (team) {
-		return team || callback();
-	};
+    return function (team) {
+        return team || callback();
+    };
 }
 </code></pre>
 <p>A <em>function which returns a function which perhaps invokes a callback</em>. So each <code>callback</code> in there
@@ -205,16 +216,13 @@ flows today.</p>
 
    		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f4 sr-only-mobile font-sans">
+		<h1 class="f4 font-sans">
 			<a href="/" aria-label="Home">
-				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+				<span>Johan</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
 		</h1>
 
-		<ul>
-           	<li class="only-mobile">
-          		<a href="/">Home</a>
-           	</li>
+		<ul role="list">
           		<li>
          			<a href="/now/">Now</a>
           		</li>

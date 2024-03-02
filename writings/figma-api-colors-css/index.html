@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-gb" class=" writingsfigma-api-colors-css"><head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Using Figma's API to sync colours with your CSS / Johan Brook</title>
+    <title>Using Figma's API to sync colours with your CSS / Johan</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,8 +50,19 @@
 
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+
 	  <div class="Content">
-	  	<div id="main">
+
+		
+
+<nav role="navigation" class="MobileNav">
+    <p class="mb0">
+        <a aria-label="Home" class="plain" href="/">Johan</a> <span class="faint">/</span> <a href="/writings" class="muted">Writings</a>
+    </p>
+</nav>
+
+
+		<div id="main">
 			<main role="main">
   <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
     <header>
@@ -143,22 +154,22 @@ with the colour samples in the document. I’ve sent this feedback to the Figma 
 <pre><code class="language-js">/* eslint-disable */
 /* Updated at Thu, 21 Mar 2019 21:06:58 GMT*/
 module.exports = {
-	/** Suitable as background color. */
-	'blue-10': '#f6fbfd',
-	/** Suitable as default border color. */
-	'blue-20': '#d7f3ff',
-	'blue-30': '#a4e3ff',
-	'blue-40': '#60ceff',
-	'blue-50': '#00a0e8',
-	/** Suitable as default button and link color. */
-	'blue-60': '#007db5',
-	/** Suitable as heading color. */
-	'blue-70': '#006693',
-	/** Suitable as body text color. */
-	'blue-80': '#004260',
-	'blue-90': '#002b3e',
-	'blue-100': '#041820',
-	// ...
+    /** Suitable as background color. */
+    'blue-10': '#f6fbfd',
+    /** Suitable as default border color. */
+    'blue-20': '#d7f3ff',
+    'blue-30': '#a4e3ff',
+    'blue-40': '#60ceff',
+    'blue-50': '#00a0e8',
+    /** Suitable as default button and link color. */
+    'blue-60': '#007db5',
+    /** Suitable as heading color. */
+    'blue-70': '#006693',
+    /** Suitable as body text color. */
+    'blue-80': '#004260',
+    'blue-90': '#002b3e',
+    'blue-100': '#041820',
+    // ...
 };
 </code></pre>
 <p>Neat! Even with custom comments I wrote for some styles in Figma! 😍</p>
@@ -188,12 +199,12 @@ looks like this:</p>
 <pre><code class="language-js">// tailwind.config.js
 
 module.exports = {
-	theme: {
-		colors: {
-			white: '#fff',
-			// ...
-		},
-	},
+    theme: {
+        colors: {
+            white: '#fff',
+            // ...
+        },
+    },
 };
 </code></pre>
 <p>Tailwind uses this colour scale to create border, text, and background colours as class names. I can
@@ -222,9 +233,9 @@ div {
 const colors = require('./colors');
 
 module.exports = {
-	theme: {
-		colors,
-	},
+    theme: {
+        colors,
+    },
 };
 </code></pre>
 <pre><code class="language-html">&lt;div class="bg-blue-10"&gt;
@@ -252,16 +263,13 @@ corresponding CSS rules ✌️</p>
 
    		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f4 sr-only-mobile font-sans">
+		<h1 class="f4 font-sans">
 			<a href="/" aria-label="Home">
-				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+				<span>Johan</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
 		</h1>
 
-		<ul>
-           	<li class="only-mobile">
-          		<a href="/">Home</a>
-           	</li>
+		<ul role="list">
           		<li>
          			<a href="/now/">Now</a>
           		</li>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-gb" class=" micro202311292010"><head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Johan Brook</title>
+    <title>Johan</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,8 +46,19 @@
 
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+
 	  <div class="Content">
-	  	<div id="main">
+
+		
+
+<nav role="navigation" class="MobileNav">
+    <p class="mb0">
+        <a aria-label="Home" class="plain" href="/">Johan</a> <span class="faint">/</span> <a href="/micro" class="muted">Micro</a>
+    </p>
+</nav>
+
+
+		<div id="main">
 			<main role="main">
     <article class="Note">
        	<header class="mb2">
@@ -55,41 +66,58 @@
                 <time title="Wednesday, 29 November 2023 at 21:10:49 Central European Time" datetime="2023-11-29T21:10:49+01:00" pubdate="">November 29, 2023 — 21:10</time>
             </h1>
             
-                <p title="Posted from" class="muted font-sans mb0 f5 target">My couch in Stockholm</p>
+                <p title="Posted from" class="muted font-sans mb0 f6 target">My couch in Stockholm</p>
             
         </header>
 
         <div class="prose">
-            <p>Messing around with the styling and structure here on the website again. I’m so inspired by all the personal sites I stumble on in my feed. But not inspired enough to actually produce as much content here as I would love to 😄</p>
-<p>Been reading a lot about <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">Web Components</a> recently. They’re having a sort of renaissance at the moment — not sure why this timing actually — much thanks to them being a tool in the box when building with progressive enhancement. All PE thought leaders are going on about the beauty of Web Components and “how you don’t need any big JS or Virtual DOM libraries at all!!”. I get that for small, self-contained UI components, but for anything non-trivial, you’re kind of bound to reinvent something inhouse for your app anyway, no? I guess Web Components fill the hole where you just want to drop a custom element in a piece of markup and have a Web Component use the element with contained JS and perhaps CSS.</p>
-<p>But the idea of “HTML Web Components” is really neat, in the way it enhances existing markup. Like this:</p>
+            <p>Messing around with the styling and structure here on the website again. I’m so inspired by all the
+personal sites I stumble on in my feed. But not inspired enough to actually produce as much content
+here as I would love to 😄</p>
+<p>Been reading a lot about
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components">Web Components</a> recently. They’re
+having a sort of renaissance at the moment — not sure why this timing actually — much thanks to them
+being a tool in the box when building with progressive enhancement. All PE thought leaders are going
+on about the beauty of Web Components and “how you don’t need any big JS or Virtual DOM libraries at
+all!!”. I get that for small, self-contained UI components, but for anything non-trivial, you’re
+kind of bound to reinvent something inhouse for your app anyway, no? I guess Web Components fill the
+hole where you just want to drop a custom element in a piece of markup and have a Web Component use
+the element with contained JS and perhaps CSS.</p>
+<p>But the idea of “HTML Web Components” is really neat, in the way it enhances existing markup. Like
+this:</p>
 <pre><code class="language-html">&lt;convert-currency to="USD"&gt;10&lt;/convert-currency&gt;
 &lt;script src="convert-currency.js" type="module"&gt;&lt;/script&gt;
 </code></pre>
 <pre><code class="language-js">// convert-currency.js
-customElements.define('convert-currency', class extends HTMLElement {
-    connectedCallback() {
-        // use this.querySelector() and other DOM API methods to convert
-        // the text content to the currency from this.getAttribute("to").
-    }
-})
+customElements.define(
+    'convert-currency',
+    class extends HTMLElement {
+        connectedCallback() {
+            // use this.querySelector() and other DOM API methods to convert
+            // the text content to the currency from this.getAttribute("to").
+        }
+    },
+);
 </code></pre>
 <ul>
-<li>For server rendered markup, <code>&lt;convert-currency&gt;</code> will render just fine, and <code>10</code> with it. Browsers will just ignore it when parsing the HTML.</li>
+<li>For server rendered markup, <code>&lt;convert-currency&gt;</code> will render just fine, and <code>10</code> with it. Browsers
+will just ignore it when parsing the HTML.</li>
 <li>When parsing is done and JS kicks in, we’ll “enrich” our custom element with logic.</li>
 </ul>
-<p>My takeaway is that custom elements and Web Components give us a declarative way to encapsulate logic (duh, “components” it’s in the name), which creates whole new patterns in how to approach component style architecture but <em>without</em> any 3rd party JS component library.</p>
+<p>My takeaway is that custom elements and Web Components give us a declarative way to encapsulate
+logic (duh, “components” it’s in the name), which creates whole new patterns in how to approach
+component style architecture but <em>without</em> any 3rd party JS component library.</p>
         </div>
 
         <footer class="mt3">
             
-                <ul>
+                <ul role="list" class="mb3">
                     
                 </ul>
             
 
             <p>
-                <a href="/micro" class="f5">
+                <a href="/micro" class="muted">
     				<span aria-hidden="true" class="BackLink mr1">←</span> All micro notes
     			</a>
             </p>
@@ -101,16 +129,13 @@ customElements.define('convert-currency', class extends HTMLElement {
 
    		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f4 sr-only-mobile font-sans">
+		<h1 class="f4 font-sans">
 			<a href="/" aria-label="Home">
-				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+				<span>Johan</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
 		</h1>
 
-		<ul>
-           	<li class="only-mobile">
-          		<a href="/">Home</a>
-           	</li>
+		<ul role="list">
           		<li>
          			<a href="/now/">Now</a>
           		</li>

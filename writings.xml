@@ -17,25 +17,29 @@
     <link href="https://johan.im/writings/posting-mastodon-deploying-static-site/" />
     <updated>2024-02-07T21:36:58+07:00</updated>
     <id>https://johan.im/writings/posting-mastodon-deploying-static-site/</id>
-    <content type="html">&lt;p&gt;This is how I made my &lt;a href=&quot;https://johan.im/micro&quot;&gt;micro notes&lt;/a&gt; auto-post to my Mastodon account. Warning: duct-tape and strings ahead. I wrote
-this system during the nighttime hours in the hospital, where I watched over our 10 month old baby who had contracted
-bronchitis (no worries, everything turned out fine with her).&lt;/p&gt;
+    <content type="html">&lt;p&gt;This is how I made my &lt;a href=&quot;https://johan.im/micro&quot;&gt;micro notes&lt;/a&gt; auto-post to my Mastodon account. Warning: duct-tape and
+strings ahead. I wrote this system during the nighttime hours in the hospital, where I watched over
+our 10 month old baby who had contracted bronchitis (no worries, everything turned out fine with
+her).&lt;/p&gt;
 &lt;h2&gt;Preface: my setup&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;I use a static site generator. I use &lt;a href=&quot;http://lume.land/&quot;&gt;Lume&lt;/a&gt;, but that doesn&#39;t really matter.&lt;/li&gt;
 &lt;li&gt;I host my site on GitHub Pages. Not likely to matter.&lt;/li&gt;
-&lt;li&gt;I use GitHub Actions for actually deploying my site from the repo to GitHub Pages. This probably matters a lot. As
-long as you have &lt;em&gt;something&lt;/em&gt; that runs on every push, you should be able to translate the steps below to &lt;code&gt;$YOUR_CI&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;I use GitHub Actions for actually deploying my site from the repo to GitHub Pages. This probably
+matters a lot. As long as you have &lt;em&gt;something&lt;/em&gt; that runs on every push, you should be able to
+translate the steps below to &lt;code&gt;$YOUR_CI&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;I don&#39;t use any persistent database anywhere (I use Cloudflare functions for other features in this site). Since the
-entrypoint to deploy &lt;em&gt;anything&lt;/em&gt; on this site is via pushing commits onto the &lt;code&gt;main&lt;/code&gt; branch, that&#39;s the key for doing
-anything &amp;quot;hook-y&amp;quot;, like taking an action when some content is updated.&lt;/p&gt;
+&lt;p&gt;I don&#39;t use any persistent database anywhere (I use Cloudflare functions for other features in this
+site). Since the entrypoint to deploy &lt;em&gt;anything&lt;/em&gt; on this site is via pushing commits onto the &lt;code&gt;main&lt;/code&gt;
+branch, that&#39;s the key for doing anything &amp;quot;hook-y&amp;quot;, like taking an action when some content is
+updated.&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2&gt;The plan&lt;/h2&gt;
 &lt;p&gt;Roughly, it works like below. You should be able to translate it to your host/CI runner:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Push new micro note/blog post.&lt;/li&gt;
-&lt;li&gt;On CI, check out the code base and find the filename of the post file. Make some slug/ID out of it.&lt;/li&gt;
+&lt;li&gt;On CI, check out the code base and find the filename of the post file. Make some slug/ID out of
+it.&lt;/li&gt;
 &lt;li&gt;Look for the slug/ID in a checked in file. This is our &amp;quot;database&amp;quot; over already posted files.&lt;/li&gt;
 &lt;li&gt;If it&#39;s there, bail.&lt;/li&gt;
 &lt;li&gt;If not, we run a script to format the post text and post it to Mastodon over its API.&lt;/li&gt;
@@ -43,10 +47,11 @@ anything &amp;quot;hook-y&amp;quot;, like taking an action when some content is 
 &lt;/ol&gt;
 &lt;details class=&quot;Notice&quot;&gt;
 &lt;summary&gt;Bonus&lt;/summary&gt;
-&lt;p&gt;I also do some fanciness before step 5) where I wait before the site is fully deployed before I post to Mastodon. If
-not, people could click the linkback to the post on Mastodon and get to a 404 on my site!&lt;/p&gt;
-&lt;p&gt;Here&#39;s the source code. Note the &lt;code&gt;ENDPOINT&lt;/code&gt; variable which is &lt;code&gt;https://johan.im/status.json&lt;/code&gt;, where I — at build time —
-put all goodies.&lt;/p&gt;
+&lt;p&gt;I also do some fanciness before step 5) where I wait before the site is fully deployed before I post
+to Mastodon. If not, people could click the linkback to the post on Mastodon and get to a 404 on my
+site!&lt;/p&gt;
+&lt;p&gt;Here&#39;s the source code. Note the &lt;code&gt;ENDPOINT&lt;/code&gt; variable which is &lt;code&gt;https://johan.im/status.json&lt;/code&gt;, where
+I — at build time — put all goodies.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;#!/usr/bin/env bash
 #
 # Waits for a give note to be deployed at johan.im
@@ -89,9 +94,9 @@ done
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/details&gt;
 &lt;h2&gt;Deciding when to post&lt;/h2&gt;
-&lt;p&gt;As mentioned, I use GitHub Actions. YAML seems to be the requirement for all new CI tools these days, and Actions isn&#39;t
-an exception. This is how the first part of my &lt;code&gt;.github/workflows/deploy.yml&lt;/code&gt; looks like. The code below includes the
-steps 2-3):&lt;/p&gt;
+&lt;p&gt;As mentioned, I use GitHub Actions. YAML seems to be the requirement for all new CI tools these
+days, and Actions isn&#39;t an exception. This is how the first part of my
+&lt;code&gt;.github/workflows/deploy.yml&lt;/code&gt; looks like. The code below includes the steps 2-3):&lt;/p&gt;
 &lt;details&gt;
     &lt;summary&gt;&lt;code&gt;deploy.yml&lt;/code&gt;&lt;/summary&gt;
 &lt;p %=&quot;&quot; raw=&quot;&quot; %=&quot;&quot;&gt;&lt;/p&gt;
@@ -149,15 +154,16 @@ $ latest=&amp;quot;$NOTES_DIR/$(ls -r1 &amp;quot;$NOTES_DIR&amp;quot; | grep -v 
 $ echo $latest
 src/notes/2024-02-03-21-21-00.md
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We feed that into the &lt;code&gt;check-mastodon-note.sh&lt;/code&gt; script I have in a separate file, since I&#39;m an inconsistent, chaotic
-programmer. Before reading that code, I&#39;ll show you how my &amp;quot;database&amp;quot; over posted notes look like:&lt;/p&gt;
+&lt;p&gt;We feed that into the &lt;code&gt;check-mastodon-note.sh&lt;/code&gt; script I have in a separate file, since I&#39;m an
+inconsistent, chaotic programmer. Before reading that code, I&#39;ll show you how my &amp;quot;database&amp;quot; over
+posted notes look like:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ cat .mastodon-notes
 20231215140531
 20240106124758
 20240118204458
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;It&#39;s an append log with the note date (hyphens removed). Ergo, if the note date is in that list, we&#39;ve posted to
-Mastodon already and can bail early.&lt;/p&gt;
+&lt;p&gt;It&#39;s an append log with the note date (hyphens removed). Ergo, if the note date is in that list,
+we&#39;ve posted to Mastodon already and can bail early.&lt;/p&gt;
 &lt;p&gt;Here&#39;s my script for checking that:&lt;/p&gt;
 &lt;details&gt;
     &lt;summary&gt;&lt;code&gt;check-mastodon-note.sh&lt;/code&gt;&lt;/summary&gt;
@@ -204,14 +210,14 @@ case `cat &amp;quot;$MASTODON_LIST&amp;quot; | grep -Fxq &amp;quot;$file_id&amp;
 esac
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/details&gt;
-&lt;p&gt;We print the resulting note ID (date with hyphens removed) on &lt;code&gt;stdout&lt;/code&gt; if we &lt;em&gt;don&#39;t&lt;/em&gt; find it in the list. Sweet! Back
-to the deploy YAML:&lt;/p&gt;
+&lt;p&gt;We print the resulting note ID (date with hyphens removed) on &lt;code&gt;stdout&lt;/code&gt; if we &lt;em&gt;don&#39;t&lt;/em&gt; find it in the
+list. Sweet! Back to the deploy YAML:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;[ ! -z &amp;quot;$note_id&amp;quot; ] &amp;amp;&amp;amp; echo &amp;quot;do_post=true&amp;quot; &amp;gt;&amp;gt; &amp;quot;$GITHUB_OUTPUT&amp;quot;
 echo &amp;quot;latest_note_id=$note_id&amp;quot; &amp;gt;&amp;gt; &amp;quot;$GITHUB_OUTPUT&amp;quot;
 echo &amp;quot;latest_note_path=$latest&amp;quot; &amp;gt;&amp;gt; &amp;quot;$GITHUB_OUTPUT&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Push some metadata into the magic &lt;code&gt;GITHUB_OUTPUT&lt;/code&gt; environment variable (which points to a file). This is GitHub&#39;s way
-of persisting data between jobs.&lt;/p&gt;
+&lt;p&gt;Push some metadata into the magic &lt;code&gt;GITHUB_OUTPUT&lt;/code&gt; environment variable (which points to a file).
+This is GitHub&#39;s way of persisting data between jobs.&lt;/p&gt;
 &lt;h2&gt;Posting to Mastodon&#39;s API&lt;/h2&gt;
 &lt;p&gt;This is the API posting part of &lt;code&gt;deploy.yml&lt;/code&gt;:&lt;/p&gt;
 &lt;details&gt;
@@ -239,17 +245,18 @@ of persisting data between jobs.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p %=&quot;&quot; endraw=&quot;&quot; %=&quot;&quot;&gt;&lt;/p&gt;
 &lt;/details&gt;
-&lt;p&gt;&lt;code&gt;if: needs.check_latest_note.outputs.do_post == &#39;true&#39;&lt;/code&gt; will skip this job if we bailed in the previous job. Very handy.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;if: needs.check_latest_note.outputs.do_post == &#39;true&#39;&lt;/code&gt; will skip this job if we bailed in the
+previous job. Very handy.&lt;/p&gt;
 &lt;details class=&quot;Notice&quot;&gt;
     &lt;summary&gt;How to obtain an access token for Mastodon&#39;s API&lt;/summary&gt;
-&lt;p&gt;Fear not, Mastodon are one of those services which has a seat in heaven: they give you a plain old access token (bearer)
-which you can use in all API calls 🥹 No messing around with OAuth.&lt;/p&gt;
+&lt;p&gt;Fear not, Mastodon are one of those services which has a seat in heaven: they give you a plain old
+access token (bearer) which you can use in all API calls 🥹 No messing around with OAuth.&lt;/p&gt;
 &lt;p&gt;Read all about it &lt;a href=&quot;https://docs.joinmastodon.org/client/token/&quot;&gt;in their docs&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Then put the token as &lt;code&gt;MASTODON_ACCESS_TOKEN&lt;/code&gt; in your repo&#39;s secret section in settings.&lt;/p&gt;
 &lt;/details&gt;
-&lt;p&gt;The &lt;code&gt;mastodon.ts&lt;/code&gt; script itself isn&#39;t that interesting. In a nutshell, it reads the contents of the file on the path it
-receives as script argument, parses some front matter, truncates the text, makes a permalink, and do a &lt;code&gt;POST&lt;/code&gt; to the
-API.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;mastodon.ts&lt;/code&gt; script itself isn&#39;t that interesting. In a nutshell, it reads the contents of the
+file on the path it receives as script argument, parses some front matter, truncates the text, makes
+a permalink, and do a &lt;code&gt;POST&lt;/code&gt; to the API.&lt;/p&gt;
 &lt;details&gt;
     &lt;summary&gt;&lt;code&gt;mastodon.ts&lt;/code&gt;&lt;/summary&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts &amp;lt;path&amp;gt;
@@ -310,7 +317,9 @@ const postStatus = async (filePath: string) =&amp;gt; {
     const note = extract(await Deno.readTextFile(import.meta.dirname + `/../${filePath}`));
 
     if (note.attrs.draft || note.attrs.skip_mastodon) {
-        console.log(`Skipping posting because one of &amp;quot;draft&amp;quot; or &amp;quot;skip_mastodon&amp;quot; are true for note ${filePath}`);
+        console.log(
+            `Skipping posting because one of &amp;quot;draft&amp;quot; or &amp;quot;skip_mastodon&amp;quot; are true for note ${filePath}`,
+        );
         return;
     }
 
@@ -318,7 +327,9 @@ const postStatus = async (filePath: string) =&amp;gt; {
 
     const statusBody = truncateToStatus(note.body.trim(), permalink);
 
-    console.log(`&amp;gt; Posting status (${statusBody.length} chars):&#92;n----------------------------&#92;n${statusBody}`);
+    console.log(
+        `&amp;gt; Posting status (${statusBody.length} chars):&#92;n----------------------------&#92;n${statusBody}`,
+    );
 
     if (DRY_RUN) {
         console.log(`&amp;gt; Status posted to &amp;lt;DRY RUN&amp;gt;`);
@@ -393,9 +404,9 @@ await postStatus(Deno.args[0]).catch((err) =&amp;gt; {
 &lt;/ol&gt;
 &lt;p&gt;Done!&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;As you can see, it&#39;s essentially just keeping track of the latest unposted file and shoves that around betwen the steps
-in the GitHub Action 🤷 But I like the approach of thinking in files and thus always keeping the state within the
-repo&#39;s boundaries.&lt;/p&gt;
+&lt;p&gt;As you can see, it&#39;s essentially just keeping track of the latest unposted file and shoves that
+around betwen the steps in the GitHub Action 🤷 But I like the approach of thinking in files and
+thus always keeping the state within the repo&#39;s boundaries.&lt;/p&gt;
 &lt;p&gt;I love DIY solutions over external services. Mo&#39; dependencies, mo&#39; problems.&lt;/p&gt;</content>
   </entry>
   
@@ -404,16 +415,42 @@ repo&#39;s boundaries.&lt;/p&gt;
     <link href="https://johan.im/writings/mastodon/" />
     <updated>2022-12-30T11:20:00+01:00</updated>
     <id>https://johan.im/writings/mastodon/</id>
-    <content type="html">&lt;p&gt;During November this year, Elon Musk took over as acting CEO of Twitter. It was a horrible event: it felt like the end of the world, and ideological users left or set up alternative social media accounts for themselves. It became totally normal to tweet your contact details with &amp;quot;Find me at X&amp;quot; (as I&#39;ve would go through all those tweets and follow people on Instagram/Tumblr/what-have-you) like the service would shut down at any given time.&lt;/p&gt;
-&lt;p&gt;Now, the (Twitter) apocalypse didn&#39;t come. It might still do, because Elon either kicked or caused thousands of employees to leave. But I think a non-trivial blow was caused against the OG social media giant, since people like me actually got off of their asses and created Mastodon accounts. I recommend skimming through the &lt;a href=&quot;https://en.wikipedia.org/wiki/Mastodon_(social_network)&quot;&gt;Wikipedia page for Mastodon&lt;/a&gt; (huh, it was started as recently as 2016, I didn&#39;t know that).&lt;/p&gt;
-&lt;p&gt;I&#39;ve loved Twitter from all the way since I joined in 2008. I recall my &amp;quot;final exam&amp;quot; project in high school was a Twitter client built in Java and Swing. Twitter has enriched my digital life with knowledge, joy, random banter, news, and true sense of &amp;quot;we&amp;quot; during major events. Sentimentally, like a big ol&#39; family. However, I&#39;m totally aware of the problems of the platform when it comes to harassment and the likes. Also, I&#39;ve heard the product itself (the web UI and mobile apps) isn&#39;t among people&#39;s favourite things to interact with. Non-linear timeline, suggestions, seeing tweets from people you don&#39;t follow, ads, etc. etc. I&#39;ve had non of that, since I&#39;ve used the &lt;a href=&quot;https://tapbots.com/&quot;&gt;Tweetbot clients for Mac and iOS&lt;/a&gt; for years. That&#39;s how I&#39;ve kept sane during all this time. I urge you to try out a 3rd party client too.&lt;/p&gt;
-&lt;p&gt;Speaking of 3rd party clients leads me into this interesting topic: openness and ownership. At certain points in time, Twitter took measures in severely limiting their 3rd party APIs so that app developers couldn&#39;t provide all the features you&#39;d get with Twitter&#39;s own apps. This sucks for us users, obviously, but from a bUsIneSs pErSpEctIvE it makes sense: Twitter is a public company with obligations to their shareholders. I get that. (Even though they still don&#39;t do well financially.) In Mastodon world (&amp;quot;the fediverse&amp;quot; – Federated Universe), this could never happen, because there&#39;s not a single entity in control over the APIs. For an &amp;quot;internet enthusiast&amp;quot; as myself, steeped in 90s/00s open software culture and with a gradual dissatisfaction with centralised companies in Silicon Valley owning my shit, Mastodon is really lovely.&lt;/p&gt;
+    <content type="html">&lt;p&gt;During November this year, Elon Musk took over as acting CEO of Twitter. It was a horrible event: it
+felt like the end of the world, and ideological users left or set up alternative social media
+accounts for themselves. It became totally normal to tweet your contact details with &amp;quot;Find me at X&amp;quot;
+(as I&#39;ve would go through all those tweets and follow people on Instagram/Tumblr/what-have-you) like
+the service would shut down at any given time.&lt;/p&gt;
+&lt;p&gt;Now, the (Twitter) apocalypse didn&#39;t come. It might still do, because Elon either kicked or caused
+thousands of employees to leave. But I think a non-trivial blow was caused against the OG social
+media giant, since people like me actually got off of their asses and created Mastodon accounts. I
+recommend skimming through the
+&lt;a href=&quot;https://en.wikipedia.org/wiki/Mastodon_(social_network)&quot;&gt;Wikipedia page for Mastodon&lt;/a&gt; (huh, it was
+started as recently as 2016, I didn&#39;t know that).&lt;/p&gt;
+&lt;p&gt;I&#39;ve loved Twitter from all the way since I joined in 2008. I recall my &amp;quot;final exam&amp;quot; project in high
+school was a Twitter client built in Java and Swing. Twitter has enriched my digital life with
+knowledge, joy, random banter, news, and true sense of &amp;quot;we&amp;quot; during major events. Sentimentally, like
+a big ol&#39; family. However, I&#39;m totally aware of the problems of the platform when it comes to
+harassment and the likes. Also, I&#39;ve heard the product itself (the web UI and mobile apps) isn&#39;t
+among people&#39;s favourite things to interact with. Non-linear timeline, suggestions, seeing tweets
+from people you don&#39;t follow, ads, etc. etc. I&#39;ve had non of that, since I&#39;ve used the
+&lt;a href=&quot;https://tapbots.com/&quot;&gt;Tweetbot clients for Mac and iOS&lt;/a&gt; for years. That&#39;s how I&#39;ve kept sane during
+all this time. I urge you to try out a 3rd party client too.&lt;/p&gt;
+&lt;p&gt;Speaking of 3rd party clients leads me into this interesting topic: openness and ownership. At
+certain points in time, Twitter took measures in severely limiting their 3rd party APIs so that app
+developers couldn&#39;t provide all the features you&#39;d get with Twitter&#39;s own apps. This sucks for us
+users, obviously, but from a bUsIneSs pErSpEctIvE it makes sense: Twitter is a public company with
+obligations to their shareholders. I get that. (Even though they still don&#39;t do well financially.)
+In Mastodon world (&amp;quot;the fediverse&amp;quot; – Federated Universe), this could never happen, because there&#39;s
+not a single entity in control over the APIs. For an &amp;quot;internet enthusiast&amp;quot; as myself, steeped in
+90s/00s open software culture and with a gradual dissatisfaction with centralised companies in
+Silicon Valley owning my shit, Mastodon is really lovely.&lt;/p&gt;
 &lt;p&gt;Mastodon is:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;open source, so you can fork the source code and run it on your on server&lt;/li&gt;
 &lt;li&gt;maintained by a German non-profit (not an American organisation for once! *tears of joy)&lt;/li&gt;
 &lt;li&gt;ad-free, backed by supporters&lt;/li&gt;
-&lt;li&gt;Supporting W3C&#39;s &lt;a href=&quot;https://en.wikipedia.org/wiki/ActivityPub&quot;&gt;ActivityPub&lt;/a&gt; protocol for talking with other services&lt;/li&gt;
+&lt;li&gt;Supporting W3C&#39;s &lt;a href=&quot;https://en.wikipedia.org/wiki/ActivityPub&quot;&gt;ActivityPub&lt;/a&gt; protocol for talking
+with other services&lt;/li&gt;
 &lt;li&gt;decentralised, anybody can boot up their own Mastodon instance and connect to the &amp;quot;federation&amp;quot;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;The last point is of course not something regular users will do. This quote comes to mind:&lt;/p&gt;
@@ -421,12 +458,39 @@ repo&#39;s boundaries.&lt;/p&gt;
 &lt;p&gt;People don’t want to run their own servers, and never will.&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://moxie.org/2022/01/07/web3-first-impressions.html&quot;&gt;Moxie Marlinspike&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;This is just an implementation detail, but I like that you &lt;em&gt;can&lt;/em&gt; do this. But I won&#39;t. Instead, I trust the instance I&#39;m registered to at the moment. But if I wanted to, I could just take my stuff and migrate to another instance. This is really important, since it lowers the anxiety of picking an instance when you sign up (they should front this more in the onboarding).&lt;/p&gt;
-&lt;p&gt;The &amp;quot;how to pick an instance&amp;quot; part of Mastodon is probably their biggest UX challenge at the moment. I&#39;m at &lt;a href=&quot;https://hachyderm.io/about&quot;&gt;Hachyderm&lt;/a&gt;, which is run by a great engineer at GitHub. The instance is well maintained and has sane server rules. How did I find it? Via &lt;a href=&quot;https://hachyderm.io/@mislav&quot;&gt;@mislav&lt;/a&gt; on Twitter, in his &lt;a href=&quot;https://twitter.com/mislav/status/1592905424214274049&quot;&gt;good intro thread&lt;/a&gt; to Mastodon.&lt;/p&gt;
-&lt;p&gt;I&#39;m kind of torn on the subject of &amp;quot;Twitter vs Mastodon&amp;quot;. One one hand, I love the hacker ethics of Mastodon. On the other hand, I love the original attitudes of Twitter and &lt;em&gt;my&lt;/em&gt; timeline. I don&#39;t want Twitter to fail per se, but at the same time, I&#39;m happy that Mastodon got an influx of users during the Elon Musk takeover. But the takeover was, to me, completely unnecessary. They did not have to sell to Musk. Now, a month later, a &lt;em&gt;bunch&lt;/em&gt; of great engineers – some of the best in the world – have left the company. Twitter may have suffered from the ordinary big-co Silicon Valley bullshit when it comes to policies, investors, management, and so on, but I&#39;ve heard their engineering team is really, really great. So I&#39;m sad for them having to leave their work and code due to the rich asshole barging in.&lt;/p&gt;
-&lt;p&gt;Now when the dust has settled a bit after the Twitter doomsday frenzy, I appreciate Mastodon &lt;em&gt;a lot&lt;/em&gt;. It&#39;s so cosy checking out my timeline there, since it feels like Twitter felt in the beginning, before the harsh reality of profit making got on them. The hacker feel of the system also brings out nostalgia. Even though I&#39;ve been guarded from most of Twitter&#39;s bad product decisions thanks to the aforementioned choice of 3rd party clients, the feel of Mastodon is something special. Maybe it&#39;s just a feel of starting over. But it creates a fuzzy feeling knowing that the project is based on attitudes and philosophies I can get behind. Does it have the same reach and scale as Twitter? Of course not, that&#39;s not the goal. Most Twitter users whose tweets I enjoy the most are on Mastodon anyway. Is it annoying checking two apps? A bit, yes, but the content also vary in that Mastodon posts (&amp;quot;toots&amp;quot;) feels more well written and have higher quality.&lt;/p&gt;
-&lt;p&gt;Mastodon certainly isn&#39;t perfect. It surely has or will have its problems and scandals or whatnot. We&#39;ll see. For now though, I&#39;m just happy to have discovered a new project and technology I like for myself.&lt;/p&gt;
-&lt;p&gt;Now I&#39;m just waiting for Tapbot&#39;s &lt;a href=&quot;https://hachyderm.io/@ivory@tapbots.social&quot;&gt;Ivory&lt;/a&gt; client to land…&lt;/p&gt;
+&lt;p&gt;This is just an implementation detail, but I like that you &lt;em&gt;can&lt;/em&gt; do this. But I won&#39;t. Instead, I
+trust the instance I&#39;m registered to at the moment. But if I wanted to, I could just take my stuff
+and migrate to another instance. This is really important, since it lowers the anxiety of picking an
+instance when you sign up (they should front this more in the onboarding).&lt;/p&gt;
+&lt;p&gt;The &amp;quot;how to pick an instance&amp;quot; part of Mastodon is probably their biggest UX challenge at the moment.
+I&#39;m at &lt;a href=&quot;https://hachyderm.io/about&quot;&gt;Hachyderm&lt;/a&gt;, which is run by a great engineer at GitHub. The
+instance is well maintained and has sane server rules. How did I find it? Via
+&lt;a href=&quot;https://hachyderm.io/@mislav&quot;&gt;@mislav&lt;/a&gt; on Twitter, in his
+&lt;a href=&quot;https://twitter.com/mislav/status/1592905424214274049&quot;&gt;good intro thread&lt;/a&gt; to Mastodon.&lt;/p&gt;
+&lt;p&gt;I&#39;m kind of torn on the subject of &amp;quot;Twitter vs Mastodon&amp;quot;. One one hand, I love the hacker ethics of
+Mastodon. On the other hand, I love the original attitudes of Twitter and &lt;em&gt;my&lt;/em&gt; timeline. I don&#39;t
+want Twitter to fail per se, but at the same time, I&#39;m happy that Mastodon got an influx of users
+during the Elon Musk takeover. But the takeover was, to me, completely unnecessary. They did not
+have to sell to Musk. Now, a month later, a &lt;em&gt;bunch&lt;/em&gt; of great engineers – some of the best in the
+world – have left the company. Twitter may have suffered from the ordinary big-co Silicon Valley
+bullshit when it comes to policies, investors, management, and so on, but I&#39;ve heard their
+engineering team is really, really great. So I&#39;m sad for them having to leave their work and code
+due to the rich asshole barging in.&lt;/p&gt;
+&lt;p&gt;Now when the dust has settled a bit after the Twitter doomsday frenzy, I appreciate Mastodon &lt;em&gt;a
+lot&lt;/em&gt;. It&#39;s so cosy checking out my timeline there, since it feels like Twitter felt in the
+beginning, before the harsh reality of profit making got on them. The hacker feel of the system also
+brings out nostalgia. Even though I&#39;ve been guarded from most of Twitter&#39;s bad product decisions
+thanks to the aforementioned choice of 3rd party clients, the feel of Mastodon is something special.
+Maybe it&#39;s just a feel of starting over. But it creates a fuzzy feeling knowing that the project is
+based on attitudes and philosophies I can get behind. Does it have the same reach and scale as
+Twitter? Of course not, that&#39;s not the goal. Most Twitter users whose tweets I enjoy the most are on
+Mastodon anyway. Is it annoying checking two apps? A bit, yes, but the content also vary in that
+Mastodon posts (&amp;quot;toots&amp;quot;) feels more well written and have higher quality.&lt;/p&gt;
+&lt;p&gt;Mastodon certainly isn&#39;t perfect. It surely has or will have its problems and scandals or whatnot.
+We&#39;ll see. For now though, I&#39;m just happy to have discovered a new project and technology I like for
+myself.&lt;/p&gt;
+&lt;p&gt;Now I&#39;m just waiting for Tapbot&#39;s &lt;a href=&quot;https://hachyderm.io/@ivory@tapbots.social&quot;&gt;Ivory&lt;/a&gt; client to
+land…&lt;/p&gt;
 &lt;p&gt;(I&#39;m &lt;a href=&quot;https://hachyderm.io/@brookie&quot;&gt;@brookie@johan.im&lt;/a&gt; on Mastodon by the way!)&lt;/p&gt;</content>
   </entry>
   
@@ -550,25 +614,25 @@ project…&lt;/em&gt; in order for the editor to actually load the project confi
 &lt;hr&gt;
 &lt;p&gt;This is a sample &lt;code&gt;xxx.sublime-project&lt;/code&gt; for Deno:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-	&amp;quot;settings&amp;quot;: {
-		&amp;quot;LSP&amp;quot;: {
-			&amp;quot;LSP-typescript&amp;quot;: {
-				&amp;quot;enabled&amp;quot;: false
-			},
-			&amp;quot;Deno&amp;quot;: {
-				&amp;quot;enabled&amp;quot;: true,
-				&amp;quot;settings&amp;quot;: {
-					&amp;quot;deno.config&amp;quot;: &amp;quot;./deno.jsonc&amp;quot;,
-					&amp;quot;deno.unstable&amp;quot;: true,
-					&amp;quot;deno.importMap&amp;quot;: &amp;quot;./import_map.json&amp;quot;,
-					&amp;quot;deno.suggest.imports.hosts&amp;quot;: {
-						&amp;quot;https://deno.land&amp;quot;: true,
-						&amp;quot;https://some-other-cdn.com&amp;quot;: true
-					}
-				}
-			}
-		}
-	}
+    &amp;quot;settings&amp;quot;: {
+        &amp;quot;LSP&amp;quot;: {
+            &amp;quot;LSP-typescript&amp;quot;: {
+                &amp;quot;enabled&amp;quot;: false
+            },
+            &amp;quot;Deno&amp;quot;: {
+                &amp;quot;enabled&amp;quot;: true,
+                &amp;quot;settings&amp;quot;: {
+                    &amp;quot;deno.config&amp;quot;: &amp;quot;./deno.jsonc&amp;quot;,
+                    &amp;quot;deno.unstable&amp;quot;: true,
+                    &amp;quot;deno.importMap&amp;quot;: &amp;quot;./import_map.json&amp;quot;,
+                    &amp;quot;deno.suggest.imports.hosts&amp;quot;: {
+                        &amp;quot;https://deno.land&amp;quot;: true,
+                        &amp;quot;https://some-other-cdn.com&amp;quot;: true
+                    }
+                }
+            }
+        }
+    }
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;All &lt;code&gt;deno.*&lt;/code&gt; settings are documented
@@ -611,14 +675,14 @@ definition of a variable, function, or type. This uses the LSP, so it&#39;ll be 
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Then add this:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;[
-	{
-		&amp;quot;button&amp;quot;: &amp;quot;button1&amp;quot;,
-		&amp;quot;count&amp;quot;: 1,
-		&amp;quot;modifiers&amp;quot;: [
-			&amp;quot;alt&amp;quot;
-		],
-		&amp;quot;press_command&amp;quot;: &amp;quot;lsp_symbol_definition&amp;quot;
-	}
+    {
+        &amp;quot;button&amp;quot;: &amp;quot;button1&amp;quot;,
+        &amp;quot;count&amp;quot;: 1,
+        &amp;quot;modifiers&amp;quot;: [
+            &amp;quot;alt&amp;quot;
+        ],
+        &amp;quot;press_command&amp;quot;: &amp;quot;lsp_symbol_definition&amp;quot;
+    }
 ]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can now use &lt;code&gt;alt+click&lt;/code&gt; to jump around.&lt;/p&gt;
@@ -631,17 +695,17 @@ rename functions and variables and have them be intelligently updated across fil
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Then add this:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;[
-	{
-		&amp;quot;keys&amp;quot;: [&amp;quot;super+shift+r&amp;quot;],
-		&amp;quot;command&amp;quot;: &amp;quot;lsp_symbol_rename&amp;quot;,
-		&amp;quot;context&amp;quot;: [
-			{
-				&amp;quot;key&amp;quot;: &amp;quot;lsp.session_with_capability&amp;quot;,
-				&amp;quot;operator&amp;quot;: &amp;quot;equal&amp;quot;,
-				&amp;quot;operand&amp;quot;: &amp;quot;renameProvider&amp;quot;
-			}
-		]
-	}
+    {
+        &amp;quot;keys&amp;quot;: [&amp;quot;super+shift+r&amp;quot;],
+        &amp;quot;command&amp;quot;: &amp;quot;lsp_symbol_rename&amp;quot;,
+        &amp;quot;context&amp;quot;: [
+            {
+                &amp;quot;key&amp;quot;: &amp;quot;lsp.session_with_capability&amp;quot;,
+                &amp;quot;operator&amp;quot;: &amp;quot;equal&amp;quot;,
+                &amp;quot;operand&amp;quot;: &amp;quot;renameProvider&amp;quot;
+            }
+        ]
+    }
 ]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Diagnostics panel&lt;/h2&gt;
@@ -650,14 +714,14 @@ in your project. I found this really annoying, so I turned it off with:&lt;/p&gt
 &lt;p&gt;&lt;em&gt;Preferences -&amp;gt; Package Settings -&amp;gt; LSP -&amp;gt; Settings&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Then add:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-	// Open the diagnostics panel automatically on save when diagnostics level is
-	// equal to or less than:
-	// none: 0 (never open the panel automatically)
-	// error: 1
-	// warning: 2
-	// info: 3
-	// hint: 4
-	&amp;quot;show_diagnostics_panel_on_save&amp;quot;: 0 // default is 2, turn off with 0
+    // Open the diagnostics panel automatically on save when diagnostics level is
+    // equal to or less than:
+    // none: 0 (never open the panel automatically)
+    // error: 1
+    // warning: 2
+    // info: 3
+    // hint: 4
+    &amp;quot;show_diagnostics_panel_on_save&amp;quot;: 0 // default is 2, turn off with 0
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; You can still toggle the &lt;em&gt;Diagnostics&lt;/em&gt; panel with &lt;code&gt;cmd+alt+m&lt;/code&gt; (Mac) or search for it in the
@@ -668,21 +732,21 @@ command palette. It&#39;ll show any TypeScript errors or warnings in the project
 The latter is configured in the LSP settings, &lt;em&gt;but&lt;/em&gt; you should probably do it on a project basis.
 This means adding this to your Sublime project file:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-	&amp;quot;settings&amp;quot;: {
-		&amp;quot;lsp_format_on_save&amp;quot;: true
-	}
+    &amp;quot;settings&amp;quot;: {
+        &amp;quot;lsp_format_on_save&amp;quot;: true
+    }
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The exact formatting config lives in your Deno configuration. For me, it&#39;s &lt;code&gt;deno.jsonc&lt;/code&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-	&amp;quot;fmt&amp;quot;: {
-		&amp;quot;options&amp;quot;: {
-			&amp;quot;useTabs&amp;quot;: false,
-			&amp;quot;lineWidth&amp;quot;: 100,
-			&amp;quot;singleQuote&amp;quot;: true,
-			&amp;quot;indentWidth&amp;quot;: 4
-		}
-	}
+    &amp;quot;fmt&amp;quot;: {
+        &amp;quot;options&amp;quot;: {
+            &amp;quot;useTabs&amp;quot;: false,
+            &amp;quot;lineWidth&amp;quot;: 100,
+            &amp;quot;singleQuote&amp;quot;: true,
+            &amp;quot;indentWidth&amp;quot;: 4
+        }
+    }
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h2&gt;Bonus: JSON schema support for &lt;code&gt;deno.json&lt;/code&gt;&lt;/h2&gt;
@@ -691,14 +755,14 @@ installed LSP-json package, there is a way! Deno publishes its schema for the co
 which we can add to &amp;quot;user schemas&amp;quot; in the LSP-json settings.&lt;/p&gt;
 &lt;p&gt;Open &lt;code&gt;LSP-json.sublime-settings&lt;/code&gt; or run &lt;code&gt;LSP-json Settings&lt;/code&gt; in the command palette. Then add this:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-	&amp;quot;settings&amp;quot;: {
-		&amp;quot;userSchemas&amp;quot;: [
-			{
-				&amp;quot;fileMatch&amp;quot;: [&amp;quot;deno.json&amp;quot;, &amp;quot;deno.jsonc&amp;quot;],
-				&amp;quot;uri&amp;quot;: &amp;quot;https://deno.land/x/deno@v1.18.2/cli/schemas/config-file.v1.json&amp;quot;
-			}
-		]
-	}
+    &amp;quot;settings&amp;quot;: {
+        &amp;quot;userSchemas&amp;quot;: [
+            {
+                &amp;quot;fileMatch&amp;quot;: [&amp;quot;deno.json&amp;quot;, &amp;quot;deno.jsonc&amp;quot;],
+                &amp;quot;uri&amp;quot;: &amp;quot;https://deno.land/x/deno@v1.18.2/cli/schemas/config-file.v1.json&amp;quot;
+            }
+        ]
+    }
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I guess one has to update the versions in there manually, but the package wouldn&#39;t follow the URL
@@ -754,9 +818,9 @@ const response = await fetch(&#39;https://deno.land&#39;);
 browser:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;// Deno/browsers
 console.log(
-	&#39;%cHi there. %cSome background?&#39;,
-	&#39;color: red&#39;,
-	&#39;background-color: gray&#39;,
+    &#39;%cHi there. %cSome background?&#39;,
+    &#39;color: red&#39;,
+    &#39;background-color: gray&#39;,
 );
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;No need for terminal escape codes or pulling in yet another library.&lt;/p&gt;
@@ -787,7 +851,7 @@ programmatically compile and bundle Typescript code to Javascript.&lt;/p&gt;
 &lt;p&gt;Okay, tough question, as the correct answer probably is: &amp;quot;The number is approaching &lt;code&gt;Infinity&lt;/code&gt;&amp;quot;.&lt;/p&gt;
 &lt;p&gt;How many test runners do you &lt;em&gt;need&lt;/em&gt;? One. There&#39;s one built-in in Deno:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;Deno.test(&#39;My test&#39;, () =&amp;gt; {
-	// test things
+    // test things
 });
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Name the file &lt;code&gt;something.test.ts&lt;/code&gt; and run it with:&lt;/p&gt;
@@ -848,9 +912,9 @@ should look for the code to be imported. In a way, it&#39;s emulating npm&#39;s 
 &lt;p&gt;If you were annoyed over importing &amp;quot;raw&amp;quot; URLs in the section above, this will save you!&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Import map&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-	&amp;quot;imports&amp;quot;: {
-		&amp;quot;react&amp;quot;: &amp;quot;https://esm.sh/react@17.0.2&amp;quot;
-	}
+    &amp;quot;imports&amp;quot;: {
+        &amp;quot;react&amp;quot;: &amp;quot;https://esm.sh/react@17.0.2&amp;quot;
+    }
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;Source code&lt;/strong&gt;&lt;/p&gt;
@@ -985,9 +1049,9 @@ efforts by the web community.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;link rel=&amp;quot;manifest&amp;quot; href=&amp;quot;/manifest.json&amp;quot; /&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
-	&amp;quot;name&amp;quot;: &amp;quot;Runloop&amp;quot;,
-	&amp;quot;scope&amp;quot;: &amp;quot;/&amp;quot;,
-	&amp;quot;display&amp;quot;: &amp;quot;standalone&amp;quot;
+    &amp;quot;name&amp;quot;: &amp;quot;Runloop&amp;quot;,
+    &amp;quot;scope&amp;quot;: &amp;quot;/&amp;quot;,
+    &amp;quot;display&amp;quot;: &amp;quot;standalone&amp;quot;
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I&#39;m not sure whether it was the &lt;code&gt;scope&lt;/code&gt; or &lt;code&gt;display&lt;/code&gt; parameter that made the internal links work
@@ -1050,13 +1114,13 @@ this. But until then, I went with a boring Javascript fix:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;let lastHeight: number | null = null;
 
 const setAppHeight = debounce(() =&amp;gt; {
-	const doc = document.documentElement;
-	const height = window.innerHeight;
+    const doc = document.documentElement;
+    const height = window.innerHeight;
 
-	if (height != lastHeight) {
-		doc.style.setProperty(&#39;--app-height&#39;, `${height - MAGIC_NUMBER}px`);
-		lastHeight = height;
-	}
+    if (height != lastHeight) {
+        doc.style.setProperty(&#39;--app-height&#39;, `${height - MAGIC_NUMBER}px`);
+        lastHeight = height;
+    }
 }, 100);
 
 // This is the magic offset which one can subtract in order to hide scrollbars
@@ -1071,26 +1135,26 @@ const MAGIC_NUMBER = 3;
  * the window.innerHeight property.
  */
 const fixMobileHeight = () =&amp;gt; {
-	window.addEventListener(&#39;resize&#39;, setAppHeight);
+    window.addEventListener(&#39;resize&#39;, setAppHeight);
 
-	setAppHeight();
+    setAppHeight();
 
-	return () =&amp;gt; window.removeEventListener(&#39;resize&#39;, setAppHeight);
+    return () =&amp;gt; window.removeEventListener(&#39;resize&#39;, setAppHeight);
 };
 
 // Util
 const debounce = (func: (...args: unknown[]) =&amp;gt; unknown, wait: number) =&amp;gt; {
-	let timeout: NodeJS.Timeout;
+    let timeout: NodeJS.Timeout;
 
-	return (...args: unknown[]) =&amp;gt; {
-		const later = () =&amp;gt; {
-			clearTimeout(timeout);
-			func(...args);
-		};
+    return (...args: unknown[]) =&amp;gt; {
+        const later = () =&amp;gt; {
+            clearTimeout(timeout);
+            func(...args);
+        };
 
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-	};
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 };
 
 fixMobileHeight();
@@ -1205,22 +1269,22 @@ on iOS&#39; use of the web manifest file too.&lt;/p&gt;
 &lt;p&gt;Overall, Web APIs have gone a long way with I/O: we can now upload, download, and &lt;em&gt;share&lt;/em&gt; files in
 iOS. I built and export and import feature to try this out, and it worked great on mobile:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;const doImport = async (evt: Event) =&amp;gt; {
-	const { files } = evt.target as HTMLInputElement;
+    const { files } = evt.target as HTMLInputElement;
 
-	const file = files[0];
+    const file = files[0];
 
-	if (file.type != &#39;application/json&#39;) {
-		alert(&#39;Only JSON files, please.&#39;);
-		return;
-	}
+    if (file.type != &#39;application/json&#39;) {
+        alert(&#39;Only JSON files, please.&#39;);
+        return;
+    }
 
-	try {
-		const json = JSON.parse(await file.text());
-		// do stuff with object
-	} catch (ex) {
-		console.error(ex);
-		alert(`Failed to read &amp;quot;${file.name}&amp;quot;. Reason: ${ex}`);
-	}
+    try {
+        const json = JSON.parse(await file.text());
+        // do stuff with object
+    } catch (ex) {
+        console.error(ex);
+        alert(`Failed to read &amp;quot;${file.name}&amp;quot;. Reason: ${ex}`);
+    }
 };
 
 document.findElementById(&#39;import&#39;)!.addEventListener(&#39;change&#39;, doImport);
@@ -1230,23 +1294,23 @@ document.findElementById(&#39;import&#39;)!.addEventListener(&#39;change&#39;, d
 &lt;p&gt;Exporting works good with the
 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share&quot;&gt;Share API&lt;/a&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-ts&quot;&gt;const doExport = async () =&amp;gt; {
-	try {
-		// Will show native iOS share pane
-		await navigator.share({
-			title: &#39;Run data as JSON&#39;,
-			files: [fileOf(appConf)],
-		});
-	} catch (ex) {
-		if ((ex as DOMException).name == &#39;AbortError&#39;) return;
-		alert(`Sharing failed. Reason: ${(ex as Error).message || ex}`);
-		console.error(ex);
-	}
+    try {
+        // Will show native iOS share pane
+        await navigator.share({
+            title: &#39;Run data as JSON&#39;,
+            files: [fileOf(appConf)],
+        });
+    } catch (ex) {
+        if ((ex as DOMException).name == &#39;AbortError&#39;) return;
+        alert(`Sharing failed. Reason: ${(ex as Error).message || ex}`);
+        console.error(ex);
+    }
 };
 
 const fileOf = (data: unknown): File =&amp;gt;
-	new File([JSON.stringify(appConf, null, 4)], &#39;runloop.json&#39;, {
-		type: &#39;application/json&#39;,
-	});
+    new File([JSON.stringify(appConf, null, 4)], &#39;runloop.json&#39;, {
+        type: &#39;application/json&#39;,
+    });
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The user now gets the choice of saving the file somewhere, or sending it with the native UI
 controls.&lt;/p&gt;
@@ -1523,37 +1587,37 @@ props.&lt;/p&gt;
 import { div, input, span } from &#39;@cycle/dom&#39;;
 
 function MyComponent(sources) {
-	// Incoming DOM from the outside:
-	const domSource = sources.DOM;
+    // Incoming DOM from the outside:
+    const domSource = sources.DOM;
 
-	// Stream of new text values from our &amp;lt;input&amp;gt; element
-	const newValue$ = domSource
-		.select(&#39;.input&#39;) // The &amp;lt;input&amp;gt; has class=&amp;quot;input&amp;quot;
-		.events(&#39;input&#39;) // Listen to `input` events
-		.map((ev) =&amp;gt; ev.target.value); // For each input, grab the `value`
+    // Stream of new text values from our &amp;lt;input&amp;gt; element
+    const newValue$ = domSource
+        .select(&#39;.input&#39;) // The &amp;lt;input&amp;gt; has class=&amp;quot;input&amp;quot;
+        .events(&#39;input&#39;) // Listen to `input` events
+        .map((ev) =&amp;gt; ev.target.value); // For each input, grab the `value`
 
-	// Build a stream of state, which looks like:
-	//  Stream&amp;lt;{ value: string }&amp;gt;
-	const state$ = newValue$.map((value) =&amp;gt; ({ value })).remember(); // Remember last value
+    // Build a stream of state, which looks like:
+    //  Stream&amp;lt;{ value: string }&amp;gt;
+    const state$ = newValue$.map((value) =&amp;gt; ({ value })).remember(); // Remember last value
 
-	// Render out the UI from our state using Snabbdom. This is
-	// a virtual DOM implementation, and we build the structure
-	// using Hyperscript.
-	const vdom$ = state$.map((state) =&amp;gt;
-		div([
-			span(state.value),
-			input(&#39;.input&#39;, {
-				attrs: { type: &#39;text&#39; },
-			}),
-		])
-	);
+    // Render out the UI from our state using Snabbdom. This is
+    // a virtual DOM implementation, and we build the structure
+    // using Hyperscript.
+    const vdom$ = state$.map((state) =&amp;gt;
+        div([
+            span(state.value),
+            input(&#39;.input&#39;, {
+                attrs: { type: &#39;text&#39; },
+            }),
+        ])
+    );
 
-	// Finally, return our DOM to the outside, along with the
-	// values from our &amp;lt;input&amp;gt;
-	return {
-		DOM: vdom$,
-		value: state$.map((state) =&amp;gt; state.value),
-	};
+    // Finally, return our DOM to the outside, along with the
+    // values from our &amp;lt;input&amp;gt;
+    return {
+        DOM: vdom$,
+        value: state$.map((state) =&amp;gt; state.value),
+    };
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The DOM flows through the component as a &lt;em&gt;stream&lt;/em&gt;. Compare this with a React component where you
@@ -1561,18 +1625,18 @@ return the virtual DOM as a lump of JSX:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-tsx&quot;&gt;import React, { useState } from &#39;react&#39;;
 
 function MyComponent() {
-	const [text, setText] = useState&amp;lt;string&amp;gt;(&#39;&#39;);
+    const [text, setText] = useState&amp;lt;string&amp;gt;(&#39;&#39;);
 
-	return (
-		&amp;lt;div&amp;gt;
-			&amp;lt;span&amp;gt;{text}&amp;lt;/span&amp;gt;
-			&amp;lt;input
-				type=&#39;text&#39;
-				defaultValue={text}
-				onInput={(evt) =&amp;gt; setText(evt.target.value)}
-			/&amp;gt;
-		&amp;lt;/div&amp;gt;
-	);
+    return (
+        &amp;lt;div&amp;gt;
+            &amp;lt;span&amp;gt;{text}&amp;lt;/span&amp;gt;
+            &amp;lt;input
+                type=&#39;text&#39;
+                defaultValue={text}
+                onInput={(evt) =&amp;gt; setText(evt.target.value)}
+            /&amp;gt;
+        &amp;lt;/div&amp;gt;
+    );
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The React component &lt;em&gt;probably&lt;/em&gt; looks more straight forward to most people than the CycleJS
@@ -1631,8 +1695,8 @@ inspiration for state handling in client side apps. I encourage you to read the
 &lt;a href=&quot;https://redux.js.org/introduction/motivation&quot;&gt;philosophies and principles of Redux&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;A state atom might look like this:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-typescript&quot;&gt;const state: State = {
-	name: &#39;Johan Brook&#39;,
-	showModal: true,
+    name: &#39;Johan Brook&#39;,
+    showModal: true,
 };
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;From this, we should be able to draw the full app component tree. And if we&#39;d draw it again from the
@@ -1648,8 +1712,8 @@ state. For each of these state updates, the view should re-draw.&lt;/p&gt;
 &lt;li&gt;Send the update as a stream to a function which folds it together with the state stream:&lt;/li&gt;
 &lt;/ol&gt;
 &lt;pre&gt;&lt;code class=&quot;language-typescript&quot;&gt;const state$ = stateUpdate$.fold(
-	(prev, update) =&amp;gt; ({ ...prev, ...update }),
-	startState,
+    (prev, update) =&amp;gt; ({ ...prev, ...update }),
+    startState,
 );
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The xstream function &lt;a href=&quot;http://staltz.github.io/xstream/#fold&quot;&gt;&lt;code&gt;fold&lt;/code&gt;&lt;/a&gt; is very handy to learn here.
@@ -1667,35 +1731,35 @@ state$ = ---{ name: &#39;Johan Brook&#39; }--{ name: &#39;Johnny Doe&#39; }-
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;For each new element in the resulting &lt;code&gt;state$&lt;/code&gt; stream, we&#39;ll re-render the whole app (read more
 below about how we&#39;ll manage the view).&lt;/p&gt;
-&lt;p&gt;So what are these state updates? It&#39;s ✨&lt;strong&gt;your application&lt;/strong&gt; ✨! That&#39;s right: all business logic will
-either result in state updates or side effects (read more about that in the section about Drivers
-below).&lt;/p&gt;
+&lt;p&gt;So what are these state updates? It&#39;s ✨&lt;strong&gt;your application&lt;/strong&gt; ✨! That&#39;s right: all business logic
+will either result in state updates or side effects (read more about that in the section about
+Drivers below).&lt;/p&gt;
 &lt;p&gt;This can be expressed roughly like this (with xstream):&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-typescript&quot;&gt;import { Stream } from &#39;xstream&#39;;
 
 interface State {
-	name: string;
-	showModal: boolean;
+    name: string;
+    showModal: boolean;
 }
 
 // Our app just returns a new `name` instantly, but here
 // we would render our entire app as React components or similar.
 const app = (state$: Stream&amp;lt;State&amp;gt;) =&amp;gt; {
-	return state$.map((state) =&amp;gt; ({
-		name: &#39;Mary&#39;,
-	}));
+    return state$.map((state) =&amp;gt; ({
+        name: &#39;Mary&#39;,
+    }));
 };
 
 const run = (main: Main, startState: State) =&amp;gt; {
-	// Create an incrementally updated stream of state
-	// XXX Fix stateUpdate$
-	const state$ = stateUpdate$.fold(
-		(prev, update) =&amp;gt; ({ ...prev, ...update }),
-		startState,
-	);
+    // Create an incrementally updated stream of state
+    // XXX Fix stateUpdate$
+    const state$ = stateUpdate$.fold(
+        (prev, update) =&amp;gt; ({ ...prev, ...update }),
+        startState,
+    );
 
-	// Main app function, renders UI from state$ stream
-	main(state$);
+    // Main app function, renders UI from state$ stream
+    main(state$);
 };
 
 // Kick off! 🚀
@@ -1749,11 +1813,11 @@ would use it in an app. The &lt;code&gt;run&lt;/code&gt; function is thus an exp
 import { run } from &#39;frap&#39;;
 
 interface State {
-	name: string;
+    name: string;
 }
 
 const startState: State = {
-	name: &#39;Johan&#39;,
+    name: &#39;Johan&#39;,
 };
 
 // Our app&#39;s business logic, packaged in a single function.
@@ -1761,9 +1825,9 @@ const startState: State = {
 // to the state.
 // app :: (Stream&amp;lt;State&amp;gt;) -&amp;gt; Stream&amp;lt;Partial&amp;lt;State&amp;gt;&amp;gt;
 const app: Main = (state$: Stream&amp;lt;State&amp;gt;) =&amp;gt; {
-	const stateUpdate$ = xs.create();
+    const stateUpdate$ = xs.create();
 
-	return stateUpdate$;
+    return stateUpdate$;
 };
 
 // Kick it off! 🚀
@@ -1797,11 +1861,11 @@ into small functions taking care of &amp;quot;their&amp;quot; domain, and then m
 import { nameUpdate, posts } from &#39;./lib&#39;;
 
 const app: Main = (state$: Stream&amp;lt;State&amp;gt;) =&amp;gt; {
-	const nameUpdate$ = nameUpdate(state$);
-	const postsUpdate$ = posts(state$);
+    const nameUpdate$ = nameUpdate(state$);
+    const postsUpdate$ = posts(state$);
 
-	// All derived state updates off of existing state
-	return xs.merge(nameUpdate$, postsUpdate$);
+    // All derived state updates off of existing state
+    return xs.merge(nameUpdate$, postsUpdate$);
 };
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;-&amp;gt; &lt;a href=&quot;http://staltz.github.io/xstream/#merge&quot;&gt;Docs on &lt;code&gt;xs.merge&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
@@ -1842,17 +1906,17 @@ which is a stream of &lt;em&gt;all&lt;/em&gt; different kinds of messages – us
 &lt;/figure&gt;
 &lt;p&gt;How does a message look like then? Perhaps like this:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-typescript&quot;&gt;interface ToggleModal {
-	kind: &#39;toggle_modal&#39;;
-	modalName: &#39;surveyModal&#39; | &#39;loginModal&#39;;
-	open: boolean;
+    kind: &#39;toggle_modal&#39;;
+    modalName: &#39;surveyModal&#39; | &#39;loginModal&#39;;
+    open: boolean;
 }
 
 interface SetPerson {
-	kind: &#39;set_person&#39;;
-	person: {
-		name: string;
-		age: number;
-	};
+    kind: &#39;set_person&#39;;
+    person: {
+        name: string;
+        age: number;
+    };
 }
 
 type ViewMsg = ToggleModal | SetPerson;
@@ -1865,22 +1929,22 @@ can be modified to accept a stream of view messages:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&quot;language-typescript&quot;&gt;import xs from &#39;xstream&#39;;
 
 const run = &amp;lt;ViewMsg&amp;gt;(
-	main: Main,
-	view$: Stream&amp;lt;ViewMsg&amp;gt;,
-	startState: State,
+    main: Main,
+    view$: Stream&amp;lt;ViewMsg&amp;gt;,
+    startState: State,
 ) =&amp;gt; {
-	const fakeUpdates$ = xs.create();
+    const fakeUpdates$ = xs.create();
 
-	const state$ = stateUpdate$.fold(
-		(prev, update) =&amp;gt; ({ ...prev, ...update }),
-		startState,
-	);
+    const state$ = stateUpdate$.fold(
+        (prev, update) =&amp;gt; ({ ...prev, ...update }),
+        startState,
+    );
 
-	const appUpdate$ = main(state$, view$);
+    const appUpdate$ = main(state$, view$);
 
-	fakeUpdates$.imitate(appUpdate$);
+    fakeUpdates$.imitate(appUpdate$);
 
-	return state$;
+    return state$;
 };
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;I&#39;ve introduced a generic type &lt;code&gt;ViewMsg&lt;/code&gt; in the &lt;code&gt;run&lt;/code&gt; function. Let&#39;s start our app:&lt;/p&gt;
@@ -1888,30 +1952,30 @@ const run = &amp;lt;ViewMsg&amp;gt;(
 import { run } from &#39;frap&#39;;
 
 export interface State {
-	name: string;
+    name: string;
 }
 
 export const startState: State = {
-	name: &#39;Johan&#39;,
+    name: &#39;Johan&#39;,
 };
 
 interface SetName {
-	kind: &#39;set_name&#39;;
-	name: string;
+    kind: &#39;set_name&#39;;
+    name: string;
 }
 
 export type ViewMsg = SetName;
 
 const app: Main = (state$: Stream&amp;lt;State&amp;gt;, view$: Stream&amp;lt;ViewMsg&amp;gt;) =&amp;gt; {
-	const stateUpdate$ = view$
-		// Only filter on the `SetName` type of messages
-		.filter((m): m is SetName =&amp;gt; !!m.kind &amp;amp;&amp;amp; m.kind === &#39;set_name&#39;)
-		// Set a new name by mapping the payload from the message to a state update
-		.map((m) =&amp;gt; ({
-			name: m.name,
-		}));
+    const stateUpdate$ = view$
+        // Only filter on the `SetName` type of messages
+        .filter((m): m is SetName =&amp;gt; !!m.kind &amp;amp;&amp;amp; m.kind === &#39;set_name&#39;)
+        // Set a new name by mapping the payload from the message to a state update
+        .map((m) =&amp;gt; ({
+            name: m.name,
+        }));
 
-	return xs.merge(stateUpdate$);
+    return xs.merge(stateUpdate$);
 };
 
 // TODO Build view and construct messages stream
@@ -1986,81 +2050,81 @@ import { app, startState, State, ViewMsg } from &#39;./main.ts&#39;;
 
 /** The state of our React component */
 interface AppState {
-	state$: Stream&amp;lt;State&amp;gt;;
-	/** This holds our &amp;quot;real&amp;quot; app state – ready to render! */
-	appState: State;
+    state$: Stream&amp;lt;State&amp;gt;;
+    /** This holds our &amp;quot;real&amp;quot; app state – ready to render! */
+    appState: State;
 }
 
 type Send = (event: ViewMsg) =&amp;gt; void;
 
 class App extends React.Component&amp;lt;any, AppState&amp;gt; {
-	/** Instance variable holding the subscription to the state stream. */
-	sub: Subscription;
+    /** Instance variable holding the subscription to the state stream. */
+    sub: Subscription;
 
-	/** Instance function used to drive messages into the view stream. */
-	send: Send | null = null;
+    /** Instance function used to drive messages into the view stream. */
+    send: Send | null = null;
 
-	constructor(props) {
-		super(props);
+    constructor(props) {
+        super(props);
 
-		// Stream of input from the views.
-		const view$ = xs.create&amp;lt;ViewMsg&amp;gt;();
+        // Stream of input from the views.
+        const view$ = xs.create&amp;lt;ViewMsg&amp;gt;();
 
-		// Create our &amp;quot;send&amp;quot; function which will drive messages on to
-		// the view stream above.
-		this.send = (v: ViewMsg) =&amp;gt; {
-			view$.shamefullySendNext(v);
-		};
+        // Create our &amp;quot;send&amp;quot; function which will drive messages on to
+        // the view stream above.
+        this.send = (v: ViewMsg) =&amp;gt; {
+            view$.shamefullySendNext(v);
+        };
 
-		// Kick everything off! 🚀
-		const state$ = run(app, view$, startState);
+        // Kick everything off! 🚀
+        const state$ = run(app, view$, startState);
 
-		// Attach on component&#39;s local state so we an access it
-		// in life cycle methods
-		this.state = {
-			state$,
-			appState: startState,
-		};
-	}
+        // Attach on component&#39;s local state so we an access it
+        // in life cycle methods
+        this.state = {
+            state$,
+            appState: startState,
+        };
+    }
 
-	componentDidMount(): void {
-		// Start subscribing to incoming state and set the local
-		// state of our React component. Will trigger re-render.
-		this.sub = this.state.state$.subscribe({
-			next: (appState) =&amp;gt; {
-				this.setState({ appState });
-			},
-			error: (err) =&amp;gt; {
-				console.error(err);
-			},
-		});
-	}
+    componentDidMount(): void {
+        // Start subscribing to incoming state and set the local
+        // state of our React component. Will trigger re-render.
+        this.sub = this.state.state$.subscribe({
+            next: (appState) =&amp;gt; {
+                this.setState({ appState });
+            },
+            error: (err) =&amp;gt; {
+                console.error(err);
+            },
+        });
+    }
 
-	componentWillUnmount(): void {
-		// Unsubscribe from state subscription:
-		this.sub.unsubscribe();
-	}
+    componentWillUnmount(): void {
+        // Unsubscribe from state subscription:
+        this.sub.unsubscribe();
+    }
 
-	render(): React.ReactNode {
-		const { appState } = this.state;
+    render(): React.ReactNode {
+        const { appState } = this.state;
 
-		// Render the &#39;name&#39; state and a button to change it.
-		return (
-			&amp;lt;div&amp;gt;
-				&amp;lt;h1&amp;gt;Hi {appState.name}!&amp;lt;/h1&amp;gt;
+        // Render the &#39;name&#39; state and a button to change it.
+        return (
+            &amp;lt;div&amp;gt;
+                &amp;lt;h1&amp;gt;Hi {appState.name}!&amp;lt;/h1&amp;gt;
 
-				&amp;lt;button
-					onClick={() =&amp;gt;
-						this.send({
-							kind: &#39;set_name&#39;,
-							name: &#39;Johnny Doe&#39;,
-						})}
-				&amp;gt;
-					Set another name
-				&amp;lt;/button&amp;gt;
-			&amp;lt;/div&amp;gt;
-		);
-	}
+                &amp;lt;button
+                    onClick={() =&amp;gt;
+                        this.send({
+                            kind: &#39;set_name&#39;,
+                            name: &#39;Johnny Doe&#39;,
+                        })}
+                &amp;gt;
+                    Set another name
+                &amp;lt;/button&amp;gt;
+            &amp;lt;/div&amp;gt;
+        );
+    }
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;(The class approach is a bit verbose, but React Hooks is still a new concept which is outside the
@@ -2124,9 +2188,9 @@ like:&lt;/p&gt;
 import { Stream } from &#39;xstream&#39;;
 
 interface DoLog {
-	kind: &#39;do_log&#39;;
-	label: string;
-	args?: any[];
+    kind: &#39;do_log&#39;;
+    label: string;
+    args?: any[];
 }
 
 export type ConsoleOut = DoLog;
@@ -2135,9 +2199,9 @@ export type ConsoleOut = DoLog;
  * only performs writes to the console.
  */
 const ConsoleLogDriver = (out$: Stream&amp;lt;ConsoleOut&amp;gt;) =&amp;gt; {
-	out$.filter((m): m is DoLog =&amp;gt; !!m.kind &amp;amp;&amp;amp; m.kind === &#39;do_log&#39;).addListener(
-		(m) =&amp;gt; console.log(m.label, ...m.args),
-	);
+    out$.filter((m): m is DoLog =&amp;gt; !!m.kind &amp;amp;&amp;amp; m.kind === &#39;do_log&#39;).addListener(
+        (m) =&amp;gt; console.log(m.label, ...m.args),
+    );
 };
 
 export default ConsoleLogDriver;
@@ -2255,15 +2319,15 @@ const app: Main = (sources: MainSources): MainSinks =&amp;gt; {
 
 // In the react view, run our app:
 run(
-	app,
-	{
-		view$,
-		drivers: {
-			// ... with the console log driver function
-			console: ConsoleLogDriver,
-		},
-	},
-	startState,
+    app,
+    {
+        view$,
+        drivers: {
+            // ... with the console log driver function
+            console: ConsoleLogDriver,
+        },
+    },
+    startState,
 );
 &lt;/code&gt;&lt;/pre&gt;
 &lt;hr&gt;
@@ -2273,8 +2337,8 @@ to our app.&lt;/p&gt;
 &lt;h2&gt;Parting words&lt;/h2&gt;
 &lt;p&gt;What I love about this architecture we&#39;ve just built are these things:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Reasoning in reactive streams! 😍 Forget about mutability and writing imperative code. Say hello to
-declarative code and &amp;quot;tight&amp;quot; business logic.&lt;/li&gt;
+&lt;li&gt;Reasoning in reactive streams! 😍 Forget about mutability and writing imperative code. Say hello
+to declarative code and &amp;quot;tight&amp;quot; business logic.&lt;/li&gt;
 &lt;li&gt;How well it goes along with React&#39;s virtual DOM nature.&lt;/li&gt;
 &lt;li&gt;How the architecture is flexible enough to allow for all varieties of organising your app, still
 being strict with what types you pass around.&lt;/li&gt;

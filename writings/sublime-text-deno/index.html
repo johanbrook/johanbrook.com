@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-gb" class=" writingssublime-text-deno"><head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Setting up Sublime Text for Deno / Johan Brook</title>
+    <title>Setting up Sublime Text for Deno / Johan</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,8 +50,19 @@
 
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+
 	  <div class="Content">
-	  	<div id="main">
+
+		
+
+<nav role="navigation" class="MobileNav">
+    <p class="mb0">
+        <a aria-label="Home" class="plain" href="/">Johan</a> <span class="faint">/</span> <a href="/writings" class="muted">Writings</a>
+    </p>
+</nav>
+
+
+		<div id="main">
 			<main role="main">
   <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
     <header>
@@ -112,25 +123,25 @@ project…</em> in order for the editor to actually load the project config file
 <hr>
 <p>This is a sample <code>xxx.sublime-project</code> for Deno:</p>
 <pre><code class="language-json">{
-	"settings": {
-		"LSP": {
-			"LSP-typescript": {
-				"enabled": false
-			},
-			"Deno": {
-				"enabled": true,
-				"settings": {
-					"deno.config": "./deno.jsonc",
-					"deno.unstable": true,
-					"deno.importMap": "./import_map.json",
-					"deno.suggest.imports.hosts": {
-						"https://deno.land": true,
-						"https://some-other-cdn.com": true
-					}
-				}
-			}
-		}
-	}
+    "settings": {
+        "LSP": {
+            "LSP-typescript": {
+                "enabled": false
+            },
+            "Deno": {
+                "enabled": true,
+                "settings": {
+                    "deno.config": "./deno.jsonc",
+                    "deno.unstable": true,
+                    "deno.importMap": "./import_map.json",
+                    "deno.suggest.imports.hosts": {
+                        "https://deno.land": true,
+                        "https://some-other-cdn.com": true
+                    }
+                }
+            }
+        }
+    }
 }
 </code></pre>
 <p>All <code>deno.*</code> settings are documented
@@ -173,14 +184,14 @@ definition of a variable, function, or type. This uses the LSP, so it’ll be �
 </code></pre>
 <p>Then add this:</p>
 <pre><code class="language-json">[
-	{
-		"button": "button1",
-		"count": 1,
-		"modifiers": [
-			"alt"
-		],
-		"press_command": "lsp_symbol_definition"
-	}
+    {
+        "button": "button1",
+        "count": 1,
+        "modifiers": [
+            "alt"
+        ],
+        "press_command": "lsp_symbol_definition"
+    }
 ]
 </code></pre>
 <p>You can now use <code>alt+click</code> to jump around.</p>
@@ -193,17 +204,17 @@ rename functions and variables and have them be intelligently updated across fil
 </code></pre>
 <p>Then add this:</p>
 <pre><code class="language-json">[
-	{
-		"keys": ["super+shift+r"],
-		"command": "lsp_symbol_rename",
-		"context": [
-			{
-				"key": "lsp.session_with_capability",
-				"operator": "equal",
-				"operand": "renameProvider"
-			}
-		]
-	}
+    {
+        "keys": ["super+shift+r"],
+        "command": "lsp_symbol_rename",
+        "context": [
+            {
+                "key": "lsp.session_with_capability",
+                "operator": "equal",
+                "operand": "renameProvider"
+            }
+        ]
+    }
 ]
 </code></pre>
 <h2>Diagnostics panel</h2>
@@ -212,14 +223,14 @@ in your project. I found this really annoying, so I turned it off with:</p>
 <p><em>Preferences -&gt; Package Settings -&gt; LSP -&gt; Settings</em></p>
 <p>Then add:</p>
 <pre><code class="language-json">{
-	// Open the diagnostics panel automatically on save when diagnostics level is
-	// equal to or less than:
-	// none: 0 (never open the panel automatically)
-	// error: 1
-	// warning: 2
-	// info: 3
-	// hint: 4
-	"show_diagnostics_panel_on_save": 0 // default is 2, turn off with 0
+    // Open the diagnostics panel automatically on save when diagnostics level is
+    // equal to or less than:
+    // none: 0 (never open the panel automatically)
+    // error: 1
+    // warning: 2
+    // info: 3
+    // hint: 4
+    "show_diagnostics_panel_on_save": 0 // default is 2, turn off with 0
 }
 </code></pre>
 <p><strong>Tip:</strong> You can still toggle the <em>Diagnostics</em> panel with <code>cmd+alt+m</code> (Mac) or search for it in the
@@ -230,21 +241,21 @@ command palette. It’ll show any TypeScript errors or warnings in the project.<
 The latter is configured in the LSP settings, <em>but</em> you should probably do it on a project basis.
 This means adding this to your Sublime project file:</p>
 <pre><code class="language-json">{
-	"settings": {
-		"lsp_format_on_save": true
-	}
+    "settings": {
+        "lsp_format_on_save": true
+    }
 }
 </code></pre>
 <p>The exact formatting config lives in your Deno configuration. For me, it’s <code>deno.jsonc</code>:</p>
 <pre><code class="language-json">{
-	"fmt": {
-		"options": {
-			"useTabs": false,
-			"lineWidth": 100,
-			"singleQuote": true,
-			"indentWidth": 4
-		}
-	}
+    "fmt": {
+        "options": {
+            "useTabs": false,
+            "lineWidth": 100,
+            "singleQuote": true,
+            "indentWidth": 4
+        }
+    }
 }
 </code></pre>
 <h2>Bonus: JSON schema support for <code>deno.json</code></h2>
@@ -253,14 +264,14 @@ installed LSP-json package, there is a way! Deno publishes its schema for the co
 which we can add to “user schemas” in the LSP-json settings.</p>
 <p>Open <code>LSP-json.sublime-settings</code> or run <code>LSP-json Settings</code> in the command palette. Then add this:</p>
 <pre><code class="language-json">{
-	"settings": {
-		"userSchemas": [
-			{
-				"fileMatch": ["deno.json", "deno.jsonc"],
-				"uri": "https://deno.land/x/deno@v1.18.2/cli/schemas/config-file.v1.json"
-			}
-		]
-	}
+    "settings": {
+        "userSchemas": [
+            {
+                "fileMatch": ["deno.json", "deno.jsonc"],
+                "uri": "https://deno.land/x/deno@v1.18.2/cli/schemas/config-file.v1.json"
+            }
+        ]
+    }
 }
 </code></pre>
 <p>I guess one has to update the versions in there manually, but the package wouldn’t follow the URL
@@ -279,16 +290,13 @@ redirects:
 
    		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f4 sr-only-mobile font-sans">
+		<h1 class="f4 font-sans">
 			<a href="/" aria-label="Home">
-				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+				<span>Johan</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
 		</h1>
 
-		<ul>
-           	<li class="only-mobile">
-          		<a href="/">Home</a>
-           	</li>
+		<ul role="list">
           		<li>
          			<a href="/now/">Now</a>
           		</li>

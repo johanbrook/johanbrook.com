@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-gb" class=" writingsdeno"><head itemtype="http://schema.org/Blog" itemscope="">
-    <title>A whole new world with Deno / Johan Brook</title>
+    <title>A whole new world with Deno / Johan</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,8 +52,19 @@
 
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+
 	  <div class="Content">
-	  	<div id="main">
+
+		
+
+<nav role="navigation" class="MobileNav">
+    <p class="mb0">
+        <a aria-label="Home" class="plain" href="/">Johan</a> <span class="faint">/</span> <a href="/writings" class="muted">Writings</a>
+    </p>
+</nav>
+
+
+		<div id="main">
 			<main role="main">
   <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
     <header>
@@ -117,9 +128,9 @@ const response = await fetch('https://deno.land');
 browser:</p>
 <pre><code class="language-ts">// Deno/browsers
 console.log(
-	'%cHi there. %cSome background?',
-	'color: red',
-	'background-color: gray',
+    '%cHi there. %cSome background?',
+    'color: red',
+    'background-color: gray',
 );
 </code></pre>
 <p>No need for terminal escape codes or pulling in yet another library.</p>
@@ -150,7 +161,7 @@ programmatically compile and bundle Typescript code to Javascript.</p>
 <p>Okay, tough question, as the correct answer probably is: “The number is approaching <code>Infinity</code>″.</p>
 <p>How many test runners do you <em>need</em>? One. There’s one built-in in Deno:</p>
 <pre><code class="language-ts">Deno.test('My test', () =&gt; {
-	// test things
+    // test things
 });
 </code></pre>
 <p>Name the file <code>something.test.ts</code> and run it with:</p>
@@ -211,9 +222,9 @@ should look for the code to be imported. In a way, it’s emulating npm’s way 
 <p>If you were annoyed over importing “raw” URLs in the section above, this will save you!</p>
 <p><strong>Import map</strong></p>
 <pre><code class="language-json">{
-	"imports": {
-		"react": "https://esm.sh/react@17.0.2"
-	}
+    "imports": {
+        "react": "https://esm.sh/react@17.0.2"
+    }
 }
 </code></pre>
 <p><strong>Source code</strong></p>
@@ -254,16 +265,13 @@ properties to read.</p>
 
    		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f4 sr-only-mobile font-sans">
+		<h1 class="f4 font-sans">
 			<a href="/" aria-label="Home">
-				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+				<span>Johan</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
 		</h1>
 
-		<ul>
-           	<li class="only-mobile">
-          		<a href="/">Home</a>
-           	</li>
+		<ul role="list">
           		<li>
          			<a href="/now/">Now</a>
           		</li>

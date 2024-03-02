@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-gb" class=" writingsposting-mastodon-deploying-static-site"><head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Posting to Mastodon when deploying a static site / Johan Brook</title>
+    <title>Posting to Mastodon when deploying a static site / Johan</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,8 +48,19 @@
 
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+
 	  <div class="Content">
-	  	<div id="main">
+
+		
+
+<nav role="navigation" class="MobileNav">
+    <p class="mb0">
+        <a aria-label="Home" class="plain" href="/">Johan</a> <span class="faint">/</span> <a href="/writings" class="muted">Writings</a>
+    </p>
+</nav>
+
+
+		<div id="main">
 			<main role="main">
   <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
     <header>
@@ -70,25 +81,29 @@
 
     <div class="prose" itemprop="articleBody">
       
-      <p>This is how I made my <a href="/micro">micro notes</a> auto-post to my Mastodon account. Warning: duct-tape and strings ahead. I wrote
-this system during the nighttime hours in the hospital, where I watched over our 10 month old baby who had contracted
-bronchitis (no worries, everything turned out fine with her).</p>
+      <p>This is how I made my <a href="/micro">micro notes</a> auto-post to my Mastodon account. Warning: duct-tape and
+strings ahead. I wrote this system during the nighttime hours in the hospital, where I watched over
+our 10 month old baby who had contracted bronchitis (no worries, everything turned out fine with
+her).</p>
 <h2>Preface: my setup</h2>
 <ul>
 <li>I use a static site generator. I use <a href="http://lume.land">Lume</a>, but that doesn’t really matter.</li>
 <li>I host my site on GitHub Pages. Not likely to matter.</li>
-<li>I use GitHub Actions for actually deploying my site from the repo to GitHub Pages. This probably matters a lot. As
-long as you have <em>something</em> that runs on every push, you should be able to translate the steps below to <code>$YOUR_CI</code>.</li>
+<li>I use GitHub Actions for actually deploying my site from the repo to GitHub Pages. This probably
+matters a lot. As long as you have <em>something</em> that runs on every push, you should be able to
+translate the steps below to <code>$YOUR_CI</code>.</li>
 </ul>
-<p>I don’t use any persistent database anywhere (I use Cloudflare functions for other features in this site). Since the
-entrypoint to deploy <em>anything</em> on this site is via pushing commits onto the <code>main</code> branch, that’s the key for doing
-anything “hook-y”, like taking an action when some content is updated.</p>
+<p>I don’t use any persistent database anywhere (I use Cloudflare functions for other features in this
+site). Since the entrypoint to deploy <em>anything</em> on this site is via pushing commits onto the <code>main</code>
+branch, that’s the key for doing anything “hook-y”, like taking an action when some content is
+updated.</p>
 <hr>
 <h2>The plan</h2>
 <p>Roughly, it works like below. You should be able to translate it to your host/CI runner:</p>
 <ol>
 <li>Push new micro note/blog post.</li>
-<li>On CI, check out the code base and find the filename of the post file. Make some slug/ID out of it.</li>
+<li>On CI, check out the code base and find the filename of the post file. Make some slug/ID out of
+it.</li>
 <li>Look for the slug/ID in a checked in file. This is our “database” over already posted files.</li>
 <li>If it’s there, bail.</li>
 <li>If not, we run a script to format the post text and post it to Mastodon over its API.</li>
@@ -96,10 +111,11 @@ anything “hook-y”, like taking an action when some content is updated.</p>
 </ol>
 <details class="Notice">
 <summary>Bonus</summary>
-<p>I also do some fanciness before step 5) where I wait before the site is fully deployed before I post to Mastodon. If
-not, people could click the linkback to the post on Mastodon and get to a 404 on my site!</p>
-<p>Here’s the source code. Note the <code>ENDPOINT</code> variable which is <code>https://johan.im/status.json</code>, where I — at build time —
-put all goodies.</p>
+<p>I also do some fanciness before step 5) where I wait before the site is fully deployed before I post
+to Mastodon. If not, people could click the linkback to the post on Mastodon and get to a 404 on my
+site!</p>
+<p>Here’s the source code. Note the <code>ENDPOINT</code> variable which is <code>https://johan.im/status.json</code>, where
+I — at build time — put all goodies.</p>
 <pre><code class="language-bash">#!/usr/bin/env bash
 #
 # Waits for a give note to be deployed at johan.im
@@ -142,9 +158,9 @@ done
 </code></pre>
 </details>
 <h2>Deciding when to post</h2>
-<p>As mentioned, I use GitHub Actions. YAML seems to be the requirement for all new CI tools these days, and Actions isn’t
-an exception. This is how the first part of my <code>.github/workflows/deploy.yml</code> looks like. The code below includes the
-steps 2-3):</p>
+<p>As mentioned, I use GitHub Actions. YAML seems to be the requirement for all new CI tools these
+days, and Actions isn’t an exception. This is how the first part of my
+<code>.github/workflows/deploy.yml</code> looks like. The code below includes the steps 2-3):</p>
 <details>
     <summary><code>deploy.yml</code></summary>
 <pre><code class="language-yaml">name: Build and deploy
@@ -200,15 +216,16 @@ $ latest="$NOTES_DIR/$(ls -r1 "$NOTES_DIR" | grep -v "_" | head -n 1)"
 $ echo $latest
 src/notes/2024-02-03-21-21-00.md
 </code></pre>
-<p>We feed that into the <code>check-mastodon-note.sh</code> script I have in a separate file, since I’m an inconsistent, chaotic
-programmer. Before reading that code, I’ll show you how my “database” over posted notes look like:</p>
+<p>We feed that into the <code>check-mastodon-note.sh</code> script I have in a separate file, since I’m an
+inconsistent, chaotic programmer. Before reading that code, I’ll show you how my “database” over
+posted notes look like:</p>
 <pre><code class="language-bash">$ cat .mastodon-notes
 20231215140531
 20240106124758
 20240118204458
 </code></pre>
-<p>It’s an append log with the note date (hyphens removed). Ergo, if the note date is in that list, we’ve posted to
-Mastodon already and can bail early.</p>
+<p>It’s an append log with the note date (hyphens removed). Ergo, if the note date is in that list,
+we’ve posted to Mastodon already and can bail early.</p>
 <p>Here’s my script for checking that:</p>
 <details>
     <summary><code>check-mastodon-note.sh</code></summary>
@@ -255,14 +272,14 @@ case `cat "$MASTODON_LIST" | grep -Fxq "$file_id" &gt;/dev/null; echo $?` in
 esac
 </code></pre>
 </details>
-<p>We print the resulting note ID (date with hyphens removed) on <code>stdout</code> if we <em>don’t</em> find it in the list. Sweet! Back
-to the deploy YAML:</p>
+<p>We print the resulting note ID (date with hyphens removed) on <code>stdout</code> if we <em>don’t</em> find it in the
+list. Sweet! Back to the deploy YAML:</p>
 <pre><code class="language-yaml">[ ! -z "$note_id" ] &amp;&amp; echo "do_post=true" &gt;&gt; "$GITHUB_OUTPUT"
 echo "latest_note_id=$note_id" &gt;&gt; "$GITHUB_OUTPUT"
 echo "latest_note_path=$latest" &gt;&gt; "$GITHUB_OUTPUT"
 </code></pre>
-<p>Push some metadata into the magic <code>GITHUB_OUTPUT</code> environment variable (which points to a file). This is GitHub’s way
-of persisting data between jobs.</p>
+<p>Push some metadata into the magic <code>GITHUB_OUTPUT</code> environment variable (which points to a file).
+This is GitHub’s way of persisting data between jobs.</p>
 <h2>Posting to Mastodon’s API</h2>
 <p>This is the API posting part of <code>deploy.yml</code>:</p>
 <details>
@@ -288,17 +305,18 @@ of persisting data between jobs.</p>
               LATEST_NOTE_PATH: ${{ needs.check_latest_note.outputs.latest_note_path }}
 </code></pre>
 </details>
-<p><code>if: needs.check_latest_note.outputs.do_post == 'true'</code> will skip this job if we bailed in the previous job. Very handy.</p>
+<p><code>if: needs.check_latest_note.outputs.do_post == 'true'</code> will skip this job if we bailed in the
+previous job. Very handy.</p>
 <details class="Notice">
     <summary>How to obtain an access token for Mastodon’s API</summary>
-<p>Fear not, Mastodon are one of those services which has a seat in heaven: they give you a plain old access token (bearer)
-which you can use in all API calls 🥹 No messing around with OAuth.</p>
+<p>Fear not, Mastodon are one of those services which has a seat in heaven: they give you a plain old
+access token (bearer) which you can use in all API calls 🥹 No messing around with OAuth.</p>
 <p>Read all about it <a href="https://docs.joinmastodon.org/client/token/">in their docs</a>.</p>
 <p>Then put the token as <code>MASTODON_ACCESS_TOKEN</code> in your repo’s secret section in settings.</p>
 </details>
-<p>The <code>mastodon.ts</code> script itself isn’t that interesting. In a nutshell, it reads the contents of the file on the path it
-receives as script argument, parses some front matter, truncates the text, makes a permalink, and do a <code>POST</code> to the
-API.</p>
+<p>The <code>mastodon.ts</code> script itself isn’t that interesting. In a nutshell, it reads the contents of the
+file on the path it receives as script argument, parses some front matter, truncates the text, makes
+a permalink, and do a <code>POST</code> to the API.</p>
 <details>
     <summary><code>mastodon.ts</code></summary>
 <pre><code class="language-ts">// deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts &lt;path&gt;
@@ -359,7 +377,9 @@ const postStatus = async (filePath: string) =&gt; {
     const note = extract(await Deno.readTextFile(import.meta.dirname + `/../${filePath}`));
 
     if (note.attrs.draft || note.attrs.skip_mastodon) {
-        console.log(`Skipping posting because one of "draft" or "skip_mastodon" are true for note ${filePath}`);
+        console.log(
+            `Skipping posting because one of "draft" or "skip_mastodon" are true for note ${filePath}`,
+        );
         return;
     }
 
@@ -367,7 +387,9 @@ const postStatus = async (filePath: string) =&gt; {
 
     const statusBody = truncateToStatus(note.body.trim(), permalink);
 
-    console.log(`&gt; Posting status (${statusBody.length} chars):\n----------------------------\n${statusBody}`);
+    console.log(
+        `&gt; Posting status (${statusBody.length} chars):\n----------------------------\n${statusBody}`,
+    );
 
     if (DRY_RUN) {
         console.log(`&gt; Status posted to &lt;DRY RUN&gt;`);
@@ -440,9 +462,9 @@ await postStatus(Deno.args[0]).catch((err) =&gt; {
 </ol>
 <p>Done!</p>
 <hr>
-<p>As you can see, it’s essentially just keeping track of the latest unposted file and shoves that around betwen the steps
-in the GitHub Action 🤷 But I like the approach of thinking in files and thus always keeping the state within the
-repo’s boundaries.</p>
+<p>As you can see, it’s essentially just keeping track of the latest unposted file and shoves that
+around betwen the steps in the GitHub Action 🤷 But I like the approach of thinking in files and
+thus always keeping the state within the repo’s boundaries.</p>
 <p>I love DIY solutions over external services. Mo’ dependencies, mo’ problems.</p>
 
     </div>
@@ -453,16 +475,13 @@ repo’s boundaries.</p>
 
    		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f4 sr-only-mobile font-sans">
+		<h1 class="f4 font-sans">
 			<a href="/" aria-label="Home">
-				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+				<span>Johan</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
 		</h1>
 
-		<ul>
-           	<li class="only-mobile">
-          		<a href="/">Home</a>
-           	</li>
+		<ul role="list">
           		<li>
          			<a href="/now/">Now</a>
           		</li>

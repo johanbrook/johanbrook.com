@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-gb" class=" writingsios-homescreen-web-app"><head itemtype="http://schema.org/Blog" itemscope="">
-    <title>Customising an iOS home screen web app in 2021 / Johan Brook</title>
+    <title>Customising an iOS home screen web app in 2021 / Johan</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,8 +50,19 @@
 
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+
 	  <div class="Content">
-	  	<div id="main">
+
+		
+
+<nav role="navigation" class="MobileNav">
+    <p class="mb0">
+        <a aria-label="Home" class="plain" href="/">Johan</a> <span class="faint">/</span> <a href="/writings" class="muted">Writings</a>
+    </p>
+</nav>
+
+
+		<div id="main">
 			<main role="main">
   <article class="Post" role="article" itemscope="" itemtype="http://schema.org/BlogPosting">
     <header>
@@ -168,9 +179,9 @@ efforts by the web community.</p>
 <pre><code class="language-html">&lt;link rel="manifest" href="/manifest.json" /&gt;
 </code></pre>
 <pre><code class="language-json">{
-	"name": "Runloop",
-	"scope": "/",
-	"display": "standalone"
+    "name": "Runloop",
+    "scope": "/",
+    "display": "standalone"
 }
 </code></pre>
 <p>I’m not sure whether it was the <code>scope</code> or <code>display</code> parameter that made the internal links work
@@ -233,13 +244,13 @@ this. But until then, I went with a boring Javascript fix:</p>
 <pre><code class="language-ts">let lastHeight: number | null = null;
 
 const setAppHeight = debounce(() =&gt; {
-	const doc = document.documentElement;
-	const height = window.innerHeight;
+    const doc = document.documentElement;
+    const height = window.innerHeight;
 
-	if (height != lastHeight) {
-		doc.style.setProperty('--app-height', `${height - MAGIC_NUMBER}px`);
-		lastHeight = height;
-	}
+    if (height != lastHeight) {
+        doc.style.setProperty('--app-height', `${height - MAGIC_NUMBER}px`);
+        lastHeight = height;
+    }
 }, 100);
 
 // This is the magic offset which one can subtract in order to hide scrollbars
@@ -254,26 +265,26 @@ const MAGIC_NUMBER = 3;
  * the window.innerHeight property.
  */
 const fixMobileHeight = () =&gt; {
-	window.addEventListener('resize', setAppHeight);
+    window.addEventListener('resize', setAppHeight);
 
-	setAppHeight();
+    setAppHeight();
 
-	return () =&gt; window.removeEventListener('resize', setAppHeight);
+    return () =&gt; window.removeEventListener('resize', setAppHeight);
 };
 
 // Util
 const debounce = (func: (...args: unknown[]) =&gt; unknown, wait: number) =&gt; {
-	let timeout: NodeJS.Timeout;
+    let timeout: NodeJS.Timeout;
 
-	return (...args: unknown[]) =&gt; {
-		const later = () =&gt; {
-			clearTimeout(timeout);
-			func(...args);
-		};
+    return (...args: unknown[]) =&gt; {
+        const later = () =&gt; {
+            clearTimeout(timeout);
+            func(...args);
+        };
 
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-	};
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 };
 
 fixMobileHeight();
@@ -388,22 +399,22 @@ on iOS’ use of the web manifest file too.</p>
 <p>Overall, Web APIs have gone a long way with I/O: we can now upload, download, and <em>share</em> files in
 iOS. I built and export and import feature to try this out, and it worked great on mobile:</p>
 <pre><code class="language-ts">const doImport = async (evt: Event) =&gt; {
-	const { files } = evt.target as HTMLInputElement;
+    const { files } = evt.target as HTMLInputElement;
 
-	const file = files[0];
+    const file = files[0];
 
-	if (file.type != 'application/json') {
-		alert('Only JSON files, please.');
-		return;
-	}
+    if (file.type != 'application/json') {
+        alert('Only JSON files, please.');
+        return;
+    }
 
-	try {
-		const json = JSON.parse(await file.text());
-		// do stuff with object
-	} catch (ex) {
-		console.error(ex);
-		alert(`Failed to read "${file.name}". Reason: ${ex}`);
-	}
+    try {
+        const json = JSON.parse(await file.text());
+        // do stuff with object
+    } catch (ex) {
+        console.error(ex);
+        alert(`Failed to read "${file.name}". Reason: ${ex}`);
+    }
 };
 
 document.findElementById('import')!.addEventListener('change', doImport);
@@ -413,23 +424,23 @@ document.findElementById('import')!.addEventListener('change', doImport);
 <p>Exporting works good with the
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share">Share API</a>:</p>
 <pre><code class="language-ts">const doExport = async () =&gt; {
-	try {
-		// Will show native iOS share pane
-		await navigator.share({
-			title: 'Run data as JSON',
-			files: [fileOf(appConf)],
-		});
-	} catch (ex) {
-		if ((ex as DOMException).name == 'AbortError') return;
-		alert(`Sharing failed. Reason: ${(ex as Error).message || ex}`);
-		console.error(ex);
-	}
+    try {
+        // Will show native iOS share pane
+        await navigator.share({
+            title: 'Run data as JSON',
+            files: [fileOf(appConf)],
+        });
+    } catch (ex) {
+        if ((ex as DOMException).name == 'AbortError') return;
+        alert(`Sharing failed. Reason: ${(ex as Error).message || ex}`);
+        console.error(ex);
+    }
 };
 
 const fileOf = (data: unknown): File =&gt;
-	new File([JSON.stringify(appConf, null, 4)], 'runloop.json', {
-		type: 'application/json',
-	});
+    new File([JSON.stringify(appConf, null, 4)], 'runloop.json', {
+        type: 'application/json',
+    });
 </code></pre>
 <p>The user now gets the choice of saving the file somewhere, or sending it with the native UI
 controls.</p>
@@ -448,16 +459,13 @@ place. Argh.</p>
 
    		<nav role="navigation" class="MainNav">
 	<div class="sticky">
-		<h1 class="f4 sr-only-mobile font-sans">
+		<h1 class="f4 font-sans">
 			<a href="/" aria-label="Home">
-				<span>Johan Brook</span><span aria-hidden="true" class="BackLink ml2">←</span>
+				<span>Johan</span><span aria-hidden="true" class="BackLink ml2">←</span>
 			</a>
 		</h1>
 
-		<ul>
-           	<li class="only-mobile">
-          		<a href="/">Home</a>
-           	</li>
+		<ul role="list">
           		<li>
          			<a href="/now/">Now</a>
           		</li>
