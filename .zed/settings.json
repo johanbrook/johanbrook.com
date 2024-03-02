@@ -5,5 +5,11 @@
 {
     "deno": {
         "enable": true
+    },
+    "formatter": {
+        "external": {
+            "command": "deno",
+            "arguments": ["fmt", "-"]
+        }
     }
 }
