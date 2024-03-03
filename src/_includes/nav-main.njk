@@ -6,7 +6,7 @@
 			</a>
 		</h1>
 
-		<ul role="list">
+		<ul role="list" class="NavList">
            	{%- for entry in search.pages("menu.visible=true", "menu.order") %}
           		<li {% if entry.url | isCurrentPage %} aria-current="page"{% endif %}>
          			<a href="{{ entry.url }}">{{ entry.menu.title or entry.title }}</a>

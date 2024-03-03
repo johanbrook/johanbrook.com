@@ -1,3 +1,39 @@
+.NavList {
+    li:where([aria-current='page'])::after {
+        content: '⇠';
+        display: inline;
+        margin-left: 0.25em;
+        white-space: nowrap;
+        color: var(--color-text-detail);
+    }
+
+    a {
+        color: var(--color-text);
+        white-space: nowrap;
+        text-decoration: none;
+        font-weight: normal;
+        position: revert;
+
+        &:is(:hover, :focus-visible):not(:is([aria-current='page'] > *)) {
+            color: var(--link-color-hover);
+            text-decoration: underline;
+        }
+
+        &:not([aria-current='page'] > &):not(&:hover):not(&:focus-visible) {
+            opacity: 0.8;
+        }
+    }
+
+    [aria-current='page'] {
+        position: relative;
+
+        a {
+            font-weight: 600;
+            color: var(--color-text-high-contrast);
+        }
+    }
+}
+
 .MainNav {
     position: relative;
     z-index: 2;
@@ -7,57 +43,18 @@
         top: 0;
     }
 
-    & h1 > a {
-        font-weight: 500;
-        color: var(--color-text);
-        white-space: nowrap;
-        text-decoration: none;
-    }
-
-    & a {
-        color: var(--color-text);
-        white-space: nowrap;
-        text-decoration: none;
-
-        &:is(:hover, :focus-visible):not(:is([aria-current='page'] > *)) {
-            color: var(--link-color-hover);
-            text-decoration: underline;
-        }
-    }
-
-    & ul {
-        & li:where([aria-current='page'])::after {
-            content: '⇠';
-            display: inline;
-            margin-left: 0.25em;
-            white-space: nowrap;
-            color: var(--color-text-detail);
-        }
-
-        & a {
-            font-weight: normal;
-            position: revert;
-
-            &:not([aria-current='page'] > &):not(&:hover):not(&:focus-visible) {
-                opacity: 0.8;
-            }
-        }
-
-        & [aria-current='page'] {
-            position: relative;
-
-            & a {
-                font-weight: 600;
-                color: var(--color-text-high-contrast);
-            }
-        }
-    }
-
-    & h1 {
+    h1 {
         --offset-top: 18px;
         line-height: calc(var(--lineheight) * 3);
         margin-bottom: -4px;
         padding-top: var(--offset-top);
+
+        > a {
+            font-weight: 500;
+            color: var(--color-text);
+            white-space: nowrap;
+            text-decoration: none;
+        }
     }
 }
 
@@ -82,8 +79,51 @@
     display: none;
     margin-block-end: 2lh;
 
-    a:first-of-type {
-        font-weight: 450;
+    .MobileNav__Home {
+        font-weight: 500;
+    }
+
+    .NavList {
+        li:where([aria-current='page'])::after {
+            display: none;
+        }
+    }
+
+    details {
+        margin: 0;
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        text-align: right;
+
+        > ul {
+            box-shadow: color-mix(in oklab, var(--color-bg) 50%, black 20%) -10px 10px 30px;
+            background-color: var(--color-bg);
+            padding: 0.25lh 10px;
+            margin-right: -10px;
+            margin-top: 0.25lh;
+            border-radius: 6px;
+            font-size: 1.2em;
+            line-height: 2;
+
+            li {
+                padding-left: 3rem;
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid var(--border-color);
+                }
+            }
+        }
+    }
+
+    summary {
+        color: var(--color-text-detail);
+        white-space: nowrap;
+
+        &:is(:hover, details[open] > *) {
+            color: var(--color-text);
+        }
     }
 }
 
@@ -92,6 +132,7 @@
         display: none;
     }
     .MobileNav {
-        display: block;
+        display: flex;
+        justify-content: space-between;
     }
 }

@@ -2,6 +2,21 @@
 
 <nav role="navigation" class="MobileNav">
     <p class="mb0">
-        <a aria-label="Home" class="plain" href="/">{{ titles.site }}</a>{% if p %} <span class="faint">/</span> <a href="{{ p[1] }}" class="muted">{{ p[0] }}</a>{% endif %}
+        <a aria-label="Home" class="MobileNav__Home plain" href="/">{{ titles.site }}</a>{% if p %} <span class="faint">/</span> <a href="{{ p[1] }}" class="muted">{{ p[0] }}</a>{% endif %}
     </p>
+    <div class="relative">
+        <details>
+            <summary>Menu</summary>
+            <ul role="list" class="NavList">
+                {%- for entry in search.pages("menu.visible=true", "menu.order") %}
+              		<li {% if entry.url | isCurrentPage %} aria-current="page"{% endif %}>
+             			<a href="{{ entry.url }}">{{ entry.menu.title or entry.title }}</a>
+              		</li>
+               	{%- endfor %}
+                <li {% if '/all' | isCurrentPage %} aria-current="page"{% endif %}>
+         			<a href="/all">All pages</a>
+          		</li>
+            </ul>
+        </details>
+    </div>
 </nav>
