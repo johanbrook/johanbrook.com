@@ -11,6 +11,7 @@ import sourceMaps from 'lume/plugins/source_maps.ts';
 import { idOf, postsRoot } from './src/_includes/permalinks.ts';
 import { microRoot } from './src/_includes/permalinks.ts';
 import { booksRoot } from './src/_includes/permalinks.ts';
+import postcssUtopia from 'npm:postcss-utopia@^1';
 
 const site = lume({
     src: 'src',
@@ -25,7 +26,16 @@ site.use(typeset({ scope: '.prose' }))
     .copy('public/.well-known', './.well-known') // lume ignores . dirs, must copy explicitly
     // Plugins
     .use(inline())
-    .use(postcss())
+    .use(
+        postcss({
+            plugins: [
+                postcssUtopia({
+                    minWidth: 320,
+                    maxWidth: 653,
+                }),
+            ],
+        })
+    )
     .use(temporalDate())
     .use(sourceMaps())
     // Helpers

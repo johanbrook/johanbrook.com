@@ -12,18 +12,21 @@
     --grey-light: hsl(173 7% 36% / 0.5);
     --grey-lightest: hsl(173 7% 93%);
 
+    /* Background vars, ordered from high contrast -> subtle */
     --color-bg: #fff;
     --color-bg-secondary: hsl(240 59.76% 96.52%);
+
+    /* Foreground vars, order from high contrast -> subtle */
     --color-text: hsl(0 0% 13%);
     --color-text-high-contrast: black;
-    --color-text-detail: var(--grey);
-    --color-faint: color-mix(in oklab, var(--mood) 10%, white 20%);
+    --color-text-detail: color-mix(in oklab, var(--mood) 10%, black 50%);
+    --color-faint: color-mix(in oklab, var(--mood) 10%, black 20%);
 
     --link-color: var(--color-text-high-contrast);
     --link-color-hover: hsl(201.43, 100%, 25.25%);
     --link-color-visited: hsl(266 100% 44%);
-    --link-underline-color: hsl(201.43 43.1% 56.06% / 0.47);
-    --border-color: var(--grey-lightest);
+
+    --border-color: color-mix(in oklab, var(--mood) 3%, black 3%);
 
     --btn-color: var(--color-text);
     --btn-bg: var(--color-bg-secondary);
@@ -38,20 +41,22 @@
     @media screen and (prefers-color-scheme: dark) {
         --yellow: #c3a507;
         --grey: hsl(214.51, 6.64%, 61.44%);
-        --grey-lightest: hsl(173 7% 17%);
 
         --color-bg: var(--dark);
         --color-bg-secondary: color-mix(in oklab, var(--mood) 1%, white 4%);
         --color-text: var(--light);
         --color-text-high-contrast: color-mix(in oklab, var(--mood) 6%, oklch(95% 0 0));
         --color-text-detail: color-mix(in oklab, var(--mood) 10%, white 50%);
+        --color-faint: color-mix(in oklab, var(--mood) 10%, white 20%);
+
         --link-color-hover: hsl(201.43, 93.43%, 69.58%);
-        --link-underline-color: hsl(201.43 57.86% 50.17% / 0.47);
+        --border-color: color-mix(in oklab, var(--mood) 3%, white 3%);
+
         --link-color-visited: #7a8be5;
         --code-color: rgb(236 216 142);
         --code-background: rgb(255 255 255 / 2%);
 
-        --btn-bg-hover: hsl(240 3.36% 15.51%);
+        --btn-bg-hover: color-mix(in oklab, var(--mood) 5%, white 8%);
     }
 
     /* Typography */
@@ -74,14 +79,30 @@
     --tracking-f5: -0.009em;
     --tracking-f6: -0.0025em;
 
-    --f0: calc((60 / var(--font-size-base)) * 1rem);
-    --f1: calc((36 / var(--font-size-base)) * 1rem);
-    --f2: calc((30 / var(--font-size-base)) * 1rem);
-    --f3: calc((26 / var(--font-size-base)) * 1rem);
-    --f4: 1rem;
-    --f5: calc((17 / var(--font-size-base)) * 1rem);
-    --f6: calc((14 / var(--font-size-base)) * 1rem);
-    --f7: calc((11 / var(--font-size-base)) * 1rem);
+    /* @link https://utopia.fyi/type/calculator?c=320,16,1.125,653,18,1.125,4,3,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+    --fluid-32-42: clamp(32px, 22.3904px + 3.003vi, 42px);
+
+    @utopia typeScale({
+        minWidth: 320,
+        maxWidth: 653,
+        minFontSize: 16,
+        maxFontSize: 18,
+        minTypeScale: 1.125,
+        maxTypeScale: 1.2,
+        positiveSteps: 3,
+        negativeSteps: 3,
+        prefix: "step",
+    });
+
+    --f0: var(--fluid-32-42);
+    --f1: var(--step-3);
+    --f2: var(--step-2);
+    --f3: var(--step-1);
+    --f4: var(--step-0);
+    --f5: var(--step--1);
+    --f6: var(--step--2);
+    --f7: var(--step--3);
 
     /* Measures */
 
@@ -103,8 +124,4 @@
     --spacing-extra-large: calc(var(--spacing-base) * 3);
     --spacing-extra-extra-large: calc(var(--spacing-base) * 4);
     --spacing-extra-extra-extra-large: calc(var(--spacing-base) * 6);
-
-    @media screen and (max-width: 980px) {
-        --font-size-base: 16;
-    }
 }

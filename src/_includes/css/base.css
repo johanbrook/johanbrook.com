@@ -9,12 +9,12 @@ html {
 }
 
 :where(body, html) {
-    font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--sans);
     background-color: var(--color-bg);
-    color: var(--color-text);
 }
 
 body {
+    font: normal var(--f4) / var(--leading) var(--sans);
+    color: var(--color-text);
     padding: var(--inset);
     padding-top: calc(var(--inset) * 2);
     line-height: var(--leading);
@@ -51,7 +51,7 @@ body {
 }
 
 :is(.f0, .title) {
-    font-size: clamp(var(--f1), 12vw, var(--f0));
+    font-size: var(--f0);
     letter-spacing: var(--tracking-f0);
     line-height: calc(var(--leading) * 0.75);
 }
@@ -102,7 +102,7 @@ nav ul {
 
 :is(ul, ol) {
     ::marker {
-        color: var(--grey-light);
+        color: var(--color-faint);
     }
 
     &:where(ul) {
@@ -218,7 +218,7 @@ th {
 td {
     padding: var(--spacing);
     vertical-align: top;
-    border-bottom: 1px solid var(--grey-lightest);
+    border-bottom: 1px solid var(--border-color);
 }
 
 :where(th, td):first-child {

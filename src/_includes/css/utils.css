@@ -39,7 +39,7 @@ BUTTONS
 
     &:where(:hover, [open] *) {
         text-decoration: none;
-        color: var(--link-color-hover);
+        color: var(--color-text-high-contrast);
         background-color: var(--btn-bg-hover);
     }
 
