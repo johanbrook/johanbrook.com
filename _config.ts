@@ -1,7 +1,6 @@
 import lume from 'lume/mod.ts';
 import postcss from 'lume/plugins/postcss.ts';
 import esbuild from 'lume/plugins/esbuild.ts';
-import inline from 'lume/plugins/inline.ts';
 import nunjucks from 'lume/plugins/nunjucks.ts';
 import temporalDate from './src/_lume-plugins/temporal-date.ts';
 import { readingTime } from './src/_lume-plugins/reading-time.ts';
@@ -25,7 +24,6 @@ site.use(typeset({ scope: '.prose' }))
     .copy('public', '.')
     .copy('public/.well-known', './.well-known') // lume ignores . dirs, must copy explicitly
     // Plugins
-    .use(inline())
     .use(
         postcss({
             plugins: [
