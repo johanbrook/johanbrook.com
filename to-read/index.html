@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en-gb" class=" to-read"><head itemtype="http://schema.org/Blog" itemscope="">
+<html lang="en-gb" class=" to-read">
+
+  <head itemtype="http://schema.org/Blog" itemscope>
     <title>Want to read / Johan</title>
 
     <meta charset="utf-8">
@@ -53,8 +55,36 @@
 
 <nav role="navigation" class="MobileNav">
     <p class="mb0">
-        <a aria-label="Home" class="plain" href="/">Johan</a>
+        <a aria-label="Home" class="MobileNav__Home plain" href="/">Johan</a>
     </p>
+    <div class="relative">
+        <details>
+            <summary>Menu</summary>
+            <ul role="list" class="NavList">
+              		<li >
+             			<a href="/micro/">Micro</a>
+              		</li>
+              		<li >
+             			<a href="/now/">Now</a>
+              		</li>
+              		<li >
+             			<a href="/about/">About</a>
+              		</li>
+              		<li >
+             			<a href="/reading/">Reading</a>
+              		</li>
+              		<li >
+             			<a href="/writings/">Writings</a>
+              		</li>
+              		<li >
+             			<a href="/feeds/">Feeds</a>
+              		</li>
+                <li >
+         			<a href="/all">All pages</a>
+          		</li>
+            </ul>
+        </details>
+    </div>
 </nav>
 
 
@@ -71,7 +101,7 @@
 </p>
 
 <table class="textual">
-	<tbody><tr>
+	<tr>
 		<th>Title</th>
 		<th>Author</th>
 		<th>Notes</th>
@@ -209,7 +239,7 @@
     	</td>
     </tr>
   
-</tbody></table>
+</table>
 
 <p class="measure">
 	11 books. <span class="muted">You can also check out <a href="/reading">what I've read so far.</a></span>
@@ -233,26 +263,26 @@
 			</a>
 		</h1>
 
-		<ul role="list">
-          		<li>
-         			<a href="/now/">Now</a>
-          		</li>
-          		<li>
+		<ul role="list" class="NavList">
+          		<li >
          			<a href="/micro/">Micro</a>
           		</li>
-          		<li>
+          		<li >
+         			<a href="/now/">Now</a>
+          		</li>
+          		<li >
          			<a href="/about/">About</a>
           		</li>
-          		<li>
+          		<li >
          			<a href="/reading/">Reading</a>
           		</li>
-          		<li>
+          		<li >
          			<a href="/writings/">Writings</a>
           		</li>
-          		<li>
+          		<li >
          			<a href="/feeds/">Feeds</a>
           		</li>
-            <li>
+            <li >
      			<a href="/all">All pages</a>
       		</li>
         </ul>
@@ -273,9 +303,8 @@
   if (localStorage.getItem('skipgc') === 't')
     window.goatcounter = {no_onload: true};
 </script>
-<script data-goatcounter="https://johanbrook.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://johanbrook.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
-  
+  </body>
 
-
-</body></html>
+</html>

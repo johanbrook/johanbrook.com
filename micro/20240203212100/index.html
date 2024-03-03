@@ -53,8 +53,36 @@
 
 <nav role="navigation" class="MobileNav">
     <p class="mb0">
-        <a aria-label="Home" class="plain" href="/">Johan</a> <span class="faint">/</span> <a href="/micro" class="muted">Micro</a>
+        <a aria-label="Home" class="MobileNav__Home plain" href="/">Johan</a> <span class="faint">/</span> <a href="/micro" class="muted">Micro</a>
     </p>
+    <div class="relative">
+        <details>
+            <summary>Menu</summary>
+            <ul role="list" class="NavList">
+              		<li aria-current="page">
+             			<a href="/micro/">Micro</a>
+              		</li>
+              		<li>
+             			<a href="/now/">Now</a>
+              		</li>
+              		<li>
+             			<a href="/about/">About</a>
+              		</li>
+              		<li>
+             			<a href="/reading/">Reading</a>
+              		</li>
+              		<li>
+             			<a href="/writings/">Writings</a>
+              		</li>
+              		<li>
+             			<a href="/feeds/">Feeds</a>
+              		</li>
+                <li>
+         			<a href="/all">All pages</a>
+          		</li>
+            </ul>
+        </details>
+    </div>
 </nav>
 
 
@@ -107,12 +135,12 @@ streams where I spend more than a second checking the said hardware out.</p>
 			</a>
 		</h1>
 
-		<ul role="list">
-          		<li>
-         			<a href="/now/">Now</a>
-          		</li>
+		<ul role="list" class="NavList">
           		<li aria-current="page">
          			<a href="/micro/">Micro</a>
+          		</li>
+          		<li>
+         			<a href="/now/">Now</a>
           		</li>
           		<li>
          			<a href="/about/">About</a>

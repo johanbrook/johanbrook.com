@@ -181,18 +181,21 @@ Remove the inheritance of text transform in Edge and Firefox.
     --grey-light: hsl(173 7% 36% / 0.5);
     --grey-lightest: hsl(173 7% 93%);
 
+    /* Background vars, ordered from high contrast -> subtle */
     --color-bg: #fff;
     --color-bg-secondary: hsl(240 59.76% 96.52%);
+
+    /* Foreground vars, order from high contrast -> subtle */
     --color-text: hsl(0 0% 13%);
     --color-text-high-contrast: black;
-    --color-text-detail: var(--grey);
-    --color-faint: color-mix(in oklab, var(--mood) 10%, white 20%);
+    --color-text-detail: color-mix(in oklab, var(--mood) 10%, black 50%);
+    --color-faint: color-mix(in oklab, var(--mood) 10%, black 20%);
 
     --link-color: var(--color-text-high-contrast);
     --link-color-hover: hsl(201.43, 100%, 25.25%);
     --link-color-visited: hsl(266 100% 44%);
-    --link-underline-color: hsl(201.43 43.1% 56.06% / 0.47);
-    --border-color: var(--grey-lightest);
+
+    --border-color: color-mix(in oklab, var(--mood) 3%, black 3%);
 
     --btn-color: var(--color-text);
     --btn-bg: var(--color-bg-secondary);
@@ -224,14 +227,18 @@ Remove the inheritance of text transform in Edge and Firefox.
     --tracking-f5: -0.009em;
     --tracking-f6: -0.0025em;
 
-    --f0: calc((60 / var(--font-size-base)) * 1rem);
-    --f1: calc((36 / var(--font-size-base)) * 1rem);
-    --f2: calc((30 / var(--font-size-base)) * 1rem);
-    --f3: calc((26 / var(--font-size-base)) * 1rem);
-    --f4: 1rem;
-    --f5: calc((17 / var(--font-size-base)) * 1rem);
-    --f6: calc((14 / var(--font-size-base)) * 1rem);
-    --f7: calc((11 / var(--font-size-base)) * 1rem);
+    /* @link https://utopia.fyi/type/calculator?c=320,16,1.125,653,18,1.125,4,3,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+    --fluid-32-42: clamp(32px, 22.3904px + 3.003vi, 42px);
+
+    --f0: var(--fluid-32-42);
+    --f1: var(--step-3);
+    --f2: var(--step-2);
+    --f3: var(--step-1);
+    --f4: var(--step-0);
+    --f5: var(--step--1);
+    --f6: var(--step--2);
+    --f7: var(--step--3);
 
     /* Measures */
 
@@ -259,28 +266,26 @@ Remove the inheritance of text transform in Edge and Firefox.
 :root {
         --yellow: #c3a507;
         --grey: hsl(214.51, 6.64%, 61.44%);
-        --grey-lightest: hsl(173 7% 17%);
 
         --color-bg: var(--dark);
         --color-bg-secondary: color-mix(in oklab, var(--mood) 1%, white 4%);
         --color-text: var(--light);
         --color-text-high-contrast: color-mix(in oklab, var(--mood) 6%, oklch(95% 0 0));
         --color-text-detail: color-mix(in oklab, var(--mood) 10%, white 50%);
+        --color-faint: color-mix(in oklab, var(--mood) 10%, white 20%);
+
         --link-color-hover: hsl(201.43, 93.43%, 69.58%);
-        --link-underline-color: hsl(201.43 57.86% 50.17% / 0.47);
+        --border-color: color-mix(in oklab, var(--mood) 3%, white 3%);
+
         --link-color-visited: #7a8be5;
         --code-color: rgb(236 216 142);
         --code-background: rgb(255 255 255 / 2%);
 
-        --btn-bg-hover: hsl(240 3.36% 15.51%);
+        --btn-bg-hover: color-mix(in oklab, var(--mood) 5%, white 8%);
 }
     }
-
-    @media screen and (max-width: 980px) {
-:root {
-        --font-size-base: 16;
+:root {--step-3: clamp(1.4238rem, 0.924rem + 2.4993vi, 1.944rem);--step-2: clamp(1.2656rem, 0.9251rem + 1.7027vi, 1.62rem);--step-1: clamp(1.125rem, 0.9088rem + 1.0811vi, 1.35rem);--step-0: clamp(1rem, 0.8799rem + 0.6006vi, 1.125rem);--step--1: clamp(0.8889rem, 0.8422rem + 0.2336vi, 0.9375rem);--step--2: clamp(0.7813rem, 0.7987rem + -0.0426vi, 0.7901rem);--step--3: clamp(0.651rem, 0.7516rem + -0.2464vi, 0.7023rem);
 }
-    }
 }
 
 /* =ELEMENTS
@@ -294,12 +299,12 @@ html {
 }
 
 :where(body, html) {
-    font: normal calc(var(--font-size-base) * 1px) / var(--leading) var(--sans);
     background-color: var(--color-bg);
-    color: var(--color-text);
 }
 
 body {
+    font: normal var(--f4) / var(--leading) var(--sans);
+    color: var(--color-text);
     padding: var(--inset);
     padding-top: calc(var(--inset) * 2);
     line-height: var(--leading);
@@ -339,7 +344,7 @@ body {
 }
 
 :is(.f0, .title) {
-    font-size: clamp(var(--f1), 12vw, var(--f0));
+    font-size: var(--f0);
     letter-spacing: var(--tracking-f0);
     line-height: calc(var(--leading) * 0.75);
 }
@@ -389,7 +394,7 @@ nav ul {
 }
 
 :is(ul, ol) ::marker {
-        color: var(--grey-light);
+        color: var(--color-faint);
     }
 
 :is(ul, ol):where(ul) ::marker {
@@ -500,7 +505,7 @@ th {
 td {
     padding: var(--spacing);
     vertical-align: top;
-    border-bottom: 1px solid var(--grey-lightest);
+    border-bottom: 1px solid var(--border-color);
 }
 
 :where(th, td):first-child {
@@ -636,6 +641,40 @@ textarea:focus {
         border-color: var(--neon);
     }
 
+.NavList li:where([aria-current='page'])::after {
+        content: '⇠';
+        display: inline;
+        margin-left: 0.25em;
+        white-space: nowrap;
+        color: var(--color-text-detail);
+    }
+
+.NavList a {
+        color: var(--color-text);
+        white-space: nowrap;
+        text-decoration: none;
+        font-weight: normal;
+        position: revert;
+    }
+
+.NavList a:is(:hover, :focus-visible):not(:is([aria-current='page'] > *)) {
+            color: var(--link-color-hover);
+            text-decoration: underline;
+        }
+
+.NavList a:not([aria-current='page'] > :is(.NavList a)):not(.NavList a:hover):not(.NavList a:focus-visible) {
+            opacity: 0.8;
+        }
+
+.NavList [aria-current='page'] {
+        position: relative;
+    }
+
+.NavList [aria-current='page'] a {
+            font-weight: 600;
+            color: var(--color-text-high-contrast);
+        }
+
 .MainNav {
     position: relative;
     z-index: 2;
@@ -646,56 +685,19 @@ textarea:focus {
         top: 0;
     }
 
-.MainNav h1 > a {
-        font-weight: 500;
-        color: var(--color-text);
-        white-space: nowrap;
-        text-decoration: none;
-    }
-
-.MainNav a {
-        color: var(--color-text);
-        white-space: nowrap;
-        text-decoration: none;
-    }
-
-.MainNav a:is(:hover, :focus-visible):not(:is([aria-current='page'] > *)) {
-            color: var(--link-color-hover);
-            text-decoration: underline;
-        }
-
-.MainNav ul li:where([aria-current='page'])::after {
-            content: '⇠';
-            display: inline;
-            margin-left: 0.25em;
-            white-space: nowrap;
-            color: var(--color-text-detail);
-        }
-
-.MainNav ul a {
-            font-weight: normal;
-            position: revert;
-        }
-
-.MainNav ul a:not([aria-current='page'] > :is(.MainNav ul a)):not(.MainNav ul a:hover):not(.MainNav ul a:focus-visible) {
-                opacity: 0.8;
-            }
-
-.MainNav ul [aria-current='page'] {
-            position: relative;
-        }
-
-.MainNav ul [aria-current='page'] a {
-                font-weight: 600;
-                color: var(--color-text-high-contrast);
-            }
-
 .MainNav h1 {
         --offset-top: 18px;
         line-height: calc(var(--lineheight) * 3);
         margin-bottom: -4px;
         padding-top: var(--offset-top);
     }
+
+.MainNav h1 > a {
+            font-weight: 500;
+            color: var(--color-text);
+            white-space: nowrap;
+            text-decoration: none;
+        }
 
 .BackLink {
     text-decoration: none;
@@ -719,12 +721,58 @@ a:is(:hover, :focus) > .BackLink {
     margin-block-end: 2lh;
 }
 
+.MobileNav .MobileNav__Home {
+        font-weight: 500;
+    }
+
+.MobileNav .NavList li:where([aria-current='page'])::after {
+            display: none;
+        }
+
+.MobileNav details {
+        margin: 0;
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        text-align: right;
+    }
+
+.MobileNav details > ul {
+            box-shadow: color-mix(in oklab, var(--color-bg) 50%, black 20%) -10px 10px 30px;
+            background-color: var(--color-bg);
+            padding: 0.25lh 10px;
+            margin-right: -10px;
+            margin-top: 0.25lh;
+            border-radius: 6px;
+            font-size: 1.2em;
+            line-height: 2;
+        }
+
+.MobileNav details > ul li {
+                padding-left: 3rem;
+            }
+
+.MobileNav details > ul li:not(:last-child) {
+                    border-bottom: 1px solid var(--border-color);
+                }
+
+.MobileNav summary {
+        color: var(--color-text-detail);
+        white-space: nowrap;
+    }
+
+.MobileNav summary:is(:hover, details[open] > *) {
+            color: var(--color-text);
+        }
+
 @media only screen and (max-width: 1215px) {
     .MainNav {
         display: none;
     }
     .MobileNav {
-        display: block;
+        display: flex;
+        justify-content: space-between;
     }
 }
 
@@ -1047,7 +1095,7 @@ BUTTONS
 
 .btn:where(:hover, [open] *) {
         text-decoration: none;
-        color: var(--link-color-hover);
+        color: var(--color-text-high-contrast);
         background-color: var(--btn-bg-hover);
     }
 
