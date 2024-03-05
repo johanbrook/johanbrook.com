@@ -15,7 +15,7 @@
     "compilerOptions": {
         "lib": ["deno.ns", "deno.unstable", "dom", "dom.iterable"],
         "strict": true,
-        "types": ["lume/types.ts"]
+        "types": ["lume/types.ts", "node"]
     },
     "lint": {
         "rules": {

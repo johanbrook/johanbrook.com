@@ -1,10 +1,6 @@
-import { Router } from './router.ts';
-import { postNote } from './features/post-note.ts';
-import { checkAuth } from './auth.ts';
+import { mkApp } from './app.ts';
 
-const router = new Router();
-
-router.route('POST', '/post-note', postNote);
+const app = mkApp();
 
 Deno.serve(
     {
@@ -12,26 +8,16 @@ Deno.serve(
             console.log(`👻 Johan's API server listening on http://${hostname}:${port}`);
         },
     },
-    async (req) => {
-        const log = (status: number) => {
-            const color = status < 200 || 400 <= status ? 'color:red' : 'color:green';
-            console.log(`%c${status}`, color, `${req.method} ${req.url}`);
-        };
+    log(app.handleRequest)
+);
 
-        const authRes = checkAuth(req);
+function log<T extends Request>(fn: (req: T) => Promise<Response>) {
+    return async (req: T) => {
+        const res = await fn(req);
 
-        if (authRes) {
-            log(authRes.status);
-            return authRes;
-        }
-
-        const match = router.match(req.url, req.method);
-        const res = match
-            ? await match.handler(req)
-            : new Response(`No routes for ${req.method} ${req.url}`, { status: 404 });
-
-        log(res.status);
+        const color = res.status < 200 || 400 <= res.status ? 'color:red' : 'color:green';
+        console.log(`%c${res.status}`, color, `${req.method} ${req.url}`);
 
         return res;
-    },
-);
+    };
+}

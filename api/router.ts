@@ -29,7 +29,17 @@ export class Router {
         });
     }
 
-    match(url: string, method: string): Match | null {
+    run(req: Request) {
+        const match = this.match(req.url, req.method);
+
+        if (match) {
+            return match.handler(req);
+        }
+
+        return new Response('Not found', { status: 404 });
+    }
+
+    private match(url: string, method: string): Match | null {
         for (const route of this.routes) {
             const { pattern, handler, options } = route;
             if (options.method != method) continue; // No match

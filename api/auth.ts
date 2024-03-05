@@ -1,21 +1,48 @@
-const SECRET = Deno.env.get('API_SECRET');
+import { safeEqualStrings } from './crypto.ts';
 
-if (!SECRET) {
-    throw new Error('No API_SECRET env var defined');
+export interface Client {
+    id: string; // unique
+    token: string;
 }
 
-export const checkAuth = (req: Request): Response | void => {
-    const password = req.headers.get('x-password');
+const IOS = {
+    id: 'ios-shortcut',
+    token: 'aaa',
+};
 
-    if (!password) {
-        return new Response('Please provide a password', {
+const MAC = {
+    id: 'mac-shortcut',
+    token: 'bbb',
+};
+
+const CLIENTS: Record<string, Client> = {
+    'ios-shortcut': IOS,
+    'mac-shortcut': MAC,
+};
+
+export const checkAuth = (req: Request): Client => {
+    const clientId = new URL(req.url).searchParams.get('clientId');
+    const token = req.headers.get('authorization');
+
+    if (!clientId || !token) {
+        throw new Response('Missing important credentials', {
             status: 400,
         });
     }
 
-    if (password != SECRET) {
-        return new Response('Incorrect password', {
+    const client = CLIENTS[clientId];
+
+    if (!client) {
+        throw new Response('Bad client', {
+            status: 400,
+        });
+    }
+
+    if (!safeEqualStrings(`API-Token ${client.token}`, token)) {
+        throw new Response('Bad auth token', {
             status: 401,
         });
     }
+
+    return client;
 };

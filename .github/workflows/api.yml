@@ -1,0 +1,27 @@
+name: Test API
+
+on:
+    push:
+        paths:
+            - "api/**/*"
+            - "test/**/*"
+            - ".github/workflows/api.yml"
+
+env:
+    DENO_VERSION: v1.40.3
+
+jobs:
+    test:
+        name: Test API routes
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Deno
+              uses: denoland/setup-deno@v1
+              with:
+                  deno-version: ${{ env.DENO_VERSION }}
+
+            - name: Run deno test
+              run: deno test test/
