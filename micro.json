@@ -13,6 +13,21 @@
     "items": [
         
         {
+            "id": "https://johan.im/micro/20240305024727/",
+            "url": "https://johan.im/micro/20240305024727/",
+            
+            "summary": "This is the final paragraph of Cormac McCarthy’s _The Road_ (no spoiler). It’s the most beautiful paragraph I know of. The weight, the rhythm, the final sentence. Never has a single paragraph done more emotionally to me when I first read it — 15 years old — than a hundred magazine articles on the environmental crisis.",
+            
+            
+            
+            "_location": "My iOS shortcut",
+            
+            
+            "content_html": "<p>This is the final paragraph of Cormac McCarthy’s <em>The Road</em> (no spoiler). It’s the most beautiful paragraph I know of. The weight, the rhythm, the final sentence. Never has a single paragraph done more emotionally to me when I first read it — 15 years old — than a hundred magazine articles on the environmental crisis.</p>\n<blockquote>\n<p>Once there were brook trouts in the streams in the mountains. You could see them standing in the amber current where the white edges of their fins wimpled softly in the flow. They smelled of moss in your hand. Polished and muscular and torsional. On their backs were vermiculate patterns that were maps of the world in its becoming. Maps and mazes. Of a thing which could not be put back. Not be made right again. In the deep glens where they lived all things were older than man and they hummed of mystery.</p>\n</blockquote>",
+            "date_published": "2024-03-05T03:47:27+01:00"
+        },
+        
+        {
             "id": "https://johan.im/micro/20240219203953/",
             "url": "https://johan.im/micro/20240219203953/",
             
@@ -145,21 +160,6 @@
             
             "content_html": "<p>Messing around with the styling and structure here on the website again. I'm so inspired by all the\npersonal sites I stumble on in my feed. But not inspired enough to actually produce as much content\nhere as I would love to 😄</p>\n<p>Been reading a lot about\n<a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Web_components\">Web Components</a> recently. They're\nhaving a sort of renaissance at the moment — not sure why this timing actually — much thanks to them\nbeing a tool in the box when building with progressive enhancement. All PE thought leaders are going\non about the beauty of Web Components and &quot;how you don't need any big JS or Virtual DOM libraries at\nall!!&quot;. I get that for small, self-contained UI components, but for anything non-trivial, you're\nkind of bound to reinvent something inhouse for your app anyway, no? I guess Web Components fill the\nhole where you just want to drop a custom element in a piece of markup and have a Web Component use\nthe element with contained JS and perhaps CSS.</p>\n<p>But the idea of &quot;HTML Web Components&quot; is really neat, in the way it enhances existing markup. Like\nthis:</p>\n<pre><code class=\"language-html\">&lt;convert-currency to=&quot;USD&quot;&gt;10&lt;/convert-currency&gt;\n&lt;script src=&quot;convert-currency.js&quot; type=&quot;module&quot;&gt;&lt;/script&gt;\n</code></pre>\n<pre><code class=\"language-js\">// convert-currency.js\ncustomElements.define(\n    'convert-currency',\n    class extends HTMLElement {\n        connectedCallback() {\n            // use this.querySelector() and other DOM API methods to convert\n            // the text content to the currency from this.getAttribute(&quot;to&quot;).\n        }\n    },\n);\n</code></pre>\n<ul>\n<li>For server rendered markup, <code>&lt;convert-currency&gt;</code> will render just fine, and <code>10</code> with it. Browsers\nwill just ignore it when parsing the HTML.</li>\n<li>When parsing is done and JS kicks in, we'll &quot;enrich&quot; our custom element with logic.</li>\n</ul>\n<p>My takeaway is that custom elements and Web Components give us a declarative way to encapsulate\nlogic (duh, &quot;components&quot; it's in the name), which creates whole new patterns in how to approach\ncomponent style architecture but <em>without</em> any 3rd party JS component library.</p>",
             "date_published": "2023-11-29T21:10:49+01:00"
-        },
-        
-        {
-            "id": "https://johan.im/micro/202311180909/",
-            "url": "https://johan.im/micro/202311180909/",
-            
-            
-            "tags": ["music"],
-            
-            
-            "_location": "My kitchen table in Stockholm",
-            
-            
-            "content_html": "<p>The\n<a href=\"https://open.spotify.com/album/34ZmHgTZ7OcRCsrTqbHpSQ?si=8f6JTkP9RjSHBRZIL8Ioog\">latest Kurt Vile album</a>\nis so very good and Kurt Vile-y. I love how consistent he is and how he's stuck to his style for so\nlong, but still finds new variations to it.</p>",
-            "date_published": "2023-11-18T10:09:38+01:00"
         }
         
     ]
