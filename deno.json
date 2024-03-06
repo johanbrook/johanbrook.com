@@ -5,7 +5,8 @@
         "yaml": "https://deno.land/std@0.210.0/yaml/mod.ts",
         "front_matter/": "https://deno.land/std@0.210.0/front_matter/",
         "datetime": "https://deno.land/std@0.210.0/datetime/mod.ts",
-        "path": "https://deno.land/std@0.211.0/path/mod.ts"
+        "path": "https://deno.land/std@0.211.0/path/mod.ts",
+        "crypto/": "https://deno.land/std@0.218.2/crypto/"
     },
     "tasks": {
         "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable-temporal -A -",
