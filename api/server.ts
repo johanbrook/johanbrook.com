@@ -8,16 +8,16 @@ Deno.serve(
             console.log(`👻 Johan's API server listening on http://${hostname}:${port}`);
         },
     },
-    log(app.handleRequest)
+    async (req, { remoteAddr }) => {
+        const res = await app.run(req);
+        log(req, res, remoteAddr.hostname);
+        return res;
+    }
 );
 
-function log<T extends Request>(fn: (req: T) => Promise<Response>) {
-    return async (req: T) => {
-        const res = await fn(req);
+const log = (req: Request, res: Response, ip: string) => {
+    const color = res.status < 200 || 400 <= res.status ? 'color:red' : 'color:green';
+    console.log(`%c${res.status}`, color, `${req.method} ${req.url} ${ip}`);
 
-        const color = res.status < 200 || 400 <= res.status ? 'color:red' : 'color:green';
-        console.log(`%c${res.status}`, color, `${req.method} ${req.url}`);
-
-        return res;
-    };
-}
+    return res;
+};

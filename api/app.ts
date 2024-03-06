@@ -1,35 +1,49 @@
-import { Router } from './router.ts';
+import { Router, RequestHandler } from './router.ts';
 import { postNote } from './features/post-note.ts';
 import { checkAuth } from './auth.ts';
+import { Connector } from './connectors/index.ts';
+import { createGithubConnector } from './connectors/github.ts';
+import { getConfig, isTest } from './config.ts';
+import { ProblemError } from './problem.ts';
 
-const router = new Router();
-
-type RequestHandler = (req: Request) => Promise<Response>;
-
-interface App {
-    handleRequest: RequestHandler;
+export interface Connectors {
+    github: Connector;
 }
 
-export function mkApp(): App {
-    router.route('POST', '/post-note', postNote);
+export function mkApp() {
+    const router = new Router();
 
-    return { handleRequest: (req) => handleRequest(req).catch(errorHandler) };
+    const connectors: Connectors = {
+        github: createGithubConnector(getConfig('GITHUB_TOKEN', ''), 'johanbrook/johanbrook.com'),
+    };
+
+    router.route('POST', '/post-note', errorHandler(authHandler(postNote.bind(null, connectors))));
+
+    return router;
 }
 
-async function handleRequest(req: Request) {
-    const client = checkAuth(req);
+const authHandler = (fn: RequestHandler) => (req: Request) => {
+    const client = checkAuth(req); // throws on error
+    console.log('Client %s authed', client.id);
+    return fn(req);
+};
 
-    console.log('Client authed: %s', client.id);
+const errorHandler =
+    (fn: RequestHandler): RequestHandler =>
+    async (req) => {
+        try {
+            return await fn(req);
+        } catch (err) {
+            if (!isTest()) {
+                console.error(`Error in ${req.url}:`, err);
+            }
 
-    return await router.run(req);
-}
+            if (err instanceof Response) {
+                return err;
+            }
 
-function errorHandler(err: unknown) {
-    if (err instanceof Response) {
-        return err;
-    }
-
-    return new Response((err as Error).message ?? 'Something went wrong', {
-        status: (err as any).status || 500,
-    });
-}
+            return new Response((err as Error).message ?? 'Something went wrong', {
+                status: err instanceof ProblemError ? err.status : 500,
+            });
+        }
+    };

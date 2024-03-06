@@ -1,17 +1,17 @@
 interface Route {
     pattern: URLPattern;
-    handler: Handler;
+    handler: RequestHandler;
     options: {
         method: Method;
     };
 }
 
-export type Handler = (req: Request) => Promise<Response> | Response;
+export type RequestHandler = (req: Request) => Promise<Response> | Response;
 
 interface Match {
     params: Record<string, string | undefined>;
     query: URLSearchParams;
-    handler: Handler;
+    handler: RequestHandler;
 }
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'ALL';
@@ -19,7 +19,7 @@ type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'ALL';
 export class Router {
     private routes: Array<Route> = [];
 
-    route(method: Method, pathname: string, handler: Handler) {
+    route(method: Method, pathname: string, handler: RequestHandler) {
         this.routes.push({
             handler,
             pattern: new URLPattern({ pathname }),

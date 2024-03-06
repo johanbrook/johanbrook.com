@@ -24,4 +24,6 @@ jobs:
                   deno-version: ${{ env.DENO_VERSION }}
 
             - name: Run deno test
-              run: deno test test/
+              run: deno test --allow-env test/
+              env:
+                  TEST: '1'
