@@ -1,30 +1,27 @@
-import { AppHandler, Meta } from './index.ts';
+import { Meta } from './index.ts';
 import { formatDate } from '../date.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
 import { join } from 'path';
 import { addFrontMatter } from './front-matter.ts';
+import { Connectors } from '../connectors/index.ts';
 
 interface NoteMeta extends Meta {}
 
-export const postNote: AppHandler = async (connectors, req) => {
+export const postNote = async (connectors: Connectors, json: any) => {
     const { github } = connectors;
 
-    const { contents, ...meta } = await parseBody(req);
+    const { contents, ...meta } = parseBody(json); // throws on validation errors
     const fileDate = formatDate(meta.date, true);
     const fileName = `${fileDate}.md`;
 
     await github.putFile(addFrontMatter(contents, meta), join('src/notes', fileName));
-
-    return new Response('Note posted', { status: 200 });
 };
 
 type Body = NoteMeta & {
     contents: string;
 };
 
-const parseBody = async (req: Request): Promise<Body> => {
-    const json = await req.json();
-
+const parseBody = (json: any): Body => {
     if (typeof json.contents != 'string') {
         throw new ProblemError(
             ProblemKind.BodyParseError,

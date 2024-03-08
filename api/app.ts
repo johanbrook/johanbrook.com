@@ -6,7 +6,15 @@ import { Connectors } from './connectors/index.ts';
 export function createApp(connectors: Connectors) {
     const router = new Router();
 
-    router.route('POST', '/post-note', authHandler(postNote.bind(null, connectors)));
+    router.route(
+        'POST',
+        '/post-note',
+        authHandler(async (req) => {
+            await postNote(connectors, await req.json());
+
+            return new Response('Note posted', { status: 200 });
+        }),
+    );
 
     return router;
 }
