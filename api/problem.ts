@@ -1,6 +1,8 @@
 export enum ProblemKind {
     BodyParseError = 'BodyParseError',
     GitHubError = 'GitHubError',
+    BadInput = 'BadInput',
+    BadAuth = 'BadAuth',
 }
 
 export class ProblemError extends Error {
@@ -21,6 +23,10 @@ export class ProblemError extends Error {
         switch (this.#kind) {
             case ProblemKind.BodyParseError:
                 return 400;
+            case ProblemKind.BadInput:
+                return 400;
+            case ProblemKind.BadAuth:
+                return 401;
             case ProblemKind.GitHubError:
                 return 500;
             default:

@@ -1,3 +1,5 @@
+import { isTest } from './config.ts';
+
 interface Route {
     pattern: URLPattern;
     handler: RequestHandler;
@@ -33,7 +35,7 @@ export class Router {
         const match = this.match(req.url, req.method);
 
         if (match) {
-            return match.handler(req);
+            return Router.errorHandler(match.handler)(req);
         }
 
         return new Response('Not found', { status: 404 });
@@ -56,5 +58,25 @@ export class Router {
         }
 
         return null;
+    }
+
+    static errorHandler(fn: RequestHandler): RequestHandler {
+        return async (req) => {
+            try {
+                return await fn(req);
+            } catch (err) {
+                if (!isTest()) {
+                    console.error(`Error in ${req.url}:`, err);
+                }
+
+                if (err instanceof Response) {
+                    return err;
+                }
+
+                return new Response((err as Error).message ?? 'Something went wrong', {
+                    status: 'status' in err ? err.status : 500,
+                });
+            }
+        };
     }
 }

@@ -1,4 +1,6 @@
 import { safeEqualStrings } from './crypto.ts';
+import { ProblemKind } from './problem.ts';
+import { ProblemError } from './problem.ts';
 
 export interface Client {
     id: string; // unique
@@ -25,23 +27,17 @@ export const checkAuth = (req: Request): Client => {
     const token = req.headers.get('authorization');
 
     if (!clientId || !token) {
-        throw new Response('Missing important credentials', {
-            status: 400,
-        });
+        throw new ProblemError(ProblemKind.BadInput, 'Missing important credentials');
     }
 
     const client = CLIENTS[clientId];
 
     if (!client) {
-        throw new Response('Bad client', {
-            status: 400,
-        });
+        throw new ProblemError(ProblemKind.BadInput, 'Bad client');
     }
 
     if (!safeEqualStrings(`API-Token ${client.token}`, token)) {
-        throw new Response('Bad auth token', {
-            status: 401,
-        });
+        throw new ProblemError(ProblemKind.BadAuth, 'Bad auth token');
     }
 
     return client;
