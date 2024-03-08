@@ -1,6 +1,4 @@
 import { Connector } from './index.ts';
-import { join } from 'path';
-import { formatDate } from '../date.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
 import * as Yaml from 'yaml';
 
@@ -16,26 +14,16 @@ export const createGithubConnector = (token: string, repo: string): Connector =>
     }
 
     return {
-        putFile: async <M extends Record<string, unknown>>(
-            date: Date,
-            contents: string,
-            path: string,
-            fileName: string | null,
-            meta: M
-        ) => {
-            const fileDate = formatDate(date, true);
-
+        putFile: async <M extends Record<string, unknown>>(contents: string, filePath: string, meta: M) => {
             const content = `---
     ${Yaml.stringify(meta)}
     ---
     ${contents}\n
     `;
 
-            path = join(path, fileName ?? `${fileDate}.md`);
-
             const res = await githubRequest(
                 'PUT',
-                `/repos/${repo}/contents/${path}`,
+                `/repos/${repo}/contents/${filePath}`,
                 {
                     message: `Automated via Johan's API`,
                     content: base64(content),

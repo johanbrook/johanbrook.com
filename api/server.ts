@@ -1,6 +1,13 @@
-import { mkApp } from './app.ts';
+import { createApp } from './app.ts';
+import { createGithubConnector } from './connectors/github.ts';
+import { getConfig } from './config.ts';
+import { Connectors } from './connectors/index.ts';
 
-const app = mkApp();
+const connectors: Connectors = {
+    github: createGithubConnector(getConfig('GITHUB_TOKEN', ''), 'johanbrook/johanbrook.com'),
+};
+
+const app = createApp(connectors);
 
 Deno.serve(
     {

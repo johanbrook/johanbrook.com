@@ -1,4 +1,4 @@
-import { Connectors } from '../app.ts';
+import { Connectors } from '../connectors/index.ts';
 
 export type AppHandler = (connectors: Connectors, req: Request) => Promise<Response> | Response;
 

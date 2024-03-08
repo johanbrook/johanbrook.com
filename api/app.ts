@@ -1,21 +1,12 @@
 import { Router, RequestHandler } from './router.ts';
 import { postNote } from './features/post-note.ts';
 import { checkAuth } from './auth.ts';
-import { Connector } from './connectors/index.ts';
-import { createGithubConnector } from './connectors/github.ts';
-import { getConfig, isTest } from './config.ts';
+import { isTest } from './config.ts';
 import { ProblemError } from './problem.ts';
+import { Connectors } from './connectors/index.ts';
 
-export interface Connectors {
-    github: Connector;
-}
-
-export function mkApp() {
+export function createApp(connectors: Connectors) {
     const router = new Router();
-
-    const connectors: Connectors = {
-        github: createGithubConnector(getConfig('GITHUB_TOKEN', ''), 'johanbrook/johanbrook.com'),
-    };
 
     router.route('POST', '/post-note', errorHandler(authHandler(postNote.bind(null, connectors))));
 
