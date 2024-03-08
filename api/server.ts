@@ -19,7 +19,7 @@ Deno.serve(
         const res = await app.run(req);
         log(req, res, remoteAddr.hostname);
         return res;
-    }
+    },
 );
 
 const log = (req: Request, res: Response, ip: string) => {

@@ -1,5 +1,5 @@
-import { Connectors, Connector } from '../api/connectors/index.ts';
-import { spy, Spy } from 'test_mock';
+import { Connector, Connectors } from '../api/connectors/index.ts';
+import { Spy, spy } from 'test_mock';
 
 interface Mock {
     connectors: { [K in keyof Connectors]: SpyConnector<Connectors[K]> };

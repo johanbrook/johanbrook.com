@@ -24,9 +24,12 @@ type ParsedBody = NoteMeta & {
 const parseBody = async (req: Request): Promise<ParsedBody> => {
     const json = await req.json();
 
-    if (typeof json.contents != 'string')
+    if (typeof json.contents != 'string') {
         throw new ProblemError(ProblemKind.BodyParseError, `"contents" must be a string`);
-    if (typeof json.date != 'string') throw new ProblemError(ProblemKind.BodyParseError, `"date" must be a string`);
+    }
+    if (typeof json.date != 'string') {
+        throw new ProblemError(ProblemKind.BodyParseError, `"date" must be a string`);
+    }
 
     return {
         contents: json.contents,

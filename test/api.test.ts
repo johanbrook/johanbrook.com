@@ -1,5 +1,5 @@
 import { assertEquals, assertMatch } from 'test_assert';
-import { assertSpyCalls, assertSpyCall } from 'test_mock';
+import { assertSpyCall, assertSpyCalls } from 'test_mock';
 import { createApp } from '../api/app.ts';
 import { mock } from './_mock.ts';
 
@@ -11,7 +11,7 @@ Deno.test('API /post-note fails on no auth header', async () => {
     const res = await router.run(
         new Request(new URL('/post-note', BASE_URL), {
             method: 'POST',
-        })
+        }),
     );
 
     assertEquals(res.status, 400);
@@ -29,7 +29,7 @@ Deno.test('API /post-note fails on bad auth header', async () => {
             headers: {
                 Authorization: 'Bearer ccc',
             },
-        })
+        }),
     );
 
     assertEquals(res.status, 401);
@@ -47,7 +47,7 @@ Deno.test('API /post-note fails on bad clientId param', async () => {
             headers: {
                 Authorization: 'API-Token aaa',
             },
-        })
+        }),
     );
 
     assertEquals(res.status, 400);
@@ -71,7 +71,7 @@ Deno.test('API /post-note ok', async () => {
                 contents: 'foo',
                 date: date.toISOString(),
             }),
-        })
+        }),
     );
 
     assertEquals(res.status, 200);
@@ -101,7 +101,7 @@ Deno.test('API /post-note fails to validate body', async () => {
                 // contents: 'foo',
                 date: new Date().toISOString(),
             }),
-        })
+        }),
     );
 
     assertEquals(res.status, 400);

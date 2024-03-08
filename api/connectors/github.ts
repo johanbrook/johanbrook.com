@@ -14,7 +14,11 @@ export const createGithubConnector = (token: string, repo: string): Connector =>
     }
 
     return {
-        putFile: async <M extends Record<string, unknown>>(contents: string, filePath: string, meta: M) => {
+        putFile: async <M extends Record<string, unknown>>(
+            contents: string,
+            filePath: string,
+            meta: M,
+        ) => {
             const content = `---
     ${Yaml.stringify(meta)}
     ---
@@ -28,11 +32,14 @@ export const createGithubConnector = (token: string, repo: string): Connector =>
                     message: `Automated via Johan's API`,
                     content: base64(content),
                 },
-                token
+                token,
             );
 
             if (!res.content?.name || !res.content?.html_url) {
-                throw new ProblemError(ProblemKind.GitHubError, 'Unexpected response when creating a note');
+                throw new ProblemError(
+                    ProblemKind.GitHubError,
+                    'Unexpected response when creating a note',
+                );
             }
 
             const { html_url } = res.content;
@@ -64,7 +71,8 @@ const githubRequest = async (method: string, resource: string, payload: Payload,
 
     if (!res.ok) {
         throw new Error(
-            `GitHub request failed: ${method} ${res.status} ${resource}: ${res.statusText} ${await res.text()}`
+            `GitHub request failed: ${method} ${res.status} ${resource}: ${res.statusText} ${await res
+                .text()}`,
         );
     }
 
@@ -76,4 +84,7 @@ const githubRequest = async (method: string, resource: string, payload: Payload,
 // From https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
 // To not mess up utf-8 chars in the string.
 const base64 = (str: string) =>
-    btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_match, p1) => String.fromCharCode(parseInt(p1, 16))));
+    btoa(
+        encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_match, p1) =>
+            String.fromCharCode(parseInt(p1, 16))),
+    );
