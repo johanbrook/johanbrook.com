@@ -70,6 +70,7 @@ Deno.test('API /post-note ok', async () => {
             body: JSON.stringify({
                 contents: 'foo',
                 date: date.toISOString(),
+                timezone: 'Asia/Bangkok',
             }),
         }),
     );
@@ -78,16 +79,13 @@ Deno.test('API /post-note ok', async () => {
     assertSpyCalls(connectors.github.putFile, 1);
     assertSpyCall(connectors.github.putFile, 0, {
         args: [
-            'foo',
+            '---\ndate: 2024-03-07T08:27:35.438Z\ntimezone: Asia/Bangkok\n---\nfoo\n\n',
             'src/notes/2024-03-07-08-27-35.md',
-            {
-                date,
-            },
         ],
     });
 });
 
-Deno.test('API /post-note fails to validate body', async () => {
+Deno.test('API /post-note fails to validate body: "contents"', async () => {
     const { connectors } = mock();
     const router = createApp(connectors);
     const res = await router.run(
@@ -107,5 +105,29 @@ Deno.test('API /post-note fails to validate body', async () => {
     assertEquals(res.status, 400);
     const body = await res.text();
     assertMatch(body, /\"contents\" must be a string/);
+    assertSpyCalls(connectors.github.putFile, 0);
+});
+
+Deno.test('API /post-note fails to validate body: "timezone"', async () => {
+    const { connectors } = mock();
+    const router = createApp(connectors);
+    const res = await router.run(
+        new Request(new URL('/post-note?clientId=ios-shortcut', BASE_URL), {
+            method: 'POST',
+            headers: {
+                Authorization: 'API-Token aaa',
+                ContentType: 'application/json',
+            },
+            body: JSON.stringify({
+                contents: 'foo',
+                date: new Date().toISOString(),
+                timezone: 'Random/Zone',
+            }),
+        }),
+    );
+
+    assertEquals(res.status, 400);
+    const body = await res.text();
+    assertMatch(body, /\"Random\/Zone\" isn't a correct IANA timezone/);
     assertSpyCalls(connectors.github.putFile, 0);
 });

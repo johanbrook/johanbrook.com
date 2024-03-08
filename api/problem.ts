@@ -21,8 +21,8 @@ export class ProblemError extends Error {
 
     get status(): number {
         switch (this.#kind) {
+            /* falls through */
             case ProblemKind.BodyParseError:
-                return 400;
             case ProblemKind.BadInput:
                 return 400;
             case ProblemKind.BadAuth:

@@ -2,7 +2,7 @@
     "imports": {
         "lume/": "https://deno.land/x/lume@v2.0.3/",
         "html_entities": "https://deno.land/x/html_entities@v1.0/mod.js",
-        "yaml": "https://deno.land/std@0.210.0/yaml/mod.ts",
+        "yaml": "https://deno.land/std@0.219.0/yaml/mod.ts",
         "front_matter/": "https://deno.land/std@0.210.0/front_matter/",
         "datetime": "https://deno.land/std@0.210.0/datetime/mod.ts",
         "path": "https://deno.land/std@0.211.0/path/mod.ts",
@@ -22,7 +22,7 @@
     },
     "lint": {
         "rules": {
-            "exclude": ["no-explicit-any"]
+            "exclude": ["no-explicit-any", "no-empty-interface"]
         }
     },
     "fmt": {

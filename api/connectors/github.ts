@@ -1,36 +1,28 @@
 import { Connector } from './index.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
-import * as Yaml from 'yaml';
 
 const API_ROOT = 'https://api.github.com';
 
 export const createGithubConnector = (token: string, repo: string): Connector => {
     if (!token) {
         return {
-            putFile: async () => {
-                return 'MOCK';
+            putFile: () => {
+                return Promise.resolve('MOCK');
             },
         };
     }
 
     return {
-        putFile: async <M extends Record<string, unknown>>(
+        putFile: async (
             contents: string,
             filePath: string,
-            meta: M,
         ) => {
-            const content = `---
-    ${Yaml.stringify(meta)}
-    ---
-    ${contents}\n
-    `;
-
             const res = await githubRequest(
                 'PUT',
                 `/repos/${repo}/contents/${filePath}`,
                 {
                     message: `Automated via Johan's API`,
-                    content: base64(content),
+                    content: base64(contents),
                 },
                 token,
             );

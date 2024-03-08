@@ -12,7 +12,6 @@ export function createApp(connectors: Connectors) {
 }
 
 const authHandler = (fn: RequestHandler) => (req: Request) => {
-    const client = checkAuth(req); // throws on error
-    console.log('Client %s authed', client.id);
+    checkAuth(req); // throws on error
     return fn(req);
 };

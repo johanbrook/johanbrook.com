@@ -1,8 +1,7 @@
 export interface Connector {
-    putFile<M extends Record<string, unknown>>(
+    putFile(
         contents: string,
         filePath: string,
-        meta: M,
     ): Promise<string>;
 }
 
