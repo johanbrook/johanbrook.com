@@ -45,6 +45,16 @@ const parseBody = async (req: Request): Promise<Body> => {
         );
     }
 
+    if (
+        json.tags != null &&
+        (!Array.isArray(json.tags) || !(json.tags as unknown[]).every((v) => typeof v == 'string'))
+    ) {
+        throw new ProblemError(
+            ProblemKind.BodyParseError,
+            `"tags" must be a string array`,
+        );
+    }
+
     return {
         contents: json.contents,
         date: new Date(json.date),

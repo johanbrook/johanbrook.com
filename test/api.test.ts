@@ -71,6 +71,7 @@ Deno.test('API /post-note ok', async () => {
                 contents: 'foo',
                 date: date.toISOString(),
                 timezone: 'Asia/Bangkok',
+                tags: ['bar', 'baz'],
             }),
         }),
     );
@@ -79,7 +80,7 @@ Deno.test('API /post-note ok', async () => {
     assertSpyCalls(connectors.github.putFile, 1);
     assertSpyCall(connectors.github.putFile, 0, {
         args: [
-            '---\ndate: 2024-03-07T08:27:35.438Z\ntimezone: Asia/Bangkok\n---\nfoo\n\n',
+            '---\ndate: 2024-03-07T08:27:35.438Z\ntimezone: Asia/Bangkok\ntags:\n  - bar\n  - baz\n---\nfoo\n\n',
             'src/notes/2024-03-07-08-27-35.md',
         ],
     });
@@ -105,6 +106,30 @@ Deno.test('API /post-note fails to validate body: "contents"', async () => {
     assertEquals(res.status, 400);
     const body = await res.text();
     assertMatch(body, /\"contents\" must be a string/);
+    assertSpyCalls(connectors.github.putFile, 0);
+});
+
+Deno.test('API /post-note fails to validate body: "tags"', async () => {
+    const { connectors } = mock();
+    const router = createApp(connectors);
+    const res = await router.run(
+        new Request(new URL('/post-note?clientId=ios-shortcut', BASE_URL), {
+            method: 'POST',
+            headers: {
+                Authorization: 'API-Token aaa',
+                ContentType: 'application/json',
+            },
+            body: JSON.stringify({
+                contents: 'foo',
+                date: new Date().toISOString(),
+                tags: 'lol',
+            }),
+        }),
+    );
+
+    assertEquals(res.status, 400);
+    const body = await res.text();
+    assertMatch(body, /\"tags\" must be a string array/);
     assertSpyCalls(connectors.github.putFile, 0);
 });
 
