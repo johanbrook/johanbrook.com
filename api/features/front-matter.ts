@@ -1,4 +1,4 @@
-import * as Yaml from 'yaml';
+import * as Yaml from 'std/yaml/mod.ts';
 
 export const addFrontMatter = <T extends Record<string, unknown>>(
     contents: string,

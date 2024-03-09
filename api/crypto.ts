@@ -1,5 +1,5 @@
 import nodeCrypto from 'node:crypto';
-import { timingSafeEqual } from 'crypto/timing_safe_equal.ts';
+import { timingSafeEqual } from 'std/crypto/timing_safe_equal.ts';
 
 export const generateAccessToken = () => {
     return nodeCrypto.randomBytes(32).toString('hex');

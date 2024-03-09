@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'std/path/mod.ts';
 import type { Book } from '../books.page.ts';
 
 // This file controls permalink schemes across various resources

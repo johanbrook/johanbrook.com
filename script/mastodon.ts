@@ -3,10 +3,10 @@
 // - MASTODON_ACCESS_TOKEN
 // - DRY (optional)
 
-import { parse } from 'yaml';
-import { extract } from 'front_matter/any.ts';
+import { parse } from 'std/yaml/mod.ts';
+import { extract } from 'std/front_matter/any.ts';
 import { notePermalinkOf } from '../src/_includes/permalinks.ts';
-import * as path from 'path';
+import * as path from 'std/path/mod.ts';
 
 const DRY_RUN = !!Deno.env.get('DRY');
 

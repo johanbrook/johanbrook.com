@@ -1,5 +1,5 @@
-import { assertEquals, assertMatch } from 'test_assert';
-import { assertSpyCall, assertSpyCalls } from 'test_mock';
+import { assertEquals, assertMatch } from 'std/assert/mod.ts';
+import { assertSpyCall, assertSpyCalls } from 'std/testing/mock.ts';
 import { createApp } from '../api/app.ts';
 import { mock } from './_mock.ts';
 

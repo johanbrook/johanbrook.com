@@ -1,7 +1,7 @@
 import { Meta } from './index.ts';
 import { formatDate } from '../date.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
-import { join } from 'path';
+import { join } from 'std/path/mod.ts';
 import { addFrontMatter } from './front-matter.ts';
 import { Services } from '../services/index.ts';
 
