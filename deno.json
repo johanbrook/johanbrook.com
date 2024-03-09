@@ -7,7 +7,8 @@
     "tasks": {
         "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable-temporal -A -",
         "build": "deno task lume",
-        "serve": "deno task build -s"
+        "serve": "deno task build -s",
+        "test": "TEST=1 deno test --allow-env --unstable-temporal"
     },
     "compilerOptions": {
         "lib": ["deno.ns", "deno.unstable", "dom", "dom.iterable"],
