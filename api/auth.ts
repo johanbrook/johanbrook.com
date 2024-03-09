@@ -1,10 +1,9 @@
-import { safeEqualStrings } from './crypto.ts';
 import { ProblemKind } from './problem.ts';
 import { ProblemError } from './problem.ts';
 
 export interface Client {
     id: string; // unique
-    token: string;
+    token: string; // unique
 }
 
 const IOS = {
@@ -17,26 +16,23 @@ const MAC = {
     token: 'bbb',
 };
 
-const CLIENTS: Record<string, Client> = {
-    'ios-shortcut': IOS,
-    'mac-shortcut': MAC,
+type Token = string;
+
+const CLIENTS: Record<Token, Client> = {
+    'aaa': IOS,
+    'bbb': MAC,
 };
 
 export const checkAuth = (req: Request): Client => {
-    const clientId = new URL(req.url).searchParams.get('clientId');
     const token = req.headers.get('authorization');
 
-    if (!clientId || !token) {
+    if (!token) {
         throw new ProblemError(ProblemKind.BadInput, 'Missing important credentials');
     }
 
-    const client = CLIENTS[clientId];
+    const client = CLIENTS[token.replace('API-Token', '').trim()];
 
     if (!client) {
-        throw new ProblemError(ProblemKind.BadInput, 'Bad client');
-    }
-
-    if (!safeEqualStrings(`API-Token ${client.token}`, token)) {
         throw new ProblemError(ProblemKind.BadAuth, 'Bad auth token');
     }
 
