@@ -8,7 +8,7 @@ interface Route {
     };
 }
 
-export type RequestHandler = (req: Request) => Promise<Response> | Response;
+type RequestHandler = (req: Request) => Promise<Response> | Response;
 
 interface Match {
     params: Record<string, string | undefined>;

@@ -3,11 +3,11 @@ import { createGithub } from './services/github.ts';
 import { getConfig } from './config.ts';
 import { Services } from './services/index.ts';
 
-const connectors: Services = {
+const services: Services = {
     github: createGithub(getConfig('GITHUB_TOKEN', ''), 'johanbrook/johanbrook.com'),
 };
 
-const app = createApp(connectors);
+const app = createApp(services);
 
 Deno.serve(
     {

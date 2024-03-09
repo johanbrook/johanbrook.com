@@ -1,7 +1,4 @@
-import { Services } from '../services/index.ts';
-
-export type AppHandler = (connectors: Services, req: Request) => Promise<Response> | Response;
-
+/** Common fields for pages. */
 export interface Meta {
     [index: string]: unknown;
     date: Date;

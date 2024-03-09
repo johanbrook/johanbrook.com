@@ -1,22 +1,22 @@
-import { FileHost, Services } from '../api/services/index.ts';
+import { Services } from '../api/services/index.ts';
 import { Spy, spy } from 'test_mock';
 
 interface Mock {
-    connectors: { [K in keyof Services]: SpyConnector<Services[K]> };
+    services: { [K in keyof Services]: WithSpy<Services[K]> };
 }
 
-type SpyConnector<C extends FileHost> = { [K in keyof C]: Spy };
+type WithSpy<C> = { [K in keyof C]: Spy };
 
 export const mock = (): Mock => {
-    const mockGitHubConnector = {
+    const mockFileHost = {
         putFile: spy(() => Promise.resolve('foo')),
     };
 
-    const connectors = {
-        github: mockGitHubConnector,
+    const services = {
+        github: mockFileHost,
     };
 
     return {
-        connectors,
+        services,
     };
 };
