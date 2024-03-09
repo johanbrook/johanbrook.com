@@ -10,15 +10,16 @@ interface NoteMeta extends Meta {}
 export const postNote = async (connectors: Services, json: any) => {
     const { github } = connectors;
 
-    const { contents, ...meta } = parseBody(json); // throws on validation errors
+    const { contents, meta } = parseBody(json); // throws on validation errors
     const fileDate = formatDate(meta.date, true);
     const fileName = `${fileDate}.md`;
 
     await github.putFile(addFrontMatter(contents, meta), join('src/notes', fileName));
 };
 
-type Body = NoteMeta & {
+type Body = {
     contents: string;
+    meta: NoteMeta;
 };
 
 const parseBody = (json: any): Body => {
@@ -54,10 +55,12 @@ const parseBody = (json: any): Body => {
 
     return {
         contents: json.contents,
-        date: new Date(json.date),
-        timezone: json.timezone,
-        location: json.location,
-        tags: json.tags,
+        meta: {
+            date: new Date(json.date),
+            timezone: json.timezone,
+            location: json.location,
+            tags: json.tags,
+        },
     };
 };
 
