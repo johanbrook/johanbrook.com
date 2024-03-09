@@ -1,6 +1,6 @@
-import { Connectors } from '../connectors/index.ts';
+import { Services } from '../services/index.ts';
 
-export type AppHandler = (connectors: Connectors, req: Request) => Promise<Response> | Response;
+export type AppHandler = (connectors: Services, req: Request) => Promise<Response> | Response;
 
 export interface Meta {
     [index: string]: unknown;

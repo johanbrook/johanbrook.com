@@ -1,10 +1,10 @@
 import { createApp } from './app.ts';
-import { createGithubConnector } from './connectors/github.ts';
+import { createGithub } from './services/github.ts';
 import { getConfig } from './config.ts';
-import { Connectors } from './connectors/index.ts';
+import { Services } from './services/index.ts';
 
-const connectors: Connectors = {
-    github: createGithubConnector(getConfig('GITHUB_TOKEN', ''), 'johanbrook/johanbrook.com'),
+const connectors: Services = {
+    github: createGithub(getConfig('GITHUB_TOKEN', ''), 'johanbrook/johanbrook.com'),
 };
 
 const app = createApp(connectors);

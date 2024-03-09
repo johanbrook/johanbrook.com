@@ -3,11 +3,11 @@ import { formatDate } from '../date.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
 import { join } from 'path';
 import { addFrontMatter } from './front-matter.ts';
-import { Connectors } from '../connectors/index.ts';
+import { Services } from '../services/index.ts';
 
 interface NoteMeta extends Meta {}
 
-export const postNote = async (connectors: Connectors, json: any) => {
+export const postNote = async (connectors: Services, json: any) => {
     const { github } = connectors;
 
     const { contents, ...meta } = parseBody(json); // throws on validation errors

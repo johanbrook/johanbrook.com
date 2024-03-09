@@ -1,10 +1,10 @@
 import { Router } from './router.ts';
 import { postNote } from './features/post-note.ts';
 import { checkAuth } from './auth.ts';
-import { Connectors } from './connectors/index.ts';
+import { Services } from './services/index.ts';
 import { pipe } from './pipe.ts';
 
-export function createApp(connectors: Connectors) {
+export function createApp(connectors: Services) {
     const router = new Router();
 
     router.route(

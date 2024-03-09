@@ -1,9 +1,9 @@
-import { Connector } from './index.ts';
+import { FileHost } from './index.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
 
 const API_ROOT = 'https://api.github.com';
 
-export const createGithubConnector = (token: string, repo: string): Connector => {
+export const createGithub = (token: string, repo: string): FileHost => {
     if (!token) {
         return {
             putFile: () => {
