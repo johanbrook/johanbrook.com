@@ -1,8 +1,8 @@
 import { Meta } from './index.ts';
-import { formatDate } from '../date.ts';
+import { formatDate, isIANATimezone } from '../date.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
 import { join } from 'std/path/mod.ts';
-import { addFrontMatter } from './front-matter.ts';
+import * as Yaml from 'std/yaml/mod.ts';
 import { Services } from '../services/index.ts';
 
 interface NoteMeta extends Meta {}
@@ -64,10 +64,21 @@ const parseBody = (json: any): Body => {
     };
 };
 
-const isIANATimezone = (str: string): boolean => {
-    try {
-        return !!Temporal.TimeZone.from(str);
-    } catch {
-        return false;
+const addFrontMatter = <T extends Record<string, unknown>>(
+    contents: string,
+    fm: T,
+): string => {
+    const copy = { ...fm };
+    // YAML doesn't like undefined
+    for (const k of Object.keys(copy)) {
+        if (typeof copy[k] == 'undefined') {
+            delete copy[k];
+        }
     }
+
+    return `---
+${Yaml.stringify(copy).trim()}
+---
+${contents}\n
+`;
 };

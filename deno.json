@@ -2,13 +2,14 @@
     "imports": {
         "std/": "https://deno.land/std@0.219.0/",
         "lume/": "https://deno.land/x/lume@v2.0.3/",
-        "html_entities": "https://deno.land/x/html_entities@v1.0/mod.js"
+        "html_entities": "https://deno.land/x/html_entities@v1.0/mod.js",
+        "slug": "https://deno.land/x/slug@v1.1.0/mod.ts"
     },
     "tasks": {
         "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable-temporal -A -",
         "build": "deno task lume",
         "serve": "deno task build -s",
-        "test": "TEST=1 deno test --allow-env --unstable-temporal"
+        "test": "deno test --allow-env --unstable-temporal --location https://johan.im"
     },
     "compilerOptions": {
         "lib": ["deno.ns", "deno.unstable", "dom", "dom.iterable"],

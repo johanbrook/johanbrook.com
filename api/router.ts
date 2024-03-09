@@ -1,4 +1,4 @@
-import { isTest } from './config.ts';
+import { isDebug } from './config.ts';
 
 interface Route {
     pattern: URLPattern;
@@ -8,10 +8,23 @@ interface Route {
     };
 }
 
-type RequestHandler = (req: Request) => Promise<Response> | Response;
+type RequestHandler = (req: RouterRequest) => Promise<Response> | Response;
+
+type Params = Record<string, string | undefined>;
+
+export class RouterRequest extends Request {
+    params: Params;
+    query: URLSearchParams;
+
+    constructor(req: Request, params: Params, query: URLSearchParams) {
+        super(req);
+        this.params = params;
+        this.query = query;
+    }
+}
 
 interface Match {
-    params: Record<string, string | undefined>;
+    params: Params;
     query: URLSearchParams;
     handler: RequestHandler;
 }
@@ -21,7 +34,7 @@ type Method = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'OPTIONS' | 'HEAD' | 'ALL';
 export class Router {
     private routes: Array<Route> = [];
 
-    route(method: Method, pathname: string, handler: RequestHandler) {
+    route(method: Method, pathname: `/${string}`, handler: RequestHandler) {
         this.routes.push({
             handler,
             pattern: new URLPattern({ pathname }),
@@ -35,7 +48,8 @@ export class Router {
         const match = this.match(req.url, req.method);
 
         if (match) {
-            return Router.errorHandler(match.handler)(req);
+            const newReq = new RouterRequest(req, match.params, match.query);
+            return Router.errorHandler(match.handler)(newReq);
         }
 
         return new Response('Not found', { status: 404 });
@@ -65,7 +79,7 @@ export class Router {
             try {
                 return await fn(req);
             } catch (err) {
-                if (!isTest()) {
+                if (isDebug()) {
                     console.error(`Error in ${req.url}:`, err);
                 }
 

@@ -16,3 +16,13 @@ export const formatDate = (date: Date, fileName = false) => {
 
     return datePart + ' ' + timePart;
 };
+
+export const isIANATimezone = (str: string): boolean => {
+    try {
+        return !!Temporal.TimeZone.from(str);
+    } catch (err) {
+        if (err instanceof RangeError) return false;
+
+        throw err;
+    }
+};

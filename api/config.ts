@@ -16,3 +16,5 @@ export const getConfig = <K extends keyof Config>(key: K, def?: Config[K]): Conf
 };
 
 export const isTest = () => !!Deno.env.get('TEST');
+
+export const isDebug = () => !!Deno.env.get('DEBUG');

@@ -11,11 +11,12 @@ export interface Book {
     slug: string;
     author: string;
     finished?: boolean;
-    finishedAt?: boolean;
+    finishedAt?: Date;
     dropped?: boolean;
     paused?: boolean;
     notes?: string;
     location?: string;
+    timezone?: string;
 }
 
 export default function* (data: BookData) {

@@ -1,8 +1,16 @@
 export enum ProblemKind {
+    /** Failed to parse or validate JSON body. */
     BodyParseError = 'BodyParseError',
+    /** Unexpected schema from file. */
+    InconsistentFile = 'InconsistentFile',
+    /** Badness from GitHub. */
     GitHubError = 'GitHubError',
+    /** Error caused by bad client input. */
     BadInput = 'BadInput',
+    /** Auth error caused by bad client behaviour. */
     BadAuth = 'BadAuth',
+    /** Something wasn't found on our side. */
+    NotFound = 'NotFound',
 }
 
 export class ProblemError extends Error {
@@ -27,8 +35,10 @@ export class ProblemError extends Error {
                 return 400;
             case ProblemKind.BadAuth:
                 return 401;
+            case ProblemKind.NotFound:
+                return 404;
             case ProblemKind.GitHubError:
-                return 500;
+            case ProblemKind.InconsistentFile:
             default:
                 return 500;
         }

@@ -1,5 +1,6 @@
 import { FileHost } from './index.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
+import { decodeBase64, encodeBase64 } from 'std/encoding/base64.ts';
 
 const API_ROOT = 'https://api.github.com';
 
@@ -9,20 +10,28 @@ export const createGithub = (token: string, repo: string): FileHost => {
             putFile: () => {
                 return Promise.resolve('MOCK');
             },
+            getFile: () => {
+                return Promise.resolve('MOCK');
+            },
         };
     }
 
+    const textdecoder = new TextDecoder();
+
     return {
         putFile: async (
-            contents: string,
-            filePath: string,
+            contents,
+            filePath,
         ) => {
             const res = await githubRequest(
                 'PUT',
                 `/repos/${repo}/contents/${filePath}`,
                 {
-                    message: `Automated via Johan's API`,
-                    content: base64(contents),
+                    kind: 'put',
+                    body: {
+                        message: `Automated via Johan's API`,
+                        content: encodeBase64(contents),
+                    },
                 },
                 token,
             );
@@ -38,45 +47,85 @@ export const createGithub = (token: string, repo: string): FileHost => {
 
             return html_url;
         },
+
+        getFile: async (filePath) => {
+            const res = await githubRequest(
+                'GET',
+                `/repos/${repo}/contents/${filePath}`,
+                null,
+                token,
+            );
+
+            if (res.type != 'file') {
+                throw new ProblemError(
+                    ProblemKind.BadInput,
+                    `Can only handle type: file from GitHub, got: ${res.type}`,
+                );
+            }
+
+            return textdecoder.decode(decodeBase64(res.content));
+        },
     };
 };
 
-interface Payload {
-    message: string; // commit msg
-    content: string; // base64'd
+interface PutPayload {
+    kind: 'put';
+    body: {
+        message: string; // commit msg
+        content: string; // base64'd
+    };
 }
 
-const githubRequest = async (method: string, resource: string, payload: Payload, token: string) => {
+type GetPayload = null;
+
+type GitHubPayload = PutPayload | GetPayload;
+
+async function githubRequest(
+    method: 'PUT',
+    resource: string,
+    payload: PutPayload,
+    token: string,
+): Promise<any>;
+
+async function githubRequest(
+    method: 'GET',
+    resource: string,
+    payload: GetPayload,
+    token: string,
+): Promise<any>;
+
+async function githubRequest(
+    method: string,
+    resource: string,
+    payload: GitHubPayload,
+    token: string,
+): Promise<any> {
+    const body = payload
+        ? JSON.stringify({
+            ...payload.body || {},
+            branch: 'main',
+        })
+        : null;
+
     const res = await fetch(API_ROOT + resource, {
         method,
         headers: {
-            accept: 'application/vnd.github.v3+json',
+            accept: 'application/vnd.github+json',
             authorization: `Bearer ${token}`,
             'X-GitHub-Api-Version': '2022-11-28',
             'user-agent': 'Johan.im-API/1.0',
         },
-        body: JSON.stringify({
-            ...payload,
-            branch: 'main',
-        }),
+        body,
     });
-
-    if (!res.ok) {
-        throw new Error(
-            `GitHub request failed: ${method} ${res.status} ${resource}: ${res.statusText} ${await res
-                .text()}`,
-        );
-    }
 
     const json = await res.json();
 
-    return json;
-};
+    if (!res.ok) {
+        throw new ProblemError(
+            ProblemKind.GitHubError,
+            `GitHub request failed: ${method} ${res.status} ${resource}: ${res.statusText} ${json.message}`,
+        );
+    }
 
-// From https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
-// To not mess up utf-8 chars in the string.
-const base64 = (str: string) =>
-    btoa(
-        encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_match, p1) =>
-            String.fromCharCode(parseInt(p1, 16))),
-    );
+    return json;
+}

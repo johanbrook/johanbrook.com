@@ -1,5 +1,6 @@
 import { Services } from '../api/services/index.ts';
 import { Spy, spy } from 'std/testing/mock.ts';
+export { spy } from 'std/testing/mock.ts';
 
 interface Mock {
     services: { [K in keyof Services]: WithSpy<Services[K]> };

@@ -1,3 +1,4 @@
+// deno run --unstable-temporal --allow-env --allow-net --location https://johan.im api/server.ts
 import { createApp } from './app.ts';
 import { createGithub } from './services/github.ts';
 import { getConfig } from './config.ts';

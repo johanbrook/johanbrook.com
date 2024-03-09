@@ -4,6 +4,8 @@ export interface FileHost {
         contents: string,
         filePath: string,
     ): Promise<string>;
+
+    getFile(filePath: string): Promise<string>;
 }
 
 export interface Services {
