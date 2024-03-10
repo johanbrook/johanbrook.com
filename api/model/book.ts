@@ -23,7 +23,7 @@ export const findCurrent = async (store: FileHost): Promise<[book: Book | null, 
     const raw = await store.getFile(BOOKS_PATH);
     const books = booksArrayOf(raw);
 
-    const idx = books.findLastIndex((b) => !b.finished);
+    const idx = books.findLastIndex((b) => !b.finished && !b.dropped && !b.paused);
     const book = books[idx];
 
     return book ? [book, idx] : [null, idx];

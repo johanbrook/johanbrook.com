@@ -137,6 +137,16 @@ Deno.test('API /current-book ok', async () => {
                 slug: 'america-psycho',
                 author: 'Bret Easton Ellis',
             }, {
+                title: 'Min Kamp 1',
+                slug: 'min-kamp-1',
+                author: 'Karl Ove Knausgård',
+                dropped: true,
+            }, {
+                title: 'Min Kamp 2',
+                slug: 'min-kamp-2',
+                author: 'Karl Ove Knausgård',
+                paused: true,
+            }, {
                 title: 'The Shards',
                 slug: 'the-shards',
                 author: 'Bret Easton Ellis',
