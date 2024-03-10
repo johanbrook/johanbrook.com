@@ -1,17 +1,24 @@
 import { FileHost } from './index.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
 import { decodeBase64, encodeBase64 } from 'std/encoding/base64.ts';
+import { join } from 'std/path/mod.ts';
+import { isTest } from '../config.ts';
 
 const API_ROOT = 'https://api.github.com';
 
 export const createGithub = (token: string, repo: string): FileHost => {
     if (!token) {
+        if (!isTest()) console.log('Using mock GitHub service');
+
         return {
-            putFile: () => {
-                return Promise.resolve('MOCK');
+            putFile: async (contents, filePath) => {
+                filePath = join(Deno.cwd(), filePath);
+                await Deno.writeTextFile(filePath, contents);
+                return filePath;
             },
-            getFile: () => {
-                return Promise.resolve('MOCK');
+            getFile: async (filePath) => {
+                filePath = join(Deno.cwd(), filePath);
+                return await Deno.readTextFile(filePath);
             },
         };
     }

@@ -9,7 +9,8 @@
         "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable-temporal -A -",
         "build": "deno task lume",
         "serve": "deno task build -s",
-        "test": "deno test --allow-env --unstable-temporal --location https://johan.im"
+        "test": "deno test --allow-env --unstable-temporal --location https://johan.im",
+        "api": "deno run --unstable-temporal --allow-env --allow-net --allow-read --allow-write --location https://johan.im --watch api/server.ts"
     },
     "compilerOptions": {
         "lib": ["deno.ns", "deno.unstable", "dom", "dom.iterable"],
