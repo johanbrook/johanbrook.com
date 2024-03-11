@@ -11,7 +11,7 @@ export interface Book {
     slug: string;
     author: string;
     finished?: boolean;
-    finishedAt?: Date;
+    finishedAt?: Date; // TODO Switch to Temporal?
     dropped?: boolean;
     paused?: boolean;
     notes?: string;

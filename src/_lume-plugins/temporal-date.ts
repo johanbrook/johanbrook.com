@@ -77,7 +77,7 @@ const formattedOf = (
             // https://github.com/tc39/proposal-temporal/issues/2013
             const formatter = new Intl.DateTimeFormat(undefined, {
                 ...DATE_FORMAT,
-                timeZone: date.timeZone,
+                timeZone: date.timeZone.toString(),
             });
             const { month, day, hour, minute, year } = commonPartsOf(formatter.formatToParts(date));
 
@@ -90,7 +90,7 @@ const formattedOf = (
             const includeYear = date.year != now.year;
             const formatter = new Intl.DateTimeFormat(undefined, {
                 ...DATE_FORMAT,
-                timeZone: date.timeZone,
+                timeZone: date.timeZone.toString(),
             });
             const { month, day, year } = commonPartsOf(formatter.formatToParts(date));
 
@@ -98,7 +98,7 @@ const formattedOf = (
         }
         case DateTimeFormat.Detailed: {
             return date.toLocaleString('en-GB', {
-                timeZone: date.timeZone, // aaaahhh still need to provide this manually :X
+                timeZone: date.timeZone.toString(), // aaaahhh still need to provide this manually :X
                 timeZoneName: 'longGeneric',
                 weekday: 'long',
                 month: 'long',
@@ -107,7 +107,7 @@ const formattedOf = (
         case DateTimeFormat.MonthYear: {
             const formatter = new Intl.DateTimeFormat(undefined, {
                 ...DATE_FORMAT,
-                timeZone: date.timeZone,
+                timeZone: date.timeZone.toString(),
             });
             const { month, year } = commonPartsOf(formatter.formatToParts(date));
             return `${month} ${year}`;
@@ -192,7 +192,7 @@ declare global {
 declare global {
     namespace Temporal {
         interface ZonedDateTime {
-            timeZone: string;
+            timeZone: Temporal.TimeZone;
         }
     }
 }

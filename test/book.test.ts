@@ -29,7 +29,7 @@ Deno.test('API /finish-book ok', async () => {
 
     const router = createApp(services);
 
-    const now = new Date();
+    const now = Temporal.ZonedDateTime.from('2024-02-01T10:00:00[Asia/Bangkok]');
 
     const res = await router.run(
         new Request(new URL('/finish-book/the-shards', BASE_URL), {
@@ -39,8 +39,7 @@ Deno.test('API /finish-book ok', async () => {
                 ContentType: 'application/json',
             },
             body: JSON.stringify({
-                timezone: 'Asia/Bangkok',
-                finishedAt: now.toISOString(),
+                finishedAt: now,
                 location: 'Koh Lanta, Thailand',
             }),
         }),
@@ -67,7 +66,7 @@ Deno.test('API /finish-book ok', async () => {
                     slug: 'the-shards',
                     author: 'Bret Easton Ellis',
                     finished: true,
-                    finishedAt: now.toISOString(),
+                    finishedAt: '2024-02-01T10:00:00',
                     location: 'Koh Lanta, Thailand',
                     timezone: 'Asia/Bangkok',
                 }],
@@ -99,7 +98,7 @@ Deno.test('API /finish-book with bad slug', async () => {
 
     const router = createApp(services);
 
-    const now = new Date();
+    const now = Temporal.Now.zonedDateTimeISO();
 
     const res = await router.run(
         new Request(new URL('/finish-book/non-existing-book', BASE_URL), {
@@ -109,8 +108,7 @@ Deno.test('API /finish-book with bad slug', async () => {
                 ContentType: 'application/json',
             },
             body: JSON.stringify({
-                timezone: 'Asia/Bangkok',
-                finishedAt: now.toISOString(),
+                finishedAt: now,
                 location: 'Koh Lanta, Thailand',
             }),
         }),

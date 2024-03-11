@@ -4,7 +4,7 @@ export { addBook, finishBook, getCurrentBook } from './book.ts';
 /** Common fields for pages. */
 export interface Meta {
     [index: string]: unknown;
-    date: Date;
+    date: string;
     location?: string;
     tags?: string[];
     timezone?: string;

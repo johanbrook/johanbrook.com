@@ -9,7 +9,7 @@
     will follow the template: [yyyy-MM-dd-HH-mm-ss].md.
 */
 
-import * as datetime from 'datetime';
+import * as datetime from 'std/datetime/mod.ts';
 
 const DEST = Deno.cwd() + '/src/notes';
 

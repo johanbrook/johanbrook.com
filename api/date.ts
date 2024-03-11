@@ -1,3 +1,5 @@
+import { DateTimeFormatterTemporal } from './vendor/datetime-format-temporal.ts';
+
 // => 'yyyy-MM-dd HH:mm:ss'
 // fileName: true => 'yyyy-MM-dd-HH-mm-ss'
 export const formatDate = (date: Date, fileName = false) => {
@@ -17,12 +19,28 @@ export const formatDate = (date: Date, fileName = false) => {
     return datePart + ' ' + timePart;
 };
 
-export const isIANATimezone = (str: string): boolean => {
-    try {
-        return !!Temporal.TimeZone.from(str);
-    } catch (err) {
-        if (err instanceof RangeError) return false;
+// Temporal proposal doesn't include nice strftime stuff yet:
+// https://github.com/js-temporal/proposal-temporal-v2/issues/5
+// This function only supports "simple" formats, like `yyyy-MM-dd HH:mm:ss`
+export const formatTemporalDate = (thing: Temporal.PlainDateTimeLike, format: string): string => {
+    const formatter = new DateTimeFormatterTemporal(format);
+    return formatter.format(thing);
+};
 
-        throw err;
+export const safeTemporalZonedDateTime = (str: string): Temporal.ZonedDateTime | null => {
+    try {
+        return Temporal.ZonedDateTime.from(str);
+    } catch (err) {
+        if (err instanceof RangeError) return null;
+
+        throw err; // Other random error
     }
 };
+
+declare global {
+    namespace Temporal {
+        interface ZonedDateTime {
+            timeZone: Temporal.TimeZone;
+        }
+    }
+}

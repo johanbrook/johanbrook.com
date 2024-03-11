@@ -1,6 +1,6 @@
 import { ProblemError, ProblemKind } from '../problem.ts';
 import { Services } from '../services/index.ts';
-import { isIANATimezone } from '../date.ts';
+import { safeTemporalZonedDateTime } from '../date.ts';
 import * as Books from '../model/book.ts';
 
 export const getCurrentBook = (services: Services) => {
@@ -25,7 +25,7 @@ export const finishBook = async (services: Services, slug: string, json: any) =>
     const body = finishBookParseBody(json);
 
     book.finished = true;
-    book.finishedAt = body.finishedAt;
+    book.finishedAt = body.finishedAt as any;
     book.location = body.location;
     book.timezone = body.timezone;
 
@@ -35,7 +35,7 @@ export const finishBook = async (services: Services, slug: string, json: any) =>
 };
 
 interface Body {
-    finishedAt: Date;
+    finishedAt: string; // ISO 8601
     timezone?: string;
     location?: string;
 }
@@ -49,17 +49,30 @@ const finishBookParseBody = (json: any): Body => {
         );
     }
 
-    if (typeof json.timezone == 'string' && !isIANATimezone(json.timezone)) {
-        throw new ProblemError(
-            ProblemKind.BodyParseError,
-            `"${json.timezone}" isn't a correct IANA timezone`,
-        );
-    }
+    const zonedDateTime = ((): Temporal.ZonedDateTime => {
+        if (typeof json.finishedAt != 'string') {
+            throw new ProblemError(
+                ProblemKind.BodyParseError,
+                `"finishedAt" must be a string, got ${typeof json.finishedAt}`,
+            );
+        }
+
+        const res = safeTemporalZonedDateTime(json.finishedAt);
+
+        if (!res) {
+            throw new ProblemError(
+                ProblemKind.BodyParseError,
+                `${json.finishedAt} isn't a valid Temporal.ZonedDateTime`,
+            );
+        }
+
+        return res;
+    })();
 
     return {
-        finishedAt: json.finishedAt,
+        finishedAt: zonedDateTime.toPlainDateTime().toString(),
         location: json.location,
-        timezone: json.timezone,
+        timezone: zonedDateTime.timeZone.toString(),
     };
 };
 
