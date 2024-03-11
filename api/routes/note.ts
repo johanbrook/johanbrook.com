@@ -72,7 +72,7 @@ const inputOf = (json: any): Input => {
     // Will go into the frontmatter:
     const metaDate = formatTemporalDate(
         zonedDateTime,
-        `yyyy-MM-dd'T'HH:mm:ss${zonedDateTime.offset}`.trim(),
+        `yyyy-MM-dd'T'HH:mm:ss${zonedDateTime.offset}`,
     );
     // Will be the filename:
     const fileDate = formatTemporalDate(zonedDateTime, 'yyyy-MM-dd-HH-mm-ss');

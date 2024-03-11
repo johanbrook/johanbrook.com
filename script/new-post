@@ -1,4 +1,4 @@
-#!/usr/bin/env deno run --no-check --allow-read --allow-write --allow-run
+#!/usr/bin/env deno run --no-check --allow-read --allow-write --allow-run --unstable-temporal
 
 /*
     Usage:
@@ -9,24 +9,31 @@
     will follow the template: [yyyy-MM-dd]-[slugified-title].md.
 */
 
-import * as datetime from 'datetime';
+import { formatTemporalDate } from '../api/date.ts';
 
 const DEST = Deno.cwd() + '/src/posts';
 
-const d = new Date();
-const offset = Math.abs(d.getTimezoneOffset()) / 60;
-
 const title = Deno.args[0] ?? 'New post';
 const slug = title.toLowerCase().replace(/\s+/g, '-').trim();
-const date = datetime.format(d, `yyyy-MM-dd HH:mm:ss '+${offset}'`);
-const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+const zonedDateTime = Temporal.Now.zonedDateTimeISO(); // now, in current timezone
+
+// I want both of these to be in the *local* time:
+
+// Will go into the frontmatter:
+const metaDate = formatTemporalDate(
+    zonedDateTime,
+    `yyyy-MM-dd'T'HH:mm:ss${zonedDateTime.offset}`,
+);
+// Will be the filename:
+const fileDate = formatTemporalDate(zonedDateTime, 'yyyy-MM-dd');
 
 const TEMPLATE = `---
 title: ${title}
 slug: ${slug}
-date: ${date}
+date: ${metaDate}
 location: <where>
-timezone: ${timezone}
+timezone: ${zonedDateTime.timeZone}
 excerpt: <excerpt>
 tags:
   - key
@@ -34,7 +41,7 @@ draft: true
 ---\n
 `;
 
-const fileName = `${datetime.format(d, 'yyyy-MM-dd')}-${slug}.md`;
+const fileName = `${fileDate}-${slug}.md`;
 const fullPath = DEST + '/' + fileName;
 
 await Deno.writeTextFile(fullPath, TEMPLATE, {
