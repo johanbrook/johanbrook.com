@@ -12,9 +12,14 @@ export function createApp(services: Services) {
         'POST',
         '/post-note',
         pipe(authHandler, async (req) => {
-            await postNote(services, await req.json());
+            const permalink = await postNote(services, await req.json());
 
-            return new Response('Note posted', { status: 200 });
+            return new Response('Note created', {
+                status: 201,
+                headers: {
+                    Location: permalink.toString(),
+                },
+            });
         }),
     );
 
