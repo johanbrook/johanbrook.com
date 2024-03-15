@@ -19,14 +19,10 @@ export interface Book {
     timezone?: string;
 }
 
-export const findCurrent = async (store: FileHost): Promise<[book: Book | null, index: number]> => {
+export const findCurrent = async (store: FileHost): Promise<Book[]> => {
     const raw = await store.getFile(BOOKS_PATH);
-    const books = booksArrayOf(raw);
 
-    const idx = books.findLastIndex((b) => !b.finished && !b.dropped && !b.paused);
-    const book = books[idx];
-
-    return book ? [book, idx] : [null, idx];
+    return booksArrayOf(raw).filter((b) => !b.finished && !b.dropped && !b.paused);
 };
 
 export const findBySlug = async (

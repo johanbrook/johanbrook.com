@@ -2,7 +2,7 @@ import { Router, RouterRequest } from './router.ts';
 import { checkAuth } from './auth.ts';
 import { Services } from './services/index.ts';
 import { pipe } from './pipe.ts';
-import { addBook, finishBook, getCurrentBook, postNote } from './routes/index.ts';
+import { addBook, finishBook, getCurrentBooks, postNote } from './routes/index.ts';
 import { urlForBook } from '../src/_includes/permalinks.ts';
 
 export function createApp(services: Services) {
@@ -27,13 +27,13 @@ export function createApp(services: Services) {
 
     router.route(
         'GET',
-        '/current-book',
+        '/current-books',
         pipe(authHandler, async () => {
-            const book = await getCurrentBook(services);
+            const books = await getCurrentBooks(services);
 
-            if (!book) return new Response('No current book', { status: 404 });
+            if (!books) return new Response('No current books', { status: 404 });
 
-            return Response.json(book, { status: 200 });
+            return Response.json(books, { status: 200 });
         }),
     );
 

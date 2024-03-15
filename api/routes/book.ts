@@ -3,8 +3,8 @@ import { Services } from '../services/index.ts';
 import { safeTemporalZonedDateTime } from '../date.ts';
 import * as Books from '../model/book.ts';
 
-export const getCurrentBook = (services: Services) => {
-    return Books.findCurrent(services.github).then(([book]) => book);
+export const getCurrentBooks = (services: Services) => {
+    return Books.findCurrent(services.github);
 };
 
 export const addBook = async (services: Services, json: any) => {

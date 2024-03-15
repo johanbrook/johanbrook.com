@@ -123,7 +123,7 @@ Deno.test('API /finish-book with bad slug', async () => {
     assertSpyCalls(services.github.putFile, 0);
 });
 
-Deno.test('API /current-book ok', async () => {
+Deno.test('API /current-books ok', async () => {
     const { services } = mock();
 
     services.github.getFile = spy(() =>
@@ -133,6 +133,10 @@ Deno.test('API /current-book ok', async () => {
             [{
                 title: 'American Psycho',
                 slug: 'america-psycho',
+                author: 'Bret Easton Ellis',
+            }, {
+                title: 'American Psycho 2',
+                slug: 'america-psycho-2',
                 author: 'Bret Easton Ellis',
             }, {
                 title: 'Min Kamp 1',
@@ -156,7 +160,7 @@ Deno.test('API /current-book ok', async () => {
     const router = createApp(services);
 
     const res = await router.run(
-        new Request(new URL('/current-book', BASE_URL), {
+        new Request(new URL('/current-books', BASE_URL), {
             method: 'GET',
             headers: {
                 Authorization: 'API-Token aaa',
@@ -169,11 +173,15 @@ Deno.test('API /current-book ok', async () => {
 
     const body = await res.json();
 
-    assertEquals(body, {
+    assertEquals(body, [{
         title: 'American Psycho',
         slug: 'america-psycho',
         author: 'Bret Easton Ellis',
-    });
+    }, {
+        title: 'American Psycho 2',
+        slug: 'america-psycho-2',
+        author: 'Bret Easton Ellis',
+    }]);
 });
 
 Deno.test('API /add-book ok', async () => {
