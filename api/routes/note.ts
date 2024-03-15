@@ -1,5 +1,5 @@
 import { Meta } from './index.ts';
-import { formatTemporalDate, safeTemporalZonedDateTime } from '../date.ts';
+import { formatFileName, formatISO, safeTemporalZonedDateTime } from '../date.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
 import { join } from 'std/path/mod.ts';
 import * as Yaml from 'std/yaml/mod.ts';
@@ -69,13 +69,12 @@ const inputOf = (json: any): Input => {
 
     // I want both of these to be in the *local* time:
 
-    // Will go into the frontmatter:
-    const metaDate = formatTemporalDate(
+    // Will go into the frontmatter: "2024-03-15T10:24:35+01:00"
+    const metaDate = formatISO(
         zonedDateTime,
-        `yyyy-MM-dd'T'HH:mm:ss${zonedDateTime.offset}`,
     );
-    // Will be the filename:
-    const fileDate = formatTemporalDate(zonedDateTime, 'yyyy-MM-dd-HH-mm-ss');
+    // Will be the filename: "2024-03-15-10-24-35"
+    const fileDate = formatFileName(zonedDateTime);
 
     return {
         contents: json.contents.trim(),

@@ -42,13 +42,6 @@ interface Body {
 
 // TODO abstract
 const finishBookParseBody = (json: any): Body => {
-    if (typeof json.finishedAt != 'string') {
-        throw new ProblemError(
-            ProblemKind.BodyParseError,
-            `"finishedAt" must be a string, got ${typeof json.finishedAt}`,
-        );
-    }
-
     const zonedDateTime = ((): Temporal.ZonedDateTime => {
         if (typeof json.finishedAt != 'string') {
             throw new ProblemError(

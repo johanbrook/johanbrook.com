@@ -1,5 +1,3 @@
-import { DateTimeFormatterTemporal } from './vendor/datetime-format-temporal.ts';
-
 // => 'yyyy-MM-dd HH:mm:ss'
 // fileName: true => 'yyyy-MM-dd-HH-mm-ss'
 export const formatDate = (date: Date, fileName = false) => {
@@ -19,13 +17,22 @@ export const formatDate = (date: Date, fileName = false) => {
     return datePart + ' ' + timePart;
 };
 
-// Temporal proposal doesn't include nice strftime stuff yet:
-// https://github.com/js-temporal/proposal-temporal-v2/issues/5
-// This function only supports "simple" formats, like `yyyy-MM-dd HH:mm:ss`
-export const formatTemporalDate = (thing: Temporal.PlainDateTimeLike, format: string): string => {
-    const formatter = new DateTimeFormatterTemporal(format);
-    return formatter.format(thing);
-};
+/** Formats into `2024-03-15T10:24:35+01:00`. */
+export const formatISO = (d: Temporal.ZonedDateTime): string =>
+    d.toString({
+        timeZoneName: 'never',
+        smallestUnit: 'seconds',
+    });
+
+/** Format appropriate for file name: `2024-03-15-10-24-35`. */
+export const formatFileName = (d: Temporal.ZonedDateTime): string =>
+    d.toString({
+        timeZoneName: 'never',
+        smallestUnit: 'seconds',
+        offset: 'never',
+    })
+        .replace('T', '-')
+        .replaceAll(':', '-');
 
 export const safeTemporalZonedDateTime = (str: string): Temporal.ZonedDateTime | null => {
     try {
