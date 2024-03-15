@@ -12,12 +12,14 @@ export function createApp(services: Services) {
         'POST',
         '/post-note',
         pipe(authHandler, async (req) => {
-            const permalink = await postNote(services, await req.json());
+            const url = (await postNote(services, await req.json())).toJSON();
 
-            return new Response('Note created', {
+            return Response.json({
+                url,
+            }, {
                 status: 201,
                 headers: {
-                    Location: permalink.toString(),
+                    Location: url,
                 },
             });
         }),
@@ -40,10 +42,16 @@ export function createApp(services: Services) {
         '/add-book',
         pipe(authHandler, async (req) => {
             const book = await addBook(services, await req.json());
+            const url = new URL(urlForBook(book), self.location.href).toJSON();
 
             return Response.json({
                 book: book,
-                url: new URL(urlForBook(book), self.location.href).toJSON(),
+                url,
+            }, {
+                status: 201,
+                headers: {
+                    Location: url,
+                },
             });
         }),
     );

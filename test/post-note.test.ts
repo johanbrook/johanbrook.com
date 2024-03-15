@@ -28,6 +28,12 @@ Deno.test('API /post-note ok', async () => {
 
     assertEquals(res.headers.get('Location'), 'https://johan.im/micro/20240307082735/');
 
+    const body = await res.json();
+
+    assertEquals(body, {
+        url: 'https://johan.im/micro/20240307082735/',
+    });
+
     assertSpyCalls(services.github.putFile, 1);
     assertSpyCall(services.github.putFile, 0, {
         args: [

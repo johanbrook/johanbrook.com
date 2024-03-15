@@ -212,7 +212,8 @@ Deno.test('API /add-book ok', async () => {
         }),
     );
 
-    assertEquals(res.status, 200);
+    assertEquals(res.status, 201);
+    assertEquals(res.headers.get('Location'), 'https://johan.im/reading/a-new-book/');
 
     const body = await res.json();
 

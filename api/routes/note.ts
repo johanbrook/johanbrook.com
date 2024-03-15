@@ -24,28 +24,41 @@ type Input = {
     meta: NoteMeta;
 };
 
+function assert<T>(v: any, type: string, err: () => Error): asserts v is T {
+    if (typeof v != type) {
+        throw err();
+    }
+}
+
 const inputOf = (json: any): Input => {
-    if (typeof json.contents != 'string') {
-        throw new ProblemError(
+    const { contents, date } = json;
+
+    assert<string>(contents, 'string', () =>
+        new ProblemError(
             ProblemKind.BodyParseError,
             `"contents" must be a string, got ${typeof json.contents}`,
+        ));
+
+    if (contents.trim().length == 0) {
+        new ProblemError(
+            ProblemKind.BodyParseError,
+            `"contents" must be be non-zero string`,
         );
     }
 
     const zonedDateTime = ((): Temporal.ZonedDateTime => {
-        if (typeof json.date != 'string') {
-            throw new ProblemError(
+        assert<string>(date, 'string', () =>
+            new ProblemError(
                 ProblemKind.BodyParseError,
                 `"date" must be a string, got ${typeof json.date}`,
-            );
-        }
+            ));
 
-        const res = safeTemporalZonedDateTime(json.date);
+        const res = safeTemporalZonedDateTime(date);
 
         if (!res) {
             throw new ProblemError(
                 ProblemKind.BodyParseError,
-                `${json.date} isn't a valid Temporal.ZonedDateTime`,
+                `${date} isn't a valid Temporal.ZonedDateTime`,
             );
         }
 
@@ -77,7 +90,7 @@ const inputOf = (json: any): Input => {
     const fileDate = formatFileName(zonedDateTime);
 
     return {
-        contents: json.contents.trim(),
+        contents: contents.trim(),
         fileName: `${fileDate}.md`,
         meta: {
             // For practical reasons, I store the "dumb" date in the `date` field and the timezone
