@@ -3,9 +3,12 @@ import { createApp } from './app.ts';
 import { createGithub } from './services/github.ts';
 import { getConfig } from './config.ts';
 import { Services } from './services/index.ts';
+import { createLocal } from './services/local.ts';
 
 const services: Services = {
-    github: createGithub(getConfig('GITHUB_TOKEN', ''), 'johanbrook/johanbrook.com'),
+    fileHost: getConfig('GITHUB_TOKEN', '')
+        ? createGithub(getConfig('GITHUB_TOKEN'), 'johanbrook/johanbrook.com')
+        : createLocal(),
 };
 
 const app = createApp(services);

@@ -34,8 +34,8 @@ Deno.test('API /post-note ok', async () => {
         url: 'https://johan.im/micro/20240307082735/',
     });
 
-    assertSpyCalls(services.github.putFile, 1);
-    assertSpyCall(services.github.putFile, 0, {
+    assertSpyCalls(services.fileHost.putFile, 1);
+    assertSpyCall(services.fileHost.putFile, 0, {
         args: [
             `---\ndate: '2024-03-07T08:27:35+07:00'\ntimezone: Asia/Bangkok\ntags:\n    - bar\n    - baz\n---\nfoo\n\n`,
             'src/notes/2024-03-07-08-27-35.md',
@@ -63,5 +63,5 @@ Deno.test('API /post-note fails to validate body: "contents"', async () => {
     assertEquals(res.status, 400);
     const body = await res.text();
     assertMatch(body, /\"contents\" must be a string/);
-    assertSpyCalls(services.github.putFile, 0);
+    assertSpyCalls(services.fileHost.putFile, 0);
 });

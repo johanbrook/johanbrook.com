@@ -10,7 +10,7 @@ const BASE_URL = 'http://localhost:8000';
 Deno.test('API /finish-book ok', async () => {
     const { services } = mock();
 
-    services.github.getFile = spy(() =>
+    services.fileHost.getFile = spy(() =>
         Promise.resolve(Yaml.stringify(
             // stringify() _does_ accept an array, but the types say no...
             // @ts-ignore-next
@@ -62,8 +62,8 @@ Deno.test('API /finish-book ok', async () => {
         url: 'https://johan.im/reading/the-shards/',
     });
 
-    assertSpyCalls(services.github.putFile, 1);
-    assertSpyCall(services.github.putFile, 0, {
+    assertSpyCalls(services.fileHost.putFile, 1);
+    assertSpyCall(services.fileHost.putFile, 0, {
         args: [
             Yaml.stringify(
                 // @ts-ignore-next
@@ -90,7 +90,7 @@ Deno.test('API /finish-book ok', async () => {
 Deno.test('API /finish-book with bad slug', async () => {
     const { services } = mock();
 
-    services.github.getFile = spy(() =>
+    services.fileHost.getFile = spy(() =>
         Promise.resolve(Yaml.stringify(
             // stringify() _does_ accept an array, but the types say no...
             // @ts-ignore-next
@@ -131,13 +131,13 @@ Deno.test('API /finish-book with bad slug', async () => {
 
     assertMatch(body, /No book with slug/);
 
-    assertSpyCalls(services.github.putFile, 0);
+    assertSpyCalls(services.fileHost.putFile, 0);
 });
 
 Deno.test('API /current-books ok', async () => {
     const { services } = mock();
 
-    services.github.getFile = spy(() =>
+    services.fileHost.getFile = spy(() =>
         Promise.resolve(Yaml.stringify(
             // stringify() _does_ accept an array, but the types say no...
             // @ts-ignore-next
@@ -200,7 +200,7 @@ Deno.test('API /current-books ok', async () => {
 Deno.test('API /add-book ok', async () => {
     const { services } = mock();
 
-    services.github.getFile = spy(() =>
+    services.fileHost.getFile = spy(() =>
         Promise.resolve(Yaml.stringify(
             // stringify() _does_ accept an array, but the types say no...
             // @ts-ignore-next

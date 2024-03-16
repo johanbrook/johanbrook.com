@@ -7,7 +7,7 @@ import * as Notes from '../model/note.ts';
 export const postNote = async (services: Services, json: any) => {
     const note = inputOf(json); // throws on validation errors
 
-    await Notes.add(services.github, note);
+    await Notes.add(services.fileHost, note);
 
     return new URL(notePermalinkOf(note.fileName), self.location.href);
 };

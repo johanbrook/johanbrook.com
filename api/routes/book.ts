@@ -4,19 +4,19 @@ import { safeTemporalZonedDateTime } from '../date.ts';
 import * as Books from '../model/book.ts';
 
 export const getCurrentBooks = (services: Services) => {
-    return Books.findCurrent(services.github);
+    return Books.findCurrent(services.fileHost);
 };
 
 export const addBook = async (services: Services, json: any) => {
     const input = bookInputOf(json);
 
-    return await Books.add(services.github, input);
+    return await Books.add(services.fileHost, input);
 };
 
 export const finishBook = async (services: Services, slug: string, json: any) => {
-    const { github } = services;
+    const { fileHost } = services;
 
-    const [book, idx] = await Books.findBySlug(github, slug);
+    const [book, idx] = await Books.findBySlug(fileHost, slug);
 
     if (!book) {
         throw new ProblemError(ProblemKind.NotFound, `No book with slug: ${slug}`);
@@ -29,7 +29,7 @@ export const finishBook = async (services: Services, slug: string, json: any) =>
     book.location = body.location;
     book.timezone = body.timezone;
 
-    await Books.update(services.github, idx, book);
+    await Books.update(services.fileHost, idx, book);
 
     return book;
 };

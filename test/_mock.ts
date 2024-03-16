@@ -15,7 +15,7 @@ export const mock = (): Mock => {
     };
 
     const services = {
-        github: mockFileHost,
+        fileHost: mockFileHost,
     };
 
     return {

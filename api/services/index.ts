@@ -9,5 +9,5 @@ export interface FileHost {
 }
 
 export interface Services {
-    github: FileHost;
+    fileHost: FileHost;
 }
