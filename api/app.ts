@@ -31,9 +31,7 @@ export function createApp(services: Services) {
         pipe(authHandler, async () => {
             const books = await getCurrentBooks(services);
 
-            if (!books) return new Response('No current books', { status: 404 });
-
-            return Response.json(books, { status: 200 });
+            return Response.json({ books }, { status: 200 });
         }),
     );
 
@@ -61,9 +59,16 @@ export function createApp(services: Services) {
         '/finish-book/:slug',
         pipe(authHandler, async (req) => {
             const updatedBook = await finishBook(services, req.params.slug!, await req.json());
+            const url = new URL(urlForBook(updatedBook), self.location.href).toJSON();
 
-            return new Response(`Finished "${updatedBook.title}"`, {
+            return Response.json({
+                book: updatedBook,
+                url,
+            }, {
                 status: 200,
+                headers: {
+                    Location: url,
+                },
             });
         }),
     );

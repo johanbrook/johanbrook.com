@@ -47,9 +47,20 @@ Deno.test('API /finish-book ok', async () => {
 
     assertEquals(res.status, 200);
 
-    const body = await res.text();
+    const body = await res.json();
 
-    assertEquals(body, 'Finished "The Shards"');
+    assertEquals(body, {
+        book: {
+            'title': 'The Shards',
+            'slug': 'the-shards',
+            'author': 'Bret Easton Ellis',
+            'finished': true,
+            'finishedAt': '2024-02-01T10:00:00',
+            'location': 'Koh Lanta, Thailand',
+            'timezone': 'Asia/Bangkok',
+        },
+        url: 'https://johan.im/reading/the-shards/',
+    });
 
     assertSpyCalls(services.github.putFile, 1);
     assertSpyCall(services.github.putFile, 0, {
@@ -173,15 +184,17 @@ Deno.test('API /current-books ok', async () => {
 
     const body = await res.json();
 
-    assertEquals(body, [{
-        title: 'American Psycho',
-        slug: 'america-psycho',
-        author: 'Bret Easton Ellis',
-    }, {
-        title: 'American Psycho 2',
-        slug: 'america-psycho-2',
-        author: 'Bret Easton Ellis',
-    }]);
+    assertEquals(body, {
+        books: [{
+            title: 'American Psycho',
+            slug: 'america-psycho',
+            author: 'Bret Easton Ellis',
+        }, {
+            title: 'American Psycho 2',
+            slug: 'america-psycho-2',
+            author: 'Bret Easton Ellis',
+        }],
+    });
 });
 
 Deno.test('API /add-book ok', async () => {
