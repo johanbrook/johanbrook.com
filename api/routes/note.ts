@@ -1,27 +1,15 @@
-import { Meta } from './index.ts';
 import { formatFileName, formatISO, safeTemporalZonedDateTime } from '../date.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
-import { join } from 'std/path/mod.ts';
-import * as Yaml from 'std/yaml/mod.ts';
 import { Services } from '../services/index.ts';
 import { notePermalinkOf } from '../../src/_includes/permalinks.ts';
+import * as Notes from '../model/note.ts';
 
-interface NoteMeta extends Meta {}
+export const postNote = async (services: Services, json: any) => {
+    const note = inputOf(json); // throws on validation errors
 
-export const postNote = async (connectors: Services, json: any) => {
-    const { github } = connectors;
+    await Notes.add(services.github, note);
 
-    const { contents, fileName, meta } = inputOf(json); // throws on validation errors
-
-    await github.putFile(addFrontMatter(contents, meta), join('src/notes', fileName));
-
-    return new URL(notePermalinkOf(fileName), self.location.href);
-};
-
-type Input = {
-    contents: string;
-    fileName: string;
-    meta: NoteMeta;
+    return new URL(notePermalinkOf(note.fileName), self.location.href);
 };
 
 function assert<T>(v: any, type: string, err: () => Error): asserts v is T {
@@ -30,7 +18,7 @@ function assert<T>(v: any, type: string, err: () => Error): asserts v is T {
     }
 }
 
-const inputOf = (json: any): Input => {
+const inputOf = (json: any): Notes.Note => {
     const { contents, date } = json;
 
     assert<string>(contents, 'string', () =>
@@ -103,23 +91,4 @@ const inputOf = (json: any): Input => {
             tags,
         },
     };
-};
-
-const addFrontMatter = <T extends Record<string, unknown>>(
-    contents: string,
-    fm: T,
-): string => {
-    const copy = { ...fm };
-    // YAML doesn't like undefined
-    for (const k of Object.keys(copy)) {
-        if (typeof copy[k] == 'undefined') {
-            delete copy[k];
-        }
-    }
-
-    return `---
-${Yaml.stringify(copy, { indent: 4 }).trim()}
----
-${contents}\n
-`;
 };
