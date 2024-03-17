@@ -28,8 +28,7 @@ export const findBySlug = async (
     store: FileHost,
     slug: string,
 ): Promise<[book: Book | null, index: number]> => {
-    const raw = await store.getFile(BOOKS_PATH);
-    const books = booksArrayOf(raw);
+    const books = await findAll(store);
 
     const idx = books.findIndex((b) => b.slug == slug);
     const book = books[idx];
@@ -37,9 +36,13 @@ export const findBySlug = async (
     return book ? [book, idx] : [null, idx];
 };
 
-export const update = async (store: FileHost, idx: number, book: Book) => {
+export const findAll = async (store: FileHost): Promise<Book[]> => {
     const raw = await store.getFile(BOOKS_PATH);
-    const books = booksArrayOf(raw);
+    return booksArrayOf(raw);
+};
+
+export const update = async (store: FileHost, idx: number, book: Book) => {
+    const books = await findAll(store);
     books[idx] = book;
 
     await store.putFile(
@@ -61,6 +64,15 @@ export const add = async (store: FileHost, input: BookInput): Promise<[Book, str
         author: input.author,
         slug: slug(input.title),
     };
+
+    const books = await findAll(store);
+
+    if (books.find((b) => b.slug == book.slug)) {
+        throw new ProblemError(
+            ProblemKind.BadInput,
+            `A book with that slug already exists: ${book.slug}`,
+        );
+    }
 
     const raw = await store.getFile(BOOKS_PATH);
 
