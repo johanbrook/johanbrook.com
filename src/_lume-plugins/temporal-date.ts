@@ -113,7 +113,7 @@ const formattedOf = (
             return `${month} ${year}`;
         }
         case DateTimeFormat.Date: {
-            return date.toString().substring(0, 10);
+            return date.toPlainDate().toString();
         }
         default:
             throw new Error(`${format} not implemented!`);
