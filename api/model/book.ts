@@ -55,25 +55,26 @@ export interface BookInput {
     author: string;
 }
 
-export const add = async (store: FileHost, input: BookInput): Promise<Book> => {
-    const book: Book = {
+export const add = async (store: FileHost, input: BookInput): Promise<[Book, string]> => {
+    const book: Record<string, string> & Book = {
         title: input.title,
         author: input.author,
         slug: slug(input.title),
     };
 
     const raw = await store.getFile(BOOKS_PATH);
-    const books = booksArrayOf(raw);
 
-    books.push(book);
+    // @ts-ignore-next
+    const str = Yaml.stringify([book]);
 
-    await store.putFile(
-        // @ts-ignore-next
-        Yaml.stringify(books),
+    const final = raw + '\n' + str;
+
+    const fullPath = await store.putFile(
+        final,
         join(BOOKS_PATH),
     );
 
-    return book;
+    return [book, fullPath];
 };
 
 const booksArrayOf = (raw: string): Book[] => {

@@ -39,7 +39,7 @@ export function createApp(services: Services) {
         'POST',
         '/add-book',
         pipe(authHandler, async (req) => {
-            const book = await addBook(services, await req.json());
+            const [book] = await addBook(services, await req.json());
             const url = new URL(urlForBook(book), self.location.href).toJSON();
 
             return Response.json({

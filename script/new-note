@@ -1,17 +1,19 @@
-#!/usr/bin/env deno run --no-check --allow-read --allow-write --allow-run --unstable-temporal
+#!/usr/bin/env deno run --allow-read --allow-write --allow-env --allow-run --unstable-temporal
 
 /*
     Usage:
 
         ./script/new-note
 
-    Will create the file with a template and open it in VS Code. The filename
+    Will create the file with a template and open it in Zed. The filename
     will follow the template: [yyyy-MM-dd-HH-mm-ss].md.
 */
 
 import { formatFileName, formatISO } from '../api/date.ts';
+import * as Notes from '../api/model/note.ts';
+import { createLocal } from '../api/services/local.ts';
 
-const DEST = Deno.cwd() + '/src/notes';
+const local = createLocal();
 
 const zonedDateTime = Temporal.Now.zonedDateTimeISO(); // now, in current timezone
 
@@ -22,25 +24,25 @@ const metaDate = formatISO(zonedDateTime);
 // Will be the filename:
 const fileDate = formatFileName(zonedDateTime);
 
-const TEMPLATE = `---
-date: ${metaDate}
-location: <where>
-timezone: ${zonedDateTime.timeZone}
-draft: true
----\n
-`;
+const meta = {
+    date: metaDate,
+    location: '<where>',
+    timezone: zonedDateTime.timeZone.toString(),
+    draft: true,
+};
 
-const fileName = `${fileDate}.md`;
-const fullPath = DEST + '/' + fileName;
+const PLACEHOLDER = 'TODO';
 
-await Deno.writeTextFile(fullPath, TEMPLATE, {
-    append: true,
+const [, fullPath] = await Notes.add(local, {
+    contents: PLACEHOLDER,
+    fileName: `${fileDate}.md`,
+    meta,
 });
 
 console.log(`Created ${fullPath}`);
 
 const editor = Deno.run({
-    cmd: ['zed', fullPath],
+    cmd: ['zed', `${fullPath}:${Object.keys(meta).length + 3}:${PLACEHOLDER.length + 1}`],
     stdout: 'piped',
     stderr: 'piped',
 });

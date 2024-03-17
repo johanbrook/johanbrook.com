@@ -1,13 +1,13 @@
-import { formatFileName, formatISO, safeTemporalZonedDateTime } from '../date.ts';
+import { safeTemporalZonedDateTime } from '../date.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
 import { Services } from '../services/index.ts';
 import { notePermalinkOf } from '../../src/_includes/permalinks.ts';
 import * as Notes from '../model/note.ts';
 
 export const postNote = async (services: Services, json: any) => {
-    const note = inputOf(json); // throws on validation errors
+    const input = inputOf(json); // throws on validation errors
 
-    await Notes.add(services.fileHost, note);
+    const [note] = await Notes.add(services.fileHost, input);
 
     return new URL(notePermalinkOf(note.fileName), self.location.href);
 };
@@ -18,7 +18,7 @@ function assert<T>(v: any, type: string, err: () => Error): asserts v is T {
     }
 }
 
-const inputOf = (json: any): Notes.Note => {
+const inputOf = (json: any): Notes.NoteInput => {
     const { contents, date } = json;
 
     assert<string>(contents, 'string', () =>
@@ -68,27 +68,10 @@ const inputOf = (json: any): Notes.Note => {
         );
     })();
 
-    // I want both of these to be in the *local* time:
-
-    // Will go into the frontmatter: "2024-03-15T10:24:35+01:00"
-    const metaDate = formatISO(
-        zonedDateTime,
-    );
-    // Will be the filename: "2024-03-15-10-24-35"
-    const fileDate = formatFileName(zonedDateTime);
-
     return {
         contents: contents.trim(),
-        fileName: `${fileDate}.md`,
-        meta: {
-            // For practical reasons, I store the "dumb" date in the `date` field and the timezone
-            // separately. I *could've* put them both as an ISO8601 string with timezone information
-            // appended à la Temporal, but I'm not sure my current or future site generators will
-            // play well with that, since `date` tend to be a spEcIal fIeLd.
-            date: metaDate,
-            timezone: zonedDateTime.timeZone.toString(),
-            location: json.location,
-            tags,
-        },
+        zonedDateTime,
+        location: json.location,
+        tags,
     };
 };
