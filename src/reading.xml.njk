@@ -18,7 +18,7 @@ url: /reading.xml
 	<entry>
 		<title>{{ book.title }}</title>
 		<link href="{{ '/reading' | url(true) }}/{{book.slug}}" />
-		{% if book.finishedAt %}<updated>{{ book.finishedAt | tdate("Machine", book.timezone) }}</updated>{% endif %}
+		{% if book.finishedAt %}<updated>{{ book.finishedAt }}</updated>{% endif %}
 		<id>{{ '/reading' | url(true) }}/{{book.slug}}</id>
 		{% if book.notes %}
 			<content type="html">{{ book.notes | md | htmlUrl(true) }}</content>

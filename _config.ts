@@ -11,6 +11,7 @@ import { idOf, postsRoot } from './src/_includes/permalinks.ts';
 import { microRoot } from './src/_includes/permalinks.ts';
 import { booksRoot } from './src/_includes/permalinks.ts';
 import postcssUtopia from 'npm:postcss-utopia@^1';
+import type { Book } from './api/model/book.ts';
 
 const site = lume({
     src: 'src',
@@ -32,7 +33,7 @@ site.use(typeset({ scope: '.prose' }))
                     maxWidth: 653,
                 }),
             ],
-        })
+        }),
     )
     .use(temporalDate())
     .use(sourceMaps())
@@ -64,9 +65,9 @@ site.use(typeset({ scope: '.prose' }))
 
         return false;
     })
-    .filter('groupBooksByYear', <T,>(arr: Array<T>) => {
+    .filter('groupBooksByYear', (arr: Array<Book>) => {
         const current = new Date().getUTCFullYear();
-        const groups: Record<string | number, T[]> = {
+        const groups: Record<string | number, Book[]> = {
             [current]: [],
         };
 

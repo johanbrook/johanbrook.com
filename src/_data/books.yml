@@ -2,119 +2,119 @@
   slug: the-lord-of-the-rings
   author: J.R.R. Tolkien
   finished: true
-  finishedAt: 2001-12-10T00:00:00Z
+  finishedAt: 2001-12-10
 
 - title: Bilbo
   slug: bilbo
   author: J.R.R. Tolkien
   finished: true
-  finishedAt: 2002-01-10T00:00:00Z
+  finishedAt: 2002-01-10
 
 - title: The Silmarillion
   slug: the-silmarrillion
   author: J.R.R. Tolkien
   finished: true
-  finishedAt: 2002-05-10T00:00:00Z
+  finishedAt: 2002-05-10
 
 - title: Animal Farm
   slug: animal-farm
   author: George Orwell
   finished: true
-  finishedAt: 2007-08-10T00:00:00Z
+  finishedAt: 2007-08-10
 
 - title: "1984"
   slug: "1984"
   author: George Orwell
   finished: true
-  finishedAt: 2007-08-10T00:00:00Z
+  finishedAt: 2007-08-10
 
 - title: The Old Man and the Sea
   slug: the-old-man-and-the-sea
   author: Ernest Hemingway
   finished: true
-  finishedAt: 2008-05-10T00:00:00Z
+  finishedAt: 2008-05-10
 
 - title: Hammer of the Gods – The Led Zeppelin Saga
   slug: hammer-of-the-gods-the-led-zeppelin-saga
   author: Stephen Davis
   finished: true
-  finishedAt: 2010-01-10T00:00:00Z
+  finishedAt: 2010-01-10
   location: Kauai, Hawaii
 
 - title: Led Zeppelin – When Giants Walked The Earth
   slug: led-zeppelin-when-giants-walked-the-earth
   author: Mick Wall
   finished: true
-  finishedAt: 2010-01-10T00:00:00Z
+  finishedAt: 2010-01-10
   location: Kauai, Hawaii
 
 - title: Interview wih the Vampire
   slug: interview-with-the-vampire
   author: Anne Rice
   finished: true
-  finishedAt: 2010-02-10T00:00:00Z
+  finishedAt: 2010-02-10
   location: Calgary, Canada
 
 - title: No One Here Gets Out Alive
   slug: noone-here-gets-out-alive
   author: Jerry Hopkins & Danny Sugarman
   finished: true
-  finishedAt: 2010-05-10T00:00:00Z
+  finishedAt: 2010-05-10
   location: Calgary, Canada
 
 - title: The Holy Blood And The Holy Grail
   slug: holy-blood-holy-grail
   author: M. Baigent, R. Leigh & H. Lincoln
   finished: true
-  finishedAt: 2010-04-10T00:00:00Z
+  finishedAt: 2010-04-10
   location: Calgary, Canada
 
 - title: Rework
   slug: rework
   author: Jason Fried & David Heinemeier Hansson
   finished: true
-  finishedAt: 2010-05-10T00:00:00Z
+  finishedAt: 2010-05-10
   location: Calgary, Canada
 
 - title: Infinity
   slug: infinity
   author: Brian Clegg
   finished: true
-  finishedAt: 2010-07-01T00:00:00Z
+  finishedAt: 2010-07-01
   location: Calgary, Canada
 
 - title: Life of Pi
   slug: life-of-pi
   author: Yann Martel
   finished: true
-  finishedAt: 2010-08-01T00:00:00Z
+  finishedAt: 2010-08-01
   location: Calgary, Canada
 
 - title: The Road
   slug: the-road
   author: Cormac McCarthy
   finished: true
-  finishedAt: 2011-07-01T00:00:00Z
+  finishedAt: 2011-07-01
   notes: "The minimal language is perfect."
 
 - title: Black Sabbath
   slug: black-sabbath
   author: Mick Wall
   finished: true
-  finishedAt: 2012-07-01T00:00:00Z
+  finishedAt: 2012-07-01
 
 - title: Into the Wild
   slug: into-the-wild
   author: Jon Krakauer
   finished: true
-  finishedAt: 2014-01-10T00:00:00Z
+  finishedAt: 2014-01-10
   location: Paris, France
 
 - title: Scar Tissue
   slug: scar-tissue
   author: Anthony Kiedis
   finished: true
-  finishedAt: 2014-07-10T00:00:00Z
+  finishedAt: 2014-07-10
   location: Gothenburg, Sweden
   notes: "Raw and honest."
 
@@ -122,7 +122,7 @@
   slug: shantaram
   author: Gregory David Roberts
   finished: true
-  finishedAt: 2015-07-10T00:00:00Z
+  finishedAt: 2015-07-10
   location: Gothenburg, Sweden
 
 - title: Steve Jobs
@@ -130,34 +130,34 @@
   author: Walter Isaacson
   finished: true
   location: Gothenburg, Sweden
-  finishedAt: 2015-08-01T00:00:00Z
+  finishedAt: 2015-08-01
 
 - title: Becoming Steve Jobs
   slug: becoming-steve-jobs
   author: Brent Schlender & Rick Tetzeli
   finished: true
-  finishedAt: 2015-04-10T00:00:00Z
+  finishedAt: 2015-04-10
   location: Gothenburg, Sweden
 
 - title: W. Axl Rose
   slug: w-axl-rose
   author: Mick Wall
   finished: true
-  finishedAt: 2015-01-10T00:00:00Z
+  finishedAt: 2015-01-10
   location: Gothenburg, Sweden
 
 - title: Zen and the Art of Motorcycle Maintenance
   slug: zen-and-the-art-of-motorcycle-maintenance
   author: Robert M. Pirsig
   finished: true
-  finishedAt: 2015-09-10T00:00:00Z
+  finishedAt: 2015-09-10
   location: Vienna, Austria
 
 - title: Just Kids
   slug: just-kids
   author: Patti Smith
   finished: true
-  finishedAt: 2015-11-10T00:00:00Z
+  finishedAt: 2015-11-10
   location: San Francisco, USA
   notes: "Very touching, and beautifully written."
 
@@ -165,35 +165,35 @@
   slug: dancing-with-the-devil-in-the-city-of-god
   author: Juliana Barbassa
   finished: true
-  finishedAt: 2016-05-10T00:00:00Z
+  finishedAt: 2016-05-10
   location: Rio de Janeiro, Brazil
 
 - title: The Essential Hemingway
   slug: the-essential-hemingway
   author: Ernest Hemingway
   finished: true
-  finishedAt: 2016-05-10T00:00:00Z
+  finishedAt: 2016-05-10
   location: Rio de Janeiro, Brazil
 
 - title: A Moveable Feast
   slug: a-moveable-feast
   author: Ernest Hemingway
   finished: true
-  finishedAt: 2016-05-10T00:00:00Z
+  finishedAt: 2016-05-10
   location: Rio de Janeiro, Brazil
 
 - title: M Train
   slug: m-train
   author: Patti Smith
   finished: true
-  finishedAt: 2016-10-10T00:00:00Z
+  finishedAt: 2016-10-10
   location: New York, USA
 
 - title: The Mountain Shadow
   slug: the-mountain-shadow
   author: Gregory David Roberts
   finished: true
-  finishedAt: 2017-07-10T00:00:00Z
+  finishedAt: 2017-07-10
   location: Gothenburg, Sweden
   notes: "Sequel to Shantaram. Not as good, but nevertheless a good sequel."
 
@@ -201,28 +201,28 @@
   slug: sapiens
   author: Yuval Noah Harari
   finished: true
-  finishedAt: 2017-08-10T00:00:00Z
+  finishedAt: 2017-08-10
   location: Nice, France
 
 - title: Hero — David Bowie
   slug: hero-david-bowie
   author: Lesley-Ann Jones
   finished: true
-  finishedAt: 2017-10-10T00:00:00Z
+  finishedAt: 2017-10-10
   location: Lisbon, Portugal
 
 - title: 21 Lessons for the 21th Century
   slug: 21-lessons-for-the-21th-century
   author: Yuval Noah Harari
   finished: true
-  finishedAt: 2018-05-10T00:00:00Z
+  finishedAt: 2018-05-10
   location: Stockholm, Sweden
 
 - title: A Little Life
   slug: a-little-life
   author: Hanya Yanagihara
   finished: true
-  finishedAt: 2018-07-10T00:00:00Z
+  finishedAt: 2018-07-10
   location: Stockholm, Sweden
   notes: "The saddest book I've read in all my life. But oh so good."
 
@@ -230,21 +230,21 @@
   slug: a-brief-history-of-time
   author: Stephen Hawking
   finished: true
-  finishedAt: 2019-03-10T00:00:00Z
+  finishedAt: 2019-03-10
   location: Stockholm, Sweden
 
 - title: The Sun Also Rises
   slug: the-sun-also-rises
   author: Ernest Hemingway
   finished: true
-  finishedAt: 2019-05-10T00:00:00Z
+  finishedAt: 2019-05-10
   location: Barcelona, Spain
 
 - title: Men Without Women
   slug: men-without-women
   author: Haruki Murakami
   finished: true
-  finishedAt: 2020-01-10T00:00:00Z
+  finishedAt: 2020-01-10
   location: Sri Lanka
   notes: I like short story collections, and Murakami's language is the best. Read this.
 
@@ -252,7 +252,7 @@
   slug: the-snow-leopard
   author: Peter Matthiessen
   finished: true
-  finishedAt: 2020-01-10T00:00:00Z
+  finishedAt: 2020-01-10
   location: Sri Lanka
   notes: >-
     A travel diary of an American in an expedition into the Himalayas. He's real goal is to catch a glimpse of the very shy
@@ -263,7 +263,7 @@
   slug: the-zahir
   author: Paolo Coelho
   finished: true
-  finishedAt: 2020-01-10T00:00:00Z
+  finishedAt: 2020-01-10
   location: Sri Lanka
   notes: "Like The Alchemist, this one was boring. Poorly written, boring plot, and not believable at all."
 
@@ -271,7 +271,7 @@
   slug: the-alchemist
   author: Paolo Coelho
   finished: true
-  finishedAt: 2020-01-10T00:00:00Z
+  finishedAt: 2020-01-10
   location: Sri Lanka
   notes: "I loved it in the beginning, but then it turned out to be boring New Age-y stuff."
 
@@ -279,7 +279,7 @@
   slug: the-godfather
   author: Mario Puzo
   finished: true
-  finishedAt: 2020-03-01T00:00:00Z
+  finishedAt: 2020-03-01
   location: Stockholm, Sweden
   notes: "Even better than the movie. More details (of course), and deeper descriptions of characters."
 
@@ -287,7 +287,7 @@
   slug: jag-kan-ha-fel
   author: Björn Natthiko Lindeblad
   finished: true
-  finishedAt: 2020-06-01T00:00:00Z
+  finishedAt: 2020-06-01
   location: Stockholm, Sweden
   notes: >-
     Written by a Swedish businessman who became a Buddhist monk for 17 years. It's not a classic self help book, nor
@@ -298,7 +298,7 @@
   slug: about-a-boy
   author: Nick Hornby
   finished: true
-  finishedAt: 2020-07-01T00:00:00Z
+  finishedAt: 2020-07-01
   location: Stockholm, Sweden
   notes: >-
     Very 'fun' and unforeseeable language. The thoughts of the two main characters – the man and the boy – are written in a
@@ -308,7 +308,7 @@
   slug: cosa-nostra
   author: John Dickie
   finished: true
-  finishedAt: 2020-07-01T00:00:00Z
+  finishedAt: 2020-07-01
   location: Stockholm, Sweden
   notes: "A non-fiction history about the Sicilian mafia. Entertaining."
 
@@ -316,7 +316,7 @@
   slug: normal-people
   author: Sally Rooney
   finished: true
-  finishedAt: 2020-08-01T00:00:00Z
+  finishedAt: 2020-08-01
   location: Stockholm, Sweden
   notes: >-
     I saw the series before reading the book, and both formats have their charm. The author has a great language, and
@@ -326,7 +326,7 @@
   slug: herakles
   author: Theodor Kallifatides
   finished: true
-  finishedAt: 2020-08-01T00:00:00Z
+  finishedAt: 2020-08-01
   location: Stockholm, Sweden
   notes: >-
     I like mythology, especially like Greek mythology. This book is a novel – I guess a bit dramatised – about the life of
@@ -337,7 +337,7 @@
   author: Daniel Quinn
   finished: true
   location: Österlen, Sweden
-  finishedAt: 2020-08-01T00:00:00Z
+  finishedAt: 2020-08-01
   notes: >-
     A philosophical discourse about the evolution of homo sapiens. Some things are controversial, like population control.
     The book's dialogue is about biodiversity, climate change, urbanisation: a lot of contemporary topics. It's a nice pairing
@@ -348,7 +348,7 @@
   author: Shunryu Suzuki
   finished: true
   location: Stockholm, Sweden
-  finishedAt: 2021-02-01T00:00:00Z
+  finishedAt: 2021-02-01
   notes: >-
     It took me a long time to finish this very thin book. The language is dense, and I wanted to soak every page in. I had
     to re-read a couple of sentences. But I liked it as a whole, especially the laser focus of the author's message.
@@ -358,7 +358,7 @@
   author: Lydia Sandgren
   finished: true
   location: Österlen, Sweden
-  finishedAt: 2021-08-01T00:00:00Z
+  finishedAt: 2021-08-01
   notes: >-
     This is an epic describing the live of a couple of individuals from the 1970s until the 2010s in Gothenburg, Sweden.
     It really touched me, on several layers. I'm very sentimental about the city Gothenburg, and I was constantly impressed
@@ -369,7 +369,7 @@
   slug: what-i-talk-about-when-i-talk-about-running
   author: Haruki Murakami
   finished: true
-  finishedAt: 2021-09-06T00:00:00Z
+  finishedAt: 2021-09-06
   location: Florence, Italy
   notes: >-
     I love Murakami's straight forward language. This one made me want to start running. He's very honest about himself in
@@ -379,7 +379,7 @@
   slug: american-psycho
   author: Bret Easton Ellis
   finished: true
-  finishedAt: 2021-09-14T00:00:00Z
+  finishedAt: 2021-09-14
   location: Florence, Italy
   notes: >-
     The book is a lot more psycho than the movie. More explicit than I thought. The unreliable monologues of the narrator are
@@ -389,7 +389,7 @@
   slug: fight-club
   author: Chuck Palahniuk
   finished: true
-  finishedAt: 2021-09-20T00:00:00Z
+  finishedAt: 2021-09-20
   location: Florence, Italy
   notes: >-
     I honestly think the movie is better. I'm sure the book would be cool if I'd read that first, but I couldn't stand the
@@ -400,14 +400,14 @@
   author: Patrik Svensson
   location: Stockholm, Sweden
   dropped: true
-  finishedAt: 2021-10-01T00:00:00Z
+  finishedAt: 2021-10-01
 
 - title: The Clash
   slug: the-clash
   author: Strummer, Jones, Simonon, Headon
   location: Stockholm, Sweden
   finished: true
-  finishedAt: 2021-11-01T00:00:00Z
+  finishedAt: 2021-11-01
   notes: "An okay account of the history of the band, told by themselves in interview format."
 
 - title: Once Upon A Time… In Hollywood
@@ -415,7 +415,7 @@
   author: Quentin Tarantino
   location: Stockholm, Sweden
   finished: true
-  finishedAt: 2022-04-11T17:40:00Z
+  finishedAt: 2022-04-11
   notes: >-
     It's quite rare that a book is written after a film, and by the film's creator too. I loved this one: it's 100%
     Quentin Tarantino-ness all way through. He has space to go deeper in the conversations between the characters,
@@ -426,7 +426,7 @@
   author: Karl Ove Knausgård
   location: Fjällnäs, Sweden
   finished: true
-  finishedAt: 2022-04-24T20:00:00Z
+  finishedAt: 2022-04-24
   notes: >-
     I thought Knausgård would be a hard read, but it was not. "Morgonstjärnan" is so lovely. The author has this superb power
     of making seemingly mundane everyday people and tasks become interesting. His description are rich, and the pace is perfect.
@@ -437,7 +437,7 @@
   author: Julia Child, Simone Beck, Louisette Bertholle
   location: Stockholm, Sweden
   finished: true
-  finishedAt: 2022-06-04T21:00:00Z
+  finishedAt: 2022-06-04
   notes: >-
     I bought the Swedish translation as paperback, and read it all in once – back to back. Quite special for a cooking book.
     The book includes tips and tricks around techniques, equipment, and ingredients. All the traditional French recipies
@@ -450,13 +450,13 @@
   location: Stockholm, Sweden
   notes: "The autobiography of Keith Richards (guitarist in Rolling Stones)."
   finished: true
-  finishedAt: 2022-07-01T00:00:00
+  finishedAt: 2022-07-01
 
 - title: Häng City
   slug: hang-city
   author: Mikael Yvesand
   finished: true
-  finishedAt: 2022-08-05T19:30:00
+  finishedAt: 2022-08-05
   notes: >-
     Lovely rendition of a summer in the lives of three 13 year old boys in northern Sweden in 1999. The language used
     is so very relatable, and so are the pop culture references. Even though "nothing" really happens, the book does
@@ -466,7 +466,7 @@
 - title: Jack
   slug: jack
   author: Ulf Lundell
-  finishedAt: 2022-10-01T00:00:00
+  finishedAt: 2022-10-01
   notes: >-
     _The_ generational novel of the Swedish 1970s. Dropped it because it didn't really speak to me. I understand
     it must've been cool in the 70s, but not so now.
@@ -477,7 +477,7 @@
   author: Karl Ove Knausgård
   location: Kalk Bay, South Africa
   finished: true
-  finishedAt: 2022-11-11T09:00:00
+  finishedAt: 2022-11-11
   notes: >-
     I loved this even more than "Morgonstjärnan". It's more focused, and showcases Knausgård's ability to tell
     captivating stories about seemingly mundane characters and scenes. The book treats two characters' everyday
@@ -492,14 +492,14 @@
     Historical account about how women have been pushed aside over the years when it comes to inventions and
     innovation.
   dropped: true
-  finishedAt: 2022-11-30T09:00:00
+  finishedAt: 2022-11-30
 
 - title: Four Thousand Weeks
   slug: four-thousand-weeks
   author: Oliver Burkeman
   location: Stockholm, Sweden
   dropped: true
-  finishedAt: 2022-12-01T00:00:00
+  finishedAt: 2022-12-01
   notes: >-
     Too much "self help book" so far. I constantly feel: "this could've been a blog post" and "why did I buy this".
 
@@ -509,7 +509,7 @@
   location: Kalk Bay, South Africa
   dropped: true
   notes: Just didn't like it. The short stories weren't captivating enough, and the prose was elegant but unnecessarily complex.
-  finishedAt: 2022-12-01T00:00:00
+  finishedAt: 2022-12-01
 
 - title: David Bowie — A Life
   slug: david-bowie-a-life
@@ -520,14 +520,14 @@
     the author used in the interviews. It felt personal and real.
   location: Fjällnäs, Sweden
   finished: true
-  finishedAt: 2023-01-12T20:00:00
+  finishedAt: 2023-01-12
 
 - title: Detaljerna
   slug: detaljerna
   author: Ia Genberg
   finished: true
   location: Fjällnäs, Sweden
-  finishedAt: 2023-01-22T20:00:00
+  finishedAt: 2023-01-22
   notes: >-
     Best book I've read for a long while. So intimate and delicate. Beautiful prose. Good build-ups. The format of
     describing the interactions with four people during an unspecified (but guessable) timeline from the perspective
@@ -538,14 +538,14 @@
   author: William MacAskill
   notes: Philosopher philosophising about the future.
   paused: true
-  finishedAt: 2023-02-01T00:00:00
+  finishedAt: 2023-02-01
 
 - title: Kent – Texter om Sveriges största rockband
   slug: kent
   author: Several
   finished: true
   location: Stockholm, Sweden
-  finishedAt: 2023-02-10T20:00:00
+  finishedAt: 2023-02-10
   notes: >-
     Collection of reviews and articles about the band Kent, from around 1993 to 2005. I liked the interviews and
     descriptions of their early career through newspaper texts. The band is no more since a while back, so they
@@ -560,7 +560,7 @@
     Wall compresses Lou Reed's life and captures the important events into an actually good read.
   finished: true
   location: Stockholm, Sweden
-  finishedAt: 2023-02-09T20:00:00
+  finishedAt: 2023-02-09
 
 - title: The Shards
   slug: the-shards
@@ -572,7 +572,7 @@
   author: John le Carré
   finished: true
   location: Stockholm, Sweden
-  finishedAt: 2023-05-17T22:56:00
+  finishedAt: 2023-05-17
   notes: >-
     I'm deep into espionage fiction now. Or, I'm deep into John le Carré… This novel was both a prequel and sequel to the
     author's breakout piece _"The Spy Who Came In from the Cold"_ (which I haven't read yet. Not sure if that's good or
@@ -584,7 +584,7 @@
   author: Peter Englund
   finished: true
   location: Stockholm, Sweden
-  finishedAt: 2023-06-15T20:00:00
+  finishedAt: 2023-06-15
   notes: >-
     I liked this one very much. The book is a collection of essays spanning from World War I, throughout the 1920s-30s
     Soviet Union with Stalin's purges, and into the architecture and bombings of Berlin and Nagasaki in World War II.
@@ -596,7 +596,7 @@
   author: John le Carré
   finished: true
   location: Stockholm, Sweden
-  finishedAt: 2023-06-27T23:00:00
+  finishedAt: 2023-06-27
   notes: >-
     Damn. I should've read this one after ["The Legacy of Spies"](#the-legacy-of-spies). The latter one — also
     by le Carré — is a prequel and sequel to "The Spy…", and I would've enjoyed "The Legacy…" more if waiting
@@ -609,7 +609,7 @@
   author: John le Carré
   finished: true
   location: Stockholm, Sweden
-  finishedAt: 2023-07-14T21:00:00
+  finishedAt: 2023-07-14
   notes: >-
     If I had read the book before the movie, I would've been more surprised by the climax than what I was for
     the film version. I continue to be impressed by le Carré's prose too. He inserts tiny words and sentences
@@ -620,7 +620,7 @@
   slug: the-honourable-schoolboy
   author: John le Carré
   dropped: true
-  finishedAt: 2023-09-01T00:00:00
+  finishedAt: 2023-09-01
 
 - title: Berlin
   slug: berlin
@@ -631,20 +631,20 @@
     Germany in 1945. So much stuff I didn't know. Lots of stories about the conditions of the soldiers, civilians,
     and the fates of prisoners (hint: all quite horrible).
   finished: true
-  finishedAt: 2023-10-15T21:00:00
+  finishedAt: 2023-10-15
 
 - title: Secret Pilgrim
   slug: secret-pilgrim
   author: John le Carré
   dropped: true
-  finishedAt: 2023-10-01T00:00:00
+  finishedAt: 2023-10-01
 
 - title: Tunnel 29 — The True Story of an Extraordinary Escape Beneath the Berlin Wall
   author: Helena Merriman
   slug: tunnel-29
   finished: true
   location: Stockholm, Sweden
-  finishedAt: 2024-01-04T19:00:00+01:00
+  finishedAt: 2024-01-04
   notes: >-
     This is kind of a "dramatised" documentary of actual events. Tons of historical metadata along the way. It's
     a bit cheesy sometimes, but I totally admit it was a page turner. And most importantly, it taught me a lot
@@ -655,8 +655,7 @@
   slug: det-tredje-riket
   finished: true
   location: Bangkok, Thailand
-  finishedAt: 2024-01-14T21:00:00+01:00
-  timezone: Asia/Bangkok
+  finishedAt: 2024-01-14
   notes: >-
     I loved it just as much as the first one in the series (I loved the second one less). It's something in Knausgård's
     language which is so, so good.
@@ -665,41 +664,36 @@
   author: Karl Ove Knausgård
   slug: min-kamp-1
   finished: true
-  finishedAt: 2024-01-24T20:00:00+07:00
+  finishedAt: 2024-01-24
   location: Koh Lanta, Thailand
-  timezone: Asia/Bangkok
 
 - title: Min Kamp 2
   author: Karl Ove Knausgård
   slug: min-kamp-2
   finished: true
-  finishedAt: 2024-02-03T20:30:00+07:00
+  finishedAt: 2024-02-03
   location: Koh Lanta, Thailand
-  timezone: Asia/Bangkok
 
 - title: Min Kamp 3
   author: Karl Ove Knausgård
   slug: min-kamp-3
   finished: true
-  finishedAt: 2024-02-13T22:45:00+07:00
+  finishedAt: 2024-02-13
   location: Koh Lanta, Thailand
-  timezone: Asia/Bangkok
 
 - title: Min Kamp 4
   author: Karl Ove Knausgård
   slug: min-kamp-4
   finished: true
-  finishedAt: 2024-02-20T23:00:00+07:00
+  finishedAt: 2024-02-20
   location: Koh Lanta, Thailand
-  timezone: Asia/Bangkok
 
 - title: Min Kamp 5
   author: Karl Ove Knausgård
   slug: min-kamp-5
   finished: true
-  finishedAt: 2024-02-28T22:10:00+07:00
+  finishedAt: 2024-02-28
   location: Koh Lanta, Thailand
-  timezone: Asia/Bangkok
 
 - title: Min Kamp 6
   author: Karl Ove Knausgård

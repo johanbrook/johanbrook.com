@@ -27,7 +27,6 @@ export const finishBook = async (services: Services, slug: string, json: any) =>
     book.finished = true;
     book.finishedAt = body.finishedAt as any;
     book.location = body.location;
-    book.timezone = body.timezone;
 
     await Books.update(services.fileHost, idx, book);
 
@@ -63,9 +62,8 @@ const finishBookParseBody = (json: any): Body => {
     })();
 
     return {
-        finishedAt: zonedDateTime.toPlainDateTime().toString(),
+        finishedAt: zonedDateTime.toPlainDate().toString(),
         location: json.location,
-        timezone: zonedDateTime.timeZone.toString(),
     };
 };
 

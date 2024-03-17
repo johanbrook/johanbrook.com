@@ -11,12 +11,11 @@ export interface Book {
     slug: string;
     author: string;
     finished?: boolean;
-    finishedAt?: Date; // TODO Switch to Temporal?
+    finishedAt?: Date;
     dropped?: boolean;
     paused?: boolean;
     notes?: string;
     location?: string;
-    timezone?: string;
 }
 
 export const findCurrent = async (store: FileHost): Promise<Book[]> => {
