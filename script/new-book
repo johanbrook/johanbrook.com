@@ -1,0 +1,31 @@
+#!/usr/bin/env deno run --allow-read --allow-write --allow-env --allow-run --unstable-temporal
+import * as Books from '../api/model/book.ts';
+import { createLocal } from '../api/services/local.ts';
+
+const local = createLocal();
+
+const title = Deno.args[0] ?? '<title>';
+const author = Deno.args[2] ?? '<author>';
+
+const [, fullPath] = await Books.add(local, {
+    title,
+    author,
+});
+
+const editor = Deno.run({
+    cmd: ['zed', fullPath],
+    stdout: 'piped',
+    stderr: 'piped',
+});
+
+const { code } = await editor.status();
+const rawError = await editor.stderrOutput();
+
+if (code != 0) {
+    const errorString = new TextDecoder().decode(rawError);
+    console.log('Error from process: ', errorString);
+}
+
+editor.close();
+
+Deno.exit(code);
