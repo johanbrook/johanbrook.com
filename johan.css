@@ -1938,6 +1938,13 @@ COLOURS
     font-family: var(--sans);
 }
 
+.underline-fancy {
+    text-decoration: underline;
+    text-underline-offset: 0.6ex;
+    text-decoration-style: wavy;
+    text-decoration-color: hotpink;
+}
+
 /*
 OPACITY
 ----------------------------------------------------------------*/
