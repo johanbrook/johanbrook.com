@@ -14,21 +14,21 @@ export enum ProblemKind {
 }
 
 export class ProblemError extends Error {
-    #kind: ProblemKind;
+    kind: ProblemKind;
 
     constructor(kind: ProblemKind, message: string) {
         super(message);
 
-        this.#kind = kind;
+        this.kind = kind;
         this.name = `ProblemError(${kind})`;
     }
 
     toString() {
-        return `ProblemError(${this.#kind}) ${this.message}`;
+        return `${this.name} ${this.message}`;
     }
 
     get status(): number {
-        switch (this.#kind) {
+        switch (this.kind) {
             /* falls through */
             case ProblemKind.BodyParseError:
             case ProblemKind.BadInput:
@@ -37,6 +37,7 @@ export class ProblemError extends Error {
                 return 401;
             case ProblemKind.NotFound:
                 return 404;
+            /* falls through */
             case ProblemKind.GitHubError:
             case ProblemKind.InconsistentFile:
             default:

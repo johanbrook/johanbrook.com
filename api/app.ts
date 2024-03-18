@@ -1,5 +1,5 @@
 import { Router, RouterRequest } from './router.ts';
-import { checkAuth } from './auth.ts';
+import { checkAuth, Client } from './auth.ts';
 import { Services } from './services/index.ts';
 import { pipe } from './pipe.ts';
 import { addBook, finishBook, getCurrentBooks, postNote } from './routes/index.ts';
@@ -7,7 +7,19 @@ import { urlForBook } from '../src/_includes/permalinks.ts';
 import { setCurrentTrack } from './routes/index.ts';
 
 export function createApp(services: Services) {
-    const router = new Router();
+    const router = new Router<Client>();
+
+    router.route(
+        'GET',
+        '/check-auth',
+        pipe(authHandler, (req) => {
+            if (!req.user) {
+                console.warn('No user on request in /check-auth! This is a bug.');
+                return new Response('Bad user state', { status: 500 });
+            }
+            return new Response(`Authed as ${req.user.id}`);
+        }),
+    );
 
     router.route(
         'POST',
@@ -86,7 +98,8 @@ export function createApp(services: Services) {
     return router;
 }
 
-const authHandler = (req: RouterRequest) => {
-    checkAuth(req); // throws on error
+const authHandler = (req: RouterRequest<Client>) => {
+    const client = checkAuth(req); // throws on error
+    req.user = client;
     return req;
 };
