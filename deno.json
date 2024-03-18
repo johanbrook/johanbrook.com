@@ -10,7 +10,8 @@
         "build": "deno task lume",
         "serve": "deno task build -s",
         "test": "export IOS_SHORTCUT_TOKEN=aaa && export MAC_SHORTCUT_TOKEN=aaa && TEST=1 deno test --allow-env --unstable-temporal --location https://johan.im",
-        "api": "deno run --unstable-temporal --allow-env --allow-net --allow-read --allow-write --location https://johan.im --watch api/server.ts"
+        "api": "deno run --unstable-temporal --allow-env --allow-net --allow-read --allow-write --location https://johan.im --watch api/server.ts",
+        "api:deploy": "deployctl deploy --env-file=.env.api"
     },
     "compilerOptions": {
         "lib": ["deno.ns", "deno.unstable", "dom", "dom.iterable"],
@@ -27,5 +28,11 @@
         "lineWidth": 100,
         "singleQuote": true,
         "indentWidth": 4
+    },
+    "deploy": {
+        "project": "de2a0b87-9d37-44d0-af4a-785789cba991",
+        "exclude": ["test", "build", "functions", "src/public", "script", "**/node_modules"],
+        "include": [],
+        "entrypoint": "api/server.ts"
     }
 }
