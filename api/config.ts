@@ -13,8 +13,8 @@ export const getConfig = <K extends keyof Config>(key: K, def?: Config[K]): Conf
     if (!val) {
         if (def != null) return def;
 
-        console.error(`Config doesn't exist as env var: ${key}`);
-        Deno.exit(1);
+        // Cannot do Deno.exit(1) in Deno deploy?
+        throw new Error(`Config doesn't exist as env var: ${key}`);
     }
 
     return val;
