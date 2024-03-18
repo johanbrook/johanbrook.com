@@ -11,4 +11,6 @@ I'd like to write more (don't we all), and I consume a (un)healthy amount of mus
 
 You can reach me via [email](mailto:{{ meta.email }}) or [Mastodon]({{ '' | mastodonUrl }}).
 
-My fav track at the moment is ♫ **{{ current_track.name }} — {{ current_track.artist }}**.
+***
+
+My fav track at the moment is ♫ <strong class="underline-fancy">{{ current_track.name }}</strong> by {{ current_track.artist }}.
