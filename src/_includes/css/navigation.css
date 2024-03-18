@@ -45,7 +45,7 @@
 
     h1 {
         --offset-top: 18px;
-        line-height: calc(var(--lineheight) * 3);
+        line-height: 3rlh;
         margin-bottom: -4px;
         padding-top: var(--offset-top);
 

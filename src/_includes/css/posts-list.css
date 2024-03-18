@@ -23,7 +23,7 @@ POSTS LIST
 
     & .PostItem__Link {
         display: block;
-        padding: calc(var(--lineheight) / 3) 0;
+        padding: 0.5rlh 0;
         flex: 1;
 
         &:visited {
@@ -35,7 +35,7 @@ POSTS LIST
     @media screen and (max-width: 480px) {
         align-items: flex-start;
         flex-direction: column;
-        margin-bottom: calc(var(--lineheight) / 3);
+        margin-bottom: 0.5rlh;
 
         & .PostItem__Link {
             max-width: 90%;

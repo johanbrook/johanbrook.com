@@ -26,12 +26,12 @@ PROSE
     & iframe,
     & figure,
     & svg {
-        --side-margin: calc(var(--lineheight) * 2);
+        --side-margin: 2rlh;
         margin: var(--side-margin) auto;
         display: block;
 
         @media screen and (max-width: 480px) {
-            --side-margin: var(--lineheight);
+            --side-margin: 1rlh;
         }
     }
 
@@ -72,7 +72,7 @@ PROSE
     }
 
     & figure.image--full {
-        margin: calc(var(--lineheight) * 2) -14vw;
+        margin: 2rlh -14vw;
 
         & img {
             display: block;

@@ -6,6 +6,7 @@ html {
     -moz-text-size-adjust: none;
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
+    font: normal 112.5% / var(--leading) var(--sans);
 }
 
 :where(body, html) {
@@ -13,11 +14,9 @@ html {
 }
 
 body {
-    font: normal var(--f4) / var(--leading) var(--sans);
     color: var(--color-text);
     padding: var(--inset);
     padding-top: calc(var(--inset) * 2);
-    line-height: var(--leading);
     font-feature-settings:
 		/* Contextual alternates */
         'calt' 1,
@@ -45,7 +44,7 @@ body {
 
 :where(h1, h2, h3, h4, h5, h6) {
     margin-block-end: 0;
-    margin-bottom: calc(var(--lineheight) / 2);
+    margin-bottom: 0.5rlh;
     color: var(--color-text-high-contrast);
     font-family: var(--serif);
 }
@@ -116,6 +115,7 @@ nav ul {
     color: var(--link-color);
     position: relative;
     text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
 
     &.block {
         text-decoration: none;
@@ -158,7 +158,7 @@ nav ul {
 }
 
 :where(p, ul, ol, blockquote, table, figure, pre, details) {
-    margin-block-end: calc(var(--lineheight) / 2);
+    margin-block-end: 0.5rlh;
 }
 
 img {
@@ -262,8 +262,8 @@ pre {
 }
 
 li > pre {
-    margin-top: calc(var(--lineheight) / 2);
-    margin-bottom: calc(var(--lineheight) / 2);
+    margin-top: 0.5rlh;
+    margin-bottom: 0.5rlh;
 }
 
 /* Syntax highlighting */
@@ -273,18 +273,18 @@ code[class*='language-'] {
 
 blockquote {
     border-left: 2px solid var(--grey-light);
-    margin: calc(var(--lineheight) * 2) 2rem calc(var(--lineheight) * 2) 0;
+    margin: 2rlh 2rem 2rlh 0;
     padding-left: 1rem;
     padding-right: 1rem;
     color: var(--color-text-high-contrast);
 
     & > p {
-        margin-bottom: calc(var(--lineheight) / 2);
+        margin-bottom: 0.5rlh;
     }
 
     & footer {
         color: var(--grey);
-        margin-top: var(--lineheight);
+        margin-top: 1rlh;
     }
 }
 
@@ -292,7 +292,7 @@ hr {
     border: 0;
     background-color: var(--border-color);
     height: 1px;
-    margin: var(--lineheight) 0;
+    margin: 1rlh 0;
 }
 
 textarea {

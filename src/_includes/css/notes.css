@@ -10,7 +10,7 @@
 
 .NotesList {
     & > li:not(:last-child) {
-        margin-bottom: calc(var(--lineheight) * 4);
+        margin-bottom: 4rlh;
     }
 
     & > li:has(:target)::after {

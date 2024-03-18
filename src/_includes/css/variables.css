@@ -65,10 +65,7 @@
     --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     --serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
 
-    --font-size-base: 18;
     --leading: 1.618;
-    /* Rhythm unit */
-    --lineheight: calc(var(--leading) * 1rem);
 
     --tracking: -0.014em;
     --tracking-f0: -0.022em;
@@ -106,7 +103,7 @@
 
     /* Measures */
 
-    --inset: calc(var(--lineheight) / 2);
+    --inset: 0.5rlh;
 
     --measure: 60ch;
     --measure-narrow: 45ch;
@@ -114,7 +111,7 @@
 
     --content-width: var(--measure);
 
-    --spacing-base: var(--lineheight);
+    --spacing-base: 1rlh;
 
     --spacing-none: 0;
     --spacing-extra-small: calc(var(--spacing-base) / 5);
