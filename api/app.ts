@@ -4,6 +4,7 @@ import { Services } from './services/index.ts';
 import { pipe } from './pipe.ts';
 import { addBook, finishBook, getCurrentBooks, postNote } from './routes/index.ts';
 import { urlForBook } from '../src/_includes/permalinks.ts';
+import { setCurrentTrack } from './routes/index.ts';
 
 export function createApp(services: Services) {
     const router = new Router();
@@ -70,6 +71,15 @@ export function createApp(services: Services) {
                     Location: url,
                 },
             });
+        }),
+    );
+
+    router.route(
+        'PUT',
+        '/current-track',
+        pipe(authHandler, async (req) => {
+            await setCurrentTrack(services, await req.json());
+            return new Response('♫', { status: 200 });
         }),
     );
 
