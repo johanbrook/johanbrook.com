@@ -213,10 +213,7 @@ Remove the inheritance of text transform in Edge and Firefox.
     --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
     --serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
 
-    --font-size-base: 18;
     --leading: 1.618;
-    /* Rhythm unit */
-    --lineheight: calc(var(--leading) * 1rem);
 
     --tracking: -0.014em;
     --tracking-f0: -0.022em;
@@ -242,7 +239,7 @@ Remove the inheritance of text transform in Edge and Firefox.
 
     /* Measures */
 
-    --inset: calc(var(--lineheight) / 2);
+    --inset: 0.5rlh;
 
     --measure: 60ch;
     --measure-narrow: 45ch;
@@ -250,7 +247,7 @@ Remove the inheritance of text transform in Edge and Firefox.
 
     --content-width: var(--measure);
 
-    --spacing-base: var(--lineheight);
+    --spacing-base: 1rlh;
 
     --spacing-none: 0;
     --spacing-extra-small: calc(var(--spacing-base) / 5);
@@ -296,6 +293,7 @@ html {
     -moz-text-size-adjust: none;
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
+    font: normal 112.5% / var(--leading) var(--sans);
 }
 
 :where(body, html) {
@@ -303,11 +301,9 @@ html {
 }
 
 body {
-    font: normal var(--f4) / var(--leading) var(--sans);
     color: var(--color-text);
     padding: var(--inset);
     padding-top: calc(var(--inset) * 2);
-    line-height: var(--leading);
     font-feature-settings:
 		/* Contextual alternates */
         'calt' 1,
@@ -338,7 +334,7 @@ body {
 
 :where(h1, h2, h3, h4, h5, h6) {
     margin-block-end: 0;
-    margin-bottom: calc(var(--lineheight) / 2);
+    margin-bottom: 0.5rlh;
     color: var(--color-text-high-contrast);
     font-family: var(--serif);
 }
@@ -405,6 +401,7 @@ nav ul {
     color: var(--link-color);
     position: relative;
     text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
 }
 
 .block:is(a, .link) {
@@ -447,7 +444,7 @@ nav ul {
     }
 
 :where(p, ul, ol, blockquote, table, figure, pre, details) {
-    margin-block-end: calc(var(--lineheight) / 2);
+    margin-block-end: 0.5rlh;
 }
 
 img {
@@ -552,8 +549,8 @@ pre .line-highlight {
     }
 
 li > pre {
-    margin-top: calc(var(--lineheight) / 2);
-    margin-bottom: calc(var(--lineheight) / 2);
+    margin-top: 0.5rlh;
+    margin-bottom: 0.5rlh;
 }
 
 /* Syntax highlighting */
@@ -564,26 +561,26 @@ code[class*='language-'] {
 
 blockquote {
     border-left: 2px solid var(--grey-light);
-    margin: calc(var(--lineheight) * 2) 2rem calc(var(--lineheight) * 2) 0;
+    margin: 2rlh 2rem 2rlh 0;
     padding-left: 1rem;
     padding-right: 1rem;
     color: var(--color-text-high-contrast);
 }
 
 blockquote > p {
-        margin-bottom: calc(var(--lineheight) / 2);
+        margin-bottom: 0.5rlh;
     }
 
 blockquote footer {
         color: var(--grey);
-        margin-top: var(--lineheight);
+        margin-top: 1rlh;
     }
 
 hr {
     border: 0;
     background-color: var(--border-color);
     height: 1px;
-    margin: var(--lineheight) 0;
+    margin: 1rlh 0;
 }
 
 textarea {
@@ -634,7 +631,7 @@ textarea:focus {
         }
 
 .NotesList > li:not(:last-child) {
-        margin-bottom: calc(var(--lineheight) * 4);
+        margin-bottom: 4rlh;
     }
 
 .NotesList > li:has(:target)::after {
@@ -687,7 +684,7 @@ textarea:focus {
 
 .MainNav h1 {
         --offset-top: 18px;
-        line-height: calc(var(--lineheight) * 3);
+        line-height: 3rlh;
         margin-bottom: -4px;
         padding-top: var(--offset-top);
     }
@@ -802,7 +799,7 @@ POSTS LIST
 
 .PostItem .PostItem__Link {
         display: block;
-        padding: calc(var(--lineheight) / 3) 0;
+        padding: 0.5rlh 0;
         flex: 1;
     }
 
@@ -816,7 +813,7 @@ POSTS LIST
 .PostItem {
         align-items: flex-start;
         flex-direction: column;
-        margin-bottom: calc(var(--lineheight) / 3);
+        margin-bottom: 0.5rlh;
 }
 
         .PostItem .PostItem__Link {
@@ -870,7 +867,7 @@ PROSE
     .prose iframe,
     .prose figure,
     .prose svg {
-        --side-margin: calc(var(--lineheight) * 2);
+        --side-margin: 2rlh;
         margin: var(--side-margin) auto;
         display: block;
     }
@@ -881,7 +878,7 @@ PROSE
     .prose iframe,
     .prose figure,
     .prose svg {
-            --side-margin: var(--lineheight);
+            --side-margin: 1rlh;
     }
         }
 
@@ -923,7 +920,7 @@ PROSE
     }
 
 .prose figure.image--full {
-        margin: calc(var(--lineheight) * 2) -14vw;
+        margin: 2rlh -14vw;
     }
 
 .prose figure.image--full img {
@@ -949,7 +946,7 @@ PROSE
 
 .changelog .prose > ul {
             padding-left: 0;
-            margin-bottom: var(--lineheight);
+            margin-bottom: 1rlh;
         }
 
 .changelog .prose > ul ul {
