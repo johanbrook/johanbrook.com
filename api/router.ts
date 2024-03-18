@@ -1,4 +1,4 @@
-import { isDebug } from './config.ts';
+import { isTest } from './config.ts';
 
 interface Route {
     pattern: URLPattern;
@@ -79,7 +79,7 @@ export class Router {
             try {
                 return await fn(req);
             } catch (err) {
-                if (isDebug()) {
+                if (!isTest()) {
                     console.error(`Error in ${req.url}:`, err);
                 }
 
