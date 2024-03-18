@@ -10,12 +10,32 @@ export const createGithub = (token: string, repo: string): FileHost => {
 
     if (!isTest()) console.log(`Using GitHub file host for repo: ${repo}`);
 
+    const getFile = async (filePath: string): Promise<GitHubFile> => {
+        const res = await githubRequest(
+            'GET',
+            `/repos/${repo}/contents/${filePath}`,
+            null,
+            token,
+        );
+
+        if (res.type != 'file') {
+            throw new ProblemError(
+                ProblemKind.BadInput,
+                `Can only handle type: file from GitHub, got: ${res.type}`,
+            );
+        }
+
+        return res;
+    };
+
     return {
         putFile: async (
             contents,
             filePath,
         ) => {
-            const res = await githubRequest(
+            const file = await getFile(filePath);
+
+            const res = await githubRequest<any>(
                 'PUT',
                 `/repos/${repo}/contents/${filePath}`,
                 {
@@ -23,6 +43,7 @@ export const createGithub = (token: string, repo: string): FileHost => {
                     body: {
                         message: `Automated via Johan's API`,
                         content: encodeBase64(contents),
+                        sha: file.sha,
                     },
                 },
                 token,
@@ -41,19 +62,7 @@ export const createGithub = (token: string, repo: string): FileHost => {
         },
 
         getFile: async (filePath) => {
-            const res = await githubRequest(
-                'GET',
-                `/repos/${repo}/contents/${filePath}`,
-                null,
-                token,
-            );
-
-            if (res.type != 'file') {
-                throw new ProblemError(
-                    ProblemKind.BadInput,
-                    `Can only handle type: file from GitHub, got: ${res.type}`,
-                );
-            }
+            const res = await getFile(filePath);
 
             return textdecoder.decode(decodeBase64(res.content));
         },
@@ -65,6 +74,7 @@ interface PutPayload {
     body: {
         message: string; // commit msg
         content: string; // base64'd
+        sha: string; // hash of the original file you're updating
     };
 }
 
@@ -72,26 +82,41 @@ type GetPayload = null;
 
 type GitHubPayload = PutPayload | GetPayload;
 
-async function githubRequest(
+// https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content
+interface GitHubFile {
+    type: 'file';
+    encoding: 'base64';
+    size: number;
+    name: string;
+    path: string;
+    content: string;
+    sha: string;
+    url: string;
+    html_url: string;
+    download_url: string;
+    git_url: string;
+}
+
+async function githubRequest<T>(
     method: 'PUT',
     resource: string,
     payload: PutPayload,
     token: string,
-): Promise<any>;
+): Promise<T>;
 
 async function githubRequest(
     method: 'GET',
     resource: string,
     payload: GetPayload,
     token: string,
-): Promise<any>;
+): Promise<GitHubFile>;
 
-async function githubRequest(
+async function githubRequest<T>(
     method: string,
     resource: string,
     payload: GitHubPayload,
     token: string,
-): Promise<any> {
+): Promise<T> {
     const body = payload
         ? JSON.stringify({
             ...payload.body || {},
