@@ -1,5 +1,10 @@
 interface Config {
+    /** For authing with the GitHub API. */
     GITHUB_TOKEN: string;
+
+    // Access tokens for this API
+    IOS_SHORTCUT_TOKEN: string;
+    MAC_SHORTCUT_TOKEN: string;
 }
 
 export const getConfig = <K extends keyof Config>(key: K, def?: Config[K]): Config[K] => {

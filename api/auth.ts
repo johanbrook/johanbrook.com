@@ -1,26 +1,30 @@
-import { ProblemKind } from './problem.ts';
-import { ProblemError } from './problem.ts';
+import { getConfig } from './config.ts';
+import { ProblemError, ProblemKind } from './problem.ts';
 
 export interface Client {
     id: string; // unique
+    name: string;
     token: string; // unique
 }
 
-const IOS = {
+const IOS: Client = {
     id: 'ios-shortcut',
-    token: 'aaa',
+    name: 'iOS Shortcut',
+    token: getConfig('IOS_SHORTCUT_TOKEN'),
 };
 
-const MAC = {
+const MAC: Client = {
     id: 'mac-shortcut',
-    token: 'bbb',
+    name: 'Mac Shortcut',
+    token: getConfig('MAC_SHORTCUT_TOKEN'),
 };
 
 type Token = string;
 
 const CLIENTS: Record<Token, Client> = {
-    'aaa': IOS,
-    'bbb': MAC,
+    // 🙃
+    [IOS.token]: IOS,
+    [MAC.token]: MAC,
 };
 
 export const checkAuth = (req: Request): Client => {
@@ -28,6 +32,10 @@ export const checkAuth = (req: Request): Client => {
 
     if (!token) {
         throw new ProblemError(ProblemKind.BadInput, 'Missing important credentials');
+    }
+
+    if (!token.startsWith('API-Token')) {
+        throw new ProblemError(ProblemKind.BadInput, 'Malformed auth token');
     }
 
     const client = CLIENTS[token.replace('API-Token', '').trim()];

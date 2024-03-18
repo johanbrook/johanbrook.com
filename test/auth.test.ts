@@ -30,7 +30,7 @@ Deno.test('API /post-note fails on bad auth header', async () => {
         }),
     );
 
-    assertEquals(res.status, 401);
+    assertEquals(res.status, 400);
     const body = await res.text();
-    assertMatch(body, /Bad auth token/);
+    assertMatch(body, /Malformed auth token/);
 });
