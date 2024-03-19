@@ -21,6 +21,7 @@ body {
     color: var(--color-text);
     padding: 0.25rlh;
     padding-top: calc(var(--inset) * 2);
+    margin-bottom: 3rlh;
     font-feature-settings:
 		/* Contextual alternates */
         'calt' 1,
