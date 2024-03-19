@@ -27,10 +27,6 @@ body {
         'kern' 1,
         'liga' 1;
     font-variant-ligatures: contextual common-ligatures;
-
-    @media screen and (prefers-color-scheme: dark) {
-        word-spacing: 0.05em;
-    }
 }
 
 :target {
