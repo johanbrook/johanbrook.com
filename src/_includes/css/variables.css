@@ -22,8 +22,8 @@
     --color-text-detail: color-mix(in oklab, var(--mood) 10%, black 50%);
     --color-faint: color-mix(in oklab, var(--mood) 10%, black 20%);
 
-    --link-color: var(--color-text-high-contrast);
-    --link-color-hover: hsl(201.43, 100%, 25.25%);
+    --link-color: var(--color-text);
+    --link-color-hover: var(--color-text-high-contrast);
     --link-color-visited: hsl(266 100% 44%);
 
     --border-color: color-mix(in oklab, var(--mood) 3%, black 3%);
@@ -49,7 +49,6 @@
         --color-text-detail: color-mix(in oklab, var(--mood) 10%, white 50%);
         --color-faint: color-mix(in oklab, var(--mood) 10%, white 20%);
 
-        --link-color-hover: hsl(201.43, 93.43%, 69.58%);
         --border-color: color-mix(in oklab, var(--mood) 3%, white 3%);
 
         --link-color-visited: #7a8be5;

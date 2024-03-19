@@ -3,7 +3,6 @@ PROSE
 ----------------------------------------------------------------*/
 
 .prose {
-    --link-color: var(--color-text);
 
     h1 {
         border-bottom: 1px solid var(--border-color);

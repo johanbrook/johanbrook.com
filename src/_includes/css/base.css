@@ -115,7 +115,8 @@ nav ul {
     color: var(--link-color);
     position: relative;
     text-underline-offset: 4px;
-    text-decoration-thickness: 1px;
+    text-decoration-thickness: 2px;
+    text-decoration-color: hotpink;
 
     &.block {
         text-decoration: none;
@@ -125,6 +126,7 @@ nav ul {
     &:where(:hover, &:hover .link) {
         color: var(--link-color-hover);
         text-decoration-color: currentColor;
+        text-decoration-style: wavy;
     }
 
     &:is(:not(.block):hover, :hover .link) {
