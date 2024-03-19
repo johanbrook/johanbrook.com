@@ -171,11 +171,12 @@ Remove the inheritance of text transform in Edge and Firefox.
     /* Colors */
 
     --mood: oklch(68% 0.155 47.65);
+    --accent: hotpink;
 
     --light: color-mix(in oklab, var(--mood) 8%, oklch(84% 0 0));
     --dark: color-mix(in oklab, var(--mood) 4%, oklch(16% 0 0));
 
-    --neon: hsl(145 56% 57%);
+    --neon: hsl(145 81% 44.48%);
     --yellow: hsl(50 93% 56%);
     --grey: hsl(214.51 7.24% 47.56%);
     --grey-light: hsl(173 7% 36% / 0.5);
@@ -194,8 +195,9 @@ Remove the inheritance of text transform in Edge and Firefox.
     --link-color: var(--color-text-high-contrast);
     --link-color-hover: var(--color-text-high-contrast);
     --link-color-visited: hsl(266 100% 44%);
+    --link-accent-color: var(--neon);
 
-    --border-color: color-mix(in oklab, var(--mood) 3%, black 3%);
+    --border-color: color-mix(in oklab, var(--mood) 3%, black 10%);
 
     --btn-color: var(--color-text);
     --btn-bg: var(--color-bg-secondary);
@@ -271,7 +273,7 @@ Remove the inheritance of text transform in Edge and Firefox.
         --color-text-detail: color-mix(in oklab, var(--mood) 10%, white 50%);
         --color-faint: color-mix(in oklab, var(--mood) 10%, white 20%);
 
-        --border-color: color-mix(in oklab, var(--mood) 3%, white 3%);
+        --border-color: color-mix(in oklab, var(--mood) 3%, white 8%);
 
         --link-color-visited: #7a8be5;
         --code-color: rgb(236 216 142);
@@ -333,8 +335,7 @@ body {
 --------------------------------------------- */
 
 :where(h1, h2, h3, h4, h5, h6) {
-    margin-block-end: 0;
-    margin-bottom: 0.5rlh;
+    margin-block-end: 0.5rlh;
     color: var(--color-text-high-contrast);
     font-family: var(--serif);
 }
@@ -401,8 +402,8 @@ nav ul {
     color: var(--link-color);
     position: relative;
     text-underline-offset: 4px;
-    text-decoration-thickness: 2px;
-    text-decoration-color: hotpink;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--link-accent-color);
 }
 
 .block:is(a, .link) {
@@ -413,6 +414,8 @@ nav ul {
 :is(a, .link):where(:hover,:is(a, .link):hover .link) {
         color: var(--link-color-hover);
         text-decoration-style: wavy;
+        text-decoration-thickness: 2px;
+        text-decoration-color: var(--link-accent-color);
     }
 
 :is(a, .link):is(:not(.block):hover, :hover .link) {
@@ -604,7 +607,7 @@ u {
     text-decoration: underline;
     text-underline-offset: 0.6ex;
     text-decoration-style: wavy;
-    text-decoration-color: var(--neon);
+    text-decoration-color: var(--accent);
 }
 
 .Content {
@@ -621,21 +624,24 @@ u {
             max-width: none;
             display: grid;
             place-content: center;
-            grid-template-columns: var(--content-width) auto;
+            grid-template-columns: var(--content-width) 110px;
             gap: var(--spacing-extra-large);
         }
     }
 
-.Page header h1:has(+ .subhead) {
-        margin-bottom: 0;
-    }
+:is(main > article > header h1, main > article h1:first-of-type) {
+    text-decoration: underline;
+    text-underline-offset: 0.6ex;
+    text-decoration-style: wavy;
+    text-decoration-color: var(--accent);
+}
 
 .Note header h1 a {
         color: var(--color-text-high-contrast);
     }
 
 .Note header h1 a:hover span {
-            color: hotpink;
+            color: var(--link-accent-color);
         }
 
 .NotesList > li:not(:last-child) {
@@ -691,10 +697,7 @@ u {
     }
 
 .MainNav h1 {
-        --offset-top: 18px;
         line-height: 3rlh;
-        margin-bottom: -4px;
-        padding-top: var(--offset-top);
     }
 
 .MainNav h1 > a {
@@ -861,10 +864,6 @@ PROSE
 
 .prose > :last-child {
         margin-bottom: 0;
-    }
-
-.prose a:not([class]) {
-        text-decoration: underline;
     }
 
 .prose img,
