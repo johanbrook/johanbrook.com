@@ -17,12 +17,12 @@
     --color-bg-secondary: hsl(240 59.76% 96.52%);
 
     /* Foreground vars, order from high contrast -> subtle */
-    --color-text: hsl(0 0% 13%);
+    --color-text: hsl(0 0% 16%);
     --color-text-high-contrast: black;
     --color-text-detail: color-mix(in oklab, var(--mood) 10%, black 50%);
     --color-faint: color-mix(in oklab, var(--mood) 10%, black 20%);
 
-    --link-color: var(--color-text);
+    --link-color: var(--color-text-high-contrast);
     --link-color-hover: var(--color-text-high-contrast);
     --link-color-visited: hsl(266 100% 44%);
 

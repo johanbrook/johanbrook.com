@@ -7,6 +7,10 @@ html {
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
     font: normal 112.5% / var(--leading) var(--sans);
+
+    @media only screen and (max-width: 480px) {
+        font-size: 100%;
+    }
 }
 
 :where(body, html) {
@@ -15,7 +19,7 @@ html {
 
 body {
     color: var(--color-text);
-    padding: var(--inset);
+    padding: 0.25rlh;
     padding-top: calc(var(--inset) * 2);
     font-feature-settings:
 		/* Contextual alternates */
@@ -125,7 +129,6 @@ nav ul {
 
     &:where(:hover, &:hover .link) {
         color: var(--link-color-hover);
-        text-decoration-color: currentColor;
         text-decoration-style: wavy;
     }
 
@@ -311,4 +314,11 @@ textarea {
 
 :where(details[open], details summary:hover) {
     color: var(--color-text-high-contrast);
+}
+
+u {
+    text-decoration: underline;
+    text-underline-offset: 0.6ex;
+    text-decoration-style: wavy;
+    text-decoration-color: var(--neon);
 }
