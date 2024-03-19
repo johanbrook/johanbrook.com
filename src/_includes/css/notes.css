@@ -3,7 +3,7 @@
         color: var(--color-text-high-contrast);
 
         &:hover span {
-            color: hotpink;
+            color: var(--link-accent-color);
         }
     }
 }

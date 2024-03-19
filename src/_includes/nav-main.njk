@@ -2,7 +2,7 @@
 	<div class="sticky">
 		<h1 class="f4 font-sans">
 			<a href="/" aria-label="Home">
-				<span>{{ titles.site }}</span><span aria-hidden="true" class="BackLink ml2">←</span>
+				<span>{{ titles.site }}</span>{% if not home %}<span aria-hidden="true" class="BackLink ml2">←</span>{% endif %}
 			</a>
 		</h1>
 

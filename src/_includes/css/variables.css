@@ -2,11 +2,12 @@
     /* Colors */
 
     --mood: oklch(68% 0.155 47.65);
+    --accent: hotpink;
 
     --light: color-mix(in oklab, var(--mood) 8%, oklch(84% 0 0));
     --dark: color-mix(in oklab, var(--mood) 4%, oklch(16% 0 0));
 
-    --neon: hsl(145 56% 57%);
+    --neon: hsl(145 81% 44.48%);
     --yellow: hsl(50 93% 56%);
     --grey: hsl(214.51 7.24% 47.56%);
     --grey-light: hsl(173 7% 36% / 0.5);
@@ -25,8 +26,9 @@
     --link-color: var(--color-text-high-contrast);
     --link-color-hover: var(--color-text-high-contrast);
     --link-color-visited: hsl(266 100% 44%);
+    --link-accent-color: var(--neon);
 
-    --border-color: color-mix(in oklab, var(--mood) 3%, black 3%);
+    --border-color: color-mix(in oklab, var(--mood) 3%, black 10%);
 
     --btn-color: var(--color-text);
     --btn-bg: var(--color-bg-secondary);
@@ -49,7 +51,7 @@
         --color-text-detail: color-mix(in oklab, var(--mood) 10%, white 50%);
         --color-faint: color-mix(in oklab, var(--mood) 10%, white 20%);
 
-        --border-color: color-mix(in oklab, var(--mood) 3%, white 3%);
+        --border-color: color-mix(in oklab, var(--mood) 3%, white 8%);
 
         --link-color-visited: #7a8be5;
         --code-color: rgb(236 216 142);

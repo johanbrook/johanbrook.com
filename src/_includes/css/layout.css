@@ -11,14 +11,15 @@
             max-width: none;
             display: grid;
             place-content: center;
-            grid-template-columns: var(--content-width) auto;
+            grid-template-columns: var(--content-width) 110px;
             gap: var(--spacing-extra-large);
         }
     }
 }
 
-.Page {
-    header h1:has(+ .subhead) {
-        margin-bottom: 0;
-    }
+:is(main > article > header h1, main > article h1:first-of-type) {
+    text-decoration: underline;
+    text-underline-offset: 0.6ex;
+    text-decoration-style: wavy;
+    text-decoration-color: var(--accent);
 }

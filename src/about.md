@@ -16,7 +16,7 @@ menu:
   top: true
 ---
 
-<p class="f3 no-rhythm">
+<p class="f3">
 <strong>I like building things</strong> for the web. You'd <em>probably</em> enjoy grabbing a beer or coffee with me. I also like reading, writing, strolling around in cities, playing the guitar, coffee, cooking, and photography.
 </p>
 

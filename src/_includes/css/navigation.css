@@ -44,10 +44,7 @@
     }
 
     h1 {
-        --offset-top: 18px;
         line-height: 3rlh;
-        margin-bottom: -4px;
-        padding-top: var(--offset-top);
 
         > a {
             font-weight: 500;

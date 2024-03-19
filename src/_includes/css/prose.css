@@ -17,10 +17,6 @@ PROSE
         margin-bottom: 0;
     }
 
-    a:not([class]) {
-        text-decoration: underline;
-    }
-
     & img,
     & iframe,
     & figure,

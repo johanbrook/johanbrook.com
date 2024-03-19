@@ -14,7 +14,7 @@ menu:
       <li class="h-entry" id="{{ post.url | url(true) }}">
         <article class="Note">
            	<header class="mb2">
-                <h1 class="f4 no-rhythm mb0">
+                <h1 class="f4 mb0">
                     <a href="{{ post.url }}" title="Permalink ({{ post.date | tdate('Detailed', post.timezone) }})" class="font-serif no-underline u-url">
                         <time class="dt-published" datetime="{{ post.date | tdate('Machine', post.timezone) }}" pubdate>{{ post.date | tdate('HumanTime', post.timezone) }}</time> <span>#</span>
                     </a>

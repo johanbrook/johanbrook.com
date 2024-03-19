@@ -3,13 +3,12 @@ layout: layouts/main.njk
 home: true
 ---
 <main role="main">
-  <div class="measure mx-auto">
-    <section class="mb4">
-       	<h1 class="title leading-none hide-mobile">Welcome.</h1>
+    <article class="mb4">
+       	<h1 class="title leading-none hide-mobile mb4">Welcome</h1>
 
       	<div>{{ content | safe }}</div>
 
-    </section>
+    </article>
 
     <section class="mb4 h-feed">
       <header class="flex items-center justify-between border border-b mb2 pb2">
@@ -72,7 +71,6 @@ home: true
         {% endfor %}
       </ol>
     </section>
-  </div>
 </main>
 
 <template id="music-tmpl">
