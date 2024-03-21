@@ -34,7 +34,7 @@ if (!meta?.mastodon?.instance) {
 
 const truncateToStatus = (str: string, permalink: string) => {
     const maxLimit = 500;
-    const footer = `\n\n↳ ${permalink}`;
+    const footer = `\n\n→ ${permalink}`;
     const statusLimit = maxLimit - footer.length;
 
     if (str.length <= statusLimit) {
