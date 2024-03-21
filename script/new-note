@@ -9,7 +9,6 @@
     will follow the template: [yyyy-MM-dd-HH-mm-ss].md.
 */
 
-import { formatFileName, formatISO } from '../api/date.ts';
 import * as Notes from '../api/model/note.ts';
 import { createLocal } from '../api/services/local.ts';
 
@@ -17,32 +16,18 @@ const local = createLocal();
 
 const zonedDateTime = Temporal.Now.zonedDateTimeISO(); // now, in current timezone
 
-// I want both of these to be in the *local* time:
-
-// Will go into the frontmatter:
-const metaDate = formatISO(zonedDateTime);
-// Will be the filename:
-const fileDate = formatFileName(zonedDateTime);
-
-const meta = {
-    date: metaDate,
-    location: '<where>',
-    timezone: zonedDateTime.timeZone.toString(),
-    draft: true,
-};
-
 const PLACEHOLDER = 'TODO';
 
 const [, fullPath] = await Notes.add(local, {
     contents: PLACEHOLDER,
-    fileName: `${fileDate}.md`,
-    meta,
+    zonedDateTime,
+    location: '<where>',
 });
 
 console.log(`Created ${fullPath}`);
 
 const editor = Deno.run({
-    cmd: ['zed', `${fullPath}:${Object.keys(meta).length + 3}:${PLACEHOLDER.length + 1}`],
+    cmd: ['zed', `${fullPath}:6:${PLACEHOLDER.length + 1}`],
     stdout: 'piped',
     stderr: 'piped',
 });
