@@ -5,6 +5,7 @@ import { pipe } from './pipe.ts';
 import { addBook, finishBook, getCurrentBooks, postNote } from './routes/index.ts';
 import { urlForBook } from '../src/_includes/permalinks.ts';
 import { setCurrentTrack } from './routes/index.ts';
+import { addLink } from './routes/link.ts';
 
 export function createApp(services: Services) {
     const router = new Router<Client>();
@@ -92,6 +93,16 @@ export function createApp(services: Services) {
         pipe(authHandler, async (req) => {
             await setCurrentTrack(services, await req.json());
             return new Response('♫', { status: 200 });
+        }),
+    );
+
+    router.route(
+        'POST',
+        '/add-link',
+        pipe(authHandler, async (req) => {
+            await addLink(services, await req.json());
+
+            return new Response('Link added', { status: 201 });
         }),
     );
 

@@ -1,0 +1,66 @@
+import { ProblemError, ProblemKind } from '../problem.ts';
+import { FileHost } from '../services/index.ts';
+import { join } from 'std/path/mod.ts';
+import * as Yaml from 'std/yaml/mod.ts';
+
+const LINKS_PATH = 'src/_data/links.yml';
+
+export interface Link {
+    [k: string]: string | undefined;
+    url: string;
+    notes?: string;
+}
+
+export type LinkInput = Pick<Link, 'url' | 'notes'>;
+
+export const add = async (store: FileHost, input: LinkInput) => {
+    const link: Link = {
+        url: input.url.trim(),
+        notes: input.notes?.trim() || undefined, // filter away empty strings
+    };
+
+    const links = await findAll(store);
+
+    if (links.find((b) => b.url == link.url)) {
+        throw new ProblemError(
+            ProblemKind.BadInput,
+            `A link with that URL already exists: ${link.url}`,
+        );
+    }
+
+    const raw = await store.getFile(LINKS_PATH);
+
+    // YAML doesn't like undefined
+    for (const k of Object.keys(link)) {
+        if (typeof link[k] == 'undefined') {
+            delete link[k];
+        }
+    }
+
+    // @ts-ignore-next
+    const str = Yaml.stringify([link]);
+
+    const final = raw + '\n' + str;
+
+    const fullPath = await store.putFile(
+        final,
+        join(LINKS_PATH),
+    );
+
+    return [link, fullPath];
+};
+
+const findAll = async (store: FileHost): Promise<Link[]> => {
+    const raw = await store.getFile(LINKS_PATH);
+    return linksArrayOf(raw);
+};
+
+const linksArrayOf = (raw: string): Link[] => {
+    const links = Yaml.parse(raw);
+
+    if (!Array.isArray(links)) {
+        throw new ProblemError(ProblemKind.InconsistentFile, `${LINKS_PATH} isn't a YAML array`);
+    }
+
+    return links as Link[];
+};
