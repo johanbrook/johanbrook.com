@@ -1,3 +1,4 @@
+import { isDebug } from './config.ts';
 import { isTest } from './config.ts';
 import { ProblemError } from './problem.ts';
 
@@ -81,7 +82,10 @@ export class Router<U = unknown> {
             try {
                 return await fn(req);
             } catch (err) {
-                if (!isTest()) {
+                if (!isTest() || isDebug()) {
+                    if (isDebug()) {
+                        console.error(err);
+                    }
                     if (err instanceof ProblemError) {
                         if (err.status >= 500) {
                             console.error(`Problem in ${req.url}:`, err);
