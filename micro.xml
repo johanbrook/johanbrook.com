@@ -5,11 +5,27 @@
   <link href="https://johan.im/micro.xml"/>
   <id>https://johan.im/micro.xml</id>
   
-  <updated>2024-03-05T09:47:27+07:00</updated>
+  <updated>2024-03-21T08:11:11+01:00</updated>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johan.im</email>
   </author>
+  
+  <entry>
+    <title>March 21 — 08:11</title>
+    <link href="https://johan.im/micro/20240321081111/" />
+    <updated>2024-03-21T08:11:11+01:00</updated>
+    <id>https://johan.im/micro/20240321081111/</id>
+    <content type="html">&lt;p&gt;It&#39;s my first week of parental leave with my second daughter, and I&#39;m &lt;em&gt;here for it&lt;/em&gt;. Hanging out in the kitchen, taking
+time to prep food, listening to &lt;a href=&quot;https://open.spotify.com/album/15q7N7Wo307mfjqR29NpjF?si=Nn2sveRrT-63afwfTtq6WQ&quot;&gt;music&lt;/a&gt;
+with the baby. I&#39;m appreciative for entering Swedish Spring and Summer this time too.&lt;/p&gt;
+&lt;p&gt;Last time, I found the parental leave being a great &amp;quot;brain reset&amp;quot; in order to get perspectives. It (forcefully) slowed
+down my every day life and made it revolve around fewer things. It also leaves space — outside of work — for project
+ideas. For instance, I just thought about coding something with an LLM that suggests recipes based on groceries I&#39;ve got
+home at the moment. I&#39;d have less energy for these kinds of silly things if I was to work full time too.&lt;/p&gt;
+&lt;p&gt;I think this time, I&#39;ll enjoy it even more thanks to the fact that you&#39;re 1000x more of a pro and more relaxed with the
+second kid 😏&lt;/p&gt;</content>
+  </entry>
   
   <entry>
     <title>March 5 — 09:47</title>
@@ -190,49 +206,6 @@ football in school.&lt;/p&gt;</content>
 &lt;/ul&gt;
 &lt;p&gt;It abstracts away sharp edges with the DOM, and does the reactive boilerplate for you. I could
 easily just copy-paste the source into a vendor/ directory and call it a day.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>November 29, 2023 — 21:10</title>
-    <link href="https://johan.im/micro/202311292010/" />
-    <updated>2023-11-29T21:10:49+01:00</updated>
-    <id>https://johan.im/micro/202311292010/</id>
-    <content type="html">&lt;p&gt;Messing around with the styling and structure here on the website again. I&#39;m so inspired by all the
-personal sites I stumble on in my feed. But not inspired enough to actually produce as much content
-here as I would love to 😄&lt;/p&gt;
-&lt;p&gt;Been reading a lot about
-&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/API/Web_components&quot;&gt;Web Components&lt;/a&gt; recently. They&#39;re
-having a sort of renaissance at the moment — not sure why this timing actually — much thanks to them
-being a tool in the box when building with progressive enhancement. All PE thought leaders are going
-on about the beauty of Web Components and &amp;quot;how you don&#39;t need any big JS or Virtual DOM libraries at
-all!!&amp;quot;. I get that for small, self-contained UI components, but for anything non-trivial, you&#39;re
-kind of bound to reinvent something inhouse for your app anyway, no? I guess Web Components fill the
-hole where you just want to drop a custom element in a piece of markup and have a Web Component use
-the element with contained JS and perhaps CSS.&lt;/p&gt;
-&lt;p&gt;But the idea of &amp;quot;HTML Web Components&amp;quot; is really neat, in the way it enhances existing markup. Like
-this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;convert-currency to=&amp;quot;USD&amp;quot;&amp;gt;10&amp;lt;/convert-currency&amp;gt;
-&amp;lt;script src=&amp;quot;convert-currency.js&amp;quot; type=&amp;quot;module&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// convert-currency.js
-customElements.define(
-    &#39;convert-currency&#39;,
-    class extends HTMLElement {
-        connectedCallback() {
-            // use this.querySelector() and other DOM API methods to convert
-            // the text content to the currency from this.getAttribute(&amp;quot;to&amp;quot;).
-        }
-    },
-);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;For server rendered markup, &lt;code&gt;&amp;lt;convert-currency&amp;gt;&lt;/code&gt; will render just fine, and &lt;code&gt;10&lt;/code&gt; with it. Browsers
-will just ignore it when parsing the HTML.&lt;/li&gt;
-&lt;li&gt;When parsing is done and JS kicks in, we&#39;ll &amp;quot;enrich&amp;quot; our custom element with logic.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My takeaway is that custom elements and Web Components give us a declarative way to encapsulate
-logic (duh, &amp;quot;components&amp;quot; it&#39;s in the name), which creates whole new patterns in how to approach
-component style architecture but &lt;em&gt;without&lt;/em&gt; any 3rd party JS component library.&lt;/p&gt;</content>
   </entry>
   
 </feed>
