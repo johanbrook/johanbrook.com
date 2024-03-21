@@ -86,6 +86,7 @@ jobs:
 
             - name: Check if latest note is already posted
               id: mastodon_note_check
+              timeout-minutes: 10
               run: |
                 latest="$NOTES_DIR/$(ls -r1 "$NOTES_DIR" | grep -v "_" | head -n 1)"
                 note_id=$(./script/check-mastodon-note.sh "$latest")
