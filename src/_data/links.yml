@@ -1,13 +1,7 @@
-- url: "https://utopia.fyi"
+- url: 'https://utopia.fyi'
   title: Utopia — Fluid Responsive Design
   notes: Good CSS tools and tricks on fluid typescales and layouts.
 
-- url: "https://buildexcellentwebsit.es"
+- url: 'https://buildexcellentwebsit.es'
   title: Be the browser’s mentor, not its micromanager.
   notes: Resources for good web frontend architecture.
-
-- url: 'https://github.com/johanbrook/johanbrook.com?tab=readme-ov-file'
-  notes: ''
-
-- url: >-
-    https://github.com/johanbrook/johanbrook.com/commit/14d90e533a67df48f7ae957206e8b342cd2bd9e3
