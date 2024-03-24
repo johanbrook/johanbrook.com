@@ -384,6 +384,10 @@ body {
     padding-left: 0;
 }
 
+ul {
+    list-style-type: disc;
+}
+
 nav ul {
     list-style: none;
     margin: 0;
@@ -564,11 +568,11 @@ code[class*='language-'] {
 }
 
 blockquote {
-    border-left: 2px solid var(--grey-light);
-    margin: 2rlh 2rem 2rlh 0;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    border-left: 2px solid var(--border-color);
+    margin-inline: 0 0;
+    padding-left: 0.5rlh;
     color: var(--color-text-high-contrast);
+    font-weight: 450;
 }
 
 blockquote > p {
@@ -629,7 +633,7 @@ u {
         }
     }
 
-:is(main > article > header h1, main > article h1:first-of-type) {
+.title {
     text-decoration: underline;
     text-underline-offset: 0.6ex;
     text-decoration-style: wavy;
@@ -893,8 +897,8 @@ PROSE
     }
 
 .prose :where(ul, ol) {
-        padding-left: 1em;
-        margin-left: 1rem;
+        padding-left: 0.5rlh;
+        margin-left: 0.5rlh;
     }
 
 .prose :where(ul, ol) :where(li > ul, li > ol) {
