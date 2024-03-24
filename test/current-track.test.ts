@@ -89,7 +89,7 @@ Deno.test('API PUT /current-track/spotify ok', async () => {
                 ContentType: 'application/json',
             },
             body: JSON.stringify({
-                uri: 'https://open.spotify.com/track/2BDpUaDPm0kSO9Ye1BZTch?si=2771e4e0f68a4626',
+                url: 'https://open.spotify.com/track/2BDpUaDPm0kSO9Ye1BZTch?si=2771e4e0f68a4626',
             }),
         }),
     );

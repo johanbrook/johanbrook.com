@@ -16,7 +16,7 @@ export const setCurrentTrackFromSpotifyUrl = async (services: Services, json: an
     }
 
     if (!URL.canParse(url)) {
-        throw new ProblemError(ProblemKind.BadInput, `"url" must be a valid URI`);
+        throw new ProblemError(ProblemKind.BadInput, `"url" must be a valid URL`);
     }
 
     const track = await spotify.lookupUrl(url);
