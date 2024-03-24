@@ -21,6 +21,8 @@ export interface Book {
 export const findCurrent = async (store: FileHost): Promise<Book[]> => {
     const raw = await store.getFile(BOOKS_PATH);
 
+    if (!raw) return [];
+
     return booksArrayOf(raw).filter((b) => !b.finished && !b.dropped && !b.paused);
 };
 
@@ -38,6 +40,9 @@ export const findBySlug = async (
 
 export const findAll = async (store: FileHost): Promise<Book[]> => {
     const raw = await store.getFile(BOOKS_PATH);
+
+    if (!raw) return [];
+
     return booksArrayOf(raw);
 };
 

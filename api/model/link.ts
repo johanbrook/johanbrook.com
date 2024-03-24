@@ -52,6 +52,9 @@ export const add = async (store: FileHost, input: LinkInput) => {
 
 const findAll = async (store: FileHost): Promise<Link[]> => {
     const raw = await store.getFile(LINKS_PATH);
+
+    if (!raw) return [];
+
     return linksArrayOf(raw);
 };
 

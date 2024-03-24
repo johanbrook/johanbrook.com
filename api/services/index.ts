@@ -7,7 +7,7 @@ export interface FileHost {
         filePath: string,
     ): Promise<string>;
 
-    getFile(filePath: string): Promise<string>;
+    getFile(filePath: string): Promise<string | null>;
 }
 
 export interface Services {

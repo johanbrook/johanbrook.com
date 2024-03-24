@@ -10,13 +10,15 @@ export const createGithub = (token: string, repo: string): FileHost => {
 
     if (!isTest()) console.log(`Using GitHub file host for repo: ${repo}`);
 
-    const getFile = async (filePath: string): Promise<GitHubFile> => {
+    const getFile = async (filePath: string): Promise<GitHubFile | null> => {
         const res = await githubRequest(
             'GET',
             `/repos/${repo}/contents/${filePath}`,
             null,
             token,
         );
+
+        if (res == null) return null;
 
         if (res.type != 'file') {
             throw new ProblemError(
@@ -33,7 +35,7 @@ export const createGithub = (token: string, repo: string): FileHost => {
             contents,
             filePath,
         ) => {
-            const file = await getFile(filePath);
+            const existing = await getFile(filePath);
 
             const res = await githubRequest<any>(
                 'PUT',
@@ -43,7 +45,7 @@ export const createGithub = (token: string, repo: string): FileHost => {
                     body: {
                         message: `Automated via Johan's API`,
                         content: encodeBase64(contents),
-                        sha: file.sha,
+                        sha: existing?.sha,
                     },
                 },
                 token,
@@ -64,7 +66,7 @@ export const createGithub = (token: string, repo: string): FileHost => {
         getFile: async (filePath) => {
             const res = await getFile(filePath);
 
-            return textdecoder.decode(decodeBase64(res.content));
+            return res ? textdecoder.decode(decodeBase64(res.content)) : null;
         },
     };
 };
@@ -74,7 +76,7 @@ interface PutPayload {
     body: {
         message: string; // commit msg
         content: string; // base64'd
-        sha: string; // hash of the original file you're updating
+        sha?: string; // hash of the original file you're updating
     };
 }
 
@@ -109,14 +111,14 @@ async function githubRequest(
     resource: string,
     payload: GetPayload,
     token: string,
-): Promise<GitHubFile>;
+): Promise<GitHubFile | null>;
 
 async function githubRequest<T>(
     method: string,
     resource: string,
     payload: GitHubPayload,
     token: string,
-): Promise<T> {
+): Promise<T | null> {
     const body = payload
         ? JSON.stringify({
             ...payload.body || {},
@@ -138,9 +140,11 @@ async function githubRequest<T>(
     const json = await res.json();
 
     if (!res.ok) {
+        if (res.status == 404) return null;
+
         throw new ProblemError(
             ProblemKind.GitHubError,
-            `GitHub request failed: ${method} ${res.status} ${resource}: ${res.statusText} ${json.message}`,
+            `GitHub request failed: ${method} ${res.status} ${resource}: ${json.message}`,
         );
     }
 

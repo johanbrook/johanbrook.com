@@ -1,5 +1,5 @@
 import { assertEquals, assertMatch } from 'std/assert/mod.ts';
-import { assertSpyCall, assertSpyCalls } from 'std/testing/mock.ts';
+import { assertSpyCall, assertSpyCalls, spy } from 'std/testing/mock.ts';
 import { createApp } from '../api/app.ts';
 import { mock } from './_mock.ts';
 import 'temporal-polyfill/global';
@@ -8,6 +8,9 @@ const BASE_URL = 'http://localhost:8000';
 
 Deno.test('API /post-note ok', async () => {
     const { services } = mock();
+
+    services.fileHost.getFile = spy(() => Promise.resolve(null));
+
     const router = createApp(services);
     const date = Temporal.ZonedDateTime.from('2024-03-07T08:27:35[Asia/Bangkok]');
     const res = await router.run(
