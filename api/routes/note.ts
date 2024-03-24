@@ -3,13 +3,14 @@ import { ProblemError, ProblemKind } from '../problem.ts';
 import { Services } from '../services/index.ts';
 import { notePermalinkOf } from '../../src/_includes/permalinks.ts';
 import * as Notes from '../model/note.ts';
+import { getConfig } from '../config.ts';
 
 export const postNote = async (services: Services, json: any) => {
     const input = inputOf(json); // throws on validation errors
 
     const [note] = await Notes.add(services.fileHost, input);
 
-    return new URL(notePermalinkOf(note.fileName), self.location.href);
+    return new URL(notePermalinkOf(note.fileName), getConfig('ROOT_URL'));
 };
 
 function assert<T>(v: any, type: string, err: () => Error): asserts v is T {

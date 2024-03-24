@@ -7,6 +7,9 @@ interface Config {
     // Access tokens for this API
     IOS_SHORTCUT_TOKEN: string;
     MAC_SHORTCUT_TOKEN: string;
+
+    // https://johan.im
+    ROOT_URL: string;
 }
 
 export const getConfig = <K extends keyof Config>(key: K, def?: Config[K]): Config[K] => {

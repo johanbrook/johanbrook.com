@@ -6,6 +6,7 @@ import { addBook, finishBook, getCurrentBooks, postNote } from './routes/index.t
 import { urlForBook } from '../src/_includes/permalinks.ts';
 import { setCurrentTrack, setCurrentTrackFromSpotifyUrl } from './routes/index.ts';
 import { addLink } from './routes/link.ts';
+import { getConfig } from './config.ts';
 
 export function createApp(services: Services) {
     const router = new Router<Client>();
@@ -54,7 +55,7 @@ export function createApp(services: Services) {
         '/add-book',
         pipe(authHandler, async (req) => {
             const [book] = await addBook(services, await req.json());
-            const url = new URL(urlForBook(book), self.location.href).toJSON();
+            const url = new URL(urlForBook(book), getConfig('ROOT_URL')).toJSON();
 
             return Response.json({
                 book: book,
@@ -73,7 +74,7 @@ export function createApp(services: Services) {
         '/finish-book/:slug',
         pipe(authHandler, async (req) => {
             const updatedBook = await finishBook(services, req.params.slug!, await req.json());
-            const url = new URL(urlForBook(updatedBook), self.location.href).toJSON();
+            const url = new URL(urlForBook(updatedBook), getConfig('ROOT_URL')).toJSON();
 
             return Response.json({
                 book: updatedBook,
