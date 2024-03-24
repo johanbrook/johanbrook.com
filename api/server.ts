@@ -4,11 +4,14 @@ import { createGithub } from './services/github.ts';
 import { getConfig } from './config.ts';
 import { Services } from './services/index.ts';
 import { createLocal } from './services/local.ts';
+import { createSpotify } from './services/spotify.ts';
 
 const services: Services = {
     fileHost: getConfig('GITHUB_TOKEN', '')
         ? createGithub(getConfig('GITHUB_TOKEN'), 'johanbrook/johanbrook.com')
         : createLocal(),
+
+    spotify: createSpotify(getConfig('SPOTIFY_CLIENT_ID', ''), getConfig('SPOTIFY_CLIENT_SECRET', '')),
 };
 
 const app = createApp(services);

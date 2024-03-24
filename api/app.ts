@@ -4,7 +4,7 @@ import { Services } from './services/index.ts';
 import { pipe } from './pipe.ts';
 import { addBook, finishBook, getCurrentBooks, postNote } from './routes/index.ts';
 import { urlForBook } from '../src/_includes/permalinks.ts';
-import { setCurrentTrack } from './routes/index.ts';
+import { setCurrentTrack, setCurrentTrackFromSpotifyUrl } from './routes/index.ts';
 import { addLink } from './routes/link.ts';
 
 export function createApp(services: Services) {
@@ -92,6 +92,15 @@ export function createApp(services: Services) {
         '/current-track',
         pipe(authHandler, async (req) => {
             await setCurrentTrack(services, await req.json());
+            return new Response('♫', { status: 200 });
+        }),
+    );
+
+    router.route(
+        'PUT',
+        '/current-track/spotify',
+        pipe(authHandler, async (req) => {
+            await setCurrentTrackFromSpotifyUrl(services, await req.json());
             return new Response('♫', { status: 200 });
         }),
     );

@@ -1,6 +1,8 @@
 interface Config {
     /** For authing with the GitHub API. */
     GITHUB_TOKEN: string;
+    SPOTIFY_CLIENT_ID: string;
+    SPOTIFY_CLIENT_SECRET: string;
 
     // Access tokens for this API
     IOS_SHORTCUT_TOKEN: string;

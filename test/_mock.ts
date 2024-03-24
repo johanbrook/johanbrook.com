@@ -14,8 +14,18 @@ export const mock = (): Mock => {
         getFile: spy(() => Promise.resolve('foo')),
     };
 
+    const mockSpotify = {
+        lookupUrl: spy(() =>
+            Promise.resolve({
+                name: 'Hitchiker',
+                artist: 'Neil Young',
+            })
+        ),
+    };
+
     const services = {
         fileHost: mockFileHost,
+        spotify: mockSpotify,
     };
 
     return {
