@@ -5,6 +5,7 @@ import { getConfig } from './config.ts';
 import { Services } from './services/index.ts';
 import { createLocal } from './services/local.ts';
 import { createSpotify } from './services/spotify.ts';
+import 'temporal-polyfill/global';
 
 const services: Services = {
     fileHost: getConfig('GITHUB_TOKEN', '')

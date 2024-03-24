@@ -924,7 +924,12 @@
     "https://deno.land/x/vento@v0.10.1/plugins/unescape.ts": "946512835a409815d6ad98ac4529440e9a368f42ca499791d0f25ee0ecc4c4d6",
     "https://deno.land/x/vento@v0.10.1/src/environment.ts": "d5b39b15b5d29c6a4548c045558463acbfff192593ff2719b2bb9c19305b8116",
     "https://deno.land/x/vento@v0.10.1/src/loader.ts": "eb01b0dca7ea8bcdcdfd30b1f90f2fad28fb7f2cfd943900322a85bfaa86130c",
-    "https://deno.land/x/vento@v0.10.1/src/tokenizer.ts": "242e12ebe4230799e89f0866adfd2a7c6bca1606beb88d18742d9d58aca60603"
+    "https://deno.land/x/vento@v0.10.1/src/tokenizer.ts": "242e12ebe4230799e89f0866adfd2a7c6bca1606beb88d18742d9d58aca60603",
+    "https://esm.sh/temporal-polyfill@0.2.3": "4504fbd22946d9521dab5ca63ec3f2682b3dc0f63339277f26749c83cb462ad7",
+    "https://esm.sh/temporal-polyfill@0.2.3/global": "f47ba7e2737f27b51f2d218efdffbbe597728b89fe0934c6a8c2556d5dca353d",
+    "https://esm.sh/v135/temporal-polyfill@0.2.3/denonext/global.js": "98fc58717633aa7a52db2792e50bba84492b2c1c5c9ed0d64579851a8c043824",
+    "https://esm.sh/v135/temporal-polyfill@0.2.3/denonext/impl.js": "7226efdd8beb7f4e807a87985e3ab3575c1db8451236f4041f1d5d9a4d22372e",
+    "https://esm.sh/v135/temporal-polyfill@0.2.3/denonext/temporal-polyfill.mjs": "80da06de8f9ffef26f11778372c7fd920a80d763952621920f8ae900f810ba36"
   },
   "workspace": {
     "packageJson": {

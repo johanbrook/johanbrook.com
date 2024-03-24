@@ -3,7 +3,9 @@
         "std/": "https://deno.land/std@0.219.0/",
         "lume/": "https://deno.land/x/lume@v2.0.3/",
         "html_entities": "https://deno.land/x/html_entities@v1.0/mod.js",
-        "slug": "https://deno.land/x/slug@v1.1.0/mod.ts"
+        "slug": "https://deno.land/x/slug@v1.1.0/mod.ts",
+        "temporal-polyfill": "https://esm.sh/temporal-polyfill@0.2.3",
+        "temporal-polyfill/global": "https://esm.sh/temporal-polyfill@0.2.3/global"
     },
     "tasks": {
         "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable-temporal -A -",
