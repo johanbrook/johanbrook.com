@@ -93,6 +93,10 @@ body {
     padding-left: 0;
 }
 
+ul {
+    list-style-type: disc;
+}
+
 nav ul {
     list-style: none;
     margin: 0;
@@ -275,11 +279,11 @@ code[class*='language-'] {
 }
 
 blockquote {
-    border-left: 2px solid var(--grey-light);
-    margin: 2rlh 2rem 2rlh 0;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    border-left: 2px solid var(--border-color);
+    margin-inline: 0 0;
+    padding-left: 0.5rlh;
     color: var(--color-text-high-contrast);
+    font-weight: 450;
 
     & > p {
         margin-bottom: 0.5rlh;

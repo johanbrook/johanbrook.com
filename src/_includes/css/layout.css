@@ -17,7 +17,7 @@
     }
 }
 
-:is(main > article > header h1, main > article h1:first-of-type) {
+.title {
     text-decoration: underline;
     text-underline-offset: 0.6ex;
     text-decoration-style: wavy;
