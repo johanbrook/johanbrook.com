@@ -13,6 +13,19 @@
     "items": [
         
         {
+            "id": "https://johan.im/micro/20240324152216/",
+            "url": "https://johan.im/micro/20240324152216/",
+            
+            
+            
+            "_location": "Stockholm, Sweden",
+            
+            
+            "content_html": "<p>This list of <a href=\"https://dynomight.net/things/\">things that don’t work</a> was fun:</p>\n<blockquote>\n<ol start=\"30\">\n<li>Nonfiction books. Arguably? How much do we really retain?</li>\n</ol>\n</blockquote>",
+            "date_published": "2024-03-24T15:22:16+01:00"
+        },
+        
+        {
             "id": "https://johan.im/micro/20240321081111/",
             "url": "https://johan.im/micro/20240321081111/",
             
@@ -145,21 +158,6 @@
             
             "content_html": "<p>Today is a Red Hot Chili Peppers day.\n<a href=\"https://open.spotify.com/playlist/6l2elAUv3W4sCfPxN3my8g?si=MbrzW2QsTyS4VCiolOE4BQ&amp;pi=e-3oMu2Wv1S5Sx\">Here’s my playlist</a>.</p>",
             "date_published": "2023-12-10T11:58:33+01:00"
-        },
-        
-        {
-            "id": "https://johan.im/micro/202312071945/",
-            "url": "https://johan.im/micro/202312071945/",
-            
-            "summary": "[ArrowJS](https://www.arrow-js.com) is my spirit animal JS library at the moment.\n\n_If_ you need a library on the frontend, I’d use this one.\n\n- ✅ tiny (2kB). can read the source code in 10 min.\n- ✅ reactive, with observable signals/atoms.\n- ✅ no build, no JSX, no dependencies.",
-            
-            
-            
-            "_location": "My Mac shortcut",
-            
-            
-            "content_html": "<p><a href=\"https://www.arrow-js.com/\">ArrowJS</a> is my spirit animal JS library at the moment.</p>\n<p><em>If</em> you need a library on the frontend, I’d use this one.</p>\n<ul>\n<li>✅ tiny (2kB). can read the source code in 10 min.</li>\n<li>✅ reactive, with observable signals/atoms.</li>\n<li>✅ no build, no JSX, no dependencies.</li>\n</ul>\n<p>It abstracts away sharp edges with the DOM, and does the reactive boilerplate for you. I could\neasily just copy-paste the source into a vendor/ directory and call it a day.</p>",
-            "date_published": "2023-12-07T20:45:11+01:00"
         }
         
     ]

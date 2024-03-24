@@ -5,11 +5,24 @@
   <link href="https://johan.im/micro.xml"/>
   <id>https://johan.im/micro.xml</id>
   
-  <updated>2024-03-21T08:11:11+01:00</updated>
+  <updated>2024-03-24T15:22:16+01:00</updated>
   <author>
     <name>Johan Brook</name>
     <email>webmaster@johan.im</email>
   </author>
+  
+  <entry>
+    <title>March 24 — 15:22</title>
+    <link href="https://johan.im/micro/20240324152216/" />
+    <updated>2024-03-24T15:22:16+01:00</updated>
+    <id>https://johan.im/micro/20240324152216/</id>
+    <content type="html">&lt;p&gt;This list of &lt;a href=&quot;https://dynomight.net/things/&quot;&gt;things that don’t work&lt;/a&gt; was fun:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol start=&quot;30&quot;&gt;
+&lt;li&gt;Nonfiction books. Arguably? How much do we really retain?&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;</content>
+  </entry>
   
   <entry>
     <title>March 21 — 08:11</title>
@@ -190,22 +203,6 @@ football in school.&lt;/p&gt;</content>
     <id>https://johan.im/micro/202312101058/</id>
     <content type="html">&lt;p&gt;Today is a Red Hot Chili Peppers day.
 &lt;a href=&quot;https://open.spotify.com/playlist/6l2elAUv3W4sCfPxN3my8g?si=MbrzW2QsTyS4VCiolOE4BQ&amp;amp;pi=e-3oMu2Wv1S5Sx&quot;&gt;Here’s my playlist&lt;/a&gt;.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>December 7, 2023 — 20:45</title>
-    <link href="https://johan.im/micro/202312071945/" />
-    <updated>2023-12-07T20:45:11+01:00</updated>
-    <id>https://johan.im/micro/202312071945/</id>
-    <content type="html">&lt;p&gt;&lt;a href=&quot;https://www.arrow-js.com/&quot;&gt;ArrowJS&lt;/a&gt; is my spirit animal JS library at the moment.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;If&lt;/em&gt; you need a library on the frontend, I’d use this one.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;✅ tiny (2kB). can read the source code in 10 min.&lt;/li&gt;
-&lt;li&gt;✅ reactive, with observable signals/atoms.&lt;/li&gt;
-&lt;li&gt;✅ no build, no JSX, no dependencies.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;It abstracts away sharp edges with the DOM, and does the reactive boilerplate for you. I could
-easily just copy-paste the source into a vendor/ directory and call it a day.&lt;/p&gt;</content>
   </entry>
   
 </feed>
