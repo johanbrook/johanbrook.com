@@ -3,6 +3,7 @@ import { createApp } from '../api/app.ts';
 import { mock } from './_mock.ts';
 import * as Yaml from 'std/yaml/mod.ts';
 import { assertSpyCall, assertSpyCalls } from 'std/testing/mock.ts';
+import 'temporal-polyfill/global';
 
 const BASE_URL = 'http://localhost:8000';
 
