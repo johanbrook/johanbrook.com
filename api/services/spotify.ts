@@ -39,7 +39,6 @@ export const createSpotify = (clientId: string, clientSecret: string): Spotify =
         }
 
         const track = await res.json();
-        console.log(track);
 
         return <SpotifyTrack> {
             artist: track.artists.at(0).name,
