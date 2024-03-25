@@ -1,10 +1,9 @@
 // deno run --allow-env --allow-net --allow-read --allow-write --location https://johan.im api/server.ts
 import { createApp } from './app.ts';
+import { createServices } from './services/index.ts';
 import 'temporal-polyfill/global';
 
-
-
-const app = createApp(services);
+const app = createApp(createServices());
 
 Deno.serve(
     {
