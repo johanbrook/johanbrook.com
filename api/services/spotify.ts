@@ -47,7 +47,7 @@ export const createSpotify = (clientId: string, clientSecret: string): Spotify =
         console.debug('spotify lookupUrl got track: %s', track.name);
 
         return <SpotifyTrack> {
-            artist: track.artists.map((a: any) => a.name),
+            artist: track.artists.map((a: any) => a.name).join(', '),
             name: track.name,
         };
     };

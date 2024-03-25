@@ -92,8 +92,9 @@ export function createApp(services: Services) {
         'PUT',
         '/current-track',
         pipe(authHandler, async (req) => {
-            await setCurrentTrack(services, await req.json());
-            return new Response('♫', { status: 200 });
+            const track = await setCurrentTrack(services, await req.json());
+
+            return Response.json({ track });
         }),
     );
 
@@ -101,8 +102,9 @@ export function createApp(services: Services) {
         'PUT',
         '/current-track/spotify',
         pipe(authHandler, async (req) => {
-            await setCurrentTrackFromSpotifyUrl(services, await req.json());
-            return new Response('♫', { status: 200 });
+            const track = await setCurrentTrackFromSpotifyUrl(services, await req.json());
+
+            return Response.json({ track });
         }),
     );
 

@@ -2,12 +2,14 @@ import { Services } from '../services/index.ts';
 import * as Track from '../model/track.ts';
 import { ProblemError, ProblemKind } from '../problem.ts';
 
-export const setCurrentTrack = async (services: Services, json: any) => {
+export const setCurrentTrack = async (services: Services, json: any): Promise<Track.Track> => {
     const track = inputOf(json);
     await Track.setCurrent(services.fileHost, track);
+
+    return track;
 };
 
-export const setCurrentTrackFromSpotifyUrl = async (services: Services, json: any) => {
+export const setCurrentTrackFromSpotifyUrl = async (services: Services, json: any): Promise<Track.Track> => {
     const { spotify } = services;
     const { url } = json;
 
@@ -19,12 +21,16 @@ export const setCurrentTrackFromSpotifyUrl = async (services: Services, json: an
         throw new ProblemError(ProblemKind.BadInput, `"url" must be a valid URL`);
     }
 
-    const track = await spotify.lookupUrl(url);
+    const { name, artist } = await spotify.lookupUrl(url);
 
-    await Track.setCurrent(services.fileHost, {
-        name: track.name,
-        artist: track.artist,
-    });
+    const track: Track.Track = {
+        name,
+        artist,
+    };
+
+    await Track.setCurrent(services.fileHost, track);
+
+    return track;
 };
 
 const inputOf = (json: any): Track.TrackInput => {

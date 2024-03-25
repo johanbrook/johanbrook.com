@@ -1,11 +1,13 @@
 import { FileHost } from '../services/index.ts';
 import * as Yaml from 'std/yaml/mod.ts';
 
-export interface TrackInput {
+export interface Track {
     [k: string]: string;
     name: string;
     artist: string;
 }
+
+export type TrackInput = Pick<Track, 'name' | 'artist'>;
 
 const FILE = 'src/_data/current_track.yml';
 
@@ -28,5 +30,4 @@ const capitaliseMembers = <T extends Record<string, string>>(inp: T): T => {
     return copy;
 };
 
-const capitalise = (str: string) =>
-    str.split(/\s+/).map((s) => s.at(0)?.toUpperCase() + s.slice(1)).join(' ');
+const capitalise = (str: string) => str.split(/\s+/).map((s) => s.at(0)?.toUpperCase() + s.slice(1)).join(' ');
