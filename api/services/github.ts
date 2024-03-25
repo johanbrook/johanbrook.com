@@ -35,6 +35,8 @@ export const createGithub = (token: string, repo: string): FileHost => {
             contents,
             filePath,
         ) => {
+            console.debug('github putFile %s', filePath);
+
             const existing = await getFile(filePath);
 
             const res = await githubRequest<any>(
@@ -64,6 +66,8 @@ export const createGithub = (token: string, repo: string): FileHost => {
         },
 
         getFile: async (filePath) => {
+            console.debug('github getFile %s', filePath);
+
             const res = await getFile(filePath);
 
             return res ? textdecoder.decode(decodeBase64(res.content)) : null;

@@ -20,13 +20,17 @@ export const createSpotify = (clientId: string, clientSecret: string): Spotify =
     }
 
     const lookupUrl = async (url: string) => {
+        console.debug('spotify lookupUrl %s', url);
+
         // Just request a new access token each time
         const token = await fetchAccessToken();
         const trackId = new URL(url).pathname.split('/').at(-1);
 
         if (!trackId) {
-            throw new ProblemError(ProblemKind.BadInput, `Couldn't parse Spotify URL: ${url}`);
+            throw new ProblemError(ProblemKind.BadInput, `Couldn't parse Spotify trackId from URL: ${url}`);
         }
+
+        console.debug('spotify API call for trackId: %s', trackId);
 
         const res = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
             headers: {
@@ -35,13 +39,15 @@ export const createSpotify = (clientId: string, clientSecret: string): Spotify =
         });
 
         if (!res.ok) {
-            throw new ProblemError(ProblemKind.GitHubError, `Bad response from Spotify: ${res.status}`);
+            throw new ProblemError(ProblemKind.SpotifyError, `Bad response: ${res.status} ${res.statusText}`);
         }
 
         const track = await res.json();
 
+        console.debug('spotify lookupUrl got track: %s', track.name);
+
         return <SpotifyTrack> {
-            artist: track.artists.at(0).name,
+            artist: track.artists.map((a: any) => a.name),
             name: track.name,
         };
     };

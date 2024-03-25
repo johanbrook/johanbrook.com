@@ -5,6 +5,8 @@ export enum ProblemKind {
     InconsistentFile = 'InconsistentFile',
     /** Badness from GitHub. */
     GitHubError = 'GitHubError',
+    /** Badness from Spotify. */
+    SpotifyError = 'SpotifyError',
     /** Error caused by bad client input. */
     BadInput = 'BadInput',
     /** Auth error caused by bad client behaviour. */
@@ -39,6 +41,7 @@ export class ProblemError extends Error {
                 return 404;
             /* falls through */
             case ProblemKind.GitHubError:
+            case ProblemKind.SpotifyError:
             case ProblemKind.InconsistentFile:
             default:
                 return 500;
