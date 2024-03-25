@@ -1,21 +1,32 @@
-import { Services } from '../api/services/index.ts';
+import { FileHost } from '../api/services/index.ts';
+import { Spotify } from '../api/services/spotify.ts';
 import { Spy, spy } from 'std/testing/mock.ts';
 export { spy } from 'std/testing/mock.ts';
 
 interface Mock {
-    services: { [K in keyof Services]: WithSpy<Services[K]> };
+    services: {
+        fileHost: WithSpy<FileHost>;
+        spotify: WithSpy<Spotify>;
+        currentTime: () => Date;
+    };
 }
 
 type WithSpy<C> = { [K in keyof C]: Spy };
 
-export const mock = (): Mock => {
+interface MockInput {
+    currentTime?: Date;
+}
+
+export const mock = (inp?: MockInput): Mock => {
+    const { currentTime = new Date() } = inp || {};
+
     const mockFileHost = {
         putFile: spy(() => Promise.resolve('foo')),
         getFile: spy(() => Promise.resolve('foo')),
     };
 
     const mockSpotify = {
-        lookupUrl: spy(() =>
+        lookupTrackId: spy(() =>
             Promise.resolve({
                 name: 'Hitchiker',
                 artist: 'Neil Young',
@@ -26,6 +37,7 @@ export const mock = (): Mock => {
     const services = {
         fileHost: mockFileHost,
         spotify: mockSpotify,
+        currentTime: () => currentTime,
     };
 
     return {

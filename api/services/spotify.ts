@@ -7,7 +7,7 @@ interface SpotifyTrack {
 }
 
 export interface Spotify {
-    lookupUrl: (uri: string) => Promise<SpotifyTrack>;
+    lookupTrackId: (uri: string) => Promise<SpotifyTrack>;
 }
 
 export const createSpotify = (clientId: string, clientSecret: string): Spotify => {
@@ -15,20 +15,13 @@ export const createSpotify = (clientId: string, clientSecret: string): Spotify =
         if (!isTest()) console.log('Using Spotify mock');
 
         return {
-            lookupUrl: () => Promise.resolve({ name: 'Gimme Danger', artist: 'The Stooges' }),
+            lookupTrackId: () => Promise.resolve({ name: 'Gimme Danger', artist: 'The Stooges' }),
         };
     }
 
-    const lookupUrl = async (url: string) => {
-        console.debug('spotify lookupUrl %s', url);
-
+    const lookupTrackId = async (trackId: string) => {
         // Just request a new access token each time
         const token = await fetchAccessToken();
-        const trackId = new URL(url).pathname.split('/').at(-1);
-
-        if (!trackId) {
-            throw new ProblemError(ProblemKind.BadInput, `Couldn't parse Spotify trackId from URL: ${url}`);
-        }
 
         console.debug('spotify API call for trackId: %s', trackId);
 
@@ -63,6 +56,6 @@ export const createSpotify = (clientId: string, clientSecret: string): Spotify =
         }).then((res) => res.json()).then((json) => json.access_token);
 
     return {
-        lookupUrl,
+        lookupTrackId,
     };
 };
