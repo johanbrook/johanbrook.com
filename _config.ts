@@ -2,6 +2,7 @@ import lume from 'lume/mod.ts';
 import postcss from 'lume/plugins/postcss.ts';
 import esbuild from 'lume/plugins/esbuild.ts';
 import nunjucks from 'lume/plugins/nunjucks.ts';
+import date from 'lume/plugins/date.ts';
 import temporalDate from './src/_lume-plugins/temporal-date.ts';
 import { readingTime } from './src/_lume-plugins/reading-time.ts';
 import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
@@ -36,6 +37,7 @@ site.use(typeset({ scope: '.prose' }))
         }),
     )
     .use(temporalDate())
+    .use(date())
     .use(sourceMaps())
     // Helpers
     .filter('substr', (str: string, len: number) => str.substring(0, len))

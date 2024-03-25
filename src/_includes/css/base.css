@@ -324,3 +324,16 @@ u {
     text-decoration-style: wavy;
     text-decoration-color: var(--accent);
 }
+
+@media (hover: hover) {
+    time[title] {
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        text-underline-offset: .4ex;
+        text-decoration-color: var(--color-faint);
+
+        &:hover {
+            text-decoration-color: var(--color-text-detail);
+        }
+    }
+}

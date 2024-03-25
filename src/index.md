@@ -13,4 +13,4 @@ You can reach me via [email](mailto:{{ meta.email }}) or [Mastodon]({{ '' | mast
 
 ***
 
-My fav track at the moment is ♫ <u class="b">{{ current_track.name }}</u> by {{ current_track.artist }}.
+My fav track <time title="Updated at {{ current_track.updatedAt | date('yyyy-MM-dd')}}" datetime="{{ current_track.updatedAt }}">at the moment</time> is ♫ <u class="b">{{ current_track.name }}</u> by {{ current_track.artist }}.
