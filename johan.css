@@ -291,7 +291,6 @@ Remove the inheritance of text transform in Edge and Firefox.
 
 html {
     /* https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/ */
-    -moz-text-size-adjust: none;
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
     font: normal 112.5% / var(--leading) var(--sans);
