@@ -24,7 +24,6 @@ site.use(typeset({ scope: '.prose' }))
     .use(nunjucks())
     .use(esbuild())
     .copy('public', '.')
-    .copy('public/.well-known', './.well-known') // lume ignores . dirs, must copy explicitly
     // Plugins
     .use(
         postcss({
@@ -52,11 +51,11 @@ site.use(typeset({ scope: '.prose' }))
     .filter('excerpt', (content: string) => extractExcerpt(content))
     .filter('hostname', (url: string) => new URL(url).host.replace('www.', ''))
     .filter('mastodonUrl', function (this: any) {
-        const { meta } = this.ctx.page.data;
+        const { meta } = this.data;
         return `https://${meta.mastodon.instance}/@${meta.mastodon.username}`;
     })
     .filter('isCurrentPage', function (this: any, url: string) {
-        const curr = (this.ctx.page.data.url as string).replace(/\/$/, '');
+        const curr = (this.data.url as string).replace(/\/$/, '');
         const test = url.replace(/\/$/, '');
 
         if (curr == test) return true;
@@ -92,7 +91,9 @@ site.use(typeset({ scope: '.prose' }))
 
         return groups;
     })
-    .filter('id', (d: Lume.Data) => idOf(d.page.sourcePath))
+    .filter('id', (d: Lume.Data) => {
+        return idOf(d.page.sourcePath);
+    })
     // Fixes `str` to be suitable for JSON output
     .filter('jsonHtml', (str: string) => JSON.stringify(str.replace('"', '"')))
     // Data

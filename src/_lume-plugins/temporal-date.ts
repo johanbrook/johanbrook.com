@@ -14,7 +14,7 @@ export default function (options: Options = {}): Lume.Plugin {
             throw new Error(`Needs "format" parameter, got: ${format}`);
         }
 
-        const timezone = timezoneOf(overrideTimezone, this.ctx.page.data.timezone);
+        const timezone = timezoneOf(overrideTimezone, this.data.timezone);
 
         const date = ((): Temporal.ZonedDateTime => {
             if (dateLike == 'now') return Temporal.Now.zonedDateTimeISO(timezone);
@@ -171,13 +171,11 @@ const commonPartsOf = (
 };
 
 interface Context {
-    ctx: {
-        page: Lume.Page<Lume.Data & { timezone: string }>;
-    };
+    data: Lume.Data & { timezone: string };
 }
 
 type TemporalDate = (
-    this: Context,
+    this: Context | void,
     dateLike: string | Date,
     format: DateTimeFormat,
     tz?: string,
