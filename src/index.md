@@ -11,6 +11,15 @@ I'd like to write more (don't we all), and I consume a (un)healthy amount of mus
 
 You can reach me via [email](mailto:{{ meta.email }}) or [Mastodon]({{ '' | mastodonUrl }}).
 
+{% set current_book = books | rejectattr("finished") | last %}
+
+{% if current_book %}
+***
+
+I'm currently [reading](/reading) “<u class="b">{{ current_book.title }}</u>” by {{ current_book.author }}.
+
+{% endif %}
+
 ***
 
 My fav track <time title="Updated at {{ current_track.updatedAt | date('yyyy-MM-dd')}}" datetime="{{ current_track.updatedAt }}">at the moment</time> is ♫ <u class="b">{{ current_track.name }}</u> by {{ current_track.artist }}.
