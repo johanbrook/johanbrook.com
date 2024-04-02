@@ -1,0 +1,44 @@
+---
+layout: layouts/main.njk
+---
+
+<h1>{{ title | title }}</h1>
+<div class="tags">
+  {% for tag in recipeTags -%}
+  <!-- <a href="{{ tag | tagUrl('recipe' )| url }}">#{{ tag | formatTag }}</a> -->
+  <a href="#">#{{ tag | formatTag }}</a>
+  {%- if not loop.last %}, {% endif %} {%- endfor %}
+</div>
+
+<section class="recipe-ingredients">
+  <h2>Ingredients</h2>
+  <ul>
+    {% for item in ingredients %}
+    <li>{{ item.quantity }} {{ item.units }} {{ item.name }}</li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="recipe-cookware">
+  <h2>Cookware</h2>
+  <ul>
+    {% for item in cookware %}
+    <li>
+      {{ item.name }}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="recipe-instructions">
+  <h2>Instructions</h2>
+  <ol>
+    {% for step in steps %}
+    <li>
+      {%- for item in step -%}
+      {{ item | safe }}
+      {%- endfor -%}
+    </li>
+    {% endfor %}
+  </ol>
+</section>

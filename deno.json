@@ -5,7 +5,8 @@
         "html_entities": "https://deno.land/x/html_entities@v1.0/mod.js",
         "slug": "https://deno.land/x/slug@v1.1.0/mod.ts",
         "temporal-polyfill": "https://esm.sh/temporal-polyfill@0.2.3",
-        "temporal-polyfill/global": "https://esm.sh/temporal-polyfill@0.2.3/global"
+        "temporal-polyfill/global": "https://esm.sh/temporal-polyfill@0.2.3/global",
+        "cooklang": "https://esm.sh/@cooklang/cooklang-ts@1.2.6"
     },
     "tasks": {
         "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable-temporal -A -",
