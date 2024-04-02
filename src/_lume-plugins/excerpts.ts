@@ -1,6 +1,30 @@
 const excerptMinimumLength = 140;
 const excerptSeparator = '<!--more-->';
 
+export const excerpts = (): Lume.Plugin => {
+    return (site) => {
+        site.filter('excerpt', (content: unknown) => {
+            if (!content) return content;
+
+            if (typeof content != 'string') {
+                throw new TypeError(`excerpt(): can't extract excerpts on non-string, got: ${typeof content}`);
+            }
+
+            return extractExcerpt(content);
+        });
+
+        site.data('didExcerpt', (content: unknown): boolean => {
+            if (!content) return false;
+
+            if (typeof content != 'string') {
+                throw new TypeError(`didExcerpt: can't extract excerpts on non-string, got: ${typeof content}`);
+            }
+
+            return extractExcerpt(content).length < content.length;
+        });
+    };
+};
+
 export const extractExcerpt = (content: string): string => {
     content = content.trim();
 

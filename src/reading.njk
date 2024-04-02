@@ -40,7 +40,13 @@ menu:
                   		{{ book.author }}
                    	</td>
                    	<td>
-       					{{ book.notes | md(true) | safe }}
+       					{{ book.notes | excerpt | md(true) | safe }}
+
+                        {% if didExcerpt(book.notes) %}
+                            <p class="f6 mb0">
+                                <a class="muted" href="{{ '/reading' | url }}/{{book.slug}}/">Continued ⇢</a>
+                            </p>
+                        {% endif %}
                    	</td>
                    	<td class="f6 no-wrap {% if not book.finished %}align-middle{% endif %}" width="10%">
                        	{% if book.dropped %}

@@ -5,7 +5,7 @@ import nunjucks from 'lume/plugins/nunjucks.ts';
 import date from 'lume/plugins/date.ts';
 import temporalDate from './src/_lume-plugins/temporal-date.ts';
 import { readingTime } from './src/_lume-plugins/reading-time.ts';
-import { extractExcerpt } from './src/_lume-plugins/excerpts.ts';
+import { excerpts } from './src/_lume-plugins/excerpts.ts';
 import { typeset } from './src/_lume-plugins/typeset.ts';
 import sourceMaps from 'lume/plugins/source_maps.ts';
 import { idOf, postsRoot } from './src/_includes/permalinks.ts';
@@ -38,6 +38,7 @@ site.use(typeset({ scope: '.prose' }))
     .use(temporalDate())
     .use(date())
     .use(sourceMaps())
+    .use(excerpts())
     // Helpers
     .filter('substr', (str: string, len: number) => str.substring(0, len))
     .filter('readingTime', (pageOrContent: Lume.Page | string) => {
@@ -48,7 +49,6 @@ site.use(typeset({ scope: '.prose' }))
         return readingTime(pageOrContent);
     })
     .filter('postAssetUrl', (filename: string) => `/assets/posts/${filename}`)
-    .filter('excerpt', (content: string) => extractExcerpt(content))
     .filter('hostname', (url: string) => new URL(url).host.replace('www.', ''))
     .filter('mastodonUrl', function (this: any) {
         const { meta } = this.data;

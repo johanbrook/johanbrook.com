@@ -26,15 +26,15 @@ home: true
                   <a href="{{ note.url }}" class="muted u-url" title="Permalink"><time class="dt-published" datetime="{{ note.date | tdate('Machine', note.timezone) }}" pubdate>{{ note.date | tdate('HumanTime', note.timezone) }}</time></a>
               </h2>
 
-              <details {% if loop.first %}open{% endif %}>
-                  <summary style="position: absolute; right: 0; top: 0" class="btn f5">View</summary>
+              <details class="mb0" {% if loop.first %}open{% endif %}>
+                  <summary style="position: absolute; right: 0; top: -0.25rlh" class="btn f5">View</summary>
                   <div class="prose font-mono f6 mt2 text-color-contrast p-summary">
                       {{ note.content | excerpt | md | safe }}
                   </div>
 
-                  {% if (note.content | excerpt | length) < (note.content | trim | length)  %}
-                      <p class="mt2 font-sans">
-                          <a href="{{ note.url }}" class="muted f5">continued ⇢</a>
+                  {% if didExcerpt(note.content) %}
+                      <p class="mt1 mb0 font-sans">
+                          <a href="{{ note.url }}" class="muted f6">Continued ⇢</a>
                       </p>
                   {% endif %}
               </details>
