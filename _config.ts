@@ -12,7 +12,7 @@ import { idOf, postsRoot } from './src/_includes/permalinks.ts';
 import { microRoot } from './src/_includes/permalinks.ts';
 import { booksRoot } from './src/_includes/permalinks.ts';
 import postcssUtopia from 'npm:postcss-utopia@^1';
-import type { Book } from './api/model/book.ts';
+import { type Book, currentBookOf } from './api/model/book.ts';
 
 const site = lume({
     src: 'src',
@@ -50,12 +50,12 @@ site.use(typeset({ scope: '.prose' }))
     })
     .filter('postAssetUrl', (filename: string) => `/assets/posts/${filename}`)
     .filter('hostname', (url: string) => new URL(url).host.replace('www.', ''))
-    .filter('mastodonUrl', function (this: any) {
+    .filter('mastodonUrl', function (this: ThisContext) {
         const { meta } = this.data;
         return `https://${meta.mastodon.instance}/@${meta.mastodon.username}`;
     })
-    .filter('isCurrentPage', function (this: any, url: string) {
-        const curr = (this.data.url as string).replace(/\/$/, '');
+    .filter('isCurrentPage', function (this: ThisContext, url: string) {
+        const curr = this.data.url.replace(/\/$/, '');
         const test = url.replace(/\/$/, '');
 
         if (curr == test) return true;
@@ -98,13 +98,11 @@ site.use(typeset({ scope: '.prose' }))
     .filter('jsonHtml', (str: string) => JSON.stringify(str.replace('"', '"')))
     // Data
     .data('timezone', 'Europe/Stockholm') // If a page's data doesn't include a "timezone" field, we'll fall back
-    .data('pageSlug', function (this: { ctx: { url: string } }) {
+    .data('pageSlug', function (this: ThisContext) {
         return this.ctx.url.replaceAll('/', '');
     })
-    .data('parent', function (this: { ctx: { page: Lume.Page } }) {
-        const { page } = this.ctx;
-
-        switch (page.data.type) {
+    .data('parent', function (this: ThisContext) {
+        switch (this.ctx.page.data.type) {
             case 'post':
                 return ['Writings', postsRoot];
             case 'note':
@@ -115,6 +113,9 @@ site.use(typeset({ scope: '.prose' }))
                 return null;
         }
     })
+    .data('currentBook', function (this: ThisContext<{ books: Book[] }>) {
+        return currentBookOf(this.ctx.books).at(-1);
+    })
     .data('layout', 'layouts/main.njk')
     .data('type', 'post', '/posts')
     .data('layout', 'layouts/post.njk', '/posts')
@@ -124,5 +125,7 @@ site.use(typeset({ scope: '.prose' }))
     .data('templateEngine', 'njk,md', '/notes')
     // Don't the entire site rebuild when --watching or --serving if .css files change
     .scopedUpdates((path) => path.endsWith('.css'));
+
+type ThisContext<T = Record<string, unknown>> = { ctx: T & Lume.Data & { page: Lume.Page }; data: Lume.Data };
 
 export default site;

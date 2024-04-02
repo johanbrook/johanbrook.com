@@ -11,12 +11,10 @@ I'd like to write more (don't we all), and I consume a (un)healthy amount of mus
 
 You can reach me via [email](mailto:{{ meta.email }}) or [Mastodon]({{ '' | mastodonUrl }}).
 
-{% set current_book = books | rejectattr("finished") | last %}
-
-{% if current_book %}
+{% if currentBook() %}
 ***
 
-I'm currently [reading](/reading) “<u class="b">{{ current_book.title }}</u>” by {{ current_book.author }}.
+I'm currently [reading](/reading) “<u class="b">{{ currentBook().title }}</u>” by {{ currentBook().author }}.
 
 {% endif %}
 

@@ -23,8 +23,11 @@ export const findCurrent = async (store: FileHost): Promise<Book[]> => {
 
     if (!raw) return [];
 
-    return booksArrayOf(raw).filter((b) => !b.finished && !b.dropped && !b.paused);
+    return currentBookOf(booksArrayOf(raw));
 };
+
+// Assumes sorted array
+export const currentBookOf = (books: Book[]): Book[] => books.filter((b) => !b.finished && !b.dropped && !b.paused);
 
 export const findBySlug = async (
     store: FileHost,
