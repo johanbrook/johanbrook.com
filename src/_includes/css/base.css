@@ -28,6 +28,11 @@ body {
         'kern' 1,
         'liga' 1;
     font-variant-ligatures: contextual common-ligatures;
+    hanging-punctuation: first;
+}
+
+input, textarea {
+    hanging-punctuation: none;
 }
 
 :target {
