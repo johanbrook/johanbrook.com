@@ -1,44 +1,55 @@
 ---
 layout: layouts/main.njk
 ---
+<article role="main">
+    <header class="flex items-center justify-between mb4">
+        <h1 class="title">{{ title }}</h1>
+        {% if metadata.source %}
+            <a class="btn f6" href="{{ metadata.source }}">Original source →</a>
+        {% endif %}
+    </header>
 
-<h1>{{ title | title }}</h1>
-<div class="tags">
-  {% for tag in recipeTags -%}
-  <!-- <a href="{{ tag | tagUrl('recipe' )| url }}">#{{ tag | formatTag }}</a> -->
-  <a href="#">#{{ tag | formatTag }}</a>
-  {%- if not loop.last %}, {% endif %} {%- endfor %}
-</div>
+    <div class="prose">
+        <section>
+            <h2>Ingredients</h2>
+            <ul>
+                {% for item in ingredients %}
+                <li>{{ item.quantity }} {{ item.units }} {{ item.name }}</li>
+                {% endfor %}
+            </ul>
+        </section>
 
-<section class="recipe-ingredients">
-  <h2>Ingredients</h2>
-  <ul>
-    {% for item in ingredients %}
-    <li>{{ item.quantity }} {{ item.units }} {{ item.name }}</li>
-    {% endfor %}
-  </ul>
-</section>
+        <section>
+            <h2>Cookware</h2>
+            <ul>
+                {% for item in cookwares %}
+                <li>
+                    {{ item.quantity}} {{ item.name }}
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
 
-<section class="recipe-cookware">
-  <h2>Cookware</h2>
-  <ul>
-    {% for item in cookware %}
-    <li>
-      {{ item.name }}
-    </li>
-    {% endfor %}
-  </ul>
-</section>
+        <section>
+            <h2>Instructions</h2>
+            <ol>
+                {% for step in steps %}
+                <li>
+                    {%- for item in step -%}
+                        {{ item | safe }}
+                    {%- endfor -%}
+                </li>
+                {% endfor %}
+            </ol>
+        </section>
 
-<section class="recipe-instructions">
-  <h2>Instructions</h2>
-  <ol>
-    {% for step in steps %}
-    <li>
-      {%- for item in step -%}
-      {{ item | safe }}
-      {%- endfor -%}
-    </li>
-    {% endfor %}
-  </ol>
-</section>
+    </div>
+
+    <footer class="mt5 flex items-center justify-between">
+        <a href=".." class="muted">
+      		<span aria-hidden="true" class="BackLink mr1">←</span> All recipes
+       	</a>
+
+        <a class="btn f6" href="{{ rawUrl }}">Raw <code>.cook</code> source ⤤</a>
+    </footer>
+</article>

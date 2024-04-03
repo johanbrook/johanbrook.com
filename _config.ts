@@ -7,12 +7,12 @@ import temporalDate from './src/_lume-plugins/temporal-date.ts';
 import { readingTime } from './src/_lume-plugins/reading-time.ts';
 import { excerpts } from './src/_lume-plugins/excerpts.ts';
 import { typeset } from './src/_lume-plugins/typeset.ts';
+import cooklang from './src/_lume-plugins/cooklang.ts';
 import sourceMaps from 'lume/plugins/source_maps.ts';
 import { idOf, postsRoot } from './src/_includes/permalinks.ts';
 import { microRoot } from './src/_includes/permalinks.ts';
 import { booksRoot } from './src/_includes/permalinks.ts';
 import postcssUtopia from 'npm:postcss-utopia@^1';
-import * as CookLang from 'cooklang';
 import { type Book, currentBookOf } from './api/model/book.ts';
 
 const site = lume({
@@ -40,6 +40,7 @@ site.use(typeset({ scope: '.prose' }))
     .use(date())
     .use(sourceMaps())
     .use(excerpts())
+    .use(cooklang())
     // Helpers
     .filter('substr', (str: string, len: number) => str.substring(0, len))
     .filter('readingTime', (pageOrContent: Lume.Page | string) => {
@@ -118,51 +119,20 @@ site.use(typeset({ scope: '.prose' }))
         return currentBookOf(this.ctx.books).at(-1);
     })
     .data('layout', 'layouts/main.njk')
+    // POSTS
     .data('type', 'post', '/posts')
     .data('layout', 'layouts/post.njk', '/posts')
     .data('templateEngine', 'njk,md', '/posts')
+    // MICRO NOTES
     .data('type', 'note', '/notes')
     .data('layout', 'layouts/note.njk', '/notes')
     .data('templateEngine', 'njk,md', '/notes')
+    // RECIPES
+    .data('layout', 'layouts/reci.njk', '/recipes')
+    .data('type', 'recipe', '/recipes')
     // Don't the entire site rebuild when --watching or --serving if .css files change
-    .scopedUpdates((path) => path.endsWith('.css'))
-    .loadData(['.cook'], async (path) => {
-        const text = await Deno.readTextFile(path);
-        const recipe = new CookLang.Recipe(text);
-        return { ...recipe, steps: recipeStepsOf(recipe) };
-    })
-    .copy('_data/recipes', 'recipes');
+    .scopedUpdates((path) => path.endsWith('.css'));
 
-const recipeStepsOf = (recipe: CookLang.Recipe) => {
-    const ret: Array<string[]> = [];
-
-    recipe.steps.forEach((tokens, idx) => {
-        if (!ret[idx]) ret[idx] = [];
-
-        tokens.forEach((tok) => {
-            let content = '';
-
-            switch (tok.type) {
-                case 'timer':
-                    content = `${tok.quantity} ${tok.units}`;
-                    break;
-                case 'ingredient':
-                    content = tok.name;
-                    break;
-                case 'text':
-                    content = tok.value;
-                    break;
-            }
-
-            content = `<span class="recipe--${tok.type}">${content}</span>`;
-
-            ret[idx].push(content);
-        });
-    });
-
-    return ret;
-};
-
-type ThisContext<T = Record<string, unknown>> = { ctx: T & Lume.Data & { page: Lume.Page }; data: Lume.Data };
+export type ThisContext<T = Record<string, unknown>> = { ctx: T & Lume.Data & { page: Lume.Page }; data: Lume.Data };
 
 export default site;
