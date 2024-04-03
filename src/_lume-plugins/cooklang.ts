@@ -1,39 +1,89 @@
-import { Page } from 'lume/core/file.ts';
+import { Page, RawData } from 'lume/core/file.ts';
 import * as CookLang from 'cooklang';
+import { test as hasFm } from 'std/front_matter/mod.ts';
+import { extract as extractFm } from 'std/front_matter/any.ts';
 
-type RecipeData = Pick<CookLang.Recipe, 'cookwares' | 'ingredients' | 'metadata'> & {
-    /** The raw `.cook` file content. */
-    raw: string;
-    steps: Array<string[]>;
-    title?: string;
-    description?: string;
+type RecipeData = Pick<CookLang.Recipe, 'cookwares' | 'ingredients' | 'metadata' | 'steps'> & {
+    instructions: Array<string[]>;
+};
+
+// Quick n dirty
+const cookLangToMarkdown = (recipe: CookLang.Recipe): string => {
+    const metadata = `${Object.entries(recipe.metadata).map(([k, v]) => `- ${k}: ${v}`).join('\n')}`;
+
+    const ingredients = `${recipe.ingredients.map((i) => `- ${i.quantity} ${i.units} ${i.name}`).join('\n')}`;
+
+    const cookwares = `${recipe.cookwares.map((i) => `- ${i.quantity} ${i.name}`).join('\n')}`;
+
+    const instructions = recipeInstructionsOf(recipe).map((s) => `- ${s.join(' ')}`).join('\n');
+
+    return `
+# ${recipe.metadata.title || 'Unknown recipe'}
+
+## Metadata
+
+${metadata}
+
+## Ingredients
+
+${ingredients}
+
+## Cookware
+
+${cookwares}
+
+## Instructions
+
+${instructions}
+`.trim();
 };
 
 export default function (): Lume.Plugin {
     return (site) => {
         site
+            .filter('cook', (content) => {
+                const recipe = new CookLang.Recipe(content);
+                return cookLangToMarkdown(recipe);
+            })
             // Load .cook files
-            .loadPages(['.cook'], async (path): Promise<RecipeData> => {
-                const raw = await Deno.readTextFile(path);
-                const recipe = new CookLang.Recipe(raw);
+            .loadPages(['.cook'], {
+                loader: async (path): Promise<RawData & RecipeData> => {
+                    const content = await Deno.readTextFile(path);
 
-                return {
-                    //
-                    ...recipe,
-                    raw,
-                    steps: recipeStepsOf(recipe),
-                    // Conventions:
-                    title: recipe.metadata.title,
-                    description: recipe.metadata.description,
-                };
+                    const recipeProps = (str: string): RecipeData => {
+                        const recipe = new CookLang.Recipe(str);
+
+                        return {
+                            ...recipe,
+                            ...recipe.metadata,
+                            instructions: recipeInstructionsOf(recipe),
+                        };
+                    };
+
+                    if (hasFm(content)) {
+                        let { attrs, body } = extractFm<RawData>(content);
+                        attrs ??= {};
+                        attrs.content = body;
+
+                        return {
+                            ...recipeProps(body),
+                            ...attrs,
+                        };
+                    }
+
+                    return {
+                        ...recipeProps(content),
+                        content,
+                    };
+                },
             })
             // (Re-)generate raw .cook files
             .preprocess(['.cook'], (filtered, all) => {
                 for (const page of filtered) {
                     const cookFile = Page.create({
                         basename: page.src.entry?.name,
-                        url: page.src.path + page.src.ext,
-                        content: page.data.raw,
+                        url: page.outputPath.replace('/index.html', '.cook'),
+                        content: page.data.content,
                     });
 
                     page.data.rawUrl = cookFile.data.url;
@@ -44,7 +94,7 @@ export default function (): Lume.Plugin {
     };
 }
 
-const recipeStepsOf = (recipe: CookLang.Recipe) => {
+const recipeInstructionsOf = (recipe: CookLang.Recipe) => {
     const ret: Array<string[]> = [];
 
     recipe.steps.forEach((tokens, idx) => {

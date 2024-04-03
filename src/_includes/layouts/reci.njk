@@ -4,8 +4,8 @@ layout: layouts/main.njk
 <article role="main">
     <header class="flex items-center justify-between mb4">
         <h1 class="title">{{ title }}</h1>
-        {% if metadata.source %}
-            <a class="btn f6" href="{{ metadata.source }}">Original source →</a>
+        {% if source %}
+            <a class="btn f6" href="{{ source }}">Original source →</a>
         {% endif %}
     </header>
 
@@ -33,7 +33,7 @@ layout: layouts/main.njk
         <section>
             <h2>Instructions</h2>
             <ol>
-                {% for step in steps %}
+                {% for step in instructions %}
                 <li>
                     {%- for item in step -%}
                         {{ item | safe }}
