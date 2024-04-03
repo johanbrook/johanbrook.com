@@ -6,6 +6,7 @@ type RecipeData = Pick<CookLang.Recipe, 'cookwares' | 'ingredients' | 'metadata'
     raw: string;
     steps: Array<string[]>;
     title?: string;
+    description?: string;
 };
 
 export default function (): Lume.Plugin {
@@ -16,7 +17,15 @@ export default function (): Lume.Plugin {
                 const raw = await Deno.readTextFile(path);
                 const recipe = new CookLang.Recipe(raw);
 
-                return { ...recipe, raw, title: recipe.metadata.title, steps: recipeStepsOf(recipe) };
+                return {
+                    //
+                    ...recipe,
+                    raw,
+                    steps: recipeStepsOf(recipe),
+                    // Conventions:
+                    title: recipe.metadata.title,
+                    description: recipe.metadata.description,
+                };
             })
             // (Re-)generate raw .cook files
             .preprocess(['.cook'], (filtered, all) => {

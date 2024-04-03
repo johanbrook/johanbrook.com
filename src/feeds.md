@@ -4,7 +4,7 @@ subtitle: Bring the feeds, here are the feeds!
 layout: layouts/page.njk
 menu:
   visible: true
-  order: 5
+  order: 7
 templateEngine: md,njk
 date: Git Last Modified
 ---
@@ -21,3 +21,7 @@ date: Git Last Modified
 ## Writings
 
 - [Atom](/writings.xml)
+
+## Recipes
+
+- [Atom](/recipes.xml)
