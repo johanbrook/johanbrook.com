@@ -33,7 +33,7 @@ location: <where>
 timezone: ${zonedDateTime.timeZone}
 excerpt: <excerpt>
 tags:
-  - key
+    - key
 draft: true
 ---\n
 `;
