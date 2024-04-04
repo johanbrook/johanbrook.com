@@ -7,34 +7,81 @@ type RecipeData = Pick<CookLang.Recipe, 'cookwares' | 'ingredients' | 'metadata'
     instructions: Array<string[]>;
 };
 
-// Quick n dirty
-const cookLangToMarkdown = (recipe: CookLang.Recipe): string => {
-    const metadata = `${Object.entries(recipe.metadata).map(([k, v]) => `- ${k}: ${v}`).join('\n')}`;
+class CookLangEngine implements Lume.Engine {
+    render(content: string) {
+        return this.renderComponent(content);
+    }
 
-    const ingredients = `${recipe.ingredients.map((i) => `- ${i.quantity} ${i.units} ${i.name}`).join('\n')}`;
+    renderComponent(content: string) {
+        const recipe = new CookLang.Recipe(content);
+        return renderRecipe(recipe);
+    }
 
-    const cookwares = `${recipe.cookwares.map((i) => `- ${i.quantity} ${i.name}`).join('\n')}`;
+    deleteCache(): void {}
+    addHelper(): void {}
+}
 
-    const instructions = recipeInstructionsOf(recipe).map((s) => `- ${s.join(' ')}`).join('\n');
+// Quick n dirty: cook -> HTML
+const renderRecipe = (recipe: CookLang.Recipe): string => {
+    const metadata = Object.entries(recipe.metadata).map(([k, v]) => `<li>${k}: ${v}</li>`).join('\n').trim();
 
-    return `
-# ${recipe.metadata.title || 'Unknown recipe'}
+    const ingredients = recipe.ingredients.map((i) => `<li>${i.quantity} ${i.units} ${i.name}</li>`).join('\n').trim();
 
-## Metadata
+    const cookwares = recipe.cookwares.map((i) => `<li>${i.quantity} ${i.name}</li>`).join('\n');
 
-${metadata}
+    const instructions = recipeInstructionsOf(recipe).map((s) => `<li>${s.join('')}</li>`)
+        .join(
+            '\n',
+        );
 
-## Ingredients
+    return `${
+        ingredients
+            ? `
+<h2>Ingredients</h2>
 
-${ingredients}
+<section class="recipe-ingredients">
+    <ul>
+    ${ingredients}
+    </ul>
+</section>
+`
+            : ''
+    }
 
-## Cookware
+${
+        cookwares
+            ? `
+<section class="recipe-cookwares">
+    <h2>Cookware</h2>
 
-${cookwares}
+    <ul>
+    ${cookwares}
+    </ul>
+</section>
+`
+            : ''
+    }
 
-## Instructions
+<section class="recipe-instructions">
+    <h2>Instructions</h2>
 
-${instructions}
+    <ol>
+    ${instructions}
+    </ol>
+</section>
+${
+        metadata
+            ? `
+<section class="recipe-metadata">
+    <h3>Metadata</h3>
+    <ul>
+    ${metadata}
+    </ul>
+</section>
+`
+            : ''
+    }
+
 `.trim();
 };
 
@@ -43,10 +90,12 @@ export default function (): Lume.Plugin {
         site
             .filter('cook', (content) => {
                 const recipe = new CookLang.Recipe(content);
-                return cookLangToMarkdown(recipe);
+                return renderRecipe(recipe);
             })
             // Load .cook files
             .loadPages(['.cook'], {
+                engine: new CookLangEngine(),
+
                 loader: async (path): Promise<RawData & RecipeData> => {
                     const content = await Deno.readTextFile(path);
 

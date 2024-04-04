@@ -6,38 +6,38 @@ interface Options {
 export default function (options: Options = {}): Lume.Plugin {
     const { name = 'tdate' } = options;
 
-    // Intentional `function` for use of `this`
-    const temporalDate: TemporalDate = function (dateLike, format, overrideTimezone) {
-        if (!dateLike) return;
-
-        if (!format) {
-            throw new Error(`Needs "format" parameter, got: ${format}`);
-        }
-
-        const timezone = timezoneOf(overrideTimezone, this.data.timezone);
-
-        const date = ((): Temporal.ZonedDateTime => {
-            if (dateLike == 'now') return Temporal.Now.zonedDateTimeISO(timezone);
-
-            if (dateLike instanceof Date) {
-                return dateLike.toTemporalInstant().toZonedDateTimeISO(timezone);
-            }
-
-            return Temporal.PlainDateTime.from(dateLike).toZonedDateTime(timezone);
-        })();
-
-        const now = Temporal.Now.zonedDateTimeISO(timezone);
-        const res = formattedOf(date, format, now);
-
-        return res;
-    };
-
     return (site) => {
-        site.filter(name, temporalDate);
+        site.filter(name, formatTemporalDate);
     };
 }
 
-enum DateTimeFormat {
+// Intentional `function` for use of `this`
+export const formatTemporalDate: TemporalDate = function (dateLike, format, overrideTimezone) {
+    if (!dateLike) return;
+
+    if (!format) {
+        throw new Error(`Needs "format" parameter, got: ${format}`);
+    }
+
+    const timezone = timezoneOf(overrideTimezone, this?.data?.timezone);
+
+    const date = ((): Temporal.ZonedDateTime => {
+        if (dateLike == 'now') return Temporal.Now.zonedDateTimeISO(timezone);
+
+        if (dateLike instanceof Date) {
+            return dateLike.toTemporalInstant().toZonedDateTimeISO(timezone);
+        }
+
+        return Temporal.PlainDateTime.from(dateLike).toZonedDateTime(timezone);
+    })();
+
+    const now = Temporal.Now.zonedDateTimeISO(timezone);
+    const res = formattedOf(date, format, now);
+
+    return res;
+};
+
+export enum DateTimeFormat {
     /** 2024-02-19T13:39:53+01:00 (ISO 8601) */
     Machine = 'Machine',
     /** 2024-02-19 */

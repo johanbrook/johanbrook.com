@@ -1,55 +1,26 @@
 ---
 layout: layouts/main.njk
 ---
-<article role="main">
+<article role="main" class="Recipe">
     <header class="flex items-center justify-between mb4">
         <h1 class="title">{{ title }}</h1>
-        {% if source %}
-            <a class="btn f6" href="{{ source }}">Original source →</a>
-        {% endif %}
+
+        <p class="mb0">
+            {% if source %}
+                <a class="btn f6" href="{{ source }}">Original source →</a>
+            {% endif %}
+
+            <a class="btn f6" href="{{ rawUrl }}">Raw recipe →</a>
+        </p>
     </header>
 
     <div class="prose">
-        <section>
-            <h2>Ingredients</h2>
-            <ul>
-                {% for item in ingredients %}
-                <li>{{ item.quantity }} {{ item.units }} {{ item.name }}</li>
-                {% endfor %}
-            </ul>
-        </section>
-
-        <section>
-            <h2>Cookware</h2>
-            <ul>
-                {% for item in cookwares %}
-                <li>
-                    {{ item.quantity}} {{ item.name }}
-                </li>
-                {% endfor %}
-            </ul>
-        </section>
-
-        <section>
-            <h2>Instructions</h2>
-            <ol>
-                {% for step in instructions %}
-                <li>
-                    {%- for item in step -%}
-                        {{ item | safe }}
-                    {%- endfor -%}
-                </li>
-                {% endfor %}
-            </ol>
-        </section>
-
+        {{ content | safe }}
     </div>
 
     <footer class="mt5 flex items-center justify-between">
         <a href=".." class="muted">
       		<span aria-hidden="true" class="BackLink mr1">←</span> All recipes
        	</a>
-
-        <a class="btn f6" href="{{ rawUrl }}">Raw <code>.cook</code> source ⤤</a>
     </footer>
 </article>
