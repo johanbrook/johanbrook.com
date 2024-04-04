@@ -11,17 +11,20 @@ date: Git Last Modified
 
 ## Micro
 
-- [Atom](/micro.xml)
+- [RSS](/micro.xml)
 - [JSON](/micro.json)
 
 ## Reading
 
-- [Atom](/reading.xml)
+- [RSS](/reading.xml)
+- [JSON](/reading.json)
 
 ## Writings
 
-- [Atom](/writings.xml)
+- [RSS](/writings.xml)
+- [JSON](/writings.json)
 
 ## Recipes
 
-- [Atom](/recipes.xml)
+- [RSS](/recipes.xml)
+- [JSON](/recipes.json)
