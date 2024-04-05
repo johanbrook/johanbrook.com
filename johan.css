@@ -291,6 +291,7 @@ Remove the inheritance of text transform in Edge and Firefox.
 
 html {
     /* https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/ */
+    -moz-text-size-adjust: none;
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
     font: normal 112.5% / var(--leading) var(--sans);
@@ -318,6 +319,11 @@ body {
         'kern' 1,
         'liga' 1;
     font-variant-ligatures: contextual common-ligatures;
+    hanging-punctuation: first;
+}
+
+input, textarea {
+    hanging-punctuation: none;
 }
 
 :target {
@@ -393,13 +399,13 @@ nav ul {
     padding: 0;
 }
 
-:is(ul, ol) ::marker {
-        color: var(--color-faint);
-    }
+ul ::marker {
+    color: var(--color-faint);
+}
 
-:is(ul, ol):where(ul) ::marker {
-            font-size: 1.2em;
-        }
+ol ::marker {
+    color: var(--color-text-detail);
+}
 
 :is(a, .link) {
     color: var(--link-color);
@@ -994,6 +1000,24 @@ PROSE
 .oblique-strategies .Page .prose ul ul {
         font-size: var(--f2);
     }
+
+.recipe--timer {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.6ex;
+    text-decoration-style: wavy;
+    text-decoration-color: var(--accent);
+}
+
+.recipe--ingredient {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 0.6ex;
+}
+
+.recipe--cookware {
+    font-style: italic;
+}
 
 /* Small caps */
 

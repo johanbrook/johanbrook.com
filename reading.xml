@@ -1,962 +1,139 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-	<title>What Johan Is Reading</title>
-	<subtitle>Non-exhaustive list of books I've read and am reading, in reverse chronological order.</subtitle>
-	<link href="https://johan.im/reading.xml" rel="self"/>
-	<link href="https://johan.im/reading"/>
-	<id>https://johan.im/reading</id>
-	<author>
-		<name>Johan Brook</name>
-		<email>webmaster@johan.im</email>
-	</author>
-	
-	<entry>
-		<title>Nattens Skola</title>
-		<link href="https://johan.im/reading/nattens-skola" />
-		
-		<id>https://johan.im/reading/nattens-skola</id>
-		
-			
-				<content>In progress.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Min Kamp 6</title>
-		<link href="https://johan.im/reading/min-kamp-6" />
-		<updated>Mon Apr 01 2024 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/min-kamp-6</id>
-		
-			<content type="html">&lt;p&gt;I&#39;ve finished the final installment of Knausgård&#39;s &lt;em&gt;Min Kamp&lt;/em&gt; (&lt;em&gt;My Struggle&lt;/em&gt;) autobiographical series. The full
-collection of volumes goes over 3000 pages, so it suffices to say I&#39;m pretty dazed now. Feels like I&#39;ve been into
-a tumble dryer and out again.&lt;!--more--&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Min Kamp&lt;/em&gt; is an epic amount of work. It retells Knausgård&#39;s childhood, adolescence, university years, and
-eventually becoming a father — this is over four decades of memories he accounts of in excruciating detail. This
-pioneering style of writing, and of course the fact that he writes about real people without changing too many
-names, was what made these novels unique.&lt;/p&gt;
-&lt;p&gt;I feel I can&#39;t accurately describe how I feel about the series, since English not being my mothertongue. I can only
-praise the level of &lt;em&gt;detail and honesty&lt;/em&gt; that has gone into the pages. I am no writer, but I appreciate honesty in
-texts. Also have been a boy, teenager, a young adult, and now a father myself, I identify with areas and scenes
-brought up over the six volumes, each describing encompassing chunks of Knausgård&#39;s life.&lt;/p&gt;
-&lt;p&gt;What&#39;s problematic, of course, with &lt;em&gt;Min Kamp&lt;/em&gt; is that he writes about people being close to him, and since he&#39;s
-being honest, it&#39;s not always positive things. His father, mother, brother, his then-wife, old girlfriends, old
-colleagues are described in the way Knausgård sees them. It&#39;s &lt;em&gt;his&lt;/em&gt; voice, &lt;em&gt;his&lt;/em&gt; views. But he had to do it,
-according to himself, in order to stay honest to the project.&lt;/p&gt;
-&lt;p&gt;What I&#39;m most touched and deeply affected by in the end, is his and his then-wife Linda Boström Knausgård&#39;s story. It begins in the late 90s, and describes their relationship from being lovers in Stockholm to being a family with
-three kids on the countryside of Skåne in south Sweden. He writes how Linda suffers from being bipolar,
-which climaxes at the end of the sixth volume. It&#39;s almost like they became fictional figures for me, since I
-wanted it to work out for them &lt;em&gt;so much&lt;/em&gt; I forgot they&#39;re real people (they separated in 2016. &lt;em&gt;Sob&lt;/em&gt;). Their years
-together are described with such intimacy, which I think is required in order to make it honest and real. It made
-me so empathetic towards both of them. The whole situation: Knausgårds need to write, Linda&#39;s mental condition,
-their kids, their everyday life. I find myself being happy for them in the light moments, and sad in the dark
-periods. They become real, because they &lt;em&gt;are&lt;/em&gt; real.&lt;/p&gt;
-&lt;p&gt;Knausgård shows that every person&#39;s life is indeed &amp;quot;interesting&amp;quot; and is a well of experiences from which you can draw stories from. Even though he admits later that he wouldn&#39;t have done the project if he knew the
-costs, I&#39;m personally happy that he did, since it&#39;s a remarkable piece of work. Does he fully portray his wife
-Linda&#39;s authentic inner self? No. Is it right to write about his dead father and grandmother in the way he does?
-Maybe, maybe not.&lt;/p&gt;
-&lt;p&gt;I&#39;ve read quite many opinions about the series, and it&#39;s what you&#39;d expect: much praise, but a lot of analysis
-going on about ethics, chauvinism, and self-centerism (is that a word?). In the end, I was entertained and adore
-Karl Ove Knausgård&#39;s style and angle.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Min Kamp 5</title>
-		<link href="https://johan.im/reading/min-kamp-5" />
-		<updated>Wed Feb 28 2024 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/min-kamp-5</id>
-		
-			<content type="html">&lt;p&gt;See &lt;em&gt;&lt;a href=&quot;https://johan.im/reading/min-kamp-6&quot;&gt;Min Kamp 6&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Min Kamp 4</title>
-		<link href="https://johan.im/reading/min-kamp-4" />
-		<updated>Tue Feb 20 2024 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/min-kamp-4</id>
-		
-			<content type="html">&lt;p&gt;See &lt;em&gt;&lt;a href=&quot;https://johan.im/reading/min-kamp-6&quot;&gt;Min Kamp 6&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Min Kamp 3</title>
-		<link href="https://johan.im/reading/min-kamp-3" />
-		<updated>Tue Feb 13 2024 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/min-kamp-3</id>
-		
-			<content type="html">&lt;p&gt;See &lt;em&gt;&lt;a href=&quot;https://johan.im/reading/min-kamp-6&quot;&gt;Min Kamp 6&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Min Kamp 2</title>
-		<link href="https://johan.im/reading/min-kamp-2" />
-		<updated>Sat Feb 03 2024 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/min-kamp-2</id>
-		
-			<content type="html">&lt;p&gt;See &lt;em&gt;&lt;a href=&quot;https://johan.im/reading/min-kamp-6&quot;&gt;Min Kamp 6&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Min Kamp 1</title>
-		<link href="https://johan.im/reading/min-kamp-1" />
-		<updated>Wed Jan 24 2024 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/min-kamp-1</id>
-		
-			<content type="html">&lt;p&gt;See &lt;em&gt;&lt;a href=&quot;https://johan.im/reading/min-kamp-6&quot;&gt;Min Kamp 6&lt;/a&gt;&lt;/em&gt;.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Det Tredje Riket</title>
-		<link href="https://johan.im/reading/det-tredje-riket" />
-		<updated>Sun Jan 14 2024 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/det-tredje-riket</id>
-		
-			<content type="html">&lt;p&gt;I loved it just as much as the first one in the series (I loved the second one less). It&#39;s something in Knausgård&#39;s language which is so, so good.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Tunnel 29 — The True Story of an Extraordinary Escape Beneath the Berlin Wall</title>
-		<link href="https://johan.im/reading/tunnel-29" />
-		<updated>Thu Jan 04 2024 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/tunnel-29</id>
-		
-			<content type="html">&lt;p&gt;This is kind of a &amp;quot;dramatised&amp;quot; documentary of actual events. Tons of historical metadata along the way. It&#39;s a bit cheesy sometimes, but I totally admit it was a page turner. And most importantly, it taught me a lot about the real life behind the Wall, in East Berlin (hint: Stasi were the biggest assholes ever).&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Secret Pilgrim</title>
-		<link href="https://johan.im/reading/secret-pilgrim" />
-		<updated>Sun Oct 01 2023 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/secret-pilgrim</id>
-		
-			
-				<content>In progress.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Berlin</title>
-		<link href="https://johan.im/reading/berlin" />
-		<updated>Sun Oct 15 2023 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/berlin</id>
-		
-			<content type="html">&lt;p&gt;Continuing my journey towards being a fully fledged dad. 150% detailed account of the Allied invasion of Germany in 1945. So much stuff I didn&#39;t know. Lots of stories about the conditions of the soldiers, civilians, and the fates of prisoners (hint: all quite horrible).&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>The Honourable Schoolboy</title>
-		<link href="https://johan.im/reading/the-honourable-schoolboy" />
-		<updated>Fri Sep 01 2023 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-honourable-schoolboy</id>
-		
-			
-				<content>In progress.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Tinker Tailor Solder Spy</title>
-		<link href="https://johan.im/reading/tinker-tailor-solder-spy" />
-		<updated>Fri Jul 14 2023 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/tinker-tailor-solder-spy</id>
-		
-			<content type="html">&lt;p&gt;If I had read the book before the movie, I would&#39;ve been more surprised by the climax than what I was for the film version. I continue to be impressed by le Carré&#39;s prose too. He inserts tiny words and sentences which adds character, sarcasm, and &amp;quot;vibe&amp;quot; to the current paragraph. Looking forward to the next one in the &lt;a href=&quot;https://en.wikipedia.org/wiki/Smiley_Versus_Karla&quot;&gt;&amp;quot;Karla trilogy&amp;quot;&lt;/a&gt;.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>The Spy Who Came In from the Cold</title>
-		<link href="https://johan.im/reading/the-spy-who-came-in-from-the-cold" />
-		<updated>Tue Jun 27 2023 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-spy-who-came-in-from-the-cold</id>
-		
-			<content type="html">&lt;p&gt;Damn. I should&#39;ve read this one after &lt;a href=&quot;#the-legacy-of-spies&quot;&gt;&amp;quot;The Legacy of Spies&amp;quot;&lt;/a&gt;. The latter one — also by le Carré — is a prequel and sequel to &amp;quot;The Spy…&amp;quot;, and I would&#39;ve enjoyed &amp;quot;The Legacy…&amp;quot; more if waiting with reading it. In any case, I loved this one: a classic spy novel with &amp;quot;plots and counter plots&amp;quot;, as it says on the back. I like the author&#39;s writing in the way that it&#39;s very on point. Like the world he&#39;s created, the prose is cold and without too many emotions.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Brev från Nollpunkten</title>
-		<link href="https://johan.im/reading/brev-fran-nollpunkten" />
-		<updated>Thu Jun 15 2023 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/brev-fran-nollpunkten</id>
-		
-			<content type="html">&lt;p&gt;I liked this one very much. The book is a collection of essays spanning from World War I, throughout the 1920s-30s Soviet Union with Stalin&#39;s purges, and into the architecture and bombings of Berlin and Nagasaki in World War II. The author&#39;s prose is very raw and truth-saying, but yet beautiful and carries a lot of weight. A very chilling account of the evil of man.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>The Legacy of Spies</title>
-		<link href="https://johan.im/reading/the-legacy-of-spies" />
-		<updated>Wed May 17 2023 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-legacy-of-spies</id>
-		
-			<content type="html">&lt;p&gt;I&#39;m deep into espionage fiction now. Or, I&#39;m deep into John le Carré… This novel was both a prequel and sequel to the author&#39;s breakout piece &lt;em&gt;&amp;quot;The Spy Who Came In from the Cold&amp;quot;&lt;/em&gt; (which I haven&#39;t read yet. Not sure if that&#39;s good or bad). I liked the prose and the pacing. His got this way of mentioning information on the fly in sentences which is very well delivered.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>The Shards</title>
-		<link href="https://johan.im/reading/the-shards" />
-		
-		<id>https://johan.im/reading/the-shards</id>
-		
-			
-				<content>In progress.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Lou Reed – The Life</title>
-		<link href="https://johan.im/reading/lou-reed" />
-		<updated>Thu Feb 09 2023 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/lou-reed</id>
-		
-			<content type="html">&lt;p&gt;How many rock bios may be allowed to have something with &amp;quot;life&amp;quot; as suffix?! What I especially liked with this book was that it was… short. I don&#39;t mean it&#39;s bad! More that all the &lt;em&gt;other bios&lt;/em&gt; are so. Damn. Long. But Mick Wall compresses Lou Reed&#39;s life and captures the important events into an actually good read.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Kent – Texter om Sveriges största rockband</title>
-		<link href="https://johan.im/reading/kent" />
-		<updated>Fri Feb 10 2023 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/kent</id>
-		
-			<content type="html">&lt;p&gt;Collection of reviews and articles about the band Kent, from around 1993 to 2005. I liked the interviews and descriptions of their early career through newspaper texts. The band is no more since a while back, so they obviously don&#39;t do these kind of interviews any longer.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>What We Owe the Future</title>
-		<link href="https://johan.im/reading/what-we-owe-the-future" />
-		<updated>Wed Feb 01 2023 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/what-we-owe-the-future</id>
-		
-			<content type="html">&lt;p&gt;Philosopher philosophising about the future.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Detaljerna</title>
-		<link href="https://johan.im/reading/detaljerna" />
-		<updated>Sun Jan 22 2023 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/detaljerna</id>
-		
-			<content type="html">&lt;p&gt;Best book I&#39;ve read for a long while. So intimate and delicate. Beautiful prose. Good build-ups. The format of describing the interactions with four people during an unspecified (but guessable) timeline from the perspective of the narrator is so cool.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>David Bowie — A Life</title>
-		<link href="https://johan.im/reading/david-bowie-a-life" />
-		<updated>Thu Jan 12 2023 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/david-bowie-a-life</id>
-		
-			<content type="html">&lt;p&gt;A non-traditional biography of David Bowie. Being a Bowie fan, I loved it. It was constructed as interview format rather than common phrose. It was different than other biographies I&#39;ve read on Bowie, thanks to the various (well known) voices the author used in the interviews. It felt personal and real.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Grand Union</title>
-		<link href="https://johan.im/reading/grand-union" />
-		<updated>Thu Dec 01 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/grand-union</id>
-		
-			<content type="html">&lt;p&gt;Just didn&#39;t like it. The short stories weren&#39;t captivating enough, and the prose was elegant but unnecessarily complex.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Four Thousand Weeks</title>
-		<link href="https://johan.im/reading/four-thousand-weeks" />
-		<updated>Thu Dec 01 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/four-thousand-weeks</id>
-		
-			<content type="html">&lt;p&gt;Too much &amp;quot;self help book&amp;quot; so far. I constantly feel: &amp;quot;this could&#39;ve been a blog post&amp;quot; and &amp;quot;why did I buy this&amp;quot;.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Att Uppfinna Världen (&quot;Inventing the World&quot;)</title>
-		<link href="https://johan.im/reading/inventing-the-world" />
-		<updated>Wed Nov 30 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/inventing-the-world</id>
-		
-			<content type="html">&lt;p&gt;Historical account about how women have been pushed aside over the years when it comes to inventions and innovation.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Vargarna från evighetens skog</title>
-		<link href="https://johan.im/reading/vargarna-fran-evighetens-skog" />
-		<updated>Fri Nov 11 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/vargarna-fran-evighetens-skog</id>
-		
-			<content type="html">&lt;p&gt;I loved this even more than &amp;quot;Morgonstjärnan&amp;quot;. It&#39;s more focused, and showcases Knausgård&#39;s ability to tell captivating stories about seemingly mundane characters and scenes. The book treats two characters&#39; everyday life, with varying amounts of trauma and anxieties. The prose is simple: the 700 pages are an easy read. It&#39;s really inspiring.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Jack</title>
-		<link href="https://johan.im/reading/jack" />
-		<updated>Sat Oct 01 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/jack</id>
-		
-			<content type="html">&lt;p&gt;&lt;em&gt;The&lt;/em&gt; generational novel of the Swedish 1970s. Dropped it because it didn&#39;t really speak to me. I understand it must&#39;ve been cool in the 70s, but not so now.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Häng City</title>
-		<link href="https://johan.im/reading/hang-city" />
-		<updated>Fri Aug 05 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/hang-city</id>
-		
-			<content type="html">&lt;p&gt;Lovely rendition of a summer in the lives of three 13 year old boys in northern Sweden in 1999. The language used is so very relatable, and so are the pop culture references. Even though &amp;quot;nothing&amp;quot; really happens, the book does describe (quite accurately) feelings, energies, places, activities, and personal traits of people from the eyes of a teenage boy.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Life</title>
-		<link href="https://johan.im/reading/life" />
-		<updated>Fri Jul 01 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/life</id>
-		
-			<content type="html">&lt;p&gt;The autobiography of Keith Richards (guitarist in Rolling Stones).&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Mastering the Art of French Cooking</title>
-		<link href="https://johan.im/reading/mastering-the-art-of-french-cooking" />
-		<updated>Sat Jun 04 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/mastering-the-art-of-french-cooking</id>
-		
-			<content type="html">&lt;p&gt;I bought the Swedish translation as paperback, and read it all in once – back to back. Quite special for a cooking book. The book includes tips and tricks around techniques, equipment, and ingredients. All the traditional French recipies are in here. What I loved about the recipies was that they were both mechanic but yet very much alive. Meaning, the authors&#39; obsession with details, experimentation, and iteration really shined through.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Morgonstjärnan</title>
-		<link href="https://johan.im/reading/morgonstjarnan" />
-		<updated>Sun Apr 24 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/morgonstjarnan</id>
-		
-			<content type="html">&lt;p&gt;I thought Knausgård would be a hard read, but it was not. &amp;quot;Morgonstjärnan&amp;quot; is so lovely. The author has this superb power of making seemingly mundane everyday people and tasks become interesting. His description are rich, and the pace is perfect. I was really captivated and inspired.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Once Upon A Time… In Hollywood</title>
-		<link href="https://johan.im/reading/once-upon-a-time-in-hollywood" />
-		<updated>Mon Apr 11 2022 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/once-upon-a-time-in-hollywood</id>
-		
-			<content type="html">&lt;p&gt;It&#39;s quite rare that a book is written after a film, and by the film&#39;s creator too. I loved this one: it&#39;s 100% Quentin Tarantino-ness all way through. He has space to go deeper in the conversations between the characters, whose stories he can give justice too. Like the film, it somehow entertains me without having a real plot.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>The Clash</title>
-		<link href="https://johan.im/reading/the-clash" />
-		<updated>Mon Nov 01 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-clash</id>
-		
-			<content type="html">&lt;p&gt;An okay account of the history of the band, told by themselves in interview format.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Ålevangeliet</title>
-		<link href="https://johan.im/reading/alevangeliet" />
-		<updated>Fri Oct 01 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/alevangeliet</id>
-		
-			
-				<content>In progress.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Fight Club</title>
-		<link href="https://johan.im/reading/fight-club" />
-		<updated>Mon Sep 20 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/fight-club</id>
-		
-			<content type="html">&lt;p&gt;I honestly think the movie is better. I&#39;m sure the book would be cool if I&#39;d read that first, but I couldn&#39;t stand the fast paced dialogue with random sentences thrown in between lines.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>American Psycho</title>
-		<link href="https://johan.im/reading/american-psycho" />
-		<updated>Tue Sep 14 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/american-psycho</id>
-		
-			<content type="html">&lt;p&gt;The book is a lot more psycho than the movie. More explicit than I thought. The unreliable monologues of the narrator are amazingly written, and there are more layers to the book than just the obvious one.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>What I Talk About When I Talk About Running</title>
-		<link href="https://johan.im/reading/what-i-talk-about-when-i-talk-about-running" />
-		<updated>Mon Sep 06 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/what-i-talk-about-when-i-talk-about-running</id>
-		
-			<content type="html">&lt;p&gt;I love Murakami&#39;s straight forward language. This one made me want to start running. He&#39;s very honest about himself in this semi-biography, but never sentimental. Feels very Japanese.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Samlade Verk</title>
-		<link href="https://johan.im/reading/samlade-verk" />
-		<updated>Sun Aug 01 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/samlade-verk</id>
-		
-			<content type="html">&lt;p&gt;This is an epic describing the live of a couple of individuals from the 1970s until the 2010s in Gothenburg, Sweden. It really touched me, on several layers. I&#39;m very sentimental about the city Gothenburg, and I was constantly impressed by the cultural references, the plot, and the language of the relatively young author. There&#39;s this amazing melancholia hanging over the whole work.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Zen Mind, Beginner&#39;s Mind</title>
-		<link href="https://johan.im/reading/zen-mind-beginners-mind" />
-		<updated>Mon Feb 01 2021 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/zen-mind-beginners-mind</id>
-		
-			<content type="html">&lt;p&gt;It took me a long time to finish this very thin book. The language is dense, and I wanted to soak every page in. I had to re-read a couple of sentences. But I liked it as a whole, especially the laser focus of the author&#39;s message.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Ishmael</title>
-		<link href="https://johan.im/reading/ishmael" />
-		<updated>Sat Aug 01 2020 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/ishmael</id>
-		
-			<content type="html">&lt;p&gt;A philosophical discourse about the evolution of homo sapiens. Some things are controversial, like population control. The book&#39;s dialogue is about biodiversity, climate change, urbanisation: a lot of contemporary topics. It&#39;s a nice pairing together with Sapiens.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Herakles</title>
-		<link href="https://johan.im/reading/herakles" />
-		<updated>Sat Aug 01 2020 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/herakles</id>
-		
-			<content type="html">&lt;p&gt;I like mythology, especially like Greek mythology. This book is a novel – I guess a bit dramatised – about the life of the hero Hercules. It was good, very vivid and nuanced.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Normal People</title>
-		<link href="https://johan.im/reading/normal-people" />
-		<updated>Sat Aug 01 2020 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/normal-people</id>
-		
-			<content type="html">&lt;p&gt;I saw the series before reading the book, and both formats have their charm. The author has a great language, and manages to capture the atmosphere that surrounds that age from high school to university.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Cosa Nostra</title>
-		<link href="https://johan.im/reading/cosa-nostra" />
-		<updated>Wed Jul 01 2020 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/cosa-nostra</id>
-		
-			<content type="html">&lt;p&gt;A non-fiction history about the Sicilian mafia. Entertaining.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>About A Boy</title>
-		<link href="https://johan.im/reading/about-a-boy" />
-		<updated>Wed Jul 01 2020 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/about-a-boy</id>
-		
-			<content type="html">&lt;p&gt;Very &#39;fun&#39; and unforeseeable language. The thoughts of the two main characters – the man and the boy – are written in a way that feels authentic. I liked the randomness and quick turns of the book.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Jag Kan Ha Fel</title>
-		<link href="https://johan.im/reading/jag-kan-ha-fel" />
-		<updated>Mon Jun 01 2020 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/jag-kan-ha-fel</id>
-		
-			<content type="html">&lt;p&gt;Written by a Swedish businessman who became a Buddhist monk for 17 years. It&#39;s not a classic self help book, nor some kind of teaching about Buddhism. It&#39;s merely his story, with some of his philosophies thrown in. He mixes serious subjects with wit.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>The Godfather</title>
-		<link href="https://johan.im/reading/the-godfather" />
-		<updated>Sun Mar 01 2020 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-godfather</id>
-		
-			<content type="html">&lt;p&gt;Even better than the movie. More details (of course), and deeper descriptions of characters.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>The Alchemist</title>
-		<link href="https://johan.im/reading/the-alchemist" />
-		<updated>Fri Jan 10 2020 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-alchemist</id>
-		
-			<content type="html">&lt;p&gt;I loved it in the beginning, but then it turned out to be boring New Age-y stuff.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>The Zahir</title>
-		<link href="https://johan.im/reading/the-zahir" />
-		<updated>Fri Jan 10 2020 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-zahir</id>
-		
-			<content type="html">&lt;p&gt;Like The Alchemist, this one was boring. Poorly written, boring plot, and not believable at all.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>The Snow Leopard</title>
-		<link href="https://johan.im/reading/the-snow-leopard" />
-		<updated>Fri Jan 10 2020 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-snow-leopard</id>
-		
-			<content type="html">&lt;p&gt;A travel diary of an American in an expedition into the Himalayas. He&#39;s real goal is to catch a glimpse of the very shy Snow Leopard. This travel text captures the beauty of Zen without speaking too much about it. It&#39;s kind of dense at times, but very, very grand.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Men Without Women</title>
-		<link href="https://johan.im/reading/men-without-women" />
-		<updated>Fri Jan 10 2020 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/men-without-women</id>
-		
-			<content type="html">&lt;p&gt;I like short story collections, and Murakami&#39;s language is the best. Read this.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>The Sun Also Rises</title>
-		<link href="https://johan.im/reading/the-sun-also-rises" />
-		<updated>Fri May 10 2019 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-sun-also-rises</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>A Brief History of Time</title>
-		<link href="https://johan.im/reading/a-brief-history-of-time" />
-		<updated>Sun Mar 10 2019 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/a-brief-history-of-time</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>A Little Life</title>
-		<link href="https://johan.im/reading/a-little-life" />
-		<updated>Tue Jul 10 2018 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/a-little-life</id>
-		
-			<content type="html">&lt;p&gt;The saddest book I&#39;ve read in all my life. But oh so good.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>21 Lessons for the 21th Century</title>
-		<link href="https://johan.im/reading/21-lessons-for-the-21th-century" />
-		<updated>Thu May 10 2018 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/21-lessons-for-the-21th-century</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Hero — David Bowie</title>
-		<link href="https://johan.im/reading/hero-david-bowie" />
-		<updated>Tue Oct 10 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/hero-david-bowie</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Sapiens</title>
-		<link href="https://johan.im/reading/sapiens" />
-		<updated>Thu Aug 10 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/sapiens</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>The Mountain Shadow</title>
-		<link href="https://johan.im/reading/the-mountain-shadow" />
-		<updated>Mon Jul 10 2017 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-mountain-shadow</id>
-		
-			<content type="html">&lt;p&gt;Sequel to Shantaram. Not as good, but nevertheless a good sequel.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>M Train</title>
-		<link href="https://johan.im/reading/m-train" />
-		<updated>Mon Oct 10 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/m-train</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>A Moveable Feast</title>
-		<link href="https://johan.im/reading/a-moveable-feast" />
-		<updated>Tue May 10 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/a-moveable-feast</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>The Essential Hemingway</title>
-		<link href="https://johan.im/reading/the-essential-hemingway" />
-		<updated>Tue May 10 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-essential-hemingway</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Dancing with the Devil in the City of God</title>
-		<link href="https://johan.im/reading/dancing-with-the-devil-in-the-city-of-god" />
-		<updated>Tue May 10 2016 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/dancing-with-the-devil-in-the-city-of-god</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Just Kids</title>
-		<link href="https://johan.im/reading/just-kids" />
-		<updated>Tue Nov 10 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/just-kids</id>
-		
-			<content type="html">&lt;p&gt;Very touching, and beautifully written.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Zen and the Art of Motorcycle Maintenance</title>
-		<link href="https://johan.im/reading/zen-and-the-art-of-motorcycle-maintenance" />
-		<updated>Thu Sep 10 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/zen-and-the-art-of-motorcycle-maintenance</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>W. Axl Rose</title>
-		<link href="https://johan.im/reading/w-axl-rose" />
-		<updated>Sat Jan 10 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/w-axl-rose</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Becoming Steve Jobs</title>
-		<link href="https://johan.im/reading/becoming-steve-jobs" />
-		<updated>Fri Apr 10 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/becoming-steve-jobs</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Steve Jobs</title>
-		<link href="https://johan.im/reading/steve-jobs" />
-		<updated>Sat Aug 01 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/steve-jobs</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Shantaram</title>
-		<link href="https://johan.im/reading/shantaram" />
-		<updated>Fri Jul 10 2015 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/shantaram</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Scar Tissue</title>
-		<link href="https://johan.im/reading/scar-tissue" />
-		<updated>Thu Jul 10 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/scar-tissue</id>
-		
-			<content type="html">&lt;p&gt;Raw and honest.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Into the Wild</title>
-		<link href="https://johan.im/reading/into-the-wild" />
-		<updated>Fri Jan 10 2014 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/into-the-wild</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Black Sabbath</title>
-		<link href="https://johan.im/reading/black-sabbath" />
-		<updated>Sun Jul 01 2012 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/black-sabbath</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>The Road</title>
-		<link href="https://johan.im/reading/the-road" />
-		<updated>Fri Jul 01 2011 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-road</id>
-		
-			<content type="html">&lt;p&gt;The minimal language is perfect.&lt;/p&gt;</content>
-		
-	</entry>
-	
-	<entry>
-		<title>Life of Pi</title>
-		<link href="https://johan.im/reading/life-of-pi" />
-		<updated>Sun Aug 01 2010 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/life-of-pi</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Infinity</title>
-		<link href="https://johan.im/reading/infinity" />
-		<updated>Thu Jul 01 2010 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/infinity</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Rework</title>
-		<link href="https://johan.im/reading/rework" />
-		<updated>Mon May 10 2010 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/rework</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>The Holy Blood And The Holy Grail</title>
-		<link href="https://johan.im/reading/holy-blood-holy-grail" />
-		<updated>Sat Apr 10 2010 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/holy-blood-holy-grail</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>No One Here Gets Out Alive</title>
-		<link href="https://johan.im/reading/noone-here-gets-out-alive" />
-		<updated>Mon May 10 2010 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/noone-here-gets-out-alive</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Interview wih the Vampire</title>
-		<link href="https://johan.im/reading/interview-with-the-vampire" />
-		<updated>Wed Feb 10 2010 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/interview-with-the-vampire</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Led Zeppelin – When Giants Walked The Earth</title>
-		<link href="https://johan.im/reading/led-zeppelin-when-giants-walked-the-earth" />
-		<updated>Sun Jan 10 2010 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/led-zeppelin-when-giants-walked-the-earth</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Hammer of the Gods – The Led Zeppelin Saga</title>
-		<link href="https://johan.im/reading/hammer-of-the-gods-the-led-zeppelin-saga" />
-		<updated>Sun Jan 10 2010 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/hammer-of-the-gods-the-led-zeppelin-saga</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>The Old Man and the Sea</title>
-		<link href="https://johan.im/reading/the-old-man-and-the-sea" />
-		<updated>Sat May 10 2008 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-old-man-and-the-sea</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>1984</title>
-		<link href="https://johan.im/reading/1984" />
-		<updated>Fri Aug 10 2007 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/1984</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Animal Farm</title>
-		<link href="https://johan.im/reading/animal-farm" />
-		<updated>Fri Aug 10 2007 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/animal-farm</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>The Silmarillion</title>
-		<link href="https://johan.im/reading/the-silmarrillion" />
-		<updated>Fri May 10 2002 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-silmarrillion</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>Bilbo</title>
-		<link href="https://johan.im/reading/bilbo" />
-		<updated>Thu Jan 10 2002 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/bilbo</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-	<entry>
-		<title>The Lord of the Rings</title>
-		<link href="https://johan.im/reading/the-lord-of-the-rings" />
-		<updated>Mon Dec 10 2001 00:00:00 GMT+0000 (Coordinated Universal Time)</updated>
-		<id>https://johan.im/reading/the-lord-of-the-rings</id>
-		
-			
-				<content>No notes.</content>
-			
-		
-	</entry>
-	
-</feed>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+  <channel>
+    <title>What Johan Is Reading</title>
+    <link>https://johan.im/</link>
+    <atom:link href="https://johan.im/reading.xml" rel="self" type="application/rss+xml"/>
+    <description></description>
+    <lastBuildDate>Fri, 05 Apr 2024 18:43:53 GMT</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>Min Kamp 6</title>
+      <link>https://johan.im/reading/min-kamp-6/</link>
+      <guid isPermaLink="false">https://johan.im/reading/min-kamp-6/</guid>
+      <description>Finished reading</description>
+      <content:encoded>
+        <![CDATA[I've finished the final installment of Knausgård's _Min Kamp_ (_My Struggle_) autobiographical series. The full
+        collection of volumes goes over 3000 pages, so it suffices to say I'm pretty dazed now. Feels like I've been into
+        a tumble dryer and out again.<!--more-->
+        
+        _Min Kamp_ is an epic amount of work. It retells Knausgård's childhood, adolescence, university years, and
+        eventually becoming a father — this is over four decades of memories he accounts of in excruciating detail. This
+        pioneering style of writing, and of course the fact that he writes about real people without changing too many
+        names, was what made these novels unique.
+        
+        I feel I can't accurately describe how I feel about the series, since English not being my mothertongue. I can only
+        praise the level of _detail and honesty_ that has gone into the pages. I am no writer, but I appreciate honesty in
+        texts. Also have been a boy, teenager, a young adult, and now a father myself, I identify with areas and scenes
+        brought up over the six volumes, each describing encompassing chunks of Knausgård's life.
+        
+        What's problematic, of course, with _Min Kamp_ is that he writes about people being close to him, and since he's
+        being honest, it's not always positive things. His father, mother, brother, his then-wife, old girlfriends, old
+        colleagues are described in the way Knausgård sees them. It's _his_ voice, _his_ views. But he had to do it,
+        according to himself, in order to stay honest to the project.
+        
+        What I'm most touched and deeply affected by in the end, is his and his then-wife Linda Boström Knausgård's story. It begins in the late 90s, and describes their relationship from being lovers in Stockholm to being a family with
+        three kids on the countryside of Skåne in south Sweden. He writes how Linda suffers from being bipolar,
+        which climaxes at the end of the sixth volume. It's almost like they became fictional figures for me, since I
+        wanted it to work out for them _so much_ I forgot they're real people (they separated in 2016. _Sob_). Their years
+        together are described with such intimacy, which I think is required in order to make it honest and real. It made
+        me so empathetic towards both of them. The whole situation: Knausgårds need to write, Linda's mental condition,
+        their kids, their everyday life. I find myself being happy for them in the light moments, and sad in the dark
+        periods. They become real, because they _are_ real.
+        
+        Knausgård shows that every person's life is indeed "interesting" and is a well of experiences from which you can draw stories from. Even though he admits later that he wouldn't have done the project if he knew the
+        costs, I'm personally happy that he did, since it's a remarkable piece of work. Does he fully portray his wife
+        Linda's authentic inner self? No. Is it right to write about his dead father and grandmother in the way he does?
+        Maybe, maybe not.
+        
+        I've read quite many opinions about the series, and it's what you'd expect: much praise, but a lot of analysis
+        going on about ethics, chauvinism, and self-centerism (is that a word?). In the end, I was entertained and adore
+        Karl Ove Knausgård's style and angle.
+        ]]>
+      </content:encoded>
+      <pubDate>Fri, 05 Apr 2024 18:43:40 GMT</pubDate>
+      <atom:updated>2024-04-01T00:00:00.000Z</atom:updated>
+    </item>
+    <item>
+      <title>Min Kamp 5</title>
+      <link>https://johan.im/reading/min-kamp-5/</link>
+      <guid isPermaLink="false">https://johan.im/reading/min-kamp-5/</guid>
+      <description>Finished reading</description>
+      <content:encoded><![CDATA[See _[Min Kamp 6](/reading/min-kamp-6)_.]]></content:encoded>
+      <pubDate>Fri, 05 Apr 2024 18:43:40 GMT</pubDate>
+      <atom:updated>2024-02-28T00:00:00.000Z</atom:updated>
+    </item>
+    <item>
+      <title>Min Kamp 4</title>
+      <link>https://johan.im/reading/min-kamp-4/</link>
+      <guid isPermaLink="false">https://johan.im/reading/min-kamp-4/</guid>
+      <description>Finished reading</description>
+      <content:encoded><![CDATA[See _[Min Kamp 6](/reading/min-kamp-6)_.]]></content:encoded>
+      <pubDate>Fri, 05 Apr 2024 18:43:40 GMT</pubDate>
+      <atom:updated>2024-02-20T00:00:00.000Z</atom:updated>
+    </item>
+    <item>
+      <title>Min Kamp 3</title>
+      <link>https://johan.im/reading/min-kamp-3/</link>
+      <guid isPermaLink="false">https://johan.im/reading/min-kamp-3/</guid>
+      <description>Finished reading</description>
+      <content:encoded><![CDATA[See _[Min Kamp 6](/reading/min-kamp-6)_.]]></content:encoded>
+      <pubDate>Fri, 05 Apr 2024 18:43:40 GMT</pubDate>
+      <atom:updated>2024-02-13T00:00:00.000Z</atom:updated>
+    </item>
+    <item>
+      <title>Min Kamp 2</title>
+      <link>https://johan.im/reading/min-kamp-2/</link>
+      <guid isPermaLink="false">https://johan.im/reading/min-kamp-2/</guid>
+      <description>Finished reading</description>
+      <content:encoded><![CDATA[See _[Min Kamp 6](/reading/min-kamp-6)_.]]></content:encoded>
+      <pubDate>Fri, 05 Apr 2024 18:43:40 GMT</pubDate>
+      <atom:updated>2024-02-03T00:00:00.000Z</atom:updated>
+    </item>
+    <item>
+      <title>Min Kamp 1</title>
+      <link>https://johan.im/reading/min-kamp-1/</link>
+      <guid isPermaLink="false">https://johan.im/reading/min-kamp-1/</guid>
+      <description>Finished reading</description>
+      <content:encoded><![CDATA[See _[Min Kamp 6](/reading/min-kamp-6)_.]]></content:encoded>
+      <pubDate>Fri, 05 Apr 2024 18:43:40 GMT</pubDate>
+      <atom:updated>2024-01-24T00:00:00.000Z</atom:updated>
+    </item>
+    <item>
+      <title>Det Tredje Riket</title>
+      <link>https://johan.im/reading/det-tredje-riket/</link>
+      <guid isPermaLink="false">https://johan.im/reading/det-tredje-riket/</guid>
+      <description>Finished reading</description>
+      <content:encoded><![CDATA[I loved it just as much as the first one in the series (I loved the second one less). It's something in Knausgård's language which is so, so good.]]></content:encoded>
+      <pubDate>Fri, 05 Apr 2024 18:43:40 GMT</pubDate>
+      <atom:updated>2024-01-14T00:00:00.000Z</atom:updated>
+    </item>
+    <item>
+      <title>Tunnel 29 — The True Story of an Extraordinary Escape Beneath the Berlin Wall</title>
+      <link>https://johan.im/reading/tunnel-29/</link>
+      <guid isPermaLink="false">https://johan.im/reading/tunnel-29/</guid>
+      <description>Finished reading</description>
+      <content:encoded><![CDATA[This is kind of a "dramatised" documentary of actual events. Tons of historical metadata along the way. It's a bit cheesy sometimes, but I totally admit it was a page turner. And most importantly, it taught me a lot about the real life behind the Wall, in East Berlin (hint: Stasi were the biggest assholes ever).]]></content:encoded>
+      <pubDate>Fri, 05 Apr 2024 18:43:40 GMT</pubDate>
+      <atom:updated>2024-01-04T00:00:00.000Z</atom:updated>
+    </item>
+    <item>
+      <title>Berlin</title>
+      <link>https://johan.im/reading/berlin/</link>
+      <guid isPermaLink="false">https://johan.im/reading/berlin/</guid>
+      <description>Finished reading</description>
+      <content:encoded><![CDATA[Continuing my journey towards being a fully fledged dad. 150% detailed account of the Allied invasion of Germany in 1945. So much stuff I didn't know. Lots of stories about the conditions of the soldiers, civilians, and the fates of prisoners (hint: all quite horrible).]]></content:encoded>
+      <pubDate>Fri, 05 Apr 2024 18:43:40 GMT</pubDate>
+      <atom:updated>2023-10-15T00:00:00.000Z</atom:updated>
+    </item>
+    <item>
+      <title>Secret Pilgrim</title>
+      <link>https://johan.im/reading/secret-pilgrim/</link>
+      <guid isPermaLink="false">https://johan.im/reading/secret-pilgrim/</guid>
+      <description>Book dropped</description>
+      <content:encoded><![CDATA[No notes]]></content:encoded>
+      <pubDate>Fri, 05 Apr 2024 18:43:40 GMT</pubDate>
+      <atom:updated>2023-10-01T00:00:00.000Z</atom:updated>
+    </item>
+  </channel>
+</rss>

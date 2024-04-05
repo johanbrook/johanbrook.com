@@ -1,208 +1,225 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title></title>
-  <link href="https://johan.im/micro.xml" rel="self"/>
-  <link href="https://johan.im/micro.xml"/>
-  <id>https://johan.im/micro.xml</id>
-  
-  <updated>2024-03-24T15:31:48+01:00</updated>
-  <author>
-    <name>Johan Brook</name>
-    <email>webmaster@johan.im</email>
-  </author>
-  
-  <entry>
-    <title>March 24 — 15:31</title>
-    <link href="https://johan.im/micro/20240324153148/" />
-    <updated>2024-03-24T15:31:48+01:00</updated>
-    <id>https://johan.im/micro/20240324153148/</id>
-    <content type="html">&lt;p&gt;This list of &lt;a href=&quot;https://dynomight.net/things/&quot;&gt;things that don’t work&lt;/a&gt; was fun:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ol start=&quot;30&quot;&gt;
-&lt;li&gt;Nonfiction books. Arguably? How much do we really retain?&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>March 21 — 08:11</title>
-    <link href="https://johan.im/micro/20240321081111/" />
-    <updated>2024-03-21T08:11:11+01:00</updated>
-    <id>https://johan.im/micro/20240321081111/</id>
-    <content type="html">&lt;p&gt;It&#39;s my first week of parental leave with my second daughter, and I&#39;m &lt;em&gt;here for it&lt;/em&gt;. Hanging out in the kitchen, taking
-time to prep food, listening to &lt;a href=&quot;https://open.spotify.com/album/15q7N7Wo307mfjqR29NpjF?si=Nn2sveRrT-63afwfTtq6WQ&quot;&gt;music&lt;/a&gt;
-with the baby. I&#39;m appreciative for entering Swedish Spring and Summer this time too.&lt;/p&gt;
-&lt;p&gt;Last time, I found the parental leave being a great &amp;quot;brain reset&amp;quot; in order to get perspectives. It (forcefully) slowed
-down my every day life and made it revolve around fewer things. It also leaves space — outside of work — for project
-ideas. For instance, I just thought about coding something with an LLM that suggests recipes based on groceries I&#39;ve got
-home at the moment. I&#39;d have less energy for these kinds of silly things if I was to work full time too.&lt;/p&gt;
-&lt;p&gt;I think this time, I&#39;ll enjoy it even more thanks to the fact that you&#39;re 1000x more of a pro and more relaxed with the
-second kid 😏&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>March 5 — 09:47</title>
-    <link href="https://johan.im/micro/20240305094727/" />
-    <updated>2024-03-05T09:47:27+07:00</updated>
-    <id>https://johan.im/micro/20240305094727/</id>
-    <content type="html">&lt;p&gt;This is the final paragraph of Cormac McCarthy’s &lt;em&gt;The Road&lt;/em&gt; (no spoiler). It’s the most beautiful paragraph I know of. The weight, the rhythm, the final sentence. Never has a single paragraph done more emotionally to me when I first read it — 15 years old — than a hundred magazine articles on the environmental crisis.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Once there were brook trouts in the streams in the mountains. You could see them standing in the amber current where the white edges of their fins wimpled softly in the flow. They smelled of moss in your hand. Polished and muscular and torsional. On their backs were vermiculate patterns that were maps of the world in its becoming. Maps and mazes. Of a thing which could not be put back. Not be made right again. In the deep glens where they lived all things were older than man and they hummed of mystery.&lt;/p&gt;
-&lt;/blockquote&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>February 19 — 20:39</title>
-    <link href="https://johan.im/micro/20240219203953/" />
-    <updated>2024-02-19T20:39:53+07:00</updated>
-    <id>https://johan.im/micro/20240219203953/</id>
-    <content type="html">&lt;p&gt;I had always been an &amp;quot;anti e-book reader person&amp;quot;, or conversely, &amp;quot;pro physical book person&amp;quot;. In
-hindsight, I&#39;m not sure why: the constant argument had been &amp;quot;I&#39;d like to read &lt;em&gt;real&lt;/em&gt; books,
-please!&amp;quot;. Hold them, carry them, feel them. Etc. etc. It&#39;s 150% the sentimentality around books as
-manifestation of a cultural thing that has been around for hundreds of years. The last bastion,
-where the digital revolution yet hasn&#39;t been able to put its bits-and-bytes hands on.&lt;/p&gt;
-&lt;p&gt;It&#39;s also the vanity thing of collecting physical artefacts (and perhaps showing them off). I&#39;m the
-first to admit that I like to keep books in my bookshelf! Even though lately, I&#39;ve borrowed more
-books from the local library when the titles have been quite rando, as in &amp;quot;hm, I&#39;m not sure I&#39;ll
-ever gonna re-read this or recommend it to somebody&amp;quot;.&lt;/p&gt;
-&lt;p&gt;Anyhow. With e-readers, you lose both the physical sensation and the showing-off of real books. And
-it&#39;s amazing!&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;From now on, this text is about Johan being a decade late in discovering e-readers.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;For a longer trip I&#39;m currently on, I bought myself an e-book reader. It&#39;s a
-&lt;a href=&quot;https://eu.kobobooks.com/sv/products/kobo-clara-2e&quot;&gt;Kobo Clara 2E&lt;/a&gt;. I refused Amazon&#39;s Kindles due
-to lock-in and dislike of Amazon. I got myself a magnetic cover, and off I went.&lt;/p&gt;
-&lt;p&gt;Before, I made damn sure this Kobo thing was &lt;em&gt;open&lt;/em&gt; enough to transfer these types of ebooks onto
-it:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Random, free EPubs books.&lt;/li&gt;
-&lt;li&gt;DRM protected EPub books.&lt;/li&gt;
-&lt;li&gt;Library ebooks.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;as well as sampling books out of the Kobo store. It supposedly has millions of books, and after some
-sampling, I determined that it had the titles I was going to read during my trip. Perfect!&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://eu.kobobooks.com/cdn/shop/products/B_UK-ANZ-Device_Angled_1080x1080_17130470-23c2-498c-be24-8e5429a7f784_962x962.jpg?v=1691690100&quot; alt=&quot;Kobo Clara 2E&quot;&gt;&lt;/p&gt;
-&lt;p&gt;The Kobo reader is really good. It has a great display, kind of water proof, has good battery life
-(I&#39;ve charged it once since I got it in mid January, now is late Feburary), a perfect form factor.&lt;/p&gt;
-&lt;p&gt;The form factor is something I especially appreciate: I can fit it in my back pocket. I don&#39;t think
-the display is too small at all (6 inches, 300 PPI). Anywhere when I got a minute over, I can just
-haul it up and get some pages read. You &lt;em&gt;could&lt;/em&gt; do the same with a physical book, but even a
-paperback of 600+ pages will be a bit of a brick to carry around. The result? I read in a much
-higher pace, and therefore a lot more books (since January 14th, I&#39;ve read four books for a total
-duration of 56 hours). I feel genuinely excited for how this has lowered the threshold for reading
-more books.&lt;/p&gt;
-&lt;p&gt;It&#39;s almost like one of the charms with physical books became its baggage: to physically acquire
-them and transport them around. The ritual became a gatekeeping activity for me. With the e-book
-reader, it&#39;s as capitalistic and digital as it can be: I find a book in the Kobo store, buy it with
-my Apple Pay, and sync it on the device via my account. No more the feels of &amp;quot;opening the first
-pages of a freshly bought book&amp;quot;.&lt;/p&gt;
-&lt;p&gt;Oh, I&#39;ve almost forgot &lt;em&gt;the&lt;/em&gt; best thing about ebook readers! The ability to read in the evening in
-the bad shared with a partner who &lt;em&gt;does not&lt;/em&gt; want to have any lights on!&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;I&#39;m &lt;a href=&quot;https://johan.im/reading&quot;&gt;currently reading&lt;/a&gt; the &amp;quot;My Struggle&amp;quot; series by Karl Ove Knausgård.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>February 3 — 21:21</title>
-    <link href="https://johan.im/micro/20240203212100/" />
-    <updated>2024-02-03T21:21:00+07:00</updated>
-    <id>https://johan.im/micro/20240203212100/</id>
-    <content type="html">&lt;p&gt;Maybe it&#39;s because I&#39;ve spent the past weeks in a beachside environment, with very few worries
-besides watching the baby so she won&#39;t eat the sand, but I just don&#39;t care for a &lt;em&gt;single&lt;/em&gt; bit about
-new hardware announcements such as the Apple Vision Pro any longer.&lt;/p&gt;
-&lt;p&gt;It&#39;s so relieving.&lt;/p&gt;
-&lt;p&gt;Not trying to be smug or snowflake about it. I simply feel so &lt;em&gt;beyond&lt;/em&gt; those kinds of thought
-streams where I spend more than a second checking the said hardware out.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>January 18 — 20:44</title>
-    <link href="https://johan.im/micro/20240118204458/" />
-    <updated>2024-01-18T20:44:58+07:00</updated>
-    <id>https://johan.im/micro/20240118204458/</id>
-    <content type="html">&lt;p&gt;We arrived to Koh Lanta a few days ago, where we&#39;ll spend the next two months. While I like long
-stays in locations, it doesn&#39;t come without risk. Especially when bringing kids. &amp;quot;Will we like it?
-Will it be boring? Will there be too many tourists? Will we be able to create an everyday life?&amp;quot; are
-questions which I&#39;ve had during the days up until arriving. I think this kind of travelling is one
-part experience and one part &amp;quot;Just Do It&amp;quot;. For experience: you just have to trust your gut
-instincts, and also your skills and ability to integrate well and have a good time. The &amp;quot;Just Do It&amp;quot;
-part is self-explanational.&lt;/p&gt;
-&lt;p&gt;Koh Lanta is super so far though. We live just by Klong Dao beach, which is a super relaxed and cool
-beach: restaurants, bars, and cafés on one side, and looooong waves on the other. And yes: there
-&lt;em&gt;are&lt;/em&gt; a ton of tourists (we among them!) — mostly Scandinavian — but I&#39;ve accepted that now (haha).&lt;/p&gt;
-&lt;p&gt;A few days in, we&#39;ve found some kind of a rhythm:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Early morning, I either sleep in and hang out with the kids, or do exercise (running or gym).&lt;/li&gt;
-&lt;li&gt;Late morning, either me or my wife gets &amp;quot;off time&amp;quot;. The other one goes swimming with the kids.&lt;/li&gt;
-&lt;li&gt;At lunch, the baby sleeps and the older one hangs out inside for some calm time near the A/C. One
-of us parents can go outside.&lt;/li&gt;
-&lt;li&gt;After lunch, we do some activity. For now that list still only consists of… more swimming 😅&lt;/li&gt;
-&lt;li&gt;Late afternoon, it has gotten less hot outside, and we can hang out on the beach just by the
-shallow water where the kids can play and we can bring takeaway thai food, while watching the
-beginning of the sunset.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;What I love so far with Koh Lanta:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;The ease of living. Many things just exist at your doorstep. A decent supermarket, phone stores
-for prepaid SIM cards, cafés, cheap thai food joints, pad thai stands, drug stores. Products of
-years of mass tourism!&lt;/li&gt;
-&lt;li&gt;The picturesque beach. I have to pinch myself every morning.&lt;/li&gt;
-&lt;li&gt;The pleasant locals. Not &lt;em&gt;everybody&lt;/em&gt; are super happy and friendly (I reckon also a product of
-years of mass tourism!), but everybody &lt;em&gt;are&lt;/em&gt; helpful and solutions oriented. They love babies so
-much, by the way. Everybody are smiling and acknowledging our 10 month old baby, who beams back
-at them. If I would do that back home in Stockholm… I… I don&#39;t know what would happen.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;For me, I &lt;em&gt;love&lt;/em&gt; the heat that comes with tropical weather. It makes me a tad slower, but overall I
-prefer to be surrounded by warm 30°C air versus mere 20°C air (which we get in Sweden on averege in
-the summers, it feels like). A/Cs help a lot, sure. But even without them, I&#39;d just &lt;em&gt;exist&lt;/em&gt; in the
-heat (and swim a lot).&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>January 6 — 12:47</title>
-    <link href="https://johan.im/micro/20240106124758/" />
-    <updated>2024-01-06T12:47:58+01:00</updated>
-    <id>https://johan.im/micro/20240106124758/</id>
-    <content type="html">&lt;p&gt;Testing my Mastodon integration.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>December 15, 2023 — 15:05</title>
-    <link href="https://johan.im/micro/20231215140531/" />
-    <updated>2023-12-15T15:05:31+01:00</updated>
-    <id>https://johan.im/micro/20231215140531/</id>
-    <content type="html">&lt;p&gt;I was in a bookstore to get a Christmas gift today over lunch. It was an independent, small store —
-not one of the big book chains’ shops. Many books had small paper notes with the staff’s personal
-thoughts, and many were signed by the authors, who frequently visited the shop on signing events and
-book talks.&lt;/p&gt;
-&lt;p&gt;I just got a really fuzzy feeling entering the small venue, and even more so after chatting with the
-sole clerk.&lt;/p&gt;
-&lt;p&gt;Entering a bookstore is like entering a whole separate universe where time stands still. When I was
-travelling around in the world, I would always get to a bookstore when in a new city just to feel
-“rooted” — kind of like finding a safe house.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>December 13, 2023 — 21:15</title>
-    <link href="https://johan.im/micro/202312132015/" />
-    <updated>2023-12-13T21:15:35+01:00</updated>
-    <id>https://johan.im/micro/202312132015/</id>
-    <content type="html">&lt;p&gt;Finished watching the David Beckham documentary. I &lt;em&gt;know&lt;/em&gt; it’s super produced and sanctioned by the
-Beckhams and all that. But. I liked it. Especially the ending, where the family hang out in present
-day England at their countryside estate. It felt real, in a way (even though again: I &lt;em&gt;know&lt;/em&gt; it’s
-staged 😄).&lt;/p&gt;
-&lt;p&gt;It was a cool story arch, even though I guess I appreciated it because of the nostalgia. The &lt;em&gt;feels&lt;/em&gt;
-when images appeared of Luis Figo, Zidane, Ronaldo, Rio Ferdinand, and Ryan Giggs and the others. I
-used to play Fifa 2003 on PC with those players, and they were all around when we were talking
-football in school.&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <title>December 10, 2023 — 11:58</title>
-    <link href="https://johan.im/micro/202312101058/" />
-    <updated>2023-12-10T11:58:33+01:00</updated>
-    <id>https://johan.im/micro/202312101058/</id>
-    <content type="html">&lt;p&gt;Today is a Red Hot Chili Peppers day.
-&lt;a href=&quot;https://open.spotify.com/playlist/6l2elAUv3W4sCfPxN3my8g?si=MbrzW2QsTyS4VCiolOE4BQ&amp;amp;pi=e-3oMu2Wv1S5Sx&quot;&gt;Here’s my playlist&lt;/a&gt;.&lt;/p&gt;</content>
-  </entry>
-  
-</feed>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+  <channel>
+    <title>Johan&apos;s Micro Blog</title>
+    <link>https://johan.im/</link>
+    <atom:link href="https://johan.im/micro.xml" rel="self" type="application/rss+xml"/>
+    <description></description>
+    <lastBuildDate>Fri, 05 Apr 2024 18:43:53 GMT</lastBuildDate>
+    <language>en</language>
+    <item>
+      <title>March 24 — 15:31</title>
+      <link>https://johan.im/micro/20240324153148/</link>
+      <guid isPermaLink="false">https://johan.im/micro/20240324153148/</guid>
+      <content:encoded>
+        <![CDATA[<p>This list of <a href="https://dynomight.net/things/">things that don’t work</a> was fun:</p>
+        <blockquote>
+        <ol start="30">
+        <li>Nonfiction books. Arguably? How much do we really retain?</li>
+        </ol>
+        </blockquote>
+        ]]>
+      </content:encoded>
+      <pubDate>Sun, 24 Mar 2024 14:31:48 GMT</pubDate>
+    </item>
+    <item>
+      <title>March 21 — 08:11</title>
+      <link>https://johan.im/micro/20240321081111/</link>
+      <guid isPermaLink="false">https://johan.im/micro/20240321081111/</guid>
+      <content:encoded>
+        <![CDATA[<p>It's my first week of parental leave with my second daughter, and I'm <em>here for it</em>. Hanging out in the kitchen, taking
+        time to prep food, listening to <a href="https://open.spotify.com/album/15q7N7Wo307mfjqR29NpjF?si=Nn2sveRrT-63afwfTtq6WQ">music</a>
+        with the baby. I'm appreciative for entering Swedish Spring and Summer this time too.</p>
+        <p>Last time, I found the parental leave being a great &quot;brain reset&quot; in order to get perspectives. It (forcefully) slowed
+        down my every day life and made it revolve around fewer things. It also leaves space — outside of work — for project
+        ideas. For instance, I just thought about coding something with an LLM that suggests recipes based on groceries I've got
+        home at the moment. I'd have less energy for these kinds of silly things if I was to work full time too.</p>
+        <p>I think this time, I'll enjoy it even more thanks to the fact that you're 1000x more of a pro and more relaxed with the
+        second kid 😏</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Thu, 21 Mar 2024 07:11:11 GMT</pubDate>
+    </item>
+    <item>
+      <title>March 5 — 09:47</title>
+      <link>https://johan.im/micro/20240305094727/</link>
+      <guid isPermaLink="false">https://johan.im/micro/20240305094727/</guid>
+      <content:encoded>
+        <![CDATA[<p>This is the final paragraph of Cormac McCarthy’s <em>The Road</em> (no spoiler). It’s the most beautiful paragraph I know of. The weight, the rhythm, the final sentence. Never has a single paragraph done more emotionally to me when I first read it — 15 years old — than a hundred magazine articles on the environmental crisis.</p>
+        <blockquote>
+        <p>Once there were brook trouts in the streams in the mountains. You could see them standing in the amber current where the white edges of their fins wimpled softly in the flow. They smelled of moss in your hand. Polished and muscular and torsional. On their backs were vermiculate patterns that were maps of the world in its becoming. Maps and mazes. Of a thing which could not be put back. Not be made right again. In the deep glens where they lived all things were older than man and they hummed of mystery.</p>
+        </blockquote>
+        ]]>
+      </content:encoded>
+      <pubDate>Tue, 05 Mar 2024 02:47:27 GMT</pubDate>
+    </item>
+    <item>
+      <title>February 19 — 20:39</title>
+      <link>https://johan.im/micro/20240219203953/</link>
+      <guid isPermaLink="false">https://johan.im/micro/20240219203953/</guid>
+      <content:encoded>
+        <![CDATA[<p>I had always been an &quot;anti e-book reader person&quot;, or conversely, &quot;pro physical book person&quot;. In
+        hindsight, I'm not sure why: the constant argument had been &quot;I'd like to read <em>real</em> books,
+        please!&quot;. Hold them, carry them, feel them. Etc. etc. It's 150% the sentimentality around books as
+        manifestation of a cultural thing that has been around for hundreds of years. The last bastion,
+        where the digital revolution yet hasn't been able to put its bits-and-bytes hands on.</p>
+        <p>It's also the vanity thing of collecting physical artefacts (and perhaps showing them off). I'm the
+        first to admit that I like to keep books in my bookshelf! Even though lately, I've borrowed more
+        books from the local library when the titles have been quite rando, as in &quot;hm, I'm not sure I'll
+        ever gonna re-read this or recommend it to somebody&quot;.</p>
+        <p>Anyhow. With e-readers, you lose both the physical sensation and the showing-off of real books. And
+        it's amazing!</p>
+        <p><em>From now on, this text is about Johan being a decade late in discovering e-readers.</em></p>
+        <p>For a longer trip I'm currently on, I bought myself an e-book reader. It's a
+        <a href="https://eu.kobobooks.com/sv/products/kobo-clara-2e">Kobo Clara 2E</a>. I refused Amazon's Kindles due
+        to lock-in and dislike of Amazon. I got myself a magnetic cover, and off I went.</p>
+        <p>Before, I made damn sure this Kobo thing was <em>open</em> enough to transfer these types of ebooks onto
+        it:</p>
+        <ul>
+        <li>Random, free EPubs books.</li>
+        <li>DRM protected EPub books.</li>
+        <li>Library ebooks.</li>
+        </ul>
+        <p>as well as sampling books out of the Kobo store. It supposedly has millions of books, and after some
+        sampling, I determined that it had the titles I was going to read during my trip. Perfect!</p>
+        <p><img src="https://eu.kobobooks.com/cdn/shop/products/B_UK-ANZ-Device_Angled_1080x1080_17130470-23c2-498c-be24-8e5429a7f784_962x962.jpg?v=1691690100" alt="Kobo Clara 2E"></p>
+        <p>The Kobo reader is really good. It has a great display, kind of water proof, has good battery life
+        (I've charged it once since I got it in mid January, now is late Feburary), a perfect form factor.</p>
+        <p>The form factor is something I especially appreciate: I can fit it in my back pocket. I don't think
+        the display is too small at all (6 inches, 300 PPI). Anywhere when I got a minute over, I can just
+        haul it up and get some pages read. You <em>could</em> do the same with a physical book, but even a
+        paperback of 600+ pages will be a bit of a brick to carry around. The result? I read in a much
+        higher pace, and therefore a lot more books (since January 14th, I've read four books for a total
+        duration of 56 hours). I feel genuinely excited for how this has lowered the threshold for reading
+        more books.</p>
+        <p>It's almost like one of the charms with physical books became its baggage: to physically acquire
+        them and transport them around. The ritual became a gatekeeping activity for me. With the e-book
+        reader, it's as capitalistic and digital as it can be: I find a book in the Kobo store, buy it with
+        my Apple Pay, and sync it on the device via my account. No more the feels of &quot;opening the first
+        pages of a freshly bought book&quot;.</p>
+        <p>Oh, I've almost forgot <em>the</em> best thing about ebook readers! The ability to read in the evening in
+        the bad shared with a partner who <em>does not</em> want to have any lights on!</p>
+        <hr>
+        <p>I'm <a href="https://johan.im/reading">currently reading</a> the &quot;My Struggle&quot; series by Karl Ove Knausgård.</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Mon, 19 Feb 2024 13:39:53 GMT</pubDate>
+    </item>
+    <item>
+      <title>February 3 — 21:21</title>
+      <link>https://johan.im/micro/20240203212100/</link>
+      <guid isPermaLink="false">https://johan.im/micro/20240203212100/</guid>
+      <content:encoded>
+        <![CDATA[<p>Maybe it's because I've spent the past weeks in a beachside environment, with very few worries
+        besides watching the baby so she won't eat the sand, but I just don't care for a <em>single</em> bit about
+        new hardware announcements such as the Apple Vision Pro any longer.</p>
+        <p>It's so relieving.</p>
+        <p>Not trying to be smug or snowflake about it. I simply feel so <em>beyond</em> those kinds of thought
+        streams where I spend more than a second checking the said hardware out.</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Sat, 03 Feb 2024 14:21:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>January 18 — 20:44</title>
+      <link>https://johan.im/micro/20240118204458/</link>
+      <guid isPermaLink="false">https://johan.im/micro/20240118204458/</guid>
+      <content:encoded>
+        <![CDATA[<p>We arrived to Koh Lanta a few days ago, where we'll spend the next two months. While I like long
+        stays in locations, it doesn't come without risk. Especially when bringing kids. &quot;Will we like it?
+        Will it be boring? Will there be too many tourists? Will we be able to create an everyday life?&quot; are
+        questions which I've had during the days up until arriving. I think this kind of travelling is one
+        part experience and one part &quot;Just Do It&quot;. For experience: you just have to trust your gut
+        instincts, and also your skills and ability to integrate well and have a good time. The &quot;Just Do It&quot;
+        part is self-explanational.</p>
+        <p>Koh Lanta is super so far though. We live just by Klong Dao beach, which is a super relaxed and cool
+        beach: restaurants, bars, and cafés on one side, and looooong waves on the other. And yes: there
+        <em>are</em> a ton of tourists (we among them!) — mostly Scandinavian — but I've accepted that now (haha).</p>
+        <p>A few days in, we've found some kind of a rhythm:</p>
+        <ol>
+        <li>Early morning, I either sleep in and hang out with the kids, or do exercise (running or gym).</li>
+        <li>Late morning, either me or my wife gets &quot;off time&quot;. The other one goes swimming with the kids.</li>
+        <li>At lunch, the baby sleeps and the older one hangs out inside for some calm time near the A/C. One
+        of us parents can go outside.</li>
+        <li>After lunch, we do some activity. For now that list still only consists of… more swimming 😅</li>
+        <li>Late afternoon, it has gotten less hot outside, and we can hang out on the beach just by the
+        shallow water where the kids can play and we can bring takeaway thai food, while watching the
+        beginning of the sunset.</li>
+        </ol>
+        <p>What I love so far with Koh Lanta:</p>
+        <ol>
+        <li>The ease of living. Many things just exist at your doorstep. A decent supermarket, phone stores
+        for prepaid SIM cards, cafés, cheap thai food joints, pad thai stands, drug stores. Products of
+        years of mass tourism!</li>
+        <li>The picturesque beach. I have to pinch myself every morning.</li>
+        <li>The pleasant locals. Not <em>everybody</em> are super happy and friendly (I reckon also a product of
+        years of mass tourism!), but everybody <em>are</em> helpful and solutions oriented. They love babies so
+        much, by the way. Everybody are smiling and acknowledging our 10 month old baby, who beams back
+        at them. If I would do that back home in Stockholm… I… I don't know what would happen.</li>
+        </ol>
+        <p>For me, I <em>love</em> the heat that comes with tropical weather. It makes me a tad slower, but overall I
+        prefer to be surrounded by warm 30°C air versus mere 20°C air (which we get in Sweden on averege in
+        the summers, it feels like). A/Cs help a lot, sure. But even without them, I'd just <em>exist</em> in the
+        heat (and swim a lot).</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Thu, 18 Jan 2024 13:44:58 GMT</pubDate>
+    </item>
+    <item>
+      <title>January 6 — 12:47</title>
+      <link>https://johan.im/micro/20240106124758/</link>
+      <guid isPermaLink="false">https://johan.im/micro/20240106124758/</guid>
+      <content:encoded>
+        <![CDATA[<p>Testing my Mastodon integration.</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Sat, 06 Jan 2024 11:47:58 GMT</pubDate>
+    </item>
+    <item>
+      <title>December 15, 2023 — 15:05</title>
+      <link>https://johan.im/micro/20231215140531/</link>
+      <guid isPermaLink="false">https://johan.im/micro/20231215140531/</guid>
+      <content:encoded>
+        <![CDATA[<p>I was in a bookstore to get a Christmas gift today over lunch. It was an independent, small store —
+        not one of the big book chains’ shops. Many books had small paper notes with the staff’s personal
+        thoughts, and many were signed by the authors, who frequently visited the shop on signing events and
+        book talks.</p>
+        <p>I just got a really fuzzy feeling entering the small venue, and even more so after chatting with the
+        sole clerk.</p>
+        <p>Entering a bookstore is like entering a whole separate universe where time stands still. When I was
+        travelling around in the world, I would always get to a bookstore when in a new city just to feel
+        “rooted” — kind of like finding a safe house.</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Fri, 15 Dec 2023 14:05:31 GMT</pubDate>
+    </item>
+    <item>
+      <title>December 13, 2023 — 21:15</title>
+      <link>https://johan.im/micro/202312132015/</link>
+      <guid isPermaLink="false">https://johan.im/micro/202312132015/</guid>
+      <content:encoded>
+        <![CDATA[<p>Finished watching the David Beckham documentary. I <em>know</em> it’s super produced and sanctioned by the
+        Beckhams and all that. But. I liked it. Especially the ending, where the family hang out in present
+        day England at their countryside estate. It felt real, in a way (even though again: I <em>know</em> it’s
+        staged 😄).</p>
+        <p>It was a cool story arch, even though I guess I appreciated it because of the nostalgia. The <em>feels</em>
+        when images appeared of Luis Figo, Zidane, Ronaldo, Rio Ferdinand, and Ryan Giggs and the others. I
+        used to play Fifa 2003 on PC with those players, and they were all around when we were talking
+        football in school.</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Wed, 13 Dec 2023 20:15:35 GMT</pubDate>
+    </item>
+    <item>
+      <title>December 10, 2023 — 11:58</title>
+      <link>https://johan.im/micro/202312101058/</link>
+      <guid isPermaLink="false">https://johan.im/micro/202312101058/</guid>
+      <content:encoded>
+        <![CDATA[<p>Today is a Red Hot Chili Peppers day.
+        <a href="https://open.spotify.com/playlist/6l2elAUv3W4sCfPxN3my8g?si=MbrzW2QsTyS4VCiolOE4BQ&amp;pi=e-3oMu2Wv1S5Sx">Here’s my playlist</a>.</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Sun, 10 Dec 2023 10:58:33 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
