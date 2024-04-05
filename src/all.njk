@@ -4,7 +4,7 @@ layout: layouts/page.njk
 ---
 
 <ol>
-    {% for page in search.pages("type!=post type!=note type!=book url!='/all/' url!='/'", "title") %}
+    {% for page in search.pages("type!=post type!=note type!=book type!=recipe url!='/all/' url!='/'", "title") %}
     <li><a title="{{ page.description }}" href="{{ page.url }}">{{ page.title }}</a></li>
     {% endfor %}
 </ol>
