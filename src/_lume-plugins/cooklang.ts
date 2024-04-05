@@ -151,6 +151,7 @@ const recipeInstructionsOf = (recipe: CookLang.Recipe) => {
 
         tokens.forEach((tok) => {
             let content = '';
+            let quantity: string | null = null;
 
             switch (tok.type) {
                 case 'timer':
@@ -158,13 +159,17 @@ const recipeInstructionsOf = (recipe: CookLang.Recipe) => {
                     break;
                 case 'ingredient':
                     content = tok.name;
+                    quantity = `${tok.quantity} ${tok.units}`;
                     break;
                 case 'text':
                     content = tok.value;
                     break;
+                case 'cookware':
+                    content = tok.name;
+                    break;
             }
 
-            content = `<span class="recipe--${tok.type}">${content}</span>`;
+            content = `<span title="${quantity ? quantity : ''}" class="recipe--${tok.type}">${content}</span>`;
 
             ret[idx].push(content);
         });
