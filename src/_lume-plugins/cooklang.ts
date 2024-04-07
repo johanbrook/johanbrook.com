@@ -34,21 +34,22 @@ const renderRecipe = (recipe: CookLang.Recipe): string => {
             '\n',
         );
 
-    return `${
-        ingredients
+    return `
+        ${
+        metadata
             ? `
-<h2>Ingredients</h2>
+<section class="recipe-metadata">
+    <h2>Metadata</h2>
 
-<section class="recipe-ingredients">
     <ul>
-    ${ingredients}
+    ${metadata}
     </ul>
 </section>
-`
+        `
             : ''
     }
 
-${
+    ${
         cookwares
             ? `
 <section class="recipe-cookwares">
@@ -56,6 +57,21 @@ ${
 
     <ul>
     ${cookwares}
+    </ul>
+</section>
+    `
+            : ''
+    }
+
+
+${
+        ingredients
+            ? `
+<section class="recipe-ingredients">
+    <h2>Ingredients</h2>
+
+    <ul>
+    ${ingredients}
     </ul>
 </section>
 `
@@ -69,19 +85,6 @@ ${
     ${instructions}
     </ol>
 </section>
-${
-        metadata
-            ? `
-<section class="recipe-metadata">
-    <h3>Metadata</h3>
-    <ul>
-    ${metadata}
-    </ul>
-</section>
-`
-            : ''
-    }
-
 `.trim();
 };
 

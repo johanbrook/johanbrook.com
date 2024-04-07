@@ -69,7 +69,7 @@
     --leading: 1.618;
 
     --tracking: -0.014em;
-    --tracking-f0: -0.022em;
+    --tracking-f0: 0;
     --tracking-f1: -0.021em;
     --tracking-f2: -0.02em;
     --tracking-f3: -0.018em;
@@ -77,9 +77,15 @@
     --tracking-f5: -0.009em;
     --tracking-f6: -0.0025em;
 
-    /* @link https://utopia.fyi/type/calculator?c=320,16,1.125,653,18,1.125,4,3,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-
-    --fluid-32-42: clamp(32px, 22.3904px + 3.003vi, 42px);
+    /* @link @link https://utopia.fyi/clamp/calculator?a=320,653,32—60 */
+    @utopia clamps({
+        minWidth: 320,
+        maxWidth: 653,
+        pairs: [
+          [32, 48]
+        ],
+        prefix: "step-title",
+      });
 
     @utopia typeScale({
         minWidth: 320,
@@ -93,7 +99,7 @@
         prefix: "step",
     });
 
-    --f0: var(--fluid-32-42);
+    --f0: var(--step-title-32-48);
     --f1: var(--step-3);
     --f2: var(--step-2);
     --f3: var(--step-1);

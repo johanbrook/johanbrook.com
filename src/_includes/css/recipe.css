@@ -1,5 +1,55 @@
+:is(.recipe-metadata) {
+    font-weight: 650;
+}
+
+:is(.recipe-cookwares, .recipe-ingredients, .recipe-metadata, .recipe-instructions) h2 {
+    display: none;
+}
+
+:is(.recipe-metadata, .recipe-ingredients, .recipe-cookwares) {
+    :is(ul, ol) {
+        list-style: none;
+        padding-left: 0;
+        margin-left: 0;
+    }
+}
+
+.recipe-cookwares {
+    h2 {
+        font-family: var(--sans);
+        font-size: var(--f4);
+    }
+}
+
+.recipe-ingredients, .recipe--ingredient {
+    font-weight: 430;
+    color: var(--color-text-high-contrast);
+}
+
+.recipe-instructions {
+    border-top: 1px solid var(--border-color);
+    margin-top: 1lh;
+    padding-top: 1lh;
+
+    ol li {
+        margin-bottom: 0.25lh;
+    }
+
+    ol {
+        @supports (text-indent: 1lh hanging) {
+            list-style: none;
+            padding-left: 0;
+            margin-left: 0;
+
+            li {
+                text-indent: 1lh hanging;
+            }
+        }
+    }
+}
+
 .recipe--timer {
-    font-weight: 700;
+    font-weight: 650;
     text-decoration: underline;
     text-underline-offset: 0.6ex;
     text-decoration-style: wavy;
@@ -9,7 +59,8 @@
 .recipe--ingredient {
     text-decoration: underline;
     text-decoration-style: dotted;
-    text-underline-offset: 0.6ex;
+    text-underline-offset: 0.4ex;
+    text-decoration-color: var(--color-faint);
 }
 
 .recipe--cookware {

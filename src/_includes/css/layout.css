@@ -16,10 +16,3 @@
         }
     }
 }
-
-.title {
-    text-decoration: underline;
-    text-underline-offset: 0.6ex;
-    text-decoration-style: wavy;
-    text-decoration-color: var(--accent);
-}

@@ -55,9 +55,10 @@ input, textarea {
 }
 
 :is(.f0, .title) {
+    font-family: var(--sans);
     font-size: var(--f0);
+    font-weight: 650;
     letter-spacing: var(--tracking-f0);
-    line-height: calc(var(--leading) * 0.75);
 }
 
 :where(h1, .f1) {
@@ -164,6 +165,7 @@ ol ::marker {
 }
 
 :where(p, ul, ol, blockquote, table, figure, pre, details) {
+    margin-block-start: 0;
     margin-block-end: 0.5rlh;
 }
 
