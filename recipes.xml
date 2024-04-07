@@ -5,16 +5,27 @@
     <link>https://johan.im/</link>
     <atom:link href="https://johan.im/recipes.xml" rel="self" type="application/rss+xml"/>
     <description></description>
-    <lastBuildDate>Fri, 05 Apr 2024 18:53:05 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 07 Apr 2024 14:29:50 GMT</lastBuildDate>
     <language>en</language>
     <item>
       <title>Whole chicken with oyster glazing</title>
       <link>https://johan.im/recipes/oyster-chicken/</link>
       <guid isPermaLink="false">https://johan.im/recipes/oyster-chicken/</guid>
       <content:encoded>
-        <![CDATA[<h2>Ingredients</h2>
+        <![CDATA[<section class="recipe-cookwares">
+        <h2>Cookware</h2>
+        
+        <ul>
+        <li>1 casserole</li>
+        </ul>
+        </section>
+        
+        
+        
         
         <section class="recipe-ingredients">
+        <h2>Ingredients</h2>
+        
         <ul>
         <li>1  whole chicken</li>
         <li>some  salt</li>
@@ -25,16 +36,6 @@
         <li>1 tbsp sesame oil</li>
         <li>1  juice of one lemon</li>
         <li>2 tbsp sugar</li>
-        </ul>
-        </section>
-        
-        
-        
-        <section class="recipe-cookwares">
-        <h2>Cookware</h2>
-        
-        <ul>
-        <li>1 casserole</li>
         </ul>
         </section>
         
@@ -55,7 +56,76 @@
         </ol>
         </section>]]>
       </content:encoded>
-      <pubDate>Fri, 05 Apr 2024 18:52:55 GMT</pubDate>
+      <pubDate>Sun, 07 Apr 2024 14:29:41 GMT</pubDate>
+    </item>
+    <item>
+      <title>Slow-cooked vegetarian ragú</title>
+      <link>https://johan.im/recipes/vegetarian-ragu/</link>
+      <guid isPermaLink="false">https://johan.im/recipes/vegetarian-ragu/</guid>
+      <content:encoded>
+        <![CDATA[<section class="recipe-metadata">
+        <h2>Metadata</h2>
+        
+        <ul>
+        <li>Servings: 12</li>
+        </ul>
+        </section>
+        
+        
+        
+        <section class="recipe-cookwares">
+        <h2>Cookware</h2>
+        
+        <ul>
+        <li>1 cast iron pot</li>
+        <li>1 pot</li>
+        </ul>
+        </section>
+        
+        
+        
+        
+        <section class="recipe-ingredients">
+        <h2>Ingredients</h2>
+        
+        <ul>
+        <li>some  olive oil</li>
+        <li>1  minced onion</li>
+        <li>1  minced celery</li>
+        <li>2  minced carrots</li>
+        <li>4 cloves garlic</li>
+        <li>2 big finely minced zucchini</li>
+        <li>1  chopped red pepper</li>
+        <li>2 tbsp caper</li>
+        <li>0.6 dl red wine</li>
+        <li>1 tbsp soy sauce (or tamari)</li>
+        <li>2,5 dl vegetable stock</li>
+        <li>1200 g canned cherry tomatoes</li>
+        <li>2  bay leaf</li>
+        <li>some  salt</li>
+        <li>some  pepper</li>
+        <li>some  pasta</li>
+        <li>1 fist spinage</li>
+        <li>some  extra virgine olive oil</li>
+        <li>1  burrata</li>
+        <li>1 pot basil</li>
+        </ul>
+        </section>
+        
+        
+        <section class="recipe-instructions">
+        <h2>Instructions</h2>
+        
+        <ol>
+        <li><span title="" class="recipe--text">Heat up 2 tbsp of the </span><span title="some " class="recipe--ingredient">olive oil</span><span title="" class="recipe--text"> in a big </span><span title="" class="recipe--cookware">cast iron pot</span><span title="" class="recipe--text"> on medium heat. Add </span><span title="1 " class="recipe--ingredient">minced onion</span><span title="" class="recipe--text">, </span><span title="1 " class="recipe--ingredient">minced celery</span><span title="" class="recipe--text">, </span><span title="2 " class="recipe--ingredient">minced carrots</span><span title="" class="recipe--text">, and </span><span title="4 cloves" class="recipe--ingredient">garlic</span><span title="" class="recipe--text">, and fry for </span><span title="" class="recipe--timer">6 minutes </span><span title="" class="recipe--text"> (= a soffrito). Stir once in a while.</span></li>
+        <li><span title="" class="recipe--text">Add </span><span title="2 big" class="recipe--ingredient">finely minced zucchini</span><span title="" class="recipe--text">, </span><span title="1 " class="recipe--ingredient">chopped red pepper</span><span title="" class="recipe--text">, and </span><span title="2 tbsp" class="recipe--ingredient">caper</span><span title="" class="recipe--text">, together with the rest of the olive oil (around 5 tbsp). Fry for </span><span title="" class="recipe--timer">20 minutes </span><span title="" class="recipe--text"> until the vegetables have shrinked a bit and become golden. Stir often so it won't stick to the bottom of the pot. Decrease the heat if needed.</span></li>
+        <li><span title="" class="recipe--text">Add </span><span title="0.6 dl" class="recipe--ingredient">red wine</span><span title="" class="recipe--text"> to deglace, and scratch the bottom with a wooden tool to remove vegetables that have potentially stuck. Pour in </span><span title="1 tbsp" class="recipe--ingredient">soy sauce (or tamari)</span><span title="" class="recipe--text">, </span><span title="2,5 dl" class="recipe--ingredient">vegetable stock</span><span title="" class="recipe--text">, </span><span title="1200 g" class="recipe--ingredient">canned cherry tomatoes</span><span title="" class="recipe--text">, and </span><span title="2 " class="recipe--ingredient">bay leaf</span><span title="" class="recipe--text">. Add </span><span title="some " class="recipe--ingredient">salt</span><span title="" class="recipe--text"> and </span><span title="some " class="recipe--ingredient">pepper</span><span title="" class="recipe--text"> to taste. Give it a proper stir, decrease the heat to low, put on a lid and let it sit for at least </span><span title="" class="recipe--timer">2½ hours </span><span title="" class="recipe--text"> — don't forget to stir once in a while.</span></li>
+        <li><span title="" class="recipe--text">When it's time to serve, boil a big </span><span title="" class="recipe--cookware">pot</span><span title="" class="recipe--text"> of salted water and add </span><span title="some " class="recipe--ingredient">pasta</span><span title="" class="recipe--text">. When al dente, save around 2½ dl of pasta water and pour out the rest. With the pasta back in the pot, add </span><span title="1 fist" class="recipe--ingredient">spinage</span><span title="" class="recipe--text"> and as much of the ragú as you'd like. Stir around and add the saved pasta water until it's saucy. Put the rest of the ragú in the freezer or fridge for lunch boxes.</span></li>
+        <li><span title="" class="recipe--text">Drizzle generously with </span><span title="some " class="recipe--ingredient">extra virgine olive oil</span><span title="" class="recipe--text">, put on plates, and add </span><span title="1 " class="recipe--ingredient">burrata</span><span title="" class="recipe--text"> and </span><span title="1 pot" class="recipe--ingredient">basil</span><span title="" class="recipe--text">. Add freshly ground pepper.</span></li>
+        </ol>
+        </section>]]>
+      </content:encoded>
+      <pubDate>Sun, 07 Apr 2024 14:29:41 GMT</pubDate>
     </item>
   </channel>
 </rss>

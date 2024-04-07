@@ -76,6 +76,10 @@ Just kidding.
     text-underline-offset: 0.2ex;
 }
 
+:where(ul) {
+    list-style-type: disc;
+}
+
 :where(ul[role='list'], ol[role='list']) {
     list-style: none;
 }
@@ -218,7 +222,7 @@ Remove the inheritance of text transform in Edge and Firefox.
     --leading: 1.618;
 
     --tracking: -0.014em;
-    --tracking-f0: -0.022em;
+    --tracking-f0: 0;
     --tracking-f1: -0.021em;
     --tracking-f2: -0.02em;
     --tracking-f3: -0.018em;
@@ -226,11 +230,7 @@ Remove the inheritance of text transform in Edge and Firefox.
     --tracking-f5: -0.009em;
     --tracking-f6: -0.0025em;
 
-    /* @link https://utopia.fyi/type/calculator?c=320,16,1.125,653,18,1.125,4,3,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-
-    --fluid-32-42: clamp(32px, 22.3904px + 3.003vi, 42px);
-
-    --f0: var(--fluid-32-42);
+    --f0: var(--step-title-32-48);
     --f1: var(--step-3);
     --f2: var(--step-2);
     --f3: var(--step-1);
@@ -282,7 +282,9 @@ Remove the inheritance of text transform in Edge and Firefox.
         --btn-bg-hover: color-mix(in oklab, var(--mood) 5%, white 8%);
 }
     }
-:root {--step-3: clamp(1.4238rem, 0.924rem + 2.4993vi, 1.944rem);--step-2: clamp(1.2656rem, 0.9251rem + 1.7027vi, 1.62rem);--step-1: clamp(1.125rem, 0.9088rem + 1.0811vi, 1.35rem);--step-0: clamp(1rem, 0.8799rem + 0.6006vi, 1.125rem);--step--1: clamp(0.8889rem, 0.8422rem + 0.2336vi, 0.9375rem);--step--2: clamp(0.7813rem, 0.7987rem + -0.0426vi, 0.7901rem);--step--3: clamp(0.651rem, 0.7516rem + -0.2464vi, 0.7023rem);
+:root {
+
+    /* @link @link https://utopia.fyi/clamp/calculator?a=320,653,32—60 */--step-title-32-48: clamp(2rem, 1.039rem + 4.8048vi, 3rem);--step-3: clamp(1.4238rem, 0.924rem + 2.4993vi, 1.944rem);--step-2: clamp(1.2656rem, 0.9251rem + 1.7027vi, 1.62rem);--step-1: clamp(1.125rem, 0.9088rem + 1.0811vi, 1.35rem);--step-0: clamp(1rem, 0.8799rem + 0.6006vi, 1.125rem);--step--1: clamp(0.8889rem, 0.8422rem + 0.2336vi, 0.9375rem);--step--2: clamp(0.7813rem, 0.7987rem + -0.0426vi, 0.7901rem);--step--3: clamp(0.651rem, 0.7516rem + -0.2464vi, 0.7023rem);
 }
 }
 
@@ -346,9 +348,10 @@ input, textarea {
 }
 
 :is(.f0, .title) {
+    font-family: var(--sans);
     font-size: var(--f0);
+    font-weight: 650;
     letter-spacing: var(--tracking-f0);
-    line-height: calc(var(--leading) * 0.75);
 }
 
 :where(h1, .f1) {
@@ -389,10 +392,6 @@ input, textarea {
     padding-left: 0;
 }
 
-ul {
-    list-style-type: disc;
-}
-
 nav ul {
     list-style: none;
     margin: 0;
@@ -405,6 +404,7 @@ ul ::marker {
 
 ol ::marker {
     color: var(--color-text-detail);
+    font-weight: 550;
 }
 
 :is(a, .link) {
@@ -457,6 +457,7 @@ ol ::marker {
     }
 
 :where(p, ul, ol, blockquote, table, figure, pre, details) {
+    margin-block-start: 0;
     margin-block-end: 0.5rlh;
 }
 
@@ -651,13 +652,6 @@ u {
         }
     }
 
-.title {
-    text-decoration: underline;
-    text-underline-offset: 0.6ex;
-    text-decoration-style: wavy;
-    text-decoration-color: var(--accent);
-}
-
 .Note header h1 a {
         color: var(--color-text-high-contrast);
     }
@@ -823,7 +817,6 @@ POSTS LIST
 .PostItem time {
         font-size: var(--f5);
         font-variant-numeric: tabular-nums;
-        letter-spacing: var(--tracking-f0);
     }
 
 .PostItem time:not(.PostItem:hover :is(.PostItem time)) {
@@ -1001,8 +994,55 @@ PROSE
         font-size: var(--f2);
     }
 
+:is(.recipe-metadata) {
+    font-weight: 650;
+}
+
+:is(.recipe-cookwares, .recipe-ingredients, .recipe-metadata, .recipe-instructions) h2 {
+    display: none;
+}
+
+:is(.recipe-metadata, .recipe-ingredients, .recipe-cookwares) :is(ul, ol) {
+        list-style: none;
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+.recipe-cookwares h2 {
+        font-family: var(--sans);
+        font-size: var(--f4);
+    }
+
+.recipe-ingredients, .recipe--ingredient {
+    font-weight: 430;
+    color: var(--color-text-high-contrast);
+}
+
+.recipe-instructions {
+    border-top: 1px solid var(--border-color);
+    margin-top: 1lh;
+    padding-top: 1lh;
+}
+
+.recipe-instructions ol li {
+        margin-bottom: 0.25lh;
+    }
+
+@supports (text-indent: 1lh hanging) {
+
+.recipe-instructions ol {
+            list-style: none;
+            padding-left: 0;
+            margin-left: 0;
+    }
+
+            .recipe-instructions ol li {
+                text-indent: 1lh hanging;
+            }
+        }
+
 .recipe--timer {
-    font-weight: 700;
+    font-weight: 650;
     text-decoration: underline;
     text-underline-offset: 0.6ex;
     text-decoration-style: wavy;
@@ -1012,7 +1052,8 @@ PROSE
 .recipe--ingredient {
     text-decoration: underline;
     text-decoration-style: dotted;
-    text-underline-offset: 0.6ex;
+    text-underline-offset: 0.4ex;
+    text-decoration-color: var(--color-faint);
 }
 
 .recipe--cookware {
