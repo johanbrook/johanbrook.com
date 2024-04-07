@@ -63,6 +63,10 @@
     text-underline-offset: 0.2ex;
 }
 
+:where(ul) {
+    list-style-type: disc;
+}
+
 :where(ul[role='list'], ol[role='list']) {
     list-style: none;
 }

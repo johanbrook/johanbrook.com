@@ -6,7 +6,7 @@ menu:
   top: true
 ---
 
-{% set recipes = search.pages("type=recipe", "date=desc") %}
+{% set recipes = search.pages("type=recipe", "has_tried=desc") %}
 
 <main role="main" class="posts h-feed">
     <header class="mb3">
@@ -14,9 +14,10 @@ menu:
         <p class="subhead mb0">A mix of my own and other's recipes I'd like to collect.</p>
     </header>
 
-    <ul>
+    <ul role="list">
         {% for recipe in recipes %}
         <li class="h-entry" id="{{ recipe.url | url(true) }}">
+            {% if recipe.has_tried %}☑{% else %}☒{% endif %}
             <a class="u-url" href="{{ recipe.url | url }}">{{ recipe.title }}</a>
         </li>
         {% endfor %}
