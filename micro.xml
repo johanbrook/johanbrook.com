@@ -5,8 +5,21 @@
     <link>https://johan.im/</link>
     <atom:link href="https://johan.im/micro.xml" rel="self" type="application/rss+xml"/>
     <description></description>
-    <lastBuildDate>Mon, 08 Apr 2024 08:14:21 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 08 Apr 2024 10:47:52 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>April 8 — 12:29</title>
+      <link>https://johan.im/micro/20240408122909/</link>
+      <guid isPermaLink="false">https://johan.im/micro/20240408122909/</guid>
+      <content:encoded>
+        <![CDATA[<p>Being on parental leave is like a brain reset. I experienced the same thing with the first child, and now with the second. My everyday life has shrunk, in a good way, to revolve around the simplest tasks, such as going grocery shopping for extended periods, going to the gym (with the baby sleeping in the stroller), and regular household chores. I guess most modern people (probably men) dread these tasks, but I've come to love them. Being able to focus on the things I do in a rush in normal life is so great.</p>
+        <p>Life has slowed down. Nothing is in such great rush. If I do a single chore in a day, that's fine.</p>
+        <p>When it comes to having creative outlets, I've worked a lot on this site. My new strategy is to work in short bursts of output, and it must be <em>driven by passion</em>. That is, when I open the laptop lid, I start working on the first thing that comes to mind, may it be tweaking typography in CSS, reworking some content structure, fixing mobile nav bugs. <em>Anything</em> that brings me joy and is kind-of achievable in the present moment until the baby wakes up. It's been working great so far, and it gives me some sense of accomplishment between buying milk and picking up the other daughter from preschool.</p>
+        <p>I wish I and anyone could apply this mindset to when we're not on an extended leave.</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Mon, 08 Apr 2024 10:29:09 GMT</pubDate>
+    </item>
     <item>
       <title>March 24 — 15:31</title>
       <link>https://johan.im/micro/20240324153148/</link>
@@ -209,17 +222,6 @@
         ]]>
       </content:encoded>
       <pubDate>Wed, 13 Dec 2023 20:15:35 GMT</pubDate>
-    </item>
-    <item>
-      <title>December 10, 2023 — 11:58</title>
-      <link>https://johan.im/micro/202312101058/</link>
-      <guid isPermaLink="false">https://johan.im/micro/202312101058/</guid>
-      <content:encoded>
-        <![CDATA[<p>Today is a Red Hot Chili Peppers day.
-        <a href="https://open.spotify.com/playlist/6l2elAUv3W4sCfPxN3my8g?si=MbrzW2QsTyS4VCiolOE4BQ&amp;pi=e-3oMu2Wv1S5Sx">Here’s my playlist</a>.</p>
-        ]]>
-      </content:encoded>
-      <pubDate>Sun, 10 Dec 2023 10:58:33 GMT</pubDate>
     </item>
   </channel>
 </rss>
