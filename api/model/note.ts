@@ -45,7 +45,7 @@ export const add = async (host: FileHost, input: NoteInput): Promise<[Note, stri
         meta: {
             date: metaDate,
             location: input.location,
-            timezone: input.zonedDateTime.timeZoneId.toString(),
+            timezone: input.zonedDateTime.timeZone.toString(),
             tags: input.tags,
         },
     };
