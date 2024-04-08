@@ -21,7 +21,11 @@
     <meta name="author" content="{{ meta.author }}">
 
     <!-- Styles-->
-    <link rel="stylesheet" href="/johan.css">
+    {% if isCSSNakedDay() %}
+        <!-- Naked Day has no styles: https://css-naked-day.github.io -->
+    {% else %}
+        <link rel="stylesheet" href="/johan.css">
+    {% endif %}
 
     <!-- Feeds -->
     <link rel="alternate" type="application/rss+xml" title="Johan Brook: Posts feed (RSS)" href="/writings.xml">
@@ -66,6 +70,13 @@
 
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+
+     {% if isCSSNakedDay() %}
+        <aside>
+            <h1>Do you think my site is looking weird? That's because I've removed all styling only for today, <time>April 9th</time>, because it's <a href="https://css-naked-day.github.io">CSS Naked Day</a>!</h1>
+        </aside>
+        <hr />
+     {% endif %}
 
 	  <div class="Content{% if wide %} wide{% endif %}">
 

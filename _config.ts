@@ -156,6 +156,12 @@ site.use(typeset({ scope: '.prose' }))
     .data('pageSlug', function (this: ThisContext) {
         return this.ctx.url.replaceAll('/', '');
     })
+    .data('isCSSNakedDay', () => {
+        // https://css-naked-day.github.io
+        const now = new Date();
+
+        return now.getMonth() == 3 && now.getDate() == 9;
+    })
     .data('parent', function (this: ThisContext) {
         switch (this.ctx.page.data.type) {
             case 'post':
