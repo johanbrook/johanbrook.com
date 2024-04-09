@@ -22,7 +22,7 @@
 }
 
 .recipe-ingredients, .recipe--ingredient {
-    font-weight: 430;
+    font-weight: var(--fw-stronger);
     color: var(--color-text-high-contrast);
 }
 

@@ -24,7 +24,7 @@ menu:
                 <h1 class="mv0">{{ year }}</h1>
                 <p class="muted mb0 font-sans f5">{{ bookz.length }} books</p>
             </header>
-    		<table class="textual f5">
+    		<table class="f5">
                	<tr>
               		<th>Title</th>
               		<th>Author</th>
@@ -33,14 +33,14 @@ menu:
                	</tr>
                 {% for book in bookz | reverse %}
                     <tr id="{{ book.slug }}">
-                   	<td width="25%" class="text-color-contrast">
+                   	<td width="25%" class="text-color-contrast f4">
        					<a href="{{ '/reading' | url }}/{{book.slug}}/" class="no-link">{{ book.title }}  <span class="muted">→</span></a>
                    	</td>
                    	<td width="15%">
                   		{{ book.author }}
                    	</td>
                    	<td>
-       					{{ book.notes | excerpt | md(true) | safe }}
+       					<div class="prose">{{ book.notes | excerpt | md | safe }}</div>
 
                         {% if didExcerpt(book.notes) %}
                             <p class="f6 mb0">

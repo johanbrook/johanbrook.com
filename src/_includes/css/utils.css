@@ -84,6 +84,10 @@ FONT WEIGHTS
     font-weight: bold;
 }
 
+.stronger {
+    font-weight: var(--fw-stronger);
+}
+
 .fw1 {
     font-weight: 100;
 }
@@ -882,7 +886,6 @@ COLOURS
 
 .subhead {
     color: var(--color-text-detail);
-    font-family: var(--sans);
 }
 
 /*

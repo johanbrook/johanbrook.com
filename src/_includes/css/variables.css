@@ -68,14 +68,16 @@
 
     --leading: 1.618;
 
+    --fw-stronger: 450;
+
     --tracking: -0.014em;
     --tracking-f0: 0;
     --tracking-f1: -0.021em;
     --tracking-f2: -0.02em;
     --tracking-f3: -0.018em;
-    --tracking-f4: -0.014em;
-    --tracking-f5: -0.009em;
-    --tracking-f6: -0.0025em;
+    --tracking-f4: 0;
+    --tracking-f5: 0;
+    --tracking-f6: 0;
 
     /* @link @link https://utopia.fyi/clamp/calculator?a=320,653,32—60 */
     @utopia clamps({

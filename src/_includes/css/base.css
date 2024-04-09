@@ -51,13 +51,12 @@ input, textarea {
 :where(h1, h2, h3, h4, h5, h6) {
     margin-block-end: 0.5rlh;
     color: var(--color-text-high-contrast);
-    font-family: var(--serif);
+    font-weight: 600;
 }
 
 :is(.f0, .title) {
     font-family: var(--sans);
     font-size: var(--f0);
-    font-weight: 650;
     letter-spacing: var(--tracking-f0);
 }
 
@@ -189,6 +188,7 @@ img {
 
 figcaption {
     color: var(--grey);
+    font-family: var(--sans);
 }
 
 table {
@@ -206,14 +206,14 @@ tr {
     }
 
     & > td:first-of-type {
-        font-weight: bold;
+        font-weight: 600;
     }
 }
 
 th {
     border-bottom: 3px double var(--grey);
     padding: var(--spacing);
-    font-weight: bold;
+    font-weight: 850;
     position: sticky;
     top: 0;
     background-color: var(--color-bg);

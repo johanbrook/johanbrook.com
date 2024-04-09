@@ -3,10 +3,22 @@ layout: layouts/main.njk
 home: true
 ---
 <main role="main">
-    <article class="mb4">
-       	<h1 class="title leading-none hide-mobile mb4">Welcome</h1>
+    <article class="mb4 stronger">
+       	<h1 class="title leading-none hide-mobile mb2">Welcome</h1>
 
-      	<div>{{ content | safe }}</div>
+      	<div class="prose">{{ content | safe }}</div>
+
+       {% if currentBook() %}
+       <hr />
+
+       <p>I'm currently <a href="/reading">reading</a> “<u class="b">{{ currentBook().title }}</u>” by {{ currentBook().author }}.
+
+       {% endif %}
+
+       <hr />
+
+       <p>My fav track <time title="Updated at {{ current_track.updatedAt | date('yyyy-MM-dd')}}" datetime="{{ current_track.updatedAt }}">at the moment</time> is ♫ <u class="b">{{ current_track.name }}</u> by {{ current_track.artist }}.</p>
+
 
     </article>
 

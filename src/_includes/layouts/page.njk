@@ -4,8 +4,8 @@ layout: layouts/main.njk
 
 <main role="main">
   <article class="Page">
-    <header class="mb3">
-        <h1 class="title {{ "comp-" + color if color }}">{{ title }}</h1>
+    <header>
+        <h1 class="title mb0 {{ "comp-" + color if color }}">{{ title }}</h1>
     	{% if subtitle %}
     		<p class="subhead mb0">{{ subtitle | md(true) | safe }}</p>
     	{% endif %}

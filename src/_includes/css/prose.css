@@ -4,6 +4,10 @@ PROSE
 
 .prose {
 
+    :where(h1, h2, h3, h4, h5, h6) {
+        font-family: var(--serif);
+    }
+
     h1 {
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 0.25lh;
