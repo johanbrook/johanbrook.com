@@ -221,14 +221,16 @@ Remove the inheritance of text transform in Edge and Firefox.
 
     --leading: 1.618;
 
+    --fw-stronger: 450;
+
     --tracking: -0.014em;
     --tracking-f0: 0;
     --tracking-f1: -0.021em;
     --tracking-f2: -0.02em;
     --tracking-f3: -0.018em;
-    --tracking-f4: -0.014em;
-    --tracking-f5: -0.009em;
-    --tracking-f6: -0.0025em;
+    --tracking-f4: 0;
+    --tracking-f5: 0;
+    --tracking-f6: 0;
 
     --f0: var(--step-title-32-48);
     --f1: var(--step-3);
@@ -344,13 +346,12 @@ input, textarea {
 :where(h1, h2, h3, h4, h5, h6) {
     margin-block-end: 0.5rlh;
     color: var(--color-text-high-contrast);
-    font-family: var(--serif);
+    font-weight: 600;
 }
 
 :is(.f0, .title) {
     font-family: var(--sans);
     font-size: var(--f0);
-    font-weight: 650;
     letter-spacing: var(--tracking-f0);
 }
 
@@ -481,6 +482,7 @@ img {
 
 figcaption {
     color: var(--grey);
+    font-family: var(--sans);
 }
 
 table {
@@ -497,13 +499,13 @@ tr:target {
     }
 
 tr > td:first-of-type {
-        font-weight: bold;
+        font-weight: 600;
     }
 
 th {
     border-bottom: 3px double var(--grey);
     padding: var(--spacing);
-    font-weight: bold;
+    font-weight: 850;
     position: sticky;
     top: 0;
     background-color: var(--color-bg);
@@ -868,6 +870,10 @@ POSTS LIST
 PROSE
 ----------------------------------------------------------------*/
 
+.prose :where(h1, h2, h3, h4, h5, h6) {
+        font-family: var(--serif);
+    }
+
 .prose h1 {
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 0.25lh;
@@ -1014,7 +1020,7 @@ PROSE
     }
 
 .recipe-ingredients, .recipe--ingredient {
-    font-weight: 430;
+    font-weight: var(--fw-stronger);
     color: var(--color-text-high-contrast);
 }
 
@@ -1059,6 +1065,10 @@ PROSE
 .recipe--cookware {
     font-style: italic;
 }
+
+.Book header {
+        font-family: var(--serif);
+    }
 
 /* Small caps */
 
@@ -1218,6 +1228,10 @@ FONT WEIGHTS
 
 .b {
     font-weight: bold;
+}
+
+.stronger {
+    font-weight: var(--fw-stronger);
 }
 
 .fw1 {
@@ -2019,7 +2033,6 @@ COLOURS
 
 .subhead {
     color: var(--color-text-detail);
-    font-family: var(--sans);
 }
 
 /*
