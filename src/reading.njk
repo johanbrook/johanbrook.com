@@ -33,14 +33,14 @@ menu:
                	</tr>
                 {% for book in bookz | reverse %}
                     <tr id="{{ book.slug }}">
-                   	<td width="25%" class="text-color-contrast f4">
+                   	<td width="25%" class="text-color-contrast">
        					<a href="{{ '/reading' | url }}/{{book.slug}}/" class="no-link">{{ book.title }}  <span class="muted">→</span></a>
                    	</td>
                    	<td width="15%">
                   		{{ book.author }}
                    	</td>
                    	<td>
-       					<div class="prose">{{ book.notes | excerpt | md | safe }}</div>
+       					<div class="prose f6">{{ book.notes | excerpt | md | safe }}</div>
 
                         {% if didExcerpt(book.notes) %}
                             <p class="f6 mb0">
@@ -57,10 +57,10 @@ menu:
          			            {% else %}
           		              		{% if book.finished %}
          		              			{% if book.finishedAt %}
-        		              				<time datetime="{{ book.finishedAt }}">{{ book.finishedAt | tdate('Date') }}</time><br>
+        		              				<time class="fw5" datetime="{{ book.finishedAt }}">{{ book.finishedAt | tdate('HumanDate') }}</time><br>
          		              			{% endif %}
          		              			{% if book.location %}
-        		              				<small class="font-sans fw4" title="Finished in">{{ book.location }}</small>
+        		              				<small class="font-sans muted" title="Finished in">{{ book.location }}</small>
          		              			{% endif %}
           		              		{% else %}
          			              		<span class="Badge Badge--positive">Reading</span>
