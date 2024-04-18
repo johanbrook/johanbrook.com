@@ -5,7 +5,7 @@
     <link>https://johan.im/</link>
     <atom:link href="https://johan.im/writings.xml" rel="self" type="application/rss+xml"/>
     <description></description>
-    <lastBuildDate>Thu, 18 Apr 2024 08:31:39 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 18 Apr 2024 08:32:21 GMT</lastBuildDate>
     <language>en</language>
     <item>
       <title>Posting to Mastodon when deploying a static site</title>
