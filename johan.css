@@ -1066,10 +1066,6 @@ PROSE
     font-style: italic;
 }
 
-.Book header {
-        font-family: var(--serif);
-    }
-
 /* Small caps */
 
 .small-caps {
