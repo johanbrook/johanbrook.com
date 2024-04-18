@@ -3,42 +3,23 @@ layout: layouts/main.njk
 ---
 
 <main role="main">
-    <article class="Book">
-        <header>
-            <h1 class="mb1">“{{ title }}”</h1>
-            <p class="subhead mb5"><i>By</i> {{ author }}</p>
-        </header>
+    <article>
+        <header class="mb3">
+            <h1 class="mb1 font-serif">“{{ title }}”</h1>
+            <p class="subhead mb4"><i>By</i> {{ author }}</p>
 
-        <table>
-            <tr>
-                <th>Status</th>
-                {% if finishedAt %}
-                <th>Finished at</th>
+            <p class="muted f6 border border-t pt2">
+                {% if finished %}
+                    ☑ ︎I've finished this book{% if finishedAt %} on <time datetime="{{ finishedAt | tdate('Machine')}}">{{ finishedAt | tdate('HumanDate') }}</time>{% endif %}
+                {% elif paused %}
+                    ☒ I've paused this book
+                {% elif dropped %}
+                    ☒ I dropped this book
+                {% else %}
+                    ☒ I'm currently reading this book
                 {% endif %}
-            </tr>
-            <tr>
-                <td class="f6 no-wrap align-middle">
-                    {% if dropped %}
-                    <span class="Badge Badge--muted">Dropped</span>
-                    {% else %} {% if paused %}
-                    <span class="Badge Badge--warn">Paused</span>
-                    {% else %} {% if finished %}
-                    <span class="Badge Badge--positive">Finished</span>
-                    {% else %}
-                    <span class="Badge Badge--positive">Reading</span>
-                    {% endif %} {% endif %} {% endif %}
-                </td>
-                {% if finishedAt %}
-                <td class="leading-tight">
-                    <time datetime="{{ finishedAt }}">{{ finishedAt | tdate('Date') }}</time
-                    ><br />
-                    {% if location %}
-                    <small class="fw4 f6 font-sans" title="Finished in">{{ location }}</small>
-                    {% endif %}
-                </td>
-                {% endif %}
-            </tr>
-        </table>
+            </p>
+        </header>
 
         <div class="prose">{{ notes | md | safe }}</div>
 
