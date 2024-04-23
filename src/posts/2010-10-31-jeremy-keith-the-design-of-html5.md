@@ -2,13 +2,8 @@
 title: 'Jeremy Keith: The Design of HTML5'
 link: 'http://adactio.com/articles/1704/'
 date: 2010-10-31
-keywords:
-    - Fronteers
-    - HTML5
-    - Semantics
-    - Transcript
-    - 'Web standards'
-    - XHTML
+tags:
+    - dev
 category: HTML
 slug: jeremy-keith-the-design-of-html5
 ---

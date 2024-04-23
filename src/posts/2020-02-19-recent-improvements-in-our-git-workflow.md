@@ -4,10 +4,9 @@ slug: git-guidelines
 date: 2020-02-23
 location: My desk in Stockholm
 excerpt: The git history of a repository a few years in or with more than one collaborator will look like thick weed unless you take care of it. During last Autumn in Lookback, the engineering team noticed that we needed to take care of some weeds.
-keywords:
-  - git
-  - commit messages
-  - rebase
+tags:
+    - dev
+    - git
 ---
 
 The git history of a repository a few years in or with more than one collaborator will look like

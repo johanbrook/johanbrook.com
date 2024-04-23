@@ -2,11 +2,8 @@
 title: 'Windows Phone 7 needs activation for Live'
 link: 'http://www.neowin.net/news/windows-phone-7-live-activation-issues'
 date: 2010-10-25
-keywords:
-    - Activation
-    - Microsoft
-    - 'Phone 7'
-    - Windows
+tags:
+    - random
 category: 'Everything else'
 slug: windows-phone-7-needs-activation-for-live
 ---

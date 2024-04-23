@@ -2,13 +2,9 @@
 title: 'Native retweets to Tweetie for Mac with ReTweetie'
 link: 'http://nickpaulson.com/retweetie/'
 date: 2010-12-11
-keywords:
-    - plugin
-    - Retweet
-    - Retweetie
-    - SIMBL
-    - Tweetie
-    - Twitter
+tags:
+    - software
+    - internet
 category: Tools
 slug: native-retweets-to-tweetie-for-mac-with-retweetie
 ---

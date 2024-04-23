@@ -2,11 +2,8 @@
 title: 'Firesheep – why HTTPS is important'
 link: 'http://codebutler.com/firesheep'
 date: 2010-10-25
-keywords:
-    - Firefox
-    - Firesheep
-    - HTTPS
-    - SSL
+tags:
+    - dev
 category: Security
 slug: firesheep-why-https-is-important
 ---

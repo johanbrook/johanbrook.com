@@ -1,14 +1,8 @@
 ---
 title: 'Realigning Johanbrook.com'
 date: 2012-02-12
-keywords:
-    - CSS
-    - Design
-    - Redesign
-    - Typography
-    - layout
-    - 'golden ratio'
-    - grid
+tags:
+    - johan.im
 category: 'This site'
 slug: realigning-johanbrookcom
 ---

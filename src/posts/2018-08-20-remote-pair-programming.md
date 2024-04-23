@@ -2,12 +2,8 @@
 title: Better Remote Pair Programming
 slug: remote-pair-programming
 date: 2018-08-24
-keywords:
-  - pair programming
-  - remote
-  - vs code
-  - real time
-  - sharing
+tags:
+    - dev
 excerpt: How to improve pair programming for remote developers, with a few simple tools.
 ---
 

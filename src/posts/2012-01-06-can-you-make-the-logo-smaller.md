@@ -2,10 +2,8 @@
 title: '"Can you make the logo smaller?"'
 link: 'http://www.impressivewebs.com/things-we-wish-clients-would-say/'
 date: 2012-01-06
-keywords:
-    - Clients
-    - Freelancing
-    - requests
+tags:
+    - design
 category: Freelancing
 slug: can-you-make-the-logo-smaller
 ---

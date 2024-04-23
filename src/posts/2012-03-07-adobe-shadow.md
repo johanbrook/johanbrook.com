@@ -2,17 +2,8 @@
 title: 'Adobe Shadow – Device preview and debugging'
 link: 'http://labs.adobe.com/technologies/shadow/'
 date: 2012-03-07
-keywords:
-    - CSS
-    - Debugging
-    - HTML
-    - iPad
-    - iPhone
-    - Mobile
-    - 'Web Inspector'
-    - Adobe
-    - Shadow
-    - remote
+tags:
+    - dev
 category: Tools
 slug: adobe-shadow-device-preview-and-debugging
 ---

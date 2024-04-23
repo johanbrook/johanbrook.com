@@ -2,15 +2,8 @@
 title: '"Stop solving problems you don''t have"'
 link: 'http://www.rachelandrew.co.uk/archives/2012/03/21/stop-solving-problems-you-dont-yet-have/'
 date: 2012-03-23
-keywords:
-    - Boilerplate
-    - Code
-    - CSS
-    - Framework
-    - HTML
-    - Javascript
-    - Minimalism
-    - bloat
+tags:
+    - dev
 category: Frameworks
 slug: stop-solving-problems-you-dont-have
 ---

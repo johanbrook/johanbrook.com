@@ -2,13 +2,8 @@
 title: 'PHP needs to die'
 link: 'http://seldo.com/weblog/2011/08/11/php_needs_to_die_what_will_replace_it'
 date: 2011-10-05
-keywords:
-    - Languages
-    - PHP
-    - Python
-    - Rails
-    - Ruby
-    - 'Web development'
+tags:
+    - dev
 category: Development
 slug: php-needs-to-die
 ---

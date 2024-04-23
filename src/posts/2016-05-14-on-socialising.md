@@ -1,11 +1,8 @@
 ---
 title: 'On Socialising'
 date: 2016-05-14
-keywords:
-    - alcohol
-    - social
-    - society
-    - 'south america'
+tags:
+    - travels
 slug: on-socialising
 ---
 

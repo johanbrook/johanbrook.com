@@ -1,10 +1,8 @@
 ---
 title: 'Linked List style posts in Wordpress'
 date: 2010-10-27
-keywords:
-    - 'Custom fields'
-    - Functions.php
-    - RSS
+tags:
+    - dev
 category: Wordpress
 slug: linked-list-style-posts-in-wordpress
 ---
@@ -40,21 +38,21 @@ talking about. How to create this in Wordpress? I first tried to hack the RSS fi
 but that's seldom a good thing. You should leave the core files alone. Instead, you can filter the
 template tag for outputting the RSS heading in your `functions.php` :
 
-    function johan_permalink_rss($content) { 
-       global $wp_query; 
-       $postid = $wp_query->post->ID; 
-       $link = get_post_meta($postid, 'Link', true); 
+    function johan_permalink_rss($content) {
+       global $wp_query;
+       $postid = $wp_query->post->ID;
+       $link = get_post_meta($postid, 'Link', true);
 
-       if(is_feed()) { 
-          if($link !== '') { 
-             $content = $link; 
-          } else { 
-             $content = get_permalink($postid); 
-          } 
-       } 
-       
-       return $content; 
-    } 
+       if(is_feed()) {
+          if($link !== '') {
+             $content = $link;
+          } else {
+             $content = get_permalink($postid);
+          }
+       }
+
+       return $content;
+    }
 
     add_filter('the_permalink_rss', 'johan_permalink_rss');
 

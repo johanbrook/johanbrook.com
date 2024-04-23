@@ -1,13 +1,9 @@
 ---
 title: 'Songs to code by'
 date: 2012-02-06
-keywords:
-    - Music
-    - programming
-    - Spotify
-    - playlist
-    - coding
-    - techno
+tags:
+    - dev
+    - listening
 category: Music
 slug: songs-to-code-by
 ---

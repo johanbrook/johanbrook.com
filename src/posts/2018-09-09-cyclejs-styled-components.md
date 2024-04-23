@@ -3,14 +3,10 @@ title: Styled components in a virtual DOM
 slug: styled-components-vdom
 date: 2018-09-09
 excerpt: Learn how to create re-usable styled components in a virtual DOM. This post describes how one can use functional CSS (small, atomical classes) together with a higher order component and create pre-styled components.
-keywords:
-  - cyclejs
-  - virtual dom
-  - typescript
-  - components
-  - css
-  - styled components
-  - functional css
+tags:
+    - dev
+    - javascript
+    - css
 ---
 
 **At Lookback, we've recently tried out using CycleJS** for a web client code base. [CycleJS][1] is

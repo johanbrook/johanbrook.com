@@ -4,6 +4,8 @@ link: 'http://www.informationisbeautiful.net/2010/whos-suing-whom-in-the-telecom
 date: 2010-10-19
 category: 'Everything else'
 slug: whos-suing-whom
+tags:
+    - internet
 ---
 
 It's not easy to keep track of every tech company that's in legal actions with others nowadays.

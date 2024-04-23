@@ -2,11 +2,8 @@
 title: 'Visualizing WebKit''s hardware acceleration'
 link: 'http://mir.aculo.us/2011/02/08/visualizing-webkits-hardware-acceleration/'
 date: 2011-02-08
-keywords:
-    - Acceleration
-    - Hardware
-    - Overlay
-    - Webkit
+tags:
+    - dev
 category: Tools
 slug: visualizing-webkits-hardware-acceleration
 ---

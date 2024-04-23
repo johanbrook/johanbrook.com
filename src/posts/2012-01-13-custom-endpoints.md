@@ -1,14 +1,8 @@
 ---
 title: 'Adding custom URL endpoints in Wordpress'
 date: 2012-01-13
-keywords:
-    - Custom
-    - PHP
-    - URL
-    - Wordpress
-    - endpoint
-    - rewrite
-    - template
+tags:
+    - dev
 category: Wordpress
 slug: adding-custom-url-endpoints-in-wordpress
 ---
@@ -82,17 +76,17 @@ render when this URL is visited. It's doable! Check out the
     */
     function project_attachments_template($templates = ""){
     	global $wp_query;
-    	
+
     	// If the 'photos' endpoint isn't appended to the URL,
     	// don't do anything and return
     	if(!isset( $wp_query->query['photos'] ))
     		return $templates;
-    	
+
     	// .. otherwise, go ahead and add the 'photos.php' template
     	// instead of 'single-{$type}.php'.
     	if(!is_array($templates) && !empty($templates)) {
     		$templates = locate_template(array("photos.php", $templates),false);
-    	} 
+    	}
     	elseif(empty($templates)) {
     		$templates = locate_template("photos.php",false);
     	}
@@ -100,7 +94,7 @@ render when this URL is visited. It's doable! Check out the
     		$new_template = locate_template(array("photos.php"));
     		if(!empty($new_template)) array_unshift($templates,$new_template);
     	}
-    	
+
 
     	return $templates;
     }

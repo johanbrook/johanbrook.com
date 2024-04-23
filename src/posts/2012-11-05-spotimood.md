@@ -1,12 +1,9 @@
 ---
 title: Spotimood
 date: 2012-11-05
-keywords:
-    - Music
-    - Spotify
-    - Spotimood
-    - mood
-    - discovery
+tags:
+    - dev
+    - listening
 category: Music
 slug: spotimood
 ---

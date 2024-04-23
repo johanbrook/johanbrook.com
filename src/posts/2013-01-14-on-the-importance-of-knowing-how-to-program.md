@@ -2,13 +2,9 @@
 title: 'On the importance of knowing how to program'
 link: 'http://sivers.org/prog'
 date: 2013-01-14
-keywords:
-    - 'Jack of all trades'
-    - Specialist
-    - unicorns
-    - designer
-    - developer
-    - hybrid
+tags:
+    - dev
+    - worklife
 category: Business
 slug: on-the-importance-of-knowing-how-to-program
 ---

@@ -2,14 +2,8 @@
 title: 'Five record breaking torrent files'
 link: 'http://torrentfreak.com/5-torrent-files-that-broke-mind-boggling-records-101107/'
 date: 2010-11-09
-keywords:
-    - Largest
-    - Memorial
-    - Oldest
-    - Record
-    - Roundup
-    - Torrent
-    - Torrentfreak
+tags:
+    - internet
 category: 'Everything else'
 slug: five-record-breaking-torrent-files
 ---

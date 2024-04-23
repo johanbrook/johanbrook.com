@@ -1,12 +1,8 @@
 ---
 title: 'A Greenhorn''s Freelance Advice'
 date: 2011-09-16
-keywords:
-    - Advice
-    - Beginner
-    - experience
-    - Freelancing
-    - Newbie
+tags:
+    - worklife
 category: Freelancing
 slug: a-greenhorns-freelance-advice
 ---

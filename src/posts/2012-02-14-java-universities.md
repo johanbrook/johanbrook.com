@@ -1,15 +1,8 @@
 ---
 title: 'Java and beginner programming courses at universities'
 date: 2012-02-14
-keywords:
-    - 'Computer Science'
-    - education
-    - Java
-    - programming
-    - Ruby
-    - university
-    - learning
-    - class
+tags:
+    - dev
 category: Development
 slug: java-and-beginner-programming-courses-at-universities
 ---

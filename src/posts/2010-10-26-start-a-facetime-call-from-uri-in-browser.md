@@ -1,11 +1,8 @@
 ---
 title: 'Start a Facetime call from URI in browser'
 date: 2010-10-26
-keywords:
-    - Facetime
-    - Scheme
-    - URI
-    - URL
+tags:
+    - dev
 category: Resources
 slug: start-a-facetime-call-from-uri-in-browser
 ---

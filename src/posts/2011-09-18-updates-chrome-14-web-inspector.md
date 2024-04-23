@@ -1,16 +1,8 @@
 ---
 title: 'Subtle updates to Chrome 14''s Web Inspector'
 date: 2011-09-18
-keywords:
-    - active
-    - Chrome
-    - CSS
-    - Debugging
-    - Google
-    - hover
-    - States
-    - 'Web Inspector'
-    - Webkit
+tags:
+    - dev
 category: Browsers
 slug: subtle-updates-to-chrome-14s-web-inspector
 ---

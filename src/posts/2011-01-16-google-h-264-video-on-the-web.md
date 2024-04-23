@@ -2,12 +2,8 @@
 title: '"Google, H.264 and video on the web"'
 link: 'http://farukat.es/journal/2011/01/488-google-h264-and-video-web'
 date: 2011-01-16
-keywords:
-    - Chrome
-    - Google
-    - H.264
-    - 'Web standards'
-    - WebM
+tags:
+    - dev
 category: 'The internet'
 slug: google-h264-and-video-on-the-web
 ---

@@ -2,13 +2,9 @@
 title: 'A fix for antialiasing issues in WebKit browsers'
 link: 'http://technology.posterous.com/webkit-hardware-acceleration-bleeding-into-su'
 date: 2011-05-19
-keywords:
-    - 3D
-    - Antialiasing
-    - CSS
-    - Jagged
-    - Text
-    - 'WebKit Transform'
+tags:
+    - dev
+    - css
 category: CSS
 slug: a-fix-for-antialiasing-issues-in-webkit-browsers
 ---

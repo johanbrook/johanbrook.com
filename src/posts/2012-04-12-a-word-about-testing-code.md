@@ -2,15 +2,8 @@
 title: 'A word about testing code'
 link: 'http://37signals.com/svn/posts/3159-testing-like-the-tsa'
 date: 2012-04-12
-keywords:
-    - Code
-    - testing
-    - 'unit test'
-    - coverage
-    - ratio
-    - tests
-    - TDD
-    - 'Test Driven Development'
+tags:
+    - dev
 category: Development
 slug: a-word-about-testing-code
 ---

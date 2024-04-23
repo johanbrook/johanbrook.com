@@ -1,15 +1,8 @@
 ---
 title: 'Jawbone''s Jambox'
 date: 2012-08-03
-keywords:
-    - iPhone
-    - Jawbone
-    - Jambox
-    - speaker
-    - bluetooth
-    - wireless
-    - portable
-    - review
+tags:
+    - things
 category: Reviews
 slug: jawbones-jambox
 ---

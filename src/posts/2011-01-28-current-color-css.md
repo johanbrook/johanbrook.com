@@ -2,11 +2,9 @@
 title: 'Use the current color in CSS with the currentcolor keyword'
 link: 'http://nimbupani.com/current-color-in-css.html'
 date: 2011-01-28
-keywords:
-    - color
-    - CSS
-    - 'current color'
-    - inherit
+tags:
+    - dev
+    - css
 category: CSS
 slug: use-the-current-color-in-css-with-the-currentcolor-keyword
 ---

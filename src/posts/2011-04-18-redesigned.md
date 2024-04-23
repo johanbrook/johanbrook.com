@@ -1,8 +1,8 @@
 ---
 title: Redesigned
 date: 2011-04-18
-keywords:
-    - Redesign
+tags:
+    - johan.im
 category: 'This site'
 slug: redesigned
 ---

@@ -1,10 +1,8 @@
 ---
 title: 'Conditionally Composable Functions'
 date: 2016-05-21
-keywords:
-    - code
-    - 'functional programming'
-    - javascript
+tags:
+    - dev
 slug: conditionally-composable-functions
 ---
 

@@ -1,15 +1,8 @@
 ---
 title: 'Customizing the Wordpress Admin Bar'
 date: 2011-03-03
-keywords:
-    - '3.1'
-    - 'Add menu'
-    - 'Admin Bar'
-    - Customize
-    - Functions.php
-    - Hook
-    - Menu
-    - Wordpress
+tags:
+    - dev
 category: Wordpress
 slug: customizing-the-wordpress-admin-bar
 ---

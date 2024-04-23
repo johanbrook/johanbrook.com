@@ -1,15 +1,8 @@
 ---
 title: 'Dyluni for Wordpress'
 date: 2011-01-11
-keywords:
-    - Boilerplate
-    - CSS
-    - Dyluni
-    - Naked
-    - Sass
-    - Stripped
-    - Theme
-    - Wordpress
+tags:
+    - dev
 category: Frameworks
 slug: dyluni-for-wordpress
 ---

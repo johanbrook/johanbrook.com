@@ -1,12 +1,9 @@
 ---
 title: 'Relative positioning and CSS Columns'
 date: 2011-05-23
-keywords:
-    - Antialiasing
-    - Columns
-    - CSS
-    - 'position: relative'
-    - 'Relative positioning'
+tags:
+    - dev
+    - css
 category: CSS
 slug: relative-positioning-and-css-columns
 ---

@@ -1,17 +1,8 @@
 ---
 title: 'Device independency'
 date: 2012-04-04
-keywords:
-    - content
-    - iPad
-    - iPhone
-    - Mobile
-    - 'Responsive Web Design'
-    - 'device independency'
-    - desktop
-    - tablet
-    - phone
-    - apps
+tags:
+    - dev
 category: 'User Experience'
 slug: device-independency
 ---

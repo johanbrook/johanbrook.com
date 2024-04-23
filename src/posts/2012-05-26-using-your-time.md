@@ -2,12 +2,8 @@
 title: 'On using your time'
 link: 'http://www.gsb.stanford.edu/news/research/aaker_happiness_2011.html'
 date: 2012-05-26
-keywords:
-    - time
-    - happiness
-    - prioritize
-    - mangement
-    - tasks
+tags:
+    - worklife
 category: Life
 slug: on-using-your-time
 ---

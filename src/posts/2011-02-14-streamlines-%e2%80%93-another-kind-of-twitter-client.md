@@ -2,13 +2,8 @@
 title: 'Streamlines – another kind of Twitter client'
 link: 'http://stevestreza.com/2011/02/12/streamlines-the-social-network-iphone-client-that-never-was/'
 date: 2011-02-14
-keywords:
-    - Client
-    - iOS
-    - 'Steve Streza'
-    - Streamlines
-    - Twitter
-    - UI
+tags:
+    - software
 category: Development
 slug: streamlines-another-kind-of-twitter-client
 ---

@@ -4,11 +4,8 @@ slug: coding-like-knitting
 date: 2019-12-08
 location: From my couch in Stockholm
 excerpt: <excerpt>
-keywords:
-  - coding
-  - programming
-  - knitting
-  - meditation
+tags:
+    - dev
 ---
 
 A colleague mentioned this the other day in the company chat:

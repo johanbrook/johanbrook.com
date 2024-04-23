@@ -1,20 +1,9 @@
 ---
 title: 'How I set up my web development environment on OS X Lion'
 date: 2012-02-21
-keywords:
-    - Compass
-    - Git
-    - Javascript
-    - 'Mac OS X'
-    - Ruby
-    - SCSS
-    - 'Web development'
-    - Node.js
-    - setup
-    - Homebrew
-    - UNIX
-    - bash
-    - install
+tags:
+    - dev
+    - software
 category: Development
 slug: how-i-set-up-my-web-development-environment-on-os-x-lion
 ---

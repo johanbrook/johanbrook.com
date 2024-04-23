@@ -2,15 +2,8 @@
 title: 'Yet another mobile HTML5 framework ... by 37signals'
 link: 'http://thinkvitamin.com/mobile/new-rails-like-framework-from-37signals-for-html5-mobile-apps/'
 date: 2010-11-09
-keywords:
-    - 37signals
-    - App
-    - Client
-    - Coffeescript
-    - Framework
-    - HTML5
-    - Javascript
-    - Mobile
+tags:
+    - dev
 category: Frameworks
 slug: yet-another-mobile-html5-framework-by-37signals
 ---

@@ -2,12 +2,8 @@
 title: '"A note to people that hire ... "'
 link: 'http://idzr.org/5afbx7'
 date: 2010-12-16
-keywords:
-    - Design
-    - Finance
-    - Freelancing
-    - Hire
-    - Projects
+tags:
+    - worklife
 category: Freelancing
 slug: a-note-to-people-that-hire
 ---

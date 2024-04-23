@@ -1,13 +1,9 @@
 ---
 title: 'The Anatomy of a Perfect Web Site'
 date: 2011-11-08
-keywords:
-    - 'Computer Science'
-    - content
-    - educational
-    - information
-    - Java
-    - Minimalism
+tags:
+    - dev
+    - css
 category: Minimalism
 slug: the-anatomy-of-a-perfect-web-site
 ---

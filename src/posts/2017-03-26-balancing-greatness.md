@@ -4,6 +4,9 @@ slug: balancing-greatness
 date: 2017-03-26
 keywords: focus, startups, work, energy
 excerpt: Many programmers and designers with little startup experience are colliding with the "business folks" at a company in the beginning, since the latter always are optimising for financial success. The former are usually optimising for correctness, order, and simplicity in all their forms. In a startup's case, its survival is hanging on financial success (VC, profitability – in one way or another), so the former group has to release their desire for correctness, and get on the train. It's painful, but totally doable.
+tags:
+    - worklife
+    - product
 ---
 
 **When coming fresh from school** (if you went to one) as a programmer or designer in an early stage

@@ -4,12 +4,9 @@ slug: frp-app-arch
 date: 2020-05-01
 location: My home office in Stockholm
 excerpt: A long-ish read on how to build a web frontend with reactive functional streams (in Typescript!). We'll go through how we at Lookback extracted a library from patterns in our frontend, inspired by the library CycleJS.
-keywords:
-    - typescript
-    - streams
-    - react
-    - frp
-    - reactive
+tags:
+    - dev
+    - javascript
 ---
 
 At [Lookback](https://lookback.io), we've fallen in love with functional reactive programming (FRP)

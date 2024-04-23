@@ -2,13 +2,8 @@
 title: 'How 37signals handles customer service'
 link: 'http://www.inc.com/magazine/20110201/how-to-turn-disaster-into-gold.html'
 date: 2011-01-26
-keywords:
-    - 37signals
-    - Campfire
-    - crisis
-    - 'customer service'
-    - Downtime
-    - 'Jason Fried'
+tags:
+    - worklife
 category: Business
 slug: how-37signals-handles-customer-service
 ---

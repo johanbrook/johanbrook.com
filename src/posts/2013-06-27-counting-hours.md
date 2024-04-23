@@ -1,15 +1,8 @@
 ---
 title: 'I don''t like counting hours'
 date: 2013-06-27
-keywords:
-    - Clients
-    - Freelancing
-    - hours
-    - Projects
-    - charge
-    - consultancy
-    - results
-    - charging
+tags:
+    - worklife
 category: Freelancing
 slug: i-dont-like-counting-hours
 ---

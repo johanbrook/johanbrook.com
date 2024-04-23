@@ -1,12 +1,8 @@
 ---
 title: 'Backup everything – my backup setup'
 date: 2011-05-01
-keywords:
-    - Backup
-    - Dropbox
-    - 'OS X'
-    - 'Super Duper'
-    - 'Time Machine'
+tags:
+    - software
 category: Security
 slug: backup-everything-my-backup-setup
 ---

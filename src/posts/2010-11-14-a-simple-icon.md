@@ -1,16 +1,8 @@
 ---
 title: 'A Simple Icon'
 date: 2010-11-14
-keywords:
-    - 'Art Directed'
-    - Bevarages
-    - Coffee
-    - Design
-    - Espresso
-    - Handmade
-    - Minimalism
-    - Moka
-    - Pot
+tags:
+    - things
 category: Minimalism
 slug: a-simple-icon
 ---

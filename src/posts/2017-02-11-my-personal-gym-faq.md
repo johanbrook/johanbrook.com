@@ -3,10 +3,9 @@ title: My Personal Gym FAQ
 slug: my-personal-gym-faq
 date: 2017-02-11
 excerpt: "So I started going to the gym and wrote about my initial experiences in FAQ form, since it's easier writing dialogue as opposed to ranting by myself."
-keywords:
-    - gym
-    - faq
-    - satire
+tags:
+    - health
+    - random
 ---
 
 ### Hey man, you don't exactly look like a dude that has ever hit the gym before?

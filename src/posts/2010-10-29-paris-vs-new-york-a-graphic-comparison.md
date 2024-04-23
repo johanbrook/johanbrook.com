@@ -2,12 +2,8 @@
 title: 'Paris vs. New York – a graphic comparison'
 link: 'http://parisvsnyc.blogspot.com/'
 date: 2010-10-29
-keywords:
-    - Comparison
-    - 'Graphic design'
-    - 'New York'
-    - Paris
-    - Posters
+tags:
+    - design
 category: Design
 slug: paris-vs-new-york-a-graphic-comparison
 ---

@@ -1,15 +1,9 @@
 ---
 title: 'Bringing Order to CSS'
 date: 2011-05-16
-keywords:
-    - Compass
-    - CSS
-    - Framework
-    - Guidelines
-    - Less
-    - Order
-    - SCSS
-    - Structure
+tags:
+    - dev
+    - css
 category: CSS
 slug: bringing-order-to-css
 ---

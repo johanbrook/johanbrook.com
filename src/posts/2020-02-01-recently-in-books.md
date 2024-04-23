@@ -4,9 +4,8 @@ slug: recently-in-books
 date: 2020-02-01
 location: My home office in Stockholm
 excerpt: Thoughts on the books "The Alchemist", "The Zahir", "The Snow Leopard", and "Men Without Women", which I read in early 2020.
-keywords:
-  - books
-  - books in 2020
+tags:
+    - reading
 books:
   - { title: The Alchemist, author: Paolo Coelho, grade: 3 }
   - { title: The Zahir, author: Paolo Coelho, grade: 2 }

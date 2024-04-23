@@ -1,14 +1,9 @@
 ---
 title: 'Sync is about safety'
 date: 2012-03-26
-keywords:
-    - Dropbox
-    - Internet
-    - Web
-    - cloud
-    - iCloud
-    - sync
-    - data
+tags:
+    - software
+    - internet
 category: 'The internet'
 slug: sync-is-about-safety
 ---

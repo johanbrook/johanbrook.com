@@ -2,14 +2,8 @@
 title: 'Valve – the truly flat hierarchy company'
 link: 'http://online.wsj.com/article/SB10001424052702303379204577474953586383604.html'
 date: 2012-06-25
-keywords:
-    - Structure
-    - Valve
-    - flat
-    - hierarchy
-    - company
-    - organization
-    - management
+tags:
+    - worklife
 category: Business
 slug: valve-the-truly-flat-hierarchy-company
 ---

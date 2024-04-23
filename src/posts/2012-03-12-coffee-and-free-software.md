@@ -2,13 +2,8 @@
 title: 'Coffee and free software'
 link: 'http://raganwald.posterous.com/the-freedom-to-drink-coffee'
 date: 2012-03-12
-keywords:
-    - Code
-    - Coffee
-    - Free
-    - 'Open Source'
-    - Software
-    - OSS
+tags:
+    - software
 category: Development
 slug: coffee-and-free-software
 ---

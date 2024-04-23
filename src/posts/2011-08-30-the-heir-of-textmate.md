@@ -1,14 +1,8 @@
 ---
 title: 'Chocolat – The Heir of Textmate?'
 date: 2011-08-30
-keywords:
-    - Chocolat
-    - Code
-    - Editor
-    - 'text editors'
-    - Textmate
-    - heir
-    - alternative
+tags:
+    - dev
 category: Tools
 slug: chocolat-the-heir-of-textmate
 ---

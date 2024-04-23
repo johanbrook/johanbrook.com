@@ -4,6 +4,8 @@ link: 'http://www.viget.com/extend/anatomy-of-a-rails-rumble-project/'
 date: 2010-10-21
 category: Development
 slug: anatomy-of-a-rails-rumble-project
+tags:
+    - dev
 ---
 
 Clinton Nixon talks about a couple of things regarding this year's

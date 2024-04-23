@@ -2,12 +2,8 @@
 title: 'Zach Holman on code documentation'
 link: 'http://zachholman.com/posts/documentation/'
 date: 2011-06-08
-keywords:
-    - Code
-    - Comments
-    - Docs
-    - Documentation
-    - Documenting
+tags:
+    - dev
 category: Development
 slug: zach-holman-on-code-documentation
 ---

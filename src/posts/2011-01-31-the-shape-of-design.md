@@ -2,10 +2,9 @@
 title: '"The Shape of Design"'
 link: 'http://www.kickstarter.com/projects/30453381/the-shape-of-design'
 date: 2011-01-31
-keywords:
-    - Book
-    - 'Frank Chimero'
-    - 'The Shape of Design'
+tags:
+    - design
+    - reading
 category: Design
 slug: the-shape-of-design
 ---

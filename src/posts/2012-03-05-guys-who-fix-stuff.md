@@ -1,10 +1,9 @@
 ---
 title: 'About guys who fix stuff'
 date: 2012-03-05
-keywords:
-    - Code
-    - programming
-    - Projects
+tags:
+    - dev
+    - worklife
 category: Development
 slug: about-guys-who-fix-stuff
 ---

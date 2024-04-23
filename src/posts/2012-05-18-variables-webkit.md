@@ -2,12 +2,9 @@
 title: 'CSS variables soon to land in WebKit'
 link: 'http://trac.webkit.org/browser/trunk/LayoutTests/fast/css/variables/colors-test.html'
 date: 2012-05-18
-keywords:
-    - CSS
-    - CSS3
-    - variables
-    - Webkit
-    - experimental
+tags:
+    - dev
+    - css
 category: CSS
 slug: css-variables-soon-to-land-in-webkit
 ---

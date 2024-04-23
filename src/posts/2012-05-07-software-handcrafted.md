@@ -2,11 +2,8 @@
 title: 'Software is handcrafted'
 link: 'http://www.scottporad.com/2012/05/06/why-do-web-sites-and-software-take-so-long-to-build-and-why-is-it-so-hard/'
 date: 2012-05-07
-keywords:
-    - Code
-    - Software
-    - handcrafted
-    - complexity
+tags:
+    - software
 category: Business
 slug: software-is-handcrafted
 ---

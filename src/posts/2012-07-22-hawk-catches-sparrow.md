@@ -2,14 +2,8 @@
 title: 'The Hawk catches the Sparrow'
 link: 'http://mattgemmell.com/2012/07/21/entitlement-and-acquisition/'
 date: 2012-07-22
-keywords:
-    - Google
-    - iPhone
-    - developer
-    - Sparrow
-    - Mail
-    - acquisition
-    - e-mail
+tags:
+    - internet
 category: Business
 slug: the-hawk-catches-the-sparrow
 ---

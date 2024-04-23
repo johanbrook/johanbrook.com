@@ -3,10 +3,8 @@ title: An Even Better Spaghetti Bolognese
 slug: better-spaghetti-bolognese
 date: 2021-11-02
 excerpt: A recipe for a spaghetti bolognese (or ragú) which is tastier than an earlier version I published – and simpler!
-keywords:
-  - bolognese
-  - recipe
-  - ragu
+tags:
+    - cooking
 ---
 
 This is a continuation (sequel? remix?) on the post

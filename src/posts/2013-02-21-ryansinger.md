@@ -2,14 +2,8 @@
 title: 'How Ryan Singer builds products'
 link: 'http://insideintercom.io/an-interview-with-ryan-singer/'
 date: 2013-02-21
-keywords:
-    - 37signals
-    - startups
-    - products
-    - 'Ryan Singer'
-    - 'product design'
-    - 'interaction design'
-    - business
+tags:
+    - product
 category: Interviews
 slug: how-ryan-singer-builds-products
 ---

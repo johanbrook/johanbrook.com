@@ -1,14 +1,8 @@
 ---
 title: 'Good software is like a knot'
 date: 2012-08-09
-keywords:
-    - Code
-    - programming
-    - Simplicity
-    - complexity
-    - knot
-    - philosophical
-    - problem
+tags:
+    - software
 category: Development
 slug: good-software-is-like-a-knot
 ---

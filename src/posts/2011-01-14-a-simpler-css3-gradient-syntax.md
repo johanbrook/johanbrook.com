@@ -2,14 +2,9 @@
 title: 'A simpler CSS3 Gradient syntax'
 link: 'http://webkit.org/blog/1424/css3-gradients/'
 date: 2011-01-14
-keywords:
-    - CSS3
-    - Gradients
-    - linear
-    - nightly
-    - simple
-    - syntax
-    - Webkit
+tags:
+    - dev
+    - css
 category: CSS
 slug: a-simpler-css3-gradient-syntax
 ---

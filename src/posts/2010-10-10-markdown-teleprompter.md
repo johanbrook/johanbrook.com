@@ -4,6 +4,8 @@ link: 'http://brettterpstra.com/promptdown-markdown-teleprompter/'
 date: 2010-10-10
 category: Minimalism
 slug: a-markdown-teleprompter
+tags:
+    - dev
 ---
 
 [Brett Terpstra](http://brettterpstra.com) has created a simple web based teleprompter, with support

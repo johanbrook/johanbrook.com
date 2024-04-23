@@ -2,13 +2,9 @@
 title: 'Retro airline bags'
 link: 'http://www.airlinesoriginals.com/bagsretro.php5'
 date: 2010-11-23
-keywords:
-    - Accessories
-    - Airlines
-    - Bags
-    - Fashion
-    - Retro
-    - Stylish
+tags:
+    - design
+    - things
 category: Design
 slug: retro-airline-bags
 ---

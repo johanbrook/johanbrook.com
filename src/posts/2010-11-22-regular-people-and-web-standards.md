@@ -2,11 +2,8 @@
 title: 'Regular people and web standards'
 link: 'http://www.webdesignerdepot.com/2010/11/why-joe-client-doesn’t-care-about-standards/'
 date: 2010-11-22
-keywords:
-    - Clients
-    - HTML
-    - Semantics
-    - 'Web standards'
+tags:
+    - dev
 category: Freelancing
 slug: regular-people-and-web-standards
 ---

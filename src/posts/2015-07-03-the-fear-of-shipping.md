@@ -3,12 +3,9 @@ title: 'Shipped with fear'
 date: 2015-07-05
 ogImage: 'http://johanbrook.com/assets/posts/fear-of-shipping-ogimage.jpg'
 description: 'My thoughts on deploying code to production.'
-keywords:
-    - sysops
-    - devops
-    - deploying
-    - shipping
-    - code
+tags:
+    - dev
+    - worklife
 slug: shipped-with-fear
 ---
 

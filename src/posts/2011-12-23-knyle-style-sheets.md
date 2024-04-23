@@ -3,6 +3,9 @@ title: 'Writing documentation for CSS – Knyle Style Sheets'
 link: 'http://warpspire.com/posts/kss/'
 date: 2011-12-23
 category: CSS
+tags:
+    - dev
+    - css
 slug: writing-documentation-for-css-knyle-style-sheets
 ---
 

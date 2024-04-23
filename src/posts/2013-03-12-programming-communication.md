@@ -1,12 +1,9 @@
 ---
 title: 'Programming and communication'
 date: 2013-03-12
-keywords:
-    - Documentation
-    - programming
-    - communication
-    - quote
-    - 'joel spolsky'
+tags:
+    - dev
+    - worklife
 category: Development
 slug: programming-and-communication
 ---

@@ -2,11 +2,8 @@
 title: 'Rasmus Andersson on Kod'
 link: 'http://blog.hunch.se/post/2843044421/why-i-wrote-a-programmers-text-editor'
 date: 2011-01-20
-keywords:
-    - Editor
-    - Kod
-    - 'Open Source'
-    - 'Rasmus Andersson'
+tags:
+    - dev
 category: Tools
 slug: rasmus-andersson-on-kod
 ---

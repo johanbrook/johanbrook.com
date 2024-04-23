@@ -2,11 +2,8 @@
 title: 'Maven Pro – a free sans serif font'
 link: 'http://vissol.co.uk/mavenpro/'
 date: 2011-02-08
-keywords:
-    - Free
-    - 'Maven Pro'
-    - 'Sans serif'
-    - Typeface
+tags:
+    - design
 category: Typography
 slug: maven-pro-a-free-sans-serif-font
 ---

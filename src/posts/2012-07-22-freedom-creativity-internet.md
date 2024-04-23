@@ -1,13 +1,8 @@
 ---
 title: 'Thoughts on freedom, creativity and the internet'
 date: 2012-07-22
-keywords:
-    - Code
-    - Internet
-    - creativity
-    - deploy
-    - create
-    - freedom
+tags:
+    - internet
 category: 'The internet'
 slug: thoughts-on-freedom-creativity-and-the-internet
 ---

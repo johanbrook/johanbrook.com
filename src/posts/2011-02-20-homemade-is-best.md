@@ -2,11 +2,8 @@
 title: 'Homemade is best'
 link: 'http://demo.fb.se/e/ikea/homemade_is_best/'
 date: 2011-02-20
-keywords:
-    - 'Cook book'
-    - Food
-    - 'Forsman &amp; Bodenfors'
-    - IKEA
+tags:
+    - design
 category: Minimalism
 slug: homemade-is-best
 ---

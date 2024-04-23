@@ -1,11 +1,8 @@
 ---
 title: 'Photos of National Geographic'
 date: 2011-02-28
-keywords:
-    - 'Big cats'
-    - 'National Geographic'
-    - Photography
-    - Tigers
+tags:
+    - internet
 category: Life
 slug: photos-of-national-geographic
 ---

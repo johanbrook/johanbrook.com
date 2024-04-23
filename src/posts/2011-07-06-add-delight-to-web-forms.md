@@ -1,16 +1,8 @@
 ---
 title: 'Add delight to web forms (with code sample)'
 date: 2011-07-06
-keywords:
-    - Ajax
-    - city
-    - form
-    - HTML
-    - Javascript
-    - jQuery
-    - JSON
-    - 'postal code'
-    - 'User Experience'
+tags:
+    - dev
 category: 'User Experience'
 slug: add-delight-to-web-forms-with-code-sample
 ---
@@ -54,11 +46,11 @@ writing a whole jQuery plugin for it? Let's say you have a sign up form which in
 and city.
 
     <form method="POST" action="">
-    	<label>Postal code 
+    	<label>Postal code
     		<input type="text" placeholder="810 20" id="postal-code" />
     	</label>
-    	
-    	<label>City 
+
+    	<label>City
     		<input type="text" placeholder="City" id="city" />
     	</label>
     </form>
@@ -85,16 +77,16 @@ GET request to `http://postnummersok.se/api` with the postal code in the `q` par
 will be returned in JSON (yay!). Even JSONP is possible if you use the `callback` parameter. Follow
 along below.
 
-    $("#postal-code").blur(function(){ 
+    $("#postal-code").blur(function(){
     	var url = "http://postnummersok.se/api?callback=?",
-    		// remove whitespace in postal code 
-    		code = encodeURI(this.value.replace(/s+/g, "")); 
-    		
-    	$.getJSON(url, {q: code}, function(json){ 
-    		if(json === null) return; 
-    		
-    		$("#city").val(json[0]).select(); 
-    	}); 
+    		// remove whitespace in postal code
+    		code = encodeURI(this.value.replace(/s+/g, ""));
+
+    	$.getJSON(url, {q: code}, function(json){
+    		if(json === null) return;
+
+    		$("#city").val(json[0]).select();
+    	});
     });
 
 As you can see I'm using jQuery in this example. A simple `blur` event is binded to the postal code

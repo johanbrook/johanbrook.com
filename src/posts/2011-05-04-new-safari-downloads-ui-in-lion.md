@@ -2,12 +2,8 @@
 title: 'New Safari downloads UI in Lion'
 link: 'http://blog.dustincurtis.com/new-safari-downloads-ui-in-lion'
 date: 2011-05-04
-keywords:
-    - Downloads
-    - 'Mac OS X'
-    - Safari
-    - UI
-    - 'User Experience'
+tags:
+    - software
 category: Browsers
 slug: new-safari-downloads-ui-in-lion
 ---

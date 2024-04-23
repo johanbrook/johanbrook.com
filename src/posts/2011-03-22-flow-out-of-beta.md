@@ -1,11 +1,8 @@
 ---
 title: 'Flow out of beta'
 date: 2011-03-22
-keywords:
-    - Flow
-    - Metalab
-    - 'Task management'
-    - 'Web app'
+tags:
+    - software
 category: Tools
 slug: flow-out-of-beta
 ---

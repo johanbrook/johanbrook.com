@@ -1,10 +1,8 @@
 ---
 title: 'Yet Another Site Redesign'
 date: 2010-12-06
-keywords:
-    - HTML
-    - Redesign
-    - Typography
+tags:
+    - johan.im
 category: 'This site'
 slug: yet-another-site-redesign
 ---

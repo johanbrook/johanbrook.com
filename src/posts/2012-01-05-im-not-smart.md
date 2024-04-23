@@ -4,6 +4,8 @@ link: 'http://www.reddit.com/r/confession/comments/nxdzz/im_not_as_smart_as_i_th
 date: 2012-01-05
 category: Life
 slug: advice-for-university-students-im-not-as-smart-as-i-thought-i-was
+tags:
+    - worklife
 ---
 
 > The students that are successful look at that challenge, wrestle with feelings of inadequacy and

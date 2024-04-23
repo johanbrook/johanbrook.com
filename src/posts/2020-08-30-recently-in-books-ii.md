@@ -4,9 +4,8 @@ slug: recently-in-books-ii
 date: 2020-12-31
 location: My desk in Stockholm
 excerpt: Thoughts on the books Ishmael, Cosa Nostra, Godfather, Herakles, Normal People, About A Boy, and Jag Kan Ha Fel.
-keywords:
-  - books
-  - books in 2020
+tags:
+    - reading
 books:
   - { title: Ishmael, author: Daniel Quinn }
   - { title: Cosa Nostra, author: John Dickie }

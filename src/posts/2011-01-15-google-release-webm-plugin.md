@@ -2,14 +2,8 @@
 title: 'Google to release a WebM plugin for Safari and IE9'
 link: 'http://techcrunch.com/2011/01/14/webm-plugins/'
 date: 2011-01-15
-keywords:
-    - Browser
-    - Google
-    - H.264
-    - plugin
-    - video
-    - 'Web standards'
-    - WebM
+tags:
+    - dev
 category: Tools
 slug: google-to-release-a-webm-plugin-for-safari-and-ie9
 ---

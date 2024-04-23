@@ -2,14 +2,9 @@
 title: 'Sass 3.2 Placeholders and Object-Oriented CSS'
 link: 'http://ianstormtaylor.com/oocss-plus-sass-is-the-best-way-to-css/'
 date: 2012-10-17
-keywords:
-    - CSS
-    - Sass
-    - OOCSS
-    - Placeholders
-    - modular
-    - reusable
-    - semantic
+tags:
+    - dev
+    - css
 category: CSS
 slug: sass-32-placeholders-and-object-oriented-css
 ---

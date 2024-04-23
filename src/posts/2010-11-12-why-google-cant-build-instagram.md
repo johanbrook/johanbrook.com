@@ -2,12 +2,8 @@
 title: 'Why Google can''t build Instagram'
 link: 'http://scobleizer.com/2010/11/12/why-google-cant-build-instagram/'
 date: 2010-11-12
-keywords:
-    - Google
-    - Instagram
-    - Microsoft
-    - Minimalism
-    - Product
+tags:
+    - product
 category: Development
 slug: why-google-cant-build-instagram
 ---

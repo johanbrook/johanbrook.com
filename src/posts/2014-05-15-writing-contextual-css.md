@@ -2,12 +2,9 @@
 title: 'Writing contextual CSS'
 date: 2014-05-15
 category: css
-keywords:
+tags:
+    - dev
     - css
-    - context
-    - scss
-    - media-queries
-    - organization
 slug: writing-contextual-css
 ---
 

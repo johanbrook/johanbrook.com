@@ -2,19 +2,8 @@
 title: 'Minimal Skype 5 message style'
 link: 'http://pongsocket.com/experiments/skype5mini'
 date: 2010-11-04
-keywords:
-    - Beta
-    - Chat
-    - CSS
-    - Custom
-    - IM
-    - Mac
-    - Message
-    - Minimal
-    - Mod
-    - 'Skype 5'
-    - Style
-    - Webkit
+tags:
+    - software
 category: Minimalism
 slug: minimal-skype-5-message-style
 ---

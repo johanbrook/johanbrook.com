@@ -3,6 +3,8 @@ title: 'Out with the old'
 date: 2010-10-21
 category: 'This site'
 slug: out-with-the-old
+tags:
+    - johan.im
 ---
 
 Hi and welcome to my new personal site. I've finally been able to get out of the six months long

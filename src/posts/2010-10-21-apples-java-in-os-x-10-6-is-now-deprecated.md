@@ -2,9 +2,8 @@
 title: 'Apple’s Java in OS X 10.6 is now deprecated'
 link: 'http://developer.apple.com/library/mac/#releasenotes/Java/JavaSnowLeopardUpdate3LeopardUpdate8RN/NewandNoteworthy/NewandNoteworthy.html%23//apple_ref/doc/uid/TP40010380-CH4-DontLinkElementID_2'
 date: 2010-10-21
-keywords:
-    - Java
-    - 'Mac OS X'
+tags:
+    - dev
 category: Development
 slug: apples-java-in-os-x-106-is-now-deprecated
 ---

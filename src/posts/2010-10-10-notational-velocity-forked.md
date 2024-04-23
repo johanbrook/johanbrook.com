@@ -4,6 +4,8 @@ link: 'http://elasticthreads.tumblr.com/post/1283428380/notational-velocity-fork
 date: 2010-10-10
 category: Tools
 slug: unofficial-version-of-notational-velocity-adds-goodies
+tags:
+    - software
 ---
 
 [Notational Velocity](http://notational.net/) is a simple yet powerful writing app for OS X. It's

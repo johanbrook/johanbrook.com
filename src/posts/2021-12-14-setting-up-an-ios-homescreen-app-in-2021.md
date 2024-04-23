@@ -4,10 +4,9 @@ slug: ios-homescreen-web-app
 date: 2021-12-14
 location: Stockholm
 excerpt: Developing a mobile web app for iOS is tricky, since with new iOS releases, features are being added and removed, and new bugs appear. In this post, I walk through what worked for me and my simple app in iOS 15 (in 2021).
-keywords:
-  - ios
-  - web apps
-  - pwa
+tags:
+    - dev
+    - ios
 ---
 
 ## Background
@@ -351,7 +350,7 @@ post:
 }
 
 /* 1) For browsers that don’t support `color-scheme` and therefore
-   don't handle system dark mode for you automatically 
+   don't handle system dark mode for you automatically
    (Firefox), handle it for them. */
 @supports not (color-scheme: light dark) {
   html {

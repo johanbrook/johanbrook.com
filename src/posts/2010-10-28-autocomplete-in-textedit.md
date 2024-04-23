@@ -2,9 +2,8 @@
 title: 'Autocomplete in TextEdit'
 link: 'http://minimalmac.com/post/1423698817/autocomplete-in-textedit-mac-os-x-hints'
 date: 2010-10-28
-keywords:
-    - Autocomplete
-    - TextEdit
+tags:
+    - software
 category: Minimalism
 slug: autocomplete-in-textedit
 ---

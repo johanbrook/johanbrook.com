@@ -6,8 +6,8 @@ timezone: Asia/Bangkok
 excerpt: tldr; find the latest note, check if it's not posted already, post, persist to log file.
 location: Koh Lanta, Thailand
 tags:
-  - ssg
-  - mastodon
+    - dev
+    - social-media
 ---
 
 This is how I made my [micro notes](/micro) auto-post to my Mastodon account. Warning: duct-tape and

@@ -2,10 +2,8 @@
 title: 'Thomas Fuchs'' web dev tools'
 link: 'http://mir.aculo.us/2011/02/12/developing-web-apps-in-2011/'
 date: 2011-02-14
-keywords:
-    - 'Thomas Fuchs'
-    - Tools
-    - 'Web development'
+tags:
+    - dev
 category: Tools
 slug: thomas-fuchs-web-dev-tools
 ---

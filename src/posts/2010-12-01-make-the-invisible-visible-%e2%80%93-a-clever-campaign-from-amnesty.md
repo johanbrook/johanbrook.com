@@ -2,12 +2,8 @@
 title: 'Make the invisible visible – a clever campaign from Amnesty'
 link: 'http://www.creativereview.co.uk/cr-blog/2010/december/amnesty-guerrilla-campaign-makes-the-invisible-visible'
 date: 2010-12-01
-keywords:
-    - Ad
-    - Amnesty
-    - Campaign
-    - Design
-    - 'Troy Davis'
+tags:
+    - design
 category: Design
 slug: make-the-invisible-visible-a-clever-campaign-from-amnesty
 ---

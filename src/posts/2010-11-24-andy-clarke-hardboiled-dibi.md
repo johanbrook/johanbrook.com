@@ -2,14 +2,9 @@
 title: 'Andy Clarke''s Hardboiled Web Design talk from DIBI'
 link: 'http://stuffandnonsense.co.uk/blog/about/video_of_my_hardboiled_web_design_talk_from_dibi_2010/'
 date: 2010-11-24
-keywords:
-    - 'Andy Clarke'
-    - CSS3
-    - DIBI
-    - Hardboiled
-    - HTML
-    - Malarkey
-    - 'Web design'
+tags:
+    - dev
+    - css
 category: Talks
 slug: andy-clarkes-hardboiled-web-design-talk-from-dibi
 ---

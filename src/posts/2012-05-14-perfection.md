@@ -1,14 +1,9 @@
 ---
 title: 'Perfection doesn''t exist'
 date: 2012-05-14
-keywords:
-    - Design
-    - work
-    - perfection
-    - philosophy
-    - art
-    - creator
-    - creative
+tags:
+    - product
+    - dev
 category: Life
 slug: perfection-doesnt-exist
 ---

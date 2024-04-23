@@ -2,10 +2,9 @@
 title: 'The Beatles’ album covers redesigned'
 link: 'http://www.flickr.com/photos/mantia/sets/72157625186912762/'
 date: 2010-10-21
-keywords:
-    - Cover
-    - Mantia
-    - 'The Beatles'
+tags:
+    - listening
+    - design
 category: Design
 slug: the-beatles-album-covers-redesigned
 ---

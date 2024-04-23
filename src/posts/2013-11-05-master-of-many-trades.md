@@ -2,11 +2,8 @@
 title: '"Master of many trades"'
 link: 'http://www.aeonmagazine.com/world-views/anyone-can-learn-to-be-a-polymath/'
 date: 2013-11-05
-keywords:
-    - Generalist
-    - 'Jack of all trades'
-    - Specialist
-    - 'Renaissance man'
+tags:
+    - worklife
 category: Life
 slug: master-of-many-trades
 ---

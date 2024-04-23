@@ -2,11 +2,8 @@
 title: 'Minimalistic Oscar posters'
 link: 'http://www.behance.net/gallery/Minimalism-Oscar-Posters/955899'
 date: 2011-02-28
-keywords:
-    - Minimalistic
-    - Movie
-    - Oscar
-    - Posters
+tags:
+    - design
 category: Minimalism
 slug: minimalistic-oscar-posters
 ---

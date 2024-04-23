@@ -2,10 +2,8 @@
 title: 'Intimate remote work'
 date: 2015-07-28
 ogImage: 'http://johanbrook.com/assets/posts/ogimage-intimate-remote.jpg'
-keywords:
-    - lookback
-    - remote
-    - culture
+tags:
+    - worklife
 slug: intimate-remote-work
 ---
 

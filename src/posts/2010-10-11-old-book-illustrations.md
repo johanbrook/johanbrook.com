@@ -4,6 +4,9 @@ link: 'http://www.oldbookillustrations.com/'
 date: 2010-10-11
 category: Resources
 slug: old-book-illustrations
+tags:
+    - design
+    - reading
 ---
 
 I've really got a thing for clean typographic blogs with seemingly custom illustrations in them.

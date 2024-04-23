@@ -2,15 +2,9 @@
 title: 'Trickle: another kind of Twitter client'
 link: 'http://trickleapp.com/'
 date: 2010-12-14
-keywords:
-    - Dark
-    - Helvetica
-    - Minimal
-    - Minimalistic
-    - Timeline
-    - Trickle
-    - Tweets
-    - Twitter
+tags:
+    - software
+    - internet
 category: Minimalism
 slug: trickle-another-kind-of-twitter-client
 ---

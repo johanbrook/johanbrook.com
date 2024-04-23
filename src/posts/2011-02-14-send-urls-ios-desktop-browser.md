@@ -2,12 +2,8 @@
 title: 'Send URLs from iOS to desktop browser'
 link: 'http://www.macstories.net/tutorials/how-to-send-any-webpage-from-ios-to-your-mac-browser/'
 date: 2011-02-14
-keywords:
-    - Automator
-    - Browser
-    - Dropbox
-    - Ruby
-    - URL
+tags:
+    - software
 category: Minimalism
 slug: send-urls-from-ios-to-desktop-browser
 ---
@@ -27,7 +23,7 @@ in your browser window.
 
     ARGV.each do |f|
        file = File.new(f, "r")
-       
+
        while (line = file.gets)
           system "open #{line}"
        end

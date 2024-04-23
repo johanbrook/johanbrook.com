@@ -2,14 +2,8 @@
 title: 'Kod app is now open source'
 link: 'http://groups.google.com/group/kod-app/browse_thread/thread/8bc80d18932f5e99'
 date: 2010-12-26
-keywords:
-    - App
-    - Development
-    - Editor
-    - Kod
-    - 'OS X'
-    - 'Rasmus Andersson'
-    - Textmate
+tags:
+    - dev
 category: Tools
 slug: kod-app-is-now-open-source
 ---

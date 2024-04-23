@@ -1,10 +1,8 @@
 ---
 title: 'Take a step back'
 date: 2011-02-28
-keywords:
-    - Details
-    - Simplicity
-    - 'Step back'
+tags:
+    - worklife
 category: Minimalism
 slug: take-a-step-back
 ---

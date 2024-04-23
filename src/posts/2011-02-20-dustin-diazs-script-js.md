@@ -2,11 +2,9 @@
 title: 'Dustin Diaz''s $script.js'
 link: 'http://www.dustindiaz.com/scriptjs/'
 date: 2011-02-20
-keywords:
-    - $script
-    - Asynchronous
-    - 'Dustin Diaz'
-    - Javascript
+tags:
+    - dev
+    - javascript
 category: Javascript
 slug: dustin-diazs-dollarscriptjs
 ---

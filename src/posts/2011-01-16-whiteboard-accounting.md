@@ -2,11 +2,8 @@
 title: 'Whiteboard accounting, or how to say no to yourself'
 link: 'http://blog.frankchimero.com/post/2764593863/whiteboard-accounting'
 date: 2011-01-16
-keywords:
-    - accounting
-    - Freelancing
-    - income
-    - Jobs
+tags:
+    - worklife
 category: Freelancing
 slug: whiteboard-accounting-or-how-to-say-no-to-yourself
 ---

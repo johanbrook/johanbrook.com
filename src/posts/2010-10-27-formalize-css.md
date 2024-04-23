@@ -2,10 +2,9 @@
 title: 'Formalize CSS – consistent forms'
 link: 'http://sonspring.com/journal/formalize-css'
 date: 2010-10-27
-keywords:
-    - Consistent
-    - Formalize
-    - Forms
+tags:
+    - dev
+    - css
 category: CSS
 slug: formalize-css-consistent-forms
 ---

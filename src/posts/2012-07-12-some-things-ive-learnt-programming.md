@@ -2,12 +2,8 @@
 title: '"Some things I''ve learnt about programming"'
 link: 'http://blog.jgc.org/2012/07/some-things-ive-learnt-about.html'
 date: 2012-07-12
-keywords:
-    - experience
-    - programming
-    - craft
-    - skills
-    - insight
+tags:
+    - dev
 category: Development
 slug: some-things-ive-learnt-about-programming
 ---

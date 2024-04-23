@@ -2,12 +2,9 @@
 title: '"Javascript is Dead. Long Live Javascript!"'
 link: 'http://peter.michaux.ca/articles/javascript-is-dead-long-live-javascript'
 date: 2011-06-27
-keywords:
-    - Code
-    - Coffeescript
-    - 'Computer Science'
-    - Javascript
-    - programming
+tags:
+    - dev
+    - javascript
 category: Javascript
 slug: javascript-is-dead-long-live-javascript
 ---

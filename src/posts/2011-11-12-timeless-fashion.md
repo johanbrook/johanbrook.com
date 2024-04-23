@@ -2,11 +2,8 @@
 title: 'Timeless fashion'
 link: 'http://www.usabilitypost.com/2011/11/11/timeless-fashion/'
 date: 2011-11-12
-keywords:
-    - 'Dieter Rams'
-    - Fashion
-    - 'industrial design'
-    - 'Jonathan Ive'
+tags:
+    - design
 category: Design
 slug: timeless-fashion
 ---

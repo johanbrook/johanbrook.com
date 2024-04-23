@@ -2,6 +2,9 @@
 title: 'Pain points & Incentives'
 date: 2015-06-07
 slug: pain-points-and-incentives
+tags:
+    - worklife
+    - product
 ---
 
 **When working with building features in a product**, I usually need some emotional attachment to

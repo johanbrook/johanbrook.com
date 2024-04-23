@@ -2,13 +2,8 @@
 title: 'The Slow Web Movement'
 link: 'http://blog.jackcheng.com/post/25160553986/the-slow-web'
 date: 2012-06-16
-keywords:
-    - Web
-    - slow
-    - 'slow food'
-    - communication
-    - digital
-    - stress
+tags:
+    - internet
 category: 'The internet'
 slug: the-slow-web-movement
 ---

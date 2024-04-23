@@ -2,9 +2,8 @@
 title: 'Panic talks about the future: Coda 2'
 link: 'http://www.panic.com/blog/2010/10/panic-state-of-the-union/'
 date: 2010-10-22
-keywords:
-    - Coda
-    - Panic
+tags:
+    - software
 category: Tools
 slug: panic-talks-about-the-future-coda-2
 ---

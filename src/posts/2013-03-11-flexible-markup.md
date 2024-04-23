@@ -1,13 +1,9 @@
 ---
 title: 'Tags and class names – on building flexible markup'
 date: 2013-03-11
-keywords:
-    - CSS
-    - HTML
-    - Markup
-    - semantic
-    - classes
-    - 'class names'
+tags:
+    - dev
+    - css
 category: HTML
 slug: tags-and-class-names-on-building-flexible-markup
 ---
@@ -33,7 +29,7 @@ An example. Here's a box for author information in the bottom of a blog post.
     	<p>
     One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.
     	</p>
-    	
+
     </footer>
 
 Minimal but good example of clean HTML. But a bit naïve. How would you style the image avatar in
@@ -53,7 +49,7 @@ in the description? Then some refactorings has to be made.
     <footer class="post-author">
     	<h2>Joe Doe</h2>
 
-    	<figure class="author-avatar">	
+    	<figure class="author-avatar">
     		<img src="avatar-joe.jpg" alt="Joe" />
     	</figure>
 

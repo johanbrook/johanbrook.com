@@ -2,11 +2,8 @@
 title: 'Signal vs. Noise'
 link: 'http://37signals.com/svn'
 date: 2013-01-03
-keywords:
-    - 37signals
-    - blog
-    - writing
-    - 'signals vs noise'
+tags:
+    - internet
 category: 'The internet'
 slug: signal-vs-noise
 ---

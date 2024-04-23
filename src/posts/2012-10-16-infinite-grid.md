@@ -2,17 +2,9 @@
 title: 'Responsive web design – the infinite grid and water'
 link: 'http://alistapart.com/articles/the-infinite-grid/'
 date: 2012-10-16
-keywords:
-    - CSS
-    - fluid
-    - grid
-    - responsive
-    - infinite
-    - water
-    - width
-    - breakpoint
-    - viewport
-    - 'media query'
+tags:
+    - dev
+    - css
 category: 'Responsive Design'
 slug: responsive-web-design-the-infinite-grid-and-water
 ---

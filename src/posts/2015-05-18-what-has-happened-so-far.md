@@ -3,11 +3,8 @@ title: 'What''s happened so far'
 date: 2015-05-18
 ogImage: 'http://johanbrook.com/assets/images/lookback-og-image.jpg'
 description: 'My journey and learnings from university to working in an early startup.'
-keywords:
-    - lookback
-    - startup
-    - university
-    - 'drop out'
+tags:
+    - life
 slug: whats-happened-so-far
 ---
 

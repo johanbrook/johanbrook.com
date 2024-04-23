@@ -2,10 +2,9 @@
 title: 'Spotify revamps the Free and Open options'
 link: 'https://www.spotify.com/se/blog/archives/2011/04/14/upcoming-changes-to-spotify-free-open'
 date: 2011-04-14
-keywords:
-    - Free
-    - Music
-    - Spotify
+tags:
+    - software
+    - internet
 category: Business
 slug: spotify-revamps-the-free-and-open-options
 ---

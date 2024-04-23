@@ -2,13 +2,8 @@
 title: 'Whiteboard theme for Wordpress'
 link: 'https://github.com/johanbrook/whiteboard'
 date: 2011-03-28
-keywords:
-    - Boilerplate
-    - Framework
-    - HTML5
-    - Theme
-    - Whiteboard
-    - Wordpress
+tags:
+    - dev
 category: Wordpress
 slug: whiteboard-theme-for-wordpress
 ---

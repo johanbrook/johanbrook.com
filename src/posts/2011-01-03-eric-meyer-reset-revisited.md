@@ -2,12 +2,9 @@
 title: 'Eric Meyer: Reset Revisited'
 link: 'http://meyerweb.com/eric/thoughts/2011/01/03/reset-revisited/'
 date: 2011-01-03
-keywords:
-    - Browser
-    - CSS
-    - Eric
-    - Meyer
-    - Reset
+tags:
+    - dev
+    - css
 category: CSS
 slug: eric-meyer-reset-revisited
 ---

@@ -2,11 +2,8 @@
 title: '"Learnable Programming"'
 link: 'http://worrydream.com/LearnableProgramming/'
 date: 2012-10-23
-keywords:
-    - education
-    - programming
-    - learn
-    - teach
+tags:
+    - dev
 category: Development
 slug: learnable-programming
 ---

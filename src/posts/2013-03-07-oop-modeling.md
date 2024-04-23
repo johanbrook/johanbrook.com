@@ -2,14 +2,8 @@
 title: 'Object-oriented Programming and Modeling the Real World'
 link: 'http://news.ycombinator.com/item?id=5336588'
 date: 2013-03-07
-keywords:
-    - Code
-    - programming
-    - Modeling
-    - OOP
-    - 'domain model'
-    - abstraction
-    - inheritance
+tags:
+    - dev
 category: Development
 slug: object-oriented-programming-and-modeling-the-real-world
 ---

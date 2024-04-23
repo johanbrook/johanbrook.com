@@ -1,15 +1,8 @@
 ---
 title: 'Bdgt for iPhone'
 date: 2012-04-17
-keywords:
-    - App
-    - iOS
-    - iPhone
-    - BDGT
-    - budget
-    - money
-    - transactions
-    - economy
+tags:
+    - dev
 category: iOS
 slug: bdgt-for-iphone
 ---

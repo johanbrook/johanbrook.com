@@ -4,12 +4,9 @@ slug: react-hooks-streams
 date: 2019-03-03
 location: A kitchen table in Stockholm
 excerpt: Pairing React Hooks with Streams works beautifully, and leads to components with less verbosity and boilerplate. In this post, I convert a class component to a function component using hooks.
-keywords:
-  - react
-  - hooks
-  - xstream
-  - javascript
-  - typescript
+tags:
+    - dev
+    - javascript
 ---
 
 **As of React 16.8,** there's a new tool in the toolbox:

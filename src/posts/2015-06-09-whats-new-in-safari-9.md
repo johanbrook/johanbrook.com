@@ -1,11 +1,8 @@
 ---
 title: 'What''s new in Safari 9'
 date: 2015-06-09
-keywords:
-    - apple
-    - wwdc
-    - safari
-    - 'web development'
+tags:
+    - dev
 slug: whats-new-in-safari-9
 ---
 
@@ -65,7 +62,7 @@ support for scroll snapping directly in CSS (for iOS and OS X).
 #viewport {
   // Turn it on.
   -webkit-scroll-snap-type: mandatory;
-  // Set a snap point every 300px on the X axis. 
+  // Set a snap point every 300px on the X axis.
   // Use -webkit-scroll-snap-points-y for Y axis.
   -webkit-scroll-snap-points-x: repeat(300px);
 }

@@ -2,13 +2,9 @@
 title: 'Tower – an upcoming Git client for Mac'
 link: 'http://www.git-tower.com/'
 date: 2010-11-01
-keywords:
-    - Client
-    - Git
-    - Mac
-    - 'OS X'
-    - Tower
-    - Versioning
+tags:
+    - dev
+    - git
 category: Tools
 slug: tower-an-upcoming-git-client-for-mac
 ---

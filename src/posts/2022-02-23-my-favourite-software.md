@@ -4,13 +4,9 @@ slug: my-favourite-software
 date: 2022-02-23
 location: My living room in Stockholm
 excerpt: Various software I love and use a lot.
-keywords:
-  - lume
-  - deno
-  - typescript
-  - curl
-  - numi
-  - tweetbot
+tags:
+    - dev
+    - software
 ---
 
 ## 1. Typescript

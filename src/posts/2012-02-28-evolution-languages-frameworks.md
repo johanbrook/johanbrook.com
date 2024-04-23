@@ -2,12 +2,8 @@
 title: 'On the evolution of languages and frameworks'
 link: 'http://news.ycombinator.com/item?id=3641863'
 date: 2012-02-28
-keywords:
-    - programming
-    - Rails
-    - Ruby
-    - Node
-    - Tower.js
+tags:
+    - dev
 category: Frameworks
 slug: on-the-evolution-of-languages-and-frameworks
 ---

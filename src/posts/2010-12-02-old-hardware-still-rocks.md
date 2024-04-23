@@ -2,12 +2,8 @@
 title: 'Old hardware still rocks'
 link: 'http://smokingapples.com/opinion/old-mac-in-service/'
 date: 2010-12-02
-keywords:
-    - Constraints
-    - Hardware
-    - Mac
-    - Minimalism
-    - Old
+tags:
+    - things
 category: Minimalism
 slug: old-hardware-still-rocks
 ---

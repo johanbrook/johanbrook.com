@@ -1,9 +1,9 @@
 ---
 title: 'Changing perspectives and doing the crazy thing'
 date: 2013-10-21
-keywords:
-    - 'interaction design'
-    - 'user testing'
+tags:
+    - worklife
+    - product
 category: Design
 slug: changing-perspectives-and-doing-the-crazy-thing
 ---

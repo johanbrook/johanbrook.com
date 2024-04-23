@@ -2,9 +2,8 @@
 title: 'A typographic poster'
 link: 'http://www.underconsideration.com/fpo/archives/2010/10/ligature-loop-stem-poster.php'
 date: 2010-10-25
-keywords:
-    - Letterpress
-    - Posters
+tags:
+    - design
 category: Typography
 slug: a-typographic-poster
 ---

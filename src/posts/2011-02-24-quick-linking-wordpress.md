@@ -1,10 +1,8 @@
 ---
 title: 'Quick internal linking tag in Wordpress'
 date: 2011-02-24
-keywords:
-    - Functions.php
-    - Link
-    - 'Template tag'
+tags:
+    - dev
 category: Wordpress
 slug: quick-internal-linking-tag-in-wordpress
 ---
@@ -56,7 +54,7 @@ I've found the version below more reliable and flexible. Try it out instead.
     function link_to_page($page_slug, $echo = true){
     	if(is_string($page_slug))
     		$page = get_ID_by_slug($page_slug);
-    	
+
     	if(!$page){
     		$link = get_bloginfo("url")."/".$page_slug;
     	}

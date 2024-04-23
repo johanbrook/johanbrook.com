@@ -2,15 +2,8 @@
 title: 'What Matters'
 link: 'http://37signals.com/svn/posts/2684-hiring-were-looking-for-another-web-app-interface-designer'
 date: 2010-12-06
-keywords:
-    - 37signals
-    - application
-    - Career
-    - education
-    - experience
-    - 'Jason Fried'
-    - 'job ad'
-    - Jobs
+tags:
+    - worklife
 category: Life
 slug: what-matters
 ---

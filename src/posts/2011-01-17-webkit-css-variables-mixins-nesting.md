@@ -2,14 +2,9 @@
 title: 'Webkit to get CSS variables, mixins, nesting?'
 link: 'http://www.xanthir.com/talks/2011-01-12/slides.html'
 date: 2011-01-17
-keywords:
-    - CSS
-    - Less
-    - mixins
-    - 'nested rules'
-    - Sass
-    - variables
-    - Webkit
+tags:
+    - dev
+    - css
 category: CSS
 slug: webkit-to-get-css-variables-mixins-nesting
 ---

@@ -4,13 +4,9 @@ slug: sublime-text-deno
 date: 2022-02-16
 location: My living room in Stockholm
 excerpt: How I set up Sublime Text 4 for developing Deno code.
-keywords:
-  - deno
-  - sublime text
-  - plugins
-  - config
-  - extensions
-  - lsp
+tags:
+    - dev
+    - javascript
 ---
 
 I've recently switched back to Sublime Text as main editor, as described in a recent

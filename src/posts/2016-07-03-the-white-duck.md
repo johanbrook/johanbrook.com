@@ -4,6 +4,8 @@ date: 2016-07-03
 category: Essays
 ogImage: 'http://johanbrook.com/assets/posts/whiteduck-ogimage.jpg'
 slug: the-white-duck
+tags:
+    - story
 ---
 
 **The White Duck was,** on the surface, lonely. She was not vicious, stupid, or bad in any way. She

@@ -1,13 +1,8 @@
 ---
 title: 'Staying hungry and evolving with new technologies'
 date: 2011-06-22
-keywords:
-    - Compass
-    - Git
-    - GitHub
-    - Rake
-    - Ruby
-    - Sass
+tags:
+    - dev
 category: Development
 slug: staying-hungry-and-evolving-with-new-technologies
 ---
@@ -27,14 +22,14 @@ I’m a designer by heart but a developer by brain (don’t know if that’s cor
 With Sass you’re able to pull off stuff like:
 
     $color: red;
-    
+
     nav{
         background: $color;
-    
+
         li {
             float: left;
         }
-    
+
         a {
             color: #fff;
             background: darken($color, 10%);
@@ -62,7 +57,7 @@ It’s object-oriented ( `5.times` ? Craziness!). It’s human-readable at first
 Or in this:
 
     name, other_name = "Johan", "John"
-    
+
     puts "Oops, the name isn't #{other_name}" unless name == other_name
 
 See that? _Readable_.
@@ -99,7 +94,7 @@ Finding yourself doing the same things over and over again during the course of 
 For example, this tasks compiles my Compass project in production mode:
 
     require "rake"
-    
+
     desc "Make sure the master Sass file is compiled for production"
     task :sass do
         puts `compass compile -e production --force`
@@ -113,26 +108,26 @@ I invoke this task from the command line with
 I can write a couple of boring tasks like this:
 
     require "rake"
-    
+
     desc "Build site"
     task :build => [:concat, :minify, :sass] do
     end
-    
+
     desc "Concatenate Javascript"
     task :concat do
         # Use Sprockets (http://getsprockets.org/) or some other tool for concatenating the files
-    
+
         puts "* Mashed together all JS files into all.js"
     end
-    
+
     desc "Minify the Javascript"
     task :minify do
         # Use a minifier such as UglifyJS, Uglifier, or Google Closure Compiler
         # to compress the Javascript
-    
+
         puts "* Minified source"
     end
-    
+
     desc "Make sure the master Sass file is compiled for production"
     task :sass do
         puts `compass compile -e production --force`
@@ -168,4 +163,3 @@ Simple, simple, simple. Wanna install the latest Rails? Run `gem install rails` 
 You’ll be more attractive as well: a designer knowing his/her way around Sass, Git, and Rails templates? A godsend gift for any developer! It works the other way around too: a developer appreciating typography, colour theory, and more.
 
 Ignorance is a sin. Stay hungry.
-

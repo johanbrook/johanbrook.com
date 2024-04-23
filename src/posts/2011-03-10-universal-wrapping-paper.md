@@ -2,10 +2,9 @@
 title: 'Universal wrapping paper'
 link: 'http://www.davidairey.com/universal-wrapping-paper'
 date: 2011-03-10
-keywords:
-    - 'Graphic design'
-    - 'Neat stuff'
-    - 'wrapping paper'
+tags:
+    - things
+    - design
 category: Design
 slug: universal-wrapping-paper
 ---

@@ -1,12 +1,8 @@
 ---
 title: 'After Hours'
 date: 2011-01-13
-keywords:
-    - habits
-    - hours
-    - rhythm
-    - sleep
-    - work
+tags:
+    - worklife
 category: Life
 slug: after-hours
 ---

@@ -2,18 +2,8 @@
 title: 'Rolling Stones'' "Gimme Shelter" deconstructed'
 link: 'http://www.dangerousminds.net/comments/deconstructing_gimme_shelter_listen/'
 date: 2010-12-01
-keywords:
-    - Clayton
-    - deconstructed
-    - 'Gimme Shelter'
-    - guitar
-    - isolated
-    - Merry
-    - recording
-    - rhythm
-    - 'Rolling Stones'
-    - studio
-    - tracks
+tags:
+    - listening
 category: Music
 slug: rolling-stones-gimme-shelter-deconstructed
 ---

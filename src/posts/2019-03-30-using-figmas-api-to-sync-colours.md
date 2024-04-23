@@ -4,12 +4,9 @@ slug: figma-api-colors-css
 date: 2019-03-30
 location: A kitchen table in Stockholm
 excerpt: How I used Figma's web API to sync colours with a CSS codebase, to close the gap between design resource and the implementation.
-keywords:
-  - figma
-  - api
-  - tailwind
-  - css
-  - colors
+tags:
+    - dev
+    - css
 ---
 
 **Design systems** have become popular recently. Even if you don't need a full blown one, it might

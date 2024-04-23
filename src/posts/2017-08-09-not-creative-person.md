@@ -4,6 +4,8 @@ slug: a-creative-person
 date: 2017-08-10
 keywords: creativity
 excerpt: As Johan Brook awoke one morning from uneasy dreams he found himself not being a creative person at all.
+tags:
+    - life
 ---
 
 > As Johan Brook awoke one morning from uneasy dreams he found himself not being a creative person

@@ -1,15 +1,8 @@
 ---
 title: 'A symbol for sex'
 date: 2013-08-12
-keywords:
-    - Design
-    - sex
-    - symbol
-    - icon
-    - sexual
-    - orientation
-    - symbolism
-    - equality
+tags:
+    - design
 category: Design
 slug: a-symbol-for-sex
 ---

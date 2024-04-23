@@ -1,14 +1,9 @@
 ---
 title: 'Digital magazines and HTML'
 date: 2011-04-06
-keywords:
-    - Cocoa
-    - Framework
-    - HTML
-    - iPad
-    - Javascript
-    - Magazines
-    - Tool
+tags:
+    - software
+    - internet
 category: Frameworks
 slug: digital-magazines-and-html
 ---

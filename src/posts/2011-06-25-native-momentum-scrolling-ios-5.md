@@ -1,15 +1,10 @@
 ---
 title: 'Native style momentum scrolling to arrive in iOS 5'
 date: 2011-06-25
-keywords:
-    - Apple
-    - iOS5
-    - momentum
-    - native
-    - Safari
-    - scrolling
-    - 'Web apps'
-    - Webkit
+tags:
+    - dev
+    - ios
+    - css
 category: Browsers
 slug: native-style-momentum-scrolling-to-arrive-in-ios-5
 ---

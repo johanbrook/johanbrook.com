@@ -2,13 +2,8 @@
 title: 'RSS is not dying, it''s being ignored'
 link: 'http://camendesign.com/blog/rss_is_dying'
 date: 2011-01-03
-keywords:
-    - Dead
-    - Internet
-    - RSS
-    - Subscription
-    - Syndication
-    - Web
+tags:
+    - internet
 category: Development
 slug: rss-is-not-dying-its-being-ignored
 ---

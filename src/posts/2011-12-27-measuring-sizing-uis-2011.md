@@ -2,16 +2,9 @@
 title: 'Measuring and sizing UIs, 2011-style'
 link: 'http://csswizardry.com/2011/12/measuring-and-sizing-uis-2011-style/'
 date: 2011-12-27
-keywords:
-    - CSS
-    - Typography
-    - measures
-    - em
-    - rem
-    - px
-    - percentage
-    - fluid
-    - layout
+tags:
+    - dev
+    - css
 category: CSS
 slug: measuring-and-sizing-uis-2011-style
 ---
