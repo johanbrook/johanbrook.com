@@ -332,6 +332,7 @@ u {
         text-decoration-style: dotted;
         text-underline-offset: .4ex;
         text-decoration-color: var(--color-faint);
+        cursor: help;
 
         &:hover {
             text-decoration-color: var(--color-text-detail);
