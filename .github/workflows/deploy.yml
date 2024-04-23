@@ -133,7 +133,9 @@ jobs:
                   LATEST_UNPOSTED: ${{ needs.check_latest_note.outputs.latest_note_id }}
 
             - name: Commit and push posted notes
+              # Pull first, since something could've been pushed in-between.
               run: |
+                git pull
                 git config user.name "Automated"
                 git config user.email "actions@users.noreply.github.com"
                 git add $MASTODON_LOG_FILE
