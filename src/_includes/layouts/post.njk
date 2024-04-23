@@ -3,10 +3,10 @@ layout: layouts/main.njk
 ---
 <main role="main">
   <article class="Post" role="article" itemscope itemtype="http://schema.org/BlogPosting">
-    <header>
+    <header class="mb4">
       <h1 itemprop="name" class="{% if link %}fw6 pt3{% else %}title{% endif %}">{{ title }}</h1>
 
-      <p class="mb0 fw5">
+      <p class="mb1 fw5">
           <time class="text-color-contrast" datetime="{{ date | tdate('Machine') }}" title="{{ date | tdate('Detailed') }}" itemprop="datePublished" pubdate>
             {{ date | tdate('HumanDate') }}
           </time>
@@ -20,9 +20,17 @@ layout: layouts/main.njk
           {% endif %}
       </p>
 
-      <p class="f5 mb4 font-sans muted">
-          About {{ content | default("No content", true) | readingTime }} reading time
+      <p class="f5 mb0 font-sans muted">
+        About {{ content | default("No content", true) | readingTime }} reading time
       </p>
+
+      {% if tags %}
+        <ul role="list" class="mb0 f6">
+            {% for tag in tags %}
+            <li class="muted font-sans inline">#{{ tag }}</li>
+            {% endfor %}
+        </ul>
+      {% endif %}
     </header>
 
     <div class="prose" itemprop="articleBody">

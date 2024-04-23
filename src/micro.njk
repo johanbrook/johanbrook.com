@@ -19,9 +19,19 @@ menu:
                         <time class="dt-published" datetime="{{ post.date | tdate('Machine', post.timezone) }}" pubdate>{{ post.date | tdate('HumanTime', post.timezone) }}</time> <span>#</span>
                     </a>
                 </h1>
-                {% if post.location %}
-                    <p title="Posted from" class="muted font-sans mb0 f6 target">{{ post.location }}</p>
-                {% endif %}
+                <div class="flex justify-between items-baseline gap">
+                    {% if post.location %}
+                        <p title="Posted from" class="muted font-sans mb0 f6 target">{{ post.location }}</p>
+                    {% endif %}
+
+                    {% if post.tags %}
+                        <ul role="list" class="mb0 f6">
+                            {% for tag in post.tags %}
+                            <li class="muted font-sans inline">#{{ tag }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
             </header>
 
             <div class="prose e-content">

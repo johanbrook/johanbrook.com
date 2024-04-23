@@ -7,9 +7,20 @@ layout: layouts/main.njk
             <h1 class="f4 mb1">
                 <time title="{{ date | tdate('Detailed') }}" datetime="{{ date | tdate('Machine') }}" pubdate>{{ date | tdate('HumanTime') }}</time>
             </h1>
-            {% if location %}
-                <p title="Posted from" class="muted font-sans mb0 f6 target">{{ location }}</p>
-            {% endif %}
+
+            <div class="flex justify-between items-baseline gap">
+                {% if location %}
+                    <p title="Posted from" class="muted font-sans mb0 f6 target">{{ location }}</p>
+                {% endif %}
+
+                {% if tags %}
+                    <ul role="list" class="mb0 f6">
+                        {% for tag in tags %}
+                        <li class="muted font-sans inline">#{{ tag }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
         </header>
 
         <div class="prose">
@@ -17,14 +28,6 @@ layout: layouts/main.njk
         </div>
 
         <footer class="mt3">
-            {% if tags %}
-                <ul role="list" class="mb3">
-                    {% for tag in tags %}
-                    <li class="muted font-sans f6 inline">#{{ tag }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-
             <p class="mt6">
                 <a href=".." class="muted">
     				<span aria-hidden="true" class="BackLink mr1">←</span> All micro notes
