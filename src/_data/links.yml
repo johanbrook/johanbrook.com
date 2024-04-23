@@ -9,3 +9,7 @@
 - url: 'https://www.cardsofwine.com'
   title: Cards of Wine
   notes: Good overview of everything wine.
+
+- url: 'https://css-shape.com'
+  title: CSS Shape
+  notes: Collection of `clip-path` shapes.
