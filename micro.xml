@@ -5,8 +5,20 @@
     <link>https://johan.im/</link>
     <atom:link href="https://johan.im/micro.xml" rel="self" type="application/rss+xml"/>
     <description></description>
-    <lastBuildDate>Tue, 23 Apr 2024 06:20:42 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 23 Apr 2024 08:47:44 GMT</lastBuildDate>
     <language>en</language>
+    <item>
+      <title>April 23 — 10:08</title>
+      <link>https://johan.im/micro/20240423100832/</link>
+      <guid isPermaLink="false">https://johan.im/micro/20240423100832/</guid>
+      <content:encoded>
+        <![CDATA[<p>I've made an observation with regards to the quality and style of my writing: after years of constructing mostly short sentences in Slack and on Twitter/Mastodon, my prose style is <em>really bad</em> (for my standards).</p>
+        <p>It's like writing only in chats where clear, short communication is key has made my long form writing much worse. It's tangent to the thing where people have too short attention span for reading books after years of only reading click bait headlines and social media posts.</p>
+        <p>I guess the fix is to read and write more prose.</p>
+        ]]>
+      </content:encoded>
+      <pubDate>Tue, 23 Apr 2024 08:08:32 GMT</pubDate>
+    </item>
     <item>
       <title>April 8 — 12:29</title>
       <link>https://johan.im/micro/20240408122909/</link>
@@ -205,23 +217,6 @@
         ]]>
       </content:encoded>
       <pubDate>Fri, 15 Dec 2023 14:05:31 GMT</pubDate>
-    </item>
-    <item>
-      <title>December 13, 2023 — 21:15</title>
-      <link>https://johan.im/micro/202312132015/</link>
-      <guid isPermaLink="false">https://johan.im/micro/202312132015/</guid>
-      <content:encoded>
-        <![CDATA[<p>Finished watching the David Beckham documentary. I <em>know</em> it’s super produced and sanctioned by the
-        Beckhams and all that. But. I liked it. Especially the ending, where the family hang out in present
-        day England at their countryside estate. It felt real, in a way (even though again: I <em>know</em> it’s
-        staged 😄).</p>
-        <p>It was a cool story arch, even though I guess I appreciated it because of the nostalgia. The <em>feels</em>
-        when images appeared of Luis Figo, Zidane, Ronaldo, Rio Ferdinand, and Ryan Giggs and the others. I
-        used to play Fifa 2003 on PC with those players, and they were all around when we were talking
-        football in school.</p>
-        ]]>
-      </content:encoded>
-      <pubDate>Wed, 13 Dec 2023 20:15:35 GMT</pubDate>
     </item>
   </channel>
 </rss>
