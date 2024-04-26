@@ -321,7 +321,7 @@ textarea {
 
 u {
     text-decoration: underline;
-    text-underline-offset: 0.6ex;
+    text-underline-offset: 0.3ex;
     text-decoration-style: wavy;
     text-decoration-color: var(--accent);
 }

@@ -24,13 +24,8 @@ menu:
                         <p title="Posted from" class="muted font-sans mb0 f6 target">{{ post.location }}</p>
                     {% endif %}
 
-                    {% if post.tags %}
-                        <ul role="list" class="mb0 f6">
-                            {% for tag in post.tags %}
-                            <li class="muted font-sans inline">#{{ tag }}</li>
-                            {% endfor %}
-                        </ul>
-                    {% endif %}
+                    {% import "tag-list.njk" as t %}
+                    {{ t.list(post.tags) }}
                 </div>
             </header>
 

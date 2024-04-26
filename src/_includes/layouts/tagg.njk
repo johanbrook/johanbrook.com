@@ -1,0 +1,40 @@
+---
+layout: layouts/main.njk
+---
+
+<main role="main">
+    <article>
+        <header class="mb3">
+            <h1 class="f5 fw5 mb0"><a class="muted" href="/tags">Tags</a> <span class="faint">/</span> <u>{{ tag }}</u></h1>
+        </header>
+
+        <ul role="list">
+            {% for thing in search.pages(tag, "date=desc") %}
+            <li class="mb4 border border-2 hover:border-neon pa2 rounded-small">
+                <article>
+                    <header class="mb2">
+                        <h2 class="f4 mb1">
+                            <a  href="{{ thing.url }}">
+                                {{ thing.type | title }}:
+                                {% if thing.type == "note" %}
+                                    {{ thing.date | tdate('HumanTime') }}
+                                {% else %}
+                                    {{ thing.title }}
+                                {% endif %}
+                            </a>
+                        </h2>
+
+                        {% if thing.type != "note" %}
+                            <p class="muted f6">
+                                {{ thing.date | tdate('HumanDate') }}
+                            </p>
+                        {% endif %}
+                    </header>
+
+                    <div class="prose excerpt f5">{{ thing.content | excerpt | md | safe }}</div>
+                </article>
+            </li>
+            {% endfor %}
+        </ul>
+    </article>
+</main>

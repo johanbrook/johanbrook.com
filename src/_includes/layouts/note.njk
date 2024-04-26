@@ -13,13 +13,8 @@ layout: layouts/main.njk
                     <p title="Posted from" class="muted font-sans mb0 f6 target">{{ location }}</p>
                 {% endif %}
 
-                {% if tags %}
-                    <ul role="list" class="mb0 f6">
-                        {% for tag in tags %}
-                        <li class="muted font-sans inline">#{{ tag }}</li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                {% import "tag-list.njk" as t %}
+                {{ t.list(tags) }}
             </div>
         </header>
 

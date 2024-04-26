@@ -840,6 +840,16 @@ BORDERS
     border-width: 1px 0 0;
 }
 
+.border-2 {
+    border-width: 2px;
+}
+
+.hover\:border-neon {
+    &:where(:hover, :focus-within) {
+        border-color: var(--neon);
+    }
+}
+
 /*
 COLOURS
 ----------------------------------------------------------------*/

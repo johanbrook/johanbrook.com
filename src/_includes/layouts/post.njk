@@ -24,13 +24,8 @@ layout: layouts/main.njk
         About {{ content | default("No content", true) | readingTime }} reading time
       </p>
 
-      {% if tags %}
-        <ul role="list" class="mb0 f6">
-            {% for tag in tags %}
-            <li class="muted font-sans inline">#{{ tag }}</li>
-            {% endfor %}
-        </ul>
-      {% endif %}
+      {% import "tag-list.njk" as t %}
+      {{ t.list(tags) }}
     </header>
 
     <div class="prose" itemprop="articleBody">

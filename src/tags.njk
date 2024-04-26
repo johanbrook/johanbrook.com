@@ -1,0 +1,10 @@
+---
+title: All tags
+layout: layouts/page.njk
+---
+
+<ol>
+    {% for tag in search.values("tags") %}
+    <li><a href="/tags/{{ tag }}">{{ tag }}</a></li>
+    {% endfor %}
+</ol>

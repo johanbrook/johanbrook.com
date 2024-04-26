@@ -89,3 +89,11 @@ PROSE
         margin-block-start: 0.5lh;
     }
 }
+
+.excerpt {
+    :is(h1, h2, h3, h4, h5, h6) {
+        font-size: var(--f4);
+        font-family: var(--sans);
+        margin-bottom: 0.25rlh;
+    }
+}
