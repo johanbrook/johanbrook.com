@@ -617,7 +617,7 @@ textarea:focus {
 
 u {
     text-decoration: underline;
-    text-underline-offset: 0.6ex;
+    text-underline-offset: 0.3ex;
     text-decoration-style: wavy;
     text-decoration-color: var(--accent);
 }
@@ -964,6 +964,12 @@ PROSE
 
 .prose details summary + pre {
         margin-block-start: 0.5lh;
+    }
+
+.excerpt :is(h1, h2, h3, h4, h5, h6) {
+        font-size: var(--f4);
+        font-family: var(--sans);
+        margin-bottom: 0.25rlh;
     }
 
 /* =CHANGELOG
@@ -1983,6 +1989,14 @@ BORDERS
 .border-t {
     border-width: 1px 0 0;
 }
+
+.border-2 {
+    border-width: 2px;
+}
+
+.hover\:border-neon:where(:hover, :focus-within) {
+        border-color: var(--neon);
+    }
 
 /*
 COLOURS
