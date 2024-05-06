@@ -20,6 +20,13 @@ else
     file_path=$(basename "$file_path")
 fi
 
+# 0 is found, 1 not found
+draft_found=`cat "$DIR/$file_path" | grep -Fxq "draft: true"; echo $?`
+
+if [ "$draft_found" == "0" ]; then
+    exit 0
+fi
+
 # 2022-01-04-09-37.md -> 202201040937
 file_id=$(echo "$file_path" | sed -e "s/-//g" | cut -f 1 -d ".")
 
