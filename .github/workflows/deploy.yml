@@ -1,18 +1,31 @@
 name: Build and deploy
 
 on:
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
     push:
         paths:
             - "src/**/*"
             - "_config.ts"
             - "CNAME"
-            - "deps.ts"
-            - ".rebuild" # same ^^
+            - ".rebuild"
             - ".github/workflows/deploy.yml"
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+    contents: read  # to checkout repo
+    pages: write    # to deploy to Pages
+    id-token: write # to verify the deployment originates from an appropriate source
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+    group: "pages"
+    cancel-in-progress: false
 
 env:
     DENO_VERSION: v1.42.4
-    BUILD_ARTIFACT: johan.im-build
     BUILD_FOLDER: build
     MASTODON_LOG_FILE: .mastodon-notes
     NOTES_DIR: src/notes
@@ -36,38 +49,25 @@ jobs:
                 NODE_ENV: production
                 ENV: production
 
-            - name: Upload build
-              uses: actions/upload-artifact@v4
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v3
               with:
-                  name: ${{ env.BUILD_ARTIFACT }}
-                  path: ${{ env.BUILD_FOLDER }}
-                  retention-days: 1
+                path: ${{ env.BUILD_FOLDER }}
 
     deploy:
         name: Deploy
         needs: build
         runs-on: ubuntu-latest
+        if: github.ref_name == 'main'
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-
-            - name: Download build
-              uses: actions/download-artifact@v4
-              with:
-                  name: ${{ env.BUILD_ARTIFACT }}
-                  path: ${{ env.BUILD_FOLDER }}
-
             - name: Deploy to GitHub Pages
-              if: github.ref_name == 'main'
-              uses: JamesIves/github-pages-deploy-action@v4
-              with:
-                  # The branch the action should deploy to.
-                  branch: gh-pages
-                  # The folder the action should deploy.
-                  folder: ${{ env.BUILD_FOLDER }}
+              id: deployment
+              uses: actions/deploy-pages@v4
 
             - name: Purge Cloudflare cache
-              if: github.ref_name == 'main'
               uses: jakejarvis/cloudflare-purge-action@master
               env:
                   CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
