@@ -84,6 +84,7 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
+              # TODO Bail if latest note is draft
             - name: Check if latest note is already posted
               id: mastodon_note_check
               timeout-minutes: 10
