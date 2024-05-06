@@ -7,6 +7,8 @@ menu:
   top: true
 ---
 
+{% import "tag-list.njk" as t %}
+
 <main role="main" class="notes h-feed">
   <h1 class="visually-hidden p-name">{{ titles.micro }}</h1>
   <ol role="list" class="NotesList">
@@ -14,8 +16,8 @@ menu:
       <li class="h-entry" id="{{ post.url | url(true) }}">
         <article class="Note">
            	<header class="mb2">
-                <h1 class="f4 mb0">
-                    <a href="{{ post.url }}" title="Permalink ({{ post.date | tdate('Detailed', post.timezone) }})" class="font-serif no-underline u-url">
+                <h1 class="font-serif f4 mb0">
+                    <a href="{{ post.url }}" title="Permalink ({{ post.date | tdate('Detailed', post.timezone) }})" class="no-underline u-url">
                         <time class="dt-published" datetime="{{ post.date | tdate('Machine', post.timezone) }}" pubdate>{{ post.date | tdate('HumanTime', post.timezone) }}</time> <span>#</span>
                     </a>
                 </h1>
@@ -24,7 +26,6 @@ menu:
                         <p title="Posted from" class="muted font-sans mb0 f6 target">{{ post.location }}</p>
                     {% endif %}
 
-                    {% import "tag-list.njk" as t %}
                     {{ t.list(post.tags) }}
                 </div>
             </header>
