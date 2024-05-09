@@ -2,7 +2,7 @@ import { Router, RouterRequest } from './router.ts';
 import { checkAuth, Client } from './auth.ts';
 import { Services } from './services/index.ts';
 import { pipe } from './pipe.ts';
-import { addBook, finishBook, getCurrentBooks, postNote } from './routes/index.ts';
+import { addBook, addMedia, finishBook, getCurrentBooks, postNote } from './routes/index.ts';
 import { urlForBook } from '../src/_includes/permalinks.ts';
 import { setCurrentTrack, setCurrentTrackFromSpotifyUrl } from './routes/index.ts';
 import { addLink } from './routes/link.ts';
@@ -115,6 +115,16 @@ export function createApp(services: Services) {
             await addLink(services, await req.json());
 
             return new Response('Link added', { status: 201 });
+        }),
+    );
+
+    router.route(
+        'POST',
+        '/add-media',
+        pipe(authHandler, async (req) => {
+            await addMedia(services, await req.json());
+
+            return new Response('Media appended');
         }),
     );
 

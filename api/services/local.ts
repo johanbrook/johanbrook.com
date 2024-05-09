@@ -13,7 +13,16 @@ export const createLocal = (): FileHost => {
         },
         getFile: async (filePath) => {
             filePath = join(Deno.cwd(), filePath);
-            return await Deno.readTextFile(filePath);
+
+            try {
+                return await Deno.readTextFile(filePath);
+            } catch (ex) {
+                if (!(ex instanceof Deno.errors.NotFound)) {
+                    throw ex;
+                }
+
+                return null;
+            }
         },
     };
 };

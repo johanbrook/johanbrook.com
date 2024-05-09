@@ -1,10 +1,8 @@
 ---
-date: '2024-05-06T23:15:14+02:00'
-location: <where>
-timezone: Europe/Stockholm
-draft: true
+date: '2024-05-09T20:21:00+02:00'
+tags:
+    - recently
 ---
-
 ## Watched
 
 - _Poor Things_ (Disney+)

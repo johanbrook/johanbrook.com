@@ -13,6 +13,12 @@ export const postNote = async (services: Services, json: any) => {
     return new URL(notePermalinkOf(note.fileName), getConfig('ROOT_URL'));
 };
 
+export const addMedia = async (services: Services, json: any) => {
+    const input = inputOf(json); // throws on validation errors
+
+    await Notes.appendToCurrent(services.fileHost, input);
+};
+
 function assert<T>(v: any, type: string, err: () => Error): asserts v is T {
     if (typeof v != type) {
         throw err();
