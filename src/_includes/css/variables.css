@@ -7,7 +7,7 @@
     --light: color-mix(in oklab, var(--mood) 8%, oklch(84% 0 0));
     --dark: color-mix(in oklab, var(--mood) 4%, oklch(16% 0 0));
 
-    --neon: hsl(145 81% 44.48%);
+    --neon: oklch(77.6% 0.185 74.12);
     --yellow: hsl(50 93% 56%);
     --grey: hsl(214.51 7.24% 47.56%);
     --grey-light: hsl(173 7% 36% / 0.5);

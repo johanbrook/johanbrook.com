@@ -118,7 +118,7 @@ ol ::marker {
     color: var(--link-color);
     position: relative;
     text-underline-offset: 4px;
-    text-decoration-thickness: 1px;
+    text-decoration-thickness: 1.5px;
     text-decoration-color: var(--link-accent-color);
 
     &.block {
