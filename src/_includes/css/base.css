@@ -121,6 +121,10 @@ ol ::marker {
     text-decoration-thickness: 1.5px;
     text-decoration-color: var(--link-accent-color);
 
+    @media (prefers-color-scheme: dark) {
+        text-decoration-color: color-mix(in oklab, var(--neon), transparent 50%);
+    }
+
     &.block {
         text-decoration: none;
         font-weight: unset;
