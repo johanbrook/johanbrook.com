@@ -779,3 +779,12 @@
 - title: Ute Av Verden
   author: Karl Ove Knausgård
   slug: ute-av-verden
+  paused: true
+  notes: |
+      This is _very_ similar to one of the books in the author's _Min Kamp_ series, and of course! The reading so far
+      is kind of dull, since I know deep inside that the experiences from _Min Kamp_ are closer to the truth. This one
+      feels like a bleak mirror image so far.
+
+- title: Historien om New York
+  author: Henrik Berggren
+  slug: historien-om-new-york
