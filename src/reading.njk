@@ -44,7 +44,7 @@ menu:
            					<div class="prose f6">{{ book.notes | excerpt | md | safe }}</div>
 
                             {% if didExcerpt(book.notes) %}
-                                <p class="f6 mb0">
+                                <p class="f6 mb0 mt1">
                                     <a class="muted" href="{{ '/reading' | url }}/{{book.slug}}/">Continued ⇢</a>
                                 </p>
                             {% endif %}
