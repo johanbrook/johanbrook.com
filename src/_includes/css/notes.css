@@ -6,6 +6,16 @@
             color: var(--link-accent-color);
         }
     }
+
+    .prose {
+        h1 {
+            font-size: var(--f3);
+        }
+
+        :where(h2, h3, h4, h5, h6) {
+            font-size: var(--f4);
+        }
+    }
 }
 
 .NotesList {
