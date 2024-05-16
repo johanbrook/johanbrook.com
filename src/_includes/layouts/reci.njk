@@ -32,13 +32,29 @@ layout: layouts/main.njk
         </aside>
     {% endif %}
 
-    <div class="prose">
-        {{ content | safe }}
-    </div>
+    {% if notes %}
+        <section class="mb3">
+            <div class="prose">
+                <h1 class="f3">My notes</h1>
+                {{ notes | md | safe }}
+            </div>
+        </section>
+    {% endif %}
+
+    <section>
+        <div class="prose">
+            <h1 class="f3">The recipe</h1>
+            {{ content | safe }}
+        </div>
+    </section>
 
     <footer class="mt5 flex items-center justify-between">
         <a href=".." class="muted">
       		<span aria-hidden="true" class="BackLink mr1">←</span> All recipes
        	</a>
+
+        <p class="mb0 muted f6">
+           This is a <a href="https://cooklang.org">Cooklang</a> based recipe.
+        </p>
     </footer>
 </article>

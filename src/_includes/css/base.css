@@ -114,7 +114,7 @@ ol ::marker {
     font-weight: 550;
 }
 
-:is(a, .link) {
+:is(a, .link):not(.btn) {
     color: var(--link-color);
     position: relative;
     text-underline-offset: 4px;

@@ -21,7 +21,7 @@
     }
 }
 
-.recipe-ingredients, .recipe--ingredient {
+:where(.recipe-ingredients, .recipe--ingredient, .recipe-cookwares) {
     font-weight: var(--fw-stronger);
     color: var(--color-text-high-contrast);
 }
@@ -32,7 +32,7 @@
     padding-top: 1lh;
 
     ol li {
-        margin-bottom: 0.25lh;
+        margin-bottom: 0.5lh;
     }
 
     ol {
@@ -54,6 +54,7 @@
     text-underline-offset: 0.6ex;
     text-decoration-style: wavy;
     text-decoration-color: var(--accent);
+    white-space: nowrap;
 }
 
 .recipe--ingredient {
