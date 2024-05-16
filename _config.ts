@@ -186,6 +186,7 @@ site.use(typeset({ scope: '.prose' }))
     .data('type', 'note', '/notes')
     .data('layout', 'layouts/note.njk', '/notes')
     .data('templateEngine', 'njk,md', '/notes')
+    .data('title', 'A micro note', '/notes')
     // RECIPES
     .data('layout', 'layouts/reci.njk', '/recipes')
     .data('type', 'recipe', '/recipes')
