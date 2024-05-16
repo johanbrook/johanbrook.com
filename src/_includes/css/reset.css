@@ -26,8 +26,6 @@
 }
 
 :where(body) {
-    line-height: 1.5;
-    font-family: system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
 }
