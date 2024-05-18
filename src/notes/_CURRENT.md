@@ -1,9 +1,8 @@
 ---
-date: '2024-05-18T20:57:41+02:00'
-location: 'Nacka, Sweden'
+date: '2024-05-18T21:00:25+02:00'
+location: Nacka, Sweden
 timezone: Europe/Stockholm
 tags:
-    - recently
     - recently
 ---
 # Recently
@@ -23,8 +22,3 @@ tags:
 ## Books
 
 - [_Historien om New York_ by Henrik Berggren](/reading/historien-om-new-york)
-
-## Uncategorised
-
-- lol
-
