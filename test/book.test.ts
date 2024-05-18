@@ -4,7 +4,6 @@ import { createApp } from '../api/app.ts';
 import { mock, spy } from './_mock.ts';
 import * as Yaml from 'std/yaml/mod.ts';
 import { assertMatch } from 'std/assert/assert_match.ts';
-import 'temporal-polyfill/global';
 
 const BASE_URL = 'http://localhost:8000';
 

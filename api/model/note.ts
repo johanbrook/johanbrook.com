@@ -118,7 +118,7 @@ const noteOf = (fileName: string, input: NoteInput): Note => {
                 input.zonedDateTime,
             ),
             location: input.location,
-            timezone: input.zonedDateTime.timeZoneId.toString(),
+            timezone: input.zonedDateTime.timeZone.toString(),
             tags: input.tags,
         },
     };

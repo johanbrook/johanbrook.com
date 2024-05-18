@@ -2,7 +2,6 @@ import { assertEquals } from 'std/assert/mod.ts';
 import { assertSpyCall, assertSpyCalls, spy } from 'std/testing/mock.ts';
 import { createApp } from '../api/app.ts';
 import { mock } from './_mock.ts';
-import 'temporal-polyfill/global';
 
 const BASE_URL = 'http://localhost:8000';
 

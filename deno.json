@@ -4,16 +4,14 @@
         "lume/": "https://deno.land/x/lume@v2.1.3/",
         "html_entities": "https://deno.land/x/html_entities@v1.0/mod.js",
         "slug": "https://deno.land/x/slug@v1.1.0/mod.ts",
-        "temporal-polyfill": "https://esm.sh/temporal-polyfill@0.2.3",
-        "temporal-polyfill/global": "https://esm.sh/temporal-polyfill@0.2.3/global",
         "cooklang": "https://esm.sh/@cooklang/cooklang-ts@1.2.6"
     },
     "tasks": {
         "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable-temporal -A -",
         "build": "deno task lume",
         "serve": "deno task build -s",
-        "test": "export IOS_SHORTCUT_TOKEN=aaa && export MAC_SHORTCUT_TOKEN=aaa && export ROOT_URL=https://johan.im && TEST=1 deno test --allow-env --location https://johan.im",
-        "api": "deno run --allow-env --allow-net --allow-read --allow-write --location https://johan.im --watch api/server.ts",
+        "test": "export IOS_SHORTCUT_TOKEN=aaa && export MAC_SHORTCUT_TOKEN=aaa && export ROOT_URL=https://johan.im && TEST=1 deno test --allow-env --location https://johan.im --unstable-temporal",
+        "api": "deno run --allow-env --unstable-temporal --allow-net --allow-read --allow-write --location https://johan.im --watch api/server.ts",
         "api:deploy": "deployctl deploy --env-file=.env.api"
     },
     "compilerOptions": {
