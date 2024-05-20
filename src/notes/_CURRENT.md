@@ -1,8 +1,9 @@
 ---
-date: '2024-05-18T21:00:25+02:00'
-location: Nacka, Sweden
+date: '2024-05-20T08:52:41+02:00'
+location: 'Stockholm, Sweden'
 timezone: Europe/Stockholm
 tags:
+    - recently
     - recently
 ---
 # Recently
@@ -22,3 +23,8 @@ tags:
 ## Books
 
 - [_Historien om New York_ by Henrik Berggren](/reading/historien-om-new-york)
+
+## Uncategorised
+
+- 3 Body Problem
+
