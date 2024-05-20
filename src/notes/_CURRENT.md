@@ -1,5 +1,5 @@
 ---
-date: '2024-05-20T21:30:22+02:00'
+date: '2024-05-20T21:37:33+02:00'
 location: 'Stockholm, Sweden'
 timezone: Europe/Stockholm
 tags:
@@ -28,4 +28,5 @@ tags:
 
 - 3 Body Problem
 - _Just nu är jag här_ by Isabelle Ståhl
+- [Bring your own base class](https://hawkticehurst.com/writing/bring-your-own-base-class/)
 
