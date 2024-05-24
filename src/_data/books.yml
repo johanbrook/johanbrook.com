@@ -805,3 +805,9 @@
 - title: Just nu är jag här
   author: Isabelle Ståhl
   slug: just-nu-ar-jag-har
+  finished: true
+  finishedAt: 2024-05-22
+  location: Stockholm, Sweden
+
+- title: Eden
+  author: Isabelle Ståhl

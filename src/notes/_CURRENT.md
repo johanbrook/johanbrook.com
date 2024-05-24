@@ -23,10 +23,9 @@ tags:
 ## Books
 
 - [_Historien om New York_ by Henrik Berggren](/reading/historien-om-new-york)
+- [_Just nu är jag här_ by Isabelle Ståhl](/reading/just-nu-ar-jag-har)
 
 ## Uncategorised
 
 - 3 Body Problem
-- _Just nu är jag här_ by Isabelle Ståhl
 - [Bring your own base class](https://hawkticehurst.com/writing/bring-your-own-base-class/)
-
