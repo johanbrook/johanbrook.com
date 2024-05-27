@@ -1,0 +1,37 @@
+.home {
+    main {
+        --section-spacing: calc(var(--spacing-base) * 3);
+
+        > :where(section, article) {
+
+            &:not(:last-child) {
+                margin-block-end: var(--section-spacing);
+            }
+
+            > header {
+                margin-block-end: calc(var(--spacing-base));
+                padding-block-end: calc(var(--spacing-base) / 4);
+                border-block-end: 1px solid var(--border-color);
+
+                h1 {
+                    font-size: var(--f2);
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .item-grid {
+        li {
+            display: grid;
+            grid-template-columns: 1fr 0.75fr 70px;
+            column-gap: 0.5rlh;
+
+             > * {
+                 white-space: nowrap;
+                 overflow: hidden;
+                 text-overflow: ellipsis;
+             }
+        }
+    }
+}

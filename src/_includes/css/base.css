@@ -114,12 +114,10 @@ ol ::marker {
     font-weight: 550;
 }
 
-:is(a, .link):not(.btn) {
+:where(a, .link):not(.btn) {
     color: var(--link-color);
     position: relative;
-    text-underline-offset: 4px;
-    text-decoration-thickness: 1.5px;
-    text-decoration-color: var(--link-accent-color);
+    text-underline-offset: 3px;
 
     @media (prefers-color-scheme: dark) {
         text-decoration-color: color-mix(in oklab, var(--neon), transparent 50%);

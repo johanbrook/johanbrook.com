@@ -6,7 +6,6 @@ tags:
     - recently
     - recently
 ---
-# Recently
 
 ## Watched
 

@@ -18,10 +18,6 @@
             color: var(--link-color-hover);
             text-decoration: underline;
         }
-
-        &:not([aria-current='page'] > &):not(&:hover):not(&:focus-visible) {
-            opacity: 0.8;
-        }
     }
 
     [aria-current='page'] {
