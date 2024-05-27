@@ -1,0 +1,11 @@
+.excerpt {
+    :is(h1, h2, h3, h4, h5, h6) {
+        font-size: var(--f6);
+        margin-bottom: 0.25rlh;
+        border: 0;
+    }
+
+    h1 {
+        font-size: var(--f5);
+    }
+}

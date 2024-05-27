@@ -977,6 +977,7 @@ TYPOGRAPHY
     color: var(--color-bg);
     padding: 0.3em 0.4em;
     white-space: nowrap;
+    text-align: center;
 
     &:hover {
         text-decoration: none;
