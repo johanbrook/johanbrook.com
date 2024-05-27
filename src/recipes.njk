@@ -6,7 +6,7 @@ menu:
   top: true
 ---
 
-{% set recipes = search.pages("type=recipe", "has_tried=desc") %}
+{% set recipes = search.pages("type=recipe", "title=asc has_tried=desc") %}
 
 <main role="main" class="posts h-feed">
     <header class="mb3">
