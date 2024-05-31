@@ -13,3 +13,6 @@
 - url: 'https://css-shape.com'
   title: CSS Shape
   notes: Collection of `clip-path` shapes.
+
+- url: 'https://send.djazz.se/'
+  notes: Super good app for sending EPUB files to ebook readers.
