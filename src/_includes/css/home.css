@@ -24,7 +24,7 @@
     .item-grid {
         li {
             display: grid;
-            grid-template-columns: 1fr 0.75fr 70px;
+            grid-template-columns: 40% 0.75fr minmax(70px, 0.3fr);
             column-gap: 0.5rlh;
 
              > * {
@@ -32,6 +32,13 @@
                  overflow: hidden;
                  text-overflow: ellipsis;
              }
+        }
+    }
+    
+    /* TODO Why no nesting? */
+    .item-grid--equal {
+        li {
+            grid-template-columns: 40% 0.75fr 0.75fr;
         }
     }
 }

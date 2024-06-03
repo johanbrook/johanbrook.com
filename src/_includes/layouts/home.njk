@@ -91,23 +91,27 @@ home: true
             <h1>Listening</h1>
             <p class="font-sans f5 fw4 mb0 muted" id="music-loading">Tracks I've listened to recently.</p>
     	</header>
-    	<ol role="list" id="music-target" class="TracksList">
+    	<ol role="list" id="music-target" class="item-grid item-grid--equal">
 
     	</ol>
     </section>
 </main>
 
 <template id="music-tmpl">
-	<li class="mb2 leading-tight">
-		<span class="music-title block fw6"></span>
-		<small class="font-sans f6">
-			<span class="music-subtitle muted"></span>
-		</small>
+	<li class="mb1">
+		<span class="music-title fw5"></span>
+		<span class="music-artist"></span>
+		<span class="music-album"></span>
 	</li>
 </template>
 
 <script type="module">
 	const ENDPOINT = 'https://brookie.pages.dev';
+	
+	const clean = (str) => {
+	   const idx = str.search(/[-\(]/g);
+	   return str.slice(0, idx).trim();
+	}
 
 	const render = (target, tracks) => {
 		const tmpl = document.getElementById('music-tmpl');
@@ -117,10 +121,14 @@ home: true
 			const clone = tmpl.content.cloneNode(true);
 			const container = clone.querySelector('li')
 			const title = clone.querySelector('.music-title')
-			const subtitle = clone.querySelector('.music-subtitle');
+			const artist = clone.querySelector('.music-artist');
+			const album = clone.querySelector('.music-album');
 
-			title.textContent = track.name;
-			subtitle.textContent = `${track.artist['#text']} — ${track.album['#text']}`;
+			title.textContent = clean(track.name);
+			title.title = track.name;
+			artist.textContent = track.artist['#text'];
+			album.textContent = clean(track.album['#text']);
+			album.title = track.album['#text'];
 
 			if (track['@attr']?.nowplaying == 'true') {
 				title.classList.add('fw7');
