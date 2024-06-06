@@ -1,11 +1,11 @@
 ---
-date: '2024-05-20T21:37:33+02:00'
+date: '2024-06-06T09:58:06+02:00'
 location: 'Stockholm, Sweden'
 timezone: Europe/Stockholm
 tags:
     - recently
+    - recently
 ---
-
 ## Watched
 
 - **Gangs of New York** (movie) ★★☆☆☆
@@ -42,3 +42,8 @@ tags:
 ## Articles
 
 - [Bring your own base class](https://hawkticehurst.com/writing/bring-your-own-base-class/)
+
+## Uncategorised
+
+- Bowiepodden
+
