@@ -21,7 +21,7 @@ Deno.test('API PUT /current-track ok', async () => {
                 ContentType: 'application/json',
             },
             body: JSON.stringify({
-                name: 'With Or Without You',
+                name: 'With Or Without You - 2006 Remaster',
                 artist: 'U2',
             }),
         }),

@@ -28,7 +28,7 @@ export const mock = (inp?: MockInput): Mock => {
     const mockSpotify = {
         lookupTrackId: spy(() =>
             Promise.resolve({
-                name: 'Hitchiker',
+                name: 'Hitchiker (2018 Remaster)',
                 artist: 'Neil Young',
             })
         ),
