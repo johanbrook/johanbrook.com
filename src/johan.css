@@ -13,12 +13,7 @@ Just kidding.
 @import 'css/base.css';
 @import 'css/layout.css';
 
-@import 'css/notes.css';
-@import 'css/navigation.css';
-@import 'css/notes.css';
-@import 'css/posts-list.css';
-@import 'css/prose.css';
-@import 'css/excerpt.css';
+@import 'css/components.css';
 
 @import 'css/changelog.css';
 @import 'css/oblique-strategies.css';

@@ -3,8 +3,8 @@ title: All tags
 layout: layouts/page.njk
 ---
 
-<ol>
+<ol class="TagCloud">
     {% for tag in search.values("tags") %}
-    <li><a href="/tags/{{ tag }}">{{ tag }}</a></li>
+    <li><a href="/tags/{{ tag }}">{{ tag }}</a> {{ search.pages(tag) | length }}</li>
     {% endfor %}
 </ol>
