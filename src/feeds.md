@@ -9,6 +9,11 @@ templateEngine: md,njk
 date: Git Last Modified
 ---
 
+## Everything
+
+- [RSS](/feed.xml)
+- [JSON](/feed.json)
+
 ## Micro
 
 - [RSS](/micro.xml)

@@ -3,8 +3,7 @@ import postcss from 'lume/plugins/postcss.ts';
 import esbuild from 'lume/plugins/esbuild.ts';
 import nunjucks from 'lume/plugins/nunjucks.ts';
 import date from 'lume/plugins/date.ts';
-import feed from 'lume/plugins/feed.ts';
-import temporalDate, { DateTimeFormat, formatTemporalDate } from './src/_lume-plugins/temporal-date.ts';
+import temporalDate from './src/_lume-plugins/temporal-date.ts';
 import { readingTime } from './src/_lume-plugins/reading-time.ts';
 import { excerpts } from './src/_lume-plugins/excerpts.ts';
 import { typeset } from './src/_lume-plugins/typeset.ts';
@@ -16,6 +15,7 @@ import { microRoot } from './src/_includes/permalinks.ts';
 import { booksRoot } from './src/_includes/permalinks.ts';
 import postcssUtopia from 'npm:postcss-utopia@^1';
 import { type Book, currentBookOf } from './api/model/book.ts';
+import { feeds } from './_feeds.ts';
 
 const site = lume({
     src: 'src',
@@ -27,60 +27,7 @@ site.use(typeset({ scope: '.prose' }))
     .use(nunjucks())
     .use(esbuild())
     .copy('public', '.')
-    // FEEDS
-
-    .use(feed({
-        output: ['micro.xml', 'micro.json'],
-        query: 'type=note',
-        info: {
-            title: '=titles.micro',
-            generator: false,
-        },
-        items: {
-            title: (post) => formatTemporalDate(post.date, DateTimeFormat.HumanTime, post.timezone),
-        },
-    }))
-    .use(feed({
-        output: ['writings.xml', 'writings.json'],
-        query: 'type=post',
-        info: {
-            title: '=titles.writings',
-            generator: false,
-        },
-        items: {
-            description: '=excerpt',
-        },
-    }))
-    .use(feed({
-        output: ['reading.xml', 'reading.json'],
-        query: 'type=book',
-        sort: 'finishedAt=desc',
-        info: {
-            title: '=titles.reading',
-            generator: false,
-        },
-        items: {
-            description: (book) => {
-                if (book.dropped) return 'Book dropped';
-                if (book.paused) return 'Book paused';
-                if (!book.finished) return 'Currently reading';
-                return 'Finished reading';
-            },
-            content: (book) => {
-                if (book.notes) return book.notes;
-                return 'No notes';
-            },
-            updated: '=finishedAt',
-        },
-    }))
-    .use(feed({
-        output: ['recipes.xml', 'recipes.json'],
-        query: 'type=recipe',
-        info: {
-            title: '=titles.recipes',
-            generator: false,
-        },
-    }))
+    .use(feeds())
     .use(sitemap())
     .use(
         postcss({
