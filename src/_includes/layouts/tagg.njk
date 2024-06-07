@@ -4,8 +4,10 @@ layout: layouts/main.njk
 
 <main role="main">
     <article>
-        <header class="mb3">
+        <header class="mb3 flex justify-between">
             <h1 class="f5 fw5 mb0"><a class="muted" href="/tags">Tags</a> <span class="faint">/</span> <u>{{ tag }}</u></h1>
+            
+            <p class="mb0 muted f5">{{ search.pages(tag) | length }} things</p>
         </header>
 
         <ul role="list">

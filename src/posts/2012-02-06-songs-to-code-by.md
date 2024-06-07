@@ -3,7 +3,7 @@ title: 'Songs to code by'
 date: 2012-02-06
 tags:
     - dev
-    - listening
+    - music
 category: Music
 slug: songs-to-code-by
 ---

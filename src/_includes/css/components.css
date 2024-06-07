@@ -4,5 +4,11 @@
 @import 'css/notes.css';
 
 .TagCloud {
+    li {
+        display: inline;
+    }
     
+    a {
+        font-size: 1em;
+    }
 }

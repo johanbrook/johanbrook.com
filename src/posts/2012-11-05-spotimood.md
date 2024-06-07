@@ -3,7 +3,7 @@ title: Spotimood
 date: 2012-11-05
 tags:
     - dev
-    - listening
+    - music
 category: Music
 slug: spotimood
 ---
