@@ -10,6 +10,7 @@ import { excerpts } from './src/_lume-plugins/excerpts.ts';
 import { typeset } from './src/_lume-plugins/typeset.ts';
 import cooklang from './src/_lume-plugins/cooklang.ts';
 import sourceMaps from 'lume/plugins/source_maps.ts';
+import sitemap from "lume/plugins/sitemap.ts";
 import { idOf, postsRoot } from './src/_includes/permalinks.ts';
 import { microRoot } from './src/_includes/permalinks.ts';
 import { booksRoot } from './src/_includes/permalinks.ts';
@@ -80,6 +81,7 @@ site.use(typeset({ scope: '.prose' }))
             generator: false,
         },
     }))
+    .use(sitemap())
     .use(
         postcss({
             plugins: [

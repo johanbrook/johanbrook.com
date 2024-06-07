@@ -1,3 +1,5 @@
+Sitemap: https://johan.im/sitemap.xml
+
 # AI Assistant
 # https://darkvisitors.com/agents/chatgpt-user
 
