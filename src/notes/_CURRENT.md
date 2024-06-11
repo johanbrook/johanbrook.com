@@ -1,6 +1,6 @@
 ---
-date: '2024-06-06T09:58:06+02:00'
-location: 'Stockholm, Sweden'
+date: '2024-06-11T23:08:39+02:00'
+location: ''
 timezone: Europe/Stockholm
 tags:
     - recently
@@ -46,4 +46,5 @@ tags:
 ## Uncategorised
 
 - Bowiepodden
+- The Dropout
 
