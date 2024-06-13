@@ -4,7 +4,6 @@ location: ''
 timezone: Europe/Stockholm
 tags:
     - recently
-    - recently
 ---
 ## Watched
 
@@ -28,12 +27,17 @@ tags:
     It was such a cool angle to have the aliens arrive in 400 years, and in the meantime, having them ruin our science until their arrival. How do we deal with an incoming threat when it's so far away? I like these deeper questions around space, humanity, and aliens.
     
   </details>
+  
+- **The Dropout** (series) ★★★★☆
+
+  Very chilling and dark story about Elizabeth Holmes and the whole Theranos fail. It was really well made, and I'm happy they included a lot of small things from Silicon Valley/tech culture (sleeping in the office, VCs being assholes, the focus on offices, things, and marketing instead of actually creating any value for humans).
 
 ## Books
 
 - [_Historien om New York_ by Henrik Berggren](/reading/historien-om-new-york)
 - [_Just nu är jag här_ by Isabelle Ståhl](/reading/just-nu-ar-jag-har)
 - [_Eden_ by Isabelle Ståhl](/reading/eden)
+- [_Short Fiction_ by Ernest Hemingway](/reading/short-fiction)
 
 ## Cooked
 
@@ -43,8 +47,8 @@ tags:
 
 - [Bring your own base class](https://hawkticehurst.com/writing/bring-your-own-base-class/)
 
-## Uncategorised
+## Podcasts
 
-- Bowiepodden
-- The Dropout
+- **Bowiepodden** (Swedish, "The Bowie Podcast")
 
+  I'm haven't ever been a podcast kinda guy, but this one hit me just right: the host and his invited guests go through a David Bowie album per episode, talking about each one of the tracks. Super nerdy, but there's a great warmth and appreciation for Bowie's artistery and his collaborations with the fellow musicians on the tracks.
