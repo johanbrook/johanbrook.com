@@ -119,10 +119,12 @@ const noteOf = (fileName: string, input: NoteInput): Note => {
             ),
             location: input.location,
             timezone: input.zonedDateTime.timeZone.toString(),
-            tags: input.tags,
+            tags: input.tags && uniq(input.tags),
         },
     };
 };
+
+const uniq = <T>(arr: T[]): T[] => [...new Set(arr)];
 
 const addFrontMatter = <T extends Record<string, unknown>>(
     contents: string,
