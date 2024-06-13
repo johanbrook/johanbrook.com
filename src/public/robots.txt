@@ -1,27 +1,35 @@
 Sitemap: https://johan.im/sitemap.xml
 
-# AI Assistant
-# https://darkvisitors.com/agents/chatgpt-user
+# Dark Visitors Robots.txt
 
-User-agent: ChatGPT-User
-Disallow: /
+# AI Data Scraper
+# https://darkvisitors.com/agents/applebot-extended
 
-# AI Assistant
-# https://darkvisitors.com/agents/cohere-ai
-
-User-agent: cohere-ai
+User-agent: Applebot-Extended
 Disallow: /
 
 # AI Data Scraper
-# https://darkvisitors.com/agents/anthropic-ai
+# https://darkvisitors.com/agents/bytespider
 
-User-agent: anthropic-ai
+User-agent: Bytespider
 Disallow: /
 
 # AI Data Scraper
 # https://darkvisitors.com/agents/ccbot
 
 User-agent: CCBot
+Disallow: /
+
+# AI Data Scraper
+# https://darkvisitors.com/agents/claudebot
+
+User-agent: ClaudeBot
+Disallow: /
+
+# AI Data Scraper
+# https://darkvisitors.com/agents/diffbot
+
+User-agent: Diffbot
 Disallow: /
 
 # AI Data Scraper
@@ -43,10 +51,25 @@ User-agent: GPTBot
 Disallow: /
 
 # AI Data Scraper
-# https://darkvisitors.com/agents/omgilibot
-
-User-agent: omgilibot
-Disallow: /
+# https://darkvisitors.com/agents/omgili
 
 User-agent: omgili
+Disallow: /
+
+# Undocumented AI Agent
+# https://darkvisitors.com/agents/anthropic-ai
+
+User-agent: anthropic-ai
+Disallow: /
+
+# Undocumented AI Agent
+# https://darkvisitors.com/agents/claude-web
+
+User-agent: Claude-Web
+Disallow: /
+
+# Undocumented AI Agent
+# https://darkvisitors.com/agents/cohere-ai
+
+User-agent: cohere-ai
 Disallow: /
