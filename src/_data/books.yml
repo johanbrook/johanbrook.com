@@ -825,7 +825,17 @@
 - title: 100 years of solitude
   author: Gabriel García Márquez
   slug: 100-years-of-solitude
+  dropped: true
 
 - title: Short fiction
   author: Ernest Hemingway
   slug: short-fiction
+  finished: true
+  finishedAt: 2024-06-24
+  location: Stockholm, Sweden
+  notes: |
+      A collection of short stories by Ernest Hemingway put together by [Standard Ebooks](https://standardebooks.org/ebooks/ernest-hemingway/short-fiction).
+      
+      I had read some of them — like the famous _Hills like White Elephants_ — but others were new to me. You can tell he practiced his ["iceberg theory"](https://en.wikipedia.org/wiki/Iceberg_theory) on the early ones.
+      
+      My favourites are still _Cat in the Rain_ and _The Undefeated_.
