@@ -215,14 +215,13 @@ tr {
 th {
     border-bottom: 3px double var(--grey);
     padding: var(--spacing);
-    font-weight: 850;
+    font-weight: 600;
     position: sticky;
     top: 0;
     background-color: var(--color-bg);
     text-transform: uppercase;
-    font-size: var(--f6);
+    font-size: var(--f7);
     letter-spacing: 0.05em;
-    font-family: var(--sans);
 }
 
 td {
