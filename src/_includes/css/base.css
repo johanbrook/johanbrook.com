@@ -286,7 +286,6 @@ blockquote {
     margin-inline: 0 0;
     padding-left: 0.5rlh;
     color: var(--color-text-high-contrast);
-    font-weight: 420;
 
     & > p {
         margin-bottom: 0.5rlh;
