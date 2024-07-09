@@ -2,14 +2,15 @@
 --------------------------------------------- */
 
 html {
-    /* https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/ */
-    -moz-text-size-adjust: none;
-    -webkit-text-size-adjust: none;
-    text-size-adjust: none;
-    font: normal 112.5% / var(--leading) var(--sans);
+    /* 1. Sets a11y values on iOS/iPad OS. This also sets dynamic font size from the OS settings. */
+    font: -apple-system-body;
+    /* 2. Customise for my own line height and font. */
+    line-height: var(--leading);
+    font-family: var(--sans);
 
-    @media only screen and (max-width: 480px) {
-        font-size: 100%;
+    /* 3. Larger on larger screens. */
+    @media only screen and (min-width: 800px) {
+        font-size: 112.5%;
     }
 }
 
