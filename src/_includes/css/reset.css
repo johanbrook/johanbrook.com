@@ -29,8 +29,8 @@
 }
 
 :where(body) {
-    -webkit-font-smoothing: antialiased;
     min-height: 100vh;
+    margin: 0;
 }
 
 :where(h1, h2, h3, h4, button, input, label) {
@@ -148,8 +148,7 @@ Remove the inheritance of text transform in Edge and Firefox.
 }
 
 :where(body, h1, h2, h3, h4, p, figure, blockquote, dl, dd) {
-    margin-block-start: 0;
-    margin-block-end: 0;
+    margin: 0;
 }
 
 :where(textarea:not([rows])) {
