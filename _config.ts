@@ -9,7 +9,7 @@ import { excerpts } from './src/_lume-plugins/excerpts.ts';
 import { typeset } from './src/_lume-plugins/typeset.ts';
 import cooklang from './src/_lume-plugins/cooklang.ts';
 import sourceMaps from 'lume/plugins/source_maps.ts';
-import sitemap from "lume/plugins/sitemap.ts";
+import sitemap from 'lume/plugins/sitemap.ts';
 import { idOf, postsRoot } from './src/_includes/permalinks.ts';
 import { microRoot } from './src/_includes/permalinks.ts';
 import { booksRoot } from './src/_includes/permalinks.ts';
@@ -37,7 +37,7 @@ site.use(typeset({ scope: '.prose' }))
                     maxWidth: 653,
                 }),
             ],
-        }),
+        })
     )
     .use(temporalDate())
     .use(date())
@@ -140,7 +140,19 @@ site.use(typeset({ scope: '.prose' }))
     .data('layout', 'layouts/reci.njk', '/recipes')
     .data('type', 'recipe', '/recipes')
     // Don't the entire site rebuild when --watching or --serving if .css files change
-    .scopedUpdates((path) => path.endsWith('.css'));
+    .scopedUpdates((path) => path.endsWith('.css'))
+    // Support skip links with #main on <main>. Main!
+    .process(['.html'], (pages) => {
+        for (const page of pages) {
+            const doc = page.document;
+
+            const main = doc?.querySelector('main');
+
+            if (main) {
+                main.id = 'main';
+            }
+        }
+    });
 
 export type ThisContext<T = Record<string, unknown>> = { ctx: T & Lume.Data & { page: Lume.Page }; data: Lume.Data };
 
