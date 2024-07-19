@@ -1,35 +1,29 @@
 ---
 title: Want to read
 layout: layouts/page.njk
+hiddenTitle: false
 description: Books which are on my reading list.
-date: 2024-04-23
 ---
 
-<p class="measure subhead">
-	Updated in <time class="text-color fw5" datetime="{{ date | tdate("Machine") }}">{{ date | tdate("MonthYear") }}</time>. Unordered list.
-</p>
-
-<table class="textual mt4 mb4">
-	<tr>
-		<th>Title</th>
-		<th>Author</th>
-		<th>Notes</th>
-	</tr>
+<table>
+    <thead>
+    	<tr>
+    		<th scope="column">Title</th>
+    		<th scope="column">Author</th>
+    		<th scope="column">Notes</th>
+    	</tr>
+    </thead>
   {% for book in toread | reverse %}
     <tr id="{{ book.slug }}">
-    	<td>
+    	<th scope="row">
 			{{ book.title }}
-    	</td>
-    	<td class="f5">
+    	</th>
+    	<td>
     		{{ book.author }}
     	</td>
-    	<td class="f5">
+    	<td class="f6">
 			{{ book.notes | md(true) | safe }}
     	</td>
     </tr>
   {% endfor %}
 </table>
-
-<p class="measure">
-	{{ toread.length }} books. <span class="muted">You can also check out <a href="/reading">what I've read so far.</a></span>
-</p>

@@ -1,6 +1,6 @@
 {% macro list(tags) %}
     {% if tags %}
-    <ul role="list" class="mb0 f6">
+    <ul role="list" class="f6">
         {% for tag in tags %}
         <li class="font-sans inline">
             <a href="/tags/{{ tag }}" class="muted">#{{ tag }}</a>

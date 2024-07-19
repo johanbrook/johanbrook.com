@@ -1,5 +1,15 @@
 @import 'css/excerpt.css';
 
+.stack > * + * {
+    margin-block-start: var(--spacing, 1rlh);
+}
+
+.title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .skip-link {
     position: fixed;
     top: var(--inset);
@@ -13,6 +23,38 @@
 .avatar {
     border-radius: 100%;
     aspect-ratio: 1 / 1;
+}
+
+.title {
+    font-size: var(--f0);
+}
+
+.f1 {
+    font-size: var(--f1);
+}
+
+.f2 {
+    font-size: var(--f2);
+}
+
+.f3 {
+    font-size: var(--f3);
+}
+
+.f4 {
+    font-size: var(--f4);
+}
+
+.f5 {
+    font-size: var(--f5);
+}
+
+.f6 {
+    font-size: var(--f6);
+}
+
+.f7 {
+    font-size: var(--f7);
 }
 
 /*
@@ -860,22 +902,6 @@ COLOURS
     color: var(--color-bg);
 }
 
-.comp-neon {
-    color: var(--neon);
-}
-
-.comp-yellow {
-    color: var(--yellow);
-}
-
-.bg-comp-neon {
-    background-color: var(--neon);
-}
-
-.bg-yellow {
-    background-color: var(--yellow);
-}
-
 .text-color {
     color: var(--color-text);
 }
@@ -897,7 +923,7 @@ COLOURS
 }
 
 .subhead {
-
+    color: var(--color-text-high-contrast);
 }
 
 /*

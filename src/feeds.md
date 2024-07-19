@@ -1,6 +1,5 @@
 ---
 title: Feeds
-subtitle: Bring the feeds, here are the feeds!
 layout: layouts/page.njk
 menu:
   visible: true

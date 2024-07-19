@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en-gb" class="{{'home' if home}} {{ pageSlug() }}">
+<html lang="en-gb" class="{{'home' if home}} {{ 'hidden-title' if hiddenTitle }} {{ pageSlug() }}">
 
   <head itemtype="http://schema.org/Blog" itemscope>
-    <title>{% if title %}{{ title }} / {{ titles.site }}{% else %}{{ titles.site }}{% endif %}</title>
+    <title>{% if title %}{{ title }} / johan.im{% else %}johan.im{% endif %}</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -73,25 +73,19 @@
   <body>
   	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
 
-     {% if isCSSNakedDay() %}
-        <aside>
-            <h1>Do you think my site is looking weird? That's because I've removed all styling only for today, <time>April 9th</time>, because it's <a href="https://css-naked-day.github.io">CSS Naked Day</a>!</h1>
-        </aside>
-        <hr />
-     {% endif %}
+        {% if isCSSNakedDay() %}
+            <aside>
+                <h1>Do you think my site is looking weird? That's because I've removed all styling only for today, <time>April 9th</time>, because it's <a href="https://css-naked-day.github.io">CSS Naked Day</a>!</h1>
+            </aside>
+            <hr />
+        {% endif %}
 
-	  <div class="Content{% if wide %} wide{% endif %}">
+    	{% include "nav-mobile.njk" %}
+  		{% include "nav-main.njk" %}
+    
+  		{{ content | safe }}
 
-		{% include "nav-mobile.njk" %}
-
-		<div id="main">
-			{{ content | safe }}
-		</div>
-
-   		{% include "nav-main.njk" %}
-	  </div>
-
-      {% include "analytics.njk" %}
+        {% include "analytics.njk" %}
   </body>
 
 </html>

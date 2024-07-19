@@ -1,18 +1,65 @@
-.Content {
-    max-width: var(--content-width);
-    margin: 0 auto;
+body {
+    margin-inline: auto;
+    padding-inline: 4%;
+    padding-block: 0.5rlh;
 
-    &.wide {
-        --content-width: var(--measure-wide);
+    @media (min-width: 1216px) {
+        display: grid;
+        grid-template-columns: 110px var(--content-width);
+        column-gap: 3rlh;
+        justify-content: center;
     }
 
-    @media screen and (min-width: 1216px) {
-        html & {
-            max-width: none;
+    @media only screen and (min-width: 600px) {
+        padding-block: 2rlh 1rlh;
+    }
+}
+
+.Page {
+    display: grid;
+    grid-template-rows: minmax(3rlh, max-content) 1fr min-content;
+    height: 100%;
+    align-content: start;
+
+    html.hidden-title &:not(:has(> header .subhead)) {
+        grid-template-rows: 0 1fr min-content;
+    }
+
+    /* The thinking is to apply a margin *if needed*, so we use the fact that a bottom margin bleeds
+       over when overflowing its parent. */
+    html:not(.hidden-title) & > header > :last-child {
+        margin-block-end: 1rlh;
+    }
+
+    footer {
+        margin-block-start: 2rlh;
+
+        nav {
             display: grid;
-            place-content: center;
-            grid-template-columns: var(--content-width) 110px;
-            gap: var(--spacing-extra-large);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            
+            :first-child {
+                justify-self: start;
+            }
+            
+            :nth-child(2) {
+                justify-self: center;
+            }
+            
+            :nth-child(3) {
+                justify-self: end;
+            }
         }
     }
+}
+
+html.hidden-title :is(main > header, main > article > header) h1:not(:focus-within, :active) {
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }

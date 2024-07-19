@@ -5,13 +5,15 @@ Built for IE6, made in Dreamweaver.
 Just kidding.
 --------------------------------------------- */
 
-@layer setup;
+@layer setup, defaults, theme, utils;
 
 @import 'css/reset.css' layer(setup);
 @import 'css/variables.css' layer(setup);
 
-@import 'css/base.css';
-@import 'css/layout.css';
+@import 'css/defaults.css' layer(defaults);
+
+@import 'css/layout.css' layer(theme);
+@import 'css/theme.css' layer(theme);
 
 @import 'css/components.css';
 
@@ -21,4 +23,6 @@ Just kidding.
 @import 'css/home.css';
 
 @import 'css/typeset.css';
+
 @import 'css/utils.css';
+@import 'css/book.css';

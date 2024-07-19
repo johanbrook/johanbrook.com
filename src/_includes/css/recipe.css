@@ -36,15 +36,8 @@
     }
 
     ol {
-        @supports (text-indent: 1lh hanging) {
-            list-style: none;
-            padding-left: 0;
-            margin-left: 0;
-
-            li {
-                text-indent: 1lh hanging;
-            }
-        }
+        padding-left: 0;
+        margin-left: 0;
     }
 }
 

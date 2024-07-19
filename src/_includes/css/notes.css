@@ -1,9 +1,17 @@
 .Note {
-    header h1 a {
-        color: var(--color-text-high-contrast);
+    header h1 {
+        margin-block-end: 0;
+        font-size: 1rem;
 
-        &:hover span {
-            color: var(--link-accent-color);
+        a {
+            span {
+                color: var(--color-text-detail);
+                font-weight: 400;
+            }
+
+            &:hover span {
+                color: var(--link-accent-color);
+            }
         }
     }
 
@@ -15,15 +23,5 @@
         :where(h2, h3, h4, h5, h6) {
             font-size: var(--f4);
         }
-    }
-}
-
-.NotesList {
-    & > li:not(:last-child) {
-        margin-bottom: 4rlh;
-    }
-
-    & > li:has(:target)::after {
-        border-color: var(--neon);
     }
 }

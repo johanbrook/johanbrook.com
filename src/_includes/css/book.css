@@ -1,0 +1,71 @@
+@layer theme {
+    .Book {
+        header {
+            h1 {
+                margin-block-end: 0;
+            }
+
+            .subhead {
+                margin-block-end: 1rlh;
+            }
+
+            :where(h1, .subhead) {
+                font-family: var(--serif);
+            }
+        }
+    }
+
+    .reading main {
+        section:not(:first-of-type) {
+            margin-top: 3rlh;
+        }
+
+        table {
+            th:nth-of-type(1) {
+                width: 50%;
+            }
+
+            th:nth-of-type(2) {
+                width: 35%;
+            }
+
+            td:last-child {
+                text-align: end;
+            }
+        }
+    }
+}
+
+@layer utils {
+    [class^='BookStatus'] {
+        font-variation-settings: 'opsz' 20;
+        color: var(--color-text-detail);
+        font-weight: 470;
+
+        time {
+            color: var(--color-text);
+        }
+    }
+
+    :where(.BookStatus-Paused, .BookStatus-Dropped, .BookStatus-CurrentlyReading)::before {
+        content: '☒ ';
+    }
+
+    .BookStatus-CurrentlyReading {
+        color: color-mix(in oklab, var(--green), black 25%);
+    }
+
+    .BookStatus-Dropped {
+        color: color-mix(in oklab, var(--red), black 20%);
+    }
+
+    .BookStatus-Paused {
+        color: color-mix(in oklab, var(--yellow), black 15%);
+    }
+
+    .BookStatus-Finished {
+        &::before {
+            content: '☑ ';
+        }
+    }
+}

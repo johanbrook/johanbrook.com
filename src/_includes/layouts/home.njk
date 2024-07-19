@@ -2,50 +2,50 @@
 layout: layouts/main.njk
 home: true
 ---
-<main>
+<main class="stack">
     <article>
-        <h1 class="title leading-none hide-mobile mb2">Welcome</h1>
+        <h1 class="title hide-mobile">Welcome</h1>
 
         <div class="prose stronger">{{ content | safe }}</div>
 
         <hr />
 
-        <p>My fav track <time title="Updated at {{ current_track.updatedAt | date('yyyy-MM-dd')}}" datetime="{{ current_track.updatedAt }}">at the moment</time> is ♫ <u class="b">{{ current_track.name }}</u> by {{ current_track.artist }}.</p>
+        <p class="stronger">My fav track <time title="Updated at {{ current_track.updatedAt | date('yyyy-MM-dd')}}" datetime="{{ current_track.updatedAt }}">at the moment</time> is ♫ <u class="b">{{ current_track.name }}</u> by {{ current_track.artist }}.</p>
     </article>
-
+    
     <section class="h-feed">
-      <header class="flex items-center justify-between">
-        <h1 class="p-name">Micro</h1>
-
-        <a href="/micro" class="u-url muted f6" title="Read more">View all</a>
-      </header>
-
-      <ol role="list">
-      {% for note in search.pages("type=note", "date=desc", 3) %}
-          <li class="mb2 pb2 relative border border-b h-entry" id="{{ note.url | url(true) }}">
-              <h2 class="font-sans f5 fw4 mb0">
-                  <a href="{{ note.url }}" class="muted u-url" title="Permalink"><time class="dt-published" datetime="{{ note.date | tdate('Machine', note.timezone) }}" pubdate>{{ note.date | tdate('HumanTime', note.timezone) }}</time></a>
-              </h2>
-
-              <details class="mb0">
-                  <summary style="position: absolute; right: 0; top: -0.25rlh" class="btn f5">View</summary>
-                  <div class="prose excerpt font-mono f6 mt2 text-color-contrast p-summary">
-                      {{ note.content | excerpt | md | safe }}
-                  </div>
-
-                  {% if didExcerpt(note.content) %}
-                      <p class="mt1 mb0 font-sans">
-                          <a href="{{ note.url }}" class="muted f6">Continued ⇢</a>
-                      </p>
-                  {% endif %}
-              </details>
-          </li>
-      {% endfor %}
-      </ol>
+        <header class="title-row">
+            <h1 class="p-name">Micro</h1>
+    
+            <a href="/micro" class="u-url muted f6" title="Read more">View all</a>
+        </header>
+    
+        <ol role="list">
+        {% for note in search.pages("type=note", "date=desc", 3) %}
+            <li class="mb2 pb2 relative border border-b h-entry" id="{{ note.url | url(true) }}">
+                <h2 class="font-sans f5 fw4 mb0">
+                    <a href="{{ note.url }}" class="muted u-url" title="Permalink"><time class="dt-published" datetime="{{ note.date | tdate('Machine', note.timezone) }}" pubdate>{{ note.date | tdate('HumanTime', note.timezone) }}</time></a>
+                </h2>
+    
+                <details class="mb0">
+                    <summary style="position: absolute; right: 0; top: -0.25rlh" class="btn f5">View</summary>
+                    <div class="prose excerpt font-mono f6 mt2 text-color-contrast p-summary">
+                        {{ note.content | excerpt | md | safe }}
+                    </div>
+    
+                    {% if didExcerpt(note.content) %}
+                        <p class="mt1 mb0 font-sans">
+                            <a href="{{ note.url }}" class="muted f6">Continued ⇢</a>
+                        </p>
+                    {% endif %}
+                </details>
+            </li>
+        {% endfor %}
+        </ol>
     </section>
-
+    
     <section class="h-feed">
-        <header class="flex items-center justify-between">
+        <header class="title-row">
             <h1 class="p-name">Reading</h1>
             <a href="/reading" class="u-url f6 muted" title="Read more">View all</a>
         </header>
@@ -53,8 +53,11 @@ home: true
         <ol role="list" class="item-grid">
             {% macro book_item(book, reading=false) %}
             <li class="h-entry mb1">
-                <a href="/reading/{{ book.slug }}" class="fw5">{{ book.title }}</a><span>{{ book.author }}</span>
-                {% if reading %}<span class="Badge f6">Reading</span>{% endif %}
+                <div>
+                    <a href="/reading/{{ book.slug }}" class="fw5">{{ book.title }}</a>
+                    {% if reading %}<span class="ml1 f6 Book-CurrentlyReading" title="Currently reading">☒</span>{% endif %}
+                </div>
+                <span>{{ book.author }}</span>
             </li>
             {% endmacro %}
 
@@ -68,21 +71,21 @@ home: true
             {% endfor %}
         </ol>
     </section>
-
+    
     <section class="h-feed">
-      <header class="flex items-center justify-between">
-        <h1 class="p-name">Writings</h1>
+        <header class="title-row">
+            <h1 class="p-name">Writings</h1>
+    
+            <a href="/writings" class="u-url muted f6" title="Read more">View all</a>
+        </header>
 
-        <a href="/writings" class="u-url muted f6" title="Read more">View all</a>
-      </header>
-
-      <ol role="list" class="item-grid">
-        {% for post in search.pages("type=post", "date=desc", 3) %}
-          <li class="mb1 h-entry" id="{{ post.url | url(true) }}">
-          	<a class="u-url fw5" href="{{ post.url }}">{{ post.title }}</a>
-           	<time class="dt-published" pubdate datetime="{{ post.date | tdate('Machine', post.timezone) }}">{{ post.date | tdate('HumanDate', post.timezone) }}</time>
-          </li>
-        {% endfor %}
-      </ol>
+        <ol role="list" class="item-grid">
+            {% for post in search.pages("type=post", "date=desc", 3) %}
+            <li class="mb1 h-entry" id="{{ post.url | url(true) }}">
+           	<a class="u-url fw5" href="{{ post.url }}">{{ post.title }}</a>
+               	<time class="dt-published" pubdate datetime="{{ post.date | tdate('Machine', post.timezone) }}">{{ post.date | tdate('HumanDate', post.timezone) }}</time>
+            </li>
+            {% endfor %}
+        </ol>
     </section>
 </main>

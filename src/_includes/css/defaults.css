@@ -1,0 +1,112 @@
+/* Johan's sane defaults. */
+
+/* ROOT */
+
+:where(body, html) {
+    background-color: var(--color-bg);
+}
+
+html {
+    /* 1. Sets a11y values on iOS/iPad OS. This also sets dynamic font size from the OS settings. */
+    font: -apple-system-body;
+    /* 2. Customise for my own line height and font. */
+    line-height: var(--leading);
+    font-family: var(--sans);
+
+    /* 3. Larger on larger screens. */
+    @media only screen and (min-width: 600px) {
+        font-size: 112.5%;
+    }
+}
+
+body {
+    font-variant-ligatures: contextual common-ligatures;
+
+    @media (min-width: 750px) {
+        hanging-punctuation: first;
+    }
+}
+
+/* FORMS */
+
+input,
+textarea {
+    hanging-punctuation: none;
+}
+
+/* NAVIGATION */
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+:where(ul, ol) {
+    padding-left: 0;
+}
+
+nav {
+    [aria-current='page'] {
+        :where(a, a:hover) {
+            cursor: default;
+            font-weight: 600;
+            text-decoration: inherit;
+
+            @supports (font-variation-settings: 'GRAD' 530) {
+                font-weight: normal;
+                font-variation-settings: 'GRAD' 530;
+            }
+        }
+    }
+}
+
+/* SPACING / VERTICAL RHYTHM */
+
+article :not(nav > *):where(h1, h2, h3, h4, p, ul, ol, blockquote, hr, figure, table, pre, details):not(:last-child) {
+    margin-block-end: 0.5rlh;
+}
+
+/* TABLES */
+
+table {
+    text-align: left;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+
+    thead th {
+        position: sticky;
+        top: 0;
+        vertical-align: bottom;
+    }
+}
+
+/* CODE */
+
+:where(code, kbd, pre) {
+    font-family: var(--mono);
+}
+
+pre {
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    hyphens: none;
+}
+
+/* Syntax highlighting */
+code[class*='language-'] {
+    display: block;
+}
+
+@media (hover: hover) {
+    time[title] {
+        cursor: help;
+        text-decoration: underline;
+        text-decoration-style: dotted;
+        text-underline-offset: 0.3ex;
+        text-decoration-thickness: 2px;
+    }
+}

@@ -2,9 +2,9 @@
 layout: layouts/main.njk
 ---
 <main>
-    <article class="Note">
-       	<header class="mb2">
-            <h1 class="font-serif f4 mb0">
+    <article class="Page Note">
+       	<header>
+            <h1>
                 <time title="{{ date | tdate('Detailed') }}" datetime="{{ date | tdate('Machine') }}" pubdate>{{ date | tdate('HumanTime') }}</time>
             </h1>
 
@@ -23,11 +23,20 @@ layout: layouts/main.njk
         </div>
 
         <footer class="mt3">
-            <p class="mt6">
-                <a href=".." class="muted">
-    				<span aria-hidden="true" class="BackLink mr1">←</span> All micro notes
-    			</a>
-            </p>
+            <nav>
+                {% set post = search.previousPage(url, "type=note") %}
+                    {% if post %}
+                        <a title="{{ post.title }}" href="{{ post.url }}" class="btn" rel="prev">← Previous</a>
+                    {% endif %}
+                
+                <a href="..">All posts</a>
+                
+                {% set post = search.nextPage(url, "type=note") %}
+
+                {% if post %}
+                    <a title="{{ post.title }}" href="{{ post.url }}" class="btn" rel="next">Next →</a>
+                {% endif %}
+            </nav>
         </footer>
     </article>
 </main>

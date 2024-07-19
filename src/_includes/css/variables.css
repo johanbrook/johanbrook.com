@@ -8,7 +8,10 @@
     --dark: color-mix(in oklab, var(--mood) 4%, oklch(16% 0 0));
 
     --neon: oklch(77.6% 0.185 74.12);
-    --yellow: hsl(50 93% 56%);
+    --yellow: oklch(82.94% 0.185 91.34);
+    --red: oklch(72% 0.185 28.59);
+    --green: oklch(77.94% 0.217 141.54);
+
     --grey: hsl(214.51 7.24% 47.56%);
     --grey-light: hsl(173 7% 36% / 0.5);
     --grey-lightest: hsl(173 7% 93%);
@@ -41,7 +44,9 @@
     --code-color: rgb(120 94 0);
 
     @media screen and (prefers-color-scheme: dark) {
-        --yellow: #c3a507;
+        --yellow: oklch(90.29% 0.2146 98.81);
+        --red: oklch(74.93% 0.1905 28.59);
+        --green: oklch(88.24% 0.271 141.54);
         --grey: hsl(214.51, 6.64%, 61.44%);
 
         --color-bg: var(--dark);

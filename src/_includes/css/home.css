@@ -1,13 +1,15 @@
 .home {
     main {
-        --section-spacing: calc(var(--spacing-base) * 3);
+        &.stack {
+            --spacing: 3rlh;
+        }
+        
+        article h1 {
+            height: 3rlh;
+            margin: 0;
+        }
 
-        > :where(section, article) {
-
-            &:not(:last-child) {
-                margin-block-end: var(--section-spacing);
-            }
-
+        section {
             > header {
                 margin-block-end: calc(var(--spacing-base));
                 padding-block-end: calc(var(--spacing-base) / 4);
@@ -24,7 +26,7 @@
     .item-grid {
         li {
             display: grid;
-            grid-template-columns: 40% 0.75fr minmax(70px, 0.3fr);
+            grid-template-columns: 1fr 30%;
             column-gap: 0.5rlh;
 
              > * {

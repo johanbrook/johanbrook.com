@@ -19,7 +19,7 @@
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
     color-scheme: dark light;
-    tab-size: 2;
+    tab-size: 4;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -147,7 +147,7 @@ Remove the inheritance of text transform in Edge and Firefox.
     border-collapse: collapse;
 }
 
-:where(body, h1, h2, h3, h4, p, figure, blockquote, dl, dd) {
+:where(body, h1, h2, h3, h4, p, figure, blockquote, dl, dd, ul, ol) {
     margin: 0;
 }
 

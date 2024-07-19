@@ -1,0 +1,188 @@
+/* Site specific "theme" styling. */
+
+body {
+    color: var(--color-text);
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+    margin-block-end: 0.5rlh;
+    color: var(--color-text-high-contrast);
+    font-weight: 540;
+}
+
+ul ::marker {
+    color: var(--color-faint);
+}
+
+ol:not([role='list']) {
+    list-style-type: decimal-leading-zero;
+}
+
+ol ::marker {
+    color: var(--color-text-detail);
+    font-size: 0.85rem;
+}
+
+a:not(.btn) {
+    color: var(--link-color);
+    position: relative;
+    text-underline-offset: 3px;
+
+    &:where(:hover, &:hover .link) {
+        color: var(--link-color-hover);
+        text-decoration-style: wavy;
+        text-decoration-color: var(--link-accent-color);
+        text-decoration-thickness: 2px; /* Not included in shorthand for Safari… */
+    }
+
+    &:active {
+        top: 1px;
+    }
+
+    &.muted {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline solid;
+            text-decoration-thickness: 1px;
+        }
+    }
+
+    &:is([aria-current='page'] > *):is(:focus-visible, :hover) {
+        cursor: default;
+        text-decoration: none;
+    }
+
+    &.no-link {
+        color: inherit;
+    }
+
+    &.plain {
+        text-decoration: none;
+    }
+}
+
+figcaption {
+    color: var(--grey);
+    font-family: var(--sans);
+}
+
+pre {
+    text-align: left;
+    line-height: var(--leading);
+    color: var(--code-color);
+    background-color: var(--code-background);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25em;
+    font-size: var(--f5);
+    overflow: auto;
+    position: relative;
+
+    & .line-highlight {
+        --cycle: 27px;
+        --color: 112 20% 50%;
+        text-decoration: none;
+        position: absolute;
+        height: calc(var(--rows) * var(--cycle));
+        top: calc(var(--top-inset) + (var(--start) - 1) * var(--cycle));
+        background-color: hsl(var(--color) / 4%);
+        color: hsl(var(--color) / 80%);
+        left: 0;
+        width: 100%;
+        display: block;
+        pointer-events: none;
+        padding: 0 6px;
+        font-size: var(--f7);
+    }
+}
+
+:not(pre) > code {
+    color: var(--code-color);
+    background-color: var(--code-background);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.125em;
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+li > pre {
+    margin-top: 0.5rlh;
+    margin-bottom: 0.5rlh;
+}
+
+blockquote {
+    border-left: 2px solid var(--border-color);
+    margin-inline: 0 0;
+    padding-left: 0.5rlh;
+    color: var(--color-text-high-contrast);
+
+    & > p {
+        margin-bottom: 0.5rlh;
+    }
+
+    & footer {
+        color: var(--grey);
+        margin-top: 1rlh;
+    }
+}
+
+hr {
+    border: 0;
+    background-color: var(--border-color);
+    height: 1px;
+    margin: 1rlh 0;
+}
+
+table {
+    --spacing: 0.6em;
+}
+
+tr {
+    &:target {
+        background-color: var(--color-bg-secondary);
+    }
+}
+
+thead th {
+    border-bottom: 2px solid;
+    font-weight: 600;
+    background-color: var(--color-bg);
+    font-size: var(--f5);
+}
+
+tbody th {
+    font-weight: 500;
+}
+
+tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+:where(td, th) {
+    padding-block: var(--spacing);
+}
+
+:where(th, td):first-child {
+    padding-left: 0;
+}
+
+:where(details[open], details summary:hover) {
+    color: var(--color-text-high-contrast);
+}
+
+u {
+    text-decoration: underline;
+    text-underline-offset: 0.3ex;
+    text-decoration-style: wavy;
+    text-decoration-color: var(--accent);
+}
+
+@media (hover: hover) {
+    time[title] {
+        text-decoration-color: var(--color-faint);
+
+        &:hover {
+            text-decoration-color: var(--color-text-detail);
+        }
+    }
+}

@@ -3,34 +3,45 @@ layout: layouts/main.njk
 ---
 
 <main>
-    <article>
-        <header class="mb3">
-            <h1 class="mb1 font-serif">“{{ title }}”</h1>
-            <p class="subhead font-serif mb4"><i>By</i> {{ author }}</p>
+    <article class="Page Book">
+        <header>
+            <h1>“{{ title }}”</h1>
+            <p class="subhead"><i>By</i> {{ author }}</p>
 
-            <p class="muted f6 border border-t pt2">
+            <p class="f6 border border-t pt2">
                 {% if finished %}
                     {% if finishedAt %}
-                        ☑ ︎I finished this book on <time datetime="{{ finishedAt | tdate('Machine')}}">{{ finishedAt | tdate('HumanDate') }}</time>
+                        <span class="BookStatus-Finished">I finished this book on <time datetime="{{ finishedAt | tdate('Machine')}}">{{ finishedAt | tdate('HumanDate') }}</time></span>
                     {% else %}
-                        ☑ ︎I've finished this book
+                        <span class="BookStatus-Finished">I've finished this book</span>
                     {% endif %}
                 {% elif paused %}
-                    ☒ I've paused this book
+                    <span class="BookStatus-Paused">I've paused this book</span>
                 {% elif dropped %}
-                    ☒ I dropped this book
+                    <span class="BookStatus-Dropped">I dropped this book</span>
                 {% else %}
-                    ☒ I'm currently reading this book
+                    <span class="BookStatus-CurrentlyReading">I'm currently reading this book</span>
                 {% endif %}
             </p>
         </header>
 
         <div class="prose">{{ notes | md | safe }}</div>
 
-        <footer class="mt4">
-            <p>
-                <a href=".." class="muted"><span aria-hidden="true" class="BackLink mr2">←</span>More books</a>
-            </p>
+        <footer>
+            <nav>
+                {% set post = search.previousPage(url, "type=book") %}
+                    {% if post %}
+                        <a title="{{ post.title }}" href="{{ post.url }}" class="btn" rel="prev">← {{ post.title }}</a>
+                    {% endif %}
+                
+                <a href="..">All books</a>
+                
+                {% set post = search.nextPage(url, "type=book") %}
+
+                {% if post %}
+                    <a title="{{ post.title }}" href="{{ post.url }}" class="btn" rel="next">{{ post.title }} →</a>
+                {% endif %}
+            </nav>
         </footer>
     </article>
 </main>

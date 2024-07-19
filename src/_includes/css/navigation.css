@@ -1,31 +1,29 @@
 .NavList {
-    li:where([aria-current='page'])::after {
-        content: '⇠';
-        display: inline;
-        margin-left: 0.25em;
-        white-space: nowrap;
-        color: var(--color-text-detail);
+    li:where([aria-current='page']) {
+        position: relative;
+
+        a {
+            color: var(--color-text-high-contrast);
+        }
+
+        &::after {
+            content: '⇠';
+            display: inline;
+            margin-left: 0.25em;
+            white-space: nowrap;
+            color: var(--neon);
+        }
     }
 
     a {
         color: var(--color-text);
         white-space: nowrap;
         text-decoration: none;
-        font-weight: normal;
         position: revert;
 
         &:is(:hover, :focus-visible):not(:is([aria-current='page'] > *)) {
             color: var(--link-color-hover);
             text-decoration: underline;
-        }
-    }
-
-    [aria-current='page'] {
-        position: relative;
-
-        a {
-            font-weight: 600;
-            color: var(--color-text-high-contrast);
         }
     }
 }
@@ -36,14 +34,22 @@
 
     & .sticky {
         position: sticky;
-        top: 0;
+        top: 1rlh;
     }
 
     h1 {
-        line-height: 3rlh;
+        height: 2rlh;
+        display: grid;
+        align-content: end;
+        margin-block-end: 1rlh;
+        line-height: 1rlh;
+        font-weight: 480;
+        
+        .BackLink {
+            position: absolute; /* Don't take up vertical space */
+        }
 
         > a {
-            font-weight: 500;
             color: var(--color-text);
             white-space: nowrap;
             text-decoration: none;

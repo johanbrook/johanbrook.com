@@ -1,7 +1,7 @@
 ---
+title: Now
 layout: layouts/page.njk
 date: 2023-03-20
-title: Now
 location: Stockholm, Sweden
 ogImage: /assets/images/johan-map.png
 description: This page reflects what I'm doing with my life at the moment.
@@ -16,8 +16,6 @@ menu:
     top: true
 templateEngine: njk,md
 ---
-
-<p class="subhead">Updated on <time class="text-color fw5">{{ date | tdate("HumanDate") }}</time> from {{ location }}.</p>
 
 # Since the last update…
 

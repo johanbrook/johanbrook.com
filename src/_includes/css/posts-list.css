@@ -2,16 +2,27 @@
 POSTS LIST
 ----------------------------------------------------------------*/
 
-.PostItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+:where(ol, ul):has(.PostItem) {
+    display: grid;
+    row-gap: 0.25rlh;
+}
 
-    &:last-child {
-        border-bottom: 0;
+.PostItem {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    column-gap: 0.5rlh;
+
+    > * {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    a:first-child:not(:hover) {
+        text-decoration: none;
     }
 
-    & time {
+    time {
         font-size: var(--f5);
         font-variant-numeric: tabular-nums;
 
@@ -20,45 +31,9 @@ POSTS LIST
         }
     }
 
-    & .PostItem__Link {
-        display: block;
-        padding: 0.5rlh 0;
-        flex: 1;
-
-        &:visited {
-            color: var(--link-color-visited);
-            text-decoration-color: var(--link-color-visited);
-        }
-    }
-
     @media screen and (max-width: 480px) {
-        align-items: flex-start;
-        flex-direction: column;
-        margin-bottom: 0.5rlh;
-
-        & .PostItem__Link {
-            max-width: 90%;
-            font-size: 1em;
-        }
-    }
-}
-
-.PostsList {
-    list-style: none;
-
-    & .PostsList--Tight {
-        .PostItem {
-            border: 1px solid var(--grey-light);
-            border-width: 0 0 1px;
-            margin: 0;
-        }
-    }
-
-    @media screen and (prefers-color-scheme: dark) {
-        & .PostsList--Tight {
-            & .PostItem {
-                border: 0;
-            }
-        }
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0;
     }
 }

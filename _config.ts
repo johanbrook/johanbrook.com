@@ -1,6 +1,5 @@
 import lume from 'lume/mod.ts';
 import postcss from 'lume/plugins/postcss.ts';
-import esbuild from 'lume/plugins/esbuild.ts';
 import nunjucks from 'lume/plugins/nunjucks.ts';
 import date from 'lume/plugins/date.ts';
 import temporalDate from './src/_lume-plugins/temporal-date.ts';
@@ -25,7 +24,6 @@ const site = lume({
 
 site.use(typeset({ scope: '.prose' }))
     .use(nunjucks())
-    .use(esbuild())
     .copy('public', '.')
     .use(feeds())
     .use(sitemap())
@@ -126,20 +124,7 @@ site.use(typeset({ scope: '.prose' }))
     .data('currentBook', function (this: ThisContext<{ books: Book[] }>) {
         return currentBookOf(this.ctx.books).at(-1);
     })
-    .data('layout', 'layouts/main.njk')
-    // POSTS
-    .data('type', 'post', '/posts')
-    .data('layout', 'layouts/post.njk', '/posts')
-    .data('templateEngine', 'njk,md', '/posts')
-    // MICRO NOTES
-    .data('type', 'note', '/notes')
-    .data('layout', 'layouts/note.njk', '/notes')
-    .data('templateEngine', 'njk,md', '/notes')
-    .data('title', 'A micro note', '/notes')
-    // RECIPES
-    .data('layout', 'layouts/reci.njk', '/recipes')
-    .data('type', 'recipe', '/recipes')
-    // Don't the entire site rebuild when --watching or --serving if .css files change
+    // Don't rebuild the entire site rebuild when --watching or --serving if .css files change
     .scopedUpdates((path) => path.endsWith('.css'))
     // Support skip links with #main on <main>. Main!
     .process(['.html'], (pages) => {

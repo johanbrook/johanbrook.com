@@ -1,7 +1,6 @@
 ---
 title: Reading
 description: Books I've read.
-wide: true
 menu:
   visible: true
   order: 4
@@ -9,71 +8,51 @@ menu:
 ---
 
 <main>
-  <article class="h-feed">
+  <article class="Page h-feed">
 	<header>
 	   <h1 class="title p-name">{{ title }}</h1>
+				
+		<p class="subhead">
+  		    Non-exhaustive list of books I've read and am reading, in reverse chronological order. You can also check out what I <a href="/to-read">want to read next.</a>
+		</p>
 	</header>
-
-	<p class="subhead measure mb4">
-  		Non-exhaustive list of books I've read and am reading, in reverse chronological order. You can also check out what I <a href="/to-read">want to read next.</a>
-	</p>
 
 	{% for year, bookz in books | groupBooksByYear | dictsort | reverse %}
 	   <section>
-    	    <header class="mt4 mb3 flex justify-between items-center">
+    	    <header class="title-row mb3">
                 <h1 class="mv0">{{ year }}</h1>
                 <p class="muted mb0 font-sans f5">{{ bookz.length }} books</p>
             </header>
-    		<table class="f5">
-               	<tr>
-              		<th>Title</th>
-              		<th>Author</th>
-              		<th>Notes</th>
-              		<th><span class="visually-hidden">Status</span></th>
-               	</tr>
+            
+    		<table>
+                <thead>
+                   	<tr>
+                  		<th scope="column">Title</th>
+                  		<th scope="column">Author</th>
+                  		<th scope="column"><span class="visually-hidden">Status</span></th>
+                   	</tr>
+                </thead>
                 {% for book in bookz | reverse %}
                     <tr id="{{ book.slug }}">
-                   	<td width="25%" class="text-color-contrast">
-       					<a href="{{ '/reading' | url }}/{{book.slug}}/" class="no-link">{{ book.title }}  <span class="muted">→</span></a>
-                   	</td>
-                   	<td width="15%">
-                  		{{ book.author }}
-                   	</td>
-                   	<td>
-                        {% if book.notes %}
-           					<div class="prose f6">{{ book.notes | excerpt | md | safe }}</div>
-
-                            {% if didExcerpt(book.notes) %}
-                                <p class="f6 mb0 mt1">
-                                    <a class="muted" href="{{ '/reading' | url }}/{{book.slug}}/">Continued ⇢</a>
-                                </p>
-                            {% endif %}
-                        {% else %}
-                            <br />
-                            <br />
-                            <br />
-                        {% endif %}
-                   	</td>
-                   	<td class="f6 no-wrap" width="10%">
-                       	{% if book.dropped %}
-                      		<span class="Badge Badge--outline">Dropped</span>
-                       	{% else %}
-                          		{% if book.paused %}
-        		            		<span class="Badge Badge--outline">Paused</span>
-         			            {% else %}
-          		              		{% if book.finished %}
-         		              			{% if book.finishedAt %}
-        		              				<time class="fw5" datetime="{{ book.finishedAt }}">{{ book.finishedAt | tdate('HumanDate') }}</time><br>
-         		              			{% endif %}
-         		              			{% if book.location %}
-        		              				<small class="font-sans muted" title="Finished in">{{ book.location }}</small>
-         		              			{% endif %}
-          		              		{% else %}
-         			              		<span class="Badge">Reading</span>
-        			            	{% endif %}
-         		            	{% endif %}
-                       	{% endif %}
-                   	</td>
+                       	<th scope="row">
+           					<a href="{{ '/reading' | url }}/{{book.slug}}/">{{ book.title }}</a>
+                       	</th>
+                       	<td>
+                      		{{ book.author }}
+                       	</td>
+                       	<td class="f6 no-wrap">
+                           	{% if book.dropped %}
+                          		<span class="BookStatus-Dropped">Dropped</span>
+                           	{% else %}
+                              		{% if book.paused %}
+            		            		<span class="BookStatus-Paused">Paused</span>
+             			            {% else %}
+              		              		{% if not book.finished %}
+             			              		<span class="BookStatus-CurrentlyReading">Reading</span>
+            			            	{% endif %}
+             		            	{% endif %}
+                           	{% endif %}
+                       	</td>
                     </tr>
                 {% endfor %}
             </table>

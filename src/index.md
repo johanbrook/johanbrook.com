@@ -1,7 +1,7 @@
 ---
-template: home
 layout: layouts/home.njk
 templateEngine: njk,md
+hiddenTitle: false
 ---
 
 I’m coding & designing, and I like working with product, user experience, and
