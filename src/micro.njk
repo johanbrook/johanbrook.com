@@ -9,7 +9,7 @@ menu:
 
 {% import "tag-list.njk" as t %}
 
-<main class="notes h-feed">
+<main class="h-feed">
   <h1 class="visually-hidden p-name">{{ titles.micro }}</h1>
   <ol reversed class="stack" style="--spacing: 4rlh">
     {% for post in search.pages("type=note", "date=desc") %}

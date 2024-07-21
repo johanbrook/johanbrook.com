@@ -76,7 +76,7 @@
 
 .MobileNav {
     display: none;
-    margin-block-end: 2lh;
+    margin-block-end: 1rlh;
 
     .MobileNav__Home {
         font-weight: 500;
@@ -94,7 +94,6 @@
         z-index: 10;
         top: 0;
         right: 0;
-        text-align: right;
 
         > ul {
             box-shadow: color-mix(in oklab, var(--color-bg) 50%, black 20%) -10px 10px 30px;
@@ -102,12 +101,12 @@
             padding: 0.25lh 10px;
             margin-right: -10px;
             margin-top: 0.25lh;
-            border-radius: 6px;
-            font-size: 1.2em;
+            border-radius: 8px;
+            font-size: 1.1rem;
             line-height: 2;
 
             li {
-                padding-left: 3rem;
+                padding-inline-end: 3rem;
 
                 &:not(:last-child) {
                     border-bottom: 1px solid var(--border-color);
@@ -117,12 +116,8 @@
     }
 
     summary {
-        color: var(--color-text-detail);
+        text-align: end;
         white-space: nowrap;
-
-        &:is(:hover, details[open] > *) {
-            color: var(--color-text);
-        }
     }
 }
 

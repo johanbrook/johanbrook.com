@@ -1,27 +1,38 @@
-.Note {
-    header h1 {
-        margin-block-end: 0;
-        font-size: 1rem;
-
-        a {
-            span {
-                color: var(--color-text-detail);
-                font-weight: 400;
-            }
-
-            &:hover span {
-                color: var(--link-accent-color);
+@layer theme {
+    .micro {
+        /* List of notes */
+        @media only screen and (max-width: 1216px) {
+            main > ol {
+                list-style-position: inside;
             }
         }
     }
 
-    .prose {
-        h1 {
-            font-size: var(--f3);
+    .Note {
+        header h1 {
+            margin-block-end: 0;
+            font-size: 1rem;
+
+            a {
+                span {
+                    color: var(--color-text-detail);
+                    font-weight: 400;
+                }
+
+                &:hover span {
+                    color: var(--link-accent-color);
+                }
+            }
         }
 
-        :where(h2, h3, h4, h5, h6) {
-            font-size: var(--f4);
+        .prose {
+            h1 {
+                font-size: var(--f3);
+            }
+
+            :where(h2, h3, h4, h5, h6) {
+                font-size: var(--f4);
+            }
         }
     }
 }
