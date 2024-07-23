@@ -3,7 +3,7 @@ body {
     padding-inline: 5%;
     padding-block: 0.5rlh;
 
-    @media (min-width: 1216px) {
+    @media (min-width: 960px) {
         display: grid;
         grid-template-columns: 110px var(--content-width);
         column-gap: 3rlh;
@@ -17,18 +17,17 @@ body {
 
 .Page {
     display: grid;
-    grid-template-rows: minmax(3rlh, max-content) 1fr min-content;
     height: 100%;
     align-content: start;
 
-    html.hidden-title &:not(:has(> header .subhead)) {
-        grid-template-rows: 0 1fr min-content;
-    }
-
     /* The thinking is to apply a margin *if needed*, so we use the fact that a bottom margin bleeds
        over when overflowing its parent. */
-    html:not(.hidden-title) & > header > :last-child {
-        margin-block-end: 1rlh;
+    @media (min-width: 960px) {
+        grid-template-rows: minmax(3rlh, max-content) 1fr min-content;
+
+        html:not(.hidden-title) & > header > :last-child {
+            margin-block-end: 1rlh;
+        }
     }
 
     footer {
@@ -38,15 +37,15 @@ body {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            
+
             :first-child {
                 justify-self: start;
             }
-            
+
             :nth-child(2) {
                 justify-self: center;
             }
-            
+
             :nth-child(3) {
                 justify-self: end;
             }

@@ -1,7 +1,7 @@
 @layer theme {
     .micro {
         /* List of notes */
-        @media only screen and (max-width: 1216px) {
+        @media only screen and (max-width: 960px) {
             main > ol {
                 list-style-position: inside;
             }

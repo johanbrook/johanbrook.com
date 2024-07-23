@@ -121,7 +121,7 @@
     }
 }
 
-@media only screen and (max-width: 1215px) {
+@media only screen and (max-width: 959px) {
     .MainNav {
         display: none;
     }
