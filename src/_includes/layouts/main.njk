@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://johanbrook.goatcounter.com">
 
     <meta name="generator" content="Lume">
+    <meta name="fediverse:creator" content="@{{ meta.mastodon.username }}@{{ meta.mastodon.instance }}">
 
     {% if excerpt or description or subtitle or meta.description %}
     <meta name="description" content="{{ excerpt or description or subtitle or meta.description }}">
@@ -20,11 +21,10 @@
     {% endif %}
     <meta name="author" content="{{ meta.author }}">
 
-    <!-- Styles-->
     {% if isCSSNakedDay() %}
         <!-- Naked Day has no styles: https://css-naked-day.github.io -->
     {% else %}
-        <link rel="stylesheet" href="/johan.css">
+    <link rel="stylesheet" href="/johan.css">
     {% endif %}
 
     <!-- Feeds -->
