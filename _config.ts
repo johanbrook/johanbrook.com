@@ -13,6 +13,7 @@ import { idOf, postsRoot } from './src/_includes/permalinks.ts';
 import { microRoot } from './src/_includes/permalinks.ts';
 import { booksRoot } from './src/_includes/permalinks.ts';
 import postcssUtopia from 'npm:postcss-utopia@^1';
+import nesting from 'npm:postcss-nesting@^12';
 import { type Book, currentBookOf } from './api/model/book.ts';
 import { feeds } from './_feeds.ts';
 
@@ -30,6 +31,7 @@ site.use(typeset({ scope: '.prose' }))
     .use(
         postcss({
             plugins: [
+                nesting(),
                 postcssUtopia({
                     minWidth: 320,
                     maxWidth: 653,

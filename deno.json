@@ -1,7 +1,7 @@
 {
     "imports": {
         "std/": "https://deno.land/std@0.219.0/",
-        "lume/": "https://deno.land/x/lume@v2.1.3/",
+        "lume/": "https://deno.land/x/lume@v2.2.4/",
         "html_entities": "https://deno.land/x/html_entities@v1.0/mod.js",
         "slug": "https://deno.land/x/slug@v1.1.0/mod.ts",
         "cooklang": "https://esm.sh/@cooklang/cooklang-ts@1.2.6"
