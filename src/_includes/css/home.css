@@ -1,19 +1,39 @@
 .home {
     main {
         &.stack {
-            --spacing: 3rlh;
+            --spacing: 2rlh;
         }
-        
+
         article h1 {
             height: 3rlh;
             margin: 0;
         }
 
         section {
+            > h1:first-of-type {
+                margin-block-end: 1rlh;
+
+                a {
+                    &:not(:hover) {
+                        text-decoration: none;
+                    }
+                }
+                
+                &::after {
+                    content: '→' / '';
+                    display: inline;
+                    color: var(--color-faint);
+                    margin-inline-start: 0.25em;
+                    font-size: var(--f4);
+                }
+                
+                &:hover::after {
+                    color: var(--link-accent-color);
+                }
+            }
+
             > header {
-                margin-block-end: calc(var(--spacing-base));
-                padding-block-end: calc(var(--spacing-base) / 4);
-                border-block-end: 1px solid var(--border-color);
+                margin-block-end: 1rlh;
 
                 h1 {
                     font-size: var(--f2);
@@ -26,17 +46,17 @@
     .item-grid {
         li {
             display: grid;
-            grid-template-columns: 1fr 30%;
-            column-gap: 0.5rlh;
+            grid-template-columns: 1fr 33%;
+            column-gap: 1rlh;
 
-             > * {
-                 white-space: nowrap;
-                 overflow: hidden;
-                 text-overflow: ellipsis;
-             }
+            > * {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
     }
-    
+
     /* TODO Why no nesting? */
     .item-grid--equal {
         li {

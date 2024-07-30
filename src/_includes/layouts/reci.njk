@@ -11,14 +11,14 @@ layout: layouts/main.njk
                     {% if "http" in source %}
                         <a class="btn f6" href="{{ source }}">Original source →</a>
                     {% else %}
-                        <span class="muted f6" title="Original source">{{ source }}</span>
+                        <span class="detail" title="Original source">{{ source }}</span>
                     {% endif %}
                 {% endif %}
     
                 <a class="btn f6" href="{{ rawUrl }}">Raw recipe →</a>
             </p>
     
-            <p class="muted f6 border border-t pt2">
+            <p class="detail border border-t pt2">
             {% if has_tried %}
                 ☑ ︎I have tried this recipe.
             {% else %}
@@ -50,11 +50,11 @@ layout: layouts/main.njk
         </section>
     
         <footer class="flex items-center justify-between">
-            <a href=".." class="muted">
-          		<span aria-hidden="true" class="BackLink mr1">←</span> All recipes
+            <a href=".." class="btn">
+          		← All recipes
            	</a>
     
-            <p class="mb0 muted f6">
+            <p class="mb0 detail">
             This is a <a href="https://cooklang.org">Cooklang</a> based recipe.
             </p>
         </footer>

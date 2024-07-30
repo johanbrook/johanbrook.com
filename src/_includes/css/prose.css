@@ -16,10 +16,7 @@ PROSE
         margin-bottom: 0;
     }
 
-    & img,
-    & iframe,
-    & figure,
-    & svg {
+    :where(img, iframe, figure, svg) {
         --side-margin: 2rlh;
         margin: var(--side-margin) auto;
         display: block;
@@ -30,7 +27,7 @@ PROSE
     }
 
     @media screen and (prefers-color-scheme: dark) {
-        & img {
+        img {
             opacity: 0.9;
             box-shadow: rgba(0, 0, 0, 0.3) 0 0 6px;
         }
@@ -50,7 +47,7 @@ PROSE
         }
     }
 
-    & figcaption {
+    figcaption {
         padding: 1rem 0;
         text-align: center;
         font-family: var(--sans);
@@ -58,8 +55,7 @@ PROSE
     }
 
     /* Break links and code */
-    & code:not(pre > code),
-    & a {
+    :where(code:not(pre > code), a) {
         word-break: break-word;
         word-wrap: break-word;
         overflow-wrap: break-word;
@@ -69,7 +65,7 @@ PROSE
         font-size: var(--f6);
     }
 
-    & figure.image--full {
+    figure.image--full {
         margin: 2rlh -14vw;
 
         & img {

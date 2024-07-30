@@ -926,6 +926,12 @@ COLOURS
     color: var(--color-text-high-contrast);
 }
 
+.detail {
+    color: var(--color-text-detail);
+    font-size: var(--f6);
+    font-variation-settings: 'opsz' 19;
+}
+
 /*
 OPACITY
 ----------------------------------------------------------------*/
@@ -1095,4 +1101,9 @@ a:hover .icon-feed {
     > :last-child {
         margin-block-end: 0;
     }
+}
+
+.tabular-nums {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.008em;
 }

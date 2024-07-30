@@ -6,19 +6,17 @@ home: true
     <article>
         <h1 class="title hide-mobile">Welcome</h1>
 
-        <div class="prose stronger">{{ content | safe }}</div>
+        <div class="prose">
+            {{ content | safe }}
 
-        <hr />
+            <hr />
 
-        <p class="stronger">My fav track <time title="Updated at {{ current_track.updatedAt | date('yyyy-MM-dd')}}" datetime="{{ current_track.updatedAt }}">at the moment</time> is ♫ <u class="b">{{ current_track.name }}</u> by {{ current_track.artist }}.</p>
+            <p>My fav track <time title="Updated at {{ current_track.updatedAt | date('yyyy-MM-dd')}}" datetime="{{ current_track.updatedAt }}">at the moment</time> is ♫ <u class="b">{{ current_track.name }}</u> by {{ current_track.artist }}.</p>
+        </div>
     </article>
     
     <section class="h-feed">
-        <header class="title-row">
-            <h1 class="p-name">Microblog</h1>
-    
-            <a href="/micro" class="u-url muted f6" title="Read more">View all</a>
-        </header>
+        <h1 class="p-name"><a class="u-url" href="/micro">Microblog</a></h1>
     
         <ol role="list">
         {% for note in search.pages("type=note", "date=desc", 3) %}
@@ -35,7 +33,7 @@ home: true
     
                     {% if didExcerpt(note.content) %}
                         <p class="mt1 mb0 font-sans">
-                            <a href="{{ note.url }}" class="muted f6">Continued ⇢</a>
+                            <a href="{{ note.url }}" class="detail">Continued ⇢</a>
                         </p>
                     {% endif %}
                 </details>
@@ -45,19 +43,16 @@ home: true
     </section>
     
     <section class="h-feed">
-        <header class="title-row">
-            <h1 class="p-name">Reading</h1>
-            <a href="/reading" class="u-url f6 muted" title="Read more">View all</a>
-        </header>
+        <h1 class="p-name"><a href="/reading" class="u-url">Reading</a></h1>
 
         <ol role="list" class="item-grid">
             {% macro book_item(book, reading=false) %}
             <li class="h-entry mb1">
                 <div>
-                    <a href="/reading/{{ book.slug }}" class="fw5">{{ book.title }}</a>
+                    <a href="/reading/{{ book.slug }}" class="fw5" title="{{ book.title }}">{{ book.title }}</a>
                     {% if reading %}<span class="ml1 f6 Book-CurrentlyReading" title="Currently reading">☒</span>{% endif %}
                 </div>
-                <span>{{ book.author }}</span>
+                <span title="{{ book.author }}">{{ book.author }}</span>
             </li>
             {% endmacro %}
 
@@ -66,24 +61,20 @@ home: true
                 {{ book_item(current_book, true) }}
             {% endif %}
 
-            {% for book in search.pages("type=book", "finishedAt=desc", 3) %}
+            {% for book in search.pages("type=book", "finishedAt=desc", 6) %}
                 {{ book_item(book) }}
             {% endfor %}
         </ol>
     </section>
     
     <section class="h-feed">
-        <header class="title-row">
-            <h1 class="p-name">Writings</h1>
-    
-            <a href="/writings" class="u-url muted f6" title="Read more">View all</a>
-        </header>
+        <h1 class="p-name"><a href="/writings" class="u-url">Writings</a></h1>
 
         <ol role="list" class="item-grid">
-            {% for post in search.pages("type=post", "date=desc", 3) %}
+            {% for post in search.pages("type=post", "date=desc", 6) %}
             <li class="mb1 h-entry" id="{{ post.url | url(true) }}">
            	<a class="u-url fw5" href="{{ post.url }}">{{ post.title }}</a>
-               	<time class="dt-published" pubdate datetime="{{ post.date | tdate('Machine', post.timezone) }}">{{ post.date | tdate('HumanDate', post.timezone) }}</time>
+               	<time class="dt-published tabular-nums" pubdate datetime="{{ post.date | tdate('Machine', post.timezone) }}">{{ post.date | tdate('Date', post.timezone) }}</time>
             </li>
             {% endfor %}
         </ol>

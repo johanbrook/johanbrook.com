@@ -39,12 +39,11 @@ a:not(.btn) {
         top: 1px;
     }
 
-    &.muted {
+    :where(&.muted, &.detail) {
         text-decoration: none;
 
         &:hover {
-            text-decoration: underline solid;
-            text-decoration-thickness: 1px;
+            text-decoration: revert-layer;
         }
     }
 
@@ -130,11 +129,11 @@ hr {
     border: 0;
     background-color: var(--border-color);
     height: 1px;
-    margin: 1rlh 0;
+    margin-block: 0.5rlh calc(0.5rlh - 1px);
 }
 
 table {
-    --spacing: 0.6em;
+    --spacing: 0.25rlh;
 }
 
 tr {
@@ -148,14 +147,11 @@ thead th {
     font-weight: 600;
     background-color: var(--color-bg);
     font-size: var(--f5);
+    line-height: 1.5;
 }
 
 tbody th {
     font-weight: 500;
-}
-
-tr {
-    border-bottom: 1px solid var(--border-color);
 }
 
 :where(td, th) {

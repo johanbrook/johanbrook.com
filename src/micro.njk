@@ -22,7 +22,7 @@ menu:
                 </h1>
                 <div class="flex justify-between items-baseline gap">
                     {% if post.location %}
-                        <p title="Posted from" class="muted font-sans mb0 f6 target">{{ post.location }}</p>
+                        <p title="Posted from" class="detail mb0 target">{{ post.location }}</p>
                     {% endif %}
 
                     {{ t.list(post.tags) }}

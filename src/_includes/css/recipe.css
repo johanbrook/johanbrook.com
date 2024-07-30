@@ -16,7 +16,6 @@
 
 .recipe-cookwares {
     h2 {
-        font-family: var(--sans);
         font-size: var(--f4);
     }
 }
