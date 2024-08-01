@@ -1032,7 +1032,7 @@ TYPOGRAPHY
     }
 }
 
-@media (max-width: 1215px) {
+@media (max-width: 800px) {
     .hide-mobile {
         display: none;
     }
@@ -1048,7 +1048,7 @@ TYPOGRAPHY
     }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 801px) {
     .hide-large {
         display: none;
     }
