@@ -29,6 +29,12 @@ body {
             margin-block-end: 1rlh;
         }
     }
+    
+    @media (max-width: 959px) {
+        > header > :last-child {
+            margin-block-end: 1rlh;
+        }
+    }
 
     footer {
         margin-block-start: 2rlh;

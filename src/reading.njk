@@ -24,34 +24,67 @@ menu:
                 <p class="muted mb0 f5">{{ bookz.length }} books</p>
             </header>
             
+            <!-- <ol role="table" class="TableGrid">
+                <li class="visually-hidden" role="row">
+                    <span role="columnheader">Title</span>
+                    <span role="columnheader">Author</span>
+                    <span role="columnheader">Status</span>
+                </li>
+                {% for book in bookz | reverse %}
+                <li role="row" id="{{ book.slug }}">
+                    <span role="cell">{{ book.title }}</span>
+                    <span role="cell">{{ book.author }}</span>
+                    <span role="cell" class="f6 no-wrap">
+                        {% if book.dropped %}
+                      		<span class="BookStatus-Dropped">Dropped</span>
+                       	{% else %}
+                          		{% if book.paused %}
+        		            		<span class="BookStatus-Paused">Paused</span>
+         			            {% else %}
+          		              		{% if not book.finished %}
+         			              		<span class="BookStatus-CurrentlyReading">Reading</span>
+        			            	{% endif %}
+         		            	{% endif %}
+                       	{% endif %}
+                    </span>
+                </li>
+                {% endfor %}
+            </ol> -->
+            
     		<table>
                 <thead>
                    	<tr>
                   		<th scope="column">Title</th>
                   		<th scope="column">Author</th>
-                  		<th scope="column"><span class="visually-hidden">Status</span></th>
+                  		<th scope="column" class="hide-mobile"><span class="visually-hidden">Status</span></th>
                    	</tr>
                 </thead>
+                
+                {% macro book_status(book) %}
+                    {% if book.dropped %}
+                  		<span class="BookStatus-Dropped">Dropped</span>
+                   	{% else %}
+                      		{% if book.paused %}
+    		            		<span class="BookStatus-Paused">Paused</span>
+     			            {% else %}
+      		              		{% if not book.finished %}
+     			              		<span class="BookStatus-CurrentlyReading">Reading</span>
+    			            	{% endif %}
+     		            	{% endif %}
+                   	{% endif %}
+                {% endmacro %}
+
                 {% for book in bookz | reverse %}
                     <tr id="{{ book.slug }}">
                        	<th scope="row">
-           					<a href="{{ '/reading' | url }}/{{book.slug}}/">{{ book.title }}</a>
+           					<a href="{{ '/reading' | url }}/{{book.slug}}/">{{ book.title }}</a><br />
+                            <span class="hide-large f6">{{ book_status(book) }}</span>
                        	</th>
                        	<td>
                       		{{ book.author }}
                        	</td>
-                       	<td class="f6 no-wrap">
-                           	{% if book.dropped %}
-                          		<span class="BookStatus-Dropped">Dropped</span>
-                           	{% else %}
-                              		{% if book.paused %}
-            		            		<span class="BookStatus-Paused">Paused</span>
-             			            {% else %}
-              		              		{% if not book.finished %}
-             			              		<span class="BookStatus-CurrentlyReading">Reading</span>
-            			            	{% endif %}
-             		            	{% endif %}
-                           	{% endif %}
+                       	<td class="f6 no-wrap hide-mobile">
+                           	{{ book_status(book) }}
                        	</td>
                     </tr>
                 {% endfor %}

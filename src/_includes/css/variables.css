@@ -11,6 +11,7 @@
     --yellow: oklch(82.94% 0.185 91.34);
     --red: oklch(72% 0.185 28.59);
     --green: oklch(77.94% 0.217 141.54);
+    --blue: oklch(58.31% 0.217 253.71);
 
     --grey: hsl(214.51 7.24% 47.56%);
     --grey-light: hsl(173 7% 36% / 0.5);
@@ -37,8 +38,6 @@
     --btn-bg: var(--color-bg-secondary);
     --btn-bg-hover: hsl(240 59.76% 95.52%);
 
-    --focus-color: hsl(201.43, 100%, 37.25%);
-
     --pre-background: var(--color-bg-secondary);
     --code-background: rgb(0 0 0 / 2%);
     --code-color: rgb(120 94 0);
@@ -47,6 +46,7 @@
         --yellow: oklch(90.29% 0.2146 98.81);
         --red: oklch(74.93% 0.1905 28.59);
         --green: oklch(88.24% 0.271 141.54);
+        --blue: oklch(67.35% 0.18 253.71);
         --grey: hsl(214.51, 6.64%, 61.44%);
 
         --color-bg: var(--dark);

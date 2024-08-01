@@ -6,7 +6,7 @@
     </p>
     <div class="relative">
         <details>
-            <summary>Menu</summary>
+            <summary><span class="MobileNav__Trigger">Menu</span></summary>
             <ul role="list" class="NavList">
                 {%- for entry in search.pages("menu.visible=true", "menu.order") %}
               		<li {% if entry.url | isCurrentPage %} aria-current="page"{% endif %}>

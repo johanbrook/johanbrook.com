@@ -1036,6 +1036,22 @@ TYPOGRAPHY
     .hide-mobile {
         display: none;
     }
+    
+    .visually-hide-mobile {
+        clip-path: inset(50%) !important;
+        height: 1px !important;
+        width: 1px !important;
+        overflow: hidden !important;
+        position: absolute !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+    }
+}
+
+@media (min-width: 800px) {
+    .hide-large {
+        display: none;
+    }
 }
 
 .sep {

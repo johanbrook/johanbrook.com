@@ -44,7 +44,7 @@
         margin-block-end: 1rlh;
         line-height: 1rlh;
         font-weight: 480;
-        
+
         .BackLink {
             position: absolute; /* Don't take up vertical space */
         }
@@ -83,41 +83,68 @@
     }
 
     .NavList {
+        min-width: 9rem;
+
         li:where([aria-current='page'])::after {
             display: none;
         }
+        
+        a {
+            display: block;
+        }
     }
 
+    .NavList {
+        box-shadow: color-mix(in oklab, var(--color-bg) 50%, black 20%) -10px 10px 30px;
+        background-color: Canvas;
+        padding: 5px;
+        margin-right: -5px;
+        margin-top: 0.25lh;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        line-height: 2;
+
+        li {
+            border-radius: 6px;
+            padding: 0 10px;
+
+            &[aria-current='page'] {
+                background-color: var(--color-bg-secondary);
+            }
+        }
+    }
+    
+    .MobileNav__Trigger {
+        border-radius: 4px;
+        padding: 0 5px;
+        margin-inline-end: -5px;
+        display: inline-block;
+    }
+    
+    /* "Implementation specific" */
+    
     details {
         margin: 0;
         position: absolute;
         z-index: 10;
         top: 0;
         right: 0;
-
-        > ul {
-            box-shadow: color-mix(in oklab, var(--color-bg) 50%, black 20%) -10px 10px 30px;
-            background-color: var(--color-bg);
-            padding: 0.25lh 10px;
-            margin-right: -10px;
-            margin-top: 0.25lh;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            line-height: 2;
-
-            li {
-                padding-inline-end: 3rem;
-
-                &:not(:last-child) {
-                    border-bottom: 1px solid var(--border-color);
-                }
-            }
-        }
     }
 
     summary {
         text-align: end;
         white-space: nowrap;
+        user-select: none;
+        font-weight: 500;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+    }
+
+    details[open] summary .MobileNav__Trigger {
+        background-color: var(--color-bg-secondary);
+        color: var(--blue);
     }
 }
 

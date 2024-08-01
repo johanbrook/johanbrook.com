@@ -150,8 +150,14 @@ thead th {
     line-height: 1.5;
 }
 
-tbody th {
-    font-weight: 500;
+tbody {
+    th {
+        font-weight: 500;
+    }
+    
+    :where(td, th) {
+        vertical-align: top;
+    }
 }
 
 :where(td, th) {
