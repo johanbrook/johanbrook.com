@@ -7,7 +7,7 @@ layout: layouts/main.njk
     <header>
         <h1 class="title">{{ title }}</h1>
     	{% if subtitle %}
-    		<p class="subhead mb0">{{ subtitle | md(true) | safe }}</p>
+    		<p class="subhead">{{ subtitle | md(true) | safe }}</p>
     	{% endif %}
     </header>
 
@@ -16,7 +16,7 @@ layout: layouts/main.njk
     </div>
 
     <footer>
-        <p class="muted">Updated <time datetime="{{ date | tdate('Machine') }}">{{ date | tdate('HumanDate') }}</time>.</p>
+        <p class="detail">Updated <time datetime="{{ date | tdate('Machine') }}">{{ date | tdate('HumanDate') }}</time>.</p>
     </footer>
   </article>
 </main>

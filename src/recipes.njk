@@ -11,14 +11,14 @@ menu:
 <main class="Page h-feed">
     <header>
         <h1 class="title p-name">{{ title }}</h1>
-        <p class="subhead mb0">A mix of my own and other's recipes I'd like to collect.</p>
+        <p class="subhead">A mix of my own and others' recipes I'd like to collect.</p>
     </header>
 
     <ul role="list">
         {% for recipe in recipes %}
-        <li class="h-entry" id="{{ recipe.url | url(true) }}">
-            {% if recipe.has_tried %}☑{% else %}☒{% endif %}
+        <li class="PostItem h-entry" id="{{ recipe.url | url(true) }}">
             <a class="u-url" href="{{ recipe.url | url }}">{{ recipe.title }}</a>
+            <p class="muted">{% if recipe.has_tried %}☑ Tried{% else %}☒ Not tried{% endif %}</p>
         </li>
         {% endfor %}
     </ul>

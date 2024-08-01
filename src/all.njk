@@ -1,10 +1,14 @@
 ---
 title: All pages
-layout: layouts/page.njk
 ---
 
-<ol>
+<ol role="list">
     {% for page in search.pages("type!=tag type!=post type!=note type!=book type!=recipe url!='/all/' url!='/'", "title") %}
-    <li><a title="{{ page.description }}" href="{{ page.url }}">{{ page.title }}</a></li>
+    <li class="PostItem">
+        <a title="{{ page.description }}" href="{{ page.url }}">{{ page.title }}</a>
+        <p class="muted">
+            {{ page.url }}
+        </p>
+    </li>
     {% endfor %}
 </ol>
