@@ -1,8 +1,9 @@
 ---
-date: '2024-06-11T23:08:39+02:00'
+date: '2024-08-09T21:32:33+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
+    - recently
     - recently
 ---
 ## Watched
@@ -52,3 +53,8 @@ tags:
 - **Bowiepodden** (Swedish, "The Bowie Podcast")
 
   I'm haven't ever been a podcast kinda guy, but this one hit me just right: the host and his invited guests go through a David Bowie album per episode, talking about each one of the tracks. Super nerdy, but there's a great warmth and appreciation for Bowie's artistery and his collaborations with the fellow musicians on the tracks.
+
+## Uncategorised
+
+- House of the Dragon
+
