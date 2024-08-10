@@ -27,6 +27,10 @@
 
 .title {
     font-size: var(--f0);
+    
+    a {
+        text-decoration: none;
+    }
 }
 
 .f1 {
