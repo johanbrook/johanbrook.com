@@ -42,25 +42,4 @@
             }
         }
     }
-
-    .item-grid {
-        li {
-            display: grid;
-            grid-template-columns: 1fr 33%;
-            column-gap: 1rlh;
-
-            > * {
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-        }
-    }
-
-    /* TODO Why no nesting? */
-    .item-grid--equal {
-        li {
-            grid-template-columns: 40% 0.75fr 0.75fr;
-        }
-    }
 }

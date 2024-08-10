@@ -45,14 +45,14 @@ home: true
     <section class="h-feed">
         <h1 class="p-name"><a href="/reading" class="u-url">Reading</a></h1>
 
-        <ol role="list" class="item-grid">
+        <ol role="list">
             {% macro book_item(book, reading=false) %}
-            <li class="h-entry mb1">
+            <li class="PostItem h-entry">
                 <div>
                     <a href="/reading/{{ book.slug }}" class="fw5" title="{{ book.title }}">{{ book.title }}</a>
                     {% if reading %}<span class="ml1 f6 Book-CurrentlyReading" title="Currently reading">☒</span>{% endif %}
                 </div>
-                <span title="{{ book.author }}">{{ book.author }}</span>
+                <span class="muted" title="{{ book.author }}">{{ book.author }}</span>
             </li>
             {% endmacro %}
 
@@ -70,11 +70,11 @@ home: true
     <section class="h-feed">
         <h1 class="p-name"><a href="/writings" class="u-url">Writings</a></h1>
 
-        <ol role="list" class="item-grid">
+        <ol role="list">
             {% for post in search.pages("type=post", "date=desc", 6) %}
-            <li class="mb1 h-entry" id="{{ post.url | url(true) }}">
-           	<a class="u-url fw5" href="{{ post.url }}">{{ post.title }}</a>
-               	<time class="dt-published tabular-nums" pubdate datetime="{{ post.date | tdate('Machine', post.timezone) }}">{{ post.date | tdate('Date', post.timezone) }}</time>
+            <li class="PostItem h-entry" id="{{ post.url | url(true) }}">
+               	<a class="u-url fw5" href="{{ post.url }}">{{ post.title }}</a>
+               	<time class="dt-published" pubdate datetime="{{ post.date | tdate('Machine', post.timezone) }}">{{ post.date | tdate('Date', post.timezone) }}</time>
             </li>
             {% endfor %}
         </ol>
