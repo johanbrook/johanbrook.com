@@ -3,9 +3,9 @@ layout: layouts/main.njk
 ---
 
 <main>
-    <article class="Page Book">
+    <article class="Page Book h-entry">
         <header>
-            <h1>“{{ title }}”</h1>
+            <h1 class="p-name">“{{ title }}”</h1>
             <p class="subhead"><i>By</i> {{ author }}</p>
 
             <p class="f6 border border-t pt2">
@@ -25,7 +25,7 @@ layout: layouts/main.njk
             </p>
         </header>
 
-        <div class="prose">{{ notes | md | safe }}</div>
+        <div class="prose e-content">{{ notes | md | safe }}</div>
 
         <footer>
             <nav>

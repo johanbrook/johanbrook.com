@@ -16,13 +16,13 @@ menu:
         <article class="Note">
            	<header class="mb2">
                 <h1>
-                    <a href="{{ post.url }}" title="Permalink ({{ post.date | tdate('Detailed', post.timezone) }})" class="no-underline u-url">
+                    <a href="{{ post.url }}" title="Permalink ({{ post.date | tdate('Detailed', post.timezone) }})" class="no-underline u-url u-uid">
                         <time class="dt-published" datetime="{{ post.date | tdate('Machine', post.timezone) }}" pubdate>{{ post.date | tdate('HumanTime', post.timezone) }}</time> <span>#</span>
                     </a>
                 </h1>
                 <div class="flex justify-between items-baseline gap">
                     {% if post.location %}
-                        <p title="Posted from" class="detail mb0 target">{{ post.location }}</p>
+                        <p title="Posted from" class="detail mb0 target p-location">{{ post.location }}</p>
                     {% endif %}
 
                     {{ t.list(post.tags) }}
