@@ -19,7 +19,7 @@
     -webkit-text-size-adjust: none;
     text-size-adjust: none;
     color-scheme: dark light;
-    tab-size: 4;
+    tab-size: 2;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -35,6 +35,11 @@ body {
             margin-block-end: 1rlh;
         }
     }
+    
+    /* Ancient hack to prevent overflows. */
+    .prose {
+        min-width: 0;
+    }
 
     footer {
         margin-block-start: 2rlh;

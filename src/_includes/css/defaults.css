@@ -91,9 +91,8 @@ table {
 
 pre {
     white-space: pre;
-    word-spacing: normal;
-    word-break: normal;
     hyphens: none;
+    overflow-x: auto;
 }
 
 /* Syntax highlighting */

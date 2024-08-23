@@ -70,11 +70,8 @@ pre {
     text-align: left;
     line-height: var(--leading);
     color: var(--code-color);
-    background-color: var(--code-background);
-    padding: 0.125rem 0.25rem;
-    border-radius: 0.25em;
-    font-size: var(--f5);
-    overflow: auto;
+    border-block: 2px solid var(--border-color);
+    padding: 0.5rlh 0;
     position: relative;
 
     & .line-highlight {

@@ -32,7 +32,7 @@
     --link-color-visited: hsl(266 100% 44%);
     --link-accent-color: var(--neon);
 
-    --border-color: color-mix(in oklab, var(--mood) 3%, black 10%);
+    --border-color: color-mix(in oklab, var(--mood) 3%, black 15%);
 
     --btn-color: var(--color-text);
     --btn-bg: var(--color-bg-secondary);
@@ -40,7 +40,7 @@
 
     --pre-background: var(--color-bg-secondary);
     --code-background: rgb(0 0 0 / 2%);
-    --code-color: rgb(120 94 0);
+    --code-color: var(--color-text-high-contrast);
 
     @media screen and (prefers-color-scheme: dark) {
         --yellow: oklch(90.29% 0.2146 98.81);
