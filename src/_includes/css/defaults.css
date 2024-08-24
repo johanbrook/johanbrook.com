@@ -63,8 +63,9 @@ nav {
 
 /* SPACING / VERTICAL RHYTHM */
 
-article :not(nav > *):where(h1, h2, h3, h4, p, ul, ol, blockquote, hr, figure, table, pre, details):not(:last-child) {
-    margin-block-end: 0.5rlh;
+article
+    :not(nav > *):where(h1, h2, h3, h4, p, ul, ol, li, blockquote, hr, figure, table, pre, details):not(:last-child) {
+    margin-block-end: var(--spacing-prose, 0.5rlh);
 }
 
 /* TABLES */

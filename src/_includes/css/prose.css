@@ -12,18 +12,13 @@ PROSE
         margin-top: 1lh;
     }
 
-    & > :last-child {
-        margin-bottom: 0;
+    :where(img, iframe, figure, svg) {
+        margin-inline: auto;
     }
 
-    :where(img, iframe, figure, svg) {
-        --side-margin: 2rlh;
-        margin: var(--side-margin) auto;
-        display: block;
-
-        @media screen and (max-width: 480px) {
-            --side-margin: 1rlh;
-        }
+    p:has(:is(img, iframe, figure, svg)) {
+        --spacing-prose: 1rlh;
+        margin-block-start: var(--spacing-prose);
     }
 
     @media screen and (prefers-color-scheme: dark) {
@@ -37,13 +32,13 @@ PROSE
         padding-left: 0.5rlh;
         margin-left: 0.5rlh;
 
+        li * {
+            --spacing-prose: 0.25rlh;
+        }
+
         :where(li > ul, li > ol) {
             padding-left: 1.5rem;
             margin-bottom: 0;
-        }
-
-        li > :where(p, pre, blockquote) {
-            margin-block-end: 0.25rlh;
         }
     }
 
