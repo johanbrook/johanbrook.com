@@ -1,10 +1,11 @@
 ---
-date: '2024-08-14T21:46:01+02:00'
+date: '2024-08-30T20:52:27+02:00'
+location: ''
 timezone: Europe/Stockholm
 tags:
     - recently
+    - recently
 ---
-
 ## Watched
 
 - **True Detective S04** (series, HBO) ★★☆☆☆
@@ -20,3 +21,8 @@ tags:
   So, the movie itself is good too! I find it a bit "weird" sometimes, as you always do with old movies. The pacing is good, but oh how they butchered the Ripley character. In _Purple Noon_, I can't make sense of him at all.
   
   Summarised: come for Ripley, stay for the costumes and scenes of pre-tourism Rome.
+
+## Uncategorised
+
+- The Greatest Night In Pop
+
