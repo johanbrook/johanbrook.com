@@ -1,5 +1,5 @@
 ---
-date: '2024-08-30T20:52:27+02:00'
+date: '2024-09-01T21:56:31+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -25,4 +25,5 @@ tags:
 ## Uncategorised
 
 - The Greatest Night In Pop
+- Squaring the Circle — about Hipgnosis
 
