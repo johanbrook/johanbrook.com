@@ -1,5 +1,5 @@
 ---
-date: '2024-09-01T21:56:31+02:00'
+date: '2024-09-02T20:48:42+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -26,4 +26,5 @@ tags:
 
 - The Greatest Night In Pop
 - Squaring the Circle — about Hipgnosis
+- Furiosa — a Mad Max Saga
 
