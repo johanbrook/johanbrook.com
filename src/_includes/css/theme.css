@@ -10,6 +10,11 @@ body {
     font-weight: 540;
 }
 
+strong {
+    color: var(--color-text-high-contrast);
+    font-weight: 550;
+}
+
 ul ::marker {
     color: var(--color-faint);
 }
