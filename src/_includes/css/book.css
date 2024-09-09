@@ -66,6 +66,7 @@
 
     .BookStatus-CurrentlyReading::before {
         content: '☐ ';
+        font-size-adjust: ex-height from-font;
     }
 
     .BookStatus-Finished::before {
