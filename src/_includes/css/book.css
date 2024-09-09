@@ -48,7 +48,7 @@
         }
     }
 
-    :where(.BookStatus-Paused, .BookStatus-Dropped, .BookStatus-CurrentlyReading)::before {
+    :where(.BookStatus-Paused, .BookStatus-Dropped)::before {
         content: '☒ ';
     }
 
@@ -64,9 +64,11 @@
         color: color-mix(in oklab, var(--yellow), black 15%);
     }
 
-    .BookStatus-Finished {
-        &::before {
-            content: '☑ ';
-        }
+    .BookStatus-CurrentlyReading::before {
+        content: '☐ ';
+    }
+
+    .BookStatus-Finished::before {
+        content: '☑ ';
     }
 }
