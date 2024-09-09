@@ -17,9 +17,13 @@ POSTS LIST
         overflow: hidden;
         text-overflow: ellipsis;
     }
-
-    a:first-child {
+    
+    > :first-child {
         font-weight: 500;
+    }
+    
+    a:not(:hover, :focus) {
+        text-decoration: none;
     }
 
     time {

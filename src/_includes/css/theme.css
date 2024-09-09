@@ -32,6 +32,7 @@ a:not(.btn) {
     color: var(--link-color);
     position: relative;
     text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
 
     &:where(:hover, &:hover .link) {
         color: var(--link-color-hover);
@@ -155,8 +156,12 @@ thead th {
 tbody {
     th {
         font-weight: 500;
+
+        a:not(:hover) {
+            text-decoration: none;
+        }
     }
-    
+
     :where(td, th) {
         vertical-align: top;
     }
