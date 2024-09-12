@@ -1,5 +1,5 @@
 ---
-date: '2024-09-11T01:39:22+02:00'
+date: '2024-09-12T21:41:09+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -9,4 +9,5 @@ tags:
 ## Uncategorised
 
 - https://www.thebeliever.net/beatles-or-stones/
+- The Perfect Couple
 
