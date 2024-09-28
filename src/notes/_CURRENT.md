@@ -1,7 +1,7 @@
 ---
-date: '2024-09-12T21:41:09+02:00'
+date: '2024-09-28T20:49:00+02:00'
 location: ''
-timezone: Europe/Stockholm
+timezone: Africa/Johannesburg
 tags:
     - recently
     - recently
@@ -10,4 +10,5 @@ tags:
 
 - https://www.thebeliever.net/beatles-or-stones/
 - The Perfect Couple
+- Monsters: The Lyle and Erik Menendez Story
 
