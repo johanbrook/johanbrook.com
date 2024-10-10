@@ -8,8 +8,12 @@ PROSE
         padding-bottom: 0.25lh;
     }
 
-    * + h1 {
-        margin-top: 1lh;
+    :where(h1, h2, h3, h4, h5, h6) {
+        margin-block-end: 1rlh;
+    }
+
+    * + :where(h1, h2, h3) {
+        margin-block-start: 1.5rlh;
     }
 
     :where(img, iframe, figure, svg) {
@@ -32,7 +36,7 @@ PROSE
         padding-left: 0.5rlh;
         margin-left: 0.5rlh;
 
-        li * {
+        li {
             --spacing-prose: 0.25rlh;
         }
     }

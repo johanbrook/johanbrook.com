@@ -65,7 +65,11 @@ nav {
 
 article
     :not(nav > *):where(h1, h2, h3, h4, p, ul, ol, li, blockquote, hr, figure, table, pre, details):not(:last-child) {
-    margin-block-end: var(--spacing-prose, 0.5rlh);
+    margin-block-end: var(--spacing-prose, 1rlh);
+
+    @media (max-width: 600px) {
+        --spacing-prose: 0.5rlh;
+    }
 }
 
 /* TABLES */

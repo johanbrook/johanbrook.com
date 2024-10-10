@@ -76,9 +76,19 @@ pre {
     text-align: left;
     line-height: var(--leading);
     color: var(--code-color);
-    border-block: 2px solid var(--border-color);
-    padding: 0.5rlh 0;
+    padding: 0.5rlh;
     position: relative;
+
+    &::before {
+        border-radius: 10em;
+        position: absolute;
+        width: 3px;
+        display: block;
+        content: '';
+        inset: 0;
+        right: auto;
+        background-color: currentColor;
+    }
 
     & .line-highlight {
         --cycle: 27px;
@@ -131,8 +141,7 @@ blockquote {
 hr {
     border: 0;
     background-color: var(--border-color);
-    height: 1px;
-    margin-block: 0.5rlh calc(0.5rlh - 1px);
+    height: 2px;
 }
 
 table {
