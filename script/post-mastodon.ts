@@ -2,7 +2,7 @@
 // Env vars:
 // - MASTODON_ACCESS_TOKEN
 // - DRY (optional)
-import { postStatus, Todo } from '../_mastodon.ts';
+import { postStatus, Todo, TODO_PATH } from '../_mastodon.ts';
 
 const dryRun = !!Deno.env.get('DRY');
 const accessToken = Deno.env.get('MASTODON_ACCESS_TOKEN');
@@ -12,7 +12,7 @@ if (!accessToken) {
     Deno.exit(1);
 }
 
-const todo = JSON.parse(await Deno.readTextFile('./.mastodon-todo.json')) as Todo;
+const todo = JSON.parse(await Deno.readTextFile(TODO_PATH)) as Todo;
 
 await postStatus(todo, accessToken, dryRun).catch((err) => {
     console.error(err);

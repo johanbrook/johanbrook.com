@@ -12,13 +12,16 @@ export interface Todo {
     sourcePath: string;
 }
 
+export const TODO_PATH = './build/.mastodon-todo.json';
+const LOG_FILE = '.mastodon-notes';
+
 export const maybeSaveTodo = async (page: Lume.Page) => {
-    const done = await Deno.readTextFile('./.mastodon-notes');
+    const done = await Deno.readTextFile(LOG_FILE);
     const id = idOf(page.sourcePath);
 
     // Already posted, bail
     if (done.includes(id)) {
-        console.log(`Page already exists in .mastodon-notes: ${id} (${page.sourcePath}). Skipping…`);
+        console.log(`Page already exists: ${id} (${page.sourcePath}). Skipping…`);
         return;
     }
 
@@ -38,8 +41,8 @@ export const maybeSaveTodo = async (page: Lume.Page) => {
         description: page.data.excerpt || page.data.description,
     };
 
-    await Deno.writeTextFile('./.mastodon-todo.json', JSON.stringify(todo));
-    console.log(`Wrote ${page.sourcePath} to .mastodon-todo.json`);
+    await Deno.writeTextFile(TODO_PATH, JSON.stringify(todo));
+    console.log(`Wrote ${page.sourcePath} to ${TODO_PATH}`);
 };
 
 export const postStatus = async (todo: Todo, accessToken: string, dryRun = false) => {
