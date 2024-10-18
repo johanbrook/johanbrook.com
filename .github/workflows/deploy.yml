@@ -92,6 +92,8 @@ jobs:
         steps:
             - name: Download Mastodon todo
               uses: actions/download-artifact@v4
+              with:
+                  name: mastodon-todo
 
             - name: Check if we have something to do
               id: todo_file
