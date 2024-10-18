@@ -10,8 +10,7 @@ export const booksRoot = '/reading';
 // For a singular post, we do: /writings/:slug
 export const urlForPost = (slug: string) => `${postsRoot}/${slug}/`;
 
-export const idOf = (sourcePath: string) =>
-    path.basename(sourcePath).replaceAll('-', '').split('.').at(0);
+export const idOf = (sourcePath: string) => path.basename(sourcePath).replaceAll('-', '').split('.').at(0)!;
 
 export const notePermalinkOf = (fileName: string) => `${microRoot}/${idOf(fileName)}/`;
 

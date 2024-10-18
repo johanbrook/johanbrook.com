@@ -6,28 +6,29 @@ on:
 
     push:
         paths:
-            - "src/**/*"
-            - "_config.ts"
-            - "CNAME"
-            - ".rebuild"
-            - ".github/workflows/deploy.yml"
+            - 'src/**/*'
+            - '_config.ts'
+            - 'CNAME'
+            - '.rebuild'
+            - '.github/workflows/deploy.yml'
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-    contents: write  # to checkout repo and write back log file
-    pages: write    # to deploy to Pages
+    contents: write # to checkout repo and write back log file
+    pages: write # to deploy to Pages
     id-token: write # to verify the deployment originates from an appropriate source
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
-    group: "pages"
+    group: 'pages'
     cancel-in-progress: false
 
 env:
     DENO_VERSION: v1.42.4
     BUILD_FOLDER: build
     MASTODON_LOG_FILE: .mastodon-notes
+    MASTODON_TODO: .mastodon-todo.json
     NOTES_DIR: src/notes
 
 jobs:
@@ -46,13 +47,13 @@ jobs:
             - name: Build site
               run: deno task build
               env:
-                NODE_ENV: production
-                ENV: production
+                  NODE_ENV: production
+                  ENV: production
 
-            - name: Upload artifact
+            - name: Upload site
               uses: actions/upload-pages-artifact@v3
               with:
-                path: ${{ env.BUILD_FOLDER }}
+                  path: ${{ env.BUILD_FOLDER }}
 
     deploy:
         name: Deploy
@@ -73,75 +74,69 @@ jobs:
                   CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
                   CLOUDFLARE_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
 
+    # This task exists just so we can short circuit and quit early in post_mastodon
     check_latest_note:
-        name: Check latest note
+        name: Check Mastodon todo
         runs-on: ubuntu-latest
         outputs:
-            do_post: ${{ steps.mastodon_note_check.outputs.do_post }}
-            latest_note_id: ${{ steps.mastodon_note_check.outputs.latest_note_id }}
-            latest_note_path: ${{ steps.mastodon_note_check.outputs.latest_note_path }}
+            do_post: ${{ steps.todo_file.outputs.do_post }}
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
 
-              # TODO Bail if latest note is draft
-            - name: Check if latest note is already posted
-              id: mastodon_note_check
+            - name: Check if we have something to do
+              id: todo_file
               timeout-minutes: 10
               run: |
-                latest="$NOTES_DIR/$(ls -r1 "$NOTES_DIR" | grep -v "_" | head -n 1)"
-                note_id=$(./script/check-mastodon-note.sh "$latest")
-                [ -z "$note_id" ] && echo "Latest note $latest is posted. Bail." || echo "Latest note $latest is not posted. Do post."
-                [ ! -z "$note_id" ] && echo "do_post=true" >> "$GITHUB_OUTPUT"
-                echo "latest_note_id=$note_id" >> "$GITHUB_OUTPUT"
-                echo "latest_note_path=$latest" >> "$GITHUB_OUTPUT"
-                cat "$GITHUB_OUTPUT"
+                  [ -f "$file" ] && echo "do_post=true" >> "$GITHUB_OUTPUT"
               env:
-                  NOTES_DIR: ${{ env.NOTES_DIR }}
+                  file: ${{ env.MASTODON_TODO }}
 
     post_mastodon:
         name: Post to Mastodon
-        needs: [deploy, check_latest_note] # can't send post with permalink until site is deployed
+        # can't send post with permalink until site is deployed
+        needs: [deploy, check_latest_note]
         runs-on: ubuntu-latest
+        # If nothing to do, we can just skip this whole task
         if: needs.check_latest_note.outputs.do_post == 'true'
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
-
-            - name: Wait for site to deploy
-              timeout-minutes: 5
-              run: ./script/wait-for-status.sh "$LATEST_NOTE_PATH"
-              env:
-                  LATEST_NOTE_PATH: ${{ needs.check_latest_note.outputs.latest_note_path }}
 
             - name: Setup Deno
               uses: denoland/setup-deno@v1
               with:
                   deno-version: ${{ env.DENO_VERSION }}
 
+            - name: Wait for site to deploy
+              timeout-minutes: 5
+              run: ./script/wait-for-status.sh --latest
+
             - name: Post to Mastodon API
-              run: deno run --allow-net --allow-read --allow-write --allow-env script/mastodon.ts "$LATEST_NOTE_PATH"
+              run: deno run --allow-net --allow-read --allow-env script/post-mastodon.ts
               env:
                   MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-                  LATEST_NOTE_PATH: ${{ needs.check_latest_note.outputs.latest_note_path }}
 
-            - name: Write to log
+            - name: Write to log and clear todo
               run: |
-                  echo "$LATEST_UNPOSTED" >> $MASTODON_LOG_FILE
-                  cat "$MASTODON_LOG_FILE"
+                  id=$(cat $todo_file | jq -r ".id")
+                  echo $id >> $log_file
+                  cat $log_file
+                  rm -rf $todo_file
+                  echo "$todo_file cleared"
               env:
-                  MASTODON_LOG_FILE: ${{ env.MASTODON_LOG_FILE }}
-                  LATEST_UNPOSTED: ${{ needs.check_latest_note.outputs.latest_note_id }}
+                  todo_file: ${{ env.MASTODON_TODO }}
+                  log_file: ${{ env.MASTODON_LOG_FILE }}
 
             - name: Commit and push posted notes
               # Pull first, since something could've been pushed in-between.
               run: |
-                git pull
-                git config user.name "Automated"
-                git config user.email "actions@users.noreply.github.com"
-                git add $MASTODON_LOG_FILE
-                timestamp=$(date -u)
-                git commit -m "Latest post to Mastodon: $timestamp [skip-ci]" || exit 0
-                git push
+                  git pull
+                  git config user.name "Automated"
+                  git config user.email "actions@users.noreply.github.com"
+                  git add $log_file
+                  timestamp=$(date -u)
+                  git commit -m "Latest post to Mastodon: $timestamp [skip-ci]" || exit 0
+                  git push
               env:
-                  MASTODON_LOG_FILE: ${{ env.MASTODON_LOG_FILE }}
+                  log_file: ${{ env.MASTODON_LOG_FILE }}

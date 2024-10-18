@@ -16,6 +16,7 @@ import postcssUtopia from 'npm:postcss-utopia@^1';
 import nesting from 'npm:postcss-nesting@^12';
 import { type Book, currentBookOf } from './api/model/book.ts';
 import { feeds } from './_feeds.ts';
+import { maybeSaveTodo } from './_mastodon.ts';
 
 const site = lume({
     src: 'src',
@@ -37,7 +38,7 @@ site.use(typeset({ scope: '.prose' }))
                     maxWidth: 653,
                 }),
             ],
-        })
+        }),
     )
     .use(temporalDate())
     .use(date())
@@ -139,6 +140,17 @@ site.use(typeset({ scope: '.prose' }))
                 main.id = 'main';
             }
         }
+    })
+    .addEventListener('afterBuild', async (evt) => {
+        const latestNote = evt.pages
+            //
+            .filter((t) => t.data.type == 'note')
+            .sort((a, b) => a.data.date.getTime() - b.data.date.getTime())
+            .at(-1);
+
+        if (!latestNote) return;
+
+        await maybeSaveTodo(latestNote);
     });
 
 export type ThisContext<T = Record<string, unknown>> = { ctx: T & Lume.Data & { page: Lume.Page }; data: Lume.Data };
