@@ -133,13 +133,11 @@ jobs:
               env:
                   MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
 
-            - name: Write to log and clear todo
+            - name: Write to log
               run: |
                   id=$(cat $todo_file | jq -r ".id")
                   echo $id >> $log_file
                   cat $log_file
-                  rm -rf $todo_file
-                  echo "$todo_file cleared"
               env:
                   todo_file: ${{ env.MASTODON_TODO }}
                   log_file: ${{ env.MASTODON_LOG_FILE }}
