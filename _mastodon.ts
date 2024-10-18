@@ -12,7 +12,7 @@ export interface Todo {
     sourcePath: string;
 }
 
-export const TODO_PATH = './build/.mastodon-todo.json';
+export const TODO_PATH = './.mastodon-todo.json';
 const LOG_FILE = '.mastodon-notes';
 
 export const maybeSaveTodo = async (page: Lume.Page) => {
