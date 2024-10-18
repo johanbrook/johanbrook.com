@@ -28,7 +28,7 @@ env:
     DENO_VERSION: v1.42.4
     BUILD_FOLDER: build
     MASTODON_LOG_FILE: .mastodon-notes
-    MASTODON_TODO: build/.mastodon-todo.json
+    MASTODON_TODO: .mastodon-todo.json
     NOTES_DIR: src/notes
 
 jobs:
