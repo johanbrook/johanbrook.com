@@ -92,6 +92,7 @@ jobs:
         steps:
             - name: Download Mastodon todo
               uses: actions/download-artifact@v4
+              continue-on-error: true
               with:
                   name: mastodon-todo
 
@@ -116,6 +117,7 @@ jobs:
               
             - name: Download Mastodon todo
               uses: actions/download-artifact@v4
+              continue-on-error: true
               with:
                   name: mastodon-todo
 
