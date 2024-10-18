@@ -90,9 +90,6 @@ jobs:
         steps:
             - name: Download Mastodon todo
               uses: actions/download-artifact@v4
-              with:
-                  name: mastodon-todo
-                  path: ${{ env.MASTODON_TODO }}
 
             - name: Check if we have something to do
               id: todo_file
@@ -115,9 +112,6 @@ jobs:
               
             - name: Download Mastodon todo
               uses: actions/download-artifact@v4
-              with:
-                name: mastodon-todo
-                path: ${{ env.MASTODON_TODO }}
 
             - name: Setup Deno
               uses: denoland/setup-deno@v1
