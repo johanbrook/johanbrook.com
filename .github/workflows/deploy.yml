@@ -83,6 +83,7 @@ jobs:
     # This task exists just so we can short circuit and quit early in post_mastodon
     check_latest_note:
         name: Check Mastodon todo
+        needs: build
         runs-on: ubuntu-latest
         outputs:
             do_post: ${{ steps.todo_file.outputs.do_post }}
