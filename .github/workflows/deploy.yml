@@ -88,7 +88,7 @@ jobs:
               id: todo_file
               timeout-minutes: 10
               run: |
-                  [ -f "$file" ] && echo "do_post=true" >> "$GITHUB_OUTPUT"
+                  [ -f "$file" ] && echo "do_post=true" >> "$GITHUB_OUTPUT" || echo "Nothing to do"
               env:
                   file: ${{ env.MASTODON_TODO }}
 
