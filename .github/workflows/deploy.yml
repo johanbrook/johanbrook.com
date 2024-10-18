@@ -60,6 +60,8 @@ jobs:
               with:
                   name: mastodon-todo
                   path: ${{ env.MASTODON_TODO }}
+                  include-hidden-files: true
+                  overwrite: true
 
     deploy:
         name: Deploy
