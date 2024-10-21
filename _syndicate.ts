@@ -4,6 +4,8 @@ export interface Todo {
     id: string;
     /** Description or excerpt from content. */
     description?: string;
+    /** Specially crafted for social media statuses. */
+    statusBody?: string;
     /** Raw Markdown content. */
     content: string;
     /** Parsed `content`. */
@@ -39,6 +41,7 @@ export const maybeSaveTodo = async (page: Lume.Page) => {
         meta: page.data.meta,
         sourcePath: page.sourcePath,
         description: page.data.excerpt || page.data.description,
+        statusBody: page.data.statusbody,
     };
 
     await Deno.writeTextFile(TODO_PATH, JSON.stringify(todo));
@@ -102,16 +105,18 @@ const truncateToStatus = (note: Todo, permalink: string) => {
         return str.slice(0, statusLimit - 1) + '…' + footer;
     };
 
-    // 1. Explicit excerpt or description.
-    if (note.description) return truncate(note.description);
+    const status = note.statusBody ?? note.description;
 
-    const str = note.content;
+    // 1. Use explicit status or description field.
+    if (status) return truncate(status);
+
+    const content = note.content;
 
     // 2. Use first paragraph.
-    const firstMarkdownParagraph = str.split('\n\n').at(0);
+    const firstMarkdownParagraph = content.split('\n\n').at(0);
 
     if (firstMarkdownParagraph) return truncate(firstMarkdownParagraph);
 
     // 3. Truncate the whole body.
-    return truncate(str);
+    return truncate(content);
 };

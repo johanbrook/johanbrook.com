@@ -2,7 +2,7 @@
 // Env vars:
 // - MASTODON_ACCESS_TOKEN
 // - DRY (optional)
-import { postStatus, Todo, TODO_PATH } from '../_mastodon.ts';
+import { postStatus, Todo, TODO_PATH } from '../_syndicate.ts';
 
 const dryRun = !!Deno.env.get('DRY');
 const accessToken = Deno.env.get('MASTODON_ACCESS_TOKEN');
