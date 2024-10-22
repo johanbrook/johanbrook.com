@@ -2,8 +2,8 @@
     {% if tags %}
     <ul role="list" class="f6">
         {% for tag in tags %}
-        <li class="font-sans inline">
-            <a href="/tags/{{ tag }}" class="muted">#{{ tag }}</a>
+        <li class="font-sans inline tag-list">
+            <a href="/tags/{{ tag }}" rel="tag" class="muted p-category">{{ tag }}</a>
         </li>
         {% endfor %}
     </ul>

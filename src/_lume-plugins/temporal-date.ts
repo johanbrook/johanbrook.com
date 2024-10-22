@@ -42,6 +42,8 @@ export enum DateTimeFormat {
     Machine = 'Machine',
     /** 2024-02-19 */
     Date = 'Date',
+    /** 13:39 */
+    Time = 'Time',
     /** February 19, 2024 */
     HumanDate = 'HumanDate',
     /** February 19, 2024 — 13:39 */
@@ -114,6 +116,9 @@ const formattedOf = (
         }
         case DateTimeFormat.Date: {
             return date.toPlainDate().toString();
+        }
+        case DateTimeFormat.Time: {
+            return date.toPlainTime().toString().substring(0, 5);
         }
         default:
             throw new Error(`${format} not implemented!`);

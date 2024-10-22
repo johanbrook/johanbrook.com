@@ -2,16 +2,16 @@
 layout: layouts/main.njk
 ---
 <main>
-  <article class="Page Post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article class="Page Post h-entry">
     <header>
-      <h1 itemprop="name" class="{% if link %}fw6 pt3{% else %}title{% endif %}">{{ title }}</h1>
+      <h1 class="p-name {% if link %}fw6 pt3{% else %}title{% endif %}">{{ title }}</h1>
 
       <p class="mb1 fw5">
-          <time class="text-color-contrast" datetime="{{ date | tdate('Machine') }}" title="{{ date | tdate('Detailed') }}" itemprop="datePublished" pubdate>
+          <time class="text-color-contrast dt-published" datetime="{{ date | tdate('Machine') }}" title="{{ date | tdate('Detailed') }}" pubdate>
             {{ date | tdate('HumanDate') }}
           </time>
           {% if updated %}
-            <time title="Updated at {{ updated | tdate('Detailed', updatedTimezone) }}" class="muted normal ml-1" datetime="{{ updated | tdate('Machine', updatedTimezone) }}" itemprop="dateModified">
+            <time title="Updated at {{ updated | tdate('Detailed', updatedTimezone) }}" class="dt-updated muted normal ml-1" datetime="{{ updated | tdate('Machine', updatedTimezone) }}">
                 (updated {{ updated | tdate('HumanDate', updatedTimezone) }})
             </time>
           {% endif %}
@@ -28,13 +28,17 @@ layout: layouts/main.njk
       {{ t.list(tags) }}
     </header>
 
-    <div class="prose" itemprop="articleBody">
+    <div class="prose e-content">
       {% if link %}
         <p class="f3 mb4">
-          <a class="btn" title="{{ link }}" href="{{ link }}">Follow link to {{ link | hostname }} →</a>
+          <a class="btn u-bookmark-of" title="{{ link }}" href="{{ link }}">Follow link to {{ link | hostname }} →</a>
         </p>
       {% endif %}
       {{ content | safe }}
     </div>
+    
+    <footer>
+        <a href="{{ url | url(true) }}" class="visually-hidden u-url u-uid">Permalink</a>
+    </footer>
   </article>
 </main>

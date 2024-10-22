@@ -104,7 +104,7 @@ export const postStatus = async (todo: Todo, accessToken: string, dryRun = false
 
 export const persistStatusUrl = async (todo: Todo, url: string, dryRun = false) => {
     const data = {
-        statusUrl: url,
+        fediUrl: url,
     };
 
     const filePath = './src' + todo.sourcePath;

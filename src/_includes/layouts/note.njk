@@ -2,23 +2,33 @@
 layout: layouts/main.njk
 ---
 <main>
-    <article class="Page Note">
+    <article class="Page Note h-entry">
        	<header>
             <h1>
-                <time title="{{ date | tdate('Detailed') }}" datetime="{{ date | tdate('Machine') }}" pubdate>{{ date | tdate('HumanTime') }}</time>
+                <a href="{{ url | url(true)}}" rel="bookmark" class="u-url u-uid dt-published no-underline" title="{{ date | tdate('Detailed') }}">
+                    <time datetime="{{ date | tdate('Machine') }}">{{ date | tdate('HumanDate') }}</time> — <time>{{ date | tdate('Time') }}</time>
+                </a>
             </h1>
 
             <div class="flex justify-between items-baseline gap">
-                {% if location %}
-                    <p title="Posted from" class="detail mb0 target">{{ location }}</p>
-                {% endif %}
+                <p class="detail mb0 sep-list">
+                    {% if location %}
+                        <span class="p-location">{{ location }}</span>
+                    {% endif %}
+                    
+                    {% if fediUrl %}
+                        Also on <a class="muted u-syndication" rel="syndication" href="{{ fediUrl }}">Fediverse ⤤</a>
+                    {% endif %}
+                </p>
 
                 {% import "tag-list.njk" as t %}
                 {{ t.list(tags) }}
             </div>
+
+            <a rel="author" class="visually-hidden p-author h-card" href="{{ meta.site }}">{{ meta.author }}</a>
         </header>
 
-        <div class="prose">
+        <div class="prose e-content">
             {{ content | md | safe }}
         </div>
 
