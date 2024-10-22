@@ -6,3 +6,4 @@ build*/
 *.sublime-workspace
 .env*
 *.vars
+.mastodon-todo.json
