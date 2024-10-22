@@ -144,15 +144,17 @@ jobs:
                   todo_file: ${{ env.MASTODON_TODO }}
                   log_file: ${{ env.MASTODON_LOG_FILE }}
 
-            - name: Commit and push posted notes
+            - name: Commit and push changed files
               # Pull first, since something could've been pushed in-between.
               run: |
                   git pull
                   git config user.name "Automated"
                   git config user.email "actions@users.noreply.github.com"
-                  git add $log_file
+                  # The note that was posted now as an "url" in the frontmatter
+                  git add $log_file $dir
                   timestamp=$(date -u)
                   git commit -m "Latest post to Mastodon: $timestamp [skip-ci]" || exit 0
                   git push
               env:
                   log_file: ${{ env.MASTODON_LOG_FILE }}
+                  dir: ${{ env.NOTES_DIR }}

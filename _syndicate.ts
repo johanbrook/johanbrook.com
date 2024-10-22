@@ -1,4 +1,6 @@
 import { idOf, notePermalinkOf } from './src/_includes/permalinks.ts';
+import { extract } from 'std/front_matter/any.ts';
+import * as Yaml from 'std/yaml/mod.ts';
 
 export interface Todo {
     id: string;
@@ -61,6 +63,7 @@ export const postStatus = async (todo: Todo, accessToken: string, dryRun = false
     console.log('\n' + indent(`${statusBody}`, 3) + '\n');
 
     if (dryRun) {
+        await persistStatusUrl(todo, 'https://fake-url.com', true);
         return;
     }
 
@@ -78,13 +81,49 @@ export const postStatus = async (todo: Todo, accessToken: string, dryRun = false
         body: form,
     });
 
-    const json = await res.json();
-
-    if (!res.ok) {
-        throw new Error(`Posting failed with ${res.status}: ${json.error}`);
+    interface Status {
+        id: string;
+        url: string;
     }
 
+    interface Error {
+        error: string;
+    }
+
+    if (!res.ok) {
+        const err = await res.json() as Error;
+        throw new Error(`Posting failed with ${res.status}: ${err.error}`);
+    }
+
+    const json = await res.json() as Status;
+
     console.log(`> Status posted to ${json.url}`);
+
+    await persistStatusUrl(todo, json.url);
+};
+
+export const persistStatusUrl = async (todo: Todo, url: string, dryRun = false) => {
+    const data = {
+        statusUrl: url,
+    };
+
+    const filePath = './src' + todo.sourcePath;
+
+    const post = await Deno.readTextFile(filePath);
+    const res = extract(post);
+    const newData = {
+        ...res.attrs,
+        ...data,
+    };
+
+    const content = `---\n${Yaml.stringify(newData)}---\n${res.body}`;
+
+    if (dryRun) {
+        console.log(`> Save to ${filePath}`);
+        console.log(content);
+    } else {
+        await Deno.writeTextFile(filePath, content);
+    }
 };
 
 const indent = (str: string, n: number) => {
