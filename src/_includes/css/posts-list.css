@@ -17,11 +17,11 @@ POSTS LIST
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    
+
     > :first-child {
         font-weight: 500;
     }
-    
+
     a:not(:hover, :focus) {
         text-decoration: none;
     }
@@ -30,6 +30,7 @@ POSTS LIST
         font-size: var(--f5);
         font-variant-numeric: tabular-nums;
         letter-spacing: -0.008em;
+        font-variation-settings: 'opsz' 20;
 
         &:not(.PostItem:hover &) {
             color: var(--color-text-detail);

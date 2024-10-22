@@ -27,7 +27,7 @@
 
 .title {
     font-size: var(--f0);
-    
+
     a {
         text-decoration: none;
     }
@@ -917,8 +917,13 @@ COLOURS
 .muted {
     color: var(--color-text-detail);
 
-    &.link:hover {
-        color: var(--color-text-high-contrast);
+    &:where(a) {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+
+        &:hover {
+            color: var(--color-text-high-contrast);
+        }
     }
 }
 
@@ -1040,7 +1045,7 @@ TYPOGRAPHY
     .hide-mobile {
         display: none;
     }
-    
+
     .visually-hide-mobile {
         clip-path: inset(50%) !important;
         height: 1px !important;
@@ -1055,6 +1060,24 @@ TYPOGRAPHY
 @media (min-width: 801px) {
     .hide-large {
         display: none;
+    }
+}
+
+.tag-list {
+    a::before {
+        content: '#';
+    }
+}
+
+/* > 1 child */
+.sep-list:has(:nth-child(2)) {
+    > *:not(:last-child) {
+        &::after {
+            content: '·';
+            color: var(--color-text-detail);
+            display: inline-block;
+            margin: 0 0.5em;
+        }
     }
 }
 
