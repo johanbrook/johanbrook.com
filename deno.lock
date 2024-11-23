@@ -70,6 +70,7 @@
       "npm:meriyah@4.5.0": "npm:meriyah@4.5.0",
       "npm:nunjucks@3.2.4": "npm:nunjucks@3.2.4",
       "npm:octokit": "npm:octokit@3.1.2_@octokit+core@5.1.0",
+      "npm:playwright@^1": "npm:playwright@1.39.0",
       "npm:postcss-import@16.1.0": "npm:postcss-import@16.1.0_postcss@8.4.38",
       "npm:postcss-nesting@12.1.0": "npm:postcss-nesting@12.1.0_postcss@8.4.38_postcss-selector-parser@6.0.16",
       "npm:postcss-nesting@^12": "npm:postcss-nesting@12.1.0_postcss@8.4.38_postcss-selector-parser@6.0.16",
@@ -649,6 +650,10 @@
         "integrity": "sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==",
         "dependencies": {}
       },
+      "fsevents@2.3.2": {
+        "integrity": "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==",
+        "dependencies": {}
+      },
       "function-bind@1.1.2": {
         "integrity": "sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==",
         "dependencies": {}
@@ -856,6 +861,17 @@
       "pify@2.3.0": {
         "integrity": "sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==",
         "dependencies": {}
+      },
+      "playwright-core@1.39.0": {
+        "integrity": "sha512-+k4pdZgs1qiM+OUkSjx96YiKsXsmb59evFoqv8SKO067qBA+Z2s/dCzJij/ZhdQcs2zlTAgRKfeiiLm8PQ2qvw==",
+        "dependencies": {}
+      },
+      "playwright@1.39.0": {
+        "integrity": "sha512-naE5QT11uC/Oiq0BwZ50gDmy8c8WLPRTEWuSSFVG2egBka/1qMoSqYQcROMT9zLwJ86oPofcTH2jBY/5wWOgIw==",
+        "dependencies": {
+          "fsevents": "fsevents@2.3.2",
+          "playwright-core": "playwright-core@1.39.0"
+        }
       },
       "postcss-import@16.1.0_postcss@8.4.38": {
         "integrity": "sha512-7hsAZ4xGXl4MW+OKEWCnF6T5jqBw80/EE9aXg1r2yyn1RsVEU8EtKXbijEODa+rg7iih4bKf7vlvTGYR4CnPNg==",
