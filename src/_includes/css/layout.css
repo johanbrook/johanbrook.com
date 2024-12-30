@@ -24,6 +24,10 @@ body {
        over when overflowing its parent. */
     @media (min-width: 960px) {
         grid-template-rows: minmax(3rlh, max-content) 1fr min-content;
+        
+        html:not(.hidden-title) & > header > :last-child {
+          margin-block-end: 1rlh;
+        }
     }
     
     @media (max-width: 959px) {
