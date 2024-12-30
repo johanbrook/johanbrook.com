@@ -1,8 +1,8 @@
 ---
 title: Now
 layout: layouts/page.njk
-date: 2023-03-20
-location: Stockholm, Sweden
+date: 2024-12-30
+location: a café in Cape Town, South Africa
 ogImage: /assets/images/johan-map.png
 description: This page reflects what I'm doing with my life at the moment.
 keywords:
@@ -17,80 +17,49 @@ menu:
 templateEngine: njk,md
 ---
 
-# Since the last update…
+Updated <time datetime="{{ date | tdate('Machine') }}">{{ date | tdate('HumanDate') }}</time> from {{ location }}.
 
-…I've had over a year of both regular family life things, and other stuff such as travel.
+# Moved to Cape town (temporarily)
 
-Our daughter began preschool in late March 2022, which was huge in the sense that both me and the
-wife could do… other stuff (work, etc) while somebody else took care of our child. Insane (insanely
-cool) if you ask me. This created this rhythm of "leaving-picking up from preschool".
+We've always wanted to live abroad for "a while" before the oldest daughter is of mandatory school
+age in Sweden. Cape Town sailed up our Top 3 location list, and then became #1. The reasons we and other people go here over the northern hemisphere winter are:
 
-In July, we received the news that we expected another child, due in March. A girl was born on March
-17th 2023. All went well, and we're so happy. Next stage in family life begins now!
+1. Roughly same timezone as Europe.
+2. Great climate.
+3. People speak English.
+4. Interesting history and amazing nature.
+5. Great food and wine.
+
+We've been here since late September, and have got into nice routines. We've found new and old friends (people are generally super lovely and inviting), and are generally enjoying the start of South African summer.
 
 # Travelling
 
-In March 2022, I went to London with a group of friends to meet our other friend who lives there.
-London is such a cool city. I've completely looked past it during all these years (have only been
-there once before).
+We've done some weekend trips to **Franschhoek**, **Riebeek-Kasteel**, and **Stanford**. Then there are a ton of wine estates 30-60 min away. The killer is that most have playgrounds by the restaurant areas, so "everybody can have fun".
 
-We spent the summer in Sweden, both on the east and west coasts. I think we'll do roughly the same
-this year.
-
-In August, I went to Berlin to see a friend. I love Berlin. So much. My biggest regret (except for
-not seeing the band Kent live before they quit) is not living there while I was nomading.
-
-Both me and the wife had work trips during the Autumn. She went to New York (envious) and I went to
-Lisbon. I spent two months in Lisbon in 2017, and it's such a lovely city. It's smaller than the
-average European capital, so it's very homey.
-
-The finale was in November-December, when we went to South Africa on vacation and parental leave.
-It. Was. Amazing. I totally fell in love with the area. We spent most of the time in Kalk Bay, south
-of Cape Town. We really would love to go back next Winter, if the universe allows.
-
-Coming back from South Africa, we spent Christmas and New Years in the area around Stockholm. Then
-we went to the mountains for a week in January. The environment there is to die for. I find myself
-longing for that place during grey days in Stockholm.
+In January, we plan on going to **Paternoster** and later **Churchhaven** in Februrary.
 
 # Exercising
 
-I still lift weights and run, but to a lesser extent than before I think. I'm glad I keep it up, but
-I don't have the same drive anymore. I don't keep up with the protein intake, and I don't go out for
-runs 3-4 times a week. Maybe I pick it up more often during Spring. Right now, it feels more like
-"maintenance" rather than "growth" – which I'm completely fine with.
+The jogging along the promenade and Atlantic seaboard are *amazing* here. We live in Bantry Bay area, and I ususally sun south towards Camps Bay. When the Twelve Apostles — a chain of twelve peaks above Camps Bay — are appearing just in front of you, it's hard to not pause a little bit.
 
-# Work
+I've also found a good gym nearby, so I can still lift weights.
 
-Work at Lookback is great. I'm still learning new things and work on fun projects. It's an exciting
-time now, with new programming languages (Rust) and new frontend technologies to keep an eye on.
+# Family
+
+Edda is four now, and Freja is a bit over 1,5 years. Edda's English is really cool now, having been in preschool here for a while as well as interacting with other locals. She can piece together sentences and throws in Swedish words when she doesn't know the English term. Fearless! Freja is tagging along her sister in all kinds of ways, good and bad. They play well together, but also fight!
+
+Suffice to say, we don't really miss the cold and slush winter in Stockholm, Sweden. South Africa for sure has its downsides for families (thousands of tiny paper cuts), but overall we _love_ the way of life here.
 
 # Currently reading
 
-See ["Reading"](/reading).
+Haven't felt the urge to read too much lately. I was so inspired by [Derek Sivers' list of books](https://sive.rs/book) though, so I might pick up something from there.
 
-# Habits to keep
+{% set book = currentBook() %}
+{% if book %}
+    I'm currently reading **[{{ book.title }}](/reading/{{ book.slug }})**.
+{% endif %}
 
-- Keep give myself alone time once in a while. Even more important with two kids. Being completely
-  alone – either at home our out in the city – is very important to me.
-- Keep off Instagram.
-- Keep off Facebook.
-- Keep going to the gym.
-- Keep reading books.
-- Keep doing running.
-- Keep writing.
-
-# Aspirations for 2023
-
-_Re-used from 2022:_
-
-- Spend as much time as I can with my daughters.
-- Travel and challenge ourselves as parents to get out of comfort zones.
-- Continue to develop this site's looks and content.
-
-_New:_
-
-- Do our best to get back to South Africa during some Swedish Winter months.
-- Eat more spicy food.
+***
 
 If my life changes, I'll update this page. Also see [what's on my mind](/micro).
 
