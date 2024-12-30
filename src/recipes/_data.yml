@@ -1,3 +1,2 @@
 type: recipe
 layout: layouts/reci.njk
-hiddenTitle: false

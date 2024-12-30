@@ -1,7 +1,6 @@
 ---
 title: About me
 layout: layouts/page.njk
-hiddenTitle: false
 keywords:
   - johan brook
   - designer

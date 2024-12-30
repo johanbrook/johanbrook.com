@@ -1,7 +1,6 @@
 ---
 layout: layouts/home.njk
 templateEngine: njk,md
-hiddenTitle: false
 ---
 
 I’m <span class="p-role">coding & designing</span>, and I like working with <span class="p-category">product</span>, <span class="p-category">user experience</span>, and

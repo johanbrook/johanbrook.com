@@ -25,7 +25,6 @@ export default function* (data: BookData) {
             ...book,
             type: 'book',
             url: urlForBook(book),
-            hiddenTitle: false,
         };
     }
 }

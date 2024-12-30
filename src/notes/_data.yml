@@ -1,5 +1,4 @@
 type: note
 title: 'A micro note'
-hiddenTitle: false
 layout: layouts/note.njk
 templateEngine: njk,md
