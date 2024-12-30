@@ -77,17 +77,18 @@ pre {
     line-height: var(--leading);
     color: var(--code-color);
     padding: 0.5rlh;
+    padding-left: 0.75rlh;
     position: relative;
 
     &::before {
         border-radius: 10em;
         position: absolute;
-        width: 3px;
+        width: 2px;
         display: block;
         content: '';
         inset: 0;
         right: auto;
-        background-color: currentColor;
+        background-color: var(--border-color);
     }
 
     & .line-highlight {
