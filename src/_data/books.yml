@@ -822,11 +822,6 @@
       
       I'm not sure how this book affected me, but I enjoyed the read. Especially the conversation and *totally random* comments by the two guys. They were hilariously written.
 
-- title: 100 years of solitude
-  author: Gabriel García Márquez
-  slug: 100-years-of-solitude
-  dropped: true
-
 - title: Short fiction
   author: Ernest Hemingway
   slug: short-fiction
@@ -902,6 +897,7 @@
 - title: 'Children of Ash and Elm: A History of the Vikings'
   author: Neil Price
   slug: ash-elm
+  paused: true
 
 - title: Moederland
   author: Cato Pedder
@@ -919,3 +915,6 @@
 - title: A Season For That
   author: Steve Hoffman
   slug: a-season-for-that
+  finished: true
+  finishedAt: 2025-01-12
+  location: Kalk Bay, South Africa
