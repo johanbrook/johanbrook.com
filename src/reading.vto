@@ -53,7 +53,7 @@ menu:
                 {{ for book of bookz |> reverse }}
                     <tr id="{{ book.slug }}" class="h-entry">
                        	<th scope="row">
-           					<a href="{{ '/reading' | url }}/{{book.slug}}/" class="p-name u-url u-uid">{{ book.title }}</a><br />
+           					<a href="{{ '/reading' |> url }}/{{book.slug}}/" class="p-name u-url u-uid">{{ book.title }}</a><br />
                             <span class="hide-large f6">{{ book_status(book) }}</span>
                        	</th>
                        	<td>
