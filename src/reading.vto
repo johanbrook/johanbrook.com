@@ -7,6 +7,21 @@ menu:
   top: true
 ---
 
+{{ function book_status(book) }}
+    {{ if book.dropped }}
+  		<span class="BookStatus-Dropped">Dropped</span>
+   	{{ else }}
+  		{{ if book.paused }}
+		    <span class="BookStatus-Paused">Paused</span>
+        {{ else }}
+      		{{ if !book.finished }}
+      		    <span class="BookStatus-CurrentlyReading">Reading</span>
+            {{ /if }}
+        {{ /if }}
+   	{{ /if }}
+{{ /function }}
+
+
 <main>
   <article class="Page h-feed">
 	<header>
@@ -17,11 +32,13 @@ menu:
 		</p>
 	</header>
 
-	{% for year, bookz in books | groupBooksByYear | dictsort | reverse %}
+	{{ for o of books |> groupBooksByYear }}
+	   {{ set year = o.year }}
+	   {{ set bookz = o.books }}
 	   <section>
     	    <header class="title-row mb3">
                 <h1 class="mv0" id="{{ year }}">{{ year }}</h1>
-                <p class="muted mb0 f5">{{ bookz.length }} books</p>
+                <p class="muted mb0 f6">{{ bookz.filter(b => b.finished).length }} / {{ bookz.length }} books finished</p>
             </header>
             
     		<table>
@@ -32,22 +49,8 @@ menu:
                   		<th scope="column" class="hide-mobile"><span class="visually-hidden">Status</span></th>
                    	</tr>
                 </thead>
-                
-                {% macro book_status(book) %}
-                    {% if book.dropped %}
-                  		<span class="BookStatus-Dropped">Dropped</span>
-                   	{% else %}
-                      		{% if book.paused %}
-    		            		<span class="BookStatus-Paused">Paused</span>
-     			            {% else %}
-      		              		{% if not book.finished %}
-     			              		<span class="BookStatus-CurrentlyReading">Reading</span>
-    			            	{% endif %}
-     		            	{% endif %}
-                   	{% endif %}
-                {% endmacro %}
 
-                {% for book in bookz | reverse %}
+                {{ for book of bookz |> reverse }}
                     <tr id="{{ book.slug }}" class="h-entry">
                        	<th scope="row">
            					<a href="{{ '/reading' | url }}/{{book.slug}}/" class="p-name u-url u-uid">{{ book.title }}</a><br />
@@ -60,11 +63,11 @@ menu:
                            	{{ book_status(book) }}
                        	</td>
                     </tr>
-                {% endfor %}
+                {{ /for }}
             </table>
 	   </section>
-	{% endfor %}
+	{{ /for }}
 
-    <p class="mt4">{{ books.length }} books <span class="mx1">|</span> <a href="/reading.xml">Feed{{ comp.icon({ class: "ml2" }) | safe }}</a></p>
+    <p class="mt4">{{ books.length }} books <span class="mx1">|</span> <a href="/reading.xml">Feed{{ comp.icon({ class: "ml2" }) |> safe }}</a></p>
   </article>
 </main>

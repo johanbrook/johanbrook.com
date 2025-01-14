@@ -72,9 +72,9 @@ site.use(typeset({ scope: '.prose' }))
 
         return false;
     })
-    .filter('groupBooksByYear', (arr: Array<Book>) => {
+    .filter('groupBooksByYear', (arr: Array<Book>): Array<{ year: string; books: Book[] }> => {
         const current = new Date().getUTCFullYear();
-        const groups: Record<string | number, Book[]> = {
+        const groups: Record<string, Book[]> = {
             [current]: [],
         };
 
@@ -89,13 +89,16 @@ site.use(typeset({ scope: '.prose' }))
                 throw new Error(`"finishedAt" is not a date: ${date} on ${JSON.stringify(a)}`);
             }
 
-            const group = (date as Date).getFullYear();
+            const group = (date as Date).getFullYear().toString();
 
             if (groups[group]) groups[group].push(a);
             else groups[group] = [a];
         }
 
-        return groups;
+        return Object.entries(groups).map(([k, v]) => ({
+            year: k,
+            books: v,
+        })).sort((a, b) => b.year.localeCompare(a.year));
     })
     .filter('id', (d: Lume.Data) => {
         return idOf(d.page.sourcePath);
