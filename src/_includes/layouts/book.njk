@@ -22,6 +22,9 @@ layout: layouts/main.njk
                 {% else %}
                     <span class="BookStatus-CurrentlyReading">I'm currently reading this book</span>
                 {% endif %}
+                {% if location %}
+                    in <span class="p-location">{{ location }}</span>
+                {% endif %}
             </p>
         </header>
 
