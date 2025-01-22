@@ -2225,6 +2225,8 @@
     "https://deno.land/x/xml@5.4.16/stringify.ts": "a00881a1e563902538cfea8ce31464c81e98e61dddcf718039d7118b46464687",
     "https://deno.land/x/xml@5.4.16/wasm_xml_parser/wasm_xml_parser.js": "7ec301b1db7d11671f4f8785505c6f617ea05fcb3d558686c67efad263ea0c8e",
     "https://esm.sh/@cooklang/cooklang-ts@1.2.6": "16f7debcbe4f495e1dde4411b1115c1d9456a42bc63065c6efea0d93ca843772",
+    "https://esm.sh/@cooklang/cooklang-ts@1.2.7": "08528a43c970d1de994867338de51dde2ce8562458b1f93371b399248ed4ae92",
+    "https://esm.sh/@cooklang/cooklang-ts@1.2.7/denonext/cooklang-ts.mjs": "df04234900cc6a2fffcf9a1134d51bffccc51fa16b2b20a4d9204cc0ecbc18d0",
     "https://esm.sh/temporal-polyfill@0.2.3/global": "f47ba7e2737f27b51f2d218efdffbbe597728b89fe0934c6a8c2556d5dca353d",
     "https://esm.sh/v135/@cooklang/cooklang-ts@1.2.6/denonext/cooklang-ts.mjs": "2ae6f2a61446250852f4d70dff783ab9b6b07bf9c79023704f5cbc21d980d1a3",
     "https://esm.sh/v135/temporal-polyfill@0.2.3/denonext/global.js": "98fc58717633aa7a52db2792e50bba84492b2c1c5c9ed0d64579851a8c043824"

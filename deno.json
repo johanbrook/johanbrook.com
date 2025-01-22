@@ -4,7 +4,7 @@
         "lume/": "https://deno.land/x/lume@v2.3.3/",
         "html_entities": "https://deno.land/x/html_entities@v1.0/mod.js",
         "slug": "https://deno.land/x/slug@v1.1.0/mod.ts",
-        "cooklang": "https://esm.sh/@cooklang/cooklang-ts@1.2.6"
+        "cooklang": "https://esm.sh/@cooklang/cooklang-ts@1.2.7"
     },
     "tasks": {
         "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable-temporal -A -",
