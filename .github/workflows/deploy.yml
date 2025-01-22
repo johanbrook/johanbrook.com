@@ -6,6 +6,8 @@ on:
 
     push:
         paths:
+            - 'deno.json'
+            - 'deno.lock'
             - 'src/**/*'
             - '_config.ts'
             - 'CNAME'
