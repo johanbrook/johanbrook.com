@@ -55,6 +55,11 @@ home: true
             </li>
             {% endmacro %}
 
+            {% set current_book = currentBook() %}
+            {% if current_book %}
+                {{ book_item(current_book, true) }}
+            {% endif %}
+
             {% for book in search.pages("type=book", "finishedAt=desc", 6) %}
                 {{ book_item(book) }}
             {% endfor %}
