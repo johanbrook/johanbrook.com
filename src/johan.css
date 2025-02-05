@@ -14,6 +14,8 @@ Just kidding.
 
 @import 'css/layout.css' layer(theme);
 @import 'css/theme.css' layer(theme);
+@import 'css/highlightjs/qtcreator-light.css' layer(theme);
+@import 'css/highlightjs/qtcreator-dark.css' layer(theme);
 
 @import 'css/components.css';
 

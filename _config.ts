@@ -16,6 +16,7 @@ import postcssUtopia from 'npm:postcss-utopia@^1';
 import nesting from 'npm:postcss-nesting@^12';
 import { type Book, currentBookOf } from './api/model/book.ts';
 import { feeds } from './_feeds.ts';
+import codeHighlight from 'lume/plugins/code_highlight.ts';
 import { maybeSaveTodo } from './_syndicate.ts';
 
 const site = lume({
@@ -26,6 +27,7 @@ const site = lume({
 
 site.use(typeset({ scope: '.prose' }))
     .use(nunjucks())
+    .use(codeHighlight())
     .copy('public', '.')
     .use(feeds())
     .use(sitemap())

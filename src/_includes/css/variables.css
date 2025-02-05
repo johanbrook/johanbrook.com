@@ -39,7 +39,7 @@
     --btn-bg-hover: hsl(240 59.76% 95.52%);
 
     --pre-background: var(--color-bg-secondary);
-    --code-background: rgb(0 0 0 / 2%);
+    --code-background: rgb(0 0 0 / 5%);
     --code-color: var(--color-text-high-contrast);
 
     @media screen and (prefers-color-scheme: dark) {

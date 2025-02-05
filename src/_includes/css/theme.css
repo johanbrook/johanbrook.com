@@ -77,19 +77,6 @@ pre {
     line-height: var(--leading);
     color: var(--code-color);
     padding: 0.5rlh;
-    padding-left: 0.75rlh;
-    position: relative;
-
-    &::before {
-        border-radius: 10em;
-        position: absolute;
-        width: 2px;
-        display: block;
-        content: '';
-        inset: 0;
-        right: auto;
-        background-color: var(--border-color);
-    }
 
     & .line-highlight {
         --cycle: 27px;
@@ -109,11 +96,18 @@ pre {
     }
 }
 
-:not(pre) > code {
+/* Reset any backgrounds from custom themes */
+pre code[class*="language-"] {
+  background: inherit;
+  color: inherit;
+}
+
+code:not(pre code) {
     color: var(--code-color);
     background-color: var(--code-background);
     padding: 0.125rem 0.25rem;
-    border-radius: 0.125em;
+    border-radius: 0.3rem;
+    border: 1px solid var(--border-color);
     font-weight: 500;
     font-size: 0.85em;
 }
