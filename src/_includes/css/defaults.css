@@ -64,7 +64,7 @@ nav {
 /* SPACING / VERTICAL RHYTHM */
 
 article
-    :not(nav > *):where(h1, h2, h3, h4, p, ul, ol, li, blockquote, hr, figure, table, pre, details):not(:last-child) {
+    :not(nav > *):where(h1, h2, h3, h4, h5, h6, p, ul, ol, li, blockquote, hr, figure, table, pre, details):not(:last-child) {
     margin-block-end: var(--spacing-prose, 1rlh);
 
     @media (max-width: 600px) {

@@ -126,6 +126,7 @@
     --content-width: var(--measure);
 
     --spacing-base: 1rlh;
+    --spacing-prose: 0.75rlh;
 
     --spacing-none: 0;
     --spacing-extra-small: calc(var(--spacing-base) / 5);

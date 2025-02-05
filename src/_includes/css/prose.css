@@ -2,17 +2,9 @@
 PROSE
 ----------------------------------------------------------------*/
 
-.prose {
-    :where(h1, h2) {
-        margin-block-end: 1rlh;
-    }
-    
-    :where(h3, h4, h5, h6) {
-        margin-block-end: 0.5rlh;
-    }
-
+.prose {  
     * + :where(h1, h2, h3) {
-        margin-block-start: 1.5rlh;
+        margin-block-start: calc(var(--spacing-prose) * 2);
     }
 
     :where(img, iframe, figure, svg) {

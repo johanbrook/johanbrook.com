@@ -10,7 +10,7 @@ menu:
 
 <main class="h-feed">
   <h1 class="visually-hidden p-name">{{ titles.micro }}</h1>
-  <ol reversed class="stack" style="--spacing: 4rlh">
+  <ol reversed class="stack">
     {% for post in search.pages("type=note", "date=desc") %}
       <li class="h-entry" id="{{ post.url | url(true) }}">
         <article class="Note">

@@ -6,6 +6,15 @@
                 list-style-position: inside;
             }
         }
+        
+        main > ol {
+          --spacing: 3rlh;
+          
+          > * + * {
+            padding-block-start: var(--spacing);
+            border-top: 2px solid var(--border-color);
+          }
+        }
     }
 
     .Note {
