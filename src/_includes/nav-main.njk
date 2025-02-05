@@ -1,7 +1,7 @@
-<nav role="navigation" class="MainNav">
+<nav class="MainNav">
 	<div class="sticky">
 		<h1 class="f4">
-			<a href="/" aria-label="Home">
+			<a href="/" aria-label="Home"{% if "/" | isCurrentPage %} aria-current="page"{% endif %}>
 				<span>{{ titles.site }}</span>{% if not home %}<span aria-hidden="true" class="BackLink f5 ml2">←</span>{% endif %}
 			</a>
 		</h1>

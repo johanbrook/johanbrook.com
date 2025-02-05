@@ -1,10 +1,23 @@
+nav {
+  a {
+    color: var(--color-text);
+    white-space: nowrap;
+    text-decoration: none;
+    
+    &:is(:hover, :focus-visible):not(:is([aria-current='page'] > *)) {
+        color: var(--link-color-hover);
+        text-decoration: underline;
+    }
+  }
+
+  :is([aria-current='page'] a, [aria-current='page']) {
+    color: var(--color-text-high-contrast);
+  }
+}
+
 .NavList {
     li:where([aria-current='page']) {
         position: relative;
-
-        a {
-            color: var(--color-text-high-contrast);
-        }
 
         &::after {
             content: '⇠';
@@ -16,15 +29,7 @@
     }
 
     a {
-        color: var(--color-text);
-        white-space: nowrap;
-        text-decoration: none;
         position: revert;
-
-        &:is(:hover, :focus-visible):not(:is([aria-current='page'] > *)) {
-            color: var(--link-color-hover);
-            text-decoration: underline;
-        }
     }
 }
 
@@ -47,12 +52,6 @@
 
         .BackLink {
             position: absolute; /* Don't take up vertical space */
-        }
-
-        > a {
-            color: var(--color-text);
-            white-space: nowrap;
-            text-decoration: none;
         }
     }
 }
