@@ -133,6 +133,16 @@ blockquote {
     }
 }
 
+kbd {
+    color: var(--color-text-high-contrast);
+    border-radius: .3em;
+    font-family: var(--sans);
+    font-weight: bold;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 0 var(--border-color);
+    padding: 1px .3em;
+}
+
 hr {
     border: 0;
     background-color: var(--border-color);

@@ -90,7 +90,7 @@ table {
 
 /* CODE */
 
-:where(code, kbd, pre) {
+:where(code, pre) {
     font-family: var(--mono);
 }
 
