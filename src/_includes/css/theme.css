@@ -205,3 +205,7 @@ u {
         }
     }
 }
+
+:where(mark, ::target-text) {
+  background-color: var(--yellow);
+}
