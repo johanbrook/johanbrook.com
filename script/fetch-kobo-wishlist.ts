@@ -1,4 +1,6 @@
 import { encodeBase64 } from 'jsr:@std/encoding/base64';
+import { slug } from 'slug';
+import { type WishListBook } from '../api/model/wishlist.ts';
 
 // Rewritten from Python (https://github.com/subdavis/kobo-book-downloader/blob/main/kobodl/kobo.py) by Johan.
 // Huge props to the great reverse engineering by them.
@@ -19,7 +21,14 @@ const main = async () => {
         const settings = await loadInitSettings(accessToken);
         const wishlist = await fetchWishlist(accessToken, settings.user_wishlist);
 
-        console.log(JSON.stringify(wishlist, null, 2));
+        const books = wishlist.map<WishListBook>((w) => ({
+            title: w.ProductMetadata.Book.Title,
+            author: w.ProductMetadata.Book.Contributors,
+            slug: slug(w.ProductMetadata.Book.Title),
+            addedAt: w.DateAdded,
+        }));
+
+        console.log(books);
     } catch (error) {
         console.error(error);
     }
