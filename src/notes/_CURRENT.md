@@ -1,5 +1,5 @@
 ---
-date: '2025-01-23T21:05:28+02:00'
+date: '2025-03-04T07:10:45+02:00'
 location: ''
 timezone: Africa/Johannesburg
 tags:
@@ -14,4 +14,5 @@ tags:
 - La Palma
 - Zoolander
 - Cien Años de Soledad
+- Trolösa
 
