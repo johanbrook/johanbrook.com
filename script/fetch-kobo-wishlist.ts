@@ -2,9 +2,9 @@ import { encodeBase64 } from 'jsr:@std/encoding/base64';
 import { slug } from 'slug';
 import * as Yaml from 'jsr:@std/yaml';
 import { join } from 'jsr:@std/path';
-import { type ToReadBook } from '../api/model/to-read.ts';
+import { type ReadingListBook } from '../api/model/reading-list.ts';
 
-const TO_READ_PATH = 'src/_data/toread.yml';
+const READING_LIST_PATH = 'src/_data/reading_list.yml';
 
 // Rewritten from Python (https://github.com/subdavis/kobo-book-downloader/blob/main/kobodl/kobo.py) by Johan.
 // Huge props to the great reverse engineering by them.
@@ -52,15 +52,15 @@ interface WishlistItem {
 }
 
 const diffOf = async (wishlist: WishlistItem[]) => {
-    const books = wishlist.map<ToReadBook>((w) => ({
+    const books = wishlist.map<ReadingListBook>((w) => ({
         title: w.ProductMetadata.Book.Title,
         author: w.ProductMetadata.Book.Contributors,
         addedAt: new Date(w.DateAdded),
         isbn: w.ProductMetadata.Book.ISBN,
     })).sort((b1, b2) => b1.addedAt!.getTime() - b2.addedAt!.getTime());
 
-    const yml = await Deno.readTextFile(join(Deno.cwd(), TO_READ_PATH));
-    const all = Yaml.parse(yml) as ToReadBook[];
+    const yml = await Deno.readTextFile(join(Deno.cwd(), READING_LIST_PATH));
+    const all = Yaml.parse(yml) as ReadingListBook[];
 
     const diff = books.filter((b1) => !all.find((b2) => slug(b1.title.trim()) == slug(b2.title.trim())));
 

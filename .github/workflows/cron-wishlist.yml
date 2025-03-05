@@ -14,7 +14,7 @@ on:
 
 env:
     DENO_VERSION: v1.40.3
-    TO_READ_PATH: 'src/_data/toread.yml'
+    READING_LIST_PATH: 'src/_data/reading_list.yml'
 
 permissions:
     contents: write # to checkout repo and write back log file
@@ -32,14 +32,14 @@ jobs:
               with:
                   deno-version: ${{ env.DENO_VERSION }}
 
-            - name: Fetch and sync into toread.yml
+            - name: Fetch and sync into reading list
               run: |
                   output=$(deno run --allow-net --allow-read --allow-env ./script/fetch-kobo-wishlist.ts)
                   ec=$?
                   [[ $ec -eq 0 && -n "$output" ]] && \
-                    echo "$output" >> "$to_read" || ([[ $ec -eq 10 ]] && echo "$output")
+                    echo "$output" >> "$reading_list" || ([[ $ec -eq 10 ]] && echo "$output")
               env:
-                  to_read: ${{ env.TO_READ_PATH }}
+                  reading_list: ${{ env.READING_LIST_PATH }}
                   KOBO_ACCESS_TOKEN: ${{ secrets.KOBO_ACCESS_TOKEN }}
                   KOBO_REFRESH_TOKEN: ${{ secrets.KOBO_REFRESH_TOKEN }}
 
@@ -49,8 +49,8 @@ jobs:
                   git pull
                   git config user.name "Automated"
                   git config user.email "actions@users.noreply.github.com"
-                  git add "$to_read"
-                  git commit -m "Update 'To Read' from Johan's Kobo wishlist" || exit 0
+                  git add "$reading_list"
+                  git commit -m "Update reading list from Johan's Kobo wishlist" || exit 0
                   git push
               env:
-                  to_read: ${{ env.TO_READ_PATH }}
+                  reading_list: ${{ env.READING_LIST_PATH }}

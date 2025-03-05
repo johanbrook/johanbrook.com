@@ -1,7 +1,7 @@
 ---
-title: Want to read
+title: Reading list
 layout: layouts/page.njk
-description: Books which are on my reading list.
+description: Books I want to read.
 ---
 
 <table>
@@ -12,7 +12,7 @@ description: Books which are on my reading list.
     		<th scope="column">Notes</th>
     	</tr>
     </thead>
-  {% for book in toread | reverse %}
+  {% for book in reading_list | reverse %}
     <tr id="{{ book.slug }}">
     	<th scope="row">
 			{{ book.title }}

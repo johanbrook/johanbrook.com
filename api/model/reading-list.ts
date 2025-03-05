@@ -4,9 +4,9 @@ import * as Yaml from 'jsr:@std/yaml';
 import { slug } from 'slug';
 import { join } from 'std/path/mod.ts';
 
-const TO_READ_PATH = 'src/_data/toread.yml';
+const READING_LIST_PATH = 'src/_data/reading_list.yml';
 
-export interface ToReadBook {
+export interface ReadingListBook {
     title: string;
     author: string;
     notes?: string;
@@ -14,15 +14,15 @@ export interface ToReadBook {
     isbn?: string;
 }
 
-export const findAll = async (store: FileHost): Promise<ToReadBook[]> => {
-    const raw = await store.getFile(TO_READ_PATH);
+export const findAll = async (store: FileHost): Promise<ReadingListBook[]> => {
+    const raw = await store.getFile(READING_LIST_PATH);
 
     if (!raw) return [];
 
     return booksArrayOf(raw);
 };
 
-export const add = async (store: FileHost, input: ToReadBook): Promise<[ToReadBook, string]> => {
+export const add = async (store: FileHost, input: ReadingListBook): Promise<[ReadingListBook, string]> => {
     const books = await findAll(store);
 
     if (books.find((b) => slug(b.title) == slug(input.title))) {
@@ -32,7 +32,7 @@ export const add = async (store: FileHost, input: ToReadBook): Promise<[ToReadBo
         );
     }
 
-    const raw = await store.getFile(TO_READ_PATH);
+    const raw = await store.getFile(READING_LIST_PATH);
 
     const str = Yaml.stringify([input]);
 
@@ -40,16 +40,16 @@ export const add = async (store: FileHost, input: ToReadBook): Promise<[ToReadBo
 
     const fullPath = await store.putFile(
         final,
-        join(TO_READ_PATH),
+        join(READING_LIST_PATH),
     );
 
     return [input, fullPath];
 };
 
-export const addMany = async (store: FileHost, todo: ToReadBook[]) => {
+export const addMany = async (store: FileHost, todo: ReadingListBook[]) => {
     if (!todo.length) return 0;
 
-    const raw = await store.getFile(TO_READ_PATH);
+    const raw = await store.getFile(READING_LIST_PATH);
 
     const str = Yaml.stringify(todo);
 
@@ -57,18 +57,18 @@ export const addMany = async (store: FileHost, todo: ToReadBook[]) => {
 
     await store.putFile(
         final,
-        join(TO_READ_PATH),
+        join(READING_LIST_PATH),
     );
 
     return todo.length;
 };
 
-const booksArrayOf = (raw: string): ToReadBook[] => {
+const booksArrayOf = (raw: string): ReadingListBook[] => {
     const books = Yaml.parse(raw);
 
     if (!Array.isArray(books)) {
-        throw new ProblemError(ProblemKind.InconsistentFile, `${TO_READ_PATH} isn't a YAML array`);
+        throw new ProblemError(ProblemKind.InconsistentFile, `${READING_LIST_PATH} isn't a YAML array`);
     }
 
-    return books as ToReadBook[];
+    return books as ReadingListBook[];
 };
