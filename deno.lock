@@ -53,6 +53,7 @@
       "jsr:@std/toml@1.0.1": "jsr:@std/toml@1.0.1",
       "jsr:@std/toml@^1.0.0-rc.3": "jsr:@std/toml@1.0.0",
       "jsr:@std/toml@^1.0.1": "jsr:@std/toml@1.0.1",
+      "jsr:@std/yaml": "jsr:@std/yaml@1.0.5",
       "jsr:@std/yaml@0.224.3": "jsr:@std/yaml@0.224.3",
       "jsr:@std/yaml@1.0.5": "jsr:@std/yaml@1.0.5",
       "jsr:@std/yaml@^1.0.0-rc.1": "jsr:@std/yaml@1.0.0",

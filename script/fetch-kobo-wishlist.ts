@@ -1,13 +1,14 @@
 import { encodeBase64 } from 'jsr:@std/encoding/base64';
+import { addMany, findAll } from '../api/model/to-read.ts';
+import { createServices } from '../api/services/index.ts';
 import { slug } from 'slug';
-import { type WishListBook } from '../api/model/wishlist.ts';
 
 // Rewritten from Python (https://github.com/subdavis/kobo-book-downloader/blob/main/kobodl/kobo.py) by Johan.
 // Huge props to the great reverse engineering by them.
 
 const TOKEN_PATH = './.kobo';
 
-// deno run --allow-net --allow-read --allow-write ./script/fetch-kobo-wishlist.ts
+// deno run --allow-net --allow-read --allow-write --allow-env ./script/fetch-kobo-wishlist.ts
 const main = async () => {
     try {
         const auth = await acquireAccessToken();
@@ -15,16 +16,41 @@ const main = async () => {
         const settings = await loadInitSettings(auth);
         const wishlist = await fetchWishlist(auth, settings.user_wishlist);
 
-        const books = wishlist.map<WishListBook>((w) => ({
-            title: w.ProductMetadata.Book.Title,
-            author: w.ProductMetadata.Book.Contributors,
-            slug: slug(w.ProductMetadata.Book.Title),
-            addedAt: w.DateAdded,
-        }));
-
-        console.log(books);
+        await syncWishlistWithToRead(wishlist);
     } catch (error) {
         console.error(error);
+        Deno.exit(1);
+    }
+};
+
+interface WishlistItem {
+    DateAdded: string;
+    ProductMetadata: {
+        Book: {
+            Title: string;
+            Contributors: string;
+        };
+    };
+}
+
+const syncWishlistWithToRead = async (wishlist: WishlistItem[]) => {
+    const { fileHost } = createServices();
+
+    const books = wishlist.map((w) => ({
+        title: w.ProductMetadata.Book.Title,
+        author: w.ProductMetadata.Book.Contributors,
+        addedAt: new Date(w.DateAdded),
+    })).sort((b1, b2) => b1.addedAt.getTime() - b2.addedAt.getTime());
+
+    const all = await findAll(fileHost);
+
+    const diff = books.filter((b1) => !all.find((b2) => slug(b1.title) == slug(b2.title)));
+
+    if (diff.length) {
+        const len = await addMany(fileHost, diff);
+        console.log(`Synced ${len} to To Read`);
+    } else {
+        console.log('Nothing to sync');
     }
 };
 
