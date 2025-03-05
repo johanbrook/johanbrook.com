@@ -1,0 +1,56 @@
+name: Fetch Kobo wishlist
+
+on:
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+    schedule:
+        - cron: '0 12 * * *' # Noon UTC every day
+
+    push:
+        paths:
+            - '.github/workflows/cron-wishlist.yml'
+            - 'script/fetch-kobo-wishlist.ts'
+
+env:
+    DENO_VERSION: v1.40.3
+    TO_READ_PATH: 'src/_data/toread.yml'
+
+permissions:
+    contents: write # to checkout repo and write back log file
+
+jobs:
+    fetch:
+        name: Fetch Kobo wishlist and sync
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Deno
+              uses: denoland/setup-deno@v1
+              with:
+                  deno-version: ${{ env.DENO_VERSION }}
+
+            - name: Fetch and sync into toread.yml
+              run: |
+                  output=$(deno run --allow-net --allow-read --allow-env ./script/fetch-kobo-wishlist.ts)
+                  ec=$?
+                  [[ $ec -eq 0 && -n "$output" ]] && \
+                    echo "$output" >> "$to_read" || ([[ $ec -eq 10 ]] && echo "$output")
+              env:
+                  to_read: ${{ env.TO_READ_PATH }}
+                  KOBO_ACCESS_TOKEN: ${{ secrets.KOBO_ACCESS_TOKEN }}
+                  KOBO_REFRESH_TOKEN: ${{ secrets.KOBO_REFRESH_TOKEN }}
+
+            - name: Commit and push changed files
+              # Pull first, since something could've been pushed in-between.
+              run: |
+                  git pull
+                  git config user.name "Automated"
+                  git config user.email "actions@users.noreply.github.com"
+                  git add "$to_read"
+                  git commit -m "Update 'To Read' from Johan's Kobo wishlist" || exit 0
+                  git push
+              env:
+                  to_read: ${{ env.TO_READ_PATH }}

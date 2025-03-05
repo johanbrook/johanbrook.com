@@ -11,6 +11,7 @@ export interface ToReadBook {
     author: string;
     notes?: string;
     addedAt?: Date;
+    isbn?: string;
 }
 
 export const findAll = async (store: FileHost): Promise<ToReadBook[]> => {

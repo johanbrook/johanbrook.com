@@ -1,22 +1,39 @@
 import { encodeBase64 } from 'jsr:@std/encoding/base64';
-import { addMany, findAll } from '../api/model/to-read.ts';
-import { createServices } from '../api/services/index.ts';
 import { slug } from 'slug';
+import * as Yaml from 'jsr:@std/yaml';
+import { join } from 'jsr:@std/path';
+import { type ToReadBook } from '../api/model/to-read.ts';
+
+const TO_READ_PATH = 'src/_data/toread.yml';
 
 // Rewritten from Python (https://github.com/subdavis/kobo-book-downloader/blob/main/kobodl/kobo.py) by Johan.
 // Huge props to the great reverse engineering by them.
 
-const TOKEN_PATH = './.kobo';
-
 // deno run --allow-net --allow-read --allow-write --allow-env ./script/fetch-kobo-wishlist.ts
 const main = async () => {
+    const raw = Deno.args.includes('--raw');
+
     try {
         const auth = await acquireAccessToken();
 
         const settings = await loadInitSettings(auth);
         const wishlist = await fetchWishlist(auth, settings.user_wishlist);
 
-        await syncWishlistWithToRead(wishlist);
+        if (raw) {
+            console.log(wishlist);
+            Deno.exit(0);
+        } else {
+            const diff = await diffOf(wishlist);
+
+            if (diff.length) {
+                const str = Yaml.stringify(diff);
+                console.log(str);
+                Deno.exit(0);
+            } else {
+                console.log('Nothing to sync');
+                Deno.exit(10);
+            }
+        }
     } catch (error) {
         console.error(error);
         Deno.exit(1);
@@ -29,29 +46,25 @@ interface WishlistItem {
         Book: {
             Title: string;
             Contributors: string;
+            ISBN: string;
         };
     };
 }
 
-const syncWishlistWithToRead = async (wishlist: WishlistItem[]) => {
-    const { fileHost } = createServices();
-
-    const books = wishlist.map((w) => ({
+const diffOf = async (wishlist: WishlistItem[]) => {
+    const books = wishlist.map<ToReadBook>((w) => ({
         title: w.ProductMetadata.Book.Title,
         author: w.ProductMetadata.Book.Contributors,
         addedAt: new Date(w.DateAdded),
-    })).sort((b1, b2) => b1.addedAt.getTime() - b2.addedAt.getTime());
+        isbn: w.ProductMetadata.Book.ISBN,
+    })).sort((b1, b2) => b1.addedAt!.getTime() - b2.addedAt!.getTime());
 
-    const all = await findAll(fileHost);
+    const yml = await Deno.readTextFile(join(Deno.cwd(), TO_READ_PATH));
+    const all = Yaml.parse(yml) as ToReadBook[];
 
-    const diff = books.filter((b1) => !all.find((b2) => slug(b1.title) == slug(b2.title)));
+    const diff = books.filter((b1) => !all.find((b2) => slug(b1.title.trim()) == slug(b2.title.trim())));
 
-    if (diff.length) {
-        const len = await addMany(fileHost, diff);
-        console.log(`Synced ${len} to To Read`);
-    } else {
-        console.log('Nothing to sync');
-    }
+    return diff;
 };
 
 const Kobo = {
@@ -76,20 +89,19 @@ interface Auth {
 // 2. login() does "activation"
 // 3. authenticateDevice() again with user from 1) and key from 2)
 const acquireAccessToken = async (): Promise<Auth> => {
-    const existingTokens = await readTokens(TOKEN_PATH);
+    const accessToken = Deno.env.get('KOBO_ACCESS_TOKEN');
+    const refreshToken = Deno.env.get('KOBO_REFRESH_TOKEN');
 
-    if (existingTokens) {
-        console.log('> Found existing tokens');
-        return existingTokens;
+    if (accessToken && refreshToken) {
+        debug('> Found existing tokens');
+        return { accessToken, refreshToken };
     }
 
-    console.log('> Acquiring new access token');
+    debug('> Acquiring new access token');
     const { user } = await authenticateDevice(null, null);
     const userKey = await login();
 
     const { auth } = await authenticateDevice(user, userKey);
-
-    if (!existingTokens) await writeTokens(auth);
 
     return auth;
 };
@@ -121,7 +133,7 @@ const waitForActivation = async (activationUrl: string) => {
 };
 
 const activateOnWeb = async () => {
-    console.log('Initiating web-based activation');
+    console.log('> Initiating web-based activation');
 
     const params = {
         'pwsdid': crypto.randomUUID(),
@@ -281,7 +293,7 @@ const fetchWithRefresh = async (auth: Auth, input: RequestInfo | URL, init?: Req
 
     if (res.status != 401) return res;
 
-    console.log(`> Got status 401, refreshing auth`);
+    debug(`> Got status 401, refreshing auth`);
 
     // Need to refresh auth
     const newTokens = await refreshAuth(auth);
@@ -293,8 +305,7 @@ const fetchWithRefresh = async (auth: Auth, input: RequestInfo | URL, init?: Req
     const retried = await fetch(retriedReq);
 
     if (retried.ok) {
-        console.log(`> Writing new auth tokens after refresh`);
-        await writeTokens(newTokens);
+        debug(`> Got new auth tokens`);
     }
 
     return retried;
@@ -359,30 +370,16 @@ const printOverwrite = async (str: string) => {
     await Deno.stdout.write(enc);
 };
 
-const readTokens = async (path: string): Promise<Auth | null> => {
-    try {
-        const str = await Deno.readTextFile(path);
-        if (!str.trim().length) return null;
-        const tokens = str.split('\n');
-        if (tokens.length < 2) return null;
-        return { accessToken: tokens[0], refreshToken: tokens[1] };
-    } catch (ex) {
-        if (!(ex instanceof Deno.errors.NotFound)) {
-            throw ex;
-        }
-
-        return null;
-    }
-};
-
-const writeTokens = async (tokens: Auth) => {
-    await Deno.writeTextFile(TOKEN_PATH, `${tokens.accessToken}\n${tokens.refreshToken}`);
-};
-
 const randomHexString = (len: number) => {
     const bytes = new Uint8Array(len);
     crypto.getRandomValues(bytes);
     return Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('').slice(0, len);
+};
+
+const DEBUG = Deno.env.get('DEBUG');
+
+const debug = (...args: any[]) => {
+    DEBUG && console.debug(...args);
 };
 
 // Run!
