@@ -18,6 +18,8 @@ env:
 
 permissions:
     contents: write # to checkout repo and write back log file
+    pages: write # to deploy to Pages
+    id-token: write # to verify the deployment originates from an appropriate source
 
 jobs:
     fetch:
