@@ -235,7 +235,7 @@ type Settings = {
 };
 
 const loadInitSettings = async (auth: Auth): Promise<Settings> => {
-    const res = await fetch('https://storeapi.kobo.com/v1/initialization', {
+    const res = await fetchWithRefresh(auth, 'https://storeapi.kobo.com/v1/initialization', {
         headers: {
             ...defaultHeaders(true),
             ...authHeaders(auth.accessToken),
