@@ -1,9 +1,8 @@
 ---
-date: '2025-03-10T11:39:55+02:00'
+date: '2025-03-22T22:44:07+01:00'
 location: ''
-timezone: Africa/Johannesburg
+timezone: Europe/Stockholm
 tags:
-    - recently
     - recently
 ---
 ## Uncategorised
@@ -16,4 +15,5 @@ tags:
 - Cien Años de Soledad
 - Trolösa
 - The Leopard
+- Dune: Prophecy
 
