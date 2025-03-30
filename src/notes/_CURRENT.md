@@ -1,5 +1,5 @@
 ---
-date: '2025-03-22T22:44:23+01:00'
+date: '2025-03-30T23:14:49+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -17,4 +17,5 @@ tags:
 - The Leopard
 - Dune: Prophecy
 - Adolescence
+- The Studio
 
