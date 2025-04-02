@@ -33,25 +33,33 @@ jobs:
               uses: denoland/setup-deno@v1
               with:
                   deno-version: ${{ env.DENO_VERSION }}
-
-            - name: Fetch and sync into reading list
+                  
+            - name: Fetch Kobo wishlist data
+              id: fetch
+              continue-on-error: true
               run: |
-                  output=$(deno run --allow-net --allow-read --allow-env ./script/fetch-kobo-wishlist.ts)
-                  ec=$?
-                  if [[ $ec -eq 0 && -n "$output" ]]; then
-                    echo "$output" >> "$reading_list"
-                    exit 0
-                  elif [[ $ec -eq 10 ]]; then
-                    echo "$output"
-                    exit 0  # Explicitly exit with success code
-                  else
-                    echo "Error: Unexpected exit code $ec"
-                    exit $ec  # Pass through any unexpected error codes
-                  fi
+                output=$(deno run --allow-net --allow-read --allow-env ./script/fetch-kobo-wishlist.ts)
+                ec=$?
+                echo "exit_code=$ec" >> $GITHUB_OUTPUT
+                echo "output<<EOF" >> $GITHUB_OUTPUT
+                echo "$output" >> $GITHUB_OUTPUT
+                echo "EOF" >> $GITHUB_OUTPUT
               env:
                   reading_list: ${{ env.READING_LIST_PATH }}
                   KOBO_ACCESS_TOKEN: ${{ secrets.KOBO_ACCESS_TOKEN }}
                   KOBO_REFRESH_TOKEN: ${{ secrets.KOBO_REFRESH_TOKEN }}
+
+            - name: Process results
+              run: |
+                if [[ ${{ steps.fetch.outputs.exit_code }} -eq 0 && -n "${{ steps.fetch.outputs.output }}" ]]; then
+                  echo "${{ steps.fetch.outputs.output }}" >> "${{ env.READING_LIST_PATH }}"
+                  echo "Successfully updated reading list"
+                elif [[ ${{ steps.fetch.outputs.exit_code }} -eq 10 ]]; then
+                  echo "No new items to add. Output: ${{ steps.fetch.outputs.output }}"
+                else
+                  echo "Error: Unexpected exit code ${{ steps.fetch.outputs.exit_code }}"
+                  exit 1
+                fi
 
             - name: Commit and push changed files
               # Pull first, since something could've been pushed in-between.
