@@ -38,8 +38,16 @@ jobs:
               run: |
                   output=$(deno run --allow-net --allow-read --allow-env ./script/fetch-kobo-wishlist.ts)
                   ec=$?
-                  [[ $ec -eq 0 && -n "$output" ]] && \
-                    echo "$output" >> "$reading_list" || ([[ $ec -eq 10 ]] && echo "$output")
+                  if [[ $ec -eq 0 && -n "$output" ]]; then
+                    echo "$output" >> "$reading_list"
+                    exit 0
+                  elif [[ $ec -eq 10 ]]; then
+                    echo "$output"
+                    exit 0  # Explicitly exit with success code
+                  else
+                    echo "Error: Unexpected exit code $ec"
+                    exit $ec  # Pass through any unexpected error codes
+                  fi
               env:
                   reading_list: ${{ env.READING_LIST_PATH }}
                   KOBO_ACCESS_TOKEN: ${{ secrets.KOBO_ACCESS_TOKEN }}
