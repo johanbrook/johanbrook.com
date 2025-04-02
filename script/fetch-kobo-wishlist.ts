@@ -21,17 +21,12 @@ const main = async () => {
 
         if (raw) {
             console.log(wishlist);
-            Deno.exit(0);
         } else {
             const diff = await diffOf(wishlist);
 
             if (diff.length) {
                 const str = Yaml.stringify(diff);
                 console.log(str);
-                Deno.exit(0);
-            } else {
-                console.log('Nothing to sync');
-                Deno.exit(10);
             }
         }
     } catch (error) {

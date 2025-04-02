@@ -51,14 +51,11 @@ jobs:
 
             - name: Process results
               run: |
-                if [[ ${{ steps.fetch.outputs.exit_code }} -eq 0 && -n "${{ steps.fetch.outputs.output }}" ]]; then
+                if [[ -n "${{ steps.fetch.outputs.output }}" ]]; then
                   echo "${{ steps.fetch.outputs.output }}" >> "${{ env.READING_LIST_PATH }}"
                   echo "Successfully updated reading list"
-                elif [[ ${{ steps.fetch.outputs.exit_code }} -eq 10 ]]; then
-                  echo "No new items to add. Output: ${{ steps.fetch.outputs.output }}"
                 else
-                  echo "Error: Unexpected exit code ${{ steps.fetch.outputs.exit_code }}"
-                  exit 1
+                  echo "No new items to add. Output: ${{ steps.fetch.outputs.output }}"
                 fi
 
             - name: Commit and push changed files
