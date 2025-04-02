@@ -47,6 +47,7 @@ jobs:
                   KOBO_REFRESH_TOKEN: ${{ secrets.KOBO_REFRESH_TOKEN }}
 
             - name: Process results
+              id: process
               run: |
                 if [[ -n "${{ steps.fetch.outputs.output }}" ]]; then
                   echo "${{ steps.fetch.outputs.output }}" >> "${{ env.READING_LIST_PATH }}"
