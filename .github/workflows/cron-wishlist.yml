@@ -36,11 +36,8 @@ jobs:
                   
             - name: Fetch Kobo wishlist data
               id: fetch
-              continue-on-error: true
               run: |
                 output=$(deno run --allow-net --allow-read --allow-env ./script/fetch-kobo-wishlist.ts)
-                ec=$?
-                echo "exit_code=$ec" >> $GITHUB_OUTPUT
                 echo "output<<EOF" >> $GITHUB_OUTPUT
                 echo "$output" >> $GITHUB_OUTPUT
                 echo "EOF" >> $GITHUB_OUTPUT
@@ -54,11 +51,14 @@ jobs:
                 if [[ -n "${{ steps.fetch.outputs.output }}" ]]; then
                   echo "${{ steps.fetch.outputs.output }}" >> "${{ env.READING_LIST_PATH }}"
                   echo "Successfully updated reading list"
+                  echo "changes_made=true" >> $GITHUB_OUTPUT
                 else
                   echo "No new items to add. Output: ${{ steps.fetch.outputs.output }}"
+                  echo "changes_made=false" >> $GITHUB_OUTPUT
                 fi
 
             - name: Commit and push changed files
+              if: steps.process.outputs.changes_made == 'true'
               # Pull first, since something could've been pushed in-between.
               run: |
                   git pull
