@@ -9,7 +9,7 @@ const READING_LIST_PATH = 'src/_data/reading_list.yml';
 // Rewritten from Python (https://github.com/subdavis/kobo-book-downloader/blob/main/kobodl/kobo.py) by Johan.
 // Huge props to the great reverse engineering by them.
 
-// deno run --allow-net --allow-read --allow-write --allow-env ./script/fetch-kobo-wishlist.ts
+// deno run --allow-net --allow-read --allow-env ./script/fetch-kobo-wishlist.ts
 const main = async () => {
     const raw = Deno.args.includes('--raw');
 
@@ -25,8 +25,7 @@ const main = async () => {
             const diff = await diffOf(wishlist);
 
             if (diff.length) {
-                const str = Yaml.stringify(diff);
-                console.log(str);
+                console.log(JSON.stringify(diff));
             }
         }
     } catch (error) {

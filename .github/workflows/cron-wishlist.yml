@@ -37,36 +37,30 @@ jobs:
             - name: Fetch Kobo wishlist data
               id: fetch
               run: |
-                output=$(deno run --allow-net --allow-read --allow-env ./script/fetch-kobo-wishlist.ts)
-                echo "output<<EOF" >> $GITHUB_OUTPUT
-                echo "$output" >> $GITHUB_OUTPUT
-                echo "EOF" >> $GITHUB_OUTPUT
+                json=$(deno run --allow-net --allow-read --allow-env ./script/fetch-kobo-wishlist.ts)
+                
+                if [[ -n "$json" ]]; then
+                  echo "changes_made=true" >> $GITHUB_OUTPUT
+                  echo "json<<EOF" >> $GITHUB_OUTPUT
+                  echo "$json" >> $GITHUB_OUTPUT
+                  echo "EOF" >> $GITHUB_OUTPUT
+                else
+                  echo "No new items to add"
+                  echo "changes_made=false" >> $GITHUB_OUTPUT
+                fi
               env:
                   reading_list: ${{ env.READING_LIST_PATH }}
                   KOBO_ACCESS_TOKEN: ${{ secrets.KOBO_ACCESS_TOKEN }}
                   KOBO_REFRESH_TOKEN: ${{ secrets.KOBO_REFRESH_TOKEN }}
 
-            - name: Process results
-              id: process
-              run: |
-                if [[ -n "${{ steps.fetch.outputs.output }}" ]]; then
-                  echo "${{ steps.fetch.outputs.output }}" >> "${{ env.READING_LIST_PATH }}"
-                  echo "Successfully updated reading list"
-                  echo "changes_made=true" >> $GITHUB_OUTPUT
-                else
-                  echo "No new items to add. Output: ${{ steps.fetch.outputs.output }}"
-                  echo "changes_made=false" >> $GITHUB_OUTPUT
-                fi
-
-            - name: Commit and push changed files
-              if: steps.process.outputs.changes_made == 'true'
+            - name: Post to Johan's API
+              if: steps.fetch.outputs.changes_made == 'true'
               # Pull first, since something could've been pushed in-between.
               run: |
-                  git pull
-                  git config user.name "Automated"
-                  git config user.email "actions@users.noreply.github.com"
-                  git add "$reading_list"
-                  git commit -m "Update reading list from Johan's Kobo wishlist" || exit 0
-                  git push
+                  curl -X POST \
+                    -H "API-Token $TOKEN" \
+                    -H "Content-Type: application/json" \
+                    -d "${{ steps.fetch.outputs.json }}"
+                  https://johan-api.deno.dev
               env:
-                  reading_list: ${{ env.READING_LIST_PATH }}
+                  TOKEN: ${{ secrets.JOHAN_API_ACTION_TOKEN }}
