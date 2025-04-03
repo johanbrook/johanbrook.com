@@ -3,9 +3,16 @@ import { Services } from '../services/index.ts';
 import * as ReadingList from '../model/reading-list.ts';
 
 export const addToReadingList = async (services: Services, json: any) => {
+    if (Array.isArray(json)) {
+        const input = json.map(inputOf);
+        const [books] = await ReadingList.addMany(services.fileHost, input);
+        return books;
+    }
+
     const input = inputOf(json);
 
-    return await ReadingList.add(services.fileHost, input);
+    const [book] = await ReadingList.add(services.fileHost, input);
+    return [book];
 };
 
 const inputOf = (json: any): ReadingList.Input => {

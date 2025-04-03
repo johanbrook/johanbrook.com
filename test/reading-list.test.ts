@@ -44,10 +44,64 @@ Deno.test('API /reading-list ok', async () => {
     const body = await res.json();
 
     assertEquals(body, {
-        book: {
+        books: [{
             title: 'A new book',
             author: 'Johan the Brook',
-        },
+        }],
+        count: 1,
+        url: 'https://johan.im/reading-list',
+    });
+});
+
+Deno.test('API /reading-list accepts array', async () => {
+    const { services } = mock();
+
+    services.fileHost.getFile = spy(() =>
+        Promise.resolve(Yaml.stringify(
+            // stringify() _does_ accept an array, but the types say no...
+            // @ts-ignore-next
+            [{
+                title: 'American Psycho',
+                author: 'Bret Easton Ellis',
+            }, {
+                title: 'The Shards',
+                author: 'Bret Easton Ellis',
+            }],
+        ))
+    );
+
+    const router = createApp(services);
+
+    const res = await router.run(
+        new Request(new URL('/reading-list', BASE_URL), {
+            method: 'POST',
+            headers: {
+                Authorization: 'API-Token aaa',
+                ContentType: 'application/json',
+            },
+            body: JSON.stringify([{
+                title: 'A new book',
+                author: 'Johan the Brook',
+            }, {
+                title: 'Ziggy Stardust',
+                author: 'David Bowie',
+            }]),
+        }),
+    );
+
+    assertEquals(res.status, 201);
+
+    const body = await res.json();
+
+    assertEquals(body, {
+        books: [{
+            title: 'A new book',
+            author: 'Johan the Brook',
+        }, {
+            title: 'Ziggy Stardust',
+            author: 'David Bowie',
+        }],
+        count: 2,
         url: 'https://johan.im/reading-list',
     });
 });

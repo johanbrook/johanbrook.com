@@ -55,8 +55,8 @@ export const add = async (store: FileHost, input: Input): Promise<[ReadingListBo
     return [input, fullPath];
 };
 
-export const addMany = async (store: FileHost, todo: ReadingListBook[]) => {
-    if (!todo.length) return 0;
+export const addMany = async (store: FileHost, todo: ReadingListBook[]): Promise<[ReadingListBook[], Path]> => {
+    if (!todo.length) throw new ProblemError(ProblemKind.BadInput, `todo can't be empty`);
 
     const raw = await store.getFile(READING_LIST_PATH);
 
@@ -64,12 +64,12 @@ export const addMany = async (store: FileHost, todo: ReadingListBook[]) => {
 
     const final = raw + '\n' + str;
 
-    await store.putFile(
+    const fullPath = await store.putFile(
         final,
         join(READING_LIST_PATH),
     );
 
-    return todo.length;
+    return [todo, fullPath];
 };
 
 const booksArrayOf = (raw: string): ReadingListBook[] => {

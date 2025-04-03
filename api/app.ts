@@ -74,11 +74,12 @@ export function createApp(services: Services) {
         'POST',
         '/reading-list',
         pipe(authHandler, async (req) => {
-            const [book] = await addToReadingList(services, await req.json());
+            const books = await addToReadingList(services, await req.json());
             const url = new URL(`/reading-list`, getConfig('ROOT_URL')).toJSON();
 
             return Response.json({
-                book: book,
+                books,
+                count: books.length,
                 url,
             }, {
                 status: 201,
