@@ -61,6 +61,7 @@ jobs:
                     -H "API-Token $TOKEN" \
                     -H "Content-Type: application/json" \
                     -d '${{ steps.fetch.outputs.json }}' \
-                  https://johan-api.deno.dev
+                    --fail-with-body \
+                  https://johan-api.deno.dev/reading-list
               env:
                   TOKEN: ${{ secrets.JOHAN_API_ACTION_TOKEN }}
