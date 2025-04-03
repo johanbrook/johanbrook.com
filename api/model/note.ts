@@ -1,6 +1,6 @@
 import { FileHost } from '../services/index.ts';
 import { join } from 'std/path/mod.ts';
-import * as Yaml from 'std/yaml/mod.ts';
+import { yamlStringify } from '../yaml.ts';
 import { test as hasFrontMatter } from 'std/front_matter/mod.ts';
 import * as fm from 'std/front_matter/any.ts';
 import { formatFileName, formatISO } from '../date.ts';
@@ -130,16 +130,8 @@ const addFrontMatter = <T extends Record<string, unknown>>(
     contents: string,
     fm: T,
 ): string => {
-    const copy = { ...fm };
-    // YAML doesn't like undefined
-    for (const k of Object.keys(copy)) {
-        if (typeof copy[k] == 'undefined') {
-            delete copy[k];
-        }
-    }
-
     return `---
-${Yaml.stringify(copy, { indent: 4 }).trim()}
+${yamlStringify(fm, { indent: 4 }).trim()}
 ---
 ${contents}\n
 `;

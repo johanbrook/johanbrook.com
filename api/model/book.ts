@@ -1,7 +1,7 @@
 import { ProblemError, ProblemKind } from '../problem.ts';
 import { FileHost } from '../services/index.ts';
 import { join } from 'std/path/mod.ts';
-import * as Yaml from 'std/yaml/mod.ts';
+import { yamlParse, yamlStringify } from '../yaml.ts';
 import { slug } from 'slug';
 
 const BOOKS_PATH = 'src/_data/books.yml';
@@ -54,9 +54,7 @@ export const update = async (store: FileHost, idx: number, book: Book) => {
     books[idx] = book;
 
     await store.putFile(
-        // stringify() _does_ accept an array, but the types say no...
-        // @ts-ignore-next
-        Yaml.stringify(books),
+        yamlStringify(books),
         join(BOOKS_PATH),
     );
 };
@@ -84,8 +82,7 @@ export const add = async (store: FileHost, input: BookInput): Promise<[Book, str
 
     const raw = await store.getFile(BOOKS_PATH);
 
-    // @ts-ignore-next
-    const str = Yaml.stringify([book]);
+    const str = yamlStringify([book]);
 
     const final = raw + '\n' + str;
 
@@ -98,7 +95,7 @@ export const add = async (store: FileHost, input: BookInput): Promise<[Book, str
 };
 
 const booksArrayOf = (raw: string): Book[] => {
-    const books = Yaml.parse(raw);
+    const books = yamlParse(raw);
 
     if (!Array.isArray(books)) {
         throw new ProblemError(ProblemKind.InconsistentFile, `${BOOKS_PATH} isn't a YAML array`);

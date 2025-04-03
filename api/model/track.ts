@@ -1,5 +1,5 @@
 import { FileHost } from '../services/index.ts';
-import * as Yaml from 'std/yaml/mod.ts';
+import { yamlStringify } from '../yaml.ts';
 
 export interface Track {
     [k: string]: string | Date;
@@ -15,7 +15,7 @@ const FILE = 'src/_data/current_track.yml';
 export const setCurrent = async (fileHost: FileHost, inp: TrackInput) => {
     const { artist, name, ...rest } = inp;
     await fileHost.putFile(
-        Yaml.stringify({
+        yamlStringify({
             name: capitalise(clean(name)),
             artist: capitalise(clean(artist)),
             ...rest,

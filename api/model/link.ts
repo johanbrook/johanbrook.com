@@ -1,7 +1,7 @@
 import { ProblemError, ProblemKind } from '../problem.ts';
 import { FileHost } from '../services/index.ts';
 import { join } from 'std/path/mod.ts';
-import * as Yaml from 'std/yaml/mod.ts';
+import { yamlParse, yamlStringify } from '../yaml.ts';
 
 const LINKS_PATH = 'src/_data/links.yml';
 
@@ -30,15 +30,7 @@ export const add = async (store: FileHost, input: LinkInput) => {
 
     const raw = await store.getFile(LINKS_PATH);
 
-    // YAML doesn't like undefined
-    for (const k of Object.keys(link)) {
-        if (typeof link[k] == 'undefined') {
-            delete link[k];
-        }
-    }
-
-    // @ts-ignore-next
-    const str = Yaml.stringify([link]);
+    const str = yamlStringify([link]);
 
     const final = raw + '\n' + str;
 
@@ -59,7 +51,7 @@ const findAll = async (store: FileHost): Promise<Link[]> => {
 };
 
 const linksArrayOf = (raw: string): Link[] => {
-    const links = Yaml.parse(raw);
+    const links = yamlParse(raw);
 
     if (!Array.isArray(links)) {
         throw new ProblemError(ProblemKind.InconsistentFile, `${LINKS_PATH} isn't a YAML array`);
