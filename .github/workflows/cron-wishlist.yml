@@ -60,7 +60,7 @@ jobs:
                   curl -X POST \
                     -H "API-Token $TOKEN" \
                     -H "Content-Type: application/json" \
-                    -d '${{ steps.fetch.outputs.json }}'
+                    -d '${{ steps.fetch.outputs.json }}' \
                   https://johan-api.deno.dev
               env:
                   TOKEN: ${{ secrets.JOHAN_API_ACTION_TOKEN }}
