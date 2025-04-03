@@ -7,6 +7,7 @@ interface Config {
     // Access tokens for this API
     IOS_SHORTCUT_TOKEN: string;
     MAC_SHORTCUT_TOKEN: string;
+    GITHUB_ACTION_TOKEN: string;
 
     // https://johan.im
     ROOT_URL: string;

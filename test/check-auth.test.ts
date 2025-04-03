@@ -19,5 +19,5 @@ Deno.test('API GET /check-auth ok', async () => {
     );
 
     assertEquals(res.status, 200);
-    assertEquals(await res.text(), 'Authed as mac-shortcut');
+    assertEquals(await res.text(), 'Authed as ios-shortcut');
 });

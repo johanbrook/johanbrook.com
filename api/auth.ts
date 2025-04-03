@@ -4,7 +4,7 @@ import { ProblemError, ProblemKind } from './problem.ts';
 export interface Client {
     id: string; // unique
     name: string;
-    token: string; // unique
+    token: Token; // unique
 }
 
 const IOS: Client = {
@@ -19,12 +19,19 @@ const MAC: Client = {
     token: getConfig('MAC_SHORTCUT_TOKEN'),
 };
 
+const GAC: Client = {
+    id: 'github-action',
+    name: 'GitHub Action',
+    token: getConfig('GITHUB_ACTION_TOKEN'),
+};
+
 type Token = string;
 
 const CLIENTS: Record<Token, Client> = {
     // 🙃
     [IOS.token]: IOS,
     [MAC.token]: MAC,
+    [GAC.token]: GAC,
 };
 
 export const checkAuth = (req: Request): Client => {

@@ -1,16 +1,25 @@
 import { ProblemError, ProblemKind } from '../problem.ts';
 import { FileHost } from '../services/index.ts';
-import * as Yaml from 'jsr:@std/yaml';
+import { yamlParse, yamlStringify } from '../yaml.ts';
 import { slug } from 'slug';
 import { join } from 'std/path/mod.ts';
 
 const READING_LIST_PATH = 'src/_data/reading_list.yml';
+
+type Path = string;
 
 export interface ReadingListBook {
     title: string;
     author: string;
     notes?: string;
     addedAt?: Date;
+    isbn?: string;
+}
+
+export interface Input {
+    title: string;
+    author: string;
+    notes?: string;
     isbn?: string;
 }
 
@@ -22,7 +31,7 @@ export const findAll = async (store: FileHost): Promise<ReadingListBook[]> => {
     return booksArrayOf(raw);
 };
 
-export const add = async (store: FileHost, input: ReadingListBook): Promise<[ReadingListBook, string]> => {
+export const add = async (store: FileHost, input: Input): Promise<[ReadingListBook, Path]> => {
     const books = await findAll(store);
 
     if (books.find((b) => slug(b.title) == slug(input.title))) {
@@ -34,7 +43,7 @@ export const add = async (store: FileHost, input: ReadingListBook): Promise<[Rea
 
     const raw = await store.getFile(READING_LIST_PATH);
 
-    const str = Yaml.stringify([input]);
+    const str = yamlStringify([input]);
 
     const final = raw + '\n' + str;
 
@@ -51,7 +60,7 @@ export const addMany = async (store: FileHost, todo: ReadingListBook[]) => {
 
     const raw = await store.getFile(READING_LIST_PATH);
 
-    const str = Yaml.stringify(todo);
+    const str = yamlStringify(todo);
 
     const final = raw + '\n' + str;
 
@@ -64,7 +73,7 @@ export const addMany = async (store: FileHost, todo: ReadingListBook[]) => {
 };
 
 const booksArrayOf = (raw: string): ReadingListBook[] => {
-    const books = Yaml.parse(raw);
+    const books = yamlParse(raw);
 
     if (!Array.isArray(books)) {
         throw new ProblemError(ProblemKind.InconsistentFile, `${READING_LIST_PATH} isn't a YAML array`);

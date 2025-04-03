@@ -10,7 +10,7 @@
         "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable-temporal -A -",
         "build": "deno task lume",
         "serve": "deno task build -s",
-        "test": "export IOS_SHORTCUT_TOKEN=aaa && export MAC_SHORTCUT_TOKEN=aaa && export ROOT_URL=https://johan.im && TEST=1 deno test --allow-env --location https://johan.im --unstable-temporal",
+        "test": "export IOS_SHORTCUT_TOKEN=aaa && export MAC_SHORTCUT_TOKEN=bbb && export GITHUB_ACTION_TOKEN=ccc && export ROOT_URL=https://johan.im && TEST=1 deno test --allow-env --location https://johan.im --unstable-temporal",
         "api": "deno run --allow-env --unstable-temporal --allow-net --allow-read --allow-write --location https://johan.im --watch api/server.ts",
         "api:deploy": "deployctl deploy --env-file=.env.api"
     },
