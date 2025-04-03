@@ -58,7 +58,7 @@ jobs:
               # Pull first, since something could've been pushed in-between.
               run: |
                   curl -X POST \
-                    -H "API-Token $TOKEN" \
+                    -H "Authorization: API-Token $TOKEN" \
                     -H "Content-Type: application/json" \
                     -d '${{ steps.fetch.outputs.json }}' \
                     --fail-with-body \
