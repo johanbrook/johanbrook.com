@@ -15,7 +15,7 @@ html {
 
     /* 3. Larger on larger screens. */
     @media only screen and (min-width: 600px) {
-        font-size: 112.5%;
+        font-size: 100%;
     }
 }
 
