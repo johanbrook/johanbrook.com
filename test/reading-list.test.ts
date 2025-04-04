@@ -178,7 +178,7 @@ Deno.test('API /reading-list not ok for duplicate slug', async () => {
     assertMatch(body, /A book with that slug already exists/);
 });
 
-Deno.test('API /reading-list/sync ok', async (t) => {
+Deno.test('API /reading-list/sync-kobo ok', async (t) => {
     const { services } = mock();
 
     services.fileHost.getFile = spy(() =>
@@ -256,4 +256,62 @@ Deno.test('API /reading-list/sync ok', async (t) => {
             source: 'kobo',
         }],
     );
+});
+
+Deno.test('API /reading-list/sync-kobo no changes', async (t) => {
+    const { services } = mock();
+
+    services.fileHost.getFile = spy(() =>
+        Promise.resolve(Yaml.stringify(
+            // stringify() _does_ accept an array, but the types say no...
+            // @ts-ignore-next
+            [
+                {
+                    title: 'American Psycho',
+                    author: 'Bret Easton Ellis',
+                    source: 'kobo',
+                },
+                {
+                    title: 'The Shards',
+                    author: 'Bret Easton Ellis',
+                },
+            ],
+        ))
+    );
+
+    let leakedPutFile: string = '';
+
+    services.fileHost.putFile = spy((str: string, filePath: string) => {
+        leakedPutFile = str;
+        return filePath;
+    });
+
+    const router = createApp(services);
+
+    const res = await router.run(
+        new Request(new URL('/reading-list/sync-kobo', BASE_URL), {
+            method: 'PUT',
+            headers: {
+                Authorization: 'API-Token aaa',
+                ContentType: 'application/json',
+            },
+            body: JSON.stringify([
+                {
+                    title: 'American Psycho',
+                    author: 'Bret Easton Ellis',
+                    source: 'kobo',
+                },
+            ]),
+        }),
+    );
+
+    assertEquals(res.status, 201);
+
+    const body = await res.json();
+
+    assertEquals(body, {
+        url: 'https://johan.im/reading-list',
+    });
+
+    assertSpyCalls(services.fileHost.putFile, 0);
 });

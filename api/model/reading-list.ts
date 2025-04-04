@@ -110,14 +110,19 @@ export const syncFromKobo = async (store: FileHost, todo: Input[]) => {
 
     const final = [...keep, ...add];
 
+    if (final.length == existing.length) {
+        console.debug('syncFromKobo: final.length == existing.length. Bailing.', final.length, existing.length);
+        return false;
+    }
+
     const str = yamlStringify(final);
 
-    const fullPath = await store.putFile(
+    await store.putFile(
         str,
         join(READING_LIST_PATH),
     );
 
-    return fullPath;
+    return true;
 };
 
 const booksArrayOf = (raw: string): ReadingListBook[] => {
