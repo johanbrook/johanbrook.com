@@ -15,6 +15,17 @@ export const addToReadingList = async (services: Services, json: any) => {
     return [book];
 };
 
+export const syncReadingListKobo = (services: Services, json: any) => {
+    if (!Array.isArray(json)) {
+        throw new ProblemError(
+            ProblemKind.BodyParseError,
+            `JSON must be an array of ReadingListBook, got ${typeof json}`,
+        );
+    }
+
+    return ReadingList.syncFromKobo(services.fileHost, json.map(inputOf));
+};
+
 const inputOf = (json: any): ReadingList.Input => {
     if (typeof json.title != 'string') {
         throw new ProblemError(
@@ -44,10 +55,18 @@ const inputOf = (json: any): ReadingList.Input => {
         );
     }
 
+    if (json.source != null && typeof json.source != 'string') {
+        throw new ProblemError(
+            ProblemKind.BodyParseError,
+            `"source" must be a string, got ${typeof json.source}`,
+        );
+    }
+
     return {
         title: json.title,
         author: json.author,
         isbn: json.isbn,
         notes: json.notes,
+        source: json.source,
     };
 };

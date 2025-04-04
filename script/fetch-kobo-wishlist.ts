@@ -1,17 +1,14 @@
 import { encodeBase64 } from 'jsr:@std/encoding/base64';
-import { slug } from 'slug';
-import * as Yaml from 'jsr:@std/yaml';
-import { join } from 'jsr:@std/path';
-import { type ReadingListBook } from '../api/model/reading-list.ts';
-
-const READING_LIST_PATH = 'src/_data/reading_list.yml';
+import * as ReadingList from '../api/model/reading-list.ts';
 
 // Rewritten from Python (https://github.com/subdavis/kobo-book-downloader/blob/main/kobodl/kobo.py) by Johan.
 // Huge props to the great reverse engineering by them.
 
-// deno run --allow-net --allow-read --allow-env ./script/fetch-kobo-wishlist.ts
+// deno run --allow-net --allow-env ./script/fetch-kobo-wishlist.ts
+// Pass --dump to dump the JSON from the Kobo API. Otherwise, we'll print the massaged JSON to stdout on
+// a shape that fits this site's reading list model.
 const main = async () => {
-    const raw = Deno.args.includes('--raw');
+    const dump = Deno.args.includes('--dump');
 
     try {
         const auth = await acquireAccessToken();
@@ -19,14 +16,11 @@ const main = async () => {
         const settings = await loadInitSettings(auth);
         const wishlist = await fetchWishlist(auth, settings.user_wishlist);
 
-        if (raw) {
+        if (dump) {
             console.log(wishlist);
-        } else {
-            const diff = await diffOf(wishlist);
-
-            if (diff.length) {
-                console.log(JSON.stringify(diff));
-            }
+        } else if (wishlist.length) {
+            const input = inputOf(wishlist);
+            console.log(JSON.stringify(input));
         }
     } catch (error) {
         console.error(error);
@@ -45,20 +39,16 @@ interface WishlistItem {
     };
 }
 
-const diffOf = async (wishlist: WishlistItem[]) => {
-    const books = wishlist.map<ReadingListBook>((w) => ({
+const inputOf = (wishlist: WishlistItem[]) => {
+    const books = wishlist.map<ReadingList.Input>((w) => ({
         title: w.ProductMetadata.Book.Title,
         author: w.ProductMetadata.Book.Contributors,
         addedAt: new Date(w.DateAdded),
         isbn: w.ProductMetadata.Book.ISBN,
+        source: 'kobo',
     })).sort((b1, b2) => b1.addedAt!.getTime() - b2.addedAt!.getTime());
 
-    const yml = await Deno.readTextFile(join(Deno.cwd(), READING_LIST_PATH));
-    const all = Yaml.parse(yml) as ReadingListBook[];
-
-    const diff = books.filter((b1) => !all.find((b2) => slug(b1.title.trim()) == slug(b2.title.trim())));
-
-    return diff;
+    return books;
 };
 
 const Kobo = {
@@ -305,7 +295,7 @@ const fetchWithRefresh = async (auth: Auth, input: RequestInfo | URL, init?: Req
     return retried;
 };
 
-const fetchWishlist = async (auth: Auth, wishlistUrl: string) => {
+const fetchWishlist = async (auth: Auth, wishlistUrl: string): Promise<WishlistItem[]> => {
     const items = [];
     let page = 0;
 

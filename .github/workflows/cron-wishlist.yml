@@ -14,7 +14,6 @@ on:
 
 env:
     DENO_VERSION: v1.40.3
-    READING_LIST_PATH: 'src/_data/reading_list.yml'
 
 permissions:
     contents: write # to checkout repo and write back log file
@@ -37,7 +36,7 @@ jobs:
             - name: Fetch Kobo wishlist data
               id: fetch
               run: |
-                json=$(deno run --allow-net --allow-read --allow-env ./script/fetch-kobo-wishlist.ts)
+                json=$(deno run --allow-net --allow-env ./script/fetch-kobo-wishlist.ts)
                 
                 if [[ -n "$json" ]]; then
                   echo "changes_made=true" >> $GITHUB_OUTPUT
@@ -49,19 +48,17 @@ jobs:
                   echo "changes_made=false" >> $GITHUB_OUTPUT
                 fi
               env:
-                  reading_list: ${{ env.READING_LIST_PATH }}
                   KOBO_ACCESS_TOKEN: ${{ secrets.KOBO_ACCESS_TOKEN }}
                   KOBO_REFRESH_TOKEN: ${{ secrets.KOBO_REFRESH_TOKEN }}
 
             - name: Post to Johan's API
               if: steps.fetch.outputs.changes_made == 'true'
-              # Pull first, since something could've been pushed in-between.
               run: |
-                  curl -X POST \
+                  curl -X PUT \
                     -H "Authorization: API-Token $TOKEN" \
                     -H "Content-Type: application/json" \
                     -d '${{ steps.fetch.outputs.json }}' \
                     --fail-with-body \
-                  https://johan-api.deno.dev/reading-list
+                  https://johan-api.deno.dev/reading-list/sync-kobo
               env:
                   TOKEN: ${{ secrets.JOHAN_API_ACTION_TOKEN }}

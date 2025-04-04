@@ -7,7 +7,7 @@ import { urlForBook } from '../src/_includes/permalinks.ts';
 import { setCurrentTrack, setCurrentTrackFromSpotifyUrl } from './routes/index.ts';
 import { addLink } from './routes/link.ts';
 import { getConfig } from './config.ts';
-import { addToReadingList } from './routes/reading-list.ts';
+import { addToReadingList, syncReadingListKobo } from './routes/reading-list.ts';
 
 export function createApp(services: Services) {
     const router = new Router<Client>();
@@ -80,6 +80,24 @@ export function createApp(services: Services) {
             return Response.json({
                 books,
                 count: books.length,
+                url,
+            }, {
+                status: 201,
+                headers: {
+                    Location: url,
+                },
+            });
+        }),
+    );
+
+    router.route(
+        'PUT',
+        '/reading-list/sync-kobo',
+        pipe(authHandler, async (req) => {
+            await syncReadingListKobo(services, await req.json());
+            const url = new URL(`/reading-list`, getConfig('ROOT_URL')).toJSON();
+
+            return Response.json({
                 url,
             }, {
                 status: 201,
