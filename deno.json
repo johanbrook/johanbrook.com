@@ -12,7 +12,7 @@
         "serve": "deno task build -s",
         "test": "export IOS_SHORTCUT_TOKEN=aaa && export MAC_SHORTCUT_TOKEN=bbb && export GITHUB_ACTION_TOKEN=ccc && export ROOT_URL=https://johan.im && TEST=1 deno test --allow-env --allow-read --location https://johan.im --unstable-temporal",
         "api": "deno run --allow-env --unstable-temporal --allow-net --allow-read --allow-write --location https://johan.im --watch api/server.ts",
-        "api:deploy": "deployctl deploy --env-file=.env.api"
+        "api:deploy": "deployctl deploy --env-file=.env.api --prod"
     },
     "compilerOptions": {
         "lib": ["deno.ns", "deno.unstable", "dom", "dom.iterable"],
