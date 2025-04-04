@@ -88,9 +88,11 @@ export const syncFromKobo = async (store: FileHost, todo: Input[]) => {
     const keep: ReadingListBook[] = [];
     const add: ReadingListBook[] = [];
 
+    const isSame = <T extends { title: string }>(a: T, b: T) => slug(a.title) == slug(b.title);
+
     const findBySlug = <T extends { title: string }>(arr: T[], e: T) =>
         //
-        arr.find((t) => slug(e.title) == slug(t.title));
+        arr.find((t) => isSame(e, t));
 
     for (const e of existing) {
         const isInWishlist = findBySlug(todo, e);
@@ -110,8 +112,8 @@ export const syncFromKobo = async (store: FileHost, todo: Input[]) => {
 
     const final = [...keep, ...add];
 
-    if (final.length == existing.length) {
-        console.debug('syncFromKobo: final.length == existing.length. Bailing.', final.length, existing.length);
+    if (listsEquals(existing, final, isSame)) {
+        console.debug('syncFromKobo: existing and final lists are equal. Bailing.');
         return false;
     }
 
@@ -133,4 +135,17 @@ const booksArrayOf = (raw: string): ReadingListBook[] => {
     }
 
     return books as ReadingListBook[];
+};
+
+const listsEquals = <T>(l1: T[], l2: T[], pred: (a: T, b: T) => boolean): boolean => {
+    if (l1.length != l2.length) return false;
+
+    for (let i = 0; i < l1.length; i++) {
+        const a = l1[i];
+        const b = l2[i];
+
+        if (!pred(a, b)) return false;
+    }
+
+    return true;
 };
