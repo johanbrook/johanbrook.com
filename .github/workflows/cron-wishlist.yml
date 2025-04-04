@@ -43,6 +43,8 @@ jobs:
                   echo "json<<EOF" >> $GITHUB_OUTPUT
                   echo "$json" >> $GITHUB_OUTPUT
                   echo "EOF" >> $GITHUB_OUTPUT
+                  echo "Posting this Kobo JSON wishlist to Johan's API"
+                  echo "$json" | jq
                 else
                   echo "No new items to add"
                   echo "changes_made=false" >> $GITHUB_OUTPUT
@@ -54,7 +56,7 @@ jobs:
             - name: Post to Johan's API
               if: steps.fetch.outputs.changes_made == 'true'
               run: |
-                  curl -X PUT \
+                  curl -s -X PUT \
                     -H "Authorization: API-Token $TOKEN" \
                     -H "Content-Type: application/json" \
                     -d '${{ steps.fetch.outputs.json }}' \
