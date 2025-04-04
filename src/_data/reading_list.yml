@@ -1,88 +1,112 @@
 - title: Gomorra
   author: Roberto Saviano
+  source: manual
 
 - title: The Looking Glass War
   author: John le Carré
+  source: manual
 
 - title: The Odyssey
   author: Emily Watson
   notes: New English translation.
+  source: manual
 
 - title: The Iliad
   author: Emily Watson
   notes: New English translation.
+  source: manual
 
 - title: Saudade
   author: Henrik Brandão Jönsson
+  source: manual
 
 - title: The Age of Interconnection
   author: Jonathan Sperber
+  source: manual
 
 - title: The Essentials of Classic Italian Cooking
   author: Marcella Hazan
+  source: manual
 
 - title: Checkmate Berlin
   author: Giles Milton
+  source: manual
 
 - title: Makten och Heligheten
   author: Dan Jones
+  source: manual
 
 - title: Steering the Craft
   author: Ursula K. Le Guin
+  source: manual
 
 - title: Stacken
   author: Annika Norlin
+  source: manual
 
 - title: Strangers on a Train
   author: Patricia Highsmith
+  source: manual
 
 - title: The Invisible Doctrine
   author: George Monbiot, Peter Hutchison
+  source: kobo
 - title: 'Beautiful World, Where Are You'
   author: Sally Rooney
   addedAt: 2024-07-29T20:23:31.110Z
   isbn: '9780571365456'
+  source: kobo
 - title: The Promise
   author: Damon Galgut
   addedAt: 2024-07-29T20:23:49.234Z
   isbn: '9781473584464'
+  source: kobo
 - title: The Bright Sword
   author: Lev Grossman
   addedAt: 2024-09-14T16:09:06.330Z
   isbn: '9781804951637'
+  source: kobo
 - title: The Lie of 1652
   author: Patric Tariq Mellet
   addedAt: 2024-10-27T09:49:04.900Z
   isbn: '9780624089711'
+  source: kobo
 - title: Intermezzo
   author: Sally Rooney
   addedAt: 2024-12-05T20:01:02.977Z
   isbn: '9780571365494'
+  source: kobo
 - title: No Time Like the Present
   author: Nadine Gordimer
   addedAt: 2024-12-11T21:30:38.000Z
   isbn: '9781408831762'
+  source: kobo
 - title: Neither Settler nor Native
   author: Mahmood Mamdani
   addedAt: 2025-01-12T16:02:07.521Z
   isbn: '9780674249974'
+  source: kobo
 - title: Beyond the Wall
   author: Katja Hoyer
   addedAt: 2025-01-12T16:05:16.398Z
   isbn: '9780141999357'
+  source: kobo
 - title: Spain In Our Hearts
   author: Adam Hochschild
   addedAt: 2025-01-13T16:06:51.852Z
   isbn: '9780547974538'
+  source: kobo
 - title: Dune
   author: Frank Herbert
   addedAt: 2025-02-20T13:57:01.476Z
   isbn: '9781101658055'
+  source: kobo
 - title: Heartbreaker
   author: James Styan
   addedAt: 2025-03-08T15:44:30.341Z
   isbn: '9781868428434'
-
+  source: kobo
 - title: Careless People
   author: Sarah Wynn-Williams
   isbn: '9781250391247'
+  source: kobo
