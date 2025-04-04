@@ -1132,6 +1132,10 @@ a:hover .icon-feed {
     margin-block-start: calc(1ex - 1cap);
 }
 
+.align-bottom {
+  vertical-align: bottom;
+}
+
 .Notice {
     border-radius: 0.8em;
     padding: 0.5em 0.75em;

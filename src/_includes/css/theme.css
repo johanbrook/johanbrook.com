@@ -182,7 +182,7 @@ tbody {
 }
 
 :where(td, th) {
-    padding-block: var(--spacing);
+    padding: var(--spacing);
 }
 
 :where(th, td):first-child {
