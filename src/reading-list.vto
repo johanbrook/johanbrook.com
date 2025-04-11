@@ -12,7 +12,8 @@ description: Books I want to read.
     		<th scope="column">Notes</th>
     	</tr>
     </thead>
-  {% for book in reading_list | reverse %}
+
+  {{ for book of reading_list |> reverse }}
     <tr id="{{ book.slug }}">
     	<th scope="row">
 			{{ book.title }}
@@ -20,9 +21,9 @@ description: Books I want to read.
     	<td>
     		{{ book.author }}
     	</td>
-    	<td class="f6 muted align-bottom">
-			{{ book.notes | md(true) | safe }}
+    	<td>
+			{{ book.notes |> md(true) }}
     	</td>
     </tr>
-  {% endfor %}
+  {{ /for }}
 </table>
