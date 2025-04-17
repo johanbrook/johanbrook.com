@@ -934,6 +934,7 @@ COLOURS
 
 .subhead {
     color: var(--color-text-high-contrast);
+    text-wrap: pretty;
 }
 
 .detail {

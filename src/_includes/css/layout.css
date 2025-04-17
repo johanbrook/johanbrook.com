@@ -6,7 +6,7 @@ body {
     @media (min-width: 960px) {
         display: grid;
         grid-template-columns: 110px var(--content-width);
-        column-gap: 3rlh;
+        column-gap: 2rlh;
         justify-content: center;
     }
 
