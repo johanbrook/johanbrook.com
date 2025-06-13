@@ -1,5 +1,5 @@
 ---
-date: '2025-06-01T13:11:44+02:00'
+date: '2025-06-13T22:42:52+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -10,4 +10,5 @@ tags:
 - Charter
 - The Northman
 - Reservatet
+- Severance
 
