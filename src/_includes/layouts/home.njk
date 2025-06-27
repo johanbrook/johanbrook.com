@@ -49,19 +49,14 @@ home: true
             {% macro book_item(book, reading=false) %}
             <li class="PostItem h-entry">
                 <div>
-                    <a href="/reading/{{ book.slug }}" class="p-name u-url" title="{{ book.title }}">{{ book.title }}</a>
+                    <a href="/reading/{{ book.slug }}" class="p-name u-url" title="{{ book.title }}">{{ book.title }}{% if reading %} ←{% endif %}</a>
                 </div>
                 <span class="muted" title="{{ book.author }}">{{ book.author }}</span>
             </li>
             {% endmacro %}
 
-            {% set current_book = currentBook() %}
-            {% if current_book %}
-                {{ book_item(current_book, true) }}
-            {% endif %}
-
             {% for book in search.pages("type=book", "finishedAt=desc", 6) %}
-                {{ book_item(book) }}
+                {{ book_item(book, not book.dropped and not book.finished and not book.paused) }}
             {% endfor %}
         </ol>
     </section>
