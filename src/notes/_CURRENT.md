@@ -1,5 +1,5 @@
 ---
-date: '2025-06-13T22:42:52+02:00'
+date: '2025-07-12T22:15:07+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -11,4 +11,5 @@ tags:
 - The Northman
 - Reservatet
 - Severance
+- Juror #2
 
