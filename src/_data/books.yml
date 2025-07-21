@@ -3,36 +3,42 @@
   author: J.R.R. Tolkien
   finished: true
   finishedAt: 2001-12-10
+  stars: 4
 
 - title: Bilbo
   slug: bilbo
   author: J.R.R. Tolkien
   finished: true
   finishedAt: 2002-01-10
+  stars: 4
 
 - title: The Silmarillion
   slug: the-silmarrillion
   author: J.R.R. Tolkien
   finished: true
   finishedAt: 2002-05-10
+  stars: 5
 
 - title: Animal Farm
   slug: animal-farm
   author: George Orwell
   finished: true
   finishedAt: 2007-08-10
+  stars: 4
 
 - title: '1984'
   slug: '1984'
   author: George Orwell
   finished: true
   finishedAt: 2007-08-10
+  stars: 4
 
 - title: The Old Man and the Sea
   slug: the-old-man-and-the-sea
   author: Ernest Hemingway
   finished: true
   finishedAt: 2008-05-10
+  stars: 4
 
 - title: Hammer of the Gods – The Led Zeppelin Saga
   slug: hammer-of-the-gods-the-led-zeppelin-saga
@@ -40,6 +46,7 @@
   finished: true
   finishedAt: 2010-01-10
   location: Kauai, Hawaii
+  stars: 4
 
 - title: Led Zeppelin – When Giants Walked The Earth
   slug: led-zeppelin-when-giants-walked-the-earth
@@ -54,6 +61,7 @@
   finished: true
   finishedAt: 2010-02-10
   location: Calgary, Canada
+  stars: 4
 
 - title: No One Here Gets Out Alive
   slug: noone-here-gets-out-alive
@@ -61,6 +69,7 @@
   finished: true
   finishedAt: 2010-05-10
   location: Calgary, Canada
+  stars: 4
 
 - title: The Holy Blood And The Holy Grail
   slug: holy-blood-holy-grail
@@ -68,6 +77,7 @@
   finished: true
   finishedAt: 2010-04-10
   location: Calgary, Canada
+  stars: 3
 
 - title: Rework
   slug: rework
@@ -75,6 +85,7 @@
   finished: true
   finishedAt: 2010-05-10
   location: Calgary, Canada
+  stars: 3
 
 - title: Infinity
   slug: infinity
@@ -82,6 +93,7 @@
   finished: true
   finishedAt: 2010-07-01
   location: Calgary, Canada
+  stars: 3
 
 - title: Life of Pi
   slug: life-of-pi
@@ -89,6 +101,7 @@
   finished: true
   finishedAt: 2010-08-01
   location: Calgary, Canada
+  stars: 4
 
 - title: The Road
   slug: the-road
@@ -96,17 +109,20 @@
   finished: true
   finishedAt: 2011-07-01
   notes: 'The minimal language is perfect.'
+  stars: 4
 
 - title: Black Sabbath
   slug: black-sabbath
   author: Mick Wall
   finished: true
   finishedAt: 2012-07-01
+  stars: 3
 
 - title: Into the Wild
   slug: into-the-wild
   author: Jon Krakauer
   finished: true
+  stars: 4
   finishedAt: 2014-01-10
   location: Paris, France
 
@@ -115,6 +131,7 @@
   author: Anthony Kiedis
   finished: true
   finishedAt: 2014-07-10
+  stars: 4
   location: Gothenburg, Sweden
   notes: 'Raw and honest.'
 
@@ -123,6 +140,7 @@
   author: Gregory David Roberts
   finished: true
   finishedAt: 2015-07-10
+  stars: 4
   location: Gothenburg, Sweden
 
 - title: Steve Jobs
@@ -130,12 +148,14 @@
   author: Walter Isaacson
   finished: true
   location: Gothenburg, Sweden
+  stars: 3
   finishedAt: 2015-08-01
 
 - title: Becoming Steve Jobs
   slug: becoming-steve-jobs
   author: Brent Schlender & Rick Tetzeli
   finished: true
+  stars: 4
   finishedAt: 2015-04-10
   location: Gothenburg, Sweden
 
@@ -143,6 +163,7 @@
   slug: w-axl-rose
   author: Mick Wall
   finished: true
+  stars: 3
   finishedAt: 2015-01-10
   location: Gothenburg, Sweden
 
@@ -151,6 +172,7 @@
   author: Robert M. Pirsig
   finished: true
   finishedAt: 2015-09-10
+  stars: 4
   location: Vienna, Austria
 
 - title: Just Kids
@@ -159,6 +181,7 @@
   finished: true
   finishedAt: 2015-11-10
   location: San Francisco, USA
+  stars: 4
   notes: 'Very touching, and beautifully written.'
 
 - title: Dancing with the Devil in the City of God
@@ -166,6 +189,7 @@
   author: Juliana Barbassa
   finished: true
   finishedAt: 2016-05-10
+  stars: 3
   location: Rio de Janeiro, Brazil
 
 - title: The Essential Hemingway
@@ -173,6 +197,7 @@
   author: Ernest Hemingway
   finished: true
   finishedAt: 2016-05-10
+  stars: 4
   location: Rio de Janeiro, Brazil
 
 - title: A Moveable Feast
@@ -180,6 +205,7 @@
   author: Ernest Hemingway
   finished: true
   finishedAt: 2016-05-10
+  stars: 4
   location: Rio de Janeiro, Brazil
 
 - title: M Train
@@ -187,6 +213,7 @@
   author: Patti Smith
   finished: true
   finishedAt: 2016-10-10
+  stars: 3
   location: New York, USA
 
 - title: The Mountain Shadow
@@ -195,6 +222,7 @@
   finished: true
   finishedAt: 2017-07-10
   location: Gothenburg, Sweden
+  stars: 3
   notes: 'Sequel to Shantaram. Not as good, but nevertheless a good sequel.'
 
 - title: Sapiens
@@ -202,6 +230,7 @@
   author: Yuval Noah Harari
   finished: true
   finishedAt: 2017-08-10
+  stars: 5
   location: Nice, France
 
 - title: Hero — David Bowie
@@ -209,6 +238,7 @@
   author: Lesley-Ann Jones
   finished: true
   finishedAt: 2017-10-10
+  stars: 4
   location: Lisbon, Portugal
 
 - title: 21 Lessons for the 21th Century
@@ -216,6 +246,7 @@
   author: Yuval Noah Harari
   finished: true
   finishedAt: 2018-05-10
+  stars: 3
   location: Stockholm, Sweden
 
 - title: A Little Life
@@ -224,6 +255,7 @@
   finished: true
   finishedAt: 2018-07-10
   location: Stockholm, Sweden
+  stars: 4
   notes: "The saddest book I've read in all my life. But oh so good."
 
 - title: A Brief History of Time
@@ -231,6 +263,7 @@
   author: Stephen Hawking
   finished: true
   finishedAt: 2019-03-10
+  stars: 4
   location: Stockholm, Sweden
 
 - title: The Sun Also Rises
@@ -238,6 +271,7 @@
   author: Ernest Hemingway
   finished: true
   finishedAt: 2019-05-10
+  stars: 4
   location: Barcelona, Spain
 
 - title: Men Without Women
@@ -246,6 +280,7 @@
   finished: true
   finishedAt: 2020-01-10
   location: Sri Lanka
+  stars: 4
   notes: I like short story collections, and Murakami's language is the best. Read this.
 
 - title: The Snow Leopard
@@ -254,6 +289,7 @@
   finished: true
   finishedAt: 2020-01-10
   location: Sri Lanka
+  stars: 5
   notes: >-
       A travel diary of an American in an expedition into the Himalayas. He's real goal is to catch a glimpse of the very shy
       Snow Leopard. This travel text captures the beauty of Zen without speaking too much about it. It's kind of dense at times,
@@ -264,6 +300,7 @@
   author: Paolo Coelho
   finished: true
   finishedAt: 2020-01-10
+  stars: 2
   location: Sri Lanka
   notes: 'Like The Alchemist, this one was boring. Poorly written, boring plot, and not believable at all.'
 
@@ -272,6 +309,7 @@
   author: Paolo Coelho
   finished: true
   finishedAt: 2020-01-10
+  stars: 2
   location: Sri Lanka
   notes: 'I loved it in the beginning, but then it turned out to be boring New Age-y stuff.'
 
@@ -281,6 +319,7 @@
   finished: true
   finishedAt: 2020-03-01
   location: Stockholm, Sweden
+  stars: 5
   notes: 'Even better than the movie. More details (of course), and deeper descriptions of characters.'
 
 - title: Jag Kan Ha Fel
@@ -289,6 +328,7 @@
   finished: true
   finishedAt: 2020-06-01
   location: Stockholm, Sweden
+  stars: 3
   notes: >-
       Written by a Swedish businessman who became a Buddhist monk for 17 years. It's not a classic self help book, nor
       some kind of teaching about Buddhism. It's merely his story, with some of his philosophies thrown in. He mixes serious
@@ -300,6 +340,7 @@
   finished: true
   finishedAt: 2020-07-01
   location: Stockholm, Sweden
+  stars: 4
   notes: >-
       Very 'fun' and unforeseeable language. The thoughts of the two main characters – the man and the boy – are written in a
       way that feels authentic. I liked the randomness and quick turns of the book.
@@ -310,6 +351,7 @@
   finished: true
   finishedAt: 2020-07-01
   location: Stockholm, Sweden
+  stars: 3
   notes: 'A non-fiction history about the Sicilian mafia. Entertaining.'
 
 - title: Normal People
@@ -318,6 +360,7 @@
   finished: true
   finishedAt: 2020-08-01
   location: Stockholm, Sweden
+  stars: 5
   notes: >-
       I saw the series before reading the book, and both formats have their charm. The author has a great language, and
       manages to capture the atmosphere that surrounds that age from high school to university.
@@ -328,6 +371,7 @@
   finished: true
   finishedAt: 2020-08-01
   location: Stockholm, Sweden
+  stars: 3
   notes: >-
       I like mythology, especially like Greek mythology. This book is a novel – I guess a bit dramatised – about the life of
       the hero Hercules. It was good, very vivid and nuanced.
@@ -338,6 +382,7 @@
   finished: true
   location: Österlen, Sweden
   finishedAt: 2020-08-01
+  stars: 4
   notes: >-
       A philosophical discourse about the evolution of homo sapiens. Some things are controversial, like population control.
       The book's dialogue is about biodiversity, climate change, urbanisation: a lot of contemporary topics. It's a nice pairing
@@ -349,6 +394,7 @@
   finished: true
   location: Stockholm, Sweden
   finishedAt: 2021-02-01
+  stars: 4
   notes: >-
       It took me a long time to finish this very thin book. The language is dense, and I wanted to soak every page in. I had
       to re-read a couple of sentences. But I liked it as a whole, especially the laser focus of the author's message.
@@ -359,6 +405,7 @@
   finished: true
   location: Österlen, Sweden
   finishedAt: 2021-08-01
+  stars: 5
   notes: >-
       This is an epic describing the live of a couple of individuals from the 1970s until the 2010s in Gothenburg, Sweden.
       It really touched me, on several layers. I'm very sentimental about the city Gothenburg, and I was constantly impressed
@@ -371,6 +418,7 @@
   finished: true
   finishedAt: 2021-09-06
   location: Florence, Italy
+  stars: 3
   notes: >-
       I love Murakami's straight forward language. This one made me want to start running. He's very honest about himself in
       this semi-biography, but never sentimental. Feels very Japanese.
@@ -381,6 +429,7 @@
   finished: true
   finishedAt: 2021-09-14
   location: Florence, Italy
+  stars: 4
   notes: >-
       The book is a lot more psycho than the movie. More explicit than I thought. The unreliable monologues of the narrator are
       amazingly written, and there are more layers to the book than just the obvious one.
@@ -391,6 +440,7 @@
   finished: true
   finishedAt: 2021-09-20
   location: Florence, Italy
+  stars: 2
   notes: >-
       I honestly think the movie is better. I'm sure the book would be cool if I'd read that first, but I couldn't stand the
       fast paced dialogue with random sentences thrown in between lines.
@@ -407,6 +457,7 @@
   author: Strummer, Jones, Simonon, Headon
   location: Stockholm, Sweden
   finished: true
+  stars: 3
   finishedAt: 2021-11-01
   notes: 'An okay account of the history of the band, told by themselves in interview format.'
 
@@ -416,6 +467,7 @@
   location: Stockholm, Sweden
   finished: true
   finishedAt: 2022-04-11
+  stars: 4
   notes: >-
       It's quite rare that a book is written after a film, and by the film's creator too. I loved this one: it's 100%
       Quentin Tarantino-ness all way through. He has space to go deeper in the conversations between the characters,
@@ -427,6 +479,7 @@
   location: Fjällnäs, Sweden
   finished: true
   finishedAt: 2022-04-24
+  stars: 5
   notes: >-
       I thought Knausgård would be a hard read, but it was not. "Morgonstjärnan" is so lovely. The author has this superb power
       of making seemingly mundane everyday people and tasks become interesting. His description are rich, and the pace is perfect.
@@ -438,6 +491,7 @@
   location: Stockholm, Sweden
   finished: true
   finishedAt: 2022-06-04
+  stars: 4
   notes: >-
       I bought the Swedish translation as paperback, and read it all in once – back to back. Quite special for a cooking book.
       The book includes tips and tricks around techniques, equipment, and ingredients. All the traditional French recipies
@@ -448,6 +502,7 @@
   slug: life
   author: Keith Richards
   location: Stockholm, Sweden
+  stars: 3
   notes: 'The autobiography of Keith Richards (guitarist in Rolling Stones).'
   finished: true
   finishedAt: 2022-07-01
@@ -457,6 +512,7 @@
   author: Mikael Yvesand
   finished: true
   finishedAt: 2022-08-05
+  stars: 4
   notes: >-
       Lovely rendition of a summer in the lives of three 13 year old boys in northern Sweden in 1999. The language used
       is so very relatable, and so are the pop culture references. Even though "nothing" really happens, the book does
@@ -478,6 +534,7 @@
   location: Kalk Bay, South Africa
   finished: true
   finishedAt: 2022-11-11
+  stars: 5
   notes: >-
       I loved this even more than "Morgonstjärnan". It's more focused, and showcases Knausgård's ability to tell
       captivating stories about seemingly mundane characters and scenes. The book treats two characters' everyday
@@ -514,6 +571,7 @@
 - title: David Bowie — A Life
   slug: david-bowie-a-life
   author: Dylan Jones
+  stars: 4
   notes: >-
       A non-traditional biography of David Bowie. Being a Bowie fan, I loved it. It was constructed as interview format rather
       than common phrose. It was different than other biographies I've read on Bowie, thanks to the various (well known) voices
@@ -528,6 +586,7 @@
   finished: true
   location: Fjällnäs, Sweden
   finishedAt: 2023-01-22
+  stars: 5
   notes: >-
       Best book I've read for a long while. So intimate and delicate. Beautiful prose. Good build-ups. The format of
       describing the interactions with four people during an unspecified (but guessable) timeline from the perspective
@@ -546,6 +605,7 @@
   finished: true
   location: Stockholm, Sweden
   finishedAt: 2023-02-10
+  stars: 3
   notes: >-
       Collection of reviews and articles about the band Kent, from around 1993 to 2005. I liked the interviews and
       descriptions of their early career through newspaper texts. The band is no more since a while back, so they
@@ -554,6 +614,7 @@
 - title: Lou Reed – The Life
   slug: lou-reed
   author: Mick Wall
+  stars: 3
   notes: >-
       How many rock bios may be allowed to have something with "life" as suffix?! What I especially liked with this
       book was that it was… short. I don't mean it's bad! More that all the *other bios* are so. Damn. Long. But Mick
@@ -573,6 +634,7 @@
   finished: true
   location: Stockholm, Sweden
   finishedAt: 2023-05-17
+  stars: 4
   notes: >-
       I'm deep into espionage fiction now. Or, I'm deep into John le Carré… This novel was both a prequel and sequel to the
       author's breakout piece _"The Spy Who Came In from the Cold"_ (which I haven't read yet. Not sure if that's good or
@@ -585,6 +647,7 @@
   finished: true
   location: Stockholm, Sweden
   finishedAt: 2023-06-15
+  stars: 5
   notes: >-
       I liked this one very much. The book is a collection of essays spanning from World War I, throughout the 1920s-30s
       Soviet Union with Stalin's purges, and into the architecture and bombings of Berlin and Nagasaki in World War II.
@@ -597,6 +660,7 @@
   finished: true
   location: Stockholm, Sweden
   finishedAt: 2023-06-27
+  stars: 4
   notes: >-
       Damn. I should've read this one after ["The Legacy of Spies"](#the-legacy-of-spies). The latter one — also
       by le Carré — is a prequel and sequel to "The Spy…", and I would've enjoyed "The Legacy…" more if waiting
@@ -610,6 +674,7 @@
   finished: true
   location: Stockholm, Sweden
   finishedAt: 2023-07-14
+  stars: 4
   notes: >-
       If I had read the book before the movie, I would've been more surprised by the climax than what I was for
       the film version. I continue to be impressed by le Carré's prose too. He inserts tiny words and sentences
@@ -626,6 +691,7 @@
   slug: berlin
   author: Antony Beevor
   location: Stockholm, Sweden
+  stars: 4
   notes: >-
       Continuing my journey towards being a fully fledged dad. 150% detailed account of the Allied invasion of
       Germany in 1945. So much stuff I didn't know. Lots of stories about the conditions of the soldiers, civilians,
@@ -645,6 +711,7 @@
   finished: true
   location: Stockholm, Sweden
   finishedAt: 2024-01-04
+  stars: 3
   notes: >-
       This is kind of a "dramatised" documentary of actual events. Tons of historical metadata along the way. It's
       a bit cheesy sometimes, but I totally admit it was a page turner. And most importantly, it taught me a lot
@@ -656,6 +723,7 @@
   finished: true
   location: Bangkok, Thailand
   finishedAt: 2024-01-14
+  stars: 5
   notes: >-
       I loved it just as much as the first one in the series (I loved the second one less). It's something in Knausgård's
       language which is so, so good.
@@ -706,6 +774,7 @@
   finished: true
   finishedAt: 2024-04-01
   location: Stockholm, Sweden
+  stars: 5
   notes: |
       I've finished the final installment of Knausgård's _Min Kamp_ (_My Struggle_) autobiographical series. The full
       collection of volumes goes over 3000 pages, so it suffices to say I'm pretty dazed now. Feels like I've been into
@@ -750,6 +819,7 @@
   finished: true
   finishedAt: 2024-04-18
   location: Stockholm, Sweden
+  stars: 4
   notes: |
       I liked "Nattens Skola", and became quite immersed in it.
 
@@ -767,6 +837,7 @@
   finished: true
   finishedAt: 2024-04-23
   location: Stockholm, Sweden
+  stars: 3
   notes: |
       After reading mr. Knausgård's pieces for months, I felt a need for reading something by mrs. Boström Knausgård.
 
@@ -791,6 +862,7 @@
   location: Stockholm, Sweden
   finished: true
   finishedAt: 2024-05-15
+  stars: 3
   notes: |
       A somewhat classic historical account over the history of New York City, from the original Dutch settlement in the
       1600s until now-ish.
@@ -808,6 +880,7 @@
   finished: true
   finishedAt: 2024-05-22
   location: Stockholm, Sweden
+  stars: 5
   notes: |
       This novel's prose was fantastic to read. It captures the (chaotic?) inner life of a millennial woman in her late 20s. The stream of consciousness style thoughts are amazingly written, because of how they picture a myriad of _things_ bombarding the main character, like everything from Tinder to ads. Her observations, which frankly are quite objective, of contemporary *bourgeoisie* people around her, are perfectly captured. The text makes couple's dinners feel so fake and messed up.
 
@@ -817,6 +890,7 @@
   finished: true
   finishedAt: 2024-05-28
   location: Stockholm, Sweden
+  stars: 4
   notes: |
       This is a sequel to [_Just nu är jag här_](/reading/just-nu-ar-jag-har). It has the same style, but less sharp now when you're "used to it". It tells the story about how the main character goes to Berlin and befriends two intellectual guys and they live together in a cabin in Germany.
 
@@ -828,6 +902,7 @@
   finished: true
   finishedAt: 2024-06-24
   location: Stockholm, Sweden
+  stars: 3
   notes: |
       A collection of short stories by Ernest Hemingway put together by [Standard Ebooks](https://standardebooks.org/ebooks/ernest-hemingway/short-fiction).
 
@@ -841,6 +916,7 @@
   finished: true
   finishedAt: 2024-07-28
   location: Stockholm, Sweden
+  stars: 4
   notes: |
       I was late to this, but nevertheless I loved reading it. The author's write-as-you-think style is very entertaining and never annoying (sometimes, the prose can get _too_ sloppy). I totally understand that this piece became the eye opening text when it was first released, which told the world How It Really Was in the restaurant business.
 
@@ -874,6 +950,7 @@
   finished: true
   finishedAt: 2024-08-24
   location: Stockholm, Sweden
+  stars: 4
   notes: |
       After having watched [_Ripley_](/micro/20240516112200/), I felt I needed _more_ Ripley. This original book by Patricia Highsmith totally offered what I was looking for. The film _The Talented Mr. Ripley_ with Matt Damon and Jude Law only seemingly scratched the surface of Ripley's character: his story felt too fast and hastily told in that film, wheareas the _Ripley_ series gave him much more space. In the book, we can finally follow his own thoughts in third person.
 
@@ -887,12 +964,13 @@
   finished: true
   finishedAt: 2024-09-16
   location: Stockholm, Sweden
+  stars: 4
   notes: |
       This is a collection of short stories. I loved them all.
 
       It's very similar in style to [_Just nu är jag här_](/reading/just-nu-ar-jag-har) by Isabelle Ståhl, but not as over-the-top. The short stories with youth involved have especially cool prose. More sensitive matters are treated in some stories, and with great… dignity, for the lack of better word.
 
-      Summarised, I'm in awe over the author's range, and I'm looking forward to reading her latest piece _Stacken_.
+      Summarised, I'm in awe over the author's range, and I'm looking forward to reading her latest piece [_Stacken_](/reading/stacken).
 
 - title: 'Children of Ash and Elm: A History of the Vikings'
   author: Neil Price
@@ -905,6 +983,7 @@
   finished: true
   finishedAt: 2024-11-28
   location: Cape Town, South Africa
+  stars: 3
   notes: |
       This was an interesting piece of work: it's a historical piece but focused on the author's own female family tree in South Africa, ever since the first Dutch settlers arrived in the 1650s. The author has gone through old archives of letters and documentation of select women. She's tracked her heritage from a native Khoisan woman named Krotoa, all the way through intermarriages with the Dutch, through the wife of prime minister Jan Smuts, down to her aunt in present day. It was a super fascinating read, and to put it bluntly: it made "history come alive".
 
@@ -918,6 +997,7 @@
   finished: true
   finishedAt: 2025-01-12
   location: Kalk Bay, South Africa
+  stars: 3
   notes: |
       This was a classic "comfort read". A middle aged dad brings his family of a wife and two adolescent kids to the French countryside (in Languedoc, nota bene, and not in the oh so popular French Riviera or Provence).
 
@@ -937,6 +1017,7 @@
   finished: true
   finishedAt: 2025-01-23
   location: Cape Town, South Africa
+  stars: 4
   notes: |
       Another history book about South Africa. This focused on recent events at the time of the book's writing: in 1990. Thanks to that, much of the interviews and stories felt *fresh*, as in, the author had just heard or witnessed these things and wrote them down. Note that this was before Nelson Mandela was released and apartheid was deconstructed. For me, reading a book about a racist, authoritarian, police state *while it's still going on*, was a totally new thing (the book included an epilogue written in the late 2000s too).
 
@@ -955,6 +1036,7 @@
   slug: rejection
   finished: true
   finishedAt: 2025-01-31
+  stars: 4
   notes: |
       I usually enjoy short story collections, and I did enjoy this one too. The author surgically describes a range of characters — often misfits — who often appears in each others' stories. It's very raw and "vulgar": nothing is left for the imagination, so to speak. And it's amazing. I was especially touched by all the references to internet culture in the 2000s-2010s in one story. It's a lot of negativity and dark bits, kinda like _A Little Life_, but not that extreme. I felt a bit weird _enjoying_ reading about the characters' meander deep into the abyss, but what the hell.
       
@@ -986,6 +1068,7 @@
   finished: true
   finishedAt: 2025-02-01
   location: Tulbagh, South Africa
+  stars: 4
   notes: |
       First book by South African author J.M. Coetzee I've read, appropriately while I'm in South Africa too. It tells the story about a university professor in Cape Town in the late 1990s who gets fired for having an affair with a student. He then moves to his daughter's farm in the Eastern Cape, where he faces the different life on the country side.
       
@@ -1011,6 +1094,7 @@
   location: Cape Town, South Africa
   finished: true
   finishedAt: 2025-02-18
+  stars: 4
   notes: |
       Second book I've read by J.M. Coetzee. _Age of Iron_ is set in the apartheid era in mid 1980s Cape Town. It follows an elderly woman sick in cancer, writing a letter to her emigrated daughter. She befriends (even if that's a strong word in this case) a homeless man and have a coloured live-in maid, Florence.
       
@@ -1034,6 +1118,7 @@
   finished: true
   finishedAt: 2025-06-01
   location: Stockholm Sweden
+  stars: 4
   notes: |
       If half of this is true, Facebook (Meta) should be in deep shit.
       
@@ -1046,6 +1131,7 @@
   slug: beyond-the-wall
   finished: true
   finishedAt: 2015-07-19
+  stars: 4
   notes: |
       Back to history on old East Germany. What intrigued me here was that the book's pitch was to reveal more of the daily life of East Germans, all through out the time period of the 1950s to the fall of the regime in 1990. As promised, lots of small details about both the grand leaders of the state as well as ordinary citizens were sprinkled throughout the chapters. The author has based those details on biographies and letters. We get to follow Walter Ulbricht (first head of GDR), Erich Honecker (last head of GDR), Erich Mielke (head of Stasi), and more. Angela Merkel also makes an appearance.
 
@@ -1064,3 +1150,14 @@
 - title: Stacken
   author: Annika Norlin
   slug: stacken
+  finished: true
+  finishedAt: 2025-07-21
+  stars: 5
+  notes: |
+      This is a novel by Annika Norlin, which also wrote [_Jag ser allt du gör_](/reading/jag-ser-allt-du-gor/). The latter, a short story collection, was a huge favourite of mine, and made me look into _Stacken_, which is her first full length novel.
+
+      It tells the story about the individuals in something of a hippie commune in north Sweden observed by a young journalist from the city, coming to the forest to live in a tent for a while because of burnout. They've chosen to live off grid for around twenty years, by themselves. It starts out in a very harmonic manner, but as you can guess, the darkness is always there to seep in.
+
+      The author has a tremendous grasp over painting vidid characters. We get to follow all the members' invididual "origin stories", and they're very believable. Further, the author doesn't necessarily judge anything (except when describing contemptorary society in a very sarcastic way, stuff I loved from _Jag ser allt du gör_). The language is so rid of judgments when it comes to the choices made by the group that I find them likeable, even though the individuals and the group itself has committed very questionable things. It's around the end where I finally "wake up".
+
+      Now when the book is over, I see that the story arc of such separatist group is a very classic one in litterature and media. It's not that I find any member of the group full of malice — it's naturally more nuanced than that — but during the telling of their stories, it makes sense. _They_ make sense. (I read that the author studied psychology for a while, tells a lot.) If I was a better people reader or more into psychology, I maybe could've explained some very clear telltale signs of the behaviours of the members building up. But I was very captivated by the story and stories themselves. 
