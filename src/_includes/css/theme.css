@@ -175,10 +175,6 @@ tbody {
             text-decoration: none;
         }
     }
-
-    :where(td, th) {
-        vertical-align: top;
-    }
 }
 
 :where(td, th) {
