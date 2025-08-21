@@ -627,6 +627,7 @@
   slug: the-shards
   author: Bret Easton Ellis
   paused: true
+  finishedAt: 2023-03-25
 
 - title: The Legacy of Spies
   slug: the-legacy-of-spies
@@ -851,6 +852,7 @@
   author: Karl Ove Knausgård
   slug: ute-av-verden
   paused: true
+  finishedAt: 2024-05-13
   notes: |
       This is _very_ similar to one of the books in the author's _Min Kamp_ series, and of course! The reading so far
       is kind of dull, since I know deep inside that the experiences from _Min Kamp_ are closer to the truth. This one
@@ -976,6 +978,7 @@
   author: Neil Price
   slug: ash-elm
   paused: true
+  finishedAt: 2024-09-26
 
 - title: Moederland
   author: Cato Pedder
