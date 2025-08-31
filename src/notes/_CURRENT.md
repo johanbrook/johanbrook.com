@@ -1,5 +1,5 @@
 ---
-date: '2025-08-31T20:06:38+02:00'
+date: '2025-08-31T20:06:54+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -13,4 +13,5 @@ tags:
 - Severance
 - Juror #2
 - Generationer
+- The Sympathizer
 
