@@ -1,5 +1,5 @@
 ---
-date: '2025-07-12T22:15:07+02:00'
+date: '2025-08-31T20:06:38+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -12,4 +12,5 @@ tags:
 - Reservatet
 - Severance
 - Juror #2
+- Generationer
 
