@@ -1,5 +1,5 @@
 ---
-date: '2025-08-31T20:06:54+02:00'
+date: '2025-09-13T23:09:45+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -14,4 +14,5 @@ tags:
 - Juror #2
 - Generationer
 - The Sympathizer
+- Challengers
 
