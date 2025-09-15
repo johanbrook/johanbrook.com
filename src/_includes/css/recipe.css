@@ -1,5 +1,29 @@
-:is(.recipe-metadata) {
-    font-weight: 650;
+.RecipeNotes {
+  p {
+    text-indent: 1em hanging;
+  }
+}
+
+.RecipeBody > section {
+  &:not(:last-child) {
+    margin-bottom: 1rlh;
+  }
+}
+
+.recipe-metadata {
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rlh;
+    padding-bottom: 1rlh;
+  
+    dl {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      column-gap: 1rlh;
+    }
+    
+    dd {
+      font-weight: 650;
+    }
 }
 
 :is(.recipe-cookwares, .recipe-ingredients, .recipe-metadata, .recipe-instructions) h2 {
@@ -31,7 +55,7 @@
     padding-top: 1lh;
 
     ol li {
-        margin-bottom: 0.5lh;
+        margin-bottom: 0.75lh;
     }
 
     ol {
@@ -54,8 +78,4 @@
     text-decoration-style: dotted;
     text-underline-offset: 0.4ex;
     text-decoration-color: var(--color-faint);
-}
-
-.recipe--cookware {
-    font-style: italic;
 }

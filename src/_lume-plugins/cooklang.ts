@@ -23,7 +23,7 @@ class CookLangEngine implements Lume.Engine {
 
 // Quick n dirty: cook -> HTML
 const renderRecipe = (recipe: CookLang.Recipe): string => {
-    const metadata = Object.entries(recipe.metadata).map(([k, v]) => `<li>${k}: ${v}</li>`).join('\n').trim();
+    const metadata = Object.entries(recipe.metadata).map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('\n').trim();
 
     const ingredients = recipe.ingredients.map((i) => `<li>${i.quantity} ${i.units} ${i.name}</li>`).join('\n').trim();
 
@@ -41,9 +41,9 @@ const renderRecipe = (recipe: CookLang.Recipe): string => {
 <section class="recipe-metadata">
     <h2>Metadata</h2>
 
-    <ul>
+    <dl>
     ${metadata}
-    </ul>
+    </dl>
 </section>
         `
             : ''
@@ -172,7 +172,7 @@ const recipeInstructionsOf = (recipe: CookLang.Recipe) => {
                     break;
             }
 
-            content = `<span title="${quantity ? quantity : ''}" class="recipe--${tok.type}">${content}</span>`;
+            content = `<span title="${quantity ? quantity : ''}" class="recipe--token recipe--${tok.type}">${content}</span>`;
 
             ret[idx].push(content);
         });

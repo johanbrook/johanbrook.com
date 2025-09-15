@@ -35,19 +35,19 @@ layout: layouts/main.njk
     
         {% if notes %}
             <section class="mb3">
-                <div class="prose">
+                <div class="prose RecipeNotes">
                     <h1 class="f3">My notes</h1>
                     {{ notes | md | safe }}
                 </div>
             </section>
         {% endif %}
     
-        <section>
-            <div class="prose">
-                <h1 class="f3">The recipe</h1>
-                {{ content | safe }}
-            </div>
-        </section>
+        <div class="prose">
+            <h1 class="f3">The recipe</h1>
+            
+            
+            <div class="RecipeBody">{{ content | safe }}</div>
+        </div>
     
         <footer class="flex items-center justify-between">
             <a href=".." class="btn">

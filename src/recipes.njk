@@ -10,12 +10,14 @@ title: Recipes
         <p class="subhead">A mix of my own and others' recipes I'd like to collect.</p>
     </header>
 
-    <ul role="list">
-        {% for recipe in recipes %}
-        <li class="PostItem h-entry" id="{{ recipe.url | url(true) }}">
-            <a class="u-url" href="{{ recipe.url | url }}">{{ recipe.title }}</a>
-            <p class="muted">{% if recipe.has_tried %}☑ Tried{% else %}☒ Not tried{% endif %}</p>
-        </li>
-        {% endfor %}
-    </ul>
+    <div>
+        <ul role="list">
+            {% for recipe in recipes %}
+            <li class="PostItem h-entry" id="{{ recipe.url | url(true) }}">
+                <a class="u-url" href="{{ recipe.url | url }}">{{ recipe.title }}</a>
+                <p class="muted">{% if recipe.has_tried %}☑ Tried{% else %}☒ Not tried{% endif %}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </main>
