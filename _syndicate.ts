@@ -57,10 +57,12 @@ export const postStatus = async (todo: Todo, accessToken: string, dryRun = false
 
     const permalink = todo.meta.site + notePermalinkOf(todo.id);
 
-    const statusBody = truncateToStatus(todo, permalink);
+    const statusBody = formatStatus(todo, permalink);
 
     console.log(`> Posting status (${statusBody.length} chars):`);
-    console.log('\n' + indent(`${statusBody}`, 3) + '\n');
+    console.log('-'.repeat(20));
+    console.log(statusBody);
+    console.log('-'.repeat(20));
 
     if (dryRun) {
         await persistStatusUrl(todo, 'https://fake-url.com', true);
@@ -126,36 +128,40 @@ export const persistStatusUrl = async (todo: Todo, url: string, dryRun = false) 
     }
 };
 
-const indent = (str: string, n: number) => {
-    const INDENT = ' '.repeat(n);
-    return str.replaceAll('\n', `\n${INDENT}`).replace(/^/, INDENT);
+const sanitise = (str: string) => {
+    // Handles both images and links: ![alt](url) or [text](url)
+    return str.replace(/!?\[([^\]]*)\]\([^)]+\)/g, '$1');
 };
 
-const truncateToStatus = (note: Todo, permalink: string) => {
+const truncate = (str: string, limit: number) => {
+    return str.length <= limit ? str : str.slice(0, limit - 1);
+};
+
+const formatStatus = (todo: Todo, permalink: string) => {
     const maxLimit = 500;
-    const footer = `\n\n→ ${permalink}`;
+    const footer = `\n→ ${permalink}`;
     const statusLimit = maxLimit - footer.length;
 
-    const truncate = (str: string) => {
-        if (str.length <= statusLimit) {
-            return str + footer;
-        }
+    const transform = (str: string) => {
+        str = sanitise(str);
 
-        return str.slice(0, statusLimit - 1) + '…' + footer;
+        const trailing = str.length <= statusLimit ? footer : '…' + footer;
+
+        return truncate(str, statusLimit) + trailing;
     };
 
-    const status = note.statusBody ?? note.description;
+    const status = todo.statusBody ?? todo.description;
 
     // 1. Use explicit status or description field.
-    if (status) return truncate(status);
+    if (status) return transform(status);
 
-    const content = note.content;
+    const content = todo.content;
 
     // 2. Use first paragraph.
     const firstMarkdownParagraph = content.split('\n\n').at(0);
 
-    if (firstMarkdownParagraph) return truncate(firstMarkdownParagraph);
+    if (firstMarkdownParagraph) return transform(firstMarkdownParagraph);
 
     // 3. Truncate the whole body.
-    return truncate(content);
+    return transform(content);
 };
