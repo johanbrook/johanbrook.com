@@ -34,6 +34,7 @@ export const createGithub = (token: string, repo: string): FileHost => {
         putFile: async (
             contents,
             filePath,
+            message,
         ) => {
             console.debug('github putFile %s', filePath);
 
@@ -45,7 +46,7 @@ export const createGithub = (token: string, repo: string): FileHost => {
                 {
                     kind: 'put',
                     body: {
-                        message: `Automated via Johan's API`,
+                        message: message ? `${message} (automated)` : `Automated via Johan's API`,
                         content: encodeBase64(contents),
                         sha: existing?.sha,
                     },

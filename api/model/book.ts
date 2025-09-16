@@ -56,6 +56,7 @@ export const update = async (store: FileHost, idx: number, book: Book) => {
     await store.putFile(
         yamlStringify(books),
         join(BOOKS_PATH),
+        `Update book: ${book.title}`,
     );
 };
 
@@ -89,6 +90,7 @@ export const add = async (store: FileHost, input: BookInput): Promise<[Book, str
     const fullPath = await store.putFile(
         final,
         join(BOOKS_PATH),
+        `Add book: ${book.title}`,
     );
 
     return [book, fullPath];

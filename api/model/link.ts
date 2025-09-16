@@ -37,6 +37,7 @@ export const add = async (store: FileHost, input: LinkInput) => {
     const fullPath = await store.putFile(
         final,
         join(LINKS_PATH),
+        `Add link: ${link.url}`,
     );
 
     return [link, fullPath];

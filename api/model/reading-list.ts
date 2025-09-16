@@ -55,6 +55,7 @@ export const add = async (store: FileHost, input: Input): Promise<[ReadingListBo
     const fullPath = await store.putFile(
         final,
         join(READING_LIST_PATH),
+        `Add book to reading list: ${input.title}`,
     );
 
     return [input, fullPath];
@@ -72,6 +73,7 @@ export const addMany = async (store: FileHost, todo: ReadingListBook[]): Promise
     const fullPath = await store.putFile(
         final,
         join(READING_LIST_PATH),
+        `Add many to reading list: ${todo.map((b) => b.title).join(', ')}`,
     );
 
     return [todo, fullPath];
@@ -122,6 +124,7 @@ export const syncFromKobo = async (store: FileHost, todo: Input[]) => {
     await store.putFile(
         str,
         join(READING_LIST_PATH),
+        `Sync Kobo to reading list: ${final.map((b) => b.title).join(', ')}`,
     );
 
     return true;

@@ -21,6 +21,7 @@ export const setCurrent = async (fileHost: FileHost, inp: TrackInput) => {
             ...rest,
         }),
         FILE,
+        `Set current track: ${artist} - ${name}`,
     );
 };
 

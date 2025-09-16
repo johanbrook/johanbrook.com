@@ -43,6 +43,7 @@ export const add = async (host: FileHost, input: NoteInput): Promise<[Note, stri
     const filePath = await host.putFile(
         addFrontMatter(note.contents, note.meta),
         join(NOTES_PATH, note.fileName),
+        `Add note ${note.meta.date}`,
     );
 
     return [note, filePath];
@@ -78,6 +79,7 @@ ${CURRENT_NOTE_HEADING}
         const filePath = await host.putFile(
             addFrontMatter(contents, note.meta),
             join(NOTES_PATH, note.fileName),
+            `Add note ${note.meta.date}`,
         );
 
         return [note, filePath];
@@ -98,6 +100,7 @@ ${CURRENT_NOTE_HEADING}
         const filePath = await host.putFile(
             addFrontMatter(newContents, note.meta),
             join(NOTES_PATH, note.fileName),
+            `Append to note ${note.meta.date}`,
         );
 
         return [note, filePath];

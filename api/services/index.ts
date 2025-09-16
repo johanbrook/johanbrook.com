@@ -8,6 +8,7 @@ export interface FileHost {
     putFile(
         contents: string,
         filePath: string,
+        message: string,
     ): Promise<string>;
 
     getFile(filePath: string): Promise<string | null>;
