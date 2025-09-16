@@ -178,7 +178,7 @@ Deno.test('API /reading-list not ok for duplicate slug', async () => {
     assertMatch(body, /A book with that slug already exists/);
 });
 
-Deno.test('API /reading-list/sync-kobo ok', async (t) => {
+Deno.test('API /reading-list/sync-kobo ok', async () => {
     const { services } = mock();
 
     services.fileHost.getFile = spy(() =>
@@ -258,7 +258,7 @@ Deno.test('API /reading-list/sync-kobo ok', async (t) => {
     );
 });
 
-Deno.test('API /reading-list/sync-kobo no changes', async (t) => {
+Deno.test('API /reading-list/sync-kobo no changes', async () => {
     const { services } = mock();
 
     services.fileHost.getFile = spy(() =>
@@ -279,10 +279,7 @@ Deno.test('API /reading-list/sync-kobo no changes', async (t) => {
         ))
     );
 
-    let leakedPutFile: string = '';
-
-    services.fileHost.putFile = spy((str: string, filePath: string) => {
-        leakedPutFile = str;
+    services.fileHost.putFile = spy((_str: string, filePath: string) => {
         return filePath;
     });
 
