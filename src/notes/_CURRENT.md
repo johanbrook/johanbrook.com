@@ -1,5 +1,5 @@
 ---
-date: '2025-09-13T23:09:45+02:00'
+date: '2025-09-20T12:39:22+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -15,4 +15,5 @@ tags:
 - Generationer
 - The Sympathizer
 - Challengers
+- The Rest is History
 
