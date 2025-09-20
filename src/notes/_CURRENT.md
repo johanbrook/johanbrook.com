@@ -1,5 +1,5 @@
 ---
-date: '2025-09-20T12:39:22+02:00'
+date: '2025-09-20T22:01:46+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -16,4 +16,5 @@ tags:
 - The Sympathizer
 - Challengers
 - The Rest is History
+- Halva Malmö består av…
 
