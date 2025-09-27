@@ -1,5 +1,5 @@
 ---
-date: '2025-09-20T22:01:46+02:00'
+date: '2025-09-27T23:18:24+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -17,4 +17,5 @@ tags:
 - Challengers
 - The Rest is History
 - Halva Malmö består av…
+- Inherent Vice
 
