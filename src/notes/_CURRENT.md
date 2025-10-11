@@ -1,5 +1,5 @@
 ---
-date: '2025-10-03T22:16:42+02:00'
+date: '2025-10-11T21:43:06+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -8,4 +8,5 @@ tags:
 ## Uncategorised
 
 - Platonic
+- Shame
 
