@@ -1,5 +1,5 @@
 ---
-date: '2025-10-17T21:48:08+02:00'
+date: '2025-10-20T20:53:06+02:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -10,4 +10,5 @@ tags:
 - Platonic
 - Shame
 - Mr. Scorsese
+- Lincoln
 
