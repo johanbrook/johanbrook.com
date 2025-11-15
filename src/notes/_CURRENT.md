@@ -1,5 +1,5 @@
 ---
-date: '2025-11-11T07:55:30+01:00'
+date: '2025-11-15T21:03:08+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -12,4 +12,5 @@ tags:
 - Mr. Scorsese
 - Lincoln
 - Mountainhead
+- Kinds of Kindness
 
