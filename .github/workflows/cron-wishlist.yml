@@ -41,7 +41,7 @@ jobs:
                 if [[ -n "$json" ]]; then
                   echo "changes_made=true" >> $GITHUB_OUTPUT
                   echo "json<<EOF" >> $GITHUB_OUTPUT
-                  echo "$json" >> $GITHUB_OUTPUT
+                  echo "$json" | sed "s/'/\'/" >> $GITHUB_OUTPUT
                   echo "EOF" >> $GITHUB_OUTPUT
                   echo "Posting this Kobo JSON wishlist to Johan's API"
                   echo "$json" | jq
