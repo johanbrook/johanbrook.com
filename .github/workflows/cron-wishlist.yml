@@ -32,23 +32,23 @@ jobs:
               uses: denoland/setup-deno@v1
               with:
                   deno-version: ${{ env.DENO_VERSION }}
-                  
+
             - name: Fetch Kobo wishlist data
               id: fetch
               run: |
-                json=$(deno run --allow-net --allow-env ./script/fetch-kobo-wishlist.ts)
-                
-                if [[ -n "$json" ]]; then
-                  echo "changes_made=true" >> $GITHUB_OUTPUT
-                  echo "json<<EOF" >> $GITHUB_OUTPUT
-                  echo "$json" | sed "s/'/\'/" >> $GITHUB_OUTPUT
-                  echo "EOF" >> $GITHUB_OUTPUT
-                  echo "Posting this Kobo JSON wishlist to Johan's API"
-                  echo "$json" | jq
-                else
-                  echo "No new items to add"
-                  echo "changes_made=false" >> $GITHUB_OUTPUT
-                fi
+                  json=$(deno run --allow-net --allow-env ./script/fetch-kobo-wishlist.ts)
+
+                  if [[ -n "$json" ]]; then
+                    echo "changes_made=true" >> $GITHUB_OUTPUT
+                    echo "json<<EOF" >> $GITHUB_OUTPUT
+                    echo "$json" >> $GITHUB_OUTPUT
+                    echo "EOF" >> $GITHUB_OUTPUT
+                    echo "Posting this Kobo JSON wishlist to Johan's API"
+                    echo "$json" | jq
+                  else
+                    echo "No new items to add"
+                    echo "changes_made=false" >> $GITHUB_OUTPUT
+                  fi
               env:
                   KOBO_ACCESS_TOKEN: ${{ secrets.KOBO_ACCESS_TOKEN }}
                   KOBO_REFRESH_TOKEN: ${{ secrets.KOBO_REFRESH_TOKEN }}
@@ -59,8 +59,9 @@ jobs:
                   curl -s -X PUT \
                     -H "Authorization: API-Token $TOKEN" \
                     -H "Content-Type: application/json" \
-                    -d '${{ steps.fetch.outputs.json }}' \
+                    --data "$JSON" \
                     --fail-with-body \
                   https://johan-api.deno.dev/reading-list/sync-kobo
               env:
                   TOKEN: ${{ secrets.JOHAN_API_ACTION_TOKEN }}
+                  JSON: ${{ steps.fetch.outputs.json }}
