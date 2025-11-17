@@ -1,5 +1,5 @@
 ---
-date: '2025-11-15T21:03:08+01:00'
+date: '2025-11-17T21:39:46+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -13,4 +13,5 @@ tags:
 - Lincoln
 - Mountainhead
 - Kinds of Kindness
+- The Bear S04
 
