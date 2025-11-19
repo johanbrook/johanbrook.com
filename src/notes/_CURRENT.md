@@ -1,5 +1,5 @@
 ---
-date: '2025-11-17T21:39:46+01:00'
+date: '2025-11-19T21:49:24+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -14,4 +14,5 @@ tags:
 - Mountainhead
 - Kinds of Kindness
 - The Bear S04
+- Frankenstein
 
