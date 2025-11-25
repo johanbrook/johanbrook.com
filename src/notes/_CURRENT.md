@@ -1,5 +1,5 @@
 ---
-date: '2025-11-19T21:49:24+01:00'
+date: '2025-11-25T23:33:21+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -15,4 +15,5 @@ tags:
 - Kinds of Kindness
 - The Bear S04
 - Frankenstein
+- Deliver Me From Nowhere
 
