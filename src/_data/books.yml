@@ -1183,6 +1183,8 @@
 - title: The Three Body Problem
   author: Cixin Liu
   slug: the-three-body-problem
+  paused: true
+  finishedAt: 2025-11-01
 
 - title: Artens Överlevnad
   author: Lydia Sandgren
@@ -1191,10 +1193,40 @@
   finished: true
   finishedAt: 2025-11-03
   stars: 4
+  notes: |
+      This is the second novel of Lydia Sandgren, the first being [_Samlade Verk_](/reading/samlade-verk). As with that one, _Artens Överlevnad_ also spans over multiple time periods (in this case, I think it's fair to say it's 2-3). We get to follow an established author in the 2020s (post-pandemic) who's hired by a Swedish woman in Italy, Alice, whom we also get to follow in her adolescence in 1970s Gothenburg, Sweden.
+
+      The latter time period is heavily marked by the '68 left wing wave. Alice herself come from an upper middle class background, whereas her then boyfriend and other friends are more hardcore leninists/marxists/what-have-you. Sandgren has done her usual research: there are _a lot_ of references, mostly towards intellectual left wing literature and thinkers.
+
+      The former period is contemptorary, and describes the main character Karl's single, childless life in central Gothenburg with subsequent move to Rome. The "intellectual vessel" in this time is his childhood friend who is a longtime psychology student.
+
+      This novel is too an ode to learning and all things classical arts. It's quite frustrating at times, because I can't really put the finger on what's the aim of the book. But for that, I was prepared, because _Samlade Verk_ is similar. The end goal is really the trip there: the meandering descriptions of niche authors and artists mixed with low level personal relationships and how the main characters are affected by them.
+
+      The prose is very correct, but also warm at times when necessary, to describe Karl and Alice's respective personal lives. The novel is quite long, again like it's predecessor, but that didn't bother me. But I suspect that most people will look for "answers" and some kind of aim with the whole book, and remark on it being too long.
 
 - title: Arendal
   author: Karl Ove Knausgård
   slug: arendal
+  finished: true
+  finishedAt: 2025-11-15
+  stars: 4
+  notes: |
+      Another Knausgård novel in the _Morning Star_ series. This whole piece, shorter than usual, follows Syvert's (from [_Vargarna Från Evighetens Skog_](/reading/vargarna-fran-evighetens-skog) dad (also named Syvert…) during a few days while his car has broken down near the town of Arendal in west Norway during the 1970s.
+
+      It's just a joy being back in Knausgårds writing and universe again. I don't really care what the overarching story is about. He can publish a book being three hundred or a thousand pages long: I'd read it.
+
+      Svyert the elder is in _Arendal_ quite a nuanced character, but quite how like it is being human. He's wrestling with guilt around his infidelity: he has a relationship with a woman, Anastasia, in then Soviet Russia. We also get insights into his feelings towards his parents, and old childhood friends. On top of that, he's an alcoholic. The thing is, Knausgård's writing is so convincing that I'm swayed to never ever think Syvert is an inherently evil figure. Really fascinating.
+
+      If you thought you'd get any answers to the metaphysical and Biblical hell-on-earth thing Knausgård introduced in the other Morning Star novels, you're wrong. However, the theme about reviving and speaking with the dead is upheld, and Syvert himself is tormented by visions of some sorts.
+
+      I loved it, can't wait for the next one.
+
+      <details>
+        <summary>Spoiler</summary>
+        
+        It gets revealed in _Vargarna Från Evighetens Skog_ that Syvert the elder had died in a car accident when his two sons were little. We don't get to witness this in _Arendal_, but until you know that, you kind of sit on needles until the very final page. Knausgård masterfully pictured the death of a young child in [_Nattens Skola_](/reading/nattens-skole) — a climactic moment in the very end of that novel. I stupidly thought he'd repeat that with Syvert-the-father here, but no.
+        
+      </details>
 
 - title: The Uncool
   author: Cameron Crowe
