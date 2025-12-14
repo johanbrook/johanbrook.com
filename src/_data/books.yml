@@ -1231,6 +1231,9 @@
 - title: The Uncool
   author: Cameron Crowe
   slug: the-uncool
+  finished: true
+  finishedAt: 2025-12-13
+  stars: 4
 
 - title: Din vilja sitter i skogen
   author: Mattias Timander
