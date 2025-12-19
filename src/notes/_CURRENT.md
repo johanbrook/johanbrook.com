@@ -1,7 +1,7 @@
 ---
-date: '2025-11-25T23:33:21+01:00'
+date: '2025-12-19T23:14:15+02:00'
 location: ''
-timezone: Europe/Stockholm
+timezone: Africa/Johannesburg
 tags:
     - recently
 ---
@@ -16,4 +16,5 @@ tags:
 - The Bear S04
 - Frankenstein
 - Deliver Me From Nowhere
+- Wake Up Dead Man
 
