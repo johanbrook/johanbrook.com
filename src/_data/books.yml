@@ -1234,18 +1234,47 @@
   finished: true
   finishedAt: 2025-12-13
   stars: 4
+  notes: |
+      The autobiography of the journalist and film maker Cameron Crowe is a great read: come for the rock star details, stay for the warm, innocent, and humorous writing.
+
+      Crowe is born and raised in California, and started out extremely early as a music journalist, working primarily for The Rolling Stone magazine. If you've watched his movie _Almost Famous_, you'll recognise some of the story (he based the plot on his own life). Crowe is self-deprecating, humble, and quite thorough in descriptions of his adolescence and formative years. Less so about his later success in adult life. I think that's probably a good call: him interviewing and _hanging out_ with artists such as The Eagles, The Who, David Bowie, Led Zeppelin, Kris Kristofferson, and The Allman Brothers Band is _quite_ cool if you're a fan of 1970s rock music. I wonder if the same thing could happen today? I wouldn't know.
+
+      He tells us about his successes but also a lot of his fuckups during the book. He describes the fates of broken people, and he writes beautifully about his idols and mentors. It's a warm memoir, and I'd recommend it to people which don't want to forget music that mattered.
 
 - title: Din vilja sitter i skogen
   author: Mattias Timander
   slug: din-vilja-sitter-i-skogen
+  finished: true
+  finishedAt: 2025-12-20
+  stars: 4
+  notes: |
+      The debut novel by Swedish author Mattias Timander follows a young, unnamed young adult man from the far far north of Sweden. The first person singular perspective is written with the protagonist's local dialect. This could be a gimmick, but it turns out it's not. Me being raised in rural parts, with a local dialect, am somewhat aware of when it becomes A Thing and when the writing becomes an extension of a character's thoughts and self. This novel does the latter.
+
+      The whole text is very compressed — maybe 200 pages or so — but oh how it doesn't feel like that. The emptiness of north Sweden's interior is captured in the pages, not by describing mountains and deer repeatedly, but by describing what the local villagers are _not_ saying. Generations of spite and people just not talking to each other while they're still alive.
+
+      I tend to think the novel is not that credible in describing the man/boy's journey in moving to the city and somehow very quickly becoming involved with the young, chic literature circles, while having no steady income (an inheritence from his parents is mentioned, but me living in Stockholm are doing the math).
+
+      Nevertheless, it's a super performant text, which power in every sentence.
 
 - title: Don’t Let’s Go to the Dogs Tonight
   author: Alexandra Fuller
   slug: don't-let's-go-to-the-dogs-tonight
+  finished: true
+  finishedAt: 2025-12-25
+  stars: 5
+  notes: |
+      A memoir of a childhood spent in southern Africa during the 1970s and onwards.
+
+      I love this one (at the time of writing, I'm reading the [sequel](/cocktail-hour-under-the-tree-of-forgetfulness) and have bought the sequel after that). Alexandra Fuller writes about a quite special upbringing — _for being white_ — in Rhodesia (now Zimbabwe), Malawi, and Zambia. Her British parents emigrated to then Rhodesia in the early 70s, and spent almost a decade there farming during the Bush War against the white minority government.
+
+      The writing is incredible. Each new page includes another totally bizarre episode, and it's almost never without humour (except for some incredibly dark moments). The book includes so many problematic parts ("how could the parents decide to stay in Africa during a guerilla war with two small children?"). The obvious racism is quite everywhere — both in the parents but also in the author, since she's a product of this white supremacist society which was Rhodesia — but I think she's maybe somewhat excused in this part due to "using the gaze of the child". This is where the weight is put, at least. The black people around the family have no voice in Fuller's story. I've read reviews of the two sequels saying they are more adult in their tone. Since in this one, there's no real analysis or racial reflections of any sorts besides simply laying out life in Africa as it was. And that's quite strong as it is.
+
+      But still: she and her sister totally survived and grew up. Fuller's love for Africa is still alive, beating. The story _is_ incredible, although the Fuller sisters' upbringing was no worse or harder than the local black children close to them. Maybe it's the strong characters who are their parents which are making the plot what it is? Maybe it's Africa.
 
 - title: The Promise
   author: Damon Galgut
   slug: the-promise
+  paused: true
 
 - title: Cocktail Hour Under the Tree of Forgetfulness
   author: Alexandra Fuller
