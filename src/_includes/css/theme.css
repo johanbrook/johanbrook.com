@@ -8,6 +8,7 @@ body {
     margin-block-end: 0.5rlh;
     color: var(--color-text-high-contrast);
     font-weight: 540;
+    line-height: 1.5rlh;
 }
 
 strong {
