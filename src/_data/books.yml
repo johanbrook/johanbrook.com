@@ -1109,6 +1109,7 @@
   author: Patric Tariq Mellet
   slug: the-lie-of-1652
   dropped: true
+  finishedAt: 2025-06-01
   location: Stockholm, Sweden
   notes: |
       Another South Africa history book. It focuses on "the lie" that is that the land area of Western Cape was mostly uninhabited when the Dutch settlers arrived in 1652. But the author shows evidence that the Khoisan people who were living there, and had an ancient history and rich culture, were fought off with violence and greatly reduced in numbers over time due to war and diseases. A proper genocide, just like in North America.
@@ -1258,7 +1259,7 @@
 
 - title: Don’t Let’s Go to the Dogs Tonight
   author: Alexandra Fuller
-  slug: don't-let's-go-to-the-dogs-tonight
+  slug: dont-lets-go-to-the-dogs-tonight
   finished: true
   finishedAt: 2025-12-25
   stars: 5
@@ -1279,3 +1280,22 @@
 - title: Cocktail Hour Under the Tree of Forgetfulness
   author: Alexandra Fuller
   slug: cocktail-hour-under-the-tree-of-forgetfulness
+  finished: true
+  finishedAt: 2025-12-30
+  stars: 4
+  notes: |
+      Sequel to [_Don't Let's Go to the Dogs Tonight_](/reading/dont-lets-go-to-the-dogs-tonight).
+
+      This is essentially a memoir, in grand strokes, of the author's mother: Nicola Fuller. Where the first book is through a child's eyes, this one is a timeline in loose chronological order over her mother's life.
+
+      It's not as long as the first one, so you'll breeze through it quickly. The prose is fun, ironic, and more high level than _Don't Let's Go…_.
+
+      The author keeps away from doing any political stance of her parents' life in southern Africa (Rhodesia, Malawi, Zimbabwe). Either she deliberately doesn't want to go into that — the inherited colonial racism here and there in everyday life — or she lets the reader "get it" themselves from the situations. The prose is very clinical and dry when it comes to the treatment of the black servants throughout the 1950s up until now.
+
+      Other reviewers have found this repetitive and say: _"The story of the lives of her parents is not that interesting!"_. I disagree, as it adds character and background to the alcoholic, post-colonial, emotionally distant mother we meet in _"Don't Lets Go…_.
+
+      Next up is [_Travel Light, Move Fast_](/reading/travel-light-move-fast): now about the author's father. I start to see a pattern here.
+
+- title: Travel Light, Move Fast
+  author: Alexandra Fuller
+  slug: travel-light-move-fast
