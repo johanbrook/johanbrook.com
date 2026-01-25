@@ -1,5 +1,5 @@
 ---
-date: '2026-01-25T13:36:07+01:00'
+date: '2026-01-25T13:36:23+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -19,4 +19,5 @@ tags:
 - Wake Up Dead Man
 - The Fall Guy
 - Sinners
+- Mickey 17
 
