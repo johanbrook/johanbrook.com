@@ -1,5 +1,5 @@
 ---
-date: '2026-01-25T13:36:23+01:00'
+date: '2026-01-29T21:59:55+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -20,4 +20,5 @@ tags:
 - The Fall Guy
 - Sinners
 - Mickey 17
+- Populära Problem
 
