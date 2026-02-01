@@ -1,5 +1,5 @@
 ---
-date: '2026-01-29T21:59:55+01:00'
+date: '2026-02-01T22:02:10+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -21,4 +21,5 @@ tags:
 - Sinners
 - Mickey 17
 - Populära Problem
+- David Bowie — The Last Act
 
