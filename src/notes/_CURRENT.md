@@ -1,5 +1,5 @@
 ---
-date: '2026-02-01T22:02:10+01:00'
+date: '2026-02-04T22:37:43+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -22,4 +22,5 @@ tags:
 - Mickey 17
 - Populära Problem
 - David Bowie — The Last Act
+- Nosferatu
 
