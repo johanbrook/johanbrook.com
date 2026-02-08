@@ -1,5 +1,5 @@
 ---
-date: '2026-02-05T20:25:41+01:00'
+date: '2026-02-08T20:14:15+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -24,4 +24,5 @@ tags:
 - David Bowie — The Last Act
 - Nosferatu
 - The Rest Is History: Joan of Arc
+- Wannsee 1942
 
