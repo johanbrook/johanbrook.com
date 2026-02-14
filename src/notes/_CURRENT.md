@@ -1,5 +1,5 @@
 ---
-date: '2026-02-08T20:14:15+01:00'
+date: '2026-02-14T01:45:00+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -25,4 +25,5 @@ tags:
 - Nosferatu
 - The Rest Is History: Joan of Arc
 - Wannsee 1942
+- One Battle After Another
 
