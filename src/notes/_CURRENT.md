@@ -1,5 +1,5 @@
 ---
-date: '2026-02-19T22:15:19+01:00'
+date: '2026-02-20T21:08:44+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -28,4 +28,5 @@ tags:
 - One Battle After Another
 - The Trial of the Chicago 7
 - Armand
+- Oasis: Supersonic
 
