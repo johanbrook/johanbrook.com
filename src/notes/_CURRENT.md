@@ -1,5 +1,5 @@
 ---
-date: '2026-02-20T21:08:44+01:00'
+date: '2026-02-22T20:13:56+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -29,4 +29,5 @@ tags:
 - The Trial of the Chicago 7
 - Armand
 - Oasis: Supersonic
+- The Substance
 
