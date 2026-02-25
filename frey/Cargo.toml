@@ -1,0 +1,11 @@
+[package]
+name = "frey"
+version = "0.1.0"
+edition = "2024"
+description = "My personal static site generator"
+authors = ["Johan Brook <johan@johanbrook.com>"]
+
+[dependencies]
+argh = "0.1.14"
+markdown = "1.0.0-alpha.21"
+owo-colors = "4.3.0"

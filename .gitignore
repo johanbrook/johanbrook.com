@@ -7,3 +7,4 @@ build*/
 .env*
 *.vars
 .mastodon-todo.json
+target
