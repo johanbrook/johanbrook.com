@@ -1,0 +1,22 @@
+---
+layout: layouts/main.vto
+---
+
+<main>
+  <article class="Page">
+    <header>
+        <h1 class="title">{{ title }}</h1>
+    	{{ if subtitle }}
+    		<p class="subhead">{{ subtitle |> md(true) |> safe }}</p>
+    	{{ /if }}
+    </header>
+
+    <div class="prose">
+      {{ content |> safe }}
+    </div>
+
+    <footer>
+        {{#<p class="detail">Updated <time datetime="{{ date |> tdate('Machine') }}">{{ date |> tdate('HumanDate') }}</time>.</p>#}}
+    </footer>
+  </article>
+</main>

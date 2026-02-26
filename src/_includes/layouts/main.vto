@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-gb" class="{{ if home }}home{{ /if }} {{ if hiddenTitle }}hidden-title{{ /if }} {{# pageSlug() #}}">
+
+  <head itemtype="http://schema.org/Blog" itemscope>
+    <title>{{ if title }}{{ title }} / johan.im{{ else }}johan.im{{ /if }}</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://gc.zgo.at">
+    <link rel="preconnect" href="https://johanbrook.goatcounter.com">
+
+    <meta name="generator" content="Lume">
+    <meta name="fediverse:creator" content="@{{ meta.mastodon.username }}@{{ meta.mastodon.instance }}">
+
+    {{ if excerpt || description || subtitle || meta.description }}
+    <meta name="description" content="{{ excerpt || description || subtitle || meta.description }}">
+    {{ /if }}
+    {{ if keywords }}
+    <meta name="keywords" content="{{ keywords }}">
+    {{ /if }}
+    <meta name="author" content="{{ meta.author }}">
+
+    <link rel="stylesheet" href="/johan.css">
+
+    <!-- Feeds -->
+    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Complete feed (RSS)" href="/feed.xml">
+    <link rel="alternate" type="application/feed+json" title="Johan Brook: Complete feed (JSON)" href="/feed.json">
+    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Posts feed (RSS)" href="/writings.xml">
+    <link rel="alternate" type="application/feed+json" title="Johan Brook: Posts feed (JSON)" href="/writings.json">
+    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Micro feed (RSS)" href="/micro.xml">
+    <link rel="alternate" type="application/feed+json" title="Johan Brook: Micro feed (JSON)" href="/micro.json">
+    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Book feed (RSS)" href="/reading.xml">
+    <link rel="alternate" type="application/feed+json" title="Johan Brook: Book feed (JSON)" href="/reading.json">
+    <link rel="alternate" type="application/rss+xml" title="Johan Brook: Recipes feed (RSS)" href="/recipes.xml">
+    <link rel="alternate" type="application/feed+json" title="Johan Brook: Recipes feed (JSON)" href="/recipes.json">
+
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
+    <link rel="canonical" itemprop="url" href="{{ url |> url(true) }}">
+    <link rel="author" href="{{ meta.site }}">
+    <link rel="me" href="https://{{ meta.mastodon.instance }}/@{{ meta.mastodon.username }}">
+
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:url" content="{{ url |> url(true) }}">
+    <meta property="og:site_name" itemprop="name" content="{{ meta.author }}">
+    {{ if ogImage }}
+    <meta property="og:image" content="{{ogImage |> url(true)}}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+	{{ /if }}
+    <meta property="og:locale" content="en_GB">
+    {{ if excerpt || description || meta.description }}
+    <meta property="og:description" content="{{ excerpt || description || meta.description }}">
+    {{ /if }}
+
+    {{ if type == 'post' }}
+	<meta property="og:type" content="article">
+    <meta property="article:tag" content="{{ keywords }}">
+   	{{ else }}
+   	<meta property="og:type" content="blog">
+    {{ /if }}
+  </head>
+
+  <body>
+  	  <a href="#main" class="visually-hidden skip-link">Skip to content</a>
+
+    	{{ #include "nav-mobile.njk" #}}
+  		{{ #include "nav-main.njk" #}}
+    
+  		{{ content |> safe }}
+
+        {{ #include "analytics.njk" #}}
+  </body>
+
+</html>
