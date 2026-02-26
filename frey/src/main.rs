@@ -1,4 +1,7 @@
 mod build;
+mod data;
+mod eda;
+mod templating;
 
 use argh::FromArgs;
 use owo_colors::OwoColorize;
@@ -33,6 +36,10 @@ struct Build {
     /// show what would be generated without writing files
     #[argh(switch)]
     dry_run: bool,
+
+    /// site URL for absolute links (default: http://localhost:3000)
+    #[argh(option, default = "String::from(\"http://localhost:3000\")")]
+    location: String,
 }
 
 fn main() {
@@ -49,7 +56,19 @@ fn main() {
 }
 
 impl From<Build> for BuildConfig {
-    fn from(Build { src, dest, dry_run }: Build) -> Self {
-        BuildConfig { src, dest, dry_run }
+    fn from(
+        Build {
+            src,
+            dest,
+            dry_run,
+            location,
+        }: Build,
+    ) -> Self {
+        BuildConfig {
+            src,
+            dest,
+            dry_run,
+            location,
+        }
     }
 }

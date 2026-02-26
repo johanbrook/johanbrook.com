@@ -6,19 +6,40 @@ use std::path::{Path, PathBuf};
 use std::thread;
 use std::time::Instant;
 
+use crate::data::DataCascade;
+use crate::templating::TemplateStore;
+
 pub struct BuildConfig {
     pub src: String,
     pub dest: String,
     pub dry_run: bool,
+    pub location: String,
 }
 
 enum WorkItem {
-    Markdown { src: PathBuf, dest: PathBuf },
-    Copy { src: PathBuf, dest: PathBuf },
+    Markdown {
+        src: PathBuf,
+        dest: PathBuf,
+        rel_path: PathBuf,
+    },
+    Template {
+        src: PathBuf,
+        dest: PathBuf,
+        rel_path: PathBuf,
+    },
+    Copy {
+        src: PathBuf,
+        dest: PathBuf,
+    },
 }
 
 pub fn build(config: BuildConfig) -> io::Result<()> {
-    let BuildConfig { src, dest, dry_run } = config;
+    let BuildConfig {
+        src,
+        dest,
+        dry_run,
+        location,
+    } = config;
     let src = Path::new(&src);
     let dest = Path::new(&dest);
 
@@ -44,7 +65,8 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
     // Print all items
     for item in &items {
         let (s, d) = match item {
-            WorkItem::Markdown { src, dest } => (src, dest),
+            WorkItem::Markdown { src, dest, .. } => (src, dest),
+            WorkItem::Template { src, dest, .. } => (src, dest),
             WorkItem::Copy { src, dest } => (src, dest),
         };
         print_file(s, d);
@@ -52,11 +74,14 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
 
     if !dry_run {
         // Phase 2: Create all output directories upfront
+        let cascade = DataCascade::load(src)?;
+
         let dirs: BTreeSet<&Path> = items
             .iter()
             .filter_map(|item| {
                 let d = match item {
                     WorkItem::Markdown { dest, .. } => dest,
+                    WorkItem::Template { dest, .. } => dest,
                     WorkItem::Copy { dest, .. } => dest,
                 };
                 d.parent()
@@ -74,12 +99,17 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
 
         println!("Using parallelism: {}", parallelism.green());
 
+        let includes_dir = src.join("_includes");
+        let template_store = TemplateStore::load(&includes_dir, location)?;
+
         let chunks: Vec<&[WorkItem]> = items.chunks(items.len().div_ceil(parallelism)).collect();
 
         thread::scope(|s| {
             let handles: Vec<_> = chunks
                 .into_iter()
                 .map(|chunk| {
+                    let mut store = template_store.clone();
+                    let cascade = &cascade;
                     s.spawn(move || -> io::Result<()> {
                         let opts = markdown::Options {
                             compile: markdown::CompileOptions {
@@ -90,8 +120,21 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                         };
                         for item in chunk {
                             match item {
-                                WorkItem::Markdown { src, dest } => {
-                                    process_markdown(src, dest, &opts)?;
+                                WorkItem::Markdown {
+                                    src,
+                                    dest,
+                                    rel_path,
+                                } => {
+                                    process_markdown(
+                                        src, dest, rel_path, &opts, cascade, &mut store,
+                                    )?;
+                                }
+                                WorkItem::Template {
+                                    src,
+                                    dest,
+                                    rel_path,
+                                } => {
+                                    process_template(src, dest, rel_path, cascade, &mut store)?;
                                 }
                                 WorkItem::Copy { src, dest } => {
                                     fs::copy(src, dest)?;
@@ -156,46 +199,86 @@ fn walk(
 
             walk(&path, src_root, dest_root, items)?;
         } else if path.extension().is_some_and(|ext| ext == "md") {
+            let rel_path = path.strip_prefix(src_root).unwrap().to_path_buf();
             let dest = output_path(&path, src_root, dest_root);
-            items.push(WorkItem::Markdown { src: path, dest });
+            items.push(WorkItem::Markdown {
+                src: path,
+                dest,
+                rel_path,
+            });
+        } else if path.extension().is_some_and(|ext| ext == "vto") {
+            let rel_path = path.strip_prefix(src_root).unwrap().to_path_buf();
+            let dest = output_path(&path, src_root, dest_root);
+            items.push(WorkItem::Template {
+                src: path,
+                dest,
+                rel_path,
+            });
         }
-        // Skip all other file types for now (.njk, .ts, .vto, .css, etc.)
     }
 
     Ok(())
 }
 
-fn process_markdown(path: &Path, out_path: &Path, options: &markdown::Options) -> io::Result<()> {
+fn process_markdown(
+    path: &Path,
+    out_path: &Path,
+    rel_path: &Path,
+    options: &markdown::Options,
+    cascade: &DataCascade,
+    store: &mut TemplateStore,
+) -> io::Result<()> {
     let content = fs::read_to_string(path)?;
     let (frontmatter, body) = split_frontmatter(&content);
 
-    let title = frontmatter.and_then(extract_title);
+    let fm_data = frontmatter.map(parse_frontmatter).unwrap_or_default();
+    let mut data = cascade.data_for(rel_path);
+    data.extend(fm_data);
 
     let html_body = markdown::to_html_with_options(body, options).expect("markdown parsing failed");
 
-    let title_str = title.unwrap_or_default();
-    let html = format!(
-        "<!DOCTYPE html>\n\
-         <html lang=\"en\">\n\
-         <head>\n\
-         <meta charset=\"utf-8\">\n\
-         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\
-         <title>{title_str}</title>\n\
-         </head>\n\
-         <body>\n\
-         {html_body}\n\
-         </body>\n\
-         </html>\n"
-    );
+    let output = if data.contains_key("layout") {
+        data.insert(
+            "content".to_string(),
+            serde_json::Value::String(html_body),
+        );
+        store
+            .render_with_layout("{{ content }}", &data)
+            .map_err(|e| io::Error::other(format!("{}: {e}", path.display())))?
+    } else {
+        html_body
+    };
 
-    fs::write(out_path, html)?;
+    fs::write(out_path, output)?;
 
     Ok(())
 }
 
-/// Split frontmatter (between `---` delimiters) from the markdown body.
+fn process_template(
+    path: &Path,
+    out_path: &Path,
+    rel_path: &Path,
+    cascade: &DataCascade,
+    store: &mut TemplateStore,
+) -> io::Result<()> {
+    let content = fs::read_to_string(path)?;
+    let (frontmatter, body) = split_frontmatter(&content);
+
+    let fm_data = frontmatter.map(parse_frontmatter).unwrap_or_default();
+    let mut data = cascade.data_for(rel_path);
+    data.extend(fm_data);
+
+    let result = store
+        .render_with_layout(body, &data)
+        .map_err(|e| io::Error::other(format!("{}: {e}", path.display())))?;
+
+    fs::write(out_path, result)?;
+    Ok(())
+}
+
+/// Split frontmatter (between `---` delimiters) from the body.
 /// Returns (Option<frontmatter_str>, body_str).
-fn split_frontmatter(content: &str) -> (Option<&str>, &str) {
+pub(crate) fn split_frontmatter(content: &str) -> (Option<&str>, &str) {
     let trimmed = content.trim_start();
 
     if !trimmed.starts_with("---") {
@@ -221,24 +304,12 @@ fn split_frontmatter(content: &str) -> (Option<&str>, &str) {
     }
 }
 
-/// Extract a `title:` value from YAML frontmatter (simple line-based parsing).
-fn extract_title(frontmatter: &str) -> Option<String> {
-    for line in frontmatter.lines() {
-        let line = line.trim();
-        if let Some(rest) = line.strip_prefix("title:") {
-            let title = rest.trim();
-            // Strip surrounding quotes if present
-            let title = title
-                .strip_prefix('"')
-                .and_then(|t| t.strip_suffix('"'))
-                .or_else(|| title.strip_prefix('\'').and_then(|t| t.strip_suffix('\'')))
-                .unwrap_or(title);
-            if !title.is_empty() {
-                return Some(title.to_string());
-            }
-        }
+/// Parse YAML frontmatter into a JSON map.
+pub(crate) fn parse_frontmatter(fm: &str) -> serde_json::Map<String, serde_json::Value> {
+    match crate::data::parse_yaml(fm) {
+        Ok(serde_json::Value::Object(map)) => map,
+        _ => serde_json::Map::new(),
     }
-    None
 }
 
 /// Compute the output path for a markdown file.
