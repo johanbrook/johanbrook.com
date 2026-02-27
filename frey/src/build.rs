@@ -44,8 +44,9 @@ impl Operation {
             }
             Operation::Skip { src, reason } => {
                 println!(
-                    "  {} ({})",
-                    src.display().dimmed(),
+                    "  {} {} ({})",
+                    src.display(),
+                    " SKIP ".black().on_truecolor(255, 223, 112),
                     reason.dimmed(),
                 );
             }
@@ -362,7 +363,7 @@ fn prepare<'a>(
             return Ok(Err(Operation::Skip {
                 src: path.to_path_buf(),
                 reason: "url: false",
-            }))
+            }));
         }
     };
 
