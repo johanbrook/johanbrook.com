@@ -232,18 +232,17 @@ fn process_markdown(
     let (frontmatter, body) = split_frontmatter(&content);
 
     let fm_data = frontmatter.map(parse_frontmatter).unwrap_or_default();
-    let mut data = cascade.data_for(rel_path);
+    let cascade_data = cascade.data_for(rel_path);
+    let mut data = cascade_data.values;
+    let js_sources = cascade_data.js_sources;
     data.extend(fm_data);
 
     let html_body = markdown::to_html_with_options(body, options).expect("markdown parsing failed");
 
     let output = if data.contains_key("layout") {
-        data.insert(
-            "content".to_string(),
-            serde_json::Value::String(html_body),
-        );
+        data.insert("content".to_string(), serde_json::Value::String(html_body));
         store
-            .render_with_layout("{{ content }}", &data)
+            .render_with_layout("{{ content }}", &data, &js_sources)
             .map_err(|e| io::Error::other(format!("{}: {e}", path.display())))?
     } else {
         html_body
@@ -265,11 +264,13 @@ fn process_template(
     let (frontmatter, body) = split_frontmatter(&content);
 
     let fm_data = frontmatter.map(parse_frontmatter).unwrap_or_default();
-    let mut data = cascade.data_for(rel_path);
+    let cascade_data = cascade.data_for(rel_path);
+    let mut data = cascade_data.values;
+    let js_sources = cascade_data.js_sources;
     data.extend(fm_data);
 
     let result = store
-        .render_with_layout(body, &data)
+        .render_with_layout(body, &data, &js_sources)
         .map_err(|e| io::Error::other(format!("{}: {e}", path.display())))?;
 
     fs::write(out_path, result)?;

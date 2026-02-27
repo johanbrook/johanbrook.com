@@ -1,4 +1,85 @@
-use rquickjs::{Context, Function, Runtime, function::Opt};
+use rquickjs::{Context, Function, Module, Runtime, function::Opt};
+
+/// Result of evaluating a JS data file.
+pub struct JsDataResult {
+    pub values: serde_json::Value,
+    pub has_functions: bool,
+}
+
+/// Evaluate a JS file as an ES module and return its exports as a JSON value.
+///
+/// Function-valued exports are skipped in the `values` field (not serializable),
+/// but `has_functions` is set to `true` so the caller can store the raw source
+/// for later evaluation in the template context.
+/// The `default` export, if an object, is merged into the top-level result map.
+/// Named exports become top-level keys.
+pub fn eval_js_data(source: &str) -> Result<JsDataResult, rquickjs::Error> {
+    let runtime = Runtime::new()?;
+    let context = Context::full(&runtime)?;
+
+    context.with(|ctx| {
+        let declared = match Module::declare(ctx.clone(), "data", source) {
+            Ok(m) => m,
+            Err(rquickjs::Error::Exception) => return Err(catch_exception(&ctx)),
+            Err(e) => return Err(e),
+        };
+        let (module, promise) = match declared.eval() {
+            Ok(r) => r,
+            Err(rquickjs::Error::Exception) => return Err(catch_exception(&ctx)),
+            Err(e) => return Err(e),
+        };
+        if let Err(rquickjs::Error::Exception) = promise.finish::<()>() {
+            return Err(catch_exception(&ctx));
+        }
+
+        let namespace = module.namespace()?;
+        let mut result = serde_json::Map::new();
+        let mut has_functions = false;
+
+        for key in namespace.keys::<String>() {
+            let key = key?;
+            let val: rquickjs::Value = namespace.get(&key)?;
+
+            // Skip function exports (not serializable)
+            if val.is_function() {
+                has_functions = true;
+                continue;
+            }
+
+            if key == "default" {
+                // Merge default export's keys into top-level
+                if let Some(json_str) = ctx.json_stringify(&val)? {
+                    let s = json_str.to_string()?;
+                    if let Ok(serde_json::Value::Object(map)) = serde_json::from_str(&s) {
+                        result.extend(map);
+                    }
+                }
+            } else {
+                // Named export → insert as result[key]
+                if let Some(json_str) = ctx.json_stringify(&val)? {
+                    let s = json_str.to_string()?;
+                    if let Ok(value) = serde_json::from_str::<serde_json::Value>(&s) {
+                        result.insert(key, value);
+                    }
+                }
+            }
+        }
+
+        Ok(JsDataResult {
+            values: serde_json::Value::Object(result),
+            has_functions,
+        })
+    })
+}
+
+fn catch_exception(ctx: &rquickjs::Ctx<'_>) -> rquickjs::Error {
+    let exception = ctx.catch();
+    let msg = exception
+        .as_exception()
+        .map(|e| e.to_string())
+        .unwrap_or_else(|| format!("{exception:?}"));
+    rquickjs::Error::Io(std::io::Error::other(msg))
+}
 
 pub struct Engine {
     runtime: Runtime,
@@ -15,6 +96,7 @@ impl Engine {
         js_code: &str,
         data: &serde_json::Value,
         location: &str,
+        js_sources: &[String],
     ) -> Result<String, rquickjs::Error> {
         let context = Context::full(&self.runtime)?;
 
@@ -34,16 +116,39 @@ impl Engine {
             register_builtins(&ctx, &filters, location)?;
             globals.set("__filters", filters)?;
 
+            // Inject JS data modules — evaluate each source and promote exports to globals
+            for (i, source) in js_sources.iter().enumerate() {
+                let mod_name = format!("__data_{i}");
+                let declared = match Module::declare(ctx.clone(), mod_name.clone(), source.as_str())
+                {
+                    Ok(m) => m,
+                    Err(rquickjs::Error::Exception) => return Err(catch_exception(&ctx)),
+                    Err(e) => return Err(e),
+                };
+                let (module, promise) = match declared.eval() {
+                    Ok(r) => r,
+                    Err(rquickjs::Error::Exception) => return Err(catch_exception(&ctx)),
+                    Err(e) => return Err(e),
+                };
+                if let Err(rquickjs::Error::Exception) = promise.finish::<()>() {
+                    return Err(catch_exception(&ctx));
+                }
+                let namespace = module.namespace()?;
+                for key in namespace.keys::<String>() {
+                    let key = key?;
+                    if key == "default" {
+                        continue;
+                    }
+                    let val: rquickjs::Value = namespace.get(&key)?;
+                    globals.set(key.as_str(), val)?;
+                }
+            }
+
             // Evaluate the compiled template JS
             let result: rquickjs::Value = match ctx.eval(js_code) {
                 Ok(v) => v,
                 Err(rquickjs::Error::Exception) => {
-                    let exception = ctx.catch();
-                    let msg = exception
-                        .as_exception()
-                        .map(|e| e.to_string())
-                        .unwrap_or_else(|| format!("{exception:?}"));
-                    return Err(rquickjs::Error::Io(std::io::Error::other(msg)));
+                    return Err(catch_exception(&ctx));
                 }
                 Err(e) => return Err(e),
             };
@@ -130,35 +235,38 @@ fn register_builtins<'js>(
     // md: render Markdown to HTML. md(text) wraps in <p>, md(text, true) strips the outer <p>.
     globals.set(
         "md",
-        Function::new(ctx.clone(), |text: rquickjs::Value<'_>, inline: Opt<bool>| {
-            let text = match text.as_string().and_then(|s| s.to_string().ok()) {
-                Some(s) => s,
-                None => return String::new(),
-            };
+        Function::new(
+            ctx.clone(),
+            |text: rquickjs::Value<'_>, inline: Opt<bool>| {
+                let text = match text.as_string().and_then(|s| s.to_string().ok()) {
+                    Some(s) => s,
+                    None => return String::new(),
+                };
 
-            let opts = markdown::Options {
-                compile: markdown::CompileOptions {
-                    allow_dangerous_html: true,
-                    ..markdown::CompileOptions::gfm()
-                },
-                ..markdown::Options::gfm()
-            };
-            let html =
-                markdown::to_html_with_options(&text, &opts).unwrap_or_else(|_| text.clone());
+                let opts = markdown::Options {
+                    compile: markdown::CompileOptions {
+                        allow_dangerous_html: true,
+                        ..markdown::CompileOptions::gfm()
+                    },
+                    ..markdown::Options::gfm()
+                };
+                let html =
+                    markdown::to_html_with_options(&text, &opts).unwrap_or_else(|_| text.clone());
 
-            let is_inline = inline.0.unwrap_or(false);
-            if is_inline {
-                // Strip wrapping <p>...</p> for inline use
-                let trimmed = html.trim();
-                trimmed
-                    .strip_prefix("<p>")
-                    .and_then(|s| s.strip_suffix("</p>"))
-                    .unwrap_or(trimmed)
-                    .to_string()
-            } else {
-                html
-            }
-        })?,
+                let is_inline = inline.0.unwrap_or(false);
+                if is_inline {
+                    // Strip wrapping <p>...</p> for inline use
+                    let trimmed = html.trim();
+                    trimmed
+                        .strip_prefix("<p>")
+                        .and_then(|s| s.strip_suffix("</p>"))
+                        .unwrap_or(trimmed)
+                        .to_string()
+                } else {
+                    html
+                }
+            },
+        )?,
     )?;
 
     Ok(())
@@ -177,6 +285,7 @@ mod tests {
                 r#"let __out = ""; __out += "Hello "; __out += (name); __out;"#,
                 &data,
                 "http://localhost:3000",
+                &[],
             )
             .unwrap();
         assert_eq!(result, "Hello world");
@@ -191,6 +300,7 @@ mod tests {
                 r#"let __out = ""; __out += __filters.unescape(html); __out;"#,
                 &data,
                 "http://localhost:3000",
+                &[],
             )
             .unwrap();
         assert_eq!(result, "<b>bold</b>");
@@ -205,6 +315,7 @@ mod tests {
                 r#"let __out = ""; __out += __filters.empty(a) + "," + __filters.empty(b) + "," + __filters.empty(c) + "," + __filters.empty(d); __out;"#,
                 &data,
                 "http://localhost:3000",
+                &[],
             )
             .unwrap();
         assert_eq!(result, "true,false,true,false");
@@ -219,6 +330,7 @@ mod tests {
                 r#"let __out = ""; for (const x of items) { __out += x; } __out;"#,
                 &data,
                 "http://localhost:3000",
+                &[],
             )
             .unwrap();
         assert_eq!(result, "abc");
@@ -233,8 +345,61 @@ mod tests {
                 r#"let __out = ""; __out += __filters.escape(html); __out;"#,
                 &data,
                 "http://localhost:3000",
+                &[],
             )
             .unwrap();
         assert_eq!(result, "&lt;b&gt;bold&lt;/b&gt;");
+    }
+
+    #[test]
+    fn eval_with_js_sources_function() {
+        let engine = Engine::new().unwrap();
+        let js_source =
+            r#"export function greet(name) { return "Hello " + name + "!"; }"#.to_string();
+        let data = serde_json::json!({"who": "Johan"});
+        let result = engine
+            .eval(
+                r#"let __out = ""; __out += greet(who); __out;"#,
+                &data,
+                "http://localhost:3000",
+                &[js_source],
+            )
+            .unwrap();
+        assert_eq!(result, "Hello Johan!");
+    }
+
+    #[test]
+    fn eval_js_data_default_export() {
+        let result = eval_js_data(r#"export default { name: "Johan" };"#).unwrap();
+        assert_eq!(result.values["name"], "Johan");
+        assert!(!result.has_functions);
+    }
+
+    #[test]
+    fn eval_js_data_named_exports() {
+        let result =
+            eval_js_data(r#"export const title = "Hello"; export const count = 42;"#).unwrap();
+        assert_eq!(result.values["title"], "Hello");
+        assert_eq!(result.values["count"], 42);
+        assert!(!result.has_functions);
+    }
+
+    #[test]
+    fn eval_js_data_skips_functions() {
+        let result = eval_js_data(
+            r#"export const name = "test"; export function url(page) { return "/"; }"#,
+        )
+        .unwrap();
+        assert_eq!(result.values["name"], "test");
+        assert!(result.values.get("url").is_none());
+        assert!(result.has_functions);
+    }
+
+    #[test]
+    fn eval_js_data_date() {
+        let result = eval_js_data(r#"export default { date: new Date().toJSON() };"#).unwrap();
+        assert!(result.values["date"].is_string());
+        // ISO date string should contain "T" (e.g. "2026-02-27T...")
+        assert!(result.values["date"].as_str().unwrap().contains('T'));
     }
 }

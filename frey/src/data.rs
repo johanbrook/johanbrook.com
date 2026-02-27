@@ -17,9 +17,7 @@ fn yaml_to_json(yaml: &Value) -> serde_json::Value {
                 .collect();
             serde_json::Value::Object(obj)
         }
-        Value::Sequence(seq) => {
-            serde_json::Value::Array(seq.iter().map(yaml_to_json).collect())
-        }
+        Value::Sequence(seq) => serde_json::Value::Array(seq.iter().map(yaml_to_json).collect()),
         Value::Value(scalar) => scalar_to_json(scalar),
         Value::Representation(repr, _, _) => serde_json::Value::String(repr.clone()),
         Value::Tagged(_, inner) => yaml_to_json(inner),
@@ -62,6 +60,13 @@ pub fn parse_yaml(input: &str) -> Result<serde_json::Value, ParseError> {
     }
 }
 
+/// Merged data for a specific file path, including both JSON values
+/// and raw JS sources that contain function exports.
+pub struct CascadeData {
+    pub values: serde_json::Map<String, serde_json::Value>,
+    pub js_sources: Vec<String>,
+}
+
 /// Pre-loaded data cascade from `_data/` directories and `_data.yml` files.
 ///
 /// Data is loaded per directory level. At lookup time, levels are merged
@@ -70,25 +75,35 @@ pub struct DataCascade {
     /// Map from directory (relative to src_root) to data at that level.
     /// Key "" = root, "posts" = src/posts/, etc.
     levels: HashMap<PathBuf, serde_json::Map<String, serde_json::Value>>,
+    /// Raw JS module sources for `_data.js` files that export functions.
+    /// Stored per directory level, keyed by relative dir path.
+    js_sources: HashMap<PathBuf, String>,
 }
 
 impl DataCascade {
     /// Walk `src_root` and load all `_data/` dirs and `_data.yml` files.
     pub fn load(src_root: &Path) -> io::Result<Self> {
         let mut levels = HashMap::new();
-        load_level(src_root, src_root, &mut levels)?;
-        Ok(Self { levels })
+        let mut js_sources = HashMap::new();
+        load_level(src_root, src_root, &mut levels, &mut js_sources)?;
+        Ok(Self { levels, js_sources })
     }
 
     /// Return merged data for a file at `rel_path` (relative to src_root).
     ///
     /// Walks from root down to the file's parent, merging each level.
-    pub fn data_for(&self, rel_path: &Path) -> serde_json::Map<String, serde_json::Value> {
-        let mut result = serde_json::Map::new();
+    /// Returns both the merged JSON values and any JS sources that contain
+    /// function exports (for evaluation in the template context).
+    pub fn data_for(&self, rel_path: &Path) -> CascadeData {
+        let mut values = serde_json::Map::new();
+        let mut js_sources = Vec::new();
 
         // Start with root level
         if let Some(root_data) = self.levels.get(Path::new("")) {
-            result.extend(root_data.clone());
+            values.extend(root_data.clone());
+        }
+        if let Some(source) = self.js_sources.get(Path::new("")) {
+            js_sources.push(source.clone());
         }
 
         // Walk through ancestor directories
@@ -97,11 +112,14 @@ impl DataCascade {
         for component in parent.components() {
             current.push(component);
             if let Some(level_data) = self.levels.get(&current) {
-                result.extend(level_data.clone());
+                values.extend(level_data.clone());
+            }
+            if let Some(source) = self.js_sources.get(&current) {
+                js_sources.push(source.clone());
             }
         }
 
-        result
+        CascadeData { values, js_sources }
     }
 }
 
@@ -109,6 +127,7 @@ fn load_level(
     dir: &Path,
     src_root: &Path,
     levels: &mut HashMap<PathBuf, serde_json::Map<String, serde_json::Value>>,
+    js_sources: &mut HashMap<PathBuf, String>,
 ) -> io::Result<()> {
     let rel_dir = dir.strip_prefix(src_root).unwrap_or(Path::new(""));
     let mut level_data = serde_json::Map::new();
@@ -122,22 +141,55 @@ fn load_level(
         }
     }
 
+    // Check for _data.js
+    let data_js = dir.join("_data.js");
+    if data_js.is_file() {
+        let content = fs::read_to_string(&data_js)?;
+        match crate::eda::eval_js_data(&content) {
+            Ok(result) => {
+                if let serde_json::Value::Object(map) = result.values {
+                    level_data.extend(map);
+                }
+                if result.has_functions {
+                    js_sources.insert(rel_dir.to_path_buf(), content);
+                }
+            }
+            Err(e) => {
+                eprintln!("Warning: failed to evaluate {}: {e}", data_js.display());
+            }
+        }
+    }
+
     // Check for _data/ directory
     let data_dir = dir.join("_data");
     if data_dir.is_dir() {
         for entry in fs::read_dir(&data_dir)? {
             let entry = entry?;
             let path = entry.path();
-            if path.extension().is_some_and(|ext| ext == "yml" || ext == "yaml") && path.is_file()
-            {
-                let stem = path
-                    .file_stem()
-                    .unwrap_or_default()
-                    .to_string_lossy()
-                    .to_string();
+            if !path.is_file() {
+                continue;
+            }
+            let ext = path.extension().unwrap_or_default();
+            let stem = path
+                .file_stem()
+                .unwrap_or_default()
+                .to_string_lossy()
+                .to_string();
+
+            if ext == "yml" || ext == "yaml" {
                 let content = fs::read_to_string(&path)?;
                 if let Ok(value) = parse_yaml(&content) {
                     level_data.insert(stem, value);
+                }
+            } else if ext == "js" {
+                let content = fs::read_to_string(&path)?;
+                match crate::eda::eval_js_data(&content) {
+                    Ok(result) => {
+                        level_data.insert(stem, result.values);
+                    }
+                    Err(e) => {
+                        eprintln!("Warning: failed to evaluate {}: {e}", path.display());
+                    }
                 }
             }
         }
@@ -157,7 +209,7 @@ fn load_level(
         let name_str = name.to_string_lossy();
 
         if path.is_dir() && !name_str.starts_with('_') {
-            load_level(&path, src_root, levels)?;
+            load_level(&path, src_root, levels, js_sources)?;
         }
     }
 
@@ -251,20 +303,24 @@ mod tests {
 
         // Subdirectory with its own _data.yml
         fs::create_dir_all(dir.join("posts")).unwrap();
-        fs::write(dir.join("posts/_data.yml"), "type: post\nlayout: layouts/post.vto\n").unwrap();
+        fs::write(
+            dir.join("posts/_data.yml"),
+            "type: post\nlayout: layouts/post.vto\n",
+        )
+        .unwrap();
 
         let cascade = DataCascade::load(&dir).unwrap();
 
         // Root-level file should get root data only
         let data = cascade.data_for(Path::new("index.md"));
-        assert_eq!(data["layout"], "layouts/main.vto");
-        assert_eq!(data["meta"]["author"], "Johan");
+        assert_eq!(data.values["layout"], "layouts/main.vto");
+        assert_eq!(data.values["meta"]["author"], "Johan");
 
         // Post should get root + posts data, with posts overriding
         let data = cascade.data_for(Path::new("posts/foo.md"));
-        assert_eq!(data["layout"], "layouts/post.vto"); // overridden
-        assert_eq!(data["type"], "post");
-        assert_eq!(data["meta"]["author"], "Johan"); // inherited from root
+        assert_eq!(data.values["layout"], "layouts/post.vto"); // overridden
+        assert_eq!(data.values["type"], "post");
+        assert_eq!(data.values["meta"]["author"], "Johan"); // inherited from root
 
         let _ = fs::remove_dir_all(&dir);
     }
@@ -280,8 +336,8 @@ mod tests {
         let cascade = DataCascade::load(&dir).unwrap();
 
         let data = cascade.data_for(Path::new("a/b/file.md"));
-        assert_eq!(data["color"], "blue"); // overridden by a/
-        assert_eq!(data["fruit"], "apple"); // inherited from root
+        assert_eq!(data.values["color"], "blue"); // overridden by a/
+        assert_eq!(data.values["fruit"], "apple"); // inherited from root
 
         let _ = fs::remove_dir_all(&dir);
     }
@@ -300,7 +356,7 @@ mod tests {
         let cascade = DataCascade::load(&dir).unwrap();
         let data = cascade.data_for(Path::new("index.md"));
 
-        let books = data["books"].as_array().unwrap();
+        let books = data.values["books"].as_array().unwrap();
         assert_eq!(books.len(), 2);
         assert_eq!(books[0]["title"], "Book One");
 
@@ -311,5 +367,47 @@ mod tests {
     fn parse_yaml_empty() {
         let result = parse_yaml("").unwrap();
         assert_eq!(result, serde_json::Value::Null);
+    }
+
+    #[test]
+    fn cascade_data_dir_js_files() {
+        let dir = temp_dir();
+
+        fs::create_dir_all(dir.join("_data")).unwrap();
+        fs::write(
+            dir.join("_data/build.js"),
+            r#"export default { date: new Date().toJSON() };"#,
+        )
+        .unwrap();
+
+        let cascade = DataCascade::load(&dir).unwrap();
+        let data = cascade.data_for(Path::new("index.md"));
+
+        assert!(data.values.contains_key("build"));
+        assert!(data.values["build"]["date"].is_string());
+
+        let _ = fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn cascade_data_js_with_functions() {
+        let dir = temp_dir();
+
+        fs::write(
+            dir.join("_data.js"),
+            r#"export const site = "johan.im"; export function url(page) { return "/" + page; }"#,
+        )
+        .unwrap();
+
+        let cascade = DataCascade::load(&dir).unwrap();
+        let data = cascade.data_for(Path::new("index.md"));
+
+        // Value exports should be available
+        assert_eq!(data.values["site"], "johan.im");
+        // Function source should be stored for template-time evaluation
+        assert_eq!(data.js_sources.len(), 1);
+        assert!(data.js_sources[0].contains("url"));
+
+        let _ = fs::remove_dir_all(&dir);
     }
 }
