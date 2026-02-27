@@ -1,5 +1,4 @@
 use owo_colors::OwoColorize;
-use std::fmt;
 use std::fs;
 use std::io::{self, Write as _};
 use std::path::{Path, PathBuf};
@@ -7,7 +6,7 @@ use std::thread;
 use std::time::Instant;
 
 use crate::data::DataCascade;
-use crate::page::Page;
+use crate::page::{File, Page};
 use crate::templating::TemplateStore;
 
 pub struct BuildConfig {
@@ -26,29 +25,41 @@ enum WorkItem {
 
 /// A resolved build operation ready to be executed.
 enum Operation {
-    /// Write rendered content to a path.
-    Write {
-        src: PathBuf,
-        dest: PathBuf,
-        content: String,
-    },
+    /// Write a rendered page.
+    Write(Page),
     /// Copy a file from src to dest.
     Copy { src: PathBuf, dest: PathBuf },
     /// Skip a file (url: false, draft, etc).
     Skip { src: PathBuf, reason: &'static str },
 }
 
-impl fmt::Display for Operation {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+impl Operation {
+    fn format_line(&self, dest_root: &Path) -> String {
         match self {
-            Operation::Write { src, dest, .. } | Operation::Copy { src, dest } => {
+            Operation::Write(page) => {
+                let src = &page.file.src;
+                let full_dest = dest_root.join(&page.file.dest);
+
+                let (dir, rest) = full_dest
+                    .iter()
+                    .next()
+                    .map(|first| (first, full_dest.strip_prefix(first).unwrap()))
+                    .unwrap();
+
+                format!(
+                    "  {} -> {}/{}",
+                    src.display(),
+                    Path::new(dir).display().dimmed(),
+                    rest.display().dimmed().bold()
+                )
+            }
+            Operation::Copy { src, dest } => {
                 let (dir, rest) = dest
                     .iter()
                     .next()
                     .map(|first| (first, dest.strip_prefix(first).unwrap()))
                     .unwrap();
-                write!(
-                    f,
+                format!(
                     "  {} -> {}/{}",
                     src.display(),
                     Path::new(dir).display().dimmed(),
@@ -56,57 +67,34 @@ impl fmt::Display for Operation {
                 )
             }
             Operation::Skip { src, reason } => {
-                write!(
-                    f,
+                format!(
                     "  {} {} ({})",
                     src.display(),
                     " SKIP ".black().on_truecolor(255, 223, 112),
-                    reason
+                    reason.dimmed(),
                 )
             }
         }
     }
-}
 
-impl Operation {
-    fn print(&self, verbose: bool) {
+    fn print(&self, verbose: bool, dest_root: &Path) {
+        let line = self.format_line(dest_root);
         if verbose {
-            match self {
-                Operation::Write { src, dest, .. } | Operation::Copy { src, dest } => {
-                    let (dir, rest) = dest
-                        .iter()
-                        .next()
-                        .map(|first| (first, dest.strip_prefix(first).unwrap()))
-                        .unwrap();
-                    println!(
-                        "  {} -> {}/{}",
-                        src.display(),
-                        Path::new(dir).display().dimmed(),
-                        rest.display().dimmed().bold()
-                    );
-                }
-                Operation::Skip { src, reason } => {
-                    println!(
-                        "  {} {} ({})",
-                        src.display(),
-                        " SKIP ".black().on_truecolor(255, 223, 112),
-                        reason.dimmed(),
-                    );
-                }
-            }
+            println!("{line}");
         } else {
-            print!("\r\x1b[2K{}", self);
+            print!("\r\x1b[2K{line}");
             let _ = io::stdout().flush();
         }
     }
 
-    fn execute(&self) -> io::Result<()> {
+    fn execute(&self, dest_root: &Path) -> io::Result<()> {
         match self {
-            Operation::Write { dest, content, .. } => {
+            Operation::Write(page) => {
+                let dest = dest_root.join(&page.file.dest);
                 if let Some(parent) = dest.parent() {
                     fs::create_dir_all(parent)?;
                 }
-                fs::write(dest, content)
+                fs::write(dest, &page.rendered)
             }
             Operation::Copy { src, dest } => {
                 if let Some(parent) = dest.parent() {
@@ -163,7 +151,6 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
 
     let includes_dir = src.join("_includes");
     let template_store = TemplateStore::load(&includes_dir, location)?;
-    let src_str = src.to_string_lossy().into_owned();
 
     let chunks: Vec<&[WorkItem]> = items.chunks(items.len().div_ceil(parallelism)).collect();
 
@@ -173,7 +160,6 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
             .map(|chunk| {
                 let mut store = template_store.clone();
                 let cascade = &cascade;
-                let src_str = &src_str;
                 let dest = &dest;
                 s.spawn(move || -> io::Result<()> {
                     let opts = markdown::Options {
@@ -185,11 +171,11 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                     };
                     for item in chunk {
                         let op = match item {
-                            WorkItem::Markdown { src, rel_path } => process_markdown(
-                                src, rel_path, dest, src_str, &opts, cascade, &mut store,
-                            )?,
+                            WorkItem::Markdown { src, rel_path } => {
+                                process_markdown(src, rel_path, &opts, cascade, &mut store)?
+                            }
                             WorkItem::Template { src, rel_path } => {
-                                process_template(src, rel_path, dest, src_str, cascade, &mut store)?
+                                process_template(src, rel_path, cascade, &mut store)?
                             }
                             WorkItem::Copy { src, dest } => Operation::Copy {
                                 src: src.clone(),
@@ -197,9 +183,9 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                             },
                         };
 
-                        op.print(verbose);
+                        op.print(verbose, dest);
                         if !dry_run {
-                            op.execute()?;
+                            op.execute(dest)?;
                         }
                     }
                     Ok(())
@@ -279,124 +265,16 @@ fn walk(
     Ok(())
 }
 
-/// Resolve the url value from merged data, checking both static values and JS functions.
-fn resolve_url(
-    data: &serde_json::Map<String, serde_json::Value>,
-    js_sources: &[String],
-    rel_path: &Path,
-    src_str: &str,
-) -> Option<serde_json::Value> {
-    // First check if url is already a string or false in the data
-    if let Some(url_val) = data.get("url") {
-        match url_val {
-            serde_json::Value::String(_) | serde_json::Value::Bool(false) => {
-                return Some(url_val.clone());
-            }
-            _ => {}
-        }
-    }
-
-    // Try calling a JS url function if js_sources are present
-    if !js_sources.is_empty() {
-        let page = Page::build(rel_path, data.clone(), src_str);
-        let page_json = serde_json::to_string(&page).unwrap_or_default();
-        match crate::eda::call_js_function(js_sources, "url", &page_json) {
-            Ok(Some(val)) => return Some(val),
-            Ok(None) => {}
-            Err(e) => {
-                eprintln!(
-                    "Warning: url function failed for {}: {e}",
-                    rel_path.display()
-                );
-            }
-        }
-    }
-
-    None
-}
-
-/// Resolve the final output path for a page, given its url value.
-///
-/// - `None` url → fall back to default pretty-URL logic
-/// - `Some(Bool(false))` → skip the page (return `None`)
-/// - `Some(String(s))` → convert URL string to filesystem path
-fn resolve_output_path(
-    url: Option<&serde_json::Value>,
-    rel_path: &Path,
-    dest_root: &Path,
-) -> Option<PathBuf> {
-    match url {
-        Some(serde_json::Value::Bool(false)) => None,
-        Some(serde_json::Value::String(s)) => {
-            let s = s.trim_start_matches('/');
-            if s.is_empty() {
-                Some(dest_root.join("index.html"))
-            } else if s.ends_with('/') {
-                Some(dest_root.join(s).join("index.html"))
-            } else if Path::new(s).extension().is_some() {
-                Some(dest_root.join(s))
-            } else {
-                // No trailing slash, no extension → output as file
-                Some(dest_root.join(s))
-            }
-        }
-        _ => Some(default_output_path(rel_path, dest_root)),
-    }
-}
-
-/// Derive a URL string from an output path, relative to the dest root.
-/// e.g. `build/posts/foo/index.html` → `/posts/foo/`
-///      `build/feed.xml` → `/feed.xml`
-fn output_path_to_url(out_path: &Path, dest_root: &Path) -> String {
-    let rel = out_path.strip_prefix(dest_root).unwrap_or(out_path);
-    let s = rel.to_string_lossy();
-    if s.ends_with("/index.html") {
-        format!("/{}", s.strip_suffix("index.html").unwrap())
-    } else if s == "index.html" {
-        "/".to_string()
-    } else {
-        format!("/{s}")
-    }
-}
-
-/// Default pretty-URL output path from filesystem structure.
-///
-/// - `index.md` -> `build/index.html`
-/// - `about.md` -> `build/about/index.html`
-/// - `posts/foo.md` -> `build/posts/foo/index.html`
-fn default_output_path(rel_path: &Path, dest_root: &Path) -> PathBuf {
-    let stem = rel_path.file_stem().unwrap().to_string_lossy();
-
-    if stem == "index" {
-        dest_root.join(rel_path.with_file_name("index.html"))
-    } else {
-        let parent = rel_path.parent().unwrap_or(Path::new(""));
-        dest_root
-            .join(parent)
-            .join(stem.as_ref())
-            .join("index.html")
-    }
-}
-
-/// Prepared page data after merging cascade + frontmatter, resolving url, and checking for skips.
-struct Prepared<'a> {
-    body: &'a str,
-    dest: PathBuf,
-    data: serde_json::Map<String, serde_json::Value>,
-    js_sources: Vec<String>,
-}
-
-/// Read a content file, merge cascade + frontmatter, check for draft/url:false skips,
-/// and resolve the output path. Returns `Err` on IO failure, `Ok(Skip)` if the page
-/// should be skipped, or the prepared data for rendering.
-fn prepare<'a>(
+/// Read a content file, merge cascade + frontmatter, construct a File,
+/// check for draft/url:false skips, and resolve the output path.
+/// Returns `Err` on IO failure, `Ok(Err(Skip))` if the page should be skipped,
+/// or `Ok(Ok(file))` with a fully resolved File.
+fn prepare(
     path: &Path,
-    content: &'a str,
+    content: &str,
     rel_path: &Path,
-    dest_root: &Path,
-    src_str: &str,
     cascade: &DataCascade,
-) -> io::Result<Result<Prepared<'a>, Operation>> {
+) -> io::Result<Result<File, Operation>> {
     let (frontmatter, body) = split_frontmatter(content);
 
     let fm_data = frontmatter.map(parse_frontmatter).unwrap_or_default();
@@ -405,105 +283,71 @@ fn prepare<'a>(
     let js_sources = cascade_data.js_sources;
     data.extend(fm_data);
 
-    if data.get("draft").and_then(|v| v.as_bool()) == Some(true) {
+    let mut file = File::new(path.to_path_buf(), body.to_string(), data, js_sources);
+
+    if file.draft {
         return Ok(Err(Operation::Skip {
             src: path.to_path_buf(),
             reason: "draft",
         }));
     }
 
-    let url_val = resolve_url(&data, &js_sources, rel_path, src_str);
-    let dest = match resolve_output_path(url_val.as_ref(), rel_path, dest_root) {
-        Some(p) => p,
-        None => {
-            return Ok(Err(Operation::Skip {
-                src: path.to_path_buf(),
-                reason: "url: false",
-            }));
-        }
-    };
-
-    if let Some(val) = &url_val {
-        data.insert("url".to_string(), val.clone());
-    } else if !data.contains_key("url") {
-        let url_str = output_path_to_url(&dest, dest_root);
-        data.insert("url".to_string(), serde_json::Value::String(url_str));
+    if !file.resolve_url(rel_path) {
+        return Ok(Err(Operation::Skip {
+            src: path.to_path_buf(),
+            reason: "url: false",
+        }));
     }
 
-    Ok(Ok(Prepared {
-        body,
-        dest,
-        data,
-        js_sources,
-    }))
+    Ok(Ok(file))
 }
 
 fn process_markdown(
     path: &Path,
     rel_path: &Path,
-    dest_root: &Path,
-    src_str: &str,
     options: &markdown::Options,
     cascade: &DataCascade,
     store: &mut TemplateStore,
 ) -> io::Result<Operation> {
     let content = fs::read_to_string(path)?;
-    let Prepared {
-        body,
-        dest,
-        mut data,
-        js_sources,
-    } = match prepare(path, &content, rel_path, dest_root, src_str, cascade)? {
-        Ok(p) => p,
+    let mut file = match prepare(path, &content, rel_path, cascade)? {
+        Ok(f) => f,
         Err(skip) => return Ok(skip),
     };
 
-    let html_body = markdown::to_html_with_options(body, options).expect("markdown parsing failed");
+    let html_body =
+        markdown::to_html_with_options(&file.body, options).expect("markdown parsing failed");
 
-    let rendered = if data.contains_key("layout") {
-        data.insert("content".to_string(), serde_json::Value::String(html_body));
+    let rendered = if file.layout.is_some() {
+        file.data
+            .insert("content".to_string(), serde_json::Value::String(html_body));
         store
-            .render_with_layout("{{ content }}", &data, &js_sources)
+            .render_with_layout("{{ content }}", &file.data, &file.js_sources)
             .map_err(|e| io::Error::other(format!("{}: {e}", path.display())))?
     } else {
         html_body
     };
 
-    Ok(Operation::Write {
-        src: path.to_path_buf(),
-        dest,
-        content: rendered,
-    })
+    Ok(Operation::Write(Page { file, rendered }))
 }
 
 fn process_template(
     path: &Path,
     rel_path: &Path,
-    dest_root: &Path,
-    src_str: &str,
     cascade: &DataCascade,
     store: &mut TemplateStore,
 ) -> io::Result<Operation> {
     let content = fs::read_to_string(path)?;
-    let Prepared {
-        body,
-        dest,
-        data,
-        js_sources,
-    } = match prepare(path, &content, rel_path, dest_root, src_str, cascade)? {
-        Ok(p) => p,
+    let file = match prepare(path, &content, rel_path, cascade)? {
+        Ok(f) => f,
         Err(skip) => return Ok(skip),
     };
 
     let rendered = store
-        .render_with_layout(body, &data, &js_sources)
+        .render_with_layout(&file.body, &file.data, &file.js_sources)
         .map_err(|e| io::Error::other(format!("{}: {e}", path.display())))?;
 
-    Ok(Operation::Write {
-        src: path.to_path_buf(),
-        dest,
-        content: rendered,
-    })
+    Ok(Operation::Write(Page { file, rendered }))
 }
 
 /// Split frontmatter (between `---` delimiters) from the body.
@@ -577,61 +421,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn resolve_output_path_with_string_url() {
-        let dest = Path::new("build");
-
-        // Trailing slash → append index.html
-        let url = serde_json::Value::String("/writings/my-post/".to_string());
-        assert_eq!(
-            resolve_output_path(Some(&url), Path::new("posts/foo.md"), dest),
-            Some(PathBuf::from("build/writings/my-post/index.html"))
-        );
-
-        // With extension → use as-is
-        let url = serde_json::Value::String("/feed.xml".to_string());
-        assert_eq!(
-            resolve_output_path(Some(&url), Path::new("feed.vto"), dest),
-            Some(PathBuf::from("build/feed.xml"))
-        );
-
-        // No trailing slash, no extension → output as file
-        let url = serde_json::Value::String("/CNAME".to_string());
-        assert_eq!(
-            resolve_output_path(Some(&url), Path::new("cname.md"), dest),
-            Some(PathBuf::from("build/CNAME"))
-        );
-
-        // Root path
-        let url = serde_json::Value::String("/".to_string());
-        assert_eq!(
-            resolve_output_path(Some(&url), Path::new("index.md"), dest),
-            Some(PathBuf::from("build/index.html"))
-        );
+    fn split_frontmatter_basic() {
+        let (fm, body) = split_frontmatter("---\ntitle: Hello\n---\nBody here");
+        assert_eq!(fm, Some("title: Hello"));
+        assert_eq!(body, "Body here");
     }
 
     #[test]
-    fn resolve_output_path_with_false() {
-        let url = serde_json::Value::Bool(false);
-        assert_eq!(
-            resolve_output_path(Some(&url), Path::new("draft.md"), Path::new("build")),
-            None
-        );
-    }
-
-    #[test]
-    fn resolve_output_path_with_none() {
-        // Falls back to default pretty-URL logic
-        assert_eq!(
-            resolve_output_path(None, Path::new("about.md"), Path::new("build")),
-            Some(PathBuf::from("build/about/index.html"))
-        );
-        assert_eq!(
-            resolve_output_path(None, Path::new("index.md"), Path::new("build")),
-            Some(PathBuf::from("build/index.html"))
-        );
-        assert_eq!(
-            resolve_output_path(None, Path::new("posts/foo.md"), Path::new("build")),
-            Some(PathBuf::from("build/posts/foo/index.html"))
-        );
+    fn split_frontmatter_none() {
+        let (fm, body) = split_frontmatter("No frontmatter here");
+        assert!(fm.is_none());
+        assert_eq!(body, "No frontmatter here");
     }
 }
