@@ -162,17 +162,10 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                 let cascade = &cascade;
                 let dest = &dest;
                 s.spawn(move || -> io::Result<()> {
-                    let opts = markdown::Options {
-                        compile: markdown::CompileOptions {
-                            allow_dangerous_html: true,
-                            ..markdown::CompileOptions::gfm()
-                        },
-                        ..markdown::Options::gfm()
-                    };
                     for item in chunk {
                         let op = match item {
                             WorkItem::Markdown { src, rel_path } => {
-                                process_markdown(src, rel_path, &opts, cascade, &mut store)?
+                                process_markdown(src, rel_path, cascade, &mut store)?
                             }
                             WorkItem::Template { src, rel_path } => {
                                 process_template(src, rel_path, cascade, &mut store)?
@@ -305,7 +298,6 @@ fn prepare(
 fn process_markdown(
     path: &Path,
     rel_path: &Path,
-    options: &markdown::Options,
     cascade: &DataCascade,
     store: &mut TemplateStore,
 ) -> io::Result<Operation> {
@@ -315,8 +307,17 @@ fn process_markdown(
         Err(skip) => return Ok(skip),
     };
 
-    let html_body =
-        markdown::to_html_with_options(&file.body, options).expect("markdown parsing failed");
+    let html_body = markdown::to_html_with_options(
+        &file.body,
+        &markdown::Options {
+            compile: markdown::CompileOptions {
+                allow_dangerous_html: true,
+                ..markdown::CompileOptions::gfm()
+            },
+            ..markdown::Options::gfm()
+        },
+    )
+    .expect("markdown parsing failed");
 
     let rendered = if file.layout.is_some() {
         file.data
