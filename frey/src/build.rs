@@ -321,6 +321,66 @@ fn default_output_path(rel_path: &Path, dest_root: &Path) -> PathBuf {
     }
 }
 
+/// Prepared page data after merging cascade + frontmatter, resolving url, and checking for skips.
+struct Prepared<'a> {
+    body: &'a str,
+    dest: PathBuf,
+    data: serde_json::Map<String, serde_json::Value>,
+    js_sources: Vec<String>,
+}
+
+/// Read a content file, merge cascade + frontmatter, check for draft/url:false skips,
+/// and resolve the output path. Returns `Err` on IO failure, `Ok(Skip)` if the page
+/// should be skipped, or the prepared data for rendering.
+fn prepare<'a>(
+    path: &Path,
+    content: &'a str,
+    rel_path: &Path,
+    dest_root: &Path,
+    src_str: &str,
+    cascade: &DataCascade,
+) -> io::Result<Result<Prepared<'a>, Operation>> {
+    let (frontmatter, body) = split_frontmatter(content);
+
+    let fm_data = frontmatter.map(parse_frontmatter).unwrap_or_default();
+    let cascade_data = cascade.data_for(rel_path);
+    let mut data = cascade_data.values;
+    let js_sources = cascade_data.js_sources;
+    data.extend(fm_data);
+
+    if data.get("draft").and_then(|v| v.as_bool()) == Some(true) {
+        return Ok(Err(Operation::Skip {
+            src: path.to_path_buf(),
+            reason: "draft",
+        }));
+    }
+
+    let url_val = resolve_url(&data, &js_sources, rel_path, src_str);
+    let dest = match resolve_output_path(url_val.as_ref(), rel_path, dest_root) {
+        Some(p) => p,
+        None => {
+            return Ok(Err(Operation::Skip {
+                src: path.to_path_buf(),
+                reason: "url: false",
+            }))
+        }
+    };
+
+    if let Some(val) = &url_val {
+        data.insert("url".to_string(), val.clone());
+    } else if !data.contains_key("url") {
+        let url_str = output_path_to_url(&dest, dest_root);
+        data.insert("url".to_string(), serde_json::Value::String(url_str));
+    }
+
+    Ok(Ok(Prepared {
+        body,
+        dest,
+        data,
+        js_sources,
+    }))
+}
+
 fn process_markdown(
     path: &Path,
     rel_path: &Path,
@@ -331,40 +391,15 @@ fn process_markdown(
     store: &mut TemplateStore,
 ) -> io::Result<Operation> {
     let content = fs::read_to_string(path)?;
-    let (frontmatter, body) = split_frontmatter(&content);
-
-    let fm_data = frontmatter.map(parse_frontmatter).unwrap_or_default();
-    let cascade_data = cascade.data_for(rel_path);
-    let mut data = cascade_data.values;
-    let js_sources = cascade_data.js_sources;
-    data.extend(fm_data);
-
-    if data.get("draft").and_then(|v| v.as_bool()) == Some(true) {
-        return Ok(Operation::Skip {
-            src: path.to_path_buf(),
-            reason: "draft",
-        });
-    }
-
-    // Resolve output path from url field
-    let url_val = resolve_url(&data, &js_sources, rel_path, src_str);
-    let out_path = match resolve_output_path(url_val.as_ref(), rel_path, dest_root) {
-        Some(p) => p,
-        None => {
-            return Ok(Operation::Skip {
-                src: path.to_path_buf(),
-                reason: "url: false",
-            })
-        }
+    let Prepared {
+        body,
+        dest,
+        mut data,
+        js_sources,
+    } = match prepare(path, &content, rel_path, dest_root, src_str, cascade)? {
+        Ok(p) => p,
+        Err(skip) => return Ok(skip),
     };
-
-    // Ensure the url is available in template data
-    if let Some(val) = &url_val {
-        data.insert("url".to_string(), val.clone());
-    } else if !data.contains_key("url") {
-        let url_str = output_path_to_url(&out_path, dest_root);
-        data.insert("url".to_string(), serde_json::Value::String(url_str));
-    }
 
     let html_body = markdown::to_html_with_options(body, options).expect("markdown parsing failed");
 
@@ -379,7 +414,7 @@ fn process_markdown(
 
     Ok(Operation::Write {
         src: path.to_path_buf(),
-        dest: out_path,
+        dest,
         content: rendered,
     })
 }
@@ -393,40 +428,15 @@ fn process_template(
     store: &mut TemplateStore,
 ) -> io::Result<Operation> {
     let content = fs::read_to_string(path)?;
-    let (frontmatter, body) = split_frontmatter(&content);
-
-    let fm_data = frontmatter.map(parse_frontmatter).unwrap_or_default();
-    let cascade_data = cascade.data_for(rel_path);
-    let mut data = cascade_data.values;
-    let js_sources = cascade_data.js_sources;
-    data.extend(fm_data);
-
-    if data.get("draft").and_then(|v| v.as_bool()) == Some(true) {
-        return Ok(Operation::Skip {
-            src: path.to_path_buf(),
-            reason: "draft",
-        });
-    }
-
-    // Resolve output path from url field
-    let url_val = resolve_url(&data, &js_sources, rel_path, src_str);
-    let out_path = match resolve_output_path(url_val.as_ref(), rel_path, dest_root) {
-        Some(p) => p,
-        None => {
-            return Ok(Operation::Skip {
-                src: path.to_path_buf(),
-                reason: "url: false",
-            })
-        }
+    let Prepared {
+        body,
+        dest,
+        data,
+        js_sources,
+    } = match prepare(path, &content, rel_path, dest_root, src_str, cascade)? {
+        Ok(p) => p,
+        Err(skip) => return Ok(skip),
     };
-
-    // Ensure the url is available in template data
-    if let Some(val) = &url_val {
-        data.insert("url".to_string(), val.clone());
-    } else if !data.contains_key("url") {
-        let url_str = output_path_to_url(&out_path, dest_root);
-        data.insert("url".to_string(), serde_json::Value::String(url_str));
-    }
 
     let rendered = store
         .render_with_layout(body, &data, &js_sources)
@@ -434,7 +444,7 @@ fn process_template(
 
     Ok(Operation::Write {
         src: path.to_path_buf(),
-        dest: out_path,
+        dest,
         content: rendered,
     })
 }
