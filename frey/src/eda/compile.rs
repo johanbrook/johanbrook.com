@@ -144,17 +144,37 @@ fn guard_condition(expr: &str) -> String {
 
 /// Guard a single term: if it's a bare identifier, wrap with typeof check.
 /// Dotted paths like `meta.description` need the root identifier guarded.
+/// Comparison expressions like `type == 'post'` need the LHS guarded.
 fn guard_term(term: &str) -> String {
     if term.is_empty() {
         return term.to_string();
     }
 
-    // Check for bare identifier or dotted path (e.g. `meta.description`)
-    let root = term.split('.').next().unwrap_or(term);
+    // Check for comparison operators surrounded by whitespace and guard the LHS.
+    // We require whitespace around operators to avoid matching inside arrow
+    // functions (=>) or other non-comparison uses.
+    for op in &[
+        " === ", " !== ", " == ", " != ", " >= ", " <= ", " > ", " < ",
+    ] {
+        if let Some(pos) = term.find(op) {
+            let lhs = term[..pos].trim();
+            let op_trimmed = op.trim();
+            let rhs = term[pos + op.len()..].trim();
+            let guarded_lhs = guard_identifier(lhs);
+            return format!("{guarded_lhs} {op_trimmed} {rhs}");
+        }
+    }
+
+    guard_identifier(term)
+}
+
+/// If `expr` is a bare identifier or dotted path, wrap with a typeof guard.
+fn guard_identifier(expr: &str) -> String {
+    let root = expr.split('.').next().unwrap_or(expr);
     if is_bare_identifier(root) && !is_js_keyword(root) {
-        format!("typeof {root} !== \"undefined\" && {term}")
+        format!("typeof {root} !== \"undefined\" && {expr}")
     } else {
-        term.to_string()
+        expr.to_string()
     }
 }
 
@@ -226,9 +246,31 @@ mod tests {
             Node::EndIf,
         ];
         let js = compile(&nodes);
-        assert!(js.contains("if (x > 0) {"));
+        assert!(js.contains(r#"if (typeof x !== "undefined" && x > 0) {"#));
         assert!(js.contains("} else {"));
         assert!(js.contains("}"));
+    }
+
+    #[test]
+    fn compile_if_comparison_guards_lhs() {
+        let nodes = vec![
+            Node::If("type == 'post'".into()),
+            Node::Text("is post".into()),
+            Node::EndIf,
+        ];
+        let js = compile(&nodes);
+        assert!(js.contains(r#"if (typeof type !== "undefined" && type == 'post') {"#));
+    }
+
+    #[test]
+    fn compile_if_dotted_comparison() {
+        let nodes = vec![
+            Node::If("menu.visible == true".into()),
+            Node::Text("visible".into()),
+            Node::EndIf,
+        ];
+        let js = compile(&nodes);
+        assert!(js.contains(r#"if (typeof menu !== "undefined" && menu.visible == true) {"#));
     }
 
     #[test]

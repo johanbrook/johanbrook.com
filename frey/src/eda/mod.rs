@@ -3,6 +3,7 @@ mod engine;
 mod parse;
 
 use engine::Engine;
+pub use engine::call_js_function;
 pub use engine::eval_js_data;
 
 pub struct Template {
@@ -360,5 +361,12 @@ mod tests {
             .render(&serde_json::json!({}), "https://johan.im", &[])
             .unwrap();
         assert_eq!(result, "https://johan.im/foo");
+    }
+
+    #[test]
+    fn full_render_undefined_var_in_comparison() {
+        let tpl = Template::from_str("{{ if undefinedVar == 'foo' }}yes{{ else }}no{{ /if }}");
+        let result = tpl.render(&serde_json::json!({}), LOC, &[]).unwrap();
+        assert_eq!(result, "no");
     }
 }
