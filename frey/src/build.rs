@@ -22,6 +22,56 @@ enum WorkItem {
     Copy { src: PathBuf, dest: PathBuf },
 }
 
+/// A resolved build operation ready to be executed.
+enum Operation {
+    /// Write rendered content to a path.
+    Write {
+        src: PathBuf,
+        dest: PathBuf,
+        content: String,
+    },
+    /// Copy a file from src to dest.
+    Copy { src: PathBuf, dest: PathBuf },
+    /// Skip a file (url: false, draft, etc).
+    Skip { src: PathBuf, reason: &'static str },
+}
+
+impl Operation {
+    fn print(&self) {
+        match self {
+            Operation::Write { src, dest, .. } | Operation::Copy { src, dest } => {
+                print_file(src, dest);
+            }
+            Operation::Skip { src, reason } => {
+                println!(
+                    "  {} ({})",
+                    src.display().dimmed(),
+                    reason.dimmed(),
+                );
+            }
+        }
+    }
+
+    fn execute(&self) -> io::Result<()> {
+        match self {
+            Operation::Write { dest, content, .. } => {
+                if let Some(parent) = dest.parent() {
+                    fs::create_dir_all(parent)?;
+                }
+                fs::write(dest, content)
+            }
+            Operation::Copy { src, dest } => {
+                if let Some(parent) = dest.parent() {
+                    fs::create_dir_all(parent)?;
+                }
+                fs::copy(src, dest)?;
+                Ok(())
+            }
+            Operation::Skip { .. } => Ok(()),
+        }
+    }
+}
+
 pub fn build(config: BuildConfig) -> io::Result<()> {
     let BuildConfig {
         src,
@@ -51,103 +101,73 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
 
     let count = items.len();
 
-    if dry_run {
-        // For dry run, print items using the default output path (no data available)
-        for item in &items {
-            match item {
-                WorkItem::Markdown { src, rel_path } | WorkItem::Template { src, rel_path } => {
-                    let default_dest = default_output_path(rel_path, dest);
-                    print_file(src, &default_dest);
-                }
-                WorkItem::Copy {
-                    src,
-                    dest: copy_dest,
-                } => {
-                    print_file(src, copy_dest);
-                }
-            }
-        }
-    }
+    let cascade = DataCascade::load(src)?;
 
-    if !dry_run {
-        let cascade = DataCascade::load(src)?;
+    // Phase 2: Process in parallel
+    let parallelism = thread::available_parallelism()
+        .map(|n| n.get())
+        .unwrap_or(4);
 
-        // Create output dirs for Copy items upfront
-        for item in &items {
-            if let WorkItem::Copy { dest, .. } = item {
-                if let Some(parent) = dest.parent() {
-                    fs::create_dir_all(parent)?;
-                }
-            }
-        }
+    println!("Using parallelism: {}", parallelism.green());
 
-        // Phase 2: Process in parallel
-        let parallelism = thread::available_parallelism()
-            .map(|n| n.get())
-            .unwrap_or(4);
+    let includes_dir = src.join("_includes");
+    let template_store = TemplateStore::load(&includes_dir, location)?;
+    let src_str = src.to_string_lossy().into_owned();
 
-        println!("Using parallelism: {}", parallelism.green());
+    let chunks: Vec<&[WorkItem]> = items.chunks(items.len().div_ceil(parallelism)).collect();
 
-        let includes_dir = src.join("_includes");
-        let template_store = TemplateStore::load(&includes_dir, location)?;
-        let src_str = src.to_string_lossy().to_string();
-
-        let chunks: Vec<&[WorkItem]> = items.chunks(items.len().div_ceil(parallelism)).collect();
-
-        thread::scope(|s| {
-            let handles: Vec<_> = chunks
-                .into_iter()
-                .map(|chunk| {
-                    let mut store = template_store.clone();
-                    let cascade = &cascade;
-                    let src_str = &src_str;
-                    let dest = &dest;
-                    s.spawn(move || -> io::Result<()> {
-                        let opts = markdown::Options {
-                            compile: markdown::CompileOptions {
-                                allow_dangerous_html: true,
-                                ..markdown::CompileOptions::gfm()
-                            },
-                            ..markdown::Options::gfm()
-                        };
-                        for item in chunk {
-                            match item {
-                                WorkItem::Markdown { src, rel_path } => {
-                                    process_markdown(
-                                        src, rel_path, dest, src_str, &opts, cascade, &mut store,
-                                    )?;
-                                }
-                                WorkItem::Template { src, rel_path } => {
-                                    process_template(
-                                        src, rel_path, dest, src_str, cascade, &mut store,
-                                    )?;
-                                }
-                                WorkItem::Copy { src, dest } => {
-                                    fs::copy(src, dest)?;
-                                }
+    thread::scope(|s| {
+        let handles: Vec<_> = chunks
+            .into_iter()
+            .map(|chunk| {
+                let mut store = template_store.clone();
+                let cascade = &cascade;
+                let src_str = &src_str;
+                let dest = &dest;
+                s.spawn(move || -> io::Result<()> {
+                    let opts = markdown::Options {
+                        compile: markdown::CompileOptions {
+                            allow_dangerous_html: true,
+                            ..markdown::CompileOptions::gfm()
+                        },
+                        ..markdown::Options::gfm()
+                    };
+                    for item in chunk {
+                        let op = match item {
+                            WorkItem::Markdown { src, rel_path } => process_markdown(
+                                src, rel_path, dest, src_str, &opts, cascade, &mut store,
+                            )?,
+                            WorkItem::Template { src, rel_path } => {
+                                process_template(src, rel_path, dest, src_str, cascade, &mut store)?
                             }
+                            WorkItem::Copy { src, dest } => Operation::Copy {
+                                src: src.clone(),
+                                dest: dest.clone(),
+                            },
+                        };
+
+                        op.print();
+                        if !dry_run {
+                            op.execute()?;
                         }
-                        Ok(())
-                    })
+                    }
+                    Ok(())
                 })
-                .collect();
+            })
+            .collect();
 
-            for handle in handles {
-                handle.join().expect("thread panicked")?;
-            }
+        for handle in handles {
+            handle.join().expect("thread panicked")?;
+        }
 
-            Ok::<(), io::Error>(())
-        })?;
-    }
+        Ok::<(), io::Error>(())
+    })?;
 
     let elapsed = start.elapsed();
     let timing = format_duration(elapsed);
 
     if dry_run {
-        println!(
-            "Would build {count} files into {} in {timing}",
-            dest.display().green()
-        );
+        println!("Processed {count} files in {timing} (dry run, nothing written)",);
     } else {
         println!(
             "Built {count} files into {} in {timing}",
@@ -309,7 +329,7 @@ fn process_markdown(
     options: &markdown::Options,
     cascade: &DataCascade,
     store: &mut TemplateStore,
-) -> io::Result<()> {
+) -> io::Result<Operation> {
     let content = fs::read_to_string(path)?;
     let (frontmatter, body) = split_frontmatter(&content);
 
@@ -319,27 +339,36 @@ fn process_markdown(
     let js_sources = cascade_data.js_sources;
     data.extend(fm_data);
 
+    if data.get("draft").and_then(|v| v.as_bool()) == Some(true) {
+        return Ok(Operation::Skip {
+            src: path.to_path_buf(),
+            reason: "draft",
+        });
+    }
+
     // Resolve output path from url field
     let url_val = resolve_url(&data, &js_sources, rel_path, src_str);
     let out_path = match resolve_output_path(url_val.as_ref(), rel_path, dest_root) {
         Some(p) => p,
-        None => return Ok(()), // url: false → skip
+        None => {
+            return Ok(Operation::Skip {
+                src: path.to_path_buf(),
+                reason: "url: false",
+            })
+        }
     };
 
     // Ensure the url is available in template data
     if let Some(val) = &url_val {
         data.insert("url".to_string(), val.clone());
     } else if !data.contains_key("url") {
-        // Derive url from the output path so templates can use it
         let url_str = output_path_to_url(&out_path, dest_root);
         data.insert("url".to_string(), serde_json::Value::String(url_str));
     }
 
-    print_file(path, &out_path);
-
     let html_body = markdown::to_html_with_options(body, options).expect("markdown parsing failed");
 
-    let output = if data.contains_key("layout") {
+    let rendered = if data.contains_key("layout") {
         data.insert("content".to_string(), serde_json::Value::String(html_body));
         store
             .render_with_layout("{{ content }}", &data, &js_sources)
@@ -348,12 +377,11 @@ fn process_markdown(
         html_body
     };
 
-    if let Some(parent) = out_path.parent() {
-        fs::create_dir_all(parent)?;
-    }
-    fs::write(&out_path, output)?;
-
-    Ok(())
+    Ok(Operation::Write {
+        src: path.to_path_buf(),
+        dest: out_path,
+        content: rendered,
+    })
 }
 
 fn process_template(
@@ -363,7 +391,7 @@ fn process_template(
     src_str: &str,
     cascade: &DataCascade,
     store: &mut TemplateStore,
-) -> io::Result<()> {
+) -> io::Result<Operation> {
     let content = fs::read_to_string(path)?;
     let (frontmatter, body) = split_frontmatter(&content);
 
@@ -373,11 +401,23 @@ fn process_template(
     let js_sources = cascade_data.js_sources;
     data.extend(fm_data);
 
+    if data.get("draft").and_then(|v| v.as_bool()) == Some(true) {
+        return Ok(Operation::Skip {
+            src: path.to_path_buf(),
+            reason: "draft",
+        });
+    }
+
     // Resolve output path from url field
     let url_val = resolve_url(&data, &js_sources, rel_path, src_str);
     let out_path = match resolve_output_path(url_val.as_ref(), rel_path, dest_root) {
         Some(p) => p,
-        None => return Ok(()), // url: false → skip
+        None => {
+            return Ok(Operation::Skip {
+                src: path.to_path_buf(),
+                reason: "url: false",
+            })
+        }
     };
 
     // Ensure the url is available in template data
@@ -388,17 +428,15 @@ fn process_template(
         data.insert("url".to_string(), serde_json::Value::String(url_str));
     }
 
-    print_file(path, &out_path);
-
-    let result = store
+    let rendered = store
         .render_with_layout(body, &data, &js_sources)
         .map_err(|e| io::Error::other(format!("{}: {e}", path.display())))?;
 
-    if let Some(parent) = out_path.parent() {
-        fs::create_dir_all(parent)?;
-    }
-    fs::write(&out_path, result)?;
-    Ok(())
+    Ok(Operation::Write {
+        src: path.to_path_buf(),
+        dest: out_path,
+        content: rendered,
+    })
 }
 
 /// Split frontmatter (between `---` delimiters) from the body.
