@@ -1,6 +1,7 @@
 use owo_colors::OwoColorize;
+use std::fmt;
 use std::fs;
-use std::io;
+use std::io::{self, Write as _};
 use std::path::{Path, PathBuf};
 use std::thread;
 use std::time::Instant;
@@ -13,6 +14,7 @@ pub struct BuildConfig {
     pub src: String,
     pub dest: String,
     pub dry_run: bool,
+    pub verbose: bool,
     pub location: String,
 }
 
@@ -36,20 +38,65 @@ enum Operation {
     Skip { src: PathBuf, reason: &'static str },
 }
 
-impl Operation {
-    fn print(&self) {
+impl fmt::Display for Operation {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Operation::Write { src, dest, .. } | Operation::Copy { src, dest } => {
-                print_file(src, dest);
+                let (dir, rest) = dest
+                    .iter()
+                    .next()
+                    .map(|first| (first, dest.strip_prefix(first).unwrap()))
+                    .unwrap();
+                write!(
+                    f,
+                    "  {} -> {}/{}",
+                    src.display(),
+                    Path::new(dir).display().dimmed(),
+                    rest.display().dimmed().bold()
+                )
             }
             Operation::Skip { src, reason } => {
-                println!(
+                write!(
+                    f,
                     "  {} {} ({})",
                     src.display(),
                     " SKIP ".black().on_truecolor(255, 223, 112),
-                    reason.dimmed(),
-                );
+                    reason
+                )
             }
+        }
+    }
+}
+
+impl Operation {
+    fn print(&self, verbose: bool) {
+        if verbose {
+            match self {
+                Operation::Write { src, dest, .. } | Operation::Copy { src, dest } => {
+                    let (dir, rest) = dest
+                        .iter()
+                        .next()
+                        .map(|first| (first, dest.strip_prefix(first).unwrap()))
+                        .unwrap();
+                    println!(
+                        "  {} -> {}/{}",
+                        src.display(),
+                        Path::new(dir).display().dimmed(),
+                        rest.display().dimmed().bold()
+                    );
+                }
+                Operation::Skip { src, reason } => {
+                    println!(
+                        "  {} {} ({})",
+                        src.display(),
+                        " SKIP ".black().on_truecolor(255, 223, 112),
+                        reason.dimmed(),
+                    );
+                }
+            }
+        } else {
+            print!("\r\x1b[2K{}", self);
+            let _ = io::stdout().flush();
         }
     }
 
@@ -78,6 +125,7 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
         src,
         dest,
         dry_run,
+        verbose,
         location,
     } = config;
     let src = Path::new(&src);
@@ -109,7 +157,9 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
         .map(|n| n.get())
         .unwrap_or(4);
 
-    println!("Using parallelism: {}", parallelism.green());
+    if verbose {
+        println!("Using parallelism: {}", parallelism.green());
+    }
 
     let includes_dir = src.join("_includes");
     let template_store = TemplateStore::load(&includes_dir, location)?;
@@ -147,7 +197,7 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                             },
                         };
 
-                        op.print();
+                        op.print(verbose);
                         if !dry_run {
                             op.execute()?;
                         }
@@ -164,6 +214,12 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
         Ok::<(), io::Error>(())
     })?;
 
+    // Clear the flickering line before printing the summary
+    if !verbose {
+        print!("\r\x1b[2K");
+        let _ = io::stdout().flush();
+    }
+
     let elapsed = start.elapsed();
     let timing = format_duration(elapsed);
 
@@ -171,7 +227,7 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
         println!("Processed {count} files in {timing} (dry run, nothing written)",);
     } else {
         println!(
-            "Built {count} files into {} in {timing}",
+            "Processed {count} files into {} in {timing}",
             dest.display().green()
         );
     }
@@ -514,22 +570,6 @@ fn format_duration(d: std::time::Duration) -> String {
     } else {
         format!("{:.2}s", d.as_secs_f64())
     }
-}
-
-fn print_file(src: impl AsRef<Path>, dest: impl AsRef<Path>) {
-    let (dir, rest) = dest
-        .as_ref()
-        .iter()
-        .next()
-        .map(|first| (first, dest.as_ref().strip_prefix(first).unwrap()))
-        .unwrap();
-
-    println!(
-        "  {} -> {}/{}",
-        src.as_ref().display(),
-        Path::new(dir).display().dimmed(),
-        rest.display().dimmed().bold()
-    );
 }
 
 #[cfg(test)]

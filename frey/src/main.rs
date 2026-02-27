@@ -38,6 +38,10 @@ struct Build {
     #[argh(switch)]
     dry_run: bool,
 
+    /// print every file path during build
+    #[argh(switch, short = 'v')]
+    verbose: bool,
+
     /// site URL for absolute links (default: http://localhost:3000)
     #[argh(option, default = "String::from(\"http://localhost:3000\")")]
     location: String,
@@ -62,6 +66,7 @@ impl From<Build> for BuildConfig {
             src,
             dest,
             dry_run,
+            verbose,
             location,
         }: Build,
     ) -> Self {
@@ -69,6 +74,7 @@ impl From<Build> for BuildConfig {
             src,
             dest,
             dry_run,
+            verbose,
             location,
         }
     }
