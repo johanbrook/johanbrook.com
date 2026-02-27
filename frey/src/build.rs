@@ -1,5 +1,4 @@
 use owo_colors::OwoColorize;
-use std::collections::BTreeSet;
 use std::fs;
 use std::io;
 use std::path::{Path, PathBuf};
@@ -7,6 +6,7 @@ use std::thread;
 use std::time::Instant;
 
 use crate::data::DataCascade;
+use crate::page::Page;
 use crate::templating::TemplateStore;
 
 pub struct BuildConfig {
@@ -17,20 +17,9 @@ pub struct BuildConfig {
 }
 
 enum WorkItem {
-    Markdown {
-        src: PathBuf,
-        dest: PathBuf,
-        rel_path: PathBuf,
-    },
-    Template {
-        src: PathBuf,
-        dest: PathBuf,
-        rel_path: PathBuf,
-    },
-    Copy {
-        src: PathBuf,
-        dest: PathBuf,
-    },
+    Markdown { src: PathBuf, rel_path: PathBuf },
+    Template { src: PathBuf, rel_path: PathBuf },
+    Copy { src: PathBuf, dest: PathBuf },
 }
 
 pub fn build(config: BuildConfig) -> io::Result<()> {
@@ -62,37 +51,37 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
 
     let count = items.len();
 
-    // Print all items
-    for item in &items {
-        let (s, d) = match item {
-            WorkItem::Markdown { src, dest, .. } => (src, dest),
-            WorkItem::Template { src, dest, .. } => (src, dest),
-            WorkItem::Copy { src, dest } => (src, dest),
-        };
-        print_file(s, d);
+    if dry_run {
+        // For dry run, print items using the default output path (no data available)
+        for item in &items {
+            match item {
+                WorkItem::Markdown { src, rel_path } | WorkItem::Template { src, rel_path } => {
+                    let default_dest = default_output_path(rel_path, dest);
+                    print_file(src, &default_dest);
+                }
+                WorkItem::Copy {
+                    src,
+                    dest: copy_dest,
+                } => {
+                    print_file(src, copy_dest);
+                }
+            }
+        }
     }
 
     if !dry_run {
-        // Phase 2: Create all output directories upfront
         let cascade = DataCascade::load(src)?;
 
-        let dirs: BTreeSet<&Path> = items
-            .iter()
-            .filter_map(|item| {
-                let d = match item {
-                    WorkItem::Markdown { dest, .. } => dest,
-                    WorkItem::Template { dest, .. } => dest,
-                    WorkItem::Copy { dest, .. } => dest,
-                };
-                d.parent()
-            })
-            .collect();
-
-        for dir in dirs {
-            fs::create_dir_all(dir)?;
+        // Create output dirs for Copy items upfront
+        for item in &items {
+            if let WorkItem::Copy { dest, .. } = item {
+                if let Some(parent) = dest.parent() {
+                    fs::create_dir_all(parent)?;
+                }
+            }
         }
 
-        // Phase 3: Process in parallel
+        // Phase 2: Process in parallel
         let parallelism = thread::available_parallelism()
             .map(|n| n.get())
             .unwrap_or(4);
@@ -101,6 +90,7 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
 
         let includes_dir = src.join("_includes");
         let template_store = TemplateStore::load(&includes_dir, location)?;
+        let src_str = src.to_string_lossy().to_string();
 
         let chunks: Vec<&[WorkItem]> = items.chunks(items.len().div_ceil(parallelism)).collect();
 
@@ -110,6 +100,8 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                 .map(|chunk| {
                     let mut store = template_store.clone();
                     let cascade = &cascade;
+                    let src_str = &src_str;
+                    let dest = &dest;
                     s.spawn(move || -> io::Result<()> {
                         let opts = markdown::Options {
                             compile: markdown::CompileOptions {
@@ -120,21 +112,15 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                         };
                         for item in chunk {
                             match item {
-                                WorkItem::Markdown {
-                                    src,
-                                    dest,
-                                    rel_path,
-                                } => {
+                                WorkItem::Markdown { src, rel_path } => {
                                     process_markdown(
-                                        src, dest, rel_path, &opts, cascade, &mut store,
+                                        src, rel_path, dest, src_str, &opts, cascade, &mut store,
                                     )?;
                                 }
-                                WorkItem::Template {
-                                    src,
-                                    dest,
-                                    rel_path,
-                                } => {
-                                    process_template(src, dest, rel_path, cascade, &mut store)?;
+                                WorkItem::Template { src, rel_path } => {
+                                    process_template(
+                                        src, rel_path, dest, src_str, cascade, &mut store,
+                                    )?;
                                 }
                                 WorkItem::Copy { src, dest } => {
                                     fs::copy(src, dest)?;
@@ -200,18 +186,14 @@ fn walk(
             walk(&path, src_root, dest_root, items)?;
         } else if path.extension().is_some_and(|ext| ext == "md") {
             let rel_path = path.strip_prefix(src_root).unwrap().to_path_buf();
-            let dest = output_path(&path, src_root, dest_root);
             items.push(WorkItem::Markdown {
                 src: path,
-                dest,
                 rel_path,
             });
         } else if path.extension().is_some_and(|ext| ext == "vto") {
             let rel_path = path.strip_prefix(src_root).unwrap().to_path_buf();
-            let dest = output_path(&path, src_root, dest_root);
             items.push(WorkItem::Template {
                 src: path,
-                dest,
                 rel_path,
             });
         }
@@ -220,10 +202,110 @@ fn walk(
     Ok(())
 }
 
+/// Resolve the url value from merged data, checking both static values and JS functions.
+fn resolve_url(
+    data: &serde_json::Map<String, serde_json::Value>,
+    js_sources: &[String],
+    rel_path: &Path,
+    src_str: &str,
+) -> Option<serde_json::Value> {
+    // First check if url is already a string or false in the data
+    if let Some(url_val) = data.get("url") {
+        match url_val {
+            serde_json::Value::String(_) | serde_json::Value::Bool(false) => {
+                return Some(url_val.clone());
+            }
+            _ => {}
+        }
+    }
+
+    // Try calling a JS url function if js_sources are present
+    if !js_sources.is_empty() {
+        let page = Page::build(rel_path, data.clone(), src_str);
+        let page_json = serde_json::to_string(&page).unwrap_or_default();
+        match crate::eda::call_js_function(js_sources, "url", &page_json) {
+            Ok(Some(val)) => return Some(val),
+            Ok(None) => {}
+            Err(e) => {
+                eprintln!(
+                    "Warning: url function failed for {}: {e}",
+                    rel_path.display()
+                );
+            }
+        }
+    }
+
+    None
+}
+
+/// Resolve the final output path for a page, given its url value.
+///
+/// - `None` url → fall back to default pretty-URL logic
+/// - `Some(Bool(false))` → skip the page (return `None`)
+/// - `Some(String(s))` → convert URL string to filesystem path
+fn resolve_output_path(
+    url: Option<&serde_json::Value>,
+    rel_path: &Path,
+    dest_root: &Path,
+) -> Option<PathBuf> {
+    match url {
+        Some(serde_json::Value::Bool(false)) => None,
+        Some(serde_json::Value::String(s)) => {
+            let s = s.trim_start_matches('/');
+            if s.is_empty() {
+                Some(dest_root.join("index.html"))
+            } else if s.ends_with('/') {
+                Some(dest_root.join(s).join("index.html"))
+            } else if Path::new(s).extension().is_some() {
+                Some(dest_root.join(s))
+            } else {
+                // No trailing slash, no extension → output as file
+                Some(dest_root.join(s))
+            }
+        }
+        _ => Some(default_output_path(rel_path, dest_root)),
+    }
+}
+
+/// Derive a URL string from an output path, relative to the dest root.
+/// e.g. `build/posts/foo/index.html` → `/posts/foo/`
+///      `build/feed.xml` → `/feed.xml`
+fn output_path_to_url(out_path: &Path, dest_root: &Path) -> String {
+    let rel = out_path.strip_prefix(dest_root).unwrap_or(out_path);
+    let s = rel.to_string_lossy();
+    if s.ends_with("/index.html") {
+        format!("/{}", s.strip_suffix("index.html").unwrap())
+    } else if s == "index.html" {
+        "/".to_string()
+    } else {
+        format!("/{s}")
+    }
+}
+
+/// Default pretty-URL output path from filesystem structure.
+///
+/// - `index.md` -> `build/index.html`
+/// - `about.md` -> `build/about/index.html`
+/// - `posts/foo.md` -> `build/posts/foo/index.html`
+fn default_output_path(rel_path: &Path, dest_root: &Path) -> PathBuf {
+    let stem = rel_path.file_stem().unwrap().to_string_lossy();
+
+    if stem == "index" {
+        dest_root.join(rel_path.with_file_name("index.html"))
+    } else {
+        let parent = rel_path.parent().unwrap_or(Path::new(""));
+        dest_root
+            .join(parent)
+            .join(stem.as_ref())
+            .join("index.html")
+    }
+}
+
 fn process_markdown(
     path: &Path,
-    out_path: &Path,
     rel_path: &Path,
+    dest_root: &Path,
+    src_str: &str,
     options: &markdown::Options,
     cascade: &DataCascade,
     store: &mut TemplateStore,
@@ -237,6 +319,24 @@ fn process_markdown(
     let js_sources = cascade_data.js_sources;
     data.extend(fm_data);
 
+    // Resolve output path from url field
+    let url_val = resolve_url(&data, &js_sources, rel_path, src_str);
+    let out_path = match resolve_output_path(url_val.as_ref(), rel_path, dest_root) {
+        Some(p) => p,
+        None => return Ok(()), // url: false → skip
+    };
+
+    // Ensure the url is available in template data
+    if let Some(val) = &url_val {
+        data.insert("url".to_string(), val.clone());
+    } else if !data.contains_key("url") {
+        // Derive url from the output path so templates can use it
+        let url_str = output_path_to_url(&out_path, dest_root);
+        data.insert("url".to_string(), serde_json::Value::String(url_str));
+    }
+
+    print_file(path, &out_path);
+
     let html_body = markdown::to_html_with_options(body, options).expect("markdown parsing failed");
 
     let output = if data.contains_key("layout") {
@@ -248,15 +348,19 @@ fn process_markdown(
         html_body
     };
 
-    fs::write(out_path, output)?;
+    if let Some(parent) = out_path.parent() {
+        fs::create_dir_all(parent)?;
+    }
+    fs::write(&out_path, output)?;
 
     Ok(())
 }
 
 fn process_template(
     path: &Path,
-    out_path: &Path,
     rel_path: &Path,
+    dest_root: &Path,
+    src_str: &str,
     cascade: &DataCascade,
     store: &mut TemplateStore,
 ) -> io::Result<()> {
@@ -269,11 +373,31 @@ fn process_template(
     let js_sources = cascade_data.js_sources;
     data.extend(fm_data);
 
+    // Resolve output path from url field
+    let url_val = resolve_url(&data, &js_sources, rel_path, src_str);
+    let out_path = match resolve_output_path(url_val.as_ref(), rel_path, dest_root) {
+        Some(p) => p,
+        None => return Ok(()), // url: false → skip
+    };
+
+    // Ensure the url is available in template data
+    if let Some(val) = &url_val {
+        data.insert("url".to_string(), val.clone());
+    } else if !data.contains_key("url") {
+        let url_str = output_path_to_url(&out_path, dest_root);
+        data.insert("url".to_string(), serde_json::Value::String(url_str));
+    }
+
+    print_file(path, &out_path);
+
     let result = store
         .render_with_layout(body, &data, &js_sources)
         .map_err(|e| io::Error::other(format!("{}: {e}", path.display())))?;
 
-    fs::write(out_path, result)?;
+    if let Some(parent) = out_path.parent() {
+        fs::create_dir_all(parent)?;
+    }
+    fs::write(&out_path, result)?;
     Ok(())
 }
 
@@ -310,28 +434,6 @@ pub(crate) fn parse_frontmatter(fm: &str) -> serde_json::Map<String, serde_json:
     match crate::data::parse_yaml(fm) {
         Ok(serde_json::Value::Object(map)) => map,
         _ => serde_json::Map::new(),
-    }
-}
-
-/// Compute the output path for a markdown file.
-///
-/// - `src/index.md` -> `build/index.html`
-/// - `src/about.md` -> `build/about/index.html`
-/// - `src/posts/foo.md` -> `build/posts/foo/index.html`
-fn output_path(path: &Path, src_root: &Path, dest_root: &Path) -> PathBuf {
-    let rel = path.strip_prefix(src_root).unwrap();
-    let stem = rel.file_stem().unwrap().to_string_lossy();
-
-    if stem == "index" {
-        // index.md at any level -> index.html in same directory
-        dest_root.join(rel.with_file_name("index.html"))
-    } else {
-        // about.md -> about/index.html
-        let parent = rel.parent().unwrap_or(Path::new(""));
-        dest_root
-            .join(parent)
-            .join(stem.as_ref())
-            .join("index.html")
     }
 }
 
@@ -379,4 +481,68 @@ fn print_file(src: impl AsRef<Path>, dest: impl AsRef<Path>) {
         Path::new(dir).display().dimmed(),
         rest.display().dimmed().bold()
     );
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn resolve_output_path_with_string_url() {
+        let dest = Path::new("build");
+
+        // Trailing slash → append index.html
+        let url = serde_json::Value::String("/writings/my-post/".to_string());
+        assert_eq!(
+            resolve_output_path(Some(&url), Path::new("posts/foo.md"), dest),
+            Some(PathBuf::from("build/writings/my-post/index.html"))
+        );
+
+        // With extension → use as-is
+        let url = serde_json::Value::String("/feed.xml".to_string());
+        assert_eq!(
+            resolve_output_path(Some(&url), Path::new("feed.vto"), dest),
+            Some(PathBuf::from("build/feed.xml"))
+        );
+
+        // No trailing slash, no extension → output as file
+        let url = serde_json::Value::String("/CNAME".to_string());
+        assert_eq!(
+            resolve_output_path(Some(&url), Path::new("cname.md"), dest),
+            Some(PathBuf::from("build/CNAME"))
+        );
+
+        // Root path
+        let url = serde_json::Value::String("/".to_string());
+        assert_eq!(
+            resolve_output_path(Some(&url), Path::new("index.md"), dest),
+            Some(PathBuf::from("build/index.html"))
+        );
+    }
+
+    #[test]
+    fn resolve_output_path_with_false() {
+        let url = serde_json::Value::Bool(false);
+        assert_eq!(
+            resolve_output_path(Some(&url), Path::new("draft.md"), Path::new("build")),
+            None
+        );
+    }
+
+    #[test]
+    fn resolve_output_path_with_none() {
+        // Falls back to default pretty-URL logic
+        assert_eq!(
+            resolve_output_path(None, Path::new("about.md"), Path::new("build")),
+            Some(PathBuf::from("build/about/index.html"))
+        );
+        assert_eq!(
+            resolve_output_path(None, Path::new("index.md"), Path::new("build")),
+            Some(PathBuf::from("build/index.html"))
+        );
+        assert_eq!(
+            resolve_output_path(None, Path::new("posts/foo.md"), Path::new("build")),
+            Some(PathBuf::from("build/posts/foo/index.html"))
+        );
+    }
 }

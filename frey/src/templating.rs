@@ -216,7 +216,7 @@ fn load_partials(
             let rel = path
                 .strip_prefix(root)
                 .expect("partial path must be under includes root");
-            let key = rel.to_string_lossy().to_string();
+            let key = rel.to_string_lossy().into_owned();
             let content = fs::read_to_string(&path)?;
             partials.insert(key, content);
         }

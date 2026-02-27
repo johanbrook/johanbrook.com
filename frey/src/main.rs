@@ -1,6 +1,7 @@
 mod build;
 mod data;
 mod eda;
+mod page;
 mod templating;
 
 use argh::FromArgs;

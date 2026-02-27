@@ -198,6 +198,7 @@ dependencies = [
  "markdown",
  "owo-colors",
  "rquickjs",
+ "serde",
  "serde_json",
 ]
 

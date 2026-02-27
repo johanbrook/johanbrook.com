@@ -72,6 +72,81 @@ pub fn eval_js_data(source: &str) -> Result<JsDataResult, rquickjs::Error> {
     })
 }
 
+/// Call a named JS function exported from one of the given JS module sources.
+///
+/// Evaluates `js_sources` as ES modules, promotes their named exports to globals,
+/// then checks if `fn_name` exists as a function. If so, calls it with `args_json`
+/// (a JSON-encoded argument) and returns the result as a `serde_json::Value`.
+/// Returns `Ok(None)` if the export exists but isn't a function, or doesn't exist.
+pub fn call_js_function(
+    js_sources: &[String],
+    fn_name: &str,
+    args_json: &str,
+) -> Result<Option<serde_json::Value>, rquickjs::Error> {
+    let runtime = Runtime::new()?;
+    let context = Context::full(&runtime)?;
+
+    context.with(|ctx| {
+        let globals = ctx.globals();
+
+        // Evaluate each JS source module and promote exports to globals
+        for (i, source) in js_sources.iter().enumerate() {
+            let mod_name = format!("__call_{i}");
+            let declared = match Module::declare(ctx.clone(), mod_name, source.as_str()) {
+                Ok(m) => m,
+                Err(rquickjs::Error::Exception) => return Err(catch_exception(&ctx)),
+                Err(e) => return Err(e),
+            };
+            let (module, promise) = match declared.eval() {
+                Ok(r) => r,
+                Err(rquickjs::Error::Exception) => return Err(catch_exception(&ctx)),
+                Err(e) => return Err(e),
+            };
+            if let Err(rquickjs::Error::Exception) = promise.finish::<()>() {
+                return Err(catch_exception(&ctx));
+            }
+            let namespace = module.namespace()?;
+            for key in namespace.keys::<String>() {
+                let key = key?;
+                if key == "default" {
+                    continue;
+                }
+                let val: rquickjs::Value = namespace.get(&key)?;
+                globals.set(key.as_str(), val)?;
+            }
+        }
+
+        // Check if fn_name is a function
+        let func: rquickjs::Value = globals.get(fn_name)?;
+        if !func.is_function() {
+            return Ok(None);
+        }
+
+        // Parse the args JSON and call the function
+        let arg: rquickjs::Value = ctx.json_parse(args_json)?;
+        let func = func.into_function().unwrap();
+        let result: rquickjs::Value = match func.call((arg,)) {
+            Ok(v) => v,
+            Err(rquickjs::Error::Exception) => return Err(catch_exception(&ctx)),
+            Err(e) => return Err(e),
+        };
+
+        // Convert result to serde_json::Value
+        if result.is_bool() {
+            let b: bool = result.get()?;
+            Ok(Some(serde_json::Value::Bool(b)))
+        } else if let Some(json_str) = ctx.json_stringify(&result)? {
+            let s = json_str.to_string()?;
+            match serde_json::from_str::<serde_json::Value>(&s) {
+                Ok(v) => Ok(Some(v)),
+                Err(_) => Ok(Some(serde_json::Value::String(s))),
+            }
+        } else {
+            Ok(None)
+        }
+    })
+}
+
 fn catch_exception(ctx: &rquickjs::Ctx<'_>) -> rquickjs::Error {
     let exception = ctx.catch();
     let msg = exception
@@ -393,6 +468,33 @@ mod tests {
         assert_eq!(result.values["name"], "test");
         assert!(result.values.get("url").is_none());
         assert!(result.has_functions);
+    }
+
+    #[test]
+    fn call_js_function_returns_string() {
+        let source =
+            r#"export function url(page) { return "/writings/" + page.src.entry.name + "/"; }"#
+                .to_string();
+        let args = r#"{"src":{"path":"posts/my-post","ext":".md","entry":{"name":"my-post","path":"posts/my-post.md","type":"file","src":"src"}},"data":{}}"#;
+        let result = call_js_function(&[source], "url", args).unwrap();
+        assert_eq!(
+            result,
+            Some(serde_json::Value::String("/writings/my-post/".to_string()))
+        );
+    }
+
+    #[test]
+    fn call_js_function_returns_false() {
+        let source = r#"export function url(page) { return false; }"#.to_string();
+        let result = call_js_function(&[source], "url", "{}").unwrap();
+        assert_eq!(result, Some(serde_json::Value::Bool(false)));
+    }
+
+    #[test]
+    fn call_js_function_not_a_function() {
+        let source = r#"export const url = "/static-path/";"#.to_string();
+        let result = call_js_function(&[source], "url", "{}").unwrap();
+        assert!(result.is_none()); // url is a string, not a function
     }
 
     #[test]
