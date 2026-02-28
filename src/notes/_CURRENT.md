@@ -1,5 +1,5 @@
 ---
-date: '2026-02-22T20:13:56+01:00'
+date: '2026-02-28T23:59:10+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -30,4 +30,5 @@ tags:
 - Armand
 - Oasis: Supersonic
 - The Substance
+- House of Gucci
 
