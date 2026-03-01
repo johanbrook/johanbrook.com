@@ -3,12 +3,12 @@ layout: null
 url: /api.json
 ---
 {
-  "description": "{{ meta.description | safe }}",
-  "shortbio": "{{ meta.shortbio | safe }}",
+  "description": "{{ meta.description |> safe }}",
+  "shortbio": "{{ meta.shortbio |> safe }}",
   "site": "{{ meta.site }}",
   "github": "{{ meta.github }}",
   "mastodon": "@{{ meta.mastodon.username }}@{{ meta.mastodon.domain }}",
   "email": "{{ meta.email }}",
-  "cv": "{{ meta.cv | url(true) }}",
+  "cv": "{{ meta.cv |> url }}",
   "timezone": "{{ timezone }}"
 }

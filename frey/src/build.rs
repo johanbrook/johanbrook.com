@@ -2,7 +2,7 @@ use owo_colors::OwoColorize;
 use std::fs;
 use std::io::{self, Write as _};
 use std::path::{Path, PathBuf};
-use std::str::FromStr;
+
 use std::thread;
 use std::time::Instant;
 
@@ -21,39 +21,30 @@ pub struct BuildConfig {
 enum WorkItem {
     Process { src: PathBuf, kind: Processable },
     Copy { src: PathBuf, dest: PathBuf },
-    Skip { src: PathBuf, reason: &'static str },
 }
 
-/// Processable files we care about
 enum Processable {
-    /// Content
     Markdown,
-    /// Template
     Vto,
+    Simple,
 }
 
 impl Processable {
-    fn from_extension(s: &str) -> Option<Self> {
+    fn from_extension(s: &str) -> Self {
         match s {
-            "md" => Some(Self::Markdown),
-            "vto" => Some(Self::Vto),
-            _ => None,
+            "md" => Self::Markdown,
+            "vto" => Self::Vto,
+            _ => Self::Simple,
         }
-    }
-}
-
-impl FromStr for Processable {
-    type Err = String;
-
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        Processable::from_extension(s).ok_or(format!("Unknown file type: {s:?}"))
     }
 }
 
 /// A resolved build operation ready to be executed.
 enum Operation {
     /// Write a rendered page.
-    Write(Page),
+    WritePage(Page),
+    /// Write content to a destination path (simple files with frontmatter stripped).
+    Write { src: PathBuf, dest: PathBuf, content: String },
     /// Copy a file from src to dest.
     Copy { src: PathBuf, dest: PathBuf },
     /// Skip a file (url: false, draft, etc).
@@ -63,7 +54,7 @@ enum Operation {
 impl Operation {
     fn format_line(&self, dest_root: &Path) -> String {
         match self {
-            Operation::Write(page) => {
+            Operation::WritePage(page) => {
                 let src = &page.file.src;
                 let full_dest = dest_root.join(&page.file.dest);
 
@@ -76,7 +67,7 @@ impl Operation {
                     rest.display().dimmed().bold()
                 )
             }
-            Operation::Copy { src, dest } => {
+            Operation::Write { src, dest, .. } | Operation::Copy { src, dest } => {
                 let (dir, rest) = split_dest_path(dest);
 
                 format!(
@@ -109,23 +100,30 @@ impl Operation {
 
     fn execute(&self, dest_root: &Path) -> io::Result<()> {
         match self {
-            Operation::Write(page) => {
+            Operation::WritePage(page) => {
                 let dest = dest_root.join(&page.file.dest);
-                if let Some(parent) = dest.parent() {
-                    fs::create_dir_all(parent)?;
-                }
+                ensure_parent(&dest)?;
                 fs::write(dest, &page.rendered)
             }
+            Operation::Write { dest, content, .. } => {
+                ensure_parent(dest)?;
+                fs::write(dest, content)
+            }
             Operation::Copy { src, dest } => {
-                if let Some(parent) = dest.parent() {
-                    fs::create_dir_all(parent)?;
-                }
+                ensure_parent(dest)?;
                 fs::copy(src, dest)?;
                 Ok(())
             }
             Operation::Skip { .. } => Ok(()),
         }
     }
+}
+
+fn ensure_parent(path: &Path) -> io::Result<()> {
+    if let Some(parent) = path.parent() {
+        fs::create_dir_all(parent)?;
+    }
+    Ok(())
 }
 
 fn split_dest_path(path: &Path) -> (std::ffi::OsString, PathBuf) {
@@ -192,6 +190,17 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                 s.spawn(move || -> io::Result<()> {
                     for item in chunk {
                         let op = match item {
+                            WorkItem::Process { src, kind: Processable::Simple } => {
+                                let content = fs::read_to_string(src)?;
+                                let (_fm, body) = split_frontmatter(&content);
+                                let rel_path = src.strip_prefix(src_dir).unwrap();
+                                Operation::Write {
+                                    src: src.clone(),
+                                    dest: dest.join(rel_path),
+                                    content: body.to_string(),
+                                }
+                            }
+
                             WorkItem::Process { src, kind } => {
                                 let content = fs::read_to_string(src)?;
                                 let mut file = prepare_file(src_dir, src, &content, cascade);
@@ -212,6 +221,7 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                                         Processable::Markdown => {
                                             process_markdown(file, &mut store)?
                                         }
+                                        Processable::Simple => unreachable!(),
                                     }
                                 }
                             }
@@ -219,11 +229,6 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                             WorkItem::Copy { src, dest } => Operation::Copy {
                                 src: src.clone(),
                                 dest: dest.clone(),
-                            },
-
-                            WorkItem::Skip { src, reason } => Operation::Skip {
-                                src: src.clone(),
-                                reason,
                             },
                         };
 
@@ -292,16 +297,8 @@ fn walk(
 
             walk(&path, src_root, dest_root, items)?;
         } else if let Some(ext) = path.extension().and_then(|ext| ext.to_str()) {
-            match Processable::from_extension(ext) {
-                Some(kind) => {
-                    items.push(WorkItem::Process { src: path, kind });
-                }
-                // [TODO] Don't skip this: move them and make sure to make them into HTML
-                None => items.push(WorkItem::Skip {
-                    src: path,
-                    reason: "Not a file type we recognise",
-                }),
-            }
+            let kind = Processable::from_extension(ext);
+            items.push(WorkItem::Process { src: path, kind });
         }
     }
 
@@ -355,7 +352,7 @@ fn process_markdown(mut file: File, store: &mut TemplateStore) -> io::Result<Ope
         html_body
     };
 
-    Ok(Operation::Write(Page { file, rendered }))
+    Ok(Operation::WritePage(Page { file, rendered }))
 }
 
 fn process_template(file: File, store: &mut TemplateStore) -> io::Result<Operation> {
@@ -363,7 +360,7 @@ fn process_template(file: File, store: &mut TemplateStore) -> io::Result<Operati
         .render_with_layout(&file.body, &file.data, &file.js_sources)
         .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?;
 
-    Ok(Operation::Write(Page { file, rendered }))
+    Ok(Operation::WritePage(Page { file, rendered }))
 }
 
 /// Split frontmatter (between `---` delimiters) from the body.
