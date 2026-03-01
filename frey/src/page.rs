@@ -7,7 +7,10 @@ use temporal_rs::PlainDateTime;
 /// Produced after parsing frontmatter and merging cascade data.
 #[derive(Debug, Clone)]
 pub struct File {
+    /// Source file path. Like `src/posts/foo.md`.
     pub src: PathBuf,
+    pub rel_path: PathBuf,
+    /// Full output path, relative to build root. Like `writings/foo/index.html`.
     pub dest: PathBuf,
     pub url: String,
     pub date: PlainDateTime,
@@ -20,6 +23,9 @@ pub struct File {
 
 impl File {
     pub fn new(
+        // Base source directory path, like `src`.
+        src_dir: &Path,
+        // Path to file, including `src_dir`.
         src: PathBuf,
         body: String,
         mut data: serde_json::Map<String, serde_json::Value>,
@@ -31,7 +37,17 @@ impl File {
             .and_then(|s| s.parse::<PlainDateTime>().ok())
             .unwrap_or_else(|| Self::date_from_file(&src));
 
-        let draft = data.get("draft").and_then(|v| v.as_bool()).unwrap_or(false);
+        let draft = {
+            if let Some(draft) = data.get("draft").and_then(|v| v.as_bool()) {
+                draft
+            } else if let Some(filename) = src.file_name()
+                && filename.to_string_lossy().starts_with('_')
+            {
+                true
+            } else {
+                false
+            }
+        };
 
         let layout = data
             .remove("layout")
@@ -44,8 +60,11 @@ impl File {
             .map(String::from)
             .unwrap_or_default();
 
+        let rel_path = Self::to_relative_path(src_dir, &src);
+
         File {
             src,
+            rel_path,
             dest: PathBuf::new(),
             url,
             date,
@@ -57,12 +76,16 @@ impl File {
         }
     }
 
+    pub fn to_relative_path(src_dir: &Path, path: &Path) -> PathBuf {
+        path.strip_prefix(src_dir).unwrap().to_path_buf()
+    }
+
     /// Resolve the URL and destination path for this file.
     ///
     /// `rel_path` is the source path relative to the src root.
     /// Sets `self.url` and `self.dest` (both relative — no dest_root prefix).
     /// Returns `false` if the file should be skipped (url: false).
-    pub fn resolve_url(&mut self, rel_path: &Path) -> bool {
+    pub fn resolve_url(&mut self) -> bool {
         // 1. If url already set from static data in new(), derive dest from it
         if !self.url.is_empty() {
             self.dest = url_to_dest(&self.url);
@@ -91,7 +114,7 @@ impl File {
                 Err(e) => {
                     eprintln!(
                         "Warning: url function failed for {}: {e}",
-                        rel_path.display()
+                        self.rel_path.display()
                     );
                 }
             }
@@ -103,8 +126,8 @@ impl File {
         }
 
         // 4. Default URL from rel_path
-        self.url = default_url(rel_path);
-        self.dest = default_dest(rel_path);
+        self.url = default_url(&self.rel_path);
+        self.dest = default_dest(&self.rel_path);
         self.data.insert(
             "url".to_string(),
             serde_json::Value::String(self.url.clone()),
@@ -235,7 +258,7 @@ impl Serialize for Page {
         map.serialize_entry("url", &self.file.url)?;
         map.serialize_entry("date", &self.file.date.to_string())?;
         map.serialize_entry("draft", &self.file.draft)?;
-        map.serialize_entry("content", &self.rendered)?;
+        map.serialize_entry("rendered", &self.rendered)?;
         if let Some(ref layout) = self.file.layout {
             map.serialize_entry("layout", layout)?;
         }
@@ -259,7 +282,13 @@ mod tests {
     #[test]
     fn new_parses_date_from_data() {
         let data = make_data(&[("date", json!("2024-03-15"))]);
-        let file = File::new(PathBuf::from("fake.md"), String::new(), data, vec![]);
+        let file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/fake.md"),
+            String::new(),
+            data,
+            vec![],
+        );
         assert_eq!(file.date.year(), 2024);
         assert_eq!(file.date.month(), 3);
         assert_eq!(file.date.day(), 15);
@@ -268,7 +297,13 @@ mod tests {
     #[test]
     fn new_parses_datetime_from_data() {
         let data = make_data(&[("date", json!("2024-03-15T10:30:00"))]);
-        let file = File::new(PathBuf::from("fake.md"), String::new(), data, vec![]);
+        let file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/fake.md"),
+            String::new(),
+            data,
+            vec![],
+        );
         assert_eq!(file.date.year(), 2024);
         assert_eq!(file.date.hour(), 10);
         assert_eq!(file.date.minute(), 30);
@@ -278,7 +313,8 @@ mod tests {
     fn new_falls_back_to_file_date() {
         // No date in data, nonexistent file → falls back to epoch
         let file = File::new(
-            PathBuf::from("/nonexistent/fake.md"),
+            Path::new("src"),
+            PathBuf::from("src/nonexistent/fake.md"),
             String::new(),
             Map::new(),
             vec![],
@@ -292,7 +328,8 @@ mod tests {
     fn new_ignores_invalid_date_string() {
         let data = make_data(&[("date", json!("not-a-date"))]);
         let file = File::new(
-            PathBuf::from("/nonexistent/fake.md"),
+            Path::new("src"),
+            PathBuf::from("src/nonexistent/fake.md"),
             String::new(),
             data,
             vec![],
@@ -304,20 +341,51 @@ mod tests {
     #[test]
     fn new_extracts_draft_true() {
         let data = make_data(&[("draft", json!(true))]);
-        let file = File::new(PathBuf::from("fake.md"), String::new(), data, vec![]);
+        let file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/fake.md"),
+            String::new(),
+            data,
+            vec![],
+        );
+        assert!(file.draft);
+    }
+
+    #[test]
+    fn new_draft_true_underscore() {
+        let data = make_data(&[]);
+        let file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/_fake.md"),
+            String::new(),
+            data,
+            vec![],
+        );
         assert!(file.draft);
     }
 
     #[test]
     fn new_defaults_draft_false() {
-        let file = File::new(PathBuf::from("fake.md"), String::new(), Map::new(), vec![]);
+        let file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/fake.md"),
+            String::new(),
+            Map::new(),
+            vec![],
+        );
         assert!(!file.draft);
     }
 
     #[test]
     fn new_extracts_and_removes_layout() {
         let data = make_data(&[("layout", json!("base.vto")), ("title", json!("Hello"))]);
-        let file = File::new(PathBuf::from("fake.md"), String::new(), data, vec![]);
+        let file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/fake.md"),
+            String::new(),
+            data,
+            vec![],
+        );
         assert_eq!(file.layout.as_deref(), Some("base.vto"));
         // layout should be removed from the data map
         assert!(!file.data.contains_key("layout"));
@@ -332,7 +400,13 @@ mod tests {
             ("slug", json!("hello-world")),
             ("tags", json!(["rust", "web"])),
         ]);
-        let file = File::new(PathBuf::from("fake.md"), "body".into(), data, vec![]);
+        let file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/fake.md"),
+            "body".into(),
+            data,
+            vec![],
+        );
         assert_eq!(file.data.get("slug").unwrap(), "hello-world");
         assert_eq!(file.data.get("tags").unwrap(), &json!(["rust", "web"]));
         assert_eq!(file.body, "body");
@@ -340,7 +414,13 @@ mod tests {
 
     #[test]
     fn new_starts_with_empty_url_and_dest() {
-        let file = File::new(PathBuf::from("fake.md"), String::new(), Map::new(), vec![]);
+        let file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/fake.md"),
+            String::new(),
+            Map::new(),
+            vec![],
+        );
         assert_eq!(file.url, "");
         assert_eq!(file.dest, PathBuf::new());
     }
@@ -348,14 +428,26 @@ mod tests {
     #[test]
     fn new_extracts_static_url_from_data() {
         let data = make_data(&[("url", json!("/custom/path/"))]);
-        let file = File::new(PathBuf::from("fake.md"), String::new(), data, vec![]);
+        let file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/fake.md"),
+            String::new(),
+            data,
+            vec![],
+        );
         assert_eq!(file.url, "/custom/path/");
     }
 
     #[test]
     fn new_ignores_non_string_url() {
         let data = make_data(&[("url", json!(false))]);
-        let file = File::new(PathBuf::from("fake.md"), String::new(), data, vec![]);
+        let file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/fake.md"),
+            String::new(),
+            data,
+            vec![],
+        );
         assert_eq!(file.url, "");
     }
 
@@ -437,8 +529,14 @@ mod tests {
     #[test]
     fn resolve_url_with_static_url() {
         let data = make_data(&[("url", json!("/writings/hello/"))]);
-        let mut file = File::new(PathBuf::from("fake.md"), String::new(), data, vec![]);
-        assert!(file.resolve_url(Path::new("posts/foo.md")));
+        let mut file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/posts/foo.md"),
+            String::new(),
+            data,
+            vec![],
+        );
+        assert!(file.resolve_url());
         assert_eq!(file.url, "/writings/hello/");
         assert_eq!(file.dest, PathBuf::from("writings/hello/index.html"));
     }
@@ -446,30 +544,54 @@ mod tests {
     #[test]
     fn resolve_url_with_false_in_data() {
         let data = make_data(&[("url", json!(false))]);
-        let mut file = File::new(PathBuf::from("fake.md"), String::new(), data, vec![]);
-        assert!(!file.resolve_url(Path::new("draft.md")));
+        let mut file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/draft.md"),
+            String::new(),
+            data,
+            vec![],
+        );
+        assert!(!file.resolve_url());
     }
 
     #[test]
     fn resolve_url_default_pretty_url() {
-        let mut file = File::new(PathBuf::from("fake.md"), String::new(), Map::new(), vec![]);
-        assert!(file.resolve_url(Path::new("about.md")));
+        let mut file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/about.md"),
+            String::new(),
+            Map::new(),
+            vec![],
+        );
+        assert!(file.resolve_url());
         assert_eq!(file.url, "/about/");
         assert_eq!(file.dest, PathBuf::from("about/index.html"));
     }
 
     #[test]
     fn resolve_url_default_index() {
-        let mut file = File::new(PathBuf::from("fake.md"), String::new(), Map::new(), vec![]);
-        assert!(file.resolve_url(Path::new("index.md")));
+        let mut file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/index.md"),
+            String::new(),
+            Map::new(),
+            vec![],
+        );
+        assert!(file.resolve_url());
         assert_eq!(file.url, "/");
         assert_eq!(file.dest, PathBuf::from("index.html"));
     }
 
     #[test]
     fn resolve_url_inserts_url_into_data() {
-        let mut file = File::new(PathBuf::from("fake.md"), String::new(), Map::new(), vec![]);
-        file.resolve_url(Path::new("about.md"));
+        let mut file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/about.md"),
+            String::new(),
+            Map::new(),
+            vec![],
+        );
+        file.resolve_url();
         assert_eq!(file.data.get("url").unwrap(), "/about/");
     }
 
@@ -477,6 +599,7 @@ mod tests {
     fn serialize_file_shape() {
         let data = make_data(&[("slug", json!("hello"))]);
         let mut file = File::new(
+            Path::new("src"),
             PathBuf::from("src/posts/hello.md"),
             "# Hi".into(),
             data,
@@ -499,20 +622,32 @@ mod tests {
     #[test]
     fn serialize_file_includes_layout() {
         let data = make_data(&[("layout", json!("base.vto"))]);
-        let file = File::new(PathBuf::from("fake.md"), String::new(), data, vec![]);
+        let file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/fake.md"),
+            String::new(),
+            data,
+            vec![],
+        );
         let json: Value = serde_json::to_value(&file).unwrap();
         assert_eq!(json["layout"], "base.vto");
     }
 
     #[test]
-    fn serialize_page_has_content() {
-        let file = File::new(PathBuf::from("fake.md"), String::new(), Map::new(), vec![]);
+    fn serialize_page_has_rendered() {
+        let file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/fake.md"),
+            String::new(),
+            Map::new(),
+            vec![],
+        );
         let page = Page {
             file,
             rendered: "<p>Hello</p>".into(),
         };
         let json: Value = serde_json::to_value(&page).unwrap();
-        assert_eq!(json["content"], "<p>Hello</p>");
+        assert_eq!(json["rendered"], "<p>Hello</p>");
         // Page should not have body
         assert!(json.get("body").is_none());
     }

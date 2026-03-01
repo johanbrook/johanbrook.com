@@ -2,6 +2,7 @@ use owo_colors::OwoColorize;
 use std::fs;
 use std::io::{self, Write as _};
 use std::path::{Path, PathBuf};
+use std::str::FromStr;
 use std::thread;
 use std::time::Instant;
 
@@ -18,9 +19,35 @@ pub struct BuildConfig {
 }
 
 enum WorkItem {
-    Markdown { src: PathBuf, rel_path: PathBuf },
-    Template { src: PathBuf, rel_path: PathBuf },
+    Process { src: PathBuf, kind: Processable },
     Copy { src: PathBuf, dest: PathBuf },
+    Skip { src: PathBuf, reason: &'static str },
+}
+
+/// Processable files we care about
+enum Processable {
+    /// Content
+    Markdown,
+    /// Template
+    Vto,
+}
+
+impl Processable {
+    fn from_extension(s: &str) -> Option<Self> {
+        match s {
+            "md" => Some(Self::Markdown),
+            "vto" => Some(Self::Vto),
+            _ => None,
+        }
+    }
+}
+
+impl FromStr for Processable {
+    type Err = String;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Processable::from_extension(s).ok_or(format!("Unknown file type: {s:?}"))
+    }
 }
 
 /// A resolved build operation ready to be executed.
@@ -40,29 +67,22 @@ impl Operation {
                 let src = &page.file.src;
                 let full_dest = dest_root.join(&page.file.dest);
 
-                let (dir, rest) = full_dest
-                    .iter()
-                    .next()
-                    .map(|first| (first, full_dest.strip_prefix(first).unwrap()))
-                    .unwrap();
+                let (dir, rest) = split_dest_path(&full_dest);
 
                 format!(
                     "  {} -> {}/{}",
                     src.display(),
-                    Path::new(dir).display().dimmed(),
+                    Path::new(&dir).display().dimmed(),
                     rest.display().dimmed().bold()
                 )
             }
             Operation::Copy { src, dest } => {
-                let (dir, rest) = dest
-                    .iter()
-                    .next()
-                    .map(|first| (first, dest.strip_prefix(first).unwrap()))
-                    .unwrap();
+                let (dir, rest) = split_dest_path(dest);
+
                 format!(
                     "  {} -> {}/{}",
                     src.display(),
-                    Path::new(dir).display().dimmed(),
+                    Path::new(&dir).display().dimmed(),
                     rest.display().dimmed().bold()
                 )
             }
@@ -108,6 +128,14 @@ impl Operation {
     }
 }
 
+fn split_dest_path(path: &Path) -> (std::ffi::OsString, PathBuf) {
+    let first = path.iter().next().unwrap();
+    (
+        first.to_owned(),
+        path.strip_prefix(first).unwrap().to_owned(),
+    )
+}
+
 pub fn build(config: BuildConfig) -> io::Result<()> {
     let BuildConfig {
         src,
@@ -116,13 +144,13 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
         verbose,
         location,
     } = config;
-    let src = Path::new(&src);
+    let src_dir = Path::new(&src);
     let dest = Path::new(&dest);
 
-    if !src.exists() {
+    if !src_dir.exists() {
         return Err(io::Error::new(
             io::ErrorKind::NotFound,
-            format!("Source directory not found: {}", src.display()),
+            format!("Source directory not found: {}", src_dir.display()),
         ));
     }
 
@@ -134,11 +162,11 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
 
     // Phase 1: Collect work items
     let mut items = Vec::new();
-    walk(src, src, dest, &mut items)?;
+    walk(src_dir, src_dir, dest, &mut items)?;
 
     let count = items.len();
 
-    let cascade = DataCascade::load(src)?;
+    let cascade = DataCascade::load(src_dir)?;
 
     // Phase 2: Process in parallel
     let parallelism = thread::available_parallelism()
@@ -149,7 +177,7 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
         println!("Using parallelism: {}", parallelism.green());
     }
 
-    let includes_dir = src.join("_includes");
+    let includes_dir = src_dir.join("_includes");
     let template_store = TemplateStore::load(&includes_dir, location)?;
 
     let chunks: Vec<&[WorkItem]> = items.chunks(items.len().div_ceil(parallelism)).collect();
@@ -164,15 +192,38 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                 s.spawn(move || -> io::Result<()> {
                     for item in chunk {
                         let op = match item {
-                            WorkItem::Markdown { src, rel_path } => {
-                                process_markdown(src, rel_path, cascade, &mut store)?
+                            WorkItem::Process { src, kind } => {
+                                let content = fs::read_to_string(src)?;
+                                let mut file = prepare_file(src_dir, src, &content, cascade);
+
+                                if file.draft {
+                                    Operation::Skip {
+                                        src: file.src,
+                                        reason: "draft",
+                                    }
+                                } else if !file.resolve_url() {
+                                    Operation::Skip {
+                                        src: file.src,
+                                        reason: "url: false",
+                                    }
+                                } else {
+                                    match kind {
+                                        Processable::Vto => process_template(file, &mut store)?,
+                                        Processable::Markdown => {
+                                            process_markdown(file, &mut store)?
+                                        }
+                                    }
+                                }
                             }
-                            WorkItem::Template { src, rel_path } => {
-                                process_template(src, rel_path, cascade, &mut store)?
-                            }
+
                             WorkItem::Copy { src, dest } => Operation::Copy {
                                 src: src.clone(),
                                 dest: dest.clone(),
+                            },
+
+                            WorkItem::Skip { src, reason } => Operation::Skip {
+                                src: src.clone(),
+                                reason,
                             },
                         };
 
@@ -240,18 +291,17 @@ fn walk(
             }
 
             walk(&path, src_root, dest_root, items)?;
-        } else if path.extension().is_some_and(|ext| ext == "md") {
-            let rel_path = path.strip_prefix(src_root).unwrap().to_path_buf();
-            items.push(WorkItem::Markdown {
-                src: path,
-                rel_path,
-            });
-        } else if path.extension().is_some_and(|ext| ext == "vto") {
-            let rel_path = path.strip_prefix(src_root).unwrap().to_path_buf();
-            items.push(WorkItem::Template {
-                src: path,
-                rel_path,
-            });
+        } else if let Some(ext) = path.extension().and_then(|ext| ext.to_str()) {
+            match Processable::from_extension(ext) {
+                Some(kind) => {
+                    items.push(WorkItem::Process { src: path, kind });
+                }
+                // [TODO] Don't skip this: move them and make sure to make them into HTML
+                None => items.push(WorkItem::Skip {
+                    src: path,
+                    reason: "Not a file type we recognise",
+                }),
+            }
         }
     }
 
@@ -262,51 +312,27 @@ fn walk(
 /// check for draft/url:false skips, and resolve the output path.
 /// Returns `Err` on IO failure, `Ok(Err(Skip))` if the page should be skipped,
 /// or `Ok(Ok(file))` with a fully resolved File.
-fn prepare(
-    path: &Path,
-    content: &str,
-    rel_path: &Path,
-    cascade: &DataCascade,
-) -> io::Result<Result<File, Operation>> {
+fn prepare_file(src_dir: &Path, path: &Path, content: &str, cascade: &DataCascade) -> File {
     let (frontmatter, body) = split_frontmatter(content);
 
+    let rel_path = File::to_relative_path(src_dir, path);
+
     let fm_data = frontmatter.map(parse_frontmatter).unwrap_or_default();
-    let cascade_data = cascade.data_for(rel_path);
+    let cascade_data = cascade.data_for(&rel_path);
     let mut data = cascade_data.values;
     let js_sources = cascade_data.js_sources;
     data.extend(fm_data);
 
-    let mut file = File::new(path.to_path_buf(), body.to_string(), data, js_sources);
-
-    if file.draft {
-        return Ok(Err(Operation::Skip {
-            src: path.to_path_buf(),
-            reason: "draft",
-        }));
-    }
-
-    if !file.resolve_url(rel_path) {
-        return Ok(Err(Operation::Skip {
-            src: path.to_path_buf(),
-            reason: "url: false",
-        }));
-    }
-
-    Ok(Ok(file))
+    File::new(
+        src_dir,
+        path.to_path_buf(),
+        body.to_string(),
+        data,
+        js_sources,
+    )
 }
 
-fn process_markdown(
-    path: &Path,
-    rel_path: &Path,
-    cascade: &DataCascade,
-    store: &mut TemplateStore,
-) -> io::Result<Operation> {
-    let content = fs::read_to_string(path)?;
-    let mut file = match prepare(path, &content, rel_path, cascade)? {
-        Ok(f) => f,
-        Err(skip) => return Ok(skip),
-    };
-
+fn process_markdown(mut file: File, store: &mut TemplateStore) -> io::Result<Operation> {
     let html_body = markdown::to_html_with_options(
         &file.body,
         &markdown::Options {
@@ -324,7 +350,7 @@ fn process_markdown(
             .insert("content".to_string(), serde_json::Value::String(html_body));
         store
             .render_with_layout("{{ content }}", &file.data, &file.js_sources)
-            .map_err(|e| io::Error::other(format!("{}: {e}", path.display())))?
+            .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?
     } else {
         html_body
     };
@@ -332,21 +358,10 @@ fn process_markdown(
     Ok(Operation::Write(Page { file, rendered }))
 }
 
-fn process_template(
-    path: &Path,
-    rel_path: &Path,
-    cascade: &DataCascade,
-    store: &mut TemplateStore,
-) -> io::Result<Operation> {
-    let content = fs::read_to_string(path)?;
-    let file = match prepare(path, &content, rel_path, cascade)? {
-        Ok(f) => f,
-        Err(skip) => return Ok(skip),
-    };
-
+fn process_template(file: File, store: &mut TemplateStore) -> io::Result<Operation> {
     let rendered = store
         .render_with_layout(&file.body, &file.data, &file.js_sources)
-        .map_err(|e| io::Error::other(format!("{}: {e}", path.display())))?;
+        .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?;
 
     Ok(Operation::Write(Page { file, rendered }))
 }
