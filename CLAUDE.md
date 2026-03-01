@@ -2,6 +2,23 @@
 
 In the `frey` directory, there's an empty rust project. My aim with "frey" is to build a static site generator for my personal site, which sits in the `src` dir. My current generator is called "Lume", and it is a 3rd party dependency built in Typescript (Deno runtime).
 
+## Progress
+
+- [x] Template engine `eda` for .vto files
+- [x] Data cascade
+    - [x] With support for named functions
+- [x] Pretty URLs
+- [x] Markdown
+- [x] Copy static files in `src/public`
+- [x] "Passthrough" for unrecognised file types
+- [x] Double extensions for templating non-HTML files (`foo.md.vto`)
+- [ ] Collections API
+    - [ ] Types
+    - [ ] Pagination
+    - [ ] Sorting
+- [ ] Tags
+- [ ] Date filter using Temporal
+
 ## Goals
 
 - I want to learn more Rust.
