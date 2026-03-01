@@ -60,7 +60,14 @@ impl File {
             .map(String::from)
             .unwrap_or_default();
 
-        let rel_path = Self::to_relative_path(src_dir, &src);
+        let rel_path = to_relative_path(src_dir, &src);
+        // Strip template engine extension — the outer .ext is for processing,
+        // the inner extension is the "real" one for URL/dest resolution.
+        let rel_path = if rel_path.extension().is_some() {
+            rel_path.with_extension("")
+        } else {
+            rel_path
+        };
 
         File {
             src,
@@ -74,10 +81,6 @@ impl File {
             data,
             js_sources,
         }
-    }
-
-    pub fn to_relative_path(src_dir: &Path, path: &Path) -> PathBuf {
-        path.strip_prefix(src_dir).unwrap().to_path_buf()
     }
 
     /// Resolve the URL and destination path for this file.
@@ -155,6 +158,10 @@ impl File {
             })
             .unwrap_or_else(|| PlainDateTime::try_new_iso(1970, 1, 1, 0, 0, 0, 0, 0, 0).unwrap())
     }
+}
+
+pub fn to_relative_path(src_dir: &Path, path: &Path) -> PathBuf {
+    path.strip_prefix(src_dir).unwrap().to_path_buf()
 }
 
 /// Convert a URL string to a relative dest path.
@@ -650,6 +657,66 @@ mod tests {
         assert_eq!(json["rendered"], "<p>Hello</p>");
         // Page should not have body
         assert!(json.get("body").is_none());
+    }
+
+    // --- .vto double-extension stripping ---
+
+    #[test]
+    fn resolve_url_vto_double_ext() {
+        // Simulates index.md.vto — rel_path should be index.md after stripping
+        let mut file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/index.md.vto"),
+            String::new(),
+            Map::new(),
+            vec![],
+        );
+        assert!(file.resolve_url());
+        assert_eq!(file.url, "/");
+        assert_eq!(file.dest, PathBuf::from("index.html"));
+    }
+
+    #[test]
+    fn resolve_url_vto_about() {
+        let mut file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/about.md.vto"),
+            String::new(),
+            Map::new(),
+            vec![],
+        );
+        assert!(file.resolve_url());
+        assert_eq!(file.url, "/about/");
+        assert_eq!(file.dest, PathBuf::from("about/index.html"));
+    }
+
+    #[test]
+    fn resolve_url_any_about() {
+        let mut file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/about.md.any"),
+            String::new(),
+            Map::new(),
+            vec![],
+        );
+        assert!(file.resolve_url());
+        assert_eq!(file.url, "/about/");
+        assert_eq!(file.dest, PathBuf::from("about/index.html"));
+    }
+
+    #[test]
+    fn resolve_url_plain_vto() {
+        // Plain .vto (no double extension) — stem is the filename without .vto
+        let mut file = File::new(
+            Path::new("src"),
+            PathBuf::from("src/reading-list.vto"),
+            String::new(),
+            Map::new(),
+            vec![],
+        );
+        assert!(file.resolve_url());
+        assert_eq!(file.url, "/reading-list/");
+        assert_eq!(file.dest, PathBuf::from("reading-list/index.html"));
     }
 
     #[test]

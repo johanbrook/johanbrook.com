@@ -7,7 +7,7 @@ use std::thread;
 use std::time::Instant;
 
 use crate::data::DataCascade;
-use crate::page::{File, Page};
+use crate::page::{File, Page, to_relative_path};
 use crate::templating::TemplateStore;
 
 #[derive(Debug)]
@@ -337,7 +337,7 @@ fn walk(
 fn prepare_file(src_dir: &Path, path: &Path, content: &str, cascade: &DataCascade) -> File {
     let (frontmatter, body) = split_frontmatter(content);
 
-    let rel_path = File::to_relative_path(src_dir, path);
+    let rel_path = to_relative_path(src_dir, path);
 
     let fm_data = frontmatter.map(parse_frontmatter).unwrap_or_default();
     let cascade_data = cascade.data_for(&rel_path);
