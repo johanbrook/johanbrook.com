@@ -60,11 +60,21 @@ pub fn parse_yaml(input: &str) -> Result<serde_json::Value, ParseError> {
     }
 }
 
+/// A JS module source with an optional namespace.
+///
+/// - `namespace: None` → promote named exports to globals (current `_data.js` behavior).
+/// - `namespace: Some("foo")` → set exports as a single global object `foo` (`_data/foo.js` behavior).
+#[derive(Clone, Debug)]
+pub struct JsSource {
+    pub source: String,
+    pub namespace: Option<String>,
+}
+
 /// Merged data for a specific file path, including both JSON values
 /// and raw JS sources that contain function exports.
 pub struct CascadeData {
     pub values: serde_json::Map<String, serde_json::Value>,
-    pub js_sources: Vec<String>,
+    pub js_sources: Vec<JsSource>,
 }
 
 /// Pre-loaded data cascade from `_data/` directories and `_data.yml` files.
@@ -75,9 +85,9 @@ pub struct DataCascade {
     /// Map from directory (relative to src_root) to data at that level.
     /// Key "" = root, "posts" = src/posts/, etc.
     levels: HashMap<PathBuf, serde_json::Map<String, serde_json::Value>>,
-    /// Raw JS module sources for `_data.js` files that export functions.
+    /// Raw JS module sources for `_data.js` and `_data/*.js` files.
     /// Stored per directory level, keyed by relative dir path.
-    js_sources: HashMap<PathBuf, String>,
+    js_sources: HashMap<PathBuf, Vec<JsSource>>,
 }
 
 impl DataCascade {
@@ -102,8 +112,8 @@ impl DataCascade {
         if let Some(root_data) = self.levels.get(Path::new("")) {
             values.extend(root_data.clone());
         }
-        if let Some(source) = self.js_sources.get(Path::new("")) {
-            js_sources.push(source.clone());
+        if let Some(sources) = self.js_sources.get(Path::new("")) {
+            js_sources.extend(sources.iter().cloned());
         }
 
         // Walk through ancestor directories
@@ -114,8 +124,8 @@ impl DataCascade {
             if let Some(level_data) = self.levels.get(&current) {
                 values.extend(level_data.clone());
             }
-            if let Some(source) = self.js_sources.get(&current) {
-                js_sources.push(source.clone());
+            if let Some(sources) = self.js_sources.get(&current) {
+                js_sources.extend(sources.iter().cloned());
             }
         }
 
@@ -127,7 +137,7 @@ fn load_level(
     dir: &Path,
     src_root: &Path,
     levels: &mut HashMap<PathBuf, serde_json::Map<String, serde_json::Value>>,
-    js_sources: &mut HashMap<PathBuf, String>,
+    js_sources: &mut HashMap<PathBuf, Vec<JsSource>>,
 ) -> io::Result<()> {
     let rel_dir = dir.strip_prefix(src_root).unwrap_or(Path::new(""));
     let mut level_data = serde_json::Map::new();
@@ -151,7 +161,13 @@ fn load_level(
                     level_data.extend(map);
                 }
                 if result.has_functions {
-                    js_sources.insert(rel_dir.to_path_buf(), content);
+                    js_sources
+                        .entry(rel_dir.to_path_buf())
+                        .or_default()
+                        .push(JsSource {
+                            source: content,
+                            namespace: None,
+                        });
                 }
             }
             Err(e) => {
@@ -185,7 +201,16 @@ fn load_level(
                 let content = fs::read_to_string(&path)?;
                 match crate::eda::eval_js_data(&content) {
                     Ok(result) => {
-                        level_data.insert(stem, result.values);
+                        level_data.insert(stem.clone(), result.values);
+                        // Always store source for re-evaluation — functions inside
+                        // default export objects aren't serializable to JSON.
+                        js_sources
+                            .entry(rel_dir.to_path_buf())
+                            .or_default()
+                            .push(JsSource {
+                                source: content,
+                                namespace: Some(stem),
+                            });
                     }
                     Err(e) => {
                         eprintln!("Warning: failed to evaluate {}: {e}", path.display());
@@ -406,7 +431,32 @@ mod tests {
         assert_eq!(data.values["site"], "johan.im");
         // Function source should be stored for template-time evaluation
         assert_eq!(data.js_sources.len(), 1);
-        assert!(data.js_sources[0].contains("url"));
+        assert!(data.js_sources[0].source.contains("url"));
+        assert!(data.js_sources[0].namespace.is_none());
+
+        let _ = fs::remove_dir_all(&dir);
+    }
+
+    #[test]
+    fn cascade_data_dir_js_with_functions() {
+        let dir = temp_dir();
+
+        fs::create_dir_all(dir.join("_data")).unwrap();
+        fs::write(
+            dir.join("_data/derived.js"),
+            r#"export default { mastodonUrl: () => "https://mastodon.social/@test" };"#,
+        )
+        .unwrap();
+
+        let cascade = DataCascade::load(&dir).unwrap();
+        let data = cascade.data_for(Path::new("index.md"));
+
+        // JSON-serializable parts should be in values (function is dropped)
+        assert!(data.values.contains_key("derived"));
+        // Source should be stored with namespace for re-evaluation
+        assert_eq!(data.js_sources.len(), 1);
+        assert_eq!(data.js_sources[0].namespace.as_deref(), Some("derived"));
+        assert!(data.js_sources[0].source.contains("mastodonUrl"));
 
         let _ = fs::remove_dir_all(&dir);
     }

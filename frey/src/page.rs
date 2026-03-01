@@ -3,6 +3,8 @@ use serde::ser::{SerializeMap, Serializer};
 use std::path::{Path, PathBuf};
 use temporal_rs::PlainDateTime;
 
+use crate::data::JsSource;
+
 /// A resolved source file with guaranteed metadata.
 /// Produced after parsing frontmatter and merging cascade data.
 #[derive(Debug, Clone)]
@@ -18,7 +20,7 @@ pub struct File {
     pub body: String,
     pub layout: Option<String>,
     pub data: serde_json::Map<String, serde_json::Value>,
-    pub js_sources: Vec<String>,
+    pub js_sources: Vec<JsSource>,
 }
 
 impl File {
@@ -29,7 +31,7 @@ impl File {
         src: PathBuf,
         body: String,
         mut data: serde_json::Map<String, serde_json::Value>,
-        js_sources: Vec<String>,
+        js_sources: Vec<JsSource>,
     ) -> Self {
         let date = data
             .get("date")

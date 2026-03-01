@@ -1,4 +1,6 @@
-use rquickjs::{Context, Function, Module, Runtime, function::Opt};
+use rquickjs::{Context, Function, Module, Object, Runtime, function::Opt, function::Rest};
+
+use crate::data::JsSource;
 
 /// Result of evaluating a JS data file.
 pub struct JsDataResult {
@@ -18,6 +20,8 @@ pub fn eval_js_data(source: &str) -> Result<JsDataResult, rquickjs::Error> {
     let context = Context::full(&runtime)?;
 
     context.with(|ctx| {
+        register_console(&ctx)?;
+
         let declared = match Module::declare(ctx.clone(), "data", source) {
             Ok(m) => m,
             Err(rquickjs::Error::Exception) => return Err(catch_exception(&ctx)),
@@ -79,7 +83,7 @@ pub fn eval_js_data(source: &str) -> Result<JsDataResult, rquickjs::Error> {
 /// (a JSON-encoded argument) and returns the result as a `serde_json::Value`.
 /// Returns `Ok(None)` if the export exists but isn't a function, or doesn't exist.
 pub fn call_js_function(
-    js_sources: &[String],
+    js_sources: &[JsSource],
     fn_name: &str,
     args_json: &str,
 ) -> Result<Option<serde_json::Value>, rquickjs::Error> {
@@ -88,11 +92,15 @@ pub fn call_js_function(
 
     context.with(|ctx| {
         let globals = ctx.globals();
+        register_console(&ctx)?;
 
-        // Evaluate each JS source module and promote exports to globals
-        for (i, source) in js_sources.iter().enumerate() {
+        // Evaluate each non-namespaced JS source module and promote exports to globals
+        for (i, js_source) in js_sources.iter().enumerate() {
+            if js_source.namespace.is_some() {
+                continue;
+            }
             let mod_name = format!("__call_{i}");
-            let declared = match Module::declare(ctx.clone(), mod_name, source.as_str()) {
+            let declared = match Module::declare(ctx.clone(), mod_name, js_source.source.as_str()) {
                 Ok(m) => m,
                 Err(rquickjs::Error::Exception) => return Err(catch_exception(&ctx)),
                 Err(e) => return Err(e),
@@ -171,13 +179,14 @@ impl Engine {
         js_code: &str,
         data: &serde_json::Value,
         location: &str,
-        js_sources: &[String],
+        js_sources: &[JsSource],
     ) -> Result<String, rquickjs::Error> {
         let context = Context::full(&self.runtime)?;
 
         context.with(|ctx| {
             // Inject data as global variables
             let globals = ctx.globals();
+            register_console(&ctx)?;
 
             if let serde_json::Value::Object(map) = data {
                 for (key, value) in map {
@@ -191,15 +200,16 @@ impl Engine {
             register_builtins(&ctx, &filters, location)?;
             globals.set("__filters", filters)?;
 
-            // Inject JS data modules — evaluate each source and promote exports to globals
-            for (i, source) in js_sources.iter().enumerate() {
+            // Inject JS data modules — evaluate each source and set up globals
+            for (i, js_source) in js_sources.iter().enumerate() {
                 let mod_name = format!("__data_{i}");
-                let declared = match Module::declare(ctx.clone(), mod_name.clone(), source.as_str())
-                {
-                    Ok(m) => m,
-                    Err(rquickjs::Error::Exception) => return Err(catch_exception(&ctx)),
-                    Err(e) => return Err(e),
-                };
+                let declared =
+                    match Module::declare(ctx.clone(), mod_name.clone(), js_source.source.as_str())
+                    {
+                        Ok(m) => m,
+                        Err(rquickjs::Error::Exception) => return Err(catch_exception(&ctx)),
+                        Err(e) => return Err(e),
+                    };
                 let (module, promise) = match declared.eval() {
                     Ok(r) => r,
                     Err(rquickjs::Error::Exception) => return Err(catch_exception(&ctx)),
@@ -208,14 +218,40 @@ impl Engine {
                 if let Err(rquickjs::Error::Exception) = promise.finish::<()>() {
                     return Err(catch_exception(&ctx));
                 }
-                let namespace = module.namespace()?;
-                for key in namespace.keys::<String>() {
-                    let key = key?;
-                    if key == "default" {
-                        continue;
+                let ns = module.namespace()?;
+
+                match &js_source.namespace {
+                    None => {
+                        // Promote named exports to globals (current _data.js behavior)
+                        for key in ns.keys::<String>() {
+                            let key = key?;
+                            if key == "default" {
+                                continue;
+                            }
+                            let val: rquickjs::Value = ns.get(&key)?;
+                            globals.set(key.as_str(), val)?;
+                        }
                     }
-                    let val: rquickjs::Value = namespace.get(&key)?;
-                    globals.set(key.as_str(), val)?;
+                    Some(name) => {
+                        // Set exports as a single global object under `name`,
+                        // preserving function references (no JSON serialization).
+                        let default_val: rquickjs::Value = ns.get("default")?;
+                        if !default_val.is_undefined() && default_val.is_object() {
+                            globals.set(name.as_str(), default_val)?;
+                        } else {
+                            // No default — build object from named exports
+                            let obj = rquickjs::Object::new(ctx.clone())?;
+                            for key in ns.keys::<String>() {
+                                let key = key?;
+                                if key == "default" {
+                                    continue;
+                                }
+                                let val: rquickjs::Value = ns.get(&key)?;
+                                obj.set(key.as_str(), val)?;
+                            }
+                            globals.set(name.as_str(), obj)?;
+                        }
+                    }
                 }
             }
 
@@ -347,6 +383,66 @@ fn register_builtins<'js>(
     Ok(())
 }
 
+/// Register a `console` global with `log`, `info`, `warn`, and `error` methods.
+/// Each prints to stdout/stderr with a level prefix, matching the Node.js console API.
+fn register_console(ctx: &rquickjs::Ctx<'_>) -> Result<(), rquickjs::Error> {
+    let globals = ctx.globals();
+    let console = Object::new(ctx.clone())?;
+
+    fn format_args(args: Rest<rquickjs::Value<'_>>) -> String {
+        args.0
+            .iter()
+            .map(|v| {
+                if let Some(s) = v.as_string() {
+                    s.to_string().unwrap_or_default()
+                } else if let Some(json) = v
+                    .ctx()
+                    .json_stringify(v)
+                    .ok()
+                    .flatten()
+                    .and_then(|s| s.to_string().ok())
+                {
+                    json
+                } else {
+                    "[?]".to_string()
+                }
+            })
+            .collect::<Vec<_>>()
+            .join(" ")
+    }
+
+    console.set(
+        "log",
+        Function::new(ctx.clone(), |args: Rest<rquickjs::Value<'_>>| {
+            println!("[eda] {}", format_args(args));
+        })?,
+    )?;
+
+    console.set(
+        "info",
+        Function::new(ctx.clone(), |args: Rest<rquickjs::Value<'_>>| {
+            println!("[eda:info] {}", format_args(args));
+        })?,
+    )?;
+
+    console.set(
+        "warn",
+        Function::new(ctx.clone(), |args: Rest<rquickjs::Value<'_>>| {
+            eprintln!("[eda:warn] {}", format_args(args));
+        })?,
+    )?;
+
+    console.set(
+        "error",
+        Function::new(ctx.clone(), |args: Rest<rquickjs::Value<'_>>| {
+            eprintln!("[eda:error] {}", format_args(args));
+        })?,
+    )?;
+
+    globals.set("console", console)?;
+    Ok(())
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -429,8 +525,10 @@ mod tests {
     #[test]
     fn eval_with_js_sources_function() {
         let engine = Engine::new().unwrap();
-        let js_source =
-            r#"export function greet(name) { return "Hello " + name + "!"; }"#.to_string();
+        let js_source = JsSource {
+            source: r#"export function greet(name) { return "Hello " + name + "!"; }"#.to_string(),
+            namespace: None,
+        };
         let data = serde_json::json!({"who": "Johan"});
         let result = engine
             .eval(
@@ -472,9 +570,12 @@ mod tests {
 
     #[test]
     fn call_js_function_returns_string() {
-        let source =
-            r#"export function url(page) { return "/writings/" + page.src.entry.name + "/"; }"#
-                .to_string();
+        let source = JsSource {
+            source:
+                r#"export function url(page) { return "/writings/" + page.src.entry.name + "/"; }"#
+                    .to_string(),
+            namespace: None,
+        };
         let args = r#"{"src":{"path":"posts/my-post","ext":".md","entry":{"name":"my-post","path":"posts/my-post.md","type":"file","src":"src"}},"data":{}}"#;
         let result = call_js_function(&[source], "url", args).unwrap();
         assert_eq!(
@@ -485,14 +586,20 @@ mod tests {
 
     #[test]
     fn call_js_function_returns_false() {
-        let source = r#"export function url(page) { return false; }"#.to_string();
+        let source = JsSource {
+            source: r#"export function url(page) { return false; }"#.to_string(),
+            namespace: None,
+        };
         let result = call_js_function(&[source], "url", "{}").unwrap();
         assert_eq!(result, Some(serde_json::Value::Bool(false)));
     }
 
     #[test]
     fn call_js_function_not_a_function() {
-        let source = r#"export const url = "/static-path/";"#.to_string();
+        let source = JsSource {
+            source: r#"export const url = "/static-path/";"#.to_string(),
+            namespace: None,
+        };
         let result = call_js_function(&[source], "url", "{}").unwrap();
         assert!(result.is_none()); // url is a string, not a function
     }
@@ -503,5 +610,68 @@ mod tests {
         assert!(result.values["date"].is_string());
         // ISO date string should contain "T" (e.g. "2026-02-27T...")
         assert!(result.values["date"].as_str().unwrap().contains('T'));
+    }
+
+    #[test]
+    fn eval_with_namespaced_js_source() {
+        let engine = Engine::new().unwrap();
+        let js_source = JsSource {
+            source: r#"export default { greet: (name) => "Hi " + name };"#.to_string(),
+            namespace: Some("helpers".to_string()),
+        };
+        let data = serde_json::json!({});
+        let result = engine
+            .eval(
+                r#"let __out = ""; __out += helpers.greet("Johan"); __out;"#,
+                &data,
+                "http://localhost:3000",
+                &[js_source],
+            )
+            .unwrap();
+        assert_eq!(result, "Hi Johan");
+    }
+
+    #[test]
+    fn eval_namespaced_named_exports() {
+        let engine = Engine::new().unwrap();
+        let js_source = JsSource {
+            source: r#"export const greeting = "Hello"; export function shout(s) { return s.toUpperCase(); }"#.to_string(),
+            namespace: Some("utils".to_string()),
+        };
+        let data = serde_json::json!({});
+        let result = engine
+            .eval(
+                r#"let __out = ""; __out += utils.greeting + " " + utils.shout("world"); __out;"#,
+                &data,
+                "http://localhost:3000",
+                &[js_source],
+            )
+            .unwrap();
+        assert_eq!(result, "Hello WORLD");
+    }
+
+    #[test]
+    fn eval_namespaced_overrides_json_data() {
+        // Simulates: _data/mastodon.js with `export const url = ...`
+        // Data has mastodon: {} (function dropped by JSON serialization),
+        // but the namespaced JS source should override it with live functions.
+        let engine = Engine::new().unwrap();
+        let js_source = JsSource {
+            source: r#"export const url = ({ instance, username }) => `https://${instance}/@${username}`;"#.to_string(),
+            namespace: Some("mastodon".to_string()),
+        };
+        let data = serde_json::json!({
+            "mastodon": {},
+            "meta": {"mastodon": {"instance": "hachyderm.io", "username": "brookie"}}
+        });
+        let result = engine
+            .eval(
+                r#"let __out = ""; __out += mastodon.url(meta.mastodon); __out;"#,
+                &data,
+                "http://localhost:3000",
+                &[js_source],
+            )
+            .unwrap();
+        assert_eq!(result, "https://hachyderm.io/@brookie");
     }
 }

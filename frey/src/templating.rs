@@ -5,6 +5,7 @@ use std::sync::Arc;
 use std::{fs, io};
 
 use crate::build::{parse_frontmatter, split_frontmatter};
+use crate::data::JsSource;
 use crate::eda::{Template, TemplateError};
 
 const MAX_INCLUDE_DEPTH: usize = 16;
@@ -56,7 +57,7 @@ impl TemplateStore {
         &mut self,
         source: &str,
         data: &serde_json::Value,
-        js_sources: &[String],
+        js_sources: &[JsSource],
     ) -> Result<String, RenderError> {
         let resolved = self.resolve_includes(source, 0)?;
 
@@ -85,7 +86,7 @@ impl TemplateStore {
         &mut self,
         body: &str,
         data: &serde_json::Map<String, serde_json::Value>,
-        js_sources: &[String],
+        js_sources: &[JsSource],
     ) -> Result<String, RenderError> {
         self.render_with_layout_inner(body, data, js_sources, 0)
     }
@@ -94,7 +95,7 @@ impl TemplateStore {
         &mut self,
         body: &str,
         data: &serde_json::Map<String, serde_json::Value>,
-        js_sources: &[String],
+        js_sources: &[JsSource],
         depth: usize,
     ) -> Result<String, RenderError> {
         if depth > MAX_INCLUDE_DEPTH {

@@ -1,0 +1,17 @@
+---
+layout: layouts/main.vto
+home: true
+---
+<main class="stack">
+    <article class="h-card">
+        <h1 class="title hide-mobile"><a href="{{ '/' |> url }}" rel="me" class="u-url u-uid p-name">Johan Brook</a></h1>
+
+        <div class="prose p-note">
+            {{ content |> safe }}
+
+            <hr />
+
+            <p>My fav track <time title="Updated at {{ current_track.updatedAt |> date('yyyy-MM-dd')}}" datetime="{{ current_track.updatedAt }}">at the moment</time> is ♫ <u class="b">{{ current_track.name }}</u> by {{ current_track.artist }}.</p>
+        </div>
+    </article>
+</main>

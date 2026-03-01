@@ -2,6 +2,7 @@ mod compile;
 mod engine;
 mod parse;
 
+use crate::data::JsSource;
 use engine::Engine;
 pub use engine::call_js_function;
 pub use engine::eval_js_data;
@@ -21,7 +22,7 @@ impl Template {
         &self,
         data: &serde_json::Value,
         location: &str,
-        js_sources: &[String],
+        js_sources: &[JsSource],
     ) -> Result<String, TemplateError> {
         let engine = Engine::new().map_err(TemplateError::Runtime)?;
         engine
