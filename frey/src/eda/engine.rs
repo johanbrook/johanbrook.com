@@ -161,7 +161,41 @@ fn catch_exception(ctx: &rquickjs::Ctx<'_>) -> rquickjs::Error {
         .as_exception()
         .map(|e| e.to_string())
         .unwrap_or_else(|| format!("{exception:?}"));
+    // Strip QuickJS "Error: " prefix if present
+    let msg = msg.strip_prefix("Error: ").unwrap_or(&msg).to_string();
     rquickjs::Error::Io(std::io::Error::other(msg))
+}
+
+/// Enrich a QuickJS error with the original template expression from the compiled JS.
+///
+/// Parses the JS line number from the error message (`eval_script:LINE`), looks up
+/// that line in `js_code`, and extracts the `// {{ ... }}` trailing comment if present.
+fn enrich_error(err: rquickjs::Error, js_code: &str) -> rquickjs::Error {
+    let msg = match &err {
+        rquickjs::Error::Io(e) => e.to_string(),
+        _ => return err,
+    };
+
+    // Extract the core message (first line, before any "    at" stack lines)
+    let core_msg = msg.lines().next().unwrap_or(&msg).trim();
+
+    // Try to find the line number from "eval_script:LINE"
+    let expr_comment = msg.find("eval_script:").and_then(|start| {
+        let after = &msg[start + "eval_script:".len()..];
+        let line_str = after.split(|c: char| !c.is_ascii_digit()).next()?;
+        let line_num: usize = line_str.parse().ok()?;
+        let js_line = js_code.split('\n').nth(line_num - 1)?;
+        // Extract "// {{ ... }}" comment
+        let comment_start = js_line.find("// {{")?;
+        Some(js_line[comment_start + 3..].trim().to_string())
+    });
+
+    let enriched = match expr_comment {
+        Some(expr) => format!("\n\n{core_msg}\n\n  {expr}\n"),
+        None => core_msg.to_string(),
+    };
+
+    rquickjs::Error::Io(std::io::Error::other(enriched))
 }
 
 pub struct Engine {
@@ -259,7 +293,8 @@ impl Engine {
             let result: rquickjs::Value = match ctx.eval(js_code) {
                 Ok(v) => v,
                 Err(rquickjs::Error::Exception) => {
-                    return Err(catch_exception(&ctx));
+                    let err = catch_exception(&ctx);
+                    return Err(enrich_error(err, js_code));
                 }
                 Err(e) => return Err(e),
             };

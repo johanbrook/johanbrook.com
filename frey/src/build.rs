@@ -390,7 +390,6 @@ fn process_template(mut file: File, store: &mut TemplateStore) -> io::Result<Ope
         );
     }
 
-
     let rendered = store
         .render_with_layout(&file.body, &file.data, &file.js_sources)
         .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?;

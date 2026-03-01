@@ -14,17 +14,23 @@ pub fn compile(nodes: &[Node]) -> String {
                 let compiled_expr = compile_expr(expr);
                 js.push_str("__out += (");
                 js.push_str(&compiled_expr);
-                js.push_str(");\n");
+                js.push_str("); // {{ ");
+                js.push_str(expr);
+                js.push_str(" }}\n");
             }
             Node::If(cond) => {
                 js.push_str("if (");
                 js.push_str(&compile_condition(cond));
-                js.push_str(") {\n");
+                js.push_str(") { // {{ if ");
+                js.push_str(cond);
+                js.push_str(" }}\n");
             }
             Node::ElseIf(cond) => {
                 js.push_str("} else if (");
                 js.push_str(&compile_condition(cond));
-                js.push_str(") {\n");
+                js.push_str(") { // {{ else if ");
+                js.push_str(cond);
+                js.push_str(" }}\n");
             }
             Node::Else => {
                 js.push_str("} else {\n");
@@ -35,18 +41,25 @@ pub fn compile(nodes: &[Node]) -> String {
             Node::For { binding, expr } => {
                 let compiled_expr = compile_pipes(expr);
                 if binding.contains(',') {
-                    // k, v of obj -> for (const [k, v] of Object.entries(obj))
                     js.push_str("for (const [");
                     js.push_str(binding);
                     js.push_str("] of Object.entries(");
                     js.push_str(&compiled_expr);
-                    js.push_str(")) {\n");
+                    js.push_str(")) { // {{ for ");
+                    js.push_str(binding);
+                    js.push_str(" of ");
+                    js.push_str(expr);
+                    js.push_str(" }}\n");
                 } else {
                     js.push_str("for (const ");
                     js.push_str(binding);
                     js.push_str(" of ");
                     js.push_str(&compiled_expr);
-                    js.push_str(") {\n");
+                    js.push_str(") { // {{ for ");
+                    js.push_str(binding);
+                    js.push_str(" of ");
+                    js.push_str(expr);
+                    js.push_str(" }}\n");
                 }
             }
             Node::Set { name, expr } => {
@@ -54,7 +67,11 @@ pub fn compile(nodes: &[Node]) -> String {
                 js.push_str(name);
                 js.push_str(" = (");
                 js.push_str(&compile_pipes(expr));
-                js.push_str(");\n");
+                js.push_str("); // {{ set ");
+                js.push_str(name);
+                js.push_str(" = ");
+                js.push_str(expr);
+                js.push_str(" }}\n");
             }
             Node::Function { name, params } => {
                 js.push_str("function ");
@@ -232,7 +249,7 @@ mod tests {
         ];
         let js = compile(&nodes);
         assert!(js.contains("__out += \"<h1>\";"));
-        assert!(js.contains(r#"__out += (typeof title !== "undefined" && title);"#));
+        assert!(js.contains(r#"__out += (typeof title !== "undefined" && title); // {{ title }}"#));
         assert!(js.contains("__out += \"</h1>\";"));
     }
 
@@ -246,7 +263,7 @@ mod tests {
             Node::EndIf,
         ];
         let js = compile(&nodes);
-        assert!(js.contains(r#"if (typeof x !== "undefined" && x > 0) {"#));
+        assert!(js.contains(r#"if (typeof x !== "undefined" && x > 0) { // {{ if x > 0 }}"#));
         assert!(js.contains("} else {"));
         assert!(js.contains("}"));
     }
@@ -259,7 +276,9 @@ mod tests {
             Node::EndIf,
         ];
         let js = compile(&nodes);
-        assert!(js.contains(r#"if (typeof type !== "undefined" && type == 'post') {"#));
+        assert!(js.contains(
+            r#"if (typeof type !== "undefined" && type == 'post') { // {{ if type == 'post' }}"#
+        ));
     }
 
     #[test]
@@ -270,7 +289,7 @@ mod tests {
             Node::EndIf,
         ];
         let js = compile(&nodes);
-        assert!(js.contains(r#"if (typeof menu !== "undefined" && menu.visible == true) {"#));
+        assert!(js.contains(r#"if (typeof menu !== "undefined" && menu.visible == true) { // {{ if menu.visible == true }}"#));
     }
 
     #[test]
@@ -288,7 +307,7 @@ mod tests {
             Node::EndFor,
         ];
         let js = compile(&nodes);
-        assert!(js.contains("for (const item of items) {"));
+        assert!(js.contains("for (const item of items) { // {{ for item of items }}"));
     }
 
     #[test]
@@ -301,7 +320,9 @@ mod tests {
             Node::EndFor,
         ];
         let js = compile(&nodes);
-        assert!(js.contains("for (const [k, v] of Object.entries(obj)) {"));
+        assert!(
+            js.contains("for (const [k, v] of Object.entries(obj)) { // {{ for k, v of obj }}")
+        );
     }
 
     #[test]
@@ -335,7 +356,7 @@ mod tests {
             expr: "42".into(),
         }];
         let js = compile(&nodes);
-        assert!(js.contains("const x = (42);"));
+        assert!(js.contains("const x = (42); // {{ set x = 42 }}"));
     }
 
     #[test]
