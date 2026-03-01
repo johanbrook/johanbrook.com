@@ -1,2 +1,3 @@
 export const microRoot = '/micro';
-export const url = (page) => `${microRoot}/${page.src.entry.name}/`;
+// [TODO]
+export const url = (page) => `${microRoot}/${page.src.split('/').pop().replace(/\.[^.]+$/, '')}/`;
