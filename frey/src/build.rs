@@ -10,12 +10,26 @@ use crate::data::DataCascade;
 use crate::page::{File, Page};
 use crate::templating::TemplateStore;
 
+#[derive(Debug)]
 pub struct BuildConfig {
     pub src: String,
     pub dest: String,
     pub dry_run: bool,
     pub verbose: bool,
     pub location: String,
+}
+
+impl std::fmt::Display for BuildConfig {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        writeln!(f, "Using config:")?;
+        writeln!(f, "  src={}", self.src.underline())?;
+        writeln!(f, "  dest={}", self.dest.underline())?;
+        writeln!(f, "  dry run={}", self.dry_run.underline())?;
+        writeln!(f, "  verbose={}", self.verbose.underline())?;
+        writeln!(f, "  location={}", self.location.underline())?;
+
+        Ok(())
+    }
 }
 
 enum WorkItem {
@@ -44,7 +58,11 @@ enum Operation {
     /// Write a rendered page.
     WritePage(Page),
     /// Write content to a destination path (simple files with frontmatter stripped).
-    Write { src: PathBuf, dest: PathBuf, content: String },
+    Write {
+        src: PathBuf,
+        dest: PathBuf,
+        content: String,
+    },
     /// Copy a file from src to dest.
     Copy { src: PathBuf, dest: PathBuf },
     /// Skip a file (url: false, draft, etc).
@@ -135,6 +153,10 @@ fn split_dest_path(path: &Path) -> (std::ffi::OsString, PathBuf) {
 }
 
 pub fn build(config: BuildConfig) -> io::Result<()> {
+    if config.verbose {
+        println!("{}", &config);
+    }
+
     let BuildConfig {
         src,
         dest,
@@ -190,7 +212,10 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                 s.spawn(move || -> io::Result<()> {
                     for item in chunk {
                         let op = match item {
-                            WorkItem::Process { src, kind: Processable::Simple } => {
+                            WorkItem::Process {
+                                src,
+                                kind: Processable::Simple,
+                            } => {
                                 let content = fs::read_to_string(src)?;
                                 let (_fm, body) = split_frontmatter(&content);
                                 let rel_path = src.strip_prefix(src_dir).unwrap();
