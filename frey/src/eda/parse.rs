@@ -42,11 +42,11 @@ pub fn parse(input: &str) -> Vec<Node> {
 
             let after_open = &rest[tag_start + 2..];
 
-            // Block comments: {{# ... #}} — scan for #}} to allow nested {{ }}
+            // Block comments: {{# ... }} — scan for closing }}
             if after_open.starts_with('#') {
-                if let Some(end) = after_open.find("#}}") {
+                if let Some(end) = after_open.find("}}") {
                     nodes.push(Node::Comment);
-                    rest = &after_open[end + 3..];
+                    rest = &after_open[end + 2..];
                 } else {
                     // Unclosed comment — treat rest as text
                     nodes.push(Node::Text(rest.to_string()));
