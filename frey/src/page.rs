@@ -1,9 +1,9 @@
 use serde::Serialize;
 use serde::ser::{SerializeMap, Serializer};
 use std::path::{Path, PathBuf};
-use temporal_rs::PlainDateTime;
 
 use crate::data::JsSource;
+use crate::date::Date;
 
 /// A resolved source file with guaranteed metadata.
 /// Produced after parsing frontmatter and merging cascade data.
@@ -15,7 +15,7 @@ pub struct File {
     /// Full output path, relative to build root. Like `writings/foo/index.html`.
     pub dest: PathBuf,
     pub url: String,
-    pub date: PlainDateTime,
+    pub date: Date,
     pub draft: bool,
     pub body: String,
     pub layout: Option<String>,
@@ -36,7 +36,7 @@ impl File {
         let date = data
             .get("date")
             .and_then(|v| v.as_str())
-            .and_then(|s| s.parse::<PlainDateTime>().ok())
+            .and_then(|s| s.parse::<Date>().ok())
             .unwrap_or_else(|| Self::date_from_file(&src));
 
         let draft = {
@@ -141,24 +141,12 @@ impl File {
     }
 
     /// Get a PlainDateTime from a file's creation time, falling back to epoch.
-    fn date_from_file(path: &Path) -> PlainDateTime {
+    fn date_from_file(path: &Path) -> Date {
         std::fs::metadata(path)
             .and_then(|m| m.created())
             .ok()
-            .and_then(|t| {
-                let dur = t.duration_since(std::time::UNIX_EPOCH).ok()?;
-                let secs = dur.as_secs();
-                // Convert to date components
-                let days = (secs / 86400) as i64;
-                let time_secs = (secs % 86400) as u32;
-                // Simple days-to-date conversion (from Unix epoch 1970-01-01)
-                let (year, month, day) = days_to_ymd(days);
-                let hour = (time_secs / 3600) as u8;
-                let minute = ((time_secs % 3600) / 60) as u8;
-                let second = (time_secs % 60) as u8;
-                PlainDateTime::try_new_iso(year, month, day, hour, minute, second, 0, 0, 0).ok()
-            })
-            .unwrap_or_else(|| PlainDateTime::try_new_iso(1970, 1, 1, 0, 0, 0, 0, 0, 0).unwrap())
+            .map(Date::from_file)
+            .unwrap_or_default()
     }
 }
 
@@ -215,22 +203,6 @@ fn default_dest(rel_path: &Path) -> PathBuf {
         let parent = rel_path.parent().unwrap_or(Path::new(""));
         parent.join(stem.as_ref()).join("index.html")
     }
-}
-
-/// Convert days since Unix epoch to (year, month, day).
-fn days_to_ymd(days: i64) -> (i32, u8, u8) {
-    // Civil days algorithm from Howard Hinnant
-    let z = days + 719468;
-    let era = if z >= 0 { z } else { z - 146096 } / 146097;
-    let doe = (z - era * 146097) as u64;
-    let yoe = (doe - doe / 1460 + doe / 36524 - doe / 146096) / 365;
-    let y = (yoe as i64 + era * 400) as i32;
-    let doy = doe - (365 * yoe + yoe / 4 - yoe / 100);
-    let mp = (5 * doy + 2) / 153;
-    let d = (doy - (153 * mp + 2) / 5 + 1) as u8;
-    let m = if mp < 10 { mp + 3 } else { mp - 9 } as u8;
-    let y = if m <= 2 { y + 1 } else { y };
-    (y, m, d)
 }
 
 impl Serialize for File {
@@ -298,14 +270,15 @@ mod tests {
             data,
             vec![],
         );
-        assert_eq!(file.date.year(), 2024);
-        assert_eq!(file.date.month(), 3);
-        assert_eq!(file.date.day(), 15);
+        assert_eq!(file.date, "2024-03-15".parse::<Date>().unwrap());
     }
 
     #[test]
     fn new_parses_datetime_from_data() {
-        let data = make_data(&[("date", json!("2024-03-15T10:30:00"))]);
+        // jiff's Timestamp requires an offset, so a bare datetime like
+        // "2024-03-15T10:30:00" falls through to civil::Date (time is lost).
+        // A full ISO 8601 timestamp with offset is preserved.
+        let data = make_data(&[("date", json!("2024-03-15T10:30:00Z"))]);
         let file = File::new(
             Path::new("src"),
             PathBuf::from("src/fake.md"),
@@ -313,9 +286,7 @@ mod tests {
             data,
             vec![],
         );
-        assert_eq!(file.date.year(), 2024);
-        assert_eq!(file.date.hour(), 10);
-        assert_eq!(file.date.minute(), 30);
+        assert!(file.date.to_string().starts_with("2024-03-15T10:30:00"));
     }
 
     #[test]
@@ -328,9 +299,7 @@ mod tests {
             Map::new(),
             vec![],
         );
-        assert_eq!(file.date.year(), 1970);
-        assert_eq!(file.date.month(), 1);
-        assert_eq!(file.date.day(), 1);
+        assert_eq!(file.date, Date::default());
     }
 
     #[test]
@@ -344,7 +313,7 @@ mod tests {
             vec![],
         );
         // Falls back to file/epoch
-        assert_eq!(file.date.year(), 1970);
+        assert_eq!(file.date, Date::default());
     }
 
     #[test]
@@ -719,16 +688,5 @@ mod tests {
         assert!(file.resolve_url());
         assert_eq!(file.url, "/reading-list/");
         assert_eq!(file.dest, PathBuf::from("reading-list/index.html"));
-    }
-
-    #[test]
-    fn days_to_ymd_epoch() {
-        assert_eq!(days_to_ymd(0), (1970, 1, 1));
-    }
-
-    #[test]
-    fn days_to_ymd_known_date() {
-        // 2024-03-15 is day 19797 since epoch
-        assert_eq!(days_to_ymd(19797), (2024, 3, 15));
     }
 }

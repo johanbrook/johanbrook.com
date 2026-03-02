@@ -378,6 +378,14 @@ fn register_builtins<'js>(
         })?,
     )?;
 
+    // date: format a date string
+    globals.set(
+        "date",
+        Function::new(ctx.clone(), |input: String, format: String| {
+            crate::date::date(&input, &format)
+        })?,
+    )?;
+
     // md: render Markdown to HTML. md(text) wraps in <p>, md(text, true) strips the outer <p>.
     globals.set(
         "md",

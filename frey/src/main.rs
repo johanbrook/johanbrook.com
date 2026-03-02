@@ -1,5 +1,6 @@
 mod build;
 mod data;
+mod date;
 mod eda;
 mod page;
 mod templating;

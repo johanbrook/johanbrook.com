@@ -17,7 +17,7 @@ In the `frey` directory, there's an empty rust project. My aim with "frey" is to
     - [ ] Pagination
     - [ ] Sorting
 - [ ] Tags
-- [ ] Date filter using Temporal
+- [x] Date filter
 
 ## Goals
 
