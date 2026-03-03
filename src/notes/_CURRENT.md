@@ -1,5 +1,5 @@
 ---
-date: '2026-02-28T23:59:10+01:00'
+date: '2026-03-03T20:23:10+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -31,4 +31,5 @@ tags:
 - Oasis: Supersonic
 - The Substance
 - House of Gucci
+- The Phantom Thread
 
