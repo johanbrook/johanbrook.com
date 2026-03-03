@@ -58,13 +58,13 @@
     {% endif %}
 
     {% if updated %}
-    <meta property="article:modified_time" content="{{ updated | tdate("Machine", updatedTimezone) }}" itemprop="dateModified">
+    <meta property="article:modified_time" content="{{ updated | date("Machine", updatedTimezone) }}" itemprop="dateModified">
     {% endif %}
 
     {% if type === 'post' %}
 	<meta property="og:type" content="article">
     <meta property="article:tag" content="{{ keywords }}">
-    <meta property="article:published_time" content="{{ date | tdate("Machine") }}">
+    <meta property="article:published_time" content="{{ date | date("Machine") }}">
    	{% else %}
    	<meta property="og:type" content="blog">
     {% endif %}

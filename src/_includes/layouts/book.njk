@@ -11,7 +11,7 @@ layout: layouts/main.njk
             <p class="f6 border border-t pt2">
                 {% if finished %}
                     {% if finishedAt %}
-                        <span class="BookStatus-Finished">I finished this book on <time datetime="{{ finishedAt | tdate('Machine')}}">{{ finishedAt | tdate('HumanDate') }}</time></span>
+                        <span class="BookStatus-Finished">I finished this book on <time datetime="{{ finishedAt | date('Machine')}}">{{ finishedAt | date('HumanDate') }}</time></span>
                     {% else %}
                         <span class="BookStatus-Finished">I've finished this book</span>
                     {% endif %}

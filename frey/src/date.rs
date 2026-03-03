@@ -41,13 +41,13 @@ impl FromStr for DateTimeFormat {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
-            "Machine" => Ok(Self::Machine),
-            "Date" => Ok(Self::Date),
-            "Time" => Ok(Self::Time),
-            "HumanDate" => Ok(Self::HumanDate),
+            "Machine" | "iso8601" => Ok(Self::Machine),
+            "Date" | "yyyy-MM-dd" => Ok(Self::Date),
+            "Time" | "HH:mm" => Ok(Self::Time),
+            "HumanDate" | "MMMM d, yyyy" => Ok(Self::HumanDate),
             "HumanTime" => Ok(Self::HumanTime),
             "Detailed" => Ok(Self::Detailed),
-            "MonthYear" => Ok(Self::MonthYear),
+            "MonthYear" | "MMMM yyyy" => Ok(Self::MonthYear),
             _ => Err(Error::ParseDateTimeFormat(s.to_owned())),
         }
     }

@@ -19,7 +19,7 @@ layout: layouts/main.njk
                             <a  href="{{ thing.url }}">
                                 {{ thing.type | title }}:
                                 {% if thing.type == "note" %}
-                                    {{ thing.date | tdate('HumanTime') }}
+                                    {{ thing.date | date('HumanTime') }}
                                 {% else %}
                                     {{ thing.title }}
                                 {% endif %}
@@ -28,7 +28,7 @@ layout: layouts/main.njk
 
                         {% if thing.type != "note" %}
                             <p class="muted f6">
-                                {{ thing.date | tdate('HumanDate') }}
+                                {{ thing.date | date('HumanDate') }}
                             </p>
                         {% endif %}
                     </header>

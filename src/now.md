@@ -18,7 +18,7 @@ menu:
 templateEngine: njk,md
 ---
 
-Updated <time datetime="{{ date | tdate('Machine') }}">{{ date | tdate('HumanDate') }}</time> from {{ location }}, where {{ weather }}.
+Updated <time datetime="{{ date | date('Machine') }}">{{ date | date('HumanDate') }}</time> from {{ location }}, where {{ weather }}.
 
 ## Back in Sweden
 

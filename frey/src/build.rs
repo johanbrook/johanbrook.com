@@ -380,16 +380,7 @@ fn process_markdown(mut file: File, store: &mut TemplateStore) -> io::Result<Ope
     Ok(Operation::WritePage(Page { file, rendered }))
 }
 
-fn process_template(mut file: File, store: &mut TemplateStore) -> io::Result<Operation> {
-    // Re-insert layout into data so render_with_layout can find it
-    // (File::new removes it from data into file.layout).
-    if let Some(ref layout) = file.layout {
-        file.data.insert(
-            "layout".to_string(),
-            serde_json::Value::String(layout.clone()),
-        );
-    }
-
+fn process_template(file: File, store: &mut TemplateStore) -> io::Result<Operation> {
     let rendered = store
         .render_with_layout(&file.body, &file.data, &file.js_sources)
         .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?;

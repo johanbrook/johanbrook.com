@@ -16,8 +16,8 @@ menu:
         <article class="Note">
            	<header class="mb2">
                 <h1>
-                    <a href="{{ post.url | url(true)}}" rel="bookmark" class="u-url u-uid dt-published no-underline" title="{{ post.date | tdate('Detailed') }}">
-                        <time datetime="{{ post.date | tdate('Machine') }}">{{ post.date | tdate('HumanDate') }}</time> — <time>{{ post.date | tdate('Time') }}</time>
+                    <a href="{{ post.url | url(true)}}" rel="bookmark" class="u-url u-uid dt-published no-underline" title="{{ post.date | date('Detailed') }}">
+                        <time datetime="{{ post.date | date('Machine') }}">{{ post.date | date('HumanDate') }}</time> — <time>{{ post.date | date('Time') }}</time>
                     </a>
                 </h1>
                 <div class="flex justify-between items-baseline gap">

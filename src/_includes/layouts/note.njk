@@ -5,8 +5,8 @@ layout: layouts/main.njk
     <article class="Page Note h-entry">
        	<header>
             <h1>
-                <a href="{{ url | url(true)}}" rel="bookmark" class="u-url u-uid dt-published no-underline" title="{{ date | tdate('Detailed') }}">
-                    <time datetime="{{ date | tdate('Machine') }}">{{ date | tdate('HumanDate') }}</time> — <time>{{ date | tdate('Time') }}</time>
+                <a href="{{ url | url(true)}}" rel="bookmark" class="u-url u-uid dt-published no-underline" title="{{ date | date('Detailed') }}">
+                    <time datetime="{{ date | date('Machine') }}">{{ date | date('HumanDate') }}</time> — <time>{{ date | date('Time') }}</time>
                 </a>
             </h1>
 

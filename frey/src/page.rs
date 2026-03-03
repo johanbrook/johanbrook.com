@@ -39,6 +39,12 @@ impl File {
             .and_then(|s| s.parse::<Date>().ok())
             .unwrap_or_else(|| Self::date_from_file(&src));
 
+        // Ensure date is always available in the data map for templates
+        data.insert(
+            "date".to_string(),
+            serde_json::Value::String(date.to_string()),
+        );
+
         let draft = {
             if let Some(draft) = data.get("draft").and_then(|v| v.as_bool()) {
                 draft
@@ -52,8 +58,9 @@ impl File {
         };
 
         let layout = data
-            .remove("layout")
-            .and_then(|v| v.as_str().map(String::from));
+            .get("layout")
+            .and_then(|v| v.as_str())
+            .map(String::from);
 
         // Extract static url string from data if present
         let url = data
@@ -365,8 +372,8 @@ mod tests {
             vec![],
         );
         assert_eq!(file.layout.as_deref(), Some("base.vto"));
-        // layout should be removed from the data map
-        assert!(!file.data.contains_key("layout"));
+        // layout stays in the data map for templates
+        assert_eq!(file.data.get("layout").unwrap(), "base.vto");
         // other keys remain
         assert_eq!(file.data.get("title").unwrap(), "Hello");
     }

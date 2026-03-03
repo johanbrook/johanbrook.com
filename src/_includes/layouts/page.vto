@@ -16,7 +16,7 @@ layout: layouts/main.vto
     </div>
 
     <footer>
-        {{#<p class="detail">Updated <time datetime="{{ date |> tdate('Machine') }}">{{ date |> tdate('HumanDate') }}</time>.</p>#}}
+        <p class="detail">Updated <time datetime="{{ date |> date('Machine') }}">{{ date |> date('HumanDate') }}</time>.</p>
     </footer>
   </article>
 </main>
