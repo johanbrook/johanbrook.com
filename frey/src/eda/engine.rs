@@ -223,10 +223,15 @@ impl Engine {
             let globals = ctx.globals();
             register_console(&ctx)?;
 
-            if let serde_json::Value::Object(map) = data {
-                for (key, value) in map {
-                    let js_val: rquickjs::Value = ctx.json_parse(value.to_string())?;
-                    globals.set(key.as_str(), js_val)?;
+            {
+                let data_json = serde_json::to_string(data).unwrap_or_else(|_| "{}".into());
+                let data_val: rquickjs::Value = ctx.json_parse(data_json)?;
+                if let Some(obj) = data_val.as_object() {
+                    for key in obj.keys::<String>() {
+                        let key = key?;
+                        let val: rquickjs::Value = obj.get(&key)?;
+                        globals.set(key.as_str(), val)?;
+                    }
                 }
             }
 

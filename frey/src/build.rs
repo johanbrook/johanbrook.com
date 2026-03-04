@@ -7,6 +7,7 @@ use std::thread;
 use std::time::Instant;
 
 use crate::data::DataCascade;
+use crate::eda::engine::Engine;
 use crate::page::{File, Page, to_relative_path};
 use crate::templating::TemplateStore;
 
@@ -306,9 +307,18 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
     };
 
     // ── Phase B: Render all files (with pages collection available) ──
-    let chunks: Vec<&[PreparedItem]> = prepared
-        .chunks(prepared.len().div_ceil(parallelism))
-        .collect();
+    let chunk_size = prepared.len().div_ceil(parallelism);
+    let chunks: Vec<Vec<PreparedItem>> = {
+        let mut rest = prepared;
+        let mut chunks = Vec::new();
+        while !rest.is_empty() {
+            let at = chunk_size.min(rest.len());
+            let tail = rest.split_off(at);
+            chunks.push(rest);
+            rest = tail;
+        }
+        chunks
+    };
 
     thread::scope(|s| {
         let handles: Vec<_> = chunks
@@ -318,28 +328,30 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                 let dest = &dest;
                 let pages_json = &pages_json;
                 s.spawn(move || -> io::Result<()> {
+                    let engine = Engine::new()
+                        .map_err(|e| io::Error::other(format!("QuickJS init: {e}")))?;
                     for item in chunk {
                         let op = match item {
                             PreparedItem::Content { file, kind } => match kind {
                                 Processable::Vto => {
-                                    process_template(file.clone(), &mut store, pages_json)?
+                                    process_template(file, &engine, &mut store, pages_json)?
                                 }
                                 Processable::Markdown => {
-                                    process_markdown(file.clone(), &mut store, pages_json)?
+                                    process_markdown(file, &engine, &mut store, pages_json)?
                                 }
                                 Processable::Simple => unreachable!(),
                             },
                             PreparedItem::Simple { src, dest, content } => Operation::Write {
-                                src: src.clone(),
-                                dest: dest.clone(),
-                                content: content.clone(),
+                                src,
+                                dest,
+                                content,
                             },
                             PreparedItem::Copy { src, dest } => Operation::Copy {
-                                src: src.clone(),
-                                dest: dest.clone(),
+                                src,
+                                dest,
                             },
                             PreparedItem::Skip { src, reason } => Operation::Skip {
-                                src: src.clone(),
+                                src,
                                 reason,
                             },
                         };
@@ -443,6 +455,7 @@ fn prepare_file(src_dir: &Path, path: &Path, content: &str, cascade: &DataCascad
 
 fn process_markdown(
     mut file: File,
+    engine: &Engine,
     store: &mut TemplateStore,
     pages_json: &str,
 ) -> io::Result<Operation> {
@@ -462,7 +475,7 @@ fn process_markdown(
         file.data
             .insert("content".to_string(), serde_json::Value::String(html_body));
         store
-            .render_with_layout("{{ content }}", &file.data, &file.js_sources, pages_json)
+            .render_with_layout(engine, "{{ content }}", &file.data, &file.js_sources, pages_json)
             .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?
     } else {
         html_body
@@ -473,11 +486,12 @@ fn process_markdown(
 
 fn process_template(
     file: File,
+    engine: &Engine,
     store: &mut TemplateStore,
     pages_json: &str,
 ) -> io::Result<Operation> {
     let rendered = store
-        .render_with_layout(&file.body, &file.data, &file.js_sources, pages_json)
+        .render_with_layout(engine, &file.body, &file.data, &file.js_sources, pages_json)
         .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?;
 
     Ok(Operation::WritePage(Page { file, rendered }))
