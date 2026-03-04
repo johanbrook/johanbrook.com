@@ -211,7 +211,7 @@ impl Engine {
     pub fn eval(
         &self,
         js_code: &str,
-        data: &serde_json::Value,
+        data: &serde_json::Map<String, serde_json::Value>,
         location: &str,
         js_sources: &[JsSource],
         pages_json: &str,
@@ -594,10 +594,17 @@ fn register_console(ctx: &rquickjs::Ctx<'_>) -> Result<(), rquickjs::Error> {
 mod tests {
     use super::*;
 
+    fn as_map(val: serde_json::Value) -> serde_json::Map<String, serde_json::Value> {
+        match val {
+            serde_json::Value::Object(m) => m,
+            _ => panic!("expected object"),
+        }
+    }
+
     #[test]
     fn eval_simple() {
         let engine = Engine::new().unwrap();
-        let data = serde_json::json!({"name": "world"});
+        let data = as_map(serde_json::json!({"name": "world"}));
         let result = engine
             .eval(
                 r#"let __out = ""; __out += "Hello "; __out += (name); __out;"#,
@@ -613,7 +620,7 @@ mod tests {
     #[test]
     fn eval_unescape() {
         let engine = Engine::new().unwrap();
-        let data = serde_json::json!({"html": "&lt;b&gt;bold&lt;/b&gt;"});
+        let data = as_map(serde_json::json!({"html": "&lt;b&gt;bold&lt;/b&gt;"}));
         let result = engine
             .eval(
                 r#"let __out = ""; __out += __filters.unescape(html); __out;"#,
@@ -629,7 +636,7 @@ mod tests {
     #[test]
     fn eval_empty() {
         let engine = Engine::new().unwrap();
-        let data = serde_json::json!({"a": "", "b": "hello", "c": [], "d": [1]});
+        let data = as_map(serde_json::json!({"a": "", "b": "hello", "c": [], "d": [1]}));
         let result = engine
             .eval(
                 r#"let __out = ""; __out += __filters.empty(a) + "," + __filters.empty(b) + "," + __filters.empty(c) + "," + __filters.empty(d); __out;"#,
@@ -645,7 +652,7 @@ mod tests {
     #[test]
     fn eval_for_loop() {
         let engine = Engine::new().unwrap();
-        let data = serde_json::json!({"items": ["a", "b", "c"]});
+        let data = as_map(serde_json::json!({"items": ["a", "b", "c"]}));
         let result = engine
             .eval(
                 r#"let __out = ""; for (const x of items) { __out += x; } __out;"#,
@@ -661,7 +668,7 @@ mod tests {
     #[test]
     fn eval_escape_html() {
         let engine = Engine::new().unwrap();
-        let data = serde_json::json!({"html": "<b>bold</b>"});
+        let data = as_map(serde_json::json!({"html": "<b>bold</b>"}));
         let result = engine
             .eval(
                 r#"let __out = ""; __out += __filters.escape(html); __out;"#,
@@ -681,7 +688,7 @@ mod tests {
             source: r#"export function greet(name) { return "Hello " + name + "!"; }"#.to_string(),
             namespace: None,
         };
-        let data = serde_json::json!({"who": "Johan"});
+        let data = as_map(serde_json::json!({"who": "Johan"}));
         let result = engine
             .eval(
                 r#"let __out = ""; __out += greet(who); __out;"#,
@@ -772,7 +779,7 @@ mod tests {
             source: r#"export default { greet: (name) => "Hi " + name };"#.to_string(),
             namespace: Some("helpers".to_string()),
         };
-        let data = serde_json::json!({});
+        let data = as_map(serde_json::json!({}));
         let result = engine
             .eval(
                 r#"let __out = ""; __out += helpers.greet("Johan"); __out;"#,
@@ -792,7 +799,7 @@ mod tests {
             source: r#"export const greeting = "Hello"; export function shout(s) { return s.toUpperCase(); }"#.to_string(),
             namespace: Some("utils".to_string()),
         };
-        let data = serde_json::json!({});
+        let data = as_map(serde_json::json!({}));
         let result = engine
             .eval(
                 r#"let __out = ""; __out += utils.greeting + " " + utils.shout("world"); __out;"#,
@@ -815,10 +822,10 @@ mod tests {
             source: r#"export const url = ({ instance, username }) => `https://${instance}/@${username}`;"#.to_string(),
             namespace: Some("mastodon".to_string()),
         };
-        let data = serde_json::json!({
+        let data = as_map(serde_json::json!({
             "mastodon": {},
             "meta": {"mastodon": {"instance": "hachyderm.io", "username": "brookie"}}
-        });
+        }));
         let result = engine
             .eval(
                 r#"let __out = ""; __out += mastodon.url(meta.mastodon); __out;"#,

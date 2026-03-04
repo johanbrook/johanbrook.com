@@ -58,7 +58,7 @@ impl TemplateStore {
         &mut self,
         engine: &Engine,
         source: &str,
-        data: &serde_json::Value,
+        data: &serde_json::Map<String, serde_json::Value>,
         js_sources: &[JsSource],
         pages_json: &str,
     ) -> Result<String, RenderError> {
@@ -252,6 +252,13 @@ mod tests {
         Engine::new().unwrap()
     }
 
+    fn as_map(val: serde_json::Value) -> serde_json::Map<String, serde_json::Value> {
+        match val {
+            serde_json::Value::Object(m) => m,
+            _ => panic!("expected object"),
+        }
+    }
+
     fn temp_store(files: &[(&str, &str)]) -> TemplateStore {
         let id = COUNTER.fetch_add(1, Ordering::Relaxed);
         let dir = std::env::temp_dir().join(format!("frey_test_{}_{id}", std::process::id()));
@@ -313,7 +320,7 @@ mod tests {
             .render(
                 &e,
                 "Hello {{ name }}!",
-                &serde_json::json!({"name": "Johan"}),
+                &as_map(serde_json::json!({"name": "Johan"})),
                 &[],
                 "[]",
             )
@@ -329,7 +336,7 @@ mod tests {
             .render(
                 &e,
                 r#"{{ include "nav.vto" }}<main>content</main>"#,
-                &serde_json::json!({"siteName": "My Site"}),
+                &as_map(serde_json::json!({"siteName": "My Site"})),
                 &[],
                 "[]",
             )
@@ -348,7 +355,7 @@ mod tests {
             .render(
                 &e,
                 r#"{{ include "outer.vto" }}"#,
-                &serde_json::json!({}),
+                &as_map(serde_json::json!({})),
                 &[],
                 "[]",
             )
@@ -363,7 +370,7 @@ mod tests {
         let result = store.render(
             &e,
             r#"{{ include "missing.vto" }}"#,
-            &serde_json::json!({}),
+            &as_map(serde_json::json!({})),
             &[],
             "[]",
         );
@@ -375,14 +382,20 @@ mod tests {
         let e = engine();
         let mut store = temp_store(&[]);
         let source = "Hello {{ name }}!";
-        let data = serde_json::json!({"name": "A"});
+        let data = as_map(serde_json::json!({"name": "A"}));
 
         store.render(&e, source, &data, &[], "[]").unwrap();
         assert_eq!(store.cache.len(), 1);
 
         // Same source should hit cache (not increase cache size)
         store
-            .render(&e, source, &serde_json::json!({"name": "B"}), &[], "[]")
+            .render(
+                &e,
+                source,
+                &as_map(serde_json::json!({"name": "B"})),
+                &[],
+                "[]",
+            )
             .unwrap();
         assert_eq!(store.cache.len(), 1);
     }
@@ -392,7 +405,7 @@ mod tests {
         let e = engine();
         let mut store = temp_store(&[("a.vto", "hello")]);
         store
-            .render(&e, "test", &serde_json::json!({}), &[], "[]")
+            .render(&e, "test", &as_map(serde_json::json!({})), &[], "[]")
             .unwrap();
         assert_eq!(store.cache.len(), 1);
 
