@@ -214,7 +214,7 @@ impl Engine {
         data: &serde_json::Value,
         location: &str,
         js_sources: &[JsSource],
-        pages: &[serde_json::Value],
+        pages_json: &str,
     ) -> Result<String, rquickjs::Error> {
         let context = Context::full(&self.runtime)?;
 
@@ -253,12 +253,10 @@ function __pipe(value, name, ...args) {
             // Inject `pages` global with collection methods.
             // Rust closures return JSON strings; a thin JS wrapper parses them.
             {
-                let pages_json = serde_json::to_string(pages).unwrap_or_else(|_| "[]".into());
-
                 let pages_obj = rquickjs::Object::new(ctx.clone())?;
 
                 // __pages_find(query, sort, limit) -> JSON string
-                let pj = pages_json.clone();
+                let pj = pages_json.to_owned();
                 pages_obj.set(
                     "__find",
                     Function::new(
@@ -275,7 +273,7 @@ function __pipe(value, name, ...args) {
                 )?;
 
                 // __pages_next(url, query) -> JSON string or ""
-                let pj = pages_json.clone();
+                let pj = pages_json.to_owned();
                 pages_obj.set(
                     "__next",
                     Function::new(ctx.clone(), move |url: String, query: String| -> String {
@@ -291,7 +289,7 @@ function __pipe(value, name, ...args) {
                 )?;
 
                 // __pages_prev(url, query) -> JSON string or ""
-                let pj = pages_json.clone();
+                let pj = pages_json.to_owned();
                 pages_obj.set(
                     "__prev",
                     Function::new(ctx.clone(), move |url: String, query: String| -> String {
@@ -307,7 +305,7 @@ function __pipe(value, name, ...args) {
                 )?;
 
                 // __pages_values(key, query?) -> JSON string
-                let pj = pages_json;
+                let pj = pages_json.to_owned();
                 pages_obj.set(
                     "__values",
                     Function::new(
@@ -601,7 +599,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
-                &[],
+                "[]",
             )
             .unwrap();
         assert_eq!(result, "Hello world");
@@ -617,7 +615,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
-                &[],
+                "[]",
             )
             .unwrap();
         assert_eq!(result, "<b>bold</b>");
@@ -633,7 +631,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
-                &[],
+                "[]",
             )
             .unwrap();
         assert_eq!(result, "true,false,true,false");
@@ -649,7 +647,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
-                &[],
+                "[]",
             )
             .unwrap();
         assert_eq!(result, "abc");
@@ -665,7 +663,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
-                &[],
+                "[]",
             )
             .unwrap();
         assert_eq!(result, "&lt;b&gt;bold&lt;/b&gt;");
@@ -685,7 +683,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[js_source],
-                &[],
+                "[]",
             )
             .unwrap();
         assert_eq!(result, "Hello Johan!");
@@ -776,7 +774,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[js_source],
-                &[],
+                "[]",
             )
             .unwrap();
         assert_eq!(result, "Hi Johan");
@@ -796,7 +794,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[js_source],
-                &[],
+                "[]",
             )
             .unwrap();
         assert_eq!(result, "Hello WORLD");
@@ -822,7 +820,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[js_source],
-                &[],
+                "[]",
             )
             .unwrap();
         assert_eq!(result, "https://hachyderm.io/@brookie");

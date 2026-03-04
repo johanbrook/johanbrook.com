@@ -292,15 +292,18 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
     }
 
     // ── Build pages collection from all content files ──
-    let pages: Vec<serde_json::Value> = prepared
-        .iter()
-        .filter_map(|item| match item {
-            PreparedItem::Content { file, .. } => {
-                Some(serde_json::Value::Object(file.data.clone()))
-            }
-            _ => None,
-        })
-        .collect();
+    let pages_json = {
+        let pages: Vec<serde_json::Value> = prepared
+            .iter()
+            .filter_map(|item| match item {
+                PreparedItem::Content { file, .. } => {
+                    Some(serde_json::Value::Object(file.data.clone()))
+                }
+                _ => None,
+            })
+            .collect();
+        serde_json::to_string(&pages).unwrap_or_else(|_| "[]".into())
+    };
 
     // ── Phase B: Render all files (with pages collection available) ──
     let chunks: Vec<&[PreparedItem]> = prepared
@@ -313,16 +316,16 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
             .map(|chunk| {
                 let mut store = template_store.clone();
                 let dest = &dest;
-                let pages = &pages;
+                let pages_json = &pages_json;
                 s.spawn(move || -> io::Result<()> {
                     for item in chunk {
                         let op = match item {
                             PreparedItem::Content { file, kind } => match kind {
                                 Processable::Vto => {
-                                    process_template(file.clone(), &mut store, pages)?
+                                    process_template(file.clone(), &mut store, pages_json)?
                                 }
                                 Processable::Markdown => {
-                                    process_markdown(file.clone(), &mut store, pages)?
+                                    process_markdown(file.clone(), &mut store, pages_json)?
                                 }
                                 Processable::Simple => unreachable!(),
                             },
@@ -441,7 +444,7 @@ fn prepare_file(src_dir: &Path, path: &Path, content: &str, cascade: &DataCascad
 fn process_markdown(
     mut file: File,
     store: &mut TemplateStore,
-    pages: &[serde_json::Value],
+    pages_json: &str,
 ) -> io::Result<Operation> {
     let html_body = markdown::to_html_with_options(
         &file.body,
@@ -459,7 +462,7 @@ fn process_markdown(
         file.data
             .insert("content".to_string(), serde_json::Value::String(html_body));
         store
-            .render_with_layout("{{ content }}", &file.data, &file.js_sources, pages)
+            .render_with_layout("{{ content }}", &file.data, &file.js_sources, pages_json)
             .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?
     } else {
         html_body
@@ -471,10 +474,10 @@ fn process_markdown(
 fn process_template(
     file: File,
     store: &mut TemplateStore,
-    pages: &[serde_json::Value],
+    pages_json: &str,
 ) -> io::Result<Operation> {
     let rendered = store
-        .render_with_layout(&file.body, &file.data, &file.js_sources, pages)
+        .render_with_layout(&file.body, &file.data, &file.js_sources, pages_json)
         .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?;
 
     Ok(Operation::WritePage(Page { file, rendered }))
