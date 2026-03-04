@@ -60,7 +60,7 @@ impl TemplateStore {
         source: &str,
         data: &serde_json::Map<String, serde_json::Value>,
         js_sources: &[JsSource],
-        pages_json: &str,
+        pages: &Arc<Vec<serde_json::Value>>,
     ) -> Result<String, RenderError> {
         let resolved = self.resolve_includes(source, 0)?;
 
@@ -76,7 +76,7 @@ impl TemplateStore {
             .or_insert_with(|| Template::from_str(&resolved));
 
         template
-            .render(engine, data, &self.location, js_sources, pages_json)
+            .render(engine, data, &self.location, js_sources, pages)
             .map_err(RenderError::Template)
     }
 
@@ -91,9 +91,9 @@ impl TemplateStore {
         body: &str,
         data: &serde_json::Map<String, serde_json::Value>,
         js_sources: &[JsSource],
-        pages_json: &str,
+        pages: &Arc<Vec<serde_json::Value>>,
     ) -> Result<String, RenderError> {
-        self.render_with_layout_inner(engine, body, data, js_sources, pages_json, 0)
+        self.render_with_layout_inner(engine, body, data, js_sources, pages, 0)
     }
 
     fn render_with_layout_inner(
@@ -102,14 +102,14 @@ impl TemplateStore {
         body: &str,
         data: &serde_json::Map<String, serde_json::Value>,
         js_sources: &[JsSource],
-        pages_json: &str,
+        pages: &Arc<Vec<serde_json::Value>>,
         depth: usize,
     ) -> Result<String, RenderError> {
         if depth > MAX_INCLUDE_DEPTH {
             return Err(RenderError::IncludeDepth);
         }
 
-        let rendered = self.render(engine, body, data, js_sources, pages_json)?;
+        let rendered = self.render(engine, body, data, js_sources, pages)?;
 
         let layout_key = data.get("layout");
         let layout_path = match layout_key {
@@ -144,7 +144,7 @@ impl TemplateStore {
             layout_body,
             &merged,
             js_sources,
-            pages_json,
+            pages,
             depth + 1,
         )
     }
@@ -322,7 +322,7 @@ mod tests {
                 "Hello {{ name }}!",
                 &as_map(serde_json::json!({"name": "Johan"})),
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "Hello Johan!");
@@ -338,7 +338,7 @@ mod tests {
                 r#"{{ include "nav.vto" }}<main>content</main>"#,
                 &as_map(serde_json::json!({"siteName": "My Site"})),
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "<nav>My Site</nav><main>content</main>");
@@ -357,7 +357,7 @@ mod tests {
                 r#"{{ include "outer.vto" }}"#,
                 &as_map(serde_json::json!({})),
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "<div><span>inner</span></div>");
@@ -372,7 +372,7 @@ mod tests {
             r#"{{ include "missing.vto" }}"#,
             &as_map(serde_json::json!({})),
             &[],
-            "[]",
+            &Arc::new(vec![]),
         );
         assert!(matches!(result, Err(RenderError::PartialNotFound(_))));
     }
@@ -384,7 +384,7 @@ mod tests {
         let source = "Hello {{ name }}!";
         let data = as_map(serde_json::json!({"name": "A"}));
 
-        store.render(&e, source, &data, &[], "[]").unwrap();
+        store.render(&e, source, &data, &[], &Arc::new(vec![])).unwrap();
         assert_eq!(store.cache.len(), 1);
 
         // Same source should hit cache (not increase cache size)
@@ -394,7 +394,7 @@ mod tests {
                 source,
                 &as_map(serde_json::json!({"name": "B"})),
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(store.cache.len(), 1);
@@ -405,7 +405,7 @@ mod tests {
         let e = engine();
         let mut store = temp_store(&[("a.vto", "hello")]);
         store
-            .render(&e, "test", &as_map(serde_json::json!({})), &[], "[]")
+            .render(&e, "test", &as_map(serde_json::json!({})), &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(store.cache.len(), 1);
 
@@ -427,7 +427,7 @@ mod tests {
             serde_json::Value::String("layouts/main.vto".to_string()),
         );
         let result = store
-            .render_with_layout(&e, "<p>Hello</p>", &data, &[], "[]")
+            .render_with_layout(&e, "<p>Hello</p>", &data, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "<html><body><p>Hello</p></body></html>");
     }
@@ -449,7 +449,7 @@ mod tests {
             serde_json::Value::String("My Page".to_string()),
         );
         let result = store
-            .render_with_layout(&e, "<p>Body</p>", &data, &[], "[]")
+            .render_with_layout(&e, "<p>Body</p>", &data, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(
             result,
@@ -473,7 +473,7 @@ mod tests {
             serde_json::Value::String("layouts/page.vto".to_string()),
         );
         let result = store
-            .render_with_layout(&e, "<p>Hello</p>", &data, &[], "[]")
+            .render_with_layout(&e, "<p>Hello</p>", &data, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "<html><article><p>Hello</p></article></html>");
     }
@@ -485,7 +485,7 @@ mod tests {
         let mut data = serde_json::Map::new();
         data.insert("layout".to_string(), serde_json::Value::Null);
         let result = store
-            .render_with_layout(&e, "<p>Raw</p>", &data, &[], "[]")
+            .render_with_layout(&e, "<p>Raw</p>", &data, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "<p>Raw</p>");
     }
@@ -496,7 +496,7 @@ mod tests {
         let mut store = temp_store(&[]);
         let data = serde_json::Map::new();
         let result = store
-            .render_with_layout(&e, "<p>Raw</p>", &data, &[], "[]")
+            .render_with_layout(&e, "<p>Raw</p>", &data, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "<p>Raw</p>");
     }
@@ -511,7 +511,7 @@ mod tests {
             serde_json::Value::String("layouts/old.njk".to_string()),
         );
         let result = store
-            .render_with_layout(&e, "<p>Content</p>", &data, &[], "[]")
+            .render_with_layout(&e, "<p>Content</p>", &data, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "<p>Content</p>");
     }

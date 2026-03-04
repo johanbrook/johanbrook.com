@@ -2,6 +2,8 @@ mod compile;
 pub mod engine;
 mod parse;
 
+use std::sync::Arc;
+
 use crate::data::JsSource;
 use engine::Engine;
 pub use engine::call_js_function;
@@ -24,10 +26,10 @@ impl Template {
         data: &serde_json::Map<String, serde_json::Value>,
         location: &str,
         js_sources: &[JsSource],
-        pages_json: &str,
+        pages: &Arc<Vec<serde_json::Value>>,
     ) -> Result<String, TemplateError> {
         engine
-            .eval(&self.js_code, data, location, js_sources, pages_json)
+            .eval(&self.js_code, data, location, js_sources, pages)
             .map_err(TemplateError::Runtime)
     }
 }
@@ -74,7 +76,7 @@ mod tests {
                 &as_map(serde_json::json!({"name": "Johan"})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "Hello Johan!");
@@ -90,7 +92,7 @@ mod tests {
                 &as_map(serde_json::json!({"show": true})),
                 LOC,
                 &[],
-                "[]"
+                &Arc::new(vec![])
             )
             .unwrap(),
             "visible"
@@ -101,7 +103,7 @@ mod tests {
                 &as_map(serde_json::json!({"show": false})),
                 LOC,
                 &[],
-                "[]"
+                &Arc::new(vec![])
             )
             .unwrap(),
             ""
@@ -119,7 +121,7 @@ mod tests {
                 &as_map(serde_json::json!({"items": ["one", "two"]})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "<ul><li>one</li><li>two</li></ul>");
@@ -135,7 +137,7 @@ mod tests {
                 &as_map(serde_json::json!({"obj": {"a": 1, "b": 2}})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert!(result.contains("a=1"));
@@ -152,7 +154,7 @@ mod tests {
                 &as_map(serde_json::json!({"html": "<b>hi</b>"})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "&lt;b&gt;hi&lt;/b&gt;");
@@ -176,7 +178,7 @@ mod tests {
                 })),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "ac");
@@ -187,7 +189,7 @@ mod tests {
         let e = engine();
         let tpl = Template::from_str("{{ set greeting = \"Hi\" }}{{ greeting }}!");
         let result = tpl
-            .render(&e, &as_map(serde_json::json!({})), LOC, &[], "[]")
+            .render(&e, &as_map(serde_json::json!({})), LOC, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "Hi!");
     }
@@ -197,7 +199,7 @@ mod tests {
         let e = engine();
         let tpl = Template::from_str("before{{# this is a comment }}after");
         let result = tpl
-            .render(&e, &as_map(serde_json::json!({})), LOC, &[], "[]")
+            .render(&e, &as_map(serde_json::json!({})), LOC, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "beforeafter");
     }
@@ -207,7 +209,7 @@ mod tests {
         let e = engine();
         let tpl = Template::from_str("{{ echo }}{{ name }}{{ /echo }}");
         let result = tpl
-            .render(&e, &as_map(serde_json::json!({})), LOC, &[], "[]")
+            .render(&e, &as_map(serde_json::json!({})), LOC, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "{{ name }}");
     }
@@ -222,7 +224,7 @@ mod tests {
                 &as_map(serde_json::json!({"name": "x"})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "xrest");
@@ -234,17 +236,17 @@ mod tests {
         let tpl =
             Template::from_str("{{ if x == 1 }}one{{ else if x == 2 }}two{{ else }}other{{ /if }}");
         assert_eq!(
-            tpl.render(&e, &as_map(serde_json::json!({"x": 1})), LOC, &[], "[]")
+            tpl.render(&e, &as_map(serde_json::json!({"x": 1})), LOC, &[], &Arc::new(vec![]))
                 .unwrap(),
             "one"
         );
         assert_eq!(
-            tpl.render(&e, &as_map(serde_json::json!({"x": 2})), LOC, &[], "[]")
+            tpl.render(&e, &as_map(serde_json::json!({"x": 2})), LOC, &[], &Arc::new(vec![]))
                 .unwrap(),
             "two"
         );
         assert_eq!(
-            tpl.render(&e, &as_map(serde_json::json!({"x": 3})), LOC, &[], "[]")
+            tpl.render(&e, &as_map(serde_json::json!({"x": 3})), LOC, &[], &Arc::new(vec![]))
                 .unwrap(),
             "other"
         );
@@ -255,7 +257,7 @@ mod tests {
         let e = engine();
         let tpl = Template::from_str("");
         let result = tpl
-            .render(&e, &as_map(serde_json::json!({})), LOC, &[], "[]")
+            .render(&e, &as_map(serde_json::json!({})), LOC, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "");
     }
@@ -270,7 +272,7 @@ mod tests {
                 &as_map(serde_json::json!({"content": "<script>alert('xss')</script>"})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(
@@ -289,7 +291,7 @@ mod tests {
                 &as_map(serde_json::json!({"content": "&lt;b&gt;bold&lt;/b&gt;"})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "<b>bold</b>");
@@ -305,7 +307,7 @@ mod tests {
                 &as_map(serde_json::json!({"content": "<div class=\"x\">hi</div>"})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "<div class=\"x\">hi</div>");
@@ -321,7 +323,7 @@ mod tests {
                 &as_map(serde_json::json!({"items": []})),
                 LOC,
                 &[],
-                "[]"
+                &Arc::new(vec![])
             )
             .unwrap(),
             "no items"
@@ -332,7 +334,7 @@ mod tests {
                 &as_map(serde_json::json!({"items": [1]})),
                 LOC,
                 &[],
-                "[]"
+                &Arc::new(vec![])
             )
             .unwrap(),
             "has items"
@@ -345,7 +347,7 @@ mod tests {
         let tpl =
             Template::from_str("{{ if name |> empty }}anonymous{{ else }}{{ name }}{{ /if }}");
         assert_eq!(
-            tpl.render(&e, &as_map(serde_json::json!({"name": ""})), LOC, &[], "[]")
+            tpl.render(&e, &as_map(serde_json::json!({"name": ""})), LOC, &[], &Arc::new(vec![]))
                 .unwrap(),
             "anonymous"
         );
@@ -355,7 +357,7 @@ mod tests {
                 &as_map(serde_json::json!({"name": "  "})),
                 LOC,
                 &[],
-                "[]"
+                &Arc::new(vec![])
             )
             .unwrap(),
             "anonymous"
@@ -366,7 +368,7 @@ mod tests {
                 &as_map(serde_json::json!({"name": "Johan"})),
                 LOC,
                 &[],
-                "[]"
+                &Arc::new(vec![])
             )
             .unwrap(),
             "Johan"
@@ -380,7 +382,7 @@ mod tests {
             "{{ function greet(name) }}Hello {{ name }}!{{ /function }}{{ greet(\"World\") }}",
         );
         let result = tpl
-            .render(&e, &as_map(serde_json::json!({})), LOC, &[], "[]")
+            .render(&e, &as_map(serde_json::json!({})), LOC, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "Hello World!");
     }
@@ -397,7 +399,7 @@ mod tests {
                 &as_map(serde_json::json!({"who": "Johan"})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "Hello Johan!");
@@ -410,7 +412,7 @@ mod tests {
             "{{ function status(done) }}{{ if done }}Yes{{ else }}No{{ /if }}{{ /function }}{{ status(true) }}/{{ status(false) }}",
         );
         let result = tpl
-            .render(&e, &as_map(serde_json::json!({})), LOC, &[], "[]")
+            .render(&e, &as_map(serde_json::json!({})), LOC, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "Yes/No");
     }
@@ -422,7 +424,7 @@ mod tests {
             "{{ function star() }}*{{ /function }}{{ star() }}{{ star() }}{{ star() }}",
         );
         let result = tpl
-            .render(&e, &as_map(serde_json::json!({})), LOC, &[], "[]")
+            .render(&e, &as_map(serde_json::json!({})), LOC, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "***");
     }
@@ -439,7 +441,7 @@ mod tests {
                 &as_map(serde_json::json!({"things": ["a", "b"]})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "[a][b]");
@@ -452,7 +454,7 @@ mod tests {
             "{{ set prefix = \"Hi\" }}{{ function greet(name) }}{{ prefix }} {{ name }}!{{ /function }}{{ greet(\"World\") }}",
         );
         let result = tpl
-            .render(&e, &as_map(serde_json::json!({})), LOC, &[], "[]")
+            .render(&e, &as_map(serde_json::json!({})), LOC, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "Hi World!");
     }
@@ -469,7 +471,7 @@ mod tests {
                 &as_map(serde_json::json!({"name": "<script>"})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "<b>&lt;script&gt;</b>");
@@ -485,7 +487,7 @@ mod tests {
                 &as_map(serde_json::json!({"html": "<b>trusted</b>"})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "<b>trusted</b>");
@@ -501,7 +503,7 @@ mod tests {
                 &as_map(serde_json::json!({"text": "**bold**"})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert!(result.contains("<p><strong>bold</strong></p>"));
@@ -517,7 +519,7 @@ mod tests {
                 &as_map(serde_json::json!({"text": "**bold**"})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "<strong>bold</strong>");
@@ -533,7 +535,7 @@ mod tests {
                 &as_map(serde_json::json!({})),
                 "https://johan.im",
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "https://johan.im/foo");
@@ -544,7 +546,7 @@ mod tests {
         let e = engine();
         let tpl = Template::from_str("{{ if undefinedVar == 'foo' }}yes{{ else }}no{{ /if }}");
         let result = tpl
-            .render(&e, &as_map(serde_json::json!({})), LOC, &[], "[]")
+            .render(&e, &as_map(serde_json::json!({})), LOC, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "no");
     }
@@ -554,7 +556,7 @@ mod tests {
         let e = engine();
         let tpl = Template::from_str(r#"{{ "hello" |> toUpperCase }}"#);
         let result = tpl
-            .render(&e, &as_map(serde_json::json!({})), LOC, &[], "[]")
+            .render(&e, &as_map(serde_json::json!({})), LOC, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "HELLO");
     }
@@ -564,7 +566,7 @@ mod tests {
         let e = engine();
         let tpl = Template::from_str(r#"{{ " hi " |> trim }}"#);
         let result = tpl
-            .render(&e, &as_map(serde_json::json!({})), LOC, &[], "[]")
+            .render(&e, &as_map(serde_json::json!({})), LOC, &[], &Arc::new(vec![]))
             .unwrap();
         assert_eq!(result, "hi");
     }
@@ -580,7 +582,7 @@ mod tests {
                 &as_map(serde_json::json!({"html": "<b>hi</b>"})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "&lt;b&gt;hi&lt;/b&gt;");
@@ -596,7 +598,7 @@ mod tests {
                 &as_map(serde_json::json!({"items": ["a", "b"]})),
                 LOC,
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, r#"["a","b"]"#);

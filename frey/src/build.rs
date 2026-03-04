@@ -3,6 +3,7 @@ use std::fs;
 use std::io::{self, Write as _};
 use std::path::{Path, PathBuf};
 
+use std::sync::Arc;
 use std::thread;
 use std::time::Instant;
 
@@ -293,8 +294,8 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
     }
 
     // ── Build pages collection from all content files ──
-    let pages_json = {
-        let pages: Vec<serde_json::Value> = prepared
+    let pages: Arc<Vec<serde_json::Value>> = Arc::new(
+        prepared
             .iter()
             .filter_map(|item| match item {
                 PreparedItem::Content { file, .. } => {
@@ -302,9 +303,8 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                 }
                 _ => None,
             })
-            .collect();
-        serde_json::to_string(&pages).unwrap_or_else(|_| "[]".into())
-    };
+            .collect(),
+    );
 
     // ── Phase B: Render all files (with pages collection available) ──
     let chunk_size = prepared.len().div_ceil(parallelism);
@@ -326,7 +326,7 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
             .map(|chunk| {
                 let mut store = template_store.clone();
                 let dest = &dest;
-                let pages_json = &pages_json;
+                let pages = &pages;
                 s.spawn(move || -> io::Result<()> {
                     let engine = Engine::new()
                         .map_err(|e| io::Error::other(format!("QuickJS init: {e}")))?;
@@ -334,10 +334,10 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                         let op = match item {
                             PreparedItem::Content { file, kind } => match kind {
                                 Processable::Vto => {
-                                    process_template(file, &engine, &mut store, pages_json)?
+                                    process_template(file, &engine, &mut store, pages)?
                                 }
                                 Processable::Markdown => {
-                                    process_markdown(file, &engine, &mut store, pages_json)?
+                                    process_markdown(file, &engine, &mut store, pages)?
                                 }
                                 Processable::Simple => unreachable!(),
                             },
@@ -449,7 +449,7 @@ fn process_markdown(
     mut file: File,
     engine: &Engine,
     store: &mut TemplateStore,
-    pages_json: &str,
+    pages: &Arc<Vec<serde_json::Value>>,
 ) -> io::Result<Operation> {
     let html_body = markdown::to_html_with_options(
         &file.body,
@@ -472,7 +472,7 @@ fn process_markdown(
                 "{{ content }}",
                 &file.data,
                 &file.js_sources,
-                pages_json,
+                pages,
             )
             .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?
     } else {
@@ -486,10 +486,10 @@ fn process_template(
     file: File,
     engine: &Engine,
     store: &mut TemplateStore,
-    pages_json: &str,
+    pages: &Arc<Vec<serde_json::Value>>,
 ) -> io::Result<Operation> {
     let rendered = store
-        .render_with_layout(engine, &file.body, &file.data, &file.js_sources, pages_json)
+        .render_with_layout(engine, &file.body, &file.data, &file.js_sources, pages)
         .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?;
 
     Ok(Operation::WritePage(Page { file, rendered }))

@@ -1,3 +1,5 @@
+use std::sync::Arc;
+
 use rquickjs::{Context, Function, Module, Object, Runtime, function::Opt, function::Rest};
 
 use crate::data::JsSource;
@@ -214,7 +216,7 @@ impl Engine {
         data: &serde_json::Map<String, serde_json::Value>,
         location: &str,
         js_sources: &[JsSource],
-        pages_json: &str,
+        pages: &Arc<Vec<serde_json::Value>>,
     ) -> Result<String, rquickjs::Error> {
         let context = Context::full(&self.runtime)?;
 
@@ -257,16 +259,11 @@ function __pipe(value, name, ...args) {
 
             // Inject `pages` global with collection methods.
             // Rust closures return JSON strings; a thin JS wrapper parses them.
-            // Pre-parse pages_json once and share via Arc across all closures.
             {
-                let pages_vec: std::sync::Arc<Vec<serde_json::Value>> = std::sync::Arc::new(
-                    serde_json::from_str(pages_json).unwrap_or_default(),
-                );
-
                 let pages_obj = rquickjs::Object::new(ctx.clone())?;
 
                 // __pages_find(query, sort, limit) -> JSON string
-                let pages = std::sync::Arc::clone(&pages_vec);
+                let p = Arc::clone(pages);
                 pages_obj.set(
                     "__find",
                     Function::new(
@@ -274,18 +271,18 @@ function __pipe(value, name, ...args) {
                         move |query: String, sort: Opt<String>, limit: Opt<f64>| -> String {
                             let limit = limit.0.map(|n| n as usize);
                             let results =
-                                crate::collection::find(&pages, &query, sort.0.as_deref(), limit);
+                                crate::collection::find(&p, &query, sort.0.as_deref(), limit);
                             serde_json::to_string(&results).unwrap_or_else(|_| "[]".into())
                         },
                     )?,
                 )?;
 
                 // __pages_next(url, query) -> JSON string or ""
-                let pages = std::sync::Arc::clone(&pages_vec);
+                let p = Arc::clone(pages);
                 pages_obj.set(
                     "__next",
                     Function::new(ctx.clone(), move |url: String, query: String| -> String {
-                        match crate::collection::next(&pages, &url, &query) {
+                        match crate::collection::next(&p, &url, &query) {
                             Some(page) => {
                                 serde_json::to_string(&page).unwrap_or_else(|_| "null".into())
                             }
@@ -295,11 +292,11 @@ function __pipe(value, name, ...args) {
                 )?;
 
                 // __pages_prev(url, query) -> JSON string or ""
-                let pages = std::sync::Arc::clone(&pages_vec);
+                let p = Arc::clone(pages);
                 pages_obj.set(
                     "__prev",
                     Function::new(ctx.clone(), move |url: String, query: String| -> String {
-                        match crate::collection::prev(&pages, &url, &query) {
+                        match crate::collection::prev(&p, &url, &query) {
                             Some(page) => {
                                 serde_json::to_string(&page).unwrap_or_else(|_| "null".into())
                             }
@@ -309,14 +306,14 @@ function __pipe(value, name, ...args) {
                 )?;
 
                 // __pages_values(key, query?) -> JSON string
-                let pages = std::sync::Arc::clone(&pages_vec);
+                let p = Arc::clone(pages);
                 pages_obj.set(
                     "__values",
                     Function::new(
                         ctx.clone(),
                         move |key: String, query: Opt<String>| -> String {
                             let results =
-                                crate::collection::values(&pages, &key, query.0.as_deref());
+                                crate::collection::values(&p, &key, query.0.as_deref());
                             serde_json::to_string(&results).unwrap_or_else(|_| "[]".into())
                         },
                     )?,
@@ -608,7 +605,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "Hello world");
@@ -624,7 +621,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "<b>bold</b>");
@@ -640,7 +637,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "true,false,true,false");
@@ -656,7 +653,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "abc");
@@ -672,7 +669,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "&lt;b&gt;bold&lt;/b&gt;");
@@ -692,7 +689,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[js_source],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "Hello Johan!");
@@ -783,7 +780,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[js_source],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "Hi Johan");
@@ -803,7 +800,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[js_source],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "Hello WORLD");
@@ -829,7 +826,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[js_source],
-                "[]",
+                &Arc::new(vec![]),
             )
             .unwrap();
         assert_eq!(result, "https://hachyderm.io/@brookie");
