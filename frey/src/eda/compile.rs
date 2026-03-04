@@ -93,7 +93,8 @@ pub fn compile(nodes: &[Node]) -> String {
     js
 }
 
-/// Compile pipe expressions: `expr |> fn` -> `fn(expr)`, `expr |> fn(arg)` -> `fn(expr, arg)`
+/// Compile pipe expressions using `__pipe` runtime resolution:
+/// `expr |> fn` -> `__pipe(expr, "fn")`, `expr |> fn(a, b)` -> `__pipe(expr, "fn", a, b)`
 fn compile_pipes(expr: &str) -> String {
     let parts: Vec<&str> = expr.split("|>").collect();
     if parts.len() == 1 {
@@ -104,12 +105,11 @@ fn compile_pipes(expr: &str) -> String {
     for pipe in &parts[1..] {
         let func = pipe.trim();
         if let Some(paren) = func.find('(') {
-            // fn(args) -> __filters.fn(piped, args)
             let name = &func[..paren];
             let args = &func[paren + 1..func.len() - 1]; // strip parens
-            result = format!("__filters.{name}({result}, {args})");
+            result = format!("__pipe({result}, \"{name}\", {args})");
         } else {
-            result = format!("__filters.{func}({result})");
+            result = format!("__pipe({result}, \"{func}\")");
         }
     }
     result
@@ -329,11 +329,11 @@ mod tests {
     fn pipes() {
         assert_eq!(
             super::compile_pipes("name |> upper"),
-            "__filters.upper(name)"
+            r#"__pipe(name, "upper")"#
         );
         assert_eq!(
             super::compile_pipes("name |> trim |> upper"),
-            "__filters.upper(__filters.trim(name))"
+            r#"__pipe(__pipe(name, "trim"), "upper")"#
         );
     }
 
@@ -341,11 +341,39 @@ mod tests {
     fn pipes_with_args() {
         assert_eq!(
             super::compile_pipes("text |> md(true)"),
-            "__filters.md(text, true)"
+            r#"__pipe(text, "md", true)"#
         );
         assert_eq!(
             super::compile_pipes("text |> slice(0, 5) |> upper"),
-            "__filters.upper(__filters.slice(text, 0, 5))"
+            r#"__pipe(__pipe(text, "slice", 0, 5), "upper")"#
+        );
+    }
+
+    #[test]
+    fn pipes_js_globals() {
+        assert_eq!(
+            super::compile_pipes("x |> JSON.stringify"),
+            r#"__pipe(x, "JSON.stringify")"#
+        );
+    }
+
+    #[test]
+    fn pipes_prototype_method() {
+        assert_eq!(
+            super::compile_pipes("s |> toUpperCase"),
+            r#"__pipe(s, "toUpperCase")"#
+        );
+        assert_eq!(
+            super::compile_pipes("s |> slice(0, 3)"),
+            r#"__pipe(s, "slice", 0, 3)"#
+        );
+    }
+
+    #[test]
+    fn pipes_chaining_mixed() {
+        assert_eq!(
+            super::compile_pipes("s |> trim |> toUpperCase"),
+            r#"__pipe(__pipe(s, "trim"), "toUpperCase")"#
         );
     }
 

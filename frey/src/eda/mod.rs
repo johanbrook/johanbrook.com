@@ -383,4 +383,37 @@ mod tests {
         let result = tpl.render(&serde_json::json!({}), LOC, &[], &[]).unwrap();
         assert_eq!(result, "no");
     }
+
+    #[test]
+    fn full_render_pipe_prototype_method() {
+        let tpl = Template::from_str(r#"{{ "hello" |> toUpperCase }}"#);
+        let result = tpl.render(&serde_json::json!({}), LOC, &[], &[]).unwrap();
+        assert_eq!(result, "HELLO");
+    }
+
+    #[test]
+    fn full_render_pipe_trim() {
+        let tpl = Template::from_str(r#"{{ " hi " |> trim }}"#);
+        let result = tpl.render(&serde_json::json!({}), LOC, &[], &[]).unwrap();
+        assert_eq!(result, "hi");
+    }
+
+    #[test]
+    fn full_render_pipe_filter_priority() {
+        // escape is a registered filter — it should take priority over any prototype method
+        let tpl = Template::from_str("{{ html |> escape }}");
+        let result = tpl
+            .render(&serde_json::json!({"html": "<b>hi</b>"}), LOC, &[], &[])
+            .unwrap();
+        assert_eq!(result, "&lt;b&gt;hi&lt;/b&gt;");
+    }
+
+    #[test]
+    fn full_render_pipe_json_stringify() {
+        let tpl = Template::from_str(r#"{{ items |> JSON.stringify }}"#);
+        let result = tpl
+            .render(&serde_json::json!({"items": ["a", "b"]}), LOC, &[], &[])
+            .unwrap();
+        assert_eq!(result, r#"["a","b"]"#);
+    }
 }

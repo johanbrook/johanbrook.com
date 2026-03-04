@@ -235,6 +235,21 @@ impl Engine {
             register_builtins(&ctx, &filters, location)?;
             globals.set("__filters", filters)?;
 
+            // Register __pipe runtime helper for pipe fallback resolution
+            ctx.eval::<(), _>(
+                r#"
+function __pipe(value, name, ...args) {
+    if (typeof __filters[name] === "function") return __filters[name](value, ...args);
+    const parts = name.split(".");
+    let fn = globalThis;
+    for (const p of parts) { fn = fn?.[p]; }
+    if (typeof fn === "function") return fn(value, ...args);
+    if (typeof value[name] === "function") return value[name](...args);
+    throw new Error("Unknown filter: " + name);
+}
+"#,
+            )?;
+
             // Inject `pages` global with collection methods.
             // Rust closures return JSON strings; a thin JS wrapper parses them.
             {
