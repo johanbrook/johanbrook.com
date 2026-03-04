@@ -341,19 +341,11 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                                 }
                                 Processable::Simple => unreachable!(),
                             },
-                            PreparedItem::Simple { src, dest, content } => Operation::Write {
-                                src,
-                                dest,
-                                content,
-                            },
-                            PreparedItem::Copy { src, dest } => Operation::Copy {
-                                src,
-                                dest,
-                            },
-                            PreparedItem::Skip { src, reason } => Operation::Skip {
-                                src,
-                                reason,
-                            },
+                            PreparedItem::Simple { src, dest, content } => {
+                                Operation::Write { src, dest, content }
+                            }
+                            PreparedItem::Copy { src, dest } => Operation::Copy { src, dest },
+                            PreparedItem::Skip { src, reason } => Operation::Skip { src, reason },
                         };
 
                         op.print(verbose, dest);
@@ -475,7 +467,13 @@ fn process_markdown(
         file.data
             .insert("content".to_string(), serde_json::Value::String(html_body));
         store
-            .render_with_layout(engine, "{{ content }}", &file.data, &file.js_sources, pages_json)
+            .render_with_layout(
+                engine,
+                "{{ content }}",
+                &file.data,
+                &file.js_sources,
+                pages_json,
+            )
             .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?
     } else {
         html_body

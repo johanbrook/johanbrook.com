@@ -109,13 +109,7 @@ impl TemplateStore {
             return Err(RenderError::IncludeDepth);
         }
 
-        let rendered = self.render(
-            engine,
-            body,
-            &serde_json::Value::Object(data.clone()),
-            js_sources,
-            pages_json,
-        )?;
+        let rendered = self.render(engine, body, data, js_sources, pages_json)?;
 
         let layout_key = data.get("layout");
         let layout_path = match layout_key {
@@ -145,7 +139,14 @@ impl TemplateStore {
         // Inject rendered content
         merged.insert("content".to_string(), serde_json::Value::String(rendered));
 
-        self.render_with_layout_inner(engine, layout_body, &merged, js_sources, pages_json, depth + 1)
+        self.render_with_layout_inner(
+            engine,
+            layout_body,
+            &merged,
+            js_sources,
+            pages_json,
+            depth + 1,
+        )
     }
 
     /// Recursively resolve `{{ include "path" }}` directives in `source`.
