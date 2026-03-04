@@ -14,4 +14,10 @@ home: true
             <p>My fav track <time title="Updated at {{ current_track.updatedAt |> date('yyyy-MM-dd')}}" datetime="{{ current_track.updatedAt }}">at the moment</time> is ♫ <u class="b">{{ current_track.name }}</u> by {{ current_track.artist }}.</p>
         </div>
     </article>
+    
+    <ol>
+        {{ for post of pages.find("type=note", "date=desc", 5) }}
+            <li><pre>{{ post.content }}</pre></li>
+        {{ /for }}
+    </ol>
 </main>

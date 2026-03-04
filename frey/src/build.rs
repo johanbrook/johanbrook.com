@@ -293,6 +293,22 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
         println!("Prepared {} items", prepared.len().green());
     }
 
+    // Enrich content files with body and content fields
+    let mut prepared = prepared;
+    for item in &mut prepared {
+        if let PreparedItem::Content { file, kind } = item {
+            file.data
+                .insert("body".into(), serde_json::Value::String(file.body.clone()));
+            let content = match kind {
+                Processable::Markdown => render_markdown(&file.body),
+                Processable::Vto => file.body.clone(),
+                Processable::Simple => unreachable!(),
+            };
+            file.data
+                .insert("content".into(), serde_json::Value::String(content));
+        }
+    }
+
     // ── Build pages collection from all content files ──
     let pages: Arc<Vec<serde_json::Value>> = Arc::new(
         prepared
@@ -445,14 +461,9 @@ fn prepare_file(src_dir: &Path, path: &Path, content: &str, cascade: &DataCascad
     )
 }
 
-fn process_markdown(
-    mut file: File,
-    engine: &Engine,
-    store: &mut TemplateStore,
-    pages: &Arc<Vec<serde_json::Value>>,
-) -> io::Result<Operation> {
-    let html_body = markdown::to_html_with_options(
-        &file.body,
+fn render_markdown(source: &str) -> String {
+    markdown::to_html_with_options(
+        source,
         &markdown::Options {
             compile: markdown::CompileOptions {
                 allow_dangerous_html: true,
@@ -461,19 +472,26 @@ fn process_markdown(
             ..markdown::Options::gfm()
         },
     )
-    .expect("markdown parsing failed");
+    .expect("markdown parsing failed")
+}
+
+fn process_markdown(
+    mut file: File,
+    engine: &Engine,
+    store: &mut TemplateStore,
+    pages: &Arc<Vec<serde_json::Value>>,
+) -> io::Result<Operation> {
+    // Take ownership of the pre-computed content, avoiding a clone
+    let html_body = match file.data.remove("content") {
+        Some(serde_json::Value::String(s)) => s,
+        _ => render_markdown(&file.body),
+    };
 
     let rendered = if file.layout.is_some() {
         file.data
-            .insert("content".to_string(), serde_json::Value::String(html_body));
+            .insert("content".into(), serde_json::Value::String(html_body));
         store
-            .render_with_layout(
-                engine,
-                "{{ content }}",
-                &file.data,
-                &file.js_sources,
-                pages,
-            )
+            .render_with_layout(engine, "{{ content }}", &file.data, &file.js_sources, pages)
             .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?
     } else {
         html_body

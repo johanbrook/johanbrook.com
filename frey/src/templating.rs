@@ -139,14 +139,7 @@ impl TemplateStore {
         // Inject rendered content
         merged.insert("content".to_string(), serde_json::Value::String(rendered));
 
-        self.render_with_layout_inner(
-            engine,
-            layout_body,
-            &merged,
-            js_sources,
-            pages,
-            depth + 1,
-        )
+        self.render_with_layout_inner(engine, layout_body, &merged, js_sources, pages, depth + 1)
     }
 
     /// Recursively resolve `{{ include "path" }}` directives in `source`.
@@ -384,7 +377,9 @@ mod tests {
         let source = "Hello {{ name }}!";
         let data = as_map(serde_json::json!({"name": "A"}));
 
-        store.render(&e, source, &data, &[], &Arc::new(vec![])).unwrap();
+        store
+            .render(&e, source, &data, &[], &Arc::new(vec![]))
+            .unwrap();
         assert_eq!(store.cache.len(), 1);
 
         // Same source should hit cache (not increase cache size)
@@ -405,7 +400,13 @@ mod tests {
         let e = engine();
         let mut store = temp_store(&[("a.vto", "hello")]);
         store
-            .render(&e, "test", &as_map(serde_json::json!({})), &[], &Arc::new(vec![]))
+            .render(
+                &e,
+                "test",
+                &as_map(serde_json::json!({})),
+                &[],
+                &Arc::new(vec![]),
+            )
             .unwrap();
         assert_eq!(store.cache.len(), 1);
 
