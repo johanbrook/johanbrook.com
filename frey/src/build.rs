@@ -152,9 +152,25 @@ fn split_dest_path(path: &Path) -> (std::ffi::OsString, PathBuf) {
     )
 }
 
+/// A prepared file ready for rendering (Phase A output).
+enum PreparedItem {
+    /// A content file (Markdown or Vto) with resolved metadata.
+    Content { file: File, kind: Processable },
+    /// A simple file (frontmatter stripped, no templating).
+    Simple {
+        src: PathBuf,
+        dest: PathBuf,
+        content: String,
+    },
+    /// A file to copy verbatim.
+    Copy { src: PathBuf, dest: PathBuf },
+    /// A file to skip.
+    Skip { src: PathBuf, reason: &'static str },
+}
+
 pub fn build(config: BuildConfig) -> io::Result<()> {
     if config.verbose {
-        println!("{}", &config);
+        println!("{config}");
     }
 
     let BuildConfig {
@@ -180,7 +196,7 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
 
     let start = Instant::now();
 
-    // Phase 1: Collect work items
+    // Collect work items
     let mut items = Vec::new();
     walk(src_dir, src_dir, dest, &mut items)?;
 
@@ -188,7 +204,6 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
 
     let cascade = DataCascade::load(src_dir)?;
 
-    // Phase 2: Process in parallel
     let parallelism = thread::available_parallelism()
         .map(|n| n.get())
         .unwrap_or(4);
@@ -200,18 +215,19 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
     let includes_dir = src_dir.join("_includes");
     let template_store = TemplateStore::load(&includes_dir, location)?;
 
+    // ── Phase A: Prepare all files (parse frontmatter, resolve URLs) ──
     let chunks: Vec<&[WorkItem]> = items.chunks(items.len().div_ceil(parallelism)).collect();
 
-    thread::scope(|s| {
+    let prepared: Vec<PreparedItem> = thread::scope(|s| {
         let handles: Vec<_> = chunks
             .into_iter()
             .map(|chunk| {
-                let mut store = template_store.clone();
                 let cascade = &cascade;
                 let dest = &dest;
-                s.spawn(move || -> io::Result<()> {
+                s.spawn(move || -> io::Result<Vec<PreparedItem>> {
+                    let mut out = Vec::new();
                     for item in chunk {
-                        let op = match item {
+                        let prepared = match item {
                             WorkItem::Process {
                                 src,
                                 kind: Processable::Simple,
@@ -219,7 +235,7 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                                 let content = fs::read_to_string(src)?;
                                 let (_fm, body) = split_frontmatter(&content);
                                 let rel_path = src.strip_prefix(src_dir).unwrap();
-                                Operation::Write {
+                                PreparedItem::Simple {
                                     src: src.clone(),
                                     dest: dest.join(rel_path),
                                     content: body.to_string(),
@@ -231,29 +247,97 @@ pub fn build(config: BuildConfig) -> io::Result<()> {
                                 let mut file = prepare_file(src_dir, src, &content, cascade);
 
                                 if file.draft {
-                                    Operation::Skip {
+                                    PreparedItem::Skip {
                                         src: file.src,
                                         reason: "draft",
                                     }
                                 } else if !file.resolve_url() {
-                                    Operation::Skip {
+                                    PreparedItem::Skip {
                                         src: file.src,
                                         reason: "url: false",
                                     }
                                 } else {
-                                    match kind {
-                                        Processable::Vto => process_template(file, &mut store)?,
-                                        Processable::Markdown => {
-                                            process_markdown(file, &mut store)?
-                                        }
-                                        Processable::Simple => unreachable!(),
+                                    PreparedItem::Content {
+                                        file,
+                                        kind: match kind {
+                                            Processable::Vto => Processable::Vto,
+                                            Processable::Markdown => Processable::Markdown,
+                                            Processable::Simple => unreachable!(),
+                                        },
                                     }
                                 }
                             }
 
-                            WorkItem::Copy { src, dest } => Operation::Copy {
+                            WorkItem::Copy { src, dest } => PreparedItem::Copy {
                                 src: src.clone(),
                                 dest: dest.clone(),
+                            },
+                        };
+                        out.push(prepared);
+                    }
+                    Ok(out)
+                })
+            })
+            .collect();
+
+        let mut all = Vec::new();
+        for handle in handles {
+            all.extend(handle.join().expect("thread panicked")?);
+        }
+        Ok::<Vec<PreparedItem>, io::Error>(all)
+    })?;
+
+    if verbose {
+        println!("Prepared {} items", prepared.len().green());
+    }
+
+    // ── Build pages collection from all content files ──
+    let pages: Vec<serde_json::Value> = prepared
+        .iter()
+        .filter_map(|item| match item {
+            PreparedItem::Content { file, .. } => {
+                Some(serde_json::Value::Object(file.data.clone()))
+            }
+            _ => None,
+        })
+        .collect();
+
+    // ── Phase B: Render all files (with pages collection available) ──
+    let chunks: Vec<&[PreparedItem]> = prepared
+        .chunks(prepared.len().div_ceil(parallelism))
+        .collect();
+
+    thread::scope(|s| {
+        let handles: Vec<_> = chunks
+            .into_iter()
+            .map(|chunk| {
+                let mut store = template_store.clone();
+                let dest = &dest;
+                let pages = &pages;
+                s.spawn(move || -> io::Result<()> {
+                    for item in chunk {
+                        let op = match item {
+                            PreparedItem::Content { file, kind } => match kind {
+                                Processable::Vto => {
+                                    process_template(file.clone(), &mut store, pages)?
+                                }
+                                Processable::Markdown => {
+                                    process_markdown(file.clone(), &mut store, pages)?
+                                }
+                                Processable::Simple => unreachable!(),
+                            },
+                            PreparedItem::Simple { src, dest, content } => Operation::Write {
+                                src: src.clone(),
+                                dest: dest.clone(),
+                                content: content.clone(),
+                            },
+                            PreparedItem::Copy { src, dest } => Operation::Copy {
+                                src: src.clone(),
+                                dest: dest.clone(),
+                            },
+                            PreparedItem::Skip { src, reason } => Operation::Skip {
+                                src: src.clone(),
+                                reason,
                             },
                         };
 
@@ -354,7 +438,11 @@ fn prepare_file(src_dir: &Path, path: &Path, content: &str, cascade: &DataCascad
     )
 }
 
-fn process_markdown(mut file: File, store: &mut TemplateStore) -> io::Result<Operation> {
+fn process_markdown(
+    mut file: File,
+    store: &mut TemplateStore,
+    pages: &[serde_json::Value],
+) -> io::Result<Operation> {
     let html_body = markdown::to_html_with_options(
         &file.body,
         &markdown::Options {
@@ -371,7 +459,7 @@ fn process_markdown(mut file: File, store: &mut TemplateStore) -> io::Result<Ope
         file.data
             .insert("content".to_string(), serde_json::Value::String(html_body));
         store
-            .render_with_layout("{{ content }}", &file.data, &file.js_sources)
+            .render_with_layout("{{ content }}", &file.data, &file.js_sources, pages)
             .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?
     } else {
         html_body
@@ -380,9 +468,13 @@ fn process_markdown(mut file: File, store: &mut TemplateStore) -> io::Result<Ope
     Ok(Operation::WritePage(Page { file, rendered }))
 }
 
-fn process_template(file: File, store: &mut TemplateStore) -> io::Result<Operation> {
+fn process_template(
+    file: File,
+    store: &mut TemplateStore,
+    pages: &[serde_json::Value],
+) -> io::Result<Operation> {
     let rendered = store
-        .render_with_layout(&file.body, &file.data, &file.js_sources)
+        .render_with_layout(&file.body, &file.data, &file.js_sources, pages)
         .map_err(|e| io::Error::other(format!("{}: {e}", file.src.display())))?;
 
     Ok(Operation::WritePage(Page { file, rendered }))

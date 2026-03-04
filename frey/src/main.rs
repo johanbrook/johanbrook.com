@@ -1,4 +1,5 @@
 mod build;
+mod collection;
 mod data;
 mod date;
 mod eda;

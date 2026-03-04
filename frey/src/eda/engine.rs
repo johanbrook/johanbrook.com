@@ -214,6 +214,7 @@ impl Engine {
         data: &serde_json::Value,
         location: &str,
         js_sources: &[JsSource],
+        pages: &[serde_json::Value],
     ) -> Result<String, rquickjs::Error> {
         let context = Context::full(&self.runtime)?;
 
@@ -233,6 +234,91 @@ impl Engine {
             let filters = rquickjs::Object::new(ctx.clone())?;
             register_builtins(&ctx, &filters, location)?;
             globals.set("__filters", filters)?;
+
+            // Inject `pages` global with collection methods.
+            // Rust closures return JSON strings; a thin JS wrapper parses them.
+            {
+                let pages_json = serde_json::to_string(pages).unwrap_or_else(|_| "[]".into());
+
+                let pages_obj = rquickjs::Object::new(ctx.clone())?;
+
+                // __pages_find(query, sort, limit) -> JSON string
+                let pj = pages_json.clone();
+                pages_obj.set(
+                    "__find",
+                    Function::new(
+                        ctx.clone(),
+                        move |query: String, sort: Opt<String>, limit: Opt<f64>| -> String {
+                            let pages: Vec<serde_json::Value> =
+                                serde_json::from_str(&pj).unwrap_or_default();
+                            let limit = limit.0.map(|n| n as usize);
+                            let results =
+                                crate::collection::find(&pages, &query, sort.0.as_deref(), limit);
+                            serde_json::to_string(&results).unwrap_or_else(|_| "[]".into())
+                        },
+                    )?,
+                )?;
+
+                // __pages_next(url, query) -> JSON string or ""
+                let pj = pages_json.clone();
+                pages_obj.set(
+                    "__next",
+                    Function::new(ctx.clone(), move |url: String, query: String| -> String {
+                        let pages: Vec<serde_json::Value> =
+                            serde_json::from_str(&pj).unwrap_or_default();
+                        match crate::collection::next(&pages, &url, &query) {
+                            Some(page) => {
+                                serde_json::to_string(&page).unwrap_or_else(|_| "null".into())
+                            }
+                            None => String::new(),
+                        }
+                    })?,
+                )?;
+
+                // __pages_prev(url, query) -> JSON string or ""
+                let pj = pages_json.clone();
+                pages_obj.set(
+                    "__prev",
+                    Function::new(ctx.clone(), move |url: String, query: String| -> String {
+                        let pages: Vec<serde_json::Value> =
+                            serde_json::from_str(&pj).unwrap_or_default();
+                        match crate::collection::prev(&pages, &url, &query) {
+                            Some(page) => {
+                                serde_json::to_string(&page).unwrap_or_else(|_| "null".into())
+                            }
+                            None => String::new(),
+                        }
+                    })?,
+                )?;
+
+                // __pages_values(key, query?) -> JSON string
+                let pj = pages_json;
+                pages_obj.set(
+                    "__values",
+                    Function::new(
+                        ctx.clone(),
+                        move |key: String, query: Opt<String>| -> String {
+                            let pages: Vec<serde_json::Value> =
+                                serde_json::from_str(&pj).unwrap_or_default();
+                            let results =
+                                crate::collection::values(&pages, &key, query.0.as_deref());
+                            serde_json::to_string(&results).unwrap_or_else(|_| "[]".into())
+                        },
+                    )?,
+                )?;
+
+                globals.set("pages", pages_obj)?;
+
+                // Wrap the raw string-returning methods with JSON.parse
+                ctx.eval::<(), _>(
+                    r#"
+                    pages.find = (q, sort, limit) => JSON.parse(pages.__find(q || "", sort, limit));
+                    pages.next = (url, q) => { const r = pages.__next(url, q || ""); return r ? JSON.parse(r) : undefined; };
+                    pages.prev = (url, q) => { const r = pages.__prev(url, q || ""); return r ? JSON.parse(r) : undefined; };
+                    pages.values = (key, q) => JSON.parse(pages.__values(key, q || ""));
+                    "#,
+                )?;
+            }
 
             // Inject JS data modules — evaluate each source and set up globals
             for (i, js_source) in js_sources.iter().enumerate() {
@@ -500,6 +586,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
+                &[],
             )
             .unwrap();
         assert_eq!(result, "Hello world");
@@ -514,6 +601,7 @@ mod tests {
                 r#"let __out = ""; __out += __filters.unescape(html); __out;"#,
                 &data,
                 "http://localhost:3000",
+                &[],
                 &[],
             )
             .unwrap();
@@ -530,6 +618,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
+                &[],
             )
             .unwrap();
         assert_eq!(result, "true,false,true,false");
@@ -545,6 +634,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[],
+                &[],
             )
             .unwrap();
         assert_eq!(result, "abc");
@@ -559,6 +649,7 @@ mod tests {
                 r#"let __out = ""; __out += __filters.escape(html); __out;"#,
                 &data,
                 "http://localhost:3000",
+                &[],
                 &[],
             )
             .unwrap();
@@ -579,6 +670,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[js_source],
+                &[],
             )
             .unwrap();
         assert_eq!(result, "Hello Johan!");
@@ -669,6 +761,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[js_source],
+                &[],
             )
             .unwrap();
         assert_eq!(result, "Hi Johan");
@@ -688,6 +781,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[js_source],
+                &[],
             )
             .unwrap();
         assert_eq!(result, "Hello WORLD");
@@ -713,6 +807,7 @@ mod tests {
                 &data,
                 "http://localhost:3000",
                 &[js_source],
+                &[],
             )
             .unwrap();
         assert_eq!(result, "https://hachyderm.io/@brookie");

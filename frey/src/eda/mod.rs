@@ -23,10 +23,11 @@ impl Template {
         data: &serde_json::Value,
         location: &str,
         js_sources: &[JsSource],
+        pages: &[serde_json::Value],
     ) -> Result<String, TemplateError> {
         let engine = Engine::new().map_err(TemplateError::Runtime)?;
         engine
-            .eval(&self.js_code, data, location, js_sources)
+            .eval(&self.js_code, data, location, js_sources, pages)
             .map_err(TemplateError::Runtime)
     }
 }
@@ -56,7 +57,7 @@ mod tests {
     fn full_render_simple() {
         let tpl = Template::from_str("Hello {{ name }}!");
         let result = tpl
-            .render(&serde_json::json!({"name": "Johan"}), LOC, &[])
+            .render(&serde_json::json!({"name": "Johan"}), LOC, &[], &[])
             .unwrap();
         assert_eq!(result, "Hello Johan!");
     }
@@ -65,12 +66,12 @@ mod tests {
     fn full_render_if() {
         let tpl = Template::from_str("{{ if show }}visible{{ /if }}");
         assert_eq!(
-            tpl.render(&serde_json::json!({"show": true}), LOC, &[])
+            tpl.render(&serde_json::json!({"show": true}), LOC, &[], &[])
                 .unwrap(),
             "visible"
         );
         assert_eq!(
-            tpl.render(&serde_json::json!({"show": false}), LOC, &[])
+            tpl.render(&serde_json::json!({"show": false}), LOC, &[], &[])
                 .unwrap(),
             ""
         );
@@ -81,7 +82,7 @@ mod tests {
         let tpl =
             Template::from_str("<ul>{{ for item of items }}<li>{{ item }}</li>{{ /for }}</ul>");
         let result = tpl
-            .render(&serde_json::json!({"items": ["one", "two"]}), LOC, &[])
+            .render(&serde_json::json!({"items": ["one", "two"]}), LOC, &[], &[])
             .unwrap();
         assert_eq!(result, "<ul><li>one</li><li>two</li></ul>");
     }
@@ -90,7 +91,7 @@ mod tests {
     fn full_render_for_kv() {
         let tpl = Template::from_str("{{ for k, v of obj }}{{ k }}={{ v }} {{ /for }}");
         let result = tpl
-            .render(&serde_json::json!({"obj": {"a": 1, "b": 2}}), LOC, &[])
+            .render(&serde_json::json!({"obj": {"a": 1, "b": 2}}), LOC, &[], &[])
             .unwrap();
         assert!(result.contains("a=1"));
         assert!(result.contains("b=2"));
@@ -100,7 +101,7 @@ mod tests {
     fn full_render_pipes() {
         let tpl = Template::from_str("{{ html |> escape }}");
         let result = tpl
-            .render(&serde_json::json!({"html": "<b>hi</b>"}), LOC, &[])
+            .render(&serde_json::json!({"html": "<b>hi</b>"}), LOC, &[], &[])
             .unwrap();
         assert_eq!(result, "&lt;b&gt;hi&lt;/b&gt;");
     }
@@ -121,6 +122,7 @@ mod tests {
                 }),
                 LOC,
                 &[],
+                &[],
             )
             .unwrap();
         assert_eq!(result, "ac");
@@ -129,21 +131,21 @@ mod tests {
     #[test]
     fn full_render_set() {
         let tpl = Template::from_str("{{ set greeting = \"Hi\" }}{{ greeting }}!");
-        let result = tpl.render(&serde_json::json!({}), LOC, &[]).unwrap();
+        let result = tpl.render(&serde_json::json!({}), LOC, &[], &[]).unwrap();
         assert_eq!(result, "Hi!");
     }
 
     #[test]
     fn full_render_comment_ignored() {
         let tpl = Template::from_str("before{{# this is a comment }}after");
-        let result = tpl.render(&serde_json::json!({}), LOC, &[]).unwrap();
+        let result = tpl.render(&serde_json::json!({}), LOC, &[], &[]).unwrap();
         assert_eq!(result, "beforeafter");
     }
 
     #[test]
     fn full_render_echo() {
         let tpl = Template::from_str("{{ echo }}{{ name }}{{ /echo }}");
-        let result = tpl.render(&serde_json::json!({}), LOC, &[]).unwrap();
+        let result = tpl.render(&serde_json::json!({}), LOC, &[], &[]).unwrap();
         assert_eq!(result, "{{ name }}");
     }
 
@@ -151,7 +153,7 @@ mod tests {
     fn full_render_trim() {
         let tpl = Template::from_str("  {{- name -}}  rest");
         let result = tpl
-            .render(&serde_json::json!({"name": "x"}), LOC, &[])
+            .render(&serde_json::json!({"name": "x"}), LOC, &[], &[])
             .unwrap();
         assert_eq!(result, "xrest");
     }
@@ -161,15 +163,18 @@ mod tests {
         let tpl =
             Template::from_str("{{ if x == 1 }}one{{ else if x == 2 }}two{{ else }}other{{ /if }}");
         assert_eq!(
-            tpl.render(&serde_json::json!({"x": 1}), LOC, &[]).unwrap(),
+            tpl.render(&serde_json::json!({"x": 1}), LOC, &[], &[])
+                .unwrap(),
             "one"
         );
         assert_eq!(
-            tpl.render(&serde_json::json!({"x": 2}), LOC, &[]).unwrap(),
+            tpl.render(&serde_json::json!({"x": 2}), LOC, &[], &[])
+                .unwrap(),
             "two"
         );
         assert_eq!(
-            tpl.render(&serde_json::json!({"x": 3}), LOC, &[]).unwrap(),
+            tpl.render(&serde_json::json!({"x": 3}), LOC, &[], &[])
+                .unwrap(),
             "other"
         );
     }
@@ -177,7 +182,7 @@ mod tests {
     #[test]
     fn full_render_empty() {
         let tpl = Template::from_str("");
-        let result = tpl.render(&serde_json::json!({}), LOC, &[]).unwrap();
+        let result = tpl.render(&serde_json::json!({}), LOC, &[], &[]).unwrap();
         assert_eq!(result, "");
     }
 
@@ -188,6 +193,7 @@ mod tests {
             .render(
                 &serde_json::json!({"content": "<script>alert('xss')</script>"}),
                 LOC,
+                &[],
                 &[],
             )
             .unwrap();
@@ -205,6 +211,7 @@ mod tests {
                 &serde_json::json!({"content": "&lt;b&gt;bold&lt;/b&gt;"}),
                 LOC,
                 &[],
+                &[],
             )
             .unwrap();
         assert_eq!(result, "<b>bold</b>");
@@ -218,6 +225,7 @@ mod tests {
                 &serde_json::json!({"content": "<div class=\"x\">hi</div>"}),
                 LOC,
                 &[],
+                &[],
             )
             .unwrap();
         assert_eq!(result, "<div class=\"x\">hi</div>");
@@ -227,12 +235,12 @@ mod tests {
     fn full_render_empty_filter() {
         let tpl = Template::from_str("{{ if items |> empty }}no items{{ else }}has items{{ /if }}");
         assert_eq!(
-            tpl.render(&serde_json::json!({"items": []}), LOC, &[])
+            tpl.render(&serde_json::json!({"items": []}), LOC, &[], &[])
                 .unwrap(),
             "no items"
         );
         assert_eq!(
-            tpl.render(&serde_json::json!({"items": [1]}), LOC, &[])
+            tpl.render(&serde_json::json!({"items": [1]}), LOC, &[], &[])
                 .unwrap(),
             "has items"
         );
@@ -243,17 +251,17 @@ mod tests {
         let tpl =
             Template::from_str("{{ if name |> empty }}anonymous{{ else }}{{ name }}{{ /if }}");
         assert_eq!(
-            tpl.render(&serde_json::json!({"name": ""}), LOC, &[])
+            tpl.render(&serde_json::json!({"name": ""}), LOC, &[], &[])
                 .unwrap(),
             "anonymous"
         );
         assert_eq!(
-            tpl.render(&serde_json::json!({"name": "  "}), LOC, &[])
+            tpl.render(&serde_json::json!({"name": "  "}), LOC, &[], &[])
                 .unwrap(),
             "anonymous"
         );
         assert_eq!(
-            tpl.render(&serde_json::json!({"name": "Johan"}), LOC, &[])
+            tpl.render(&serde_json::json!({"name": "Johan"}), LOC, &[], &[])
                 .unwrap(),
             "Johan"
         );
@@ -264,7 +272,7 @@ mod tests {
         let tpl = Template::from_str(
             "{{ function greet(name) }}Hello {{ name }}!{{ /function }}{{ greet(\"World\") }}",
         );
-        let result = tpl.render(&serde_json::json!({}), LOC, &[]).unwrap();
+        let result = tpl.render(&serde_json::json!({}), LOC, &[], &[]).unwrap();
         assert_eq!(result, "Hello World!");
     }
 
@@ -274,7 +282,7 @@ mod tests {
             "{{ function greet(name) }}Hello {{ name }}!{{ /function }}{{ greet(who) }}",
         );
         let result = tpl
-            .render(&serde_json::json!({"who": "Johan"}), LOC, &[])
+            .render(&serde_json::json!({"who": "Johan"}), LOC, &[], &[])
             .unwrap();
         assert_eq!(result, "Hello Johan!");
     }
@@ -284,7 +292,7 @@ mod tests {
         let tpl = Template::from_str(
             "{{ function status(done) }}{{ if done }}Yes{{ else }}No{{ /if }}{{ /function }}{{ status(true) }}/{{ status(false) }}",
         );
-        let result = tpl.render(&serde_json::json!({}), LOC, &[]).unwrap();
+        let result = tpl.render(&serde_json::json!({}), LOC, &[], &[]).unwrap();
         assert_eq!(result, "Yes/No");
     }
 
@@ -293,7 +301,7 @@ mod tests {
         let tpl = Template::from_str(
             "{{ function star() }}*{{ /function }}{{ star() }}{{ star() }}{{ star() }}",
         );
-        let result = tpl.render(&serde_json::json!({}), LOC, &[]).unwrap();
+        let result = tpl.render(&serde_json::json!({}), LOC, &[], &[]).unwrap();
         assert_eq!(result, "***");
     }
 
@@ -303,7 +311,7 @@ mod tests {
             "{{ function list(items) }}{{ for item of items }}[{{ item }}]{{ /for }}{{ /function }}{{ list(things) }}",
         );
         let result = tpl
-            .render(&serde_json::json!({"things": ["a", "b"]}), LOC, &[])
+            .render(&serde_json::json!({"things": ["a", "b"]}), LOC, &[], &[])
             .unwrap();
         assert_eq!(result, "[a][b]");
     }
@@ -313,7 +321,7 @@ mod tests {
         let tpl = Template::from_str(
             "{{ set prefix = \"Hi\" }}{{ function greet(name) }}{{ prefix }} {{ name }}!{{ /function }}{{ greet(\"World\") }}",
         );
-        let result = tpl.render(&serde_json::json!({}), LOC, &[]).unwrap();
+        let result = tpl.render(&serde_json::json!({}), LOC, &[], &[]).unwrap();
         assert_eq!(result, "Hi World!");
     }
 
@@ -323,7 +331,7 @@ mod tests {
             "{{ set safe_name = name |> escape }}{{ function wrap(text) }}<b>{{ text }}</b>{{ /function }}{{ wrap(safe_name) }}",
         );
         let result = tpl
-            .render(&serde_json::json!({"name": "<script>"}), LOC, &[])
+            .render(&serde_json::json!({"name": "<script>"}), LOC, &[], &[])
             .unwrap();
         assert_eq!(result, "<b>&lt;script&gt;</b>");
     }
@@ -332,7 +340,12 @@ mod tests {
     fn full_render_safe() {
         let tpl = Template::from_str("{{ html |> safe }}");
         let result = tpl
-            .render(&serde_json::json!({"html": "<b>trusted</b>"}), LOC, &[])
+            .render(
+                &serde_json::json!({"html": "<b>trusted</b>"}),
+                LOC,
+                &[],
+                &[],
+            )
             .unwrap();
         assert_eq!(result, "<b>trusted</b>");
     }
@@ -341,7 +354,7 @@ mod tests {
     fn full_render_md_block() {
         let tpl = Template::from_str("{{ text |> md }}");
         let result = tpl
-            .render(&serde_json::json!({"text": "**bold**"}), LOC, &[])
+            .render(&serde_json::json!({"text": "**bold**"}), LOC, &[], &[])
             .unwrap();
         assert!(result.contains("<p><strong>bold</strong></p>"));
     }
@@ -350,7 +363,7 @@ mod tests {
     fn full_render_md_inline() {
         let tpl = Template::from_str("{{ text |> md(true) }}");
         let result = tpl
-            .render(&serde_json::json!({"text": "**bold**"}), LOC, &[])
+            .render(&serde_json::json!({"text": "**bold**"}), LOC, &[], &[])
             .unwrap();
         assert_eq!(result, "<strong>bold</strong>");
     }
@@ -359,7 +372,7 @@ mod tests {
     fn full_render_url_filter() {
         let tpl = Template::from_str("{{ \"/foo\" |> url }}");
         let result = tpl
-            .render(&serde_json::json!({}), "https://johan.im", &[])
+            .render(&serde_json::json!({}), "https://johan.im", &[], &[])
             .unwrap();
         assert_eq!(result, "https://johan.im/foo");
     }
@@ -367,7 +380,7 @@ mod tests {
     #[test]
     fn full_render_undefined_var_in_comparison() {
         let tpl = Template::from_str("{{ if undefinedVar == 'foo' }}yes{{ else }}no{{ /if }}");
-        let result = tpl.render(&serde_json::json!({}), LOC, &[]).unwrap();
+        let result = tpl.render(&serde_json::json!({}), LOC, &[], &[]).unwrap();
         assert_eq!(result, "no");
     }
 }
