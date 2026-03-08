@@ -1,5 +1,5 @@
 ---
-date: '2026-03-03T20:23:10+01:00'
+date: '2026-03-08T19:47:52+01:00'
 location: ''
 timezone: Europe/Stockholm
 tags:
@@ -32,4 +32,5 @@ tags:
 - The Substance
 - House of Gucci
 - The Phantom Thread
+- Scrubs
 
